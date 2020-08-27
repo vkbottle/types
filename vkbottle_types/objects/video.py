@@ -63,7 +63,7 @@ class VideoAlbumFull(BaseObject):
 
     count: Optional[int] = None
     id: Optional[int] = None
-    image: Optional[List["VideoImage"]]
+    image: Optional[List["VideoImage"]] = None
     image_blur: Optional[base.PropertyExists] = None
     is_system: Optional[base.PropertyExists] = None
     owner_id: Optional[int] = None

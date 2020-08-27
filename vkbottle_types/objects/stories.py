@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import polls, base, apps, photos, users, market, video, audio
+from . import photos, video, polls, apps, market, audio, users, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -24,7 +24,7 @@ class ClickableSticker(BaseObject):
     is_broadcast_notify_allowed - Whether current user allowed broadcast notify from this app
     """
 
-    clickable_area: Optional[List["ClickableArea"]]
+    clickable_area: Optional[List["ClickableArea"]] = None
     id: Optional[int] = None
     hashtag: Optional[str] = None
     link_object: Optional[base.Link] = None
@@ -56,7 +56,7 @@ class ClickableSticker(BaseObject):
 class ClickableStickers(BaseObject):
     """VK Object stories/ClickableStickers"""
 
-    clickable_stickers: Optional[List["ClickableSticker"]]
+    clickable_stickers: Optional[List["ClickableSticker"]] = None
     original_height: Optional[int] = None
     original_width: Optional[int] = None
 
@@ -72,10 +72,10 @@ class FeedItem(BaseObject):
     """
 
     type: Optional[str] = None
-    stories: Optional[List["Story"]]
-    grouped: Optional[List["FeedItem"]]
+    stories: Optional[List["Story"]] = None
+    grouped: Optional[List["FeedItem"]] = None
     app: Optional[apps.AppMin] = None
-    promo_data: Optional["PromoBlock"]
+    promo_data: Optional["PromoBlock"] = None
 
 
 class PromoBlock(BaseObject):
@@ -150,17 +150,17 @@ class Story(BaseObject):
     id: Optional[int] = None
     is_deleted: Optional[bool] = None
     is_expired: Optional[bool] = None
-    link: Optional["StoryLink"]
+    link: Optional["StoryLink"] = None
     owner_id: Optional[int] = None
-    parent_story: Optional["Story"]
+    parent_story: Optional["Story"] = None
     parent_story_access_key: Optional[str] = None
     parent_story_id: Optional[int] = None
     parent_story_owner_id: Optional[int] = None
     photo: Optional[photos.Photo] = None
-    replies: Optional["Replies"]
+    replies: Optional["Replies"] = None
     seen: Optional[base.BoolInt] = None
-    type: Optional["StoryType"]
-    clickable_stickers: Optional["ClickableStickers"]
+    type: Optional["StoryType"] = None
+    clickable_stickers: Optional["ClickableStickers"] = None
     video: Optional[video.Video] = None
     views: Optional[int] = None
     can_ask: Optional[base.BoolInt] = None
@@ -184,21 +184,21 @@ class StoryLink(BaseObject):
 class StoryStats(BaseObject):
     """VK Object stories/StoryStats"""
 
-    answer: Optional["StoryStatsStat"]
-    bans: Optional["StoryStatsStat"]
-    open_link: Optional["StoryStatsStat"]
-    replies: Optional["StoryStatsStat"]
-    shares: Optional["StoryStatsStat"]
-    subscribers: Optional["StoryStatsStat"]
-    views: Optional["StoryStatsStat"]
-    likes: Optional["StoryStatsStat"]
+    answer: Optional["StoryStatsStat"] = None
+    bans: Optional["StoryStatsStat"] = None
+    open_link: Optional["StoryStatsStat"] = None
+    replies: Optional["StoryStatsStat"] = None
+    shares: Optional["StoryStatsStat"] = None
+    subscribers: Optional["StoryStatsStat"] = None
+    views: Optional["StoryStatsStat"] = None
+    likes: Optional["StoryStatsStat"] = None
 
 
 class StoryStatsStat(BaseObject):
     """VK Object stories/StoryStatsStat"""
 
     count: Optional[int] = None
-    state: Optional["StoryStatsState"]
+    state: Optional["StoryStatsState"] = None
 
 
 class StoryStatsState(enum.Enum):

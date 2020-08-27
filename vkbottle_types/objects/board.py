@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, wall, polls
+from . import wall, polls, base
 from typing import Optional, Union, Any, List
 import typing
 import enum

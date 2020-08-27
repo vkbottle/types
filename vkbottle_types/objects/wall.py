@@ -1,16 +1,16 @@
 from .base_model import BaseObject
 from . import (
-    polls,
-    base,
-    comment,
+    docs,
+    events,
     pages,
     photos,
+    video,
+    polls,
     groups,
     market,
-    docs,
-    video,
     audio,
-    events,
+    comment,
+    base,
 )
 from typing import Optional, Union, Any, List
 import typing
@@ -70,11 +70,11 @@ class CommentAttachment(BaseObject):
     link: Optional[base.Link] = None
     market: Optional[market.MarketItem] = None
     market_market_album: Optional[market.MarketAlbum] = None
-    note: Optional["AttachedNote"]
+    note: Optional["AttachedNote"] = None
     page: Optional[pages.WikipageFull] = None
     photo: Optional[photos.Photo] = None
     sticker: Optional[base.Sticker] = None
-    type: Optional["CommentAttachmentType"]
+    type: Optional["CommentAttachmentType"] = None
     video: Optional[video.Video] = None
 
 
@@ -136,7 +136,7 @@ class PostSource(BaseObject):
 
     data: Optional[str] = None
     platform: Optional[str] = None
-    type: Optional["PostSourceType"]
+    type: Optional["PostSourceType"] = None
     url: Optional[str] = None
 
 
@@ -196,7 +196,7 @@ class WallComment(BaseObject):
     text - Comment text
     """
 
-    attachments: Optional[List["CommentAttachment"]]
+    attachments: Optional[List["CommentAttachment"]] = None
     date: Optional[int] = None
     from_id: Optional[int] = None
     id: Optional[int] = None
@@ -232,23 +232,23 @@ class Wallpost(BaseObject):
     """
 
     access_key: Optional[str] = None
-    attachments: Optional[List["WallpostAttachment"]]
-    copyright: Optional["PostCopyright"]
+    attachments: Optional[List["WallpostAttachment"]] = None
+    copyright: Optional["PostCopyright"] = None
     date: Optional[int] = None
     edited: Optional[int] = None
     from_id: Optional[int] = None
-    geo: Optional["Geo"]
+    geo: Optional["Geo"] = None
     id: Optional[int] = None
     is_archived: Optional[bool] = None
     is_favorite: Optional[bool] = None
     likes: Optional[base.LikesInfo] = None
     owner_id: Optional[int] = None
-    post_source: Optional["PostSource"]
-    post_type: Optional["PostType"]
+    post_source: Optional["PostSource"] = None
+    post_type: Optional["PostType"] = None
     reposts: Optional[base.RepostsInfo] = None
     signer_id: Optional[int] = None
     text: Optional[str] = None
-    views: Optional["Views"]
+    views: Optional["Views"] = None
 
 
 class WallpostAttachment(BaseObject):
@@ -256,22 +256,22 @@ class WallpostAttachment(BaseObject):
 
     access_key: Optional[str] = None
     album: Optional[photos.PhotoAlbum] = None
-    app: Optional["AppPost"]
+    app: Optional["AppPost"] = None
     audio: Optional[audio.Audio] = None
     doc: Optional[docs.Doc] = None
     event: Optional[events.EventAttach] = None
     group: Optional[groups.GroupAttach] = None
-    graffiti: Optional["Graffiti"]
+    graffiti: Optional["Graffiti"] = None
     link: Optional[base.Link] = None
     market: Optional[market.MarketItem] = None
     market_album: Optional[market.MarketAlbum] = None
-    note: Optional["AttachedNote"]
+    note: Optional["AttachedNote"] = None
     page: Optional[pages.WikipageFull] = None
     photo: Optional[photos.Photo] = None
     photos_list: Optional[List[str]] = None
     poll: Optional[polls.Poll] = None
-    posted_photo: Optional["PostedPhoto"]
-    type: Optional["WallpostAttachmentType"]
+    posted_photo: Optional["PostedPhoto"] = None
+    type: Optional["WallpostAttachmentType"] = None
     video: Optional[video.Video] = None
 
 
@@ -315,19 +315,19 @@ class WallpostToId(BaseObject):
     to_id - Wall owner's ID
     """
 
-    attachments: Optional[List["WallpostAttachment"]]
+    attachments: Optional[List["WallpostAttachment"]] = None
     comments: Optional[base.CommentsInfo] = None
     copy_owner_id: Optional[int] = None
     copy_post_id: Optional[int] = None
     date: Optional[int] = None
     from_id: Optional[int] = None
-    geo: Optional["Geo"]
+    geo: Optional["Geo"] = None
     id: Optional[int] = None
     is_favorite: Optional[bool] = None
     likes: Optional[base.LikesInfo] = None
     post_id: Optional[int] = None
-    post_source: Optional["PostSource"]
-    post_type: Optional["PostType"]
+    post_source: Optional["PostSource"] = None
+    post_type: Optional["PostType"] = None
     reposts: Optional[base.RepostsInfo] = None
     signer_id: Optional[int] = None
     text: Optional[str] = None

@@ -9,7 +9,7 @@ class Checked(BaseObject):
     """VK Object leads/Checked"""
 
     reason: Optional[str] = None
-    result: Optional["CheckedResult"]
+    result: Optional["CheckedResult"] = None
     sid: Optional[str] = None
     start_link: Optional[str] = None
 
@@ -73,7 +73,7 @@ class Lead(BaseObject):
 
     completed: Optional[int] = None
     cost: Optional[int] = None
-    days: Optional["LeadDays"]
+    days: Optional["LeadDays"] = None
     impressions: Optional[int] = None
     limit: Optional[int] = None
     spent: Optional[int] = None

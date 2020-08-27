@@ -9,11 +9,11 @@ class Gift(BaseObject):
 
     date: Optional[int] = None
     from_id: Optional[int] = None
-    gift: Optional["Layout"]
+    gift: Optional["Layout"] = None
     gift_hash: Optional[str] = None
     id: Optional[int] = None
     message: Optional[str] = None
-    privacy: Optional["GiftPrivacy"]
+    privacy: Optional["GiftPrivacy"] = None
 
 
 class GiftPrivacy(enum.IntEnum):

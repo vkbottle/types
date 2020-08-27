@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import gifts, base, stories, photos, wall, market, docs, video, audio
+from . import docs, stories, gifts, wall, photos, video, market, audio, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -47,7 +47,7 @@ class Chat(BaseObject):
     photo_100: Optional[str] = None
     photo_200: Optional[str] = None
     photo_50: Optional[str] = None
-    push_settings: Optional["ChatPushSettings"]
+    push_settings: Optional["ChatPushSettings"] = None
     title: Optional[str] = None
     type: Optional[str] = None
     users: Optional[List[int]] = None
@@ -75,10 +75,10 @@ class ChatFull(BaseObject):
     photo_100: Optional[str] = None
     photo_200: Optional[str] = None
     photo_50: Optional[str] = None
-    push_settings: Optional["ChatPushSettings"]
+    push_settings: Optional["ChatPushSettings"] = None
     title: Optional[str] = None
     type: Optional[str] = None
-    users: Optional[List["UserXtrInvitedBy"]]
+    users: Optional[List["UserXtrInvitedBy"]] = None
 
 
 class ChatPushSettings(BaseObject):
@@ -120,7 +120,7 @@ class Conversation(BaseObject):
     mentions - Ids of messages with mentions
     """
 
-    peer: Optional["ConversationPeer"]
+    peer: Optional["ConversationPeer"] = None
     last_message_id: Optional[int] = None
     in_read: Optional[int] = None
     out_read: Optional[int] = None
@@ -129,9 +129,9 @@ class Conversation(BaseObject):
     important: Optional[bool] = None
     unanswered: Optional[bool] = None
     special_service_type: Optional[str] = None
-    message_request_data: Optional["MessageRequestData"]
+    message_request_data: Optional["MessageRequestData"] = None
     mentions: Optional[List[int]] = None
-    current_keyboard: Optional["Keyboard"]
+    current_keyboard: Optional["Keyboard"] = None
 
 
 class ConversationMember(BaseObject):
@@ -156,7 +156,7 @@ class ConversationPeer(BaseObject):
 
     id: Optional[int] = None
     local_id: Optional[int] = None
-    type: Optional["ConversationPeerType"]
+    type: Optional["ConversationPeerType"] = None
 
 
 class ConversationPeerType(enum.Enum):
@@ -171,8 +171,8 @@ class ConversationPeerType(enum.Enum):
 class ConversationWithMessage(BaseObject):
     """VK Object messages/ConversationWithMessage"""
 
-    conversation: Optional["Conversation"]
-    last_message: Optional["Message"]
+    conversation: Optional["Conversation"] = None
+    last_message: Optional["Message"] = None
 
 
 class ForeignMessage(BaseObject):
@@ -189,15 +189,15 @@ class ForeignMessage(BaseObject):
     payload - Additional data sent along with message for developer convenience
     """
 
-    attachments: Optional[List["MessageAttachment"]]
+    attachments: Optional[List["MessageAttachment"]] = None
     conversation_message_id: Optional[int] = None
     date: Optional[int] = None
     from_id: Optional[int] = None
-    fwd_messages: Optional[List["ForeignMessage"]]
+    fwd_messages: Optional[List["ForeignMessage"]] = None
     geo: Optional[base.Geo] = None
     id: Optional[int] = None
     peer_id: Optional[int] = None
-    reply_message: Optional["ForeignMessage"]
+    reply_message: Optional["ForeignMessage"] = None
     text: Optional[str] = None
     update_time: Optional[int] = None
     was_listened: Optional[bool] = None
@@ -230,7 +230,7 @@ class HistoryAttachment(BaseObject):
     from_id - Message author's ID
     """
 
-    attachment: Optional["HistoryMessageAttachment"]
+    attachment: Optional["HistoryMessageAttachment"] = None
     message_id: Optional[int] = None
     from_id: Optional[int] = None
 
@@ -239,14 +239,14 @@ class HistoryMessageAttachment(BaseObject):
     """VK Object messages/HistoryMessageAttachment"""
 
     audio: Optional[audio.Audio] = None
-    audio_message: Optional["AudioMessage"]
+    audio_message: Optional["AudioMessage"] = None
     doc: Optional[docs.Doc] = None
-    graffiti: Optional["Graffiti"]
+    graffiti: Optional["Graffiti"] = None
     link: Optional[base.Link] = None
     market: Optional[base.Link] = None
     photo: Optional[photos.Photo] = None
     share: Optional[base.Link] = None
-    type: Optional["HistoryMessageAttachmentType"]
+    type: Optional["HistoryMessageAttachmentType"] = None
     video: Optional[video.Video] = None
     wall: Optional[base.Link] = None
 
@@ -285,7 +285,7 @@ class KeyboardButton(BaseObject):
     color - Button color
     """
 
-    action: Optional["KeyboardButtonAction"]
+    action: Optional["KeyboardButtonAction"] = None
     color: Optional[str] = None
 
 
@@ -307,7 +307,7 @@ class KeyboardButtonAction(BaseObject):
     link: Optional[str] = None
     owner_id: Optional[int] = None
     payload: Optional[str] = None
-    type: Optional["TemplateActionTypeNames"]
+    type: Optional["TemplateActionTypeNames"] = None
 
 
 class LastActivity(BaseObject):
@@ -328,7 +328,7 @@ class LongpollMessages(BaseObject):
     """
 
     count: Optional[int] = None
-    items: Optional[List["Message"]]
+    items: Optional[List["Message"]] = None
 
 
 class LongpollParams(BaseObject):
@@ -368,20 +368,20 @@ class Message(BaseObject):
     pinned_at - Date when the message has been pinned in Unixtime
     """
 
-    action: Optional["MessageAction"]
+    action: Optional["MessageAction"] = None
     admin_author_id: Optional[int] = None
-    attachments: Optional[List["MessageAttachment"]]
+    attachments: Optional[List["MessageAttachment"]] = None
     conversation_message_id: Optional[int] = None
     date: Optional[int] = None
     deleted: Optional[base.BoolInt] = None
     from_id: Optional[int] = None
-    fwd_messages: Optional[List["ForeignMessage"]]
+    fwd_messages: Optional[List["ForeignMessage"]] = None
     geo: Optional[base.Geo] = None
     id: Optional[int] = None
     important: Optional[bool] = None
     is_hidden: Optional[bool] = None
     is_cropped: Optional[bool] = None
-    keyboard: Optional["Keyboard"]
+    keyboard: Optional["Keyboard"] = None
     members_count: Optional[int] = None
     out: Optional[base.BoolInt] = None
     payload: Optional[str] = None
@@ -389,7 +389,7 @@ class Message(BaseObject):
     random_id: Optional[int] = None
     ref: Optional[str] = None
     ref_source: Optional[str] = None
-    reply_message: Optional["ForeignMessage"]
+    reply_message: Optional["ForeignMessage"] = None
     text: Optional[str] = None
     update_time: Optional[int] = None
     was_listened: Optional[bool] = None
@@ -410,9 +410,9 @@ class MessageAction(BaseObject):
     email: Optional[str] = None
     member_id: Optional[int] = None
     message: Optional[str] = None
-    photo: Optional["MessageActionPhoto"]
+    photo: Optional["MessageActionPhoto"] = None
     text: Optional[str] = None
-    type: Optional["MessageActionStatus"]
+    type: Optional["MessageActionStatus"] = None
 
 
 class MessageActionPhoto(BaseObject):
@@ -441,17 +441,17 @@ class MessageAttachment(BaseObject):
     """VK Object messages/MessageAttachment"""
 
     audio: Optional[audio.Audio] = None
-    audio_message: Optional["AudioMessage"]
+    audio_message: Optional["AudioMessage"] = None
     doc: Optional[docs.Doc] = None
     gift: Optional[gifts.Layout] = None
-    graffiti: Optional["Graffiti"]
+    graffiti: Optional["Graffiti"] = None
     link: Optional[base.Link] = None
     market: Optional[market.MarketItem] = None
     market_market_album: Optional[market.MarketAlbum] = None
     photo: Optional[photos.Photo] = None
     sticker: Optional[base.Sticker] = None
     story: Optional[stories.Story] = None
-    type: Optional["MessageAttachmentType"]
+    type: Optional["MessageAttachmentType"] = None
     video: Optional[video.Video] = None
     wall: Optional[wall.WallpostFull] = None
     wall_reply: Optional[wall.WallComment] = None
@@ -492,17 +492,17 @@ class MessageRequestData(BaseObject):
 class PinnedMessage(BaseObject):
     """VK Object messages/PinnedMessage"""
 
-    attachments: Optional[List["MessageAttachment"]]
+    attachments: Optional[List["MessageAttachment"]] = None
     conversation_message_id: Optional[int] = None
     date: Optional[int] = None
     from_id: Optional[int] = None
-    fwd_messages: Optional[List["ForeignMessage"]]
+    fwd_messages: Optional[List["ForeignMessage"]] = None
     geo: Optional[base.Geo] = None
     id: Optional[int] = None
     peer_id: Optional[int] = None
-    reply_message: Optional["ForeignMessage"]
+    reply_message: Optional["ForeignMessage"] = None
     text: Optional[str] = None
-    keyboard: Optional["Keyboard"]
+    keyboard: Optional["Keyboard"] = None
 
 
 class TemplateActionTypeNames(enum.Enum):

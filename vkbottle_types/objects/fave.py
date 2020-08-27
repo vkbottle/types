@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, wall, users, groups, market, video
+from . import wall, video, groups, market, users, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -13,8 +13,8 @@ class Bookmark(BaseObject):
     post: Optional[wall.WallpostFull] = None
     product: Optional[market.MarketItem] = None
     seen: Optional[bool] = None
-    tags: Optional[List["Tag"]]
-    type: Optional["BookmarkType"]
+    tags: Optional[List["Tag"]] = None
+    type: Optional["BookmarkType"] = None
     video: Optional[video.Video] = None
 
 
@@ -33,8 +33,8 @@ class Page(BaseObject):
 
     description: Optional[str] = None
     group: Optional[groups.GroupFull] = None
-    tags: Optional[List["Tag"]]
-    type: Optional["PageType"]
+    tags: Optional[List["Tag"]] = None
+    type: Optional["PageType"] = None
     updated_date: Optional[int] = None
     user: Optional[users.UserFull] = None
 

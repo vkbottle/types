@@ -58,11 +58,11 @@ class Period(BaseObject):
     period_to - Unix timestamp
     """
 
-    activity: Optional["Activity"]
+    activity: Optional["Activity"] = None
     period_from: Optional[int] = None
     period_to: Optional[int] = None
-    reach: Optional["Reach"]
-    visitors: Optional["Views"]
+    reach: Optional["Reach"] = None
+    visitors: Optional["Views"] = None
 
 
 class Reach(BaseObject):
@@ -73,14 +73,14 @@ class Reach(BaseObject):
     reach_subscribers - Subscribers reach count
     """
 
-    age: Optional[List["SexAge"]]
-    cities: Optional[List["City"]]
-    countries: Optional[List["Country"]]
+    age: Optional[List["SexAge"]] = None
+    cities: Optional[List["City"]] = None
+    countries: Optional[List["Country"]] = None
     mobile_reach: Optional[int] = None
     reach: Optional[int] = None
     reach_subscribers: Optional[int] = None
-    sex: Optional[List["SexAge"]]
-    sex_age: Optional[List["SexAge"]]
+    sex: Optional[List["SexAge"]] = None
+    sex_age: Optional[List["SexAge"]] = None
 
 
 class SexAge(BaseObject):
@@ -105,12 +105,12 @@ class Views(BaseObject):
     visitors - Visitors number
     """
 
-    age: Optional[List["SexAge"]]
-    cities: Optional[List["City"]]
-    countries: Optional[List["Country"]]
+    age: Optional[List["SexAge"]] = None
+    cities: Optional[List["City"]] = None
+    countries: Optional[List["Country"]] = None
     mobile_views: Optional[int] = None
-    sex: Optional[List["SexAge"]]
-    sex_age: Optional[List["SexAge"]]
+    sex: Optional[List["SexAge"]] = None
+    sex_age: Optional[List["SexAge"]] = None
     views: Optional[int] = None
     visitors: Optional[int] = None
 
@@ -141,4 +141,4 @@ class WallpostStat(BaseObject):
     report: Optional[int] = None
     to_group: Optional[int] = None
     unsubscribe: Optional[int] = None
-    sex_age: Optional[List["SexAge"]]
+    sex_age: Optional[List["SexAge"]] = None

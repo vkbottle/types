@@ -10,7 +10,7 @@ class Amount(BaseObject):
     currency - Currency name
     """
 
-    amounts: Optional[List["AmountItem"]]
+    amounts: Optional[List["AmountItem"]] = None
     currency: Optional[str] = None
 
 

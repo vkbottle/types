@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import link, photos, market, video
+from . import link, photos, video, market
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -31,7 +31,7 @@ class CommentsInfo(BaseObject):
     groups_can_post - Information whether groups can comment the post
     """
 
-    can_post: Optional["BoolInt"]
+    can_post: Optional["BoolInt"] = None
     count: Optional[int] = None
     groups_can_post: Optional[bool] = None
 
@@ -51,8 +51,8 @@ class CropPhoto(BaseObject):
     """VK Object base/CropPhoto"""
 
     photo: Optional[photos.Photo] = None
-    crop: Optional["CropPhotoCrop"]
-    rect: Optional["CropPhotoRect"]
+    crop: Optional["CropPhotoCrop"] = None
+    rect: Optional["CropPhotoRect"] = None
 
 
 class CropPhotoCrop(BaseObject):
@@ -96,7 +96,7 @@ class Error(BaseObject):
     error_code: Optional[int] = None
     error_msg: Optional[str] = None
     error_text: Optional[str] = None
-    request_params: Optional[List["RequestParam"]]
+    request_params: Optional[List["RequestParam"]] = None
 
 
 class Geo(BaseObject):
@@ -106,8 +106,8 @@ class Geo(BaseObject):
     type - Place type
     """
 
-    coordinates: Optional["GeoCoordinates"]
-    place: Optional["Place"]
+    coordinates: Optional["GeoCoordinates"] = None
+    place: Optional["Place"] = None
     showmap: Optional[int] = None
     type: Optional[str] = None
 
@@ -152,7 +152,7 @@ class Likes(BaseObject):
     """
 
     count: Optional[int] = None
-    user_likes: Optional["BoolInt"]
+    user_likes: Optional["BoolInt"] = None
 
 
 class LikesInfo(BaseObject):
@@ -164,8 +164,8 @@ class LikesInfo(BaseObject):
     user_likes - Information whether current uer has liked the post
     """
 
-    can_like: Optional["BoolInt"]
-    can_publish: Optional["BoolInt"]
+    can_like: Optional["BoolInt"] = None
+    can_publish: Optional["BoolInt"] = None
     count: Optional[int] = None
     user_likes: Optional[int] = None
 
@@ -184,8 +184,8 @@ class Link(BaseObject):
     video - Video from link
     """
 
-    application: Optional["LinkApplication"]
-    button: Optional["LinkButton"]
+    application: Optional["LinkApplication"] = None
+    button: Optional["LinkButton"] = None
     caption: Optional[str] = None
     description: Optional[str] = None
     id: Optional[str] = None
@@ -193,8 +193,8 @@ class Link(BaseObject):
     photo: Optional[photos.Photo] = None
     preview_page: Optional[str] = None
     preview_url: Optional[str] = None
-    product: Optional["LinkProduct"]
-    rating: Optional["LinkRating"]
+    product: Optional["LinkProduct"] = None
+    rating: Optional["LinkRating"] = None
     title: Optional[str] = None
     url: Optional[str] = None
     target_object: Optional[link.TargetObject] = None
@@ -209,7 +209,7 @@ class LinkApplication(BaseObject):
     """
 
     app_id: Optional[float] = None
-    store: Optional["LinkApplicationStore"]
+    store: Optional["LinkApplicationStore"] = None
 
 
 class LinkApplicationStore(BaseObject):
@@ -234,19 +234,19 @@ class LinkButton(BaseObject):
     icon - Button icon name, e.g. 'phone' or 'gift'
     """
 
-    action: Optional["LinkButtonAction"]
+    action: Optional["LinkButtonAction"] = None
     title: Optional[str] = None
     block_id: Optional[str] = None
     section_id: Optional[str] = None
     owner_id: Optional[int] = None
     icon: Optional[str] = None
-    style: Optional["LinkButtonStyle"]
+    style: Optional["LinkButtonStyle"] = None
 
 
 class LinkButtonAction(BaseObject):
     """VK Object base/LinkButtonAction"""
 
-    type: Optional["LinkButtonActionType"]
+    type: Optional["LinkButtonActionType"] = None
     url: Optional[str] = None
     consume_reason: Optional[str] = None
 
@@ -382,10 +382,10 @@ class Sticker(BaseObject):
 
     sticker_id: Optional[int] = None
     product_id: Optional[int] = None
-    images: Optional[List["Image"]]
-    images_with_background: Optional[List["Image"]]
+    images: Optional[List["Image"]] = None
+    images_with_background: Optional[List["Image"]] = None
     animation_url: Optional[str] = None
-    animations: Optional[List["StickerAnimation"]]
+    animations: Optional[List["StickerAnimation"]] = None
     is_allowed: Optional[bool] = None
 
 

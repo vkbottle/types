@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, video
+from . import video, base
 from typing import Optional, Union, Any, List
 import typing
 import enum

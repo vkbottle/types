@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, groups, photos
+from . import groups, photos, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -16,7 +16,7 @@ class BoardPostDelete(BaseObject):
 class ConfirmationMessage(BaseObject):
     """VK Object callback/ConfirmationMessage"""
 
-    type: Optional["MessageType"]
+    type: Optional["MessageType"] = None
     group_id: Optional[int] = None
     secret: Optional[str] = None
 
@@ -39,7 +39,7 @@ class GroupJoin(BaseObject):
     """VK Object callback/GroupJoin"""
 
     user_id: Optional[int] = None
-    join_type: Optional["GroupJoinType"]
+    join_type: Optional["GroupJoinType"] = None
 
 
 class GroupJoinType(enum.Enum):
@@ -80,8 +80,8 @@ class GroupOfficersEdit(BaseObject):
 
     admin_id: Optional[int] = None
     user_id: Optional[int] = None
-    level_old: Optional["GroupOfficerRole"]
-    level_new: Optional["GroupOfficerRole"]
+    level_old: Optional["GroupOfficerRole"] = None
+    level_new: Optional["GroupOfficerRole"] = None
 
 
 class GroupSettingsChanges(BaseObject):
@@ -99,7 +99,7 @@ class GroupSettingsChanges(BaseObject):
     enable_audio: Optional[groups.GroupAudio] = None
     enable_video: Optional[groups.GroupVideo] = None
     enable_photo: Optional[groups.GroupPhotos] = None
-    enable_market: Optional["GroupMarket"]
+    enable_market: Optional["GroupMarket"] = None
 
 
 class LikeAddRemove(BaseObject):
@@ -143,7 +143,7 @@ class MessageAllow(BaseObject):
 class MessageBase(BaseObject):
     """VK Object callback/MessageBase"""
 
-    type: Optional["MessageType"]
+    type: Optional["MessageType"] = None
     object: Optional[typing.Dict[Any, Any]] = None
     group_id: Optional[int] = None
 

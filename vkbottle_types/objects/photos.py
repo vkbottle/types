@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, comment, wall, media
+from . import comment, base, media, wall
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -34,7 +34,7 @@ class Image(BaseObject):
     """VK Object photos/Image"""
 
     height: Optional[int] = None
-    type: Optional["ImageType"]
+    type: Optional["ImageType"] = None
     url: Optional[str] = None
     width: Optional[int] = None
 
@@ -140,7 +140,7 @@ class Photo(BaseObject):
     date: Optional[int] = None
     height: Optional[int] = None
     id: Optional[int] = None
-    images: Optional[List["Image"]]
+    images: Optional[List["Image"]] = None
     lat: Optional[float] = None
     long: Optional[float] = None
     owner_id: Optional[int] = None
@@ -148,7 +148,7 @@ class Photo(BaseObject):
     can_comment: Optional[base.BoolInt] = None
     place: Optional[str] = None
     post_id: Optional[int] = None
-    sizes: Optional[List["PhotoSizes"]]
+    sizes: Optional[List["PhotoSizes"]] = None
     text: Optional[str] = None
     user_id: Optional[int] = None
     width: Optional[int] = None
@@ -173,7 +173,7 @@ class PhotoAlbum(BaseObject):
     id: Optional[int] = None
     owner_id: Optional[int] = None
     size: Optional[int] = None
-    thumb: Optional["Photo"]
+    thumb: Optional["Photo"] = None
     title: Optional[str] = None
     updated: Optional[int] = None
 
@@ -203,7 +203,7 @@ class PhotoAlbumFull(BaseObject):
     id: Optional[int] = None
     owner_id: Optional[int] = None
     size: Optional[int] = None
-    sizes: Optional[List["PhotoSizes"]]
+    sizes: Optional[List["PhotoSizes"]] = None
     thumb_id: Optional[int] = None
     thumb_is_last: Optional[base.BoolInt] = None
     thumb_src: Optional[str] = None
@@ -237,7 +237,7 @@ class PhotoFull(BaseObject):
     date: Optional[int] = None
     height: Optional[int] = None
     id: Optional[int] = None
-    images: Optional[List["Image"]]
+    images: Optional[List["Image"]] = None
     lat: Optional[float] = None
     likes: Optional[base.Likes] = None
     long: Optional[float] = None
@@ -296,7 +296,7 @@ class PhotoFullXtrRealOffset(BaseObject):
     post_id: Optional[int] = None
     real_offset: Optional[int] = None
     reposts: Optional[base.ObjectCount] = None
-    sizes: Optional[List["PhotoSizes"]]
+    sizes: Optional[List["PhotoSizes"]] = None
     tags: Optional[base.ObjectCount] = None
     text: Optional[str] = None
     user_id: Optional[int] = None
@@ -309,7 +309,7 @@ class PhotoSizes(BaseObject):
     height: Optional[int] = None
     url: Optional[str] = None
     src: Optional[str] = None
-    type: Optional["PhotoSizesType"]
+    type: Optional["PhotoSizesType"] = None
     width: Optional[int] = None
 
 
@@ -432,7 +432,7 @@ class PhotoXtrRealOffset(BaseObject):
     photo_807: Optional[str] = None
     post_id: Optional[int] = None
     real_offset: Optional[int] = None
-    sizes: Optional[List["PhotoSizes"]]
+    sizes: Optional[List["PhotoSizes"]] = None
     text: Optional[str] = None
     user_id: Optional[int] = None
     width: Optional[int] = None
@@ -480,7 +480,7 @@ class PhotoXtrTagInfo(BaseObject):
     photo_807: Optional[str] = None
     placer_id: Optional[int] = None
     post_id: Optional[int] = None
-    sizes: Optional[List["PhotoSizes"]]
+    sizes: Optional[List["PhotoSizes"]] = None
     tag_created: Optional[int] = None
     tag_id: Optional[int] = None
     text: Optional[str] = None
@@ -493,9 +493,9 @@ class TagsSuggestionItem(BaseObject):
 
     title: Optional[str] = None
     type: Optional[str] = None
-    buttons: Optional[List["TagsSuggestionItemButton"]]
-    photo: Optional["Photo"]
-    tags: Optional[List["PhotoTag"]]
+    buttons: Optional[List["TagsSuggestionItemButton"]] = None
+    photo: Optional["Photo"] = None
+    tags: Optional[List["PhotoTag"]] = None
 
 
 class TagsSuggestionItemButton(BaseObject):

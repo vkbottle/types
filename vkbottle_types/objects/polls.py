@@ -51,8 +51,8 @@ class Friend(BaseObject):
 class Poll(BaseObject):
     """VK Object polls/Poll"""
 
-    anonymous: Optional["PollAnonymous"]
-    friends: Optional[List["Friend"]]
+    anonymous: Optional["PollAnonymous"] = None
+    friends: Optional[List["Friend"]] = None
     multiple: Optional[bool] = None
     answer_id: Optional[int] = None
     end_date: Optional[int] = None
@@ -63,19 +63,19 @@ class Poll(BaseObject):
     can_vote: Optional[bool] = None
     can_report: Optional[bool] = None
     can_share: Optional[bool] = None
-    photo: Optional["Background"]
-    answers: Optional[List["Answer"]]
+    photo: Optional["Background"] = None
+    answers: Optional[List["Answer"]] = None
     created: Optional[int] = None
     id: Optional[int] = None
     owner_id: Optional[int] = None
     author_id: Optional[int] = None
     question: Optional[str] = None
-    background: Optional["Background"]
+    background: Optional["Background"] = None
     votes: Optional[int] = None
     disable_unvote: Optional[bool] = None
 
 
-PollAnonymous = Optional[bool]  # Information whether the field is anonymous
+PollAnonymous = Optional[bool] = None  # Information whether the field is anonymous
 
 
 class Voters(BaseObject):
@@ -85,7 +85,7 @@ class Voters(BaseObject):
     """
 
     answer_id: Optional[int] = None
-    users: Optional["VotersUsers"]
+    users: Optional["VotersUsers"] = None
 
 
 class VotersUsers(BaseObject):

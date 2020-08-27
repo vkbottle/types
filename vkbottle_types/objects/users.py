@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, account, audio
+from . import audio, account, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -366,7 +366,7 @@ class UserRelation(enum.IntEnum):
 class UserSettingsXtr(BaseObject):
     """VK Object users/UserSettingsXtr"""
 
-    connections: Optional["UserConnections"]
+    connections: Optional["UserConnections"] = None
     bdate: Optional[str] = None
     bdate_visibility: Optional[int] = None
     city: Optional[base.City] = None
@@ -376,12 +376,12 @@ class UserSettingsXtr(BaseObject):
     last_name: Optional[str] = None
     maiden_name: Optional[str] = None
     name_request: Optional[account.NameRequest] = None
-    personal: Optional["Personal"]
+    personal: Optional["Personal"] = None
     phone: Optional[str] = None
-    relation: Optional["UserRelation"]
-    relation_partner: Optional["UserMin"]
+    relation: Optional["UserRelation"] = None
+    relation_partner: Optional["UserMin"] = None
     relation_pending: Optional[base.BoolInt] = None
-    relation_requests: Optional[List["UserMin"]]
+    relation_requests: Optional[List["UserMin"]] = None
     screen_name: Optional[str] = None
     sex: Optional[base.Sex] = None
     status: Optional[str] = None

@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import board, base, wall, photos, video
+from . import board, wall, photos, video, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -31,9 +31,9 @@ class Notification(BaseObject):
     """
 
     date: Optional[int] = None
-    feedback: Optional["Feedback"]
-    parent: Optional["NotificationParent"]
-    reply: Optional["Reply"]
+    feedback: Optional["Feedback"] = None
+    parent: Optional["NotificationParent"] = None
+    reply: Optional["Reply"] = None
     type: Optional[str] = None
 
 
@@ -97,4 +97,4 @@ class SendMessageItem(BaseObject):
 
     user_id: Optional[int] = None
     status: Optional[bool] = None
-    error: Optional["SendMessageError"]
+    error: Optional["SendMessageError"] = None

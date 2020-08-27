@@ -19,7 +19,7 @@ class AppLeaderboardType(enum.IntEnum):
 class AppMin(BaseObject):
     """VK Object apps/AppMin"""
 
-    type: Optional["AppType"]
+    type: Optional["AppType"] = None
     id: Optional[int] = None
     title: Optional[str] = None
     author_owner_id: Optional[int] = None

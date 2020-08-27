@@ -11,7 +11,7 @@ class FriendExtendedStatus(BaseObject):
 class FriendStatus(BaseObject):
     """VK Object friends/FriendStatus"""
 
-    friend_status: Optional["FriendStatusStatus"]
+    friend_status: Optional["FriendStatusStatus"] = None
     sign: Optional[str] = None
     user_id: Optional[int] = None
 
@@ -56,7 +56,7 @@ class Requests(BaseObject):
     """
 
     _from: Optional[str] = None
-    mutual: Optional["RequestsMutual"]
+    mutual: Optional["RequestsMutual"] = None
     user_id: Optional[int] = None
 
 
@@ -80,7 +80,7 @@ class RequestsXtrMessage(BaseObject):
 
     _from: Optional[str] = None
     message: Optional[str] = None
-    mutual: Optional["RequestsMutual"]
+    mutual: Optional["RequestsMutual"] = None
     user_id: Optional[int] = None
 
 

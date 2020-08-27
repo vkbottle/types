@@ -76,7 +76,7 @@ class NameRequest(BaseObject):
     first_name: Optional[str] = None
     id: Optional[int] = None
     last_name: Optional[str] = None
-    status: Optional["NameRequestStatus"]
+    status: Optional["NameRequestStatus"] = None
     lang: Optional[str] = None
     link_href: Optional[str] = None
     link_label: Optional[str] = None
@@ -133,7 +133,7 @@ class PushConversations(BaseObject):
     """
 
     count: Optional[int] = None
-    items: Optional[List["PushConversationsItem"]]
+    items: Optional[List["PushConversationsItem"]] = None
 
 
 class PushConversationsItem(BaseObject):
@@ -152,25 +152,25 @@ class PushConversationsItem(BaseObject):
 class PushParams(BaseObject):
     """VK Object account/PushParams"""
 
-    msg: Optional[List["PushParamsMode"]]
-    chat: Optional[List["PushParamsMode"]]
-    like: Optional[List["PushParamsSettings"]]
-    repost: Optional[List["PushParamsSettings"]]
-    comment: Optional[List["PushParamsSettings"]]
-    mention: Optional[List["PushParamsSettings"]]
-    reply: Optional[List["PushParamsOnoff"]]
-    new_post: Optional[List["PushParamsOnoff"]]
-    wall_post: Optional[List["PushParamsOnoff"]]
-    wall_publish: Optional[List["PushParamsOnoff"]]
-    friend: Optional[List["PushParamsOnoff"]]
-    friend_found: Optional[List["PushParamsOnoff"]]
-    friend_accepted: Optional[List["PushParamsOnoff"]]
-    group_invite: Optional[List["PushParamsOnoff"]]
-    group_accepted: Optional[List["PushParamsOnoff"]]
-    birthday: Optional[List["PushParamsOnoff"]]
-    event_soon: Optional[List["PushParamsOnoff"]]
-    app_request: Optional[List["PushParamsOnoff"]]
-    sdk_open: Optional[List["PushParamsOnoff"]]
+    msg: Optional[List["PushParamsMode"]] = None
+    chat: Optional[List["PushParamsMode"]] = None
+    like: Optional[List["PushParamsSettings"]] = None
+    repost: Optional[List["PushParamsSettings"]] = None
+    comment: Optional[List["PushParamsSettings"]] = None
+    mention: Optional[List["PushParamsSettings"]] = None
+    reply: Optional[List["PushParamsOnoff"]] = None
+    new_post: Optional[List["PushParamsOnoff"]] = None
+    wall_post: Optional[List["PushParamsOnoff"]] = None
+    wall_publish: Optional[List["PushParamsOnoff"]] = None
+    friend: Optional[List["PushParamsOnoff"]] = None
+    friend_found: Optional[List["PushParamsOnoff"]] = None
+    friend_accepted: Optional[List["PushParamsOnoff"]] = None
+    group_invite: Optional[List["PushParamsOnoff"]] = None
+    group_accepted: Optional[List["PushParamsOnoff"]] = None
+    birthday: Optional[List["PushParamsOnoff"]] = None
+    event_soon: Optional[List["PushParamsOnoff"]] = None
+    app_request: Optional[List["PushParamsOnoff"]] = None
+    sdk_open: Optional[List["PushParamsOnoff"]] = None
 
 
 class PushParamsMode(enum.Enum):
@@ -206,8 +206,8 @@ class PushSettings(BaseObject):
 
     disabled: Optional[base.BoolInt] = None
     disabled_until: Optional[int] = None
-    settings: Optional["PushParams"]
-    conversations: Optional["PushConversations"]
+    settings: Optional["PushParams"] = None
+    conversations: Optional["PushConversations"] = None
 
 
 class UserSettings(BaseObject):
@@ -224,12 +224,12 @@ class UserSettingsInterest(BaseObject):
 class UserSettingsInterests(BaseObject):
     """VK Object account/UserSettingsInterests"""
 
-    activities: Optional["UserSettingsInterest"]
-    interests: Optional["UserSettingsInterest"]
-    music: Optional["UserSettingsInterest"]
-    tv: Optional["UserSettingsInterest"]
-    movies: Optional["UserSettingsInterest"]
-    books: Optional["UserSettingsInterest"]
-    games: Optional["UserSettingsInterest"]
-    quotes: Optional["UserSettingsInterest"]
-    about: Optional["UserSettingsInterest"]
+    activities: Optional["UserSettingsInterest"] = None
+    interests: Optional["UserSettingsInterest"] = None
+    music: Optional["UserSettingsInterest"] = None
+    tv: Optional["UserSettingsInterest"] = None
+    movies: Optional["UserSettingsInterest"] = None
+    books: Optional["UserSettingsInterest"] = None
+    games: Optional["UserSettingsInterest"] = None
+    quotes: Optional["UserSettingsInterest"] = None
+    about: Optional["UserSettingsInterest"] = None

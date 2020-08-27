@@ -9,7 +9,7 @@ class DomainResolved(BaseObject):
 
     object_id: Optional[int] = None
     group_id: Optional[int] = None
-    type: Optional["DomainResolvedType"]
+    type: Optional["DomainResolvedType"] = None
 
 
 class DomainResolvedType(enum.Enum):
@@ -44,7 +44,7 @@ class LinkChecked(BaseObject):
     """VK Object utils/LinkChecked"""
 
     link: Optional[str] = None
-    status: Optional["LinkCheckedStatus"]
+    status: Optional["LinkCheckedStatus"] = None
 
 
 class LinkCheckedStatus(enum.Enum):
@@ -62,7 +62,7 @@ class LinkStats(BaseObject):
     """
 
     key: Optional[str] = None
-    stats: Optional[List["Stats"]]
+    stats: Optional[List["Stats"]] = None
 
 
 class LinkStatsExtended(BaseObject):
@@ -72,7 +72,7 @@ class LinkStatsExtended(BaseObject):
     """
 
     key: Optional[str] = None
-    stats: Optional[List["StatsExtended"]]
+    stats: Optional[List["StatsExtended"]] = None
 
 
 class ShortLink(BaseObject):
@@ -130,9 +130,9 @@ class StatsExtended(BaseObject):
     views - Total views number
     """
 
-    cities: Optional[List["StatsCity"]]
-    countries: Optional[List["StatsCountry"]]
-    sex_age: Optional[List["StatsSexAge"]]
+    cities: Optional[List["StatsCity"]] = None
+    countries: Optional[List["StatsCountry"]] = None
+    sex_age: Optional[List["StatsSexAge"]] = None
     timestamp: Optional[int] = None
     views: Optional[int] = None
 

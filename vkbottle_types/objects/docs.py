@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, photos
+from . import photos, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -16,7 +16,7 @@ class Doc(BaseObject):
     url: Optional[str] = None
     date: Optional[int] = None
     type: Optional[int] = None
-    preview: Optional["DocPreview"]
+    preview: Optional["DocPreview"] = None
     is_licensed: Optional[base.BoolInt] = None
     access_key: Optional[str] = None
     tags: Optional[List[str]] = None
@@ -33,10 +33,10 @@ class DocAttachmentType(enum.Enum):
 class DocPreview(BaseObject):
     """VK Object docs/DocPreview"""
 
-    audio_msg: Optional["DocPreviewAudioMsg"]
-    graffiti: Optional["DocPreviewGraffiti"]
-    photo: Optional["DocPreviewPhoto"]
-    video: Optional["DocPreviewVideo"]
+    audio_msg: Optional["DocPreviewAudioMsg"] = None
+    graffiti: Optional["DocPreviewGraffiti"] = None
+    photo: Optional["DocPreviewPhoto"] = None
+    video: Optional["DocPreviewVideo"] = None
 
 
 class DocPreviewAudioMsg(BaseObject):
@@ -69,7 +69,7 @@ class DocPreviewGraffiti(BaseObject):
 class DocPreviewPhoto(BaseObject):
     """VK Object docs/DocPreviewPhoto"""
 
-    sizes: Optional[List["DocPreviewPhotoSizes"]]
+    sizes: Optional[List["DocPreviewPhotoSizes"]] = None
 
 
 class DocPreviewPhotoSizes(BaseObject):

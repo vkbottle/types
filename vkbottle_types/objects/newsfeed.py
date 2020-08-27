@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, groups, video, audio
+from . import audio, groups, video, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -74,7 +74,7 @@ class ItemBase(BaseObject):
     date - Date when item has been added in Unixtime
     """
 
-    type: Optional["NewsfeedItemType"]
+    type: Optional["NewsfeedItemType"] = None
     source_id: Optional[int] = None
     date: Optional[int] = None
 
@@ -121,7 +121,7 @@ class ItemNoteNotes(BaseObject):
     """
 
     count: Optional[int] = None
-    items: Optional[List["NewsfeedNote"]]
+    items: Optional[List["NewsfeedNote"]] = None
 
 
 class ItemPhoto(BaseObject):
@@ -135,7 +135,7 @@ class ItemPhotoPhotos(BaseObject):
     """
 
     count: Optional[int] = None
-    items: Optional[List["NewsfeedPhoto"]]
+    items: Optional[List["NewsfeedPhoto"]] = None
 
 
 class ItemPhotoTag(BaseObject):
@@ -149,7 +149,7 @@ class ItemPhotoTagPhotoTags(BaseObject):
     """
 
     count: Optional[int] = None
-    items: Optional[List["NewsfeedPhoto"]]
+    items: Optional[List["NewsfeedPhoto"]] = None
 
 
 class ItemPromoButton(BaseObject):
@@ -197,9 +197,9 @@ class ItemWallpost(BaseObject):
 class ItemWallpostFeedback(BaseObject):
     """VK Object newsfeed/ItemWallpostFeedback"""
 
-    type: Optional["ItemWallpostFeedbackType"]
+    type: Optional["ItemWallpostFeedbackType"] = None
     question: Optional[str] = None
-    answers: Optional[List["ItemWallpostFeedbackAnswer"]]
+    answers: Optional[List["ItemWallpostFeedbackAnswer"]] = None
     stars_count: Optional[int] = None
     gratitude: Optional[str] = None
 

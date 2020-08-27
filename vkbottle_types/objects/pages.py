@@ -36,8 +36,8 @@ class Wikipage(BaseObject):
     id: Optional[int] = None
     title: Optional[str] = None
     views: Optional[int] = None
-    who_can_edit: Optional["PrivacySettings"]
-    who_can_view: Optional["PrivacySettings"]
+    who_can_edit: Optional["PrivacySettings"] = None
+    who_can_view: Optional["PrivacySettings"] = None
 
 
 class WikipageFull(BaseObject):
@@ -73,8 +73,8 @@ class WikipageFull(BaseObject):
     title: Optional[str] = None
     view_url: Optional[str] = None
     views: Optional[int] = None
-    who_can_edit: Optional["PrivacySettings"]
-    who_can_view: Optional["PrivacySettings"]
+    who_can_edit: Optional["PrivacySettings"] = None
+    who_can_view: Optional["PrivacySettings"] = None
 
 
 class WikipageHistory(BaseObject):

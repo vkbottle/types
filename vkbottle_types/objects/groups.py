@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, market, users
+from . import market, users, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -35,9 +35,9 @@ class Address(BaseObject):
     metro_station_id: Optional[int] = None
     phone: Optional[str] = None
     time_offset: Optional[int] = None
-    timetable: Optional["AddressTimetable"]
+    timetable: Optional["AddressTimetable"] = None
     title: Optional[str] = None
-    work_info_status: Optional["AddressWorkInfoStatus"]
+    work_info_status: Optional["AddressWorkInfoStatus"] = None
 
 
 class AddressTimetable(BaseObject):
@@ -52,13 +52,13 @@ class AddressTimetable(BaseObject):
     wed - Timetable for wednesday
     """
 
-    fri: Optional["AddressTimetableDay"]
-    mon: Optional["AddressTimetableDay"]
-    sat: Optional["AddressTimetableDay"]
-    sun: Optional["AddressTimetableDay"]
-    thu: Optional["AddressTimetableDay"]
-    tue: Optional["AddressTimetableDay"]
-    wed: Optional["AddressTimetableDay"]
+    fri: Optional["AddressTimetableDay"] = None
+    mon: Optional["AddressTimetableDay"] = None
+    sat: Optional["AddressTimetableDay"] = None
+    sun: Optional["AddressTimetableDay"] = None
+    thu: Optional["AddressTimetableDay"] = None
+    tue: Optional["AddressTimetableDay"] = None
+    wed: Optional["AddressTimetableDay"] = None
 
 
 class AddressTimetableDay(BaseObject):
@@ -100,7 +100,7 @@ class BanInfo(BaseObject):
     is_closed: Optional[bool] = None
     date: Optional[int] = None
     end_date: Optional[int] = None
-    reason: Optional["BanInfoReason"]
+    reason: Optional["BanInfoReason"] = None
 
 
 class BanInfoReason(enum.IntEnum):
@@ -136,7 +136,7 @@ class CallbackSettings(BaseObject):
     """
 
     api_version: Optional[str] = None
-    events: Optional["LongPollEvents"]
+    events: Optional["LongPollEvents"] = None
 
 
 class ContactsItem(BaseObject):
@@ -256,13 +256,13 @@ class Filter(enum.Enum):
 class Group(BaseObject):
     """VK Object groups/Group"""
 
-    admin_level: Optional["GroupAdminLevel"]
+    admin_level: Optional["GroupAdminLevel"] = None
     deactivated: Optional[str] = None
     finish_date: Optional[int] = None
     id: Optional[int] = None
     is_admin: Optional[base.BoolInt] = None
     is_advertiser: Optional[base.BoolInt] = None
-    is_closed: Optional["GroupIsClosed"]
+    is_closed: Optional["GroupIsClosed"] = None
     is_member: Optional[base.BoolInt] = None
     name: Optional[str] = None
     photo_100: Optional[str] = None
@@ -270,7 +270,7 @@ class Group(BaseObject):
     photo_50: Optional[str] = None
     screen_name: Optional[str] = None
     start_date: Optional[int] = None
-    type: Optional["GroupType"]
+    type: Optional["GroupType"] = None
 
 
 class GroupAccess(enum.IntEnum):
@@ -324,7 +324,7 @@ class GroupBanInfo(BaseObject):
 
     comment: Optional[str] = None
     end_date: Optional[int] = None
-    reason: Optional["BanInfoReason"]
+    reason: Optional["BanInfoReason"] = None
 
 
 class GroupCategory(BaseObject):
@@ -350,8 +350,8 @@ class GroupCategoryFull(BaseObject):
     id: Optional[int] = None
     name: Optional[str] = None
     page_count: Optional[int] = None
-    page_previews: Optional[List["Group"]]
-    subcategories: Optional[List["GroupCategory"]]
+    page_previews: Optional[List["Group"]] = None
+    subcategories: Optional[List["GroupCategory"]] = None
 
 
 class GroupCategoryType(BaseObject):
@@ -445,7 +445,7 @@ class GroupPublicCategoryList(BaseObject):
 
     id: Optional[int] = None
     name: Optional[str] = None
-    subcategories: Optional[List["GroupCategoryType"]]
+    subcategories: Optional[List["GroupCategoryType"]] = None
 
 
 class GroupRole(enum.Enum):
@@ -548,7 +548,7 @@ class GroupWiki(enum.IntEnum):
 class GroupXtrInvitedBy(BaseObject):
     """VK Object groups/GroupXtrInvitedBy"""
 
-    admin_level: Optional["GroupXtrInvitedByAdminLevel"]
+    admin_level: Optional["GroupXtrInvitedByAdminLevel"] = None
     id: Optional[int] = None
     invited_by: Optional[int] = None
     is_admin: Optional[base.BoolInt] = None
@@ -560,7 +560,7 @@ class GroupXtrInvitedBy(BaseObject):
     photo_200: Optional[str] = None
     photo_50: Optional[str] = None
     screen_name: Optional[str] = None
-    type: Optional["GroupXtrInvitedByType"]
+    type: Optional["GroupXtrInvitedByType"] = None
 
 
 class GroupXtrInvitedByAdminLevel(enum.IntEnum):
@@ -689,7 +689,7 @@ class LongPollSettings(BaseObject):
     """
 
     api_version: Optional[str] = None
-    events: Optional["LongPollEvents"]
+    events: Optional["LongPollEvents"] = None
     is_enabled: Optional[bool] = None
 
 
@@ -717,8 +717,8 @@ class MemberRole(BaseObject):
     """VK Object groups/MemberRole"""
 
     id: Optional[int] = None
-    permissions: Optional[List["MemberRolePermission"]]
-    role: Optional["MemberRoleStatus"]
+    permissions: Optional[List["MemberRolePermission"]] = None
+    role: Optional["MemberRoleStatus"] = None
 
 
 class MemberRolePermission(enum.Enum):
@@ -770,7 +770,7 @@ class OnlineStatus(BaseObject):
     """VK Object groups/OnlineStatus"""
 
     minutes: Optional[int] = None
-    status: Optional["OnlineStatusType"]
+    status: Optional["OnlineStatusType"] = None
 
 
 class OnlineStatusType(enum.Enum):
@@ -784,10 +784,10 @@ class OnlineStatusType(enum.Enum):
 class OwnerXtrBanInfo(BaseObject):
     """VK Object groups/OwnerXtrBanInfo"""
 
-    ban_info: Optional["BanInfo"]
-    group: Optional["Group"]
+    ban_info: Optional["BanInfo"] = None
+    group: Optional["Group"] = None
     profile: Optional[users.User] = None
-    type: Optional["OwnerXtrBanInfoType"]
+    type: Optional["OwnerXtrBanInfoType"] = None
 
 
 class OwnerXtrBanInfoType(enum.Enum):

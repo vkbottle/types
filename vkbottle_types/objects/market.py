@@ -43,23 +43,23 @@ class MarketCategory(BaseObject):
 
     id: Optional[int] = None
     name: Optional[str] = None
-    section: Optional["Section"]
+    section: Optional["Section"] = None
 
 
 class MarketItem(BaseObject):
     """VK Object market/MarketItem"""
 
     access_key: Optional[str] = None
-    availability: Optional["MarketItemAvailability"]
+    availability: Optional["MarketItemAvailability"] = None
     button_title: Optional[str] = None
-    category: Optional["MarketCategory"]
+    category: Optional["MarketCategory"] = None
     date: Optional[int] = None
     description: Optional[str] = None
     external_id: Optional[str] = None
     id: Optional[int] = None
     is_favorite: Optional[bool] = None
     owner_id: Optional[int] = None
-    price: Optional["Price"]
+    price: Optional["Price"] = None
     thumb_photo: Optional[str] = None
     title: Optional[str] = None
     url: Optional[str] = None
@@ -87,7 +87,7 @@ class Price(BaseObject):
     """
 
     amount: Optional[str] = None
-    currency: Optional["Currency"]
+    currency: Optional["Currency"] = None
     discount_rate: Optional[int] = None
     old_amount: Optional[str] = None
     text: Optional[str] = None

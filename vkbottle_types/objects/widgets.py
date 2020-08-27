@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, wall, users
+from . import wall, users, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -11,7 +11,7 @@ class CommentMedia(BaseObject):
     item_id: Optional[int] = None
     owner_id: Optional[int] = None
     thumb_src: Optional[str] = None
-    type: Optional["CommentMediaType"]
+    type: Optional["CommentMediaType"] = None
 
 
 class CommentMediaType(enum.Enum):
@@ -31,7 +31,7 @@ class CommentReplies(BaseObject):
 
     can_post: Optional[base.BoolInt] = None
     count: Optional[int] = None
-    replies: Optional[List["CommentRepliesItem"]]
+    replies: Optional[List["CommentRepliesItem"]] = None
 
 
 class CommentRepliesItem(BaseObject):
@@ -45,7 +45,7 @@ class CommentRepliesItem(BaseObject):
 
     cid: Optional[int] = None
     date: Optional[int] = None
-    likes: Optional["WidgetLikes"]
+    likes: Optional["WidgetLikes"] = None
     text: Optional[str] = None
     uid: Optional[int] = None
     user: Optional[users.UserFull] = None
@@ -65,12 +65,12 @@ class WidgetComment(BaseObject):
 
     attachments: Optional[List[wall.CommentAttachment]] = None
     can_delete: Optional[base.BoolInt] = None
-    comments: Optional["CommentReplies"]
+    comments: Optional["CommentReplies"] = None
     date: Optional[int] = None
     from_id: Optional[int] = None
     id: Optional[int] = None
     likes: Optional[base.LikesInfo] = None
-    media: Optional["CommentMedia"]
+    media: Optional["CommentMedia"] = None
     post_source: Optional[wall.PostSource] = None
     post_type: Optional[int] = None
     reposts: Optional[base.RepostsInfo] = None

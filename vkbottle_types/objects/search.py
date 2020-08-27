@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, groups, users, apps
+from . import users, groups, apps, base
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -13,8 +13,8 @@ class Hint(BaseObject):
     _global: Optional[base.BoolInt] = None
     group: Optional[groups.Group] = None
     profile: Optional[users.UserMin] = None
-    section: Optional["HintSection"]
-    type: Optional["HintType"]
+    section: Optional["HintSection"] = None
+    type: Optional["HintType"] = None
 
 
 class HintSection(enum.Enum):

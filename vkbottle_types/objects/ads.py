@@ -20,16 +20,16 @@ class Accesses(BaseObject):
     """
 
     client_id: Optional[str] = None
-    role: Optional["AccessRole"]
+    role: Optional["AccessRole"] = None
 
 
 class Account(BaseObject):
     """VK Object ads/Account"""
 
-    access_role: Optional["AccessRole"]
+    access_role: Optional["AccessRole"] = None
     account_id: Optional[int] = None
     account_status: Optional[base.BoolInt] = None
-    account_type: Optional["AccountType"]
+    account_type: Optional["AccountType"] = None
     account_name: Optional[str] = None
 
 
@@ -46,11 +46,11 @@ class Ad(BaseObject):
     ad_format: Optional[int] = None
     ad_platform: Optional[Union[int, str]] = None
     all_limit: Optional[int] = None
-    approved: Optional["AdApproved"]
+    approved: Optional["AdApproved"] = None
     campaign_id: Optional[int] = None
     category1_id: Optional[int] = None
     category2_id: Optional[int] = None
-    cost_type: Optional["AdCostType"]
+    cost_type: Optional["AdCostType"] = None
     cpc: Optional[int] = None
     cpm: Optional[int] = None
     cpa: Optional[int] = None
@@ -63,7 +63,7 @@ class Ad(BaseObject):
     impressions_limit: Optional[int] = None
     impressions_limited: Optional[base.BoolInt] = None
     name: Optional[str] = None
-    status: Optional["AdStatus"]
+    status: Optional["AdStatus"] = None
     video: Optional[base.BoolInt] = None
 
 
@@ -90,7 +90,7 @@ class AdLayout(BaseObject):
 
     ad_format: Optional[int] = None
     campaign_id: Optional[int] = None
-    cost_type: Optional["AdCostType"]
+    cost_type: Optional["AdCostType"] = None
     description: Optional[str] = None
     id: Optional[int] = None
     image_src: Optional[str] = None
@@ -118,9 +118,9 @@ class Campaign(BaseObject):
     id: Optional[int] = None
     name: Optional[str] = None
     start_time: Optional[int] = None
-    status: Optional["CampaignStatus"]
+    status: Optional["CampaignStatus"] = None
     stop_time: Optional[int] = None
-    type: Optional["CampaignType"]
+    type: Optional["CampaignType"] = None
 
 
 class CampaignStatus(enum.IntEnum):
@@ -190,7 +190,7 @@ class Criteria(BaseObject):
     school_from: Optional[int] = None
     school_to: Optional[int] = None
     schools: Optional[str] = None
-    sex: Optional["CriteriaSex"]
+    sex: Optional["CriteriaSex"] = None
     stations: Optional[str] = None
     statuses: Optional[str] = None
     streets: Optional[str] = None
@@ -217,8 +217,8 @@ class DemoStats(BaseObject):
     """
 
     id: Optional[int] = None
-    stats: Optional["DemostatsFormat"]
-    type: Optional["ObjectType"]
+    stats: Optional["DemostatsFormat"] = None
+    type: Optional["ObjectType"] = None
 
 
 class DemostatsFormat(BaseObject):
@@ -229,13 +229,13 @@ class DemostatsFormat(BaseObject):
     overall - 1 if period=overall
     """
 
-    age: Optional[List["StatsAge"]]
-    cities: Optional[List["StatsCities"]]
+    age: Optional[List["StatsAge"]] = None
+    cities: Optional[List["StatsCities"]] = None
     day: Optional[str] = None
     month: Optional[str] = None
     overall: Optional[int] = None
-    sex: Optional[List["StatsSex"]]
-    sex_age: Optional[List["StatsSexAge"]]
+    sex: Optional[List["StatsSex"]] = None
+    sex_age: Optional[List["StatsSexAge"]] = None
 
 
 class FloodStats(BaseObject):
@@ -285,7 +285,7 @@ class LookalikeRequest(BaseObject):
     source_retargeting_group_id: Optional[int] = None
     source_name: Optional[str] = None
     audience_count: Optional[int] = None
-    save_audience_levels: Optional[List["LookalikeRequestSaveAudienceLevel"]]
+    save_audience_levels: Optional[List["LookalikeRequestSaveAudienceLevel"]] = None
 
 
 class LookalikeRequestSaveAudienceLevel(BaseObject):
@@ -368,7 +368,7 @@ class RejectReason(BaseObject):
     """
 
     comment: Optional[str] = None
-    rules: Optional[List["Rules"]]
+    rules: Optional[List["Rules"]] = None
 
 
 class Rules(BaseObject):
@@ -377,7 +377,7 @@ class Rules(BaseObject):
     title - Comment
     """
 
-    paragraphs: Optional[List["Paragraphs"]]
+    paragraphs: Optional[List["Paragraphs"]] = None
     title: Optional[str] = None
 
 
@@ -388,9 +388,9 @@ class Stats(BaseObject):
     """
 
     id: Optional[int] = None
-    stats: Optional["StatsFormat"]
-    type: Optional["ObjectType"]
-    views_times: Optional["StatsViewsTimes"]
+    stats: Optional["StatsFormat"] = None
+    type: Optional["ObjectType"] = None
+    views_times: Optional["StatsViewsTimes"] = None
 
 
 class StatsAge(BaseObject):
@@ -461,7 +461,7 @@ class StatsSex(BaseObject):
 
     clicks_rate: Optional[float] = None
     impressions_rate: Optional[float] = None
-    value: Optional["StatsSexValue"]
+    value: Optional["StatsSexValue"] = None
 
 
 class StatsSexAge(BaseObject):
@@ -568,7 +568,7 @@ class TargSuggestionsSchools(BaseObject):
     id: Optional[int] = None
     name: Optional[str] = None
     parent: Optional[str] = None
-    type: Optional["TargSuggestionsSchoolsType"]
+    type: Optional["TargSuggestionsSchoolsType"] = None
 
 
 class TargSuggestionsSchoolsType(enum.Enum):
@@ -605,5 +605,5 @@ class Users(BaseObject):
     user_id - User ID
     """
 
-    accesses: Optional[List["Accesses"]]
+    accesses: Optional[List["Accesses"]] = None
     user_id: Optional[int] = None
