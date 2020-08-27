@@ -6,7 +6,10 @@ import enum
 
 
 class Status(BaseObject):
-    """VK Object status/Status"""
+    """VK Object status/Status
+
+    text - Status text
+    """
 
     text: Optional[str] = None
     audio: Optional[audio.Audio] = None

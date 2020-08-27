@@ -47,7 +47,13 @@ class AppType(enum.Enum):
 
 
 class Leaderboard(BaseObject):
-    """VK Object apps/Leaderboard"""
+    """VK Object apps/Leaderboard
+
+    level - Level
+    points - Points number
+    score - Score number
+    user_id - User ID
+    """
 
     level: Optional[int] = None
     points: Optional[int] = None
@@ -56,7 +62,11 @@ class Leaderboard(BaseObject):
 
 
 class Scope(BaseObject):
-    """VK Object apps/Scope"""
+    """VK Object apps/Scope
+
+    name - Scope name
+    title - Scope title
+    """
 
     name: Optional[str] = None
     title: Optional[str] = None

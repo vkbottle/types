@@ -40,7 +40,12 @@ class DocPreview(BaseObject):
 
 
 class DocPreviewAudioMsg(BaseObject):
-    """VK Object docs/DocPreviewAudioMsg"""
+    """VK Object docs/DocPreviewAudioMsg
+
+    duration - Audio message duration in seconds
+    link_mp3 - MP3 file URL
+    link_ogg - OGG file URL
+    """
 
     duration: Optional[int] = None
     link_mp3: Optional[str] = None
@@ -49,7 +54,12 @@ class DocPreviewAudioMsg(BaseObject):
 
 
 class DocPreviewGraffiti(BaseObject):
-    """VK Object docs/DocPreviewGraffiti"""
+    """VK Object docs/DocPreviewGraffiti
+
+    src - Graffiti file URL
+    width - Graffiti width
+    height - Graffiti height
+    """
 
     src: Optional[str] = None
     width: Optional[int] = None
@@ -63,7 +73,12 @@ class DocPreviewPhoto(BaseObject):
 
 
 class DocPreviewPhotoSizes(BaseObject):
-    """VK Object docs/DocPreviewPhotoSizes"""
+    """VK Object docs/DocPreviewPhotoSizes
+
+    src - URL of the image
+    width - Width in px
+    height - Height in px
+    """
 
     src: Optional[str] = None
     width: Optional[int] = None
@@ -72,7 +87,13 @@ class DocPreviewPhotoSizes(BaseObject):
 
 
 class DocPreviewVideo(BaseObject):
-    """VK Object docs/DocPreviewVideo"""
+    """VK Object docs/DocPreviewVideo
+
+    src - Video URL
+    width - Video's width in pixels
+    height - Video's height in pixels
+    file_size - Video file size in bites
+    """
 
     src: Optional[str] = None
     width: Optional[int] = None
@@ -81,7 +102,12 @@ class DocPreviewVideo(BaseObject):
 
 
 class DocTypes(BaseObject):
-    """VK Object docs/DocTypes"""
+    """VK Object docs/DocTypes
+
+    id - Doc type ID
+    name - Doc type title
+    count - Number of docs
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -89,6 +115,9 @@ class DocTypes(BaseObject):
 
 
 class DocUploadResponse(BaseObject):
-    """VK Object docs/DocUploadResponse"""
+    """VK Object docs/DocUploadResponse
+
+    file - Uploaded file data
+    """
 
     file: Optional[str] = None

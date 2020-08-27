@@ -22,7 +22,15 @@ class DomainResolvedType(enum.Enum):
 
 
 class LastShortenedLink(BaseObject):
-    """VK Object utils/LastShortenedLink"""
+    """VK Object utils/LastShortenedLink
+
+    access_key - Access key for private stats
+    key - Link key (characters after vk.cc/)
+    short_url - Short link URL
+    timestamp - Creation time in Unixtime
+    url - Full URL
+    views - Total views number
+    """
 
     access_key: Optional[str] = None
     key: Optional[str] = None
@@ -48,21 +56,33 @@ class LinkCheckedStatus(enum.Enum):
 
 
 class LinkStats(BaseObject):
-    """VK Object utils/LinkStats"""
+    """VK Object utils/LinkStats
+
+    key - Link key (characters after vk.cc/)
+    """
 
     key: Optional[str] = None
     stats: Optional[List["Stats"]]
 
 
 class LinkStatsExtended(BaseObject):
-    """VK Object utils/LinkStatsExtended"""
+    """VK Object utils/LinkStatsExtended
+
+    key - Link key (characters after vk.cc/)
+    """
 
     key: Optional[str] = None
     stats: Optional[List["StatsExtended"]]
 
 
 class ShortLink(BaseObject):
-    """VK Object utils/ShortLink"""
+    """VK Object utils/ShortLink
+
+    access_key - Access key for private stats
+    key - Link key (characters after vk.cc/)
+    short_url - Short link URL
+    url - Full URL
+    """
 
     access_key: Optional[str] = None
     key: Optional[str] = None
@@ -71,28 +91,44 @@ class ShortLink(BaseObject):
 
 
 class Stats(BaseObject):
-    """VK Object utils/Stats"""
+    """VK Object utils/Stats
+
+    timestamp - Start time
+    views - Total views number
+    """
 
     timestamp: Optional[int] = None
     views: Optional[int] = None
 
 
 class StatsCity(BaseObject):
-    """VK Object utils/StatsCity"""
+    """VK Object utils/StatsCity
+
+    city_id - City ID
+    views - Views number
+    """
 
     city_id: Optional[int] = None
     views: Optional[int] = None
 
 
 class StatsCountry(BaseObject):
-    """VK Object utils/StatsCountry"""
+    """VK Object utils/StatsCountry
+
+    country_id - Country ID
+    views - Views number
+    """
 
     country_id: Optional[int] = None
     views: Optional[int] = None
 
 
 class StatsExtended(BaseObject):
-    """VK Object utils/StatsExtended"""
+    """VK Object utils/StatsExtended
+
+    timestamp - Start time
+    views - Total views number
+    """
 
     cities: Optional[List["StatsCity"]]
     countries: Optional[List["StatsCountry"]]
@@ -102,7 +138,12 @@ class StatsExtended(BaseObject):
 
 
 class StatsSexAge(BaseObject):
-    """VK Object utils/StatsSexAge"""
+    """VK Object utils/StatsSexAge
+
+    age_range - Age denotation
+    female -  Views by female users
+    male -  Views by male users
+    """
 
     age_range: Optional[str] = None
     female: Optional[int] = None

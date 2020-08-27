@@ -14,7 +14,19 @@ class PrivacySettings(enum.IntEnum):
 
 
 class Wikipage(BaseObject):
-    """VK Object pages/Wikipage"""
+    """VK Object pages/Wikipage
+
+    creator_id - Page creator ID
+    creator_name - Page creator name
+    editor_id - Last editor ID
+    editor_name - Last editor name
+    group_id - Community ID
+    id - Page ID
+    title - Page title
+    views - Views number
+    who_can_edit - Edit settings of the page
+    who_can_view - View settings of the page
+    """
 
     creator_id: Optional[int] = None
     creator_name: Optional[int] = None
@@ -29,7 +41,24 @@ class Wikipage(BaseObject):
 
 
 class WikipageFull(BaseObject):
-    """VK Object pages/WikipageFull"""
+    """VK Object pages/WikipageFull
+
+    created - Date when the page has been created in Unixtime
+    creator_id - Page creator ID
+    current_user_can_edit - Information whether current user can edit the page
+    current_user_can_edit_access - Information whether current user can edit the page access settings
+    edited - Date when the page has been edited in Unixtime
+    editor_id - Last editor ID
+    group_id - Community ID
+    html - Page content, HTML
+    id - Page ID
+    source - Page content, wiki
+    title - Page title
+    view_url - URL of the page preview
+    views - Views number
+    who_can_edit - Edit settings of the page
+    who_can_view - View settings of the page
+    """
 
     created: Optional[int] = None
     creator_id: Optional[int] = None
@@ -49,7 +78,14 @@ class WikipageFull(BaseObject):
 
 
 class WikipageHistory(BaseObject):
-    """VK Object pages/WikipageHistory"""
+    """VK Object pages/WikipageHistory
+
+    id - Version ID
+    length - Page size in bytes
+    date - Date when the page has been edited in Unixtime
+    editor_id - Last editor ID
+    editor_name - Last editor name
+    """
 
     id: Optional[int] = None
     length: Optional[int] = None

@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import market, video, wall, groups, base, users
+from . import base, wall, users, groups, market, video
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -48,7 +48,11 @@ class PageType(enum.Enum):
 
 
 class Tag(BaseObject):
-    """VK Object fave/Tag"""
+    """VK Object fave/Tag
+
+    id - Tag id
+    name - Tag name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None

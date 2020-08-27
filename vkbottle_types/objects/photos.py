@@ -1,12 +1,21 @@
 from .base_model import BaseObject
-from . import media, base, comment, wall
+from . import base, comment, wall, media
 from typing import Optional, Union, Any, List
 import typing
 import enum
 
 
 class CommentXtrPid(BaseObject):
-    """VK Object photos/CommentXtrPid"""
+    """VK Object photos/CommentXtrPid
+
+    date - Date when the comment has been added in Unixtime
+    from_id - Author ID
+    id - Comment ID
+    pid - Photo ID
+    reply_to_comment - Replied comment ID
+    reply_to_user - Replied user ID
+    text - Comment text
+    """
 
     attachments: Optional[List[wall.CommentAttachment]] = None
     date: Optional[int] = None
@@ -47,7 +56,13 @@ class ImageType(enum.Enum):
 
 
 class MarketAlbumUploadResponse(BaseObject):
-    """VK Object photos/MarketAlbumUploadResponse"""
+    """VK Object photos/MarketAlbumUploadResponse
+
+    gid - Community ID
+    hash - Uploading hash
+    photo - Uploaded photo data
+    server - Upload server number
+    """
 
     gid: Optional[int] = None
     hash: Optional[str] = None
@@ -56,7 +71,15 @@ class MarketAlbumUploadResponse(BaseObject):
 
 
 class MarketUploadResponse(BaseObject):
-    """VK Object photos/MarketUploadResponse"""
+    """VK Object photos/MarketUploadResponse
+
+    crop_data - Crop data
+    crop_hash - Crop hash
+    group_id - Community ID
+    hash - Uploading hash
+    photo - Uploaded photo data
+    server - Upload server number
+    """
 
     crop_data: Optional[str] = None
     crop_hash: Optional[str] = None
@@ -67,7 +90,12 @@ class MarketUploadResponse(BaseObject):
 
 
 class MessageUploadResponse(BaseObject):
-    """VK Object photos/MessageUploadResponse"""
+    """VK Object photos/MessageUploadResponse
+
+    hash - Uploading hash
+    photo - Uploaded photo data
+    server - Upload server number
+    """
 
     hash: Optional[str] = None
     photo: Optional[str] = None
@@ -75,7 +103,12 @@ class MessageUploadResponse(BaseObject):
 
 
 class OwnerUploadResponse(BaseObject):
-    """VK Object photos/OwnerUploadResponse"""
+    """VK Object photos/OwnerUploadResponse
+
+    hash - Uploading hash
+    photo - Uploaded photo data
+    server - Upload server number
+    """
 
     hash: Optional[str] = None
     photo: Optional[str] = None
@@ -83,7 +116,24 @@ class OwnerUploadResponse(BaseObject):
 
 
 class Photo(BaseObject):
-    """VK Object photos/Photo"""
+    """VK Object photos/Photo
+
+    access_key - Access key for the photo
+    album_id - Album ID
+    date - Date when uploaded
+    height - Original photo height
+    id - Photo ID
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    photo_256 - URL of image with 2560 px width
+    can_comment - Information whether current user can comment the photo
+    post_id - Post ID
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
+    has_tags - Whether photo has attached tag links
+    """
 
     access_key: Optional[str] = None
     album_id: Optional[int] = None
@@ -107,7 +157,16 @@ class Photo(BaseObject):
 
 
 class PhotoAlbum(BaseObject):
-    """VK Object photos/PhotoAlbum"""
+    """VK Object photos/PhotoAlbum
+
+    created - Date when the album has been created in Unixtime
+    description - Photo album description
+    id - Photo album ID
+    owner_id - Album owner's ID
+    size - Photos number
+    title - Photo album title
+    updated - Date when the album has been updated last time in Unixtime
+    """
 
     created: Optional[int] = None
     description: Optional[str] = None
@@ -120,7 +179,22 @@ class PhotoAlbum(BaseObject):
 
 
 class PhotoAlbumFull(BaseObject):
-    """VK Object photos/PhotoAlbumFull"""
+    """VK Object photos/PhotoAlbumFull
+
+    can_upload - Information whether current user can upload photo to the album
+    comments_disabled - Information whether album comments are disabled
+    created - Date when the album has been created in Unixtime
+    description - Photo album description
+    id - Photo album ID
+    owner_id - Album owner's ID
+    size - Photos number
+    thumb_id - Thumb photo ID
+    thumb_is_last - Information whether the album thumb is last photo
+    thumb_src - URL of the thumb image
+    title - Photo album title
+    updated - Date when the album has been updated last time in Unixtime
+    upload_by_admins_only - Information whether only community administrators can upload photos
+    """
 
     can_upload: Optional[base.BoolInt] = None
     comments_disabled: Optional[base.BoolInt] = None
@@ -139,7 +213,22 @@ class PhotoAlbumFull(BaseObject):
 
 
 class PhotoFull(BaseObject):
-    """VK Object photos/PhotoFull"""
+    """VK Object photos/PhotoFull
+
+    access_key - Access key for the photo
+    album_id - Album ID
+    can_comment - Information whether current user can comment the photo
+    date - Date when uploaded
+    height - Original photo height
+    id - Photo ID
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    post_id - Post ID
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
+    """
 
     access_key: Optional[str] = None
     album_id: Optional[int] = None
@@ -162,7 +251,29 @@ class PhotoFull(BaseObject):
 
 
 class PhotoFullXtrRealOffset(BaseObject):
-    """VK Object photos/PhotoFullXtrRealOffset"""
+    """VK Object photos/PhotoFullXtrRealOffset
+
+    access_key - Access key for the photo
+    album_id - Album ID
+    date - Date when uploaded
+    height - Original photo height
+    hidden - Returns if the photo is hidden above the wall
+    id - Photo ID
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    photo_1280 - URL of image with 1280 px width
+    photo_130 - URL of image with 130 px width
+    photo_2560 - URL of image with 2560 px width
+    photo_604 - URL of image with 604 px width
+    photo_75 - URL of image with 75 px width
+    photo_807 - URL of image with 807 px width
+    post_id - Post ID
+    real_offset - Real position of the photo
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
+    """
 
     access_key: Optional[str] = None
     album_id: Optional[int] = None
@@ -221,7 +332,19 @@ class PhotoSizesType(enum.Enum):
 
 
 class PhotoTag(BaseObject):
-    """VK Object photos/PhotoTag"""
+    """VK Object photos/PhotoTag
+
+    date - Date when tag has been added in Unixtime
+    id - Tag ID
+    placer_id - ID of the tag creator
+    tagged_name - Tag description
+    user_id - Tagged user ID
+    viewed - Information whether the tag is reviewed
+    x - Coordinate X of the left upper corner
+    x2 - Coordinate X of the right lower corner
+    y - Coordinate Y of the left upper corner
+    y2 - Coordinate Y of the right lower corner
+    """
 
     date: Optional[int] = None
     id: Optional[int] = None
@@ -236,7 +359,14 @@ class PhotoTag(BaseObject):
 
 
 class PhotoUpload(BaseObject):
-    """VK Object photos/PhotoUpload"""
+    """VK Object photos/PhotoUpload
+
+    album_id - Album ID
+    upload_url - URL to upload photo
+    fallback_upload_url - Fallback URL if upload_url returned error
+    user_id - User ID
+    group_id - Group ID
+    """
 
     album_id: Optional[int] = None
     upload_url: Optional[str] = None
@@ -246,7 +376,13 @@ class PhotoUpload(BaseObject):
 
 
 class PhotoUploadResponse(BaseObject):
-    """VK Object photos/PhotoUploadResponse"""
+    """VK Object photos/PhotoUploadResponse
+
+    aid - Album ID
+    hash - Uploading hash
+    photos_list - Uploaded photos data
+    server - Upload server number
+    """
 
     aid: Optional[int] = None
     hash: Optional[str] = None
@@ -255,7 +391,29 @@ class PhotoUploadResponse(BaseObject):
 
 
 class PhotoXtrRealOffset(BaseObject):
-    """VK Object photos/PhotoXtrRealOffset"""
+    """VK Object photos/PhotoXtrRealOffset
+
+    access_key - Access key for the photo
+    album_id - Album ID
+    date - Date when uploaded
+    height - Original photo height
+    hidden - Returns if the photo is hidden above the wall
+    id - Photo ID
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    photo_1280 - URL of image with 1280 px width
+    photo_130 - URL of image with 130 px width
+    photo_2560 - URL of image with 2560 px width
+    photo_604 - URL of image with 604 px width
+    photo_75 - URL of image with 75 px width
+    photo_807 - URL of image with 807 px width
+    post_id - Post ID
+    real_offset - Real position of the photo
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
+    """
 
     access_key: Optional[str] = None
     album_id: Optional[int] = None
@@ -281,7 +439,30 @@ class PhotoXtrRealOffset(BaseObject):
 
 
 class PhotoXtrTagInfo(BaseObject):
-    """VK Object photos/PhotoXtrTagInfo"""
+    """VK Object photos/PhotoXtrTagInfo
+
+    access_key - Access key for the photo
+    album_id - Album ID
+    date - Date when uploaded
+    height - Original photo height
+    id - Photo ID
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    photo_1280 - URL of image with 1280 px width
+    photo_130 - URL of image with 130 px width
+    photo_2560 - URL of image with 2560 px width
+    photo_604 - URL of image with 604 px width
+    photo_75 - URL of image with 75 px width
+    photo_807 - URL of image with 807 px width
+    placer_id - ID of the tag creator
+    post_id - Post ID
+    tag_created - Date when tag has been added in Unixtime
+    tag_id - Tag ID
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
+    """
 
     access_key: Optional[str] = None
     album_id: Optional[int] = None
@@ -326,7 +507,12 @@ class TagsSuggestionItemButton(BaseObject):
 
 
 class WallUploadResponse(BaseObject):
-    """VK Object photos/WallUploadResponse"""
+    """VK Object photos/WallUploadResponse
+
+    hash - Uploading hash
+    photo - Uploaded photo data
+    server - Upload server number
+    """
 
     hash: Optional[str] = None
     photo: Optional[str] = None

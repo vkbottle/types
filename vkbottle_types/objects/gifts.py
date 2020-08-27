@@ -25,7 +25,17 @@ class GiftPrivacy(enum.IntEnum):
 
 
 class Layout(BaseObject):
-    """VK Object gifts/Layout"""
+    """VK Object gifts/Layout
+
+    id - Gift ID
+    thumb_512 - URL of the preview image with 512 px in width
+    thumb_256 - URL of the preview image with 256 px in width
+    thumb_48 - URL of the preview image with 48 px in width
+    thumb_96 - URL of the preview image with 96 px in width
+    stickers_product_id - ID of the sticker pack, if the gift is representing one
+    build_id - ID of the build of constructor gift
+    keywords - Keywords used for search
+    """
 
     id: Optional[int] = None
     thumb_512: Optional[str] = None

@@ -5,7 +5,15 @@ import enum
 
 
 class Activity(BaseObject):
-    """VK Object stats/Activity"""
+    """VK Object stats/Activity
+
+    comments - Comments number
+    copies - Reposts number
+    hidden - Hidden from news count
+    likes - Likes number
+    subscribed - New subscribers count
+    unsubscribed - Unsubscribed count
+    """
 
     comments: Optional[int] = None
     copies: Optional[int] = None
@@ -16,7 +24,12 @@ class Activity(BaseObject):
 
 
 class City(BaseObject):
-    """VK Object stats/City"""
+    """VK Object stats/City
+
+    count - Visitors number
+    name - City name
+    value - City ID
+    """
 
     count: Optional[int] = None
     name: Optional[str] = None
@@ -24,7 +37,13 @@ class City(BaseObject):
 
 
 class Country(BaseObject):
-    """VK Object stats/Country"""
+    """VK Object stats/Country
+
+    code - Country code
+    count - Visitors number
+    name - Country name
+    value - Country ID
+    """
 
     code: Optional[str] = None
     count: Optional[int] = None
@@ -33,7 +52,11 @@ class Country(BaseObject):
 
 
 class Period(BaseObject):
-    """VK Object stats/Period"""
+    """VK Object stats/Period
+
+    period_from - Unix timestamp
+    period_to - Unix timestamp
+    """
 
     activity: Optional["Activity"]
     period_from: Optional[int] = None
@@ -43,7 +66,12 @@ class Period(BaseObject):
 
 
 class Reach(BaseObject):
-    """VK Object stats/Reach"""
+    """VK Object stats/Reach
+
+    mobile_reach - Reach count from mobile devices
+    reach - Reach count
+    reach_subscribers - Subscribers reach count
+    """
 
     age: Optional[List["SexAge"]]
     cities: Optional[List["City"]]
@@ -56,7 +84,11 @@ class Reach(BaseObject):
 
 
 class SexAge(BaseObject):
-    """VK Object stats/SexAge"""
+    """VK Object stats/SexAge
+
+    count - Visitors number
+    value - Sex/age value
+    """
 
     count: Optional[int] = None
     value: Optional[str] = None
@@ -66,7 +98,12 @@ class SexAge(BaseObject):
 
 
 class Views(BaseObject):
-    """VK Object stats/Views"""
+    """VK Object stats/Views
+
+    mobile_views - Number of views from mobile devices
+    views - Views number
+    visitors - Visitors number
+    """
 
     age: Optional[List["SexAge"]]
     cities: Optional[List["City"]]
@@ -79,7 +116,17 @@ class Views(BaseObject):
 
 
 class WallpostStat(BaseObject):
-    """VK Object stats/WallpostStat"""
+    """VK Object stats/WallpostStat
+
+    hide - Hidings number
+    join_group - People have joined the group
+    links - Link clickthrough
+    reach_subscribers - Subscribers reach
+    reach_total - Total reach
+    report - Reports number
+    to_group - Clickthrough to community
+    unsubscribe - Unsubscribed members
+    """
 
     post_id: Optional[int] = None
     hide: Optional[int] = None

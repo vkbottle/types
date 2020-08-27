@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import photos, audio, market, video, apps, base, polls, users
+from . import polls, base, apps, photos, users, market, video, audio
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -13,7 +13,16 @@ class ClickableArea(BaseObject):
 
 
 class ClickableSticker(BaseObject):
-    """VK Object stories/ClickableSticker"""
+    """VK Object stories/ClickableSticker
+
+    id - Clickable sticker ID
+    color - Color, hex format
+    sticker_id - Sticker ID
+    sticker_pack_id - Sticker pack ID
+    app_context - Additional context for app sticker
+    has_new_interactions - Whether current user has unread interaction with this app
+    is_broadcast_notify_allowed - Whether current user allowed broadcast notify from this app
+    """
 
     clickable_area: Optional[List["ClickableArea"]]
     id: Optional[int] = None
@@ -53,7 +62,14 @@ class ClickableStickers(BaseObject):
 
 
 class FeedItem(BaseObject):
-    """VK Object stories/FeedItem"""
+    """VK Object stories/FeedItem
+
+    type - Type of Feed Item
+    stories - Author stories
+    grouped - Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)
+    app - App, which stories has been grouped (for type app_grouped_stories)
+    promo_data - Additional data for promo stories (for type promo_stories)
+    """
 
     type: Optional[str] = None
     stories: Optional[List["Story"]]
@@ -63,7 +79,13 @@ class FeedItem(BaseObject):
 
 
 class PromoBlock(BaseObject):
-    """VK Object stories/PromoBlock"""
+    """VK Object stories/PromoBlock
+
+    name - Promo story title
+    photo_50 - RL of square photo of the story with 50 pixels in width
+    photo_100 - RL of square photo of the story with 100 pixels in width
+    not_animated - Hide animation for promo story
+    """
 
     name: Optional[str] = None
     photo_50: Optional[str] = None
@@ -72,7 +94,11 @@ class PromoBlock(BaseObject):
 
 
 class Replies(BaseObject):
-    """VK Object stories/Replies"""
+    """VK Object stories/Replies
+
+    count - Replies number.
+    new - New replies number.
+    """
 
     count: Optional[int] = None
     new: Optional[int] = None
@@ -87,7 +113,30 @@ class StatLine(BaseObject):
 
 
 class Story(BaseObject):
-    """VK Object stories/Story"""
+    """VK Object stories/Story
+
+    access_key - Access key for private object.
+    can_comment - Information whether current user can comment the story (0 - no, 1 - yes).
+    can_reply - Information whether current user can reply to the story (0 - no, 1 - yes).
+    can_see - Information whether current user can see the story (0 - no, 1 - yes).
+    can_like - Information whether current user can like the story.
+    can_share - Information whether current user can share the story (0 - no, 1 - yes).
+    can_hide - Information whether current user can hide the story (0 - no, 1 - yes).
+    date - Date when story has been added in Unixtime.
+    expires_at - Story expiration time. Unixtime.
+    id - Story ID.
+    is_deleted - Information whether the story is deleted (false - no, true - yes).
+    is_expired - Information whether the story is expired (false - no, true - yes).
+    owner_id - Story owner's ID.
+    parent_story_access_key - Access key for private object.
+    parent_story_id - Parent story ID.
+    parent_story_owner_id - Parent story owner's ID.
+    replies - Replies counters to current story.
+    seen - Information whether current user has seen the story or not (0 - no, 1 - yes).
+    views - Views number.
+    can_ask - Information whether story has question sticker and current user can send question to the author
+    can_ask_anonymous - Information whether story has question sticker and current user can send anonymous question to the author
+    """
 
     access_key: Optional[str] = None
     can_comment: Optional[base.BoolInt] = None
@@ -122,7 +171,11 @@ class Story(BaseObject):
 
 
 class StoryLink(BaseObject):
-    """VK Object stories/StoryLink"""
+    """VK Object stories/StoryLink
+
+    text - Link text
+    url - Link URL
+    """
 
     text: Optional[str] = None
     url: Optional[str] = None
@@ -192,7 +245,11 @@ class UploadLinkText(enum.Enum):
 
 
 class ViewersItem(BaseObject):
-    """VK Object stories/ViewersItem"""
+    """VK Object stories/ViewersItem
+
+    is_liked - user has like for this object
+    user_id - user id
+    """
 
     is_liked: Optional[bool] = None
     user_id: Optional[int] = None

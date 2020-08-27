@@ -9,28 +9,46 @@ class City(BaseObject):
 
 
 class Faculty(BaseObject):
-    """VK Object database/Faculty"""
+    """VK Object database/Faculty
+
+    id - Faculty ID
+    title - Faculty title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
 
 
 class Region(BaseObject):
-    """VK Object database/Region"""
+    """VK Object database/Region
+
+    id - Region ID
+    title - Region title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
 
 
 class School(BaseObject):
-    """VK Object database/School"""
+    """VK Object database/School
+
+    id - School ID
+    title - School title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
 
 
 class Station(BaseObject):
-    """VK Object database/Station"""
+    """VK Object database/Station
+
+    city_id - City ID
+    color - Hex color code without #
+    id - Station ID
+    name - Station name
+    """
 
     city_id: Optional[int] = None
     color: Optional[str] = None
@@ -39,7 +57,11 @@ class Station(BaseObject):
 
 
 class University(BaseObject):
-    """VK Object database/University"""
+    """VK Object database/University
+
+    id - University ID
+    title - University title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None

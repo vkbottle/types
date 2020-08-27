@@ -1,12 +1,18 @@
 from .base_model import BaseObject
-from . import photos, wall, video, base, board
+from . import board, base, wall, photos, video
 from typing import Optional, Union, Any, List
 import typing
 import enum
 
 
 class Feedback(BaseObject):
-    """VK Object notifications/Feedback"""
+    """VK Object notifications/Feedback
+
+    from_id - Reply author's ID
+    id - Item ID
+    text - Reply text
+    to_id - Wall owner's ID
+    """
 
     attachments: Optional[List[wall.WallpostAttachment]] = None
     from_id: Optional[int] = None
@@ -18,7 +24,11 @@ class Feedback(BaseObject):
 
 
 class Notification(BaseObject):
-    """VK Object notifications/Notification"""
+    """VK Object notifications/Notification
+
+    date - Date when the event has been occurred
+    type - Notification type
+    """
 
     date: Optional[int] = None
     feedback: Optional["Feedback"]
@@ -36,7 +46,13 @@ class NotificationParent(BaseObject):
 
 
 class NotificationsComment(BaseObject):
-    """VK Object notifications/NotificationsComment"""
+    """VK Object notifications/NotificationsComment
+
+    date - Date when the comment has been added in Unixtime
+    id - Comment ID
+    owner_id - Author ID
+    text - Comment text
+    """
 
     date: Optional[int] = None
     id: Optional[int] = None
@@ -49,7 +65,12 @@ class NotificationsComment(BaseObject):
 
 
 class Reply(BaseObject):
-    """VK Object notifications/Reply"""
+    """VK Object notifications/Reply
+
+    date - Date when the reply has been created in Unixtime
+    id - Reply ID
+    text - Reply text
+    """
 
     date: Optional[int] = None
     id: Optional[int] = None
@@ -57,14 +78,22 @@ class Reply(BaseObject):
 
 
 class SendMessageError(BaseObject):
-    """VK Object notifications/SendMessageError"""
+    """VK Object notifications/SendMessageError
+
+    code - Error code
+    description - Error description
+    """
 
     code: Optional[int] = None
     description: Optional[str] = None
 
 
 class SendMessageItem(BaseObject):
-    """VK Object notifications/SendMessageItem"""
+    """VK Object notifications/SendMessageItem
+
+    user_id - User ID
+    status - Notification status
+    """
 
     user_id: Optional[int] = None
     status: Optional[bool] = None

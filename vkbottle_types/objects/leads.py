@@ -22,7 +22,13 @@ class CheckedResult(enum.Enum):
 
 
 class Complete(BaseObject):
-    """VK Object leads/Complete"""
+    """VK Object leads/Complete
+
+    cost - Offer cost
+    limit - Offer limit
+    spent - Amount of spent votes
+    test_mode - Information whether test mode is enabled
+    """
 
     cost: Optional[int] = None
     limit: Optional[int] = None
@@ -32,7 +38,17 @@ class Complete(BaseObject):
 
 
 class Entry(BaseObject):
-    """VK Object leads/Entry"""
+    """VK Object leads/Entry
+
+    aid - Application ID
+    comment - Comment text
+    date - Date when the action has been started in Unixtime
+    sid - Session string ID
+    start_date - Start date in Unixtime (for status=2)
+    status - Action type
+    test_mode - Information whether test mode is enabled
+    uid - User ID
+    """
 
     aid: Optional[int] = None
     comment: Optional[str] = None
@@ -45,7 +61,15 @@ class Entry(BaseObject):
 
 
 class Lead(BaseObject):
-    """VK Object leads/Lead"""
+    """VK Object leads/Lead
+
+    completed - Completed offers number
+    cost - Offer cost
+    impressions - Impressions number
+    limit - Lead limit
+    spent - Amount of spent votes
+    started - Started offers number
+    """
 
     completed: Optional[int] = None
     cost: Optional[int] = None
@@ -57,7 +81,13 @@ class Lead(BaseObject):
 
 
 class LeadDays(BaseObject):
-    """VK Object leads/LeadDays"""
+    """VK Object leads/LeadDays
+
+    completed - Completed offers number
+    impressions - Impressions number
+    spent - Amount of spent votes
+    started - Started offers number
+    """
 
     completed: Optional[int] = None
     impressions: Optional[int] = None
@@ -66,7 +96,11 @@ class LeadDays(BaseObject):
 
 
 class Start(BaseObject):
-    """VK Object leads/Start"""
+    """VK Object leads/Start
+
+    test_mode - Information whether test mode is enabled
+    vk_sid - Session data
+    """
 
     test_mode: Optional[base.BoolInt] = None
     vk_sid: Optional[str] = None

@@ -14,7 +14,10 @@ class AccessRole(enum.Enum):
 
 
 class Accesses(BaseObject):
-    """VK Object ads/Accesses"""
+    """VK Object ads/Accesses
+
+    client_id - Client ID
+    """
 
     client_id: Optional[str] = None
     role: Optional["AccessRole"]
@@ -138,7 +141,11 @@ class CampaignType(enum.Enum):
 
 
 class Category(BaseObject):
-    """VK Object ads/Category"""
+    """VK Object ads/Category
+
+    id - Category ID
+    name - Category name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -146,7 +153,13 @@ class Category(BaseObject):
 
 
 class Client(BaseObject):
-    """VK Object ads/Client"""
+    """VK Object ads/Client
+
+    all_limit - Client's total limit, rubles
+    day_limit - Client's day limit, rubles
+    id - Client ID
+    name - Client name
+    """
 
     all_limit: Optional[str] = None
     day_limit: Optional[str] = None
@@ -198,7 +211,10 @@ class CriteriaSex(enum.IntEnum):
 
 
 class DemoStats(BaseObject):
-    """VK Object ads/DemoStats"""
+    """VK Object ads/DemoStats
+
+    id - Object ID
+    """
 
     id: Optional[int] = None
     stats: Optional["DemostatsFormat"]
@@ -206,7 +222,12 @@ class DemoStats(BaseObject):
 
 
 class DemostatsFormat(BaseObject):
-    """VK Object ads/DemostatsFormat"""
+    """VK Object ads/DemostatsFormat
+
+    day - Day as YYYY-MM-DD
+    month - Month as YYYY-MM
+    overall - 1 if period=overall
+    """
 
     age: Optional[List["StatsAge"]]
     cities: Optional[List["StatsCities"]]
@@ -218,14 +239,23 @@ class DemostatsFormat(BaseObject):
 
 
 class FloodStats(BaseObject):
-    """VK Object ads/FloodStats"""
+    """VK Object ads/FloodStats
+
+    left - Requests left
+    refresh - Time to refresh in seconds
+    """
 
     left: Optional[int] = None
     refresh: Optional[int] = None
 
 
 class LinkStatus(BaseObject):
-    """VK Object ads/LinkStatus"""
+    """VK Object ads/LinkStatus
+
+    description - Reject reason
+    redirect_url - URL
+    status - Link status
+    """
 
     description: Optional[str] = None
     redirect_url: Optional[str] = None
@@ -233,7 +263,18 @@ class LinkStatus(BaseObject):
 
 
 class LookalikeRequest(BaseObject):
-    """VK Object ads/LookalikeRequest"""
+    """VK Object ads/LookalikeRequest
+
+    id - Lookalike request ID
+    create_time - Lookalike request create time, as Unixtime
+    update_time - Lookalike request update time, as Unixtime
+    scheduled_delete_time - Time by which lookalike request would be deleted, as Unixtime
+    status - Lookalike request status
+    source_type - Lookalike request source type
+    source_retargeting_group_id - Retargeting group id, which was used as lookalike seed
+    source_name - Lookalike request seed name (retargeting group name)
+    audience_count - Lookalike request seed audience size
+    """
 
     id: Optional[int] = None
     create_time: Optional[int] = None
@@ -248,7 +289,11 @@ class LookalikeRequest(BaseObject):
 
 
 class LookalikeRequestSaveAudienceLevel(BaseObject):
-    """VK Object ads/LookalikeRequestSaveAudienceLevel"""
+    """VK Object ads/LookalikeRequestSaveAudienceLevel
+
+    level - Save audience level id, which is used in save audience queries
+    audience_count - Saved audience audience size for according level
+    """
 
     level: Optional[int] = None
     audience_count: Optional[int] = None
@@ -271,13 +316,33 @@ class ObjectType(enum.Enum):
 
 
 class Paragraphs(BaseObject):
-    """VK Object ads/Paragraphs"""
+    """VK Object ads/Paragraphs
+
+    paragraph - Rules paragraph
+    """
 
     paragraph: Optional[str] = None
 
 
 class PromotedPostReach(BaseObject):
-    """VK Object ads/PromotedPostReach"""
+    """VK Object ads/PromotedPostReach
+
+    hide - Hides amount
+    id - Object ID from 'ids' parameter
+    join_group - Community joins
+    links - Link clicks
+    reach_subscribers - Subscribers reach
+    reach_total - Total reach
+    report - Reports amount
+    to_group - Community clicks
+    unsubscribe - 'Unsubscribe' events amount
+    video_views_100p - Video views for 100 percent
+    video_views_25p - Video views for 25 percent
+    video_views_3s - Video views for 3 seconds
+    video_views_50p - Video views for 50 percent
+    video_views_75p - Video views for 75 percent
+    video_views_start - Video starts
+    """
 
     hide: Optional[int] = None
     id: Optional[int] = None
@@ -297,21 +362,30 @@ class PromotedPostReach(BaseObject):
 
 
 class RejectReason(BaseObject):
-    """VK Object ads/RejectReason"""
+    """VK Object ads/RejectReason
+
+    comment - Comment text
+    """
 
     comment: Optional[str] = None
     rules: Optional[List["Rules"]]
 
 
 class Rules(BaseObject):
-    """VK Object ads/Rules"""
+    """VK Object ads/Rules
+
+    title - Comment
+    """
 
     paragraphs: Optional[List["Paragraphs"]]
     title: Optional[str] = None
 
 
 class Stats(BaseObject):
-    """VK Object ads/Stats"""
+    """VK Object ads/Stats
+
+    id - Object ID
+    """
 
     id: Optional[int] = None
     stats: Optional["StatsFormat"]
@@ -320,7 +394,12 @@ class Stats(BaseObject):
 
 
 class StatsAge(BaseObject):
-    """VK Object ads/StatsAge"""
+    """VK Object ads/StatsAge
+
+    clicks_rate - Clicks rate
+    impressions_rate - Impressions rate
+    value - Age interval
+    """
 
     clicks_rate: Optional[float] = None
     impressions_rate: Optional[float] = None
@@ -328,7 +407,13 @@ class StatsAge(BaseObject):
 
 
 class StatsCities(BaseObject):
-    """VK Object ads/StatsCities"""
+    """VK Object ads/StatsCities
+
+    clicks_rate - Clicks rate
+    impressions_rate - Impressions rate
+    name - City name
+    value - City ID
+    """
 
     clicks_rate: Optional[float] = None
     impressions_rate: Optional[float] = None
@@ -337,7 +422,21 @@ class StatsCities(BaseObject):
 
 
 class StatsFormat(BaseObject):
-    """VK Object ads/StatsFormat"""
+    """VK Object ads/StatsFormat
+
+    clicks - Clicks number
+    day - Day as YYYY-MM-DD
+    impressions - Impressions number
+    join_rate - Events number
+    month - Month as YYYY-MM
+    overall - 1 if period=overall
+    reach - Reach
+    spent - Spent funds
+    video_clicks_site - Clickthoughs to the advertised site
+    video_views - Video views number
+    video_views_full - Video views (full video)
+    video_views_half - Video views (half of video)
+    """
 
     clicks: Optional[int] = None
     day: Optional[str] = None
@@ -354,7 +453,11 @@ class StatsFormat(BaseObject):
 
 
 class StatsSex(BaseObject):
-    """VK Object ads/StatsSex"""
+    """VK Object ads/StatsSex
+
+    clicks_rate - Clicks rate
+    impressions_rate - Impressions rate
+    """
 
     clicks_rate: Optional[float] = None
     impressions_rate: Optional[float] = None
@@ -397,7 +500,18 @@ class TargSettings(BaseObject):
 
 
 class TargStats(BaseObject):
-    """VK Object ads/TargStats"""
+    """VK Object ads/TargStats
+
+    audience_count - Audience
+    recommended_cpc - Recommended CPC value for 50% reach (old format)
+    recommended_cpm - Recommended CPM value for 50% reach (old format)
+    recommended_cpc_50 - Recommended CPC value for 50% reach
+    recommended_cpm_50 - Recommended CPM value for 50% reach
+    recommended_cpc_70 - Recommended CPC value for 70% reach
+    recommended_cpm_70 - Recommended CPM value for 70% reach
+    recommended_cpc_90 - Recommended CPC value for 90% reach
+    recommended_cpm_90 - Recommended CPM value for 90% reach
+    """
 
     audience_count: Optional[int] = None
     recommended_cpc: Optional[float] = None
@@ -411,14 +525,23 @@ class TargStats(BaseObject):
 
 
 class TargSuggestions(BaseObject):
-    """VK Object ads/TargSuggestions"""
+    """VK Object ads/TargSuggestions
+
+    id - Object ID
+    name - Object name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
 
 
 class TargSuggestionsCities(BaseObject):
-    """VK Object ads/TargSuggestionsCities"""
+    """VK Object ads/TargSuggestionsCities
+
+    id - Object ID
+    name - Object name
+    parent - Parent object
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -426,7 +549,12 @@ class TargSuggestionsCities(BaseObject):
 
 
 class TargSuggestionsRegions(BaseObject):
-    """VK Object ads/TargSuggestionsRegions"""
+    """VK Object ads/TargSuggestionsRegions
+
+    id - Object ID
+    name - Object name
+    type - Object type
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -453,7 +581,15 @@ class TargSuggestionsSchoolsType(enum.Enum):
 
 
 class TargetGroup(BaseObject):
-    """VK Object ads/TargetGroup"""
+    """VK Object ads/TargetGroup
+
+    audience_count - Audience
+    domain - Site domain
+    id - Group ID
+    lifetime - Number of days for user to be in group
+    name - Group name
+    pixel - Pixel code
+    """
 
     audience_count: Optional[int] = None
     domain: Optional[str] = None
@@ -464,7 +600,10 @@ class TargetGroup(BaseObject):
 
 
 class Users(BaseObject):
-    """VK Object ads/Users"""
+    """VK Object ads/Users
+
+    user_id - User ID
+    """
 
     accesses: Optional[List["Accesses"]]
     user_id: Optional[int] = None

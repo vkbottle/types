@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import groups, apps, base, users
+from . import base, groups, users, apps
 from typing import Optional, Union, Any, List
 import typing
 import enum

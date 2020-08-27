@@ -6,14 +6,25 @@ import enum
 
 
 class Currency(BaseObject):
-    """VK Object market/Currency"""
+    """VK Object market/Currency
+
+    id - Currency ID
+    name - Currency sign
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
 
 
 class MarketAlbum(BaseObject):
-    """VK Object market/MarketAlbum"""
+    """VK Object market/MarketAlbum
+
+    count - Items number
+    id - Market album ID
+    owner_id - Market album owner's ID
+    title - Market album title
+    updated_time - Date when album has been updated last time in Unixtime
+    """
 
     count: Optional[int] = None
     id: Optional[int] = None
@@ -24,7 +35,11 @@ class MarketAlbum(BaseObject):
 
 
 class MarketCategory(BaseObject):
-    """VK Object market/MarketCategory"""
+    """VK Object market/MarketCategory
+
+    id - Category ID
+    name - Category name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -65,7 +80,11 @@ class MarketItemFull(BaseObject):
 
 
 class Price(BaseObject):
-    """VK Object market/Price"""
+    """VK Object market/Price
+
+    amount - Amount
+    text - Text
+    """
 
     amount: Optional[str] = None
     currency: Optional["Currency"]
@@ -75,7 +94,11 @@ class Price(BaseObject):
 
 
 class Section(BaseObject):
-    """VK Object market/Section"""
+    """VK Object market/Section
+
+    id - Section ID
+    name - Section name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None

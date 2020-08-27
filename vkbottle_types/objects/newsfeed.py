@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import video, audio, groups, base
+from . import base, groups, video, audio
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -58,14 +58,21 @@ class ItemAudio(BaseObject):
 
 
 class ItemAudioAudio(BaseObject):
-    """VK Object newsfeed/ItemAudioAudio"""
+    """VK Object newsfeed/ItemAudioAudio
+
+    count - Audios number
+    """
 
     count: Optional[int] = None
     items: Optional[List[audio.Audio]] = None
 
 
 class ItemBase(BaseObject):
-    """VK Object newsfeed/ItemBase"""
+    """VK Object newsfeed/ItemBase
+
+    source_id - Item source ID
+    date - Date when item has been added in Unixtime
+    """
 
     type: Optional["NewsfeedItemType"]
     source_id: Optional[int] = None
@@ -81,14 +88,21 @@ class ItemFriend(BaseObject):
 
 
 class ItemFriendFriends(BaseObject):
-    """VK Object newsfeed/ItemFriendFriends"""
+    """VK Object newsfeed/ItemFriendFriends
+
+    count - Number of friends has been added
+    """
 
     count: Optional[int] = None
     items: Optional[List[base.UserId]] = None
 
 
 class ItemHolidayRecommendationsBlockHeader(BaseObject):
-    """VK Object newsfeed/ItemHolidayRecommendationsBlockHeader"""
+    """VK Object newsfeed/ItemHolidayRecommendationsBlockHeader
+
+    title - Title of the header
+    subtitle - Subtitle of the header
+    """
 
     title: Optional[str] = None
     subtitle: Optional[str] = None
@@ -101,7 +115,10 @@ class ItemNote(BaseObject):
 
 
 class ItemNoteNotes(BaseObject):
-    """VK Object newsfeed/ItemNoteNotes"""
+    """VK Object newsfeed/ItemNoteNotes
+
+    count - Notes number
+    """
 
     count: Optional[int] = None
     items: Optional[List["NewsfeedNote"]]
@@ -112,7 +129,10 @@ class ItemPhoto(BaseObject):
 
 
 class ItemPhotoPhotos(BaseObject):
-    """VK Object newsfeed/ItemPhotoPhotos"""
+    """VK Object newsfeed/ItemPhotoPhotos
+
+    count - Photos number
+    """
 
     count: Optional[int] = None
     items: Optional[List["NewsfeedPhoto"]]
@@ -123,7 +143,10 @@ class ItemPhotoTag(BaseObject):
 
 
 class ItemPhotoTagPhotoTags(BaseObject):
-    """VK Object newsfeed/ItemPhotoTagPhotoTags"""
+    """VK Object newsfeed/ItemPhotoTagPhotoTags
+
+    count - Tags number
+    """
 
     count: Optional[int] = None
     items: Optional[List["NewsfeedPhoto"]]
@@ -158,7 +181,10 @@ class ItemVideo(BaseObject):
 
 
 class ItemVideoVideo(BaseObject):
-    """VK Object newsfeed/ItemVideoVideo"""
+    """VK Object newsfeed/ItemVideoVideo
+
+    count - Tags number
+    """
 
     count: Optional[int] = None
     items: Optional[List[video.Video]] = None
@@ -201,7 +227,11 @@ class ItemWallpostType(enum.Enum):
 
 
 class List(BaseObject):
-    """VK Object newsfeed/List"""
+    """VK Object newsfeed/List
+
+    id - List ID
+    title - List title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
@@ -233,7 +263,13 @@ class NewsfeedItemType(enum.Enum):
 
 
 class NewsfeedNote(BaseObject):
-    """VK Object newsfeed/NewsfeedNote"""
+    """VK Object newsfeed/NewsfeedNote
+
+    comments - Comments Number
+    id - Note ID
+    owner_id - integer
+    title - Note title
+    """
 
     comments: Optional[int] = None
     id: Optional[int] = None

@@ -1,12 +1,20 @@
 from .base_model import BaseObject
-from . import photos, gifts, audio, docs, stories, market, video, wall, base
+from . import gifts, base, stories, photos, wall, market, docs, video, audio
 from typing import Optional, Union, Any, List
 import typing
 import enum
 
 
 class AudioMessage(BaseObject):
-    """VK Object messages/AudioMessage"""
+    """VK Object messages/AudioMessage
+
+    access_key - Access key for audio message
+    duration - Audio message duration in seconds
+    id - Audio message ID
+    link_mp3 - MP3 file URL
+    link_ogg - OGG file URL
+    owner_id - Audio message owner ID
+    """
 
     access_key: Optional[str] = None
     duration: Optional[int] = None
@@ -18,7 +26,19 @@ class AudioMessage(BaseObject):
 
 
 class Chat(BaseObject):
-    """VK Object messages/Chat"""
+    """VK Object messages/Chat
+
+    admin_id - Chat creator ID
+    id - Chat ID
+    kicked - Shows that user has been kicked from the chat
+    left - Shows that user has been left the chat
+    photo_100 - URL of the preview image with 100 px in width
+    photo_200 - URL of the preview image with 200 px in width
+    photo_50 - URL of the preview image with 50 px in width
+    title - Chat title
+    type - Chat type
+    is_default_photo - If provided photo is default
+    """
 
     admin_id: Optional[int] = None
     id: Optional[int] = None
@@ -35,7 +55,18 @@ class Chat(BaseObject):
 
 
 class ChatFull(BaseObject):
-    """VK Object messages/ChatFull"""
+    """VK Object messages/ChatFull
+
+    admin_id - Chat creator ID
+    id - Chat ID
+    kicked - Shows that user has been kicked from the chat
+    left - Shows that user has been left the chat
+    photo_100 - URL of the preview image with 100 px in width
+    photo_200 - URL of the preview image with 200 px in width
+    photo_50 - URL of the preview image with 50 px in width
+    title - Chat title
+    type - Chat type
+    """
 
     admin_id: Optional[int] = None
     id: Optional[int] = None
@@ -51,14 +82,25 @@ class ChatFull(BaseObject):
 
 
 class ChatPushSettings(BaseObject):
-    """VK Object messages/ChatPushSettings"""
+    """VK Object messages/ChatPushSettings
+
+    disabled_until - Time until that notifications are disabled
+    sound - Information whether the sound is on
+    """
 
     disabled_until: Optional[int] = None
     sound: Optional[base.BoolInt] = None
 
 
 class ChatRestrictions(BaseObject):
-    """VK Object messages/ChatRestrictions"""
+    """VK Object messages/ChatRestrictions
+
+    admins_promote_users - Only admins can promote users to admins
+    only_admins_edit_info - Only admins can change chat info
+    only_admins_edit_pin - Only admins can edit pinned message
+    only_admins_invite - Only admins can invite users to this chat
+    only_admins_kick - Only admins can kick users from this chat
+    """
 
     admins_promote_users: Optional[bool] = None
     only_admins_edit_info: Optional[bool] = None
@@ -68,7 +110,15 @@ class ChatRestrictions(BaseObject):
 
 
 class Conversation(BaseObject):
-    """VK Object messages/Conversation"""
+    """VK Object messages/Conversation
+
+    last_message_id - ID of the last message in conversation
+    in_read - Last message user have read
+    out_read - Last outcoming message have been read by the opponent
+    unread_count - Unread messages number
+    is_marked_unread - Is this conversation uread
+    mentions - Ids of messages with mentions
+    """
 
     peer: Optional["ConversationPeer"]
     last_message_id: Optional[int] = None
@@ -85,7 +135,11 @@ class Conversation(BaseObject):
 
 
 class ConversationMember(BaseObject):
-    """VK Object messages/ConversationMember"""
+    """VK Object messages/ConversationMember
+
+    can_kick - Is it possible for user to kick this member
+    request_date - Message request date
+    """
 
     can_kick: Optional[bool] = None
     invited_by: Optional[int] = None
@@ -122,7 +176,18 @@ class ConversationWithMessage(BaseObject):
 
 
 class ForeignMessage(BaseObject):
-    """VK Object messages/ForeignMessage"""
+    """VK Object messages/ForeignMessage
+
+    conversation_message_id - Conversation message ID
+    date - Date when the message was created
+    from_id - Message author's ID
+    id - Message ID
+    peer_id - Peer ID
+    text - Message text
+    update_time - Date when the message has been updated in Unixtime
+    was_listened - Was the audio message inside already listened by you
+    payload - Additional data sent along with message for developer convenience
+    """
 
     attachments: Optional[List["MessageAttachment"]]
     conversation_message_id: Optional[int] = None
@@ -140,7 +205,15 @@ class ForeignMessage(BaseObject):
 
 
 class Graffiti(BaseObject):
-    """VK Object messages/Graffiti"""
+    """VK Object messages/Graffiti
+
+    access_key - Access key for graffiti
+    height - Graffiti height
+    id - Graffiti ID
+    owner_id - Graffiti owner ID
+    url - Graffiti URL
+    width - Graffiti width
+    """
 
     access_key: Optional[str] = None
     height: Optional[int] = None
@@ -151,7 +224,11 @@ class Graffiti(BaseObject):
 
 
 class HistoryAttachment(BaseObject):
-    """VK Object messages/HistoryAttachment"""
+    """VK Object messages/HistoryAttachment
+
+    message_id - Message ID
+    from_id - Message author's ID
+    """
 
     attachment: Optional["HistoryMessageAttachment"]
     message_id: Optional[int] = None
@@ -190,7 +267,11 @@ class HistoryMessageAttachmentType(enum.Enum):
 
 
 class Keyboard(BaseObject):
-    """VK Object messages/Keyboard"""
+    """VK Object messages/Keyboard
+
+    author_id - Community or bot, which set this keyboard
+    one_time - Should this keyboard disappear on first use
+    """
 
     author_id: Optional[int] = None
     buttons: Optional[List[dict]] = None
@@ -199,14 +280,26 @@ class Keyboard(BaseObject):
 
 
 class KeyboardButton(BaseObject):
-    """VK Object messages/KeyboardButton"""
+    """VK Object messages/KeyboardButton
+
+    color - Button color
+    """
 
     action: Optional["KeyboardButtonAction"]
     color: Optional[str] = None
 
 
 class KeyboardButtonAction(BaseObject):
-    """VK Object messages/KeyboardButtonAction"""
+    """VK Object messages/KeyboardButtonAction
+
+    app_id - Fragment value in app link like vk.com/app{app_id}_-654321#hash
+    hash - Fragment value in app link like vk.com/app123456_-654321#{hash}
+    label - Label for button
+    link - link for button
+    owner_id - Fragment value in app link like vk.com/app123456_{owner_id}#hash
+    payload - Additional data sent along with message for developer convenience
+    type - Button type
+    """
 
     app_id: Optional[int] = None
     hash: Optional[str] = None
@@ -218,21 +311,34 @@ class KeyboardButtonAction(BaseObject):
 
 
 class LastActivity(BaseObject):
-    """VK Object messages/LastActivity"""
+    """VK Object messages/LastActivity
+
+    online - Information whether user is online
+    time - Time when user was online in Unixtime
+    """
 
     online: Optional[base.BoolInt] = None
     time: Optional[int] = None
 
 
 class LongpollMessages(BaseObject):
-    """VK Object messages/LongpollMessages"""
+    """VK Object messages/LongpollMessages
+
+    count - Total number
+    """
 
     count: Optional[int] = None
     items: Optional[List["Message"]]
 
 
 class LongpollParams(BaseObject):
-    """VK Object messages/LongpollParams"""
+    """VK Object messages/LongpollParams
+
+    key - Key
+    pts - Persistent timestamp
+    server - Server URL
+    ts - Timestamp
+    """
 
     key: Optional[str] = None
     pts: Optional[int] = None
@@ -241,7 +347,26 @@ class LongpollParams(BaseObject):
 
 
 class Message(BaseObject):
-    """VK Object messages/Message"""
+    """VK Object messages/Message
+
+    admin_author_id - Only for messages from community. Contains user ID of community admin, who sent this message.
+    conversation_message_id - Unique auto-incremented number for all messages with this peer
+    date - Date when the message has been sent in Unixtime
+    deleted - Is it an deleted message
+    from_id - Message author's ID
+    fwd_messages - Forwarded messages
+    id - Message ID
+    important - Is it an important message
+    is_cropped - this message is cropped for bot
+    members_count - Members number
+    out - Information whether the message is outcoming
+    peer_id - Peer ID
+    random_id - ID used for sending messages. It returned only for outgoing messages
+    text - Message text
+    update_time - Date when the message has been updated in Unixtime
+    was_listened - Was the audio message inside already listened by you
+    pinned_at - Date when the message has been pinned in Unixtime
+    """
 
     action: Optional["MessageAction"]
     admin_author_id: Optional[int] = None
@@ -272,7 +397,14 @@ class Message(BaseObject):
 
 
 class MessageAction(BaseObject):
-    """VK Object messages/MessageAction"""
+    """VK Object messages/MessageAction
+
+    conversation_message_id - Message ID
+    email - Email address for chat_invite_user or chat_kick_user actions
+    member_id - User or email peer ID
+    message - Message body of related message
+    text - New chat title for chat_create and chat_title_update actions
+    """
 
     conversation_message_id: Optional[int] = None
     email: Optional[str] = None
@@ -345,7 +477,12 @@ class MessageAttachmentType(enum.Enum):
 
 
 class MessageRequestData(BaseObject):
-    """VK Object messages/MessageRequestData"""
+    """VK Object messages/MessageRequestData
+
+    status - Status of message request
+    inviter_id - Message request sender id
+    request_date - Message request date
+    """
 
     status: Optional[str] = None
     inviter_id: Optional[int] = None

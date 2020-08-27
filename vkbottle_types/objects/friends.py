@@ -26,14 +26,22 @@ class FriendStatusStatus(enum.IntEnum):
 
 
 class FriendsList(BaseObject):
-    """VK Object friends/FriendsList"""
+    """VK Object friends/FriendsList
+
+    id - List ID
+    name - List title
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
 
 
 class MutualFriend(BaseObject):
-    """VK Object friends/MutualFriend"""
+    """VK Object friends/MutualFriend
+
+    common_count - Total mutual friends number
+    id - User ID
+    """
 
     common_count: Optional[int] = None
     common_friends: Optional[List[int]] = None
@@ -41,7 +49,11 @@ class MutualFriend(BaseObject):
 
 
 class Requests(BaseObject):
-    """VK Object friends/Requests"""
+    """VK Object friends/Requests
+
+    from - ID of the user by whom friend has been suggested
+    user_id - User ID
+    """
 
     _from: Optional[str] = None
     mutual: Optional["RequestsMutual"]
@@ -49,14 +61,22 @@ class Requests(BaseObject):
 
 
 class RequestsMutual(BaseObject):
-    """VK Object friends/RequestsMutual"""
+    """VK Object friends/RequestsMutual
+
+    count - Total mutual friends number
+    """
 
     count: Optional[int] = None
     users: Optional[List[int]] = None
 
 
 class RequestsXtrMessage(BaseObject):
-    """VK Object friends/RequestsXtrMessage"""
+    """VK Object friends/RequestsXtrMessage
+
+    from - ID of the user by whom friend has been suggested
+    message - Message sent with a request
+    user_id - User ID
+    """
 
     _from: Optional[str] = None
     message: Optional[str] = None

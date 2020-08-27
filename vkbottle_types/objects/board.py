@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import base, polls, wall
+from . import base, wall, polls
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -15,7 +15,18 @@ class DefaultOrder(enum.IntEnum):
 
 
 class Topic(BaseObject):
-    """VK Object board/Topic"""
+    """VK Object board/Topic
+
+    comments - Comments number
+    created - Date when the topic has been created in Unixtime
+    created_by - Creator ID
+    id - Topic ID
+    is_closed - Information whether the topic is closed
+    is_fixed - Information whether the topic is fixed
+    title - Topic title
+    updated - Date when the topic has been updated in Unixtime
+    updated_by - ID of user who updated the topic
+    """
 
     comments: Optional[int] = None
     created: Optional[int] = None
@@ -29,7 +40,15 @@ class Topic(BaseObject):
 
 
 class TopicComment(BaseObject):
-    """VK Object board/TopicComment"""
+    """VK Object board/TopicComment
+
+    date - Date when the comment has been added in Unixtime
+    from_id - Author ID
+    id - Comment ID
+    real_offset - Real position of the comment
+    text - Comment text
+    can_edit - Information whether current user can edit the comment
+    """
 
     attachments: Optional[List[wall.CommentAttachment]] = None
     date: Optional[int] = None
@@ -42,7 +61,16 @@ class TopicComment(BaseObject):
 
 
 class TopicPoll(BaseObject):
-    """VK Object board/TopicPoll"""
+    """VK Object board/TopicPoll
+
+    answer_id - Current user's answer ID
+    created - Date when poll has been created in Unixtime
+    is_closed - Information whether the poll is closed
+    owner_id - Poll owner's ID
+    poll_id - Poll ID
+    question - Poll question
+    votes - Votes number
+    """
 
     answer_id: Optional[int] = None
     answers: Optional[List[polls.Answer]] = None

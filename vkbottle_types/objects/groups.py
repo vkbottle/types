@@ -1,12 +1,28 @@
 from .base_model import BaseObject
-from . import base, users, market
+from . import base, market, users
 from typing import Optional, Union, Any, List
 import typing
 import enum
 
 
 class Address(BaseObject):
-    """VK Object groups/Address"""
+    """VK Object groups/Address
+
+    additional_address - Additional address to the place (6 floor, left door)
+    address - String address to the place (Nevsky, 28)
+    city_id - City id of address
+    country_id - Country id of address
+    distance - Distance from the point
+    id - Address id
+    latitude - Address latitude
+    longitude - Address longitude
+    metro_station_id - Metro id of address
+    phone - Address phone
+    time_offset - Time offset int minutes from utc time
+    timetable - Week timetable for the address
+    title - Title of the place (Zinger, etc)
+    work_info_status - Status of information about timetable
+    """
 
     additional_address: Optional[str] = None
     address: Optional[str] = None
@@ -25,7 +41,16 @@ class Address(BaseObject):
 
 
 class AddressTimetable(BaseObject):
-    """VK Object groups/AddressTimetable"""
+    """VK Object groups/AddressTimetable
+
+    fri - Timetable for friday
+    mon - Timetable for monday
+    sat - Timetable for saturday
+    sun - Timetable for sunday
+    thu - Timetable for thursday
+    tue - Timetable for tuesday
+    wed - Timetable for wednesday
+    """
 
     fri: Optional["AddressTimetableDay"]
     mon: Optional["AddressTimetableDay"]
@@ -56,7 +81,11 @@ class AddressWorkInfoStatus(enum.Enum):
 
 
 class AddressesInfo(BaseObject):
-    """VK Object groups/AddressesInfo"""
+    """VK Object groups/AddressesInfo
+
+    is_enabled - Information whether addresses is enabled
+    main_address_id - Main address id for group
+    """
 
     is_enabled: Optional[bool] = None
     main_address_id: Optional[int] = None
@@ -101,14 +130,23 @@ class CallbackServer(BaseObject):
 
 
 class CallbackSettings(BaseObject):
-    """VK Object groups/CallbackSettings"""
+    """VK Object groups/CallbackSettings
+
+    api_version - API version used for the events
+    """
 
     api_version: Optional[str] = None
     events: Optional["LongPollEvents"]
 
 
 class ContactsItem(BaseObject):
-    """VK Object groups/ContactsItem"""
+    """VK Object groups/ContactsItem
+
+    desc - Contact description
+    email - Contact email
+    phone - Contact phone
+    user_id - User ID
+    """
 
     desc: Optional[str] = None
     email: Optional[str] = None
@@ -117,7 +155,18 @@ class ContactsItem(BaseObject):
 
 
 class CountersGroup(BaseObject):
-    """VK Object groups/CountersGroup"""
+    """VK Object groups/CountersGroup
+
+    addresses - Addresses number
+    albums - Photo albums number
+    audios - Audios number
+    audio_playlists - Audio playlists number
+    docs - Docs number
+    market - Market items number
+    photos - Photos number
+    topics - Topics number
+    videos - Videos number
+    """
 
     addresses: Optional[int] = None
     albums: Optional[int] = None
@@ -267,7 +316,11 @@ class GroupAudio(enum.IntEnum):
 
 
 class GroupBanInfo(BaseObject):
-    """VK Object groups/GroupBanInfo"""
+    """VK Object groups/GroupBanInfo
+
+    comment - Ban comment
+    end_date - End date of ban in Unixtime
+    """
 
     comment: Optional[str] = None
     end_date: Optional[int] = None
@@ -275,7 +328,11 @@ class GroupBanInfo(BaseObject):
 
 
 class GroupCategory(BaseObject):
-    """VK Object groups/GroupCategory"""
+    """VK Object groups/GroupCategory
+
+    id - Category ID
+    name - Category name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -283,7 +340,12 @@ class GroupCategory(BaseObject):
 
 
 class GroupCategoryFull(BaseObject):
-    """VK Object groups/GroupCategoryFull"""
+    """VK Object groups/GroupCategoryFull
+
+    id - Category ID
+    name - Category name
+    page_count - Pages number
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -518,14 +580,26 @@ class GroupXtrInvitedByType(enum.Enum):
 
 
 class GroupsArray(BaseObject):
-    """VK Object groups/GroupsArray"""
+    """VK Object groups/GroupsArray
+
+    count - Communities number
+    """
 
     count: Optional[int] = None
     items: Optional[List[int]] = None
 
 
 class LinksItem(BaseObject):
-    """VK Object groups/LinksItem"""
+    """VK Object groups/LinksItem
+
+    desc - Link description
+    edit_title - Information whether the link title can be edited
+    id - Link ID
+    name - Link title
+    photo_100 - URL of square image of the link with 100 pixels in width
+    photo_50 - URL of square image of the link with 50 pixels in width
+    url - Link URL
+    """
 
     desc: Optional[str] = None
     edit_title: Optional[base.BoolInt] = None
@@ -537,7 +611,11 @@ class LinksItem(BaseObject):
 
 
 class LiveCovers(BaseObject):
-    """VK Object groups/LiveCovers"""
+    """VK Object groups/LiveCovers
+
+    is_enabled - Information whether live covers is enabled
+    is_scalable - Information whether live covers photo scaling is enabled
+    """
 
     is_enabled: Optional[bool] = None
     is_scalable: Optional[bool] = None
@@ -591,7 +669,12 @@ class LongPollEvents(BaseObject):
 
 
 class LongPollServer(BaseObject):
-    """VK Object groups/LongPollServer"""
+    """VK Object groups/LongPollServer
+
+    key - Long Poll key
+    server - Long Poll server address
+    ts - Number of the last event
+    """
 
     key: Optional[str] = None
     server: Optional[str] = None
@@ -599,7 +682,11 @@ class LongPollServer(BaseObject):
 
 
 class LongPollSettings(BaseObject):
-    """VK Object groups/LongPollSettings"""
+    """VK Object groups/LongPollSettings
+
+    api_version - API version used for the events
+    is_enabled - Shows whether Long Poll is enabled
+    """
 
     api_version: Optional[str] = None
     events: Optional["LongPollEvents"]
@@ -607,7 +694,15 @@ class LongPollSettings(BaseObject):
 
 
 class MarketInfo(BaseObject):
-    """VK Object groups/MarketInfo"""
+    """VK Object groups/MarketInfo
+
+    contact_id - Contact person ID
+    currency_text - Currency name
+    enabled - Information whether the market is enabled
+    main_album_id - Main market album ID
+    price_max - Maximum price
+    price_min - Minimum price
+    """
 
     contact_id: Optional[int] = None
     currency: Optional[market.Currency] = None
@@ -642,14 +737,26 @@ class MemberRoleStatus(enum.Enum):
 
 
 class MemberStatus(BaseObject):
-    """VK Object groups/MemberStatus"""
+    """VK Object groups/MemberStatus
+
+    member - Information whether user is a member of the group
+    user_id - User ID
+    """
 
     member: Optional[base.BoolInt] = None
     user_id: Optional[int] = None
 
 
 class MemberStatusFull(BaseObject):
-    """VK Object groups/MemberStatusFull"""
+    """VK Object groups/MemberStatusFull
+
+    can_invite - Information whether user can be invited
+    can_recall - Information whether user's invite to the group can be recalled
+    invitation - Information whether user has been invited to the group
+    member - Information whether user is a member of the group
+    request - Information whether user has send request to the group
+    user_id - User ID
+    """
 
     can_invite: Optional[base.BoolInt] = None
     can_recall: Optional[base.BoolInt] = None
@@ -707,7 +814,11 @@ class SettingsTwitter(BaseObject):
 
 
 class SubjectItem(BaseObject):
-    """VK Object groups/SubjectItem"""
+    """VK Object groups/SubjectItem
+
+    id - Subject ID
+    name - Subject title
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None

@@ -6,7 +6,24 @@ import enum
 
 
 class AccountCounters(BaseObject):
-    """VK Object account/AccountCounters"""
+    """VK Object account/AccountCounters
+
+    app_requests - New app requests number
+    events - New events number
+    faves - New faves number
+    friends - New friends requests number
+    friends_suggestions - New friends suggestions number
+    friends_recommendations - New friends recommendations number
+    gifts - New gifts number
+    groups - New groups number
+    menu_discover_badge -
+    messages - New messages number
+    memories - New memories number
+    notes - New notes number
+    notifications - New notifications number
+    photos - New photo tags number
+    sdk - New sdk number
+    """
 
     app_requests: Optional[int] = None
     events: Optional[int] = None
@@ -26,7 +43,17 @@ class AccountCounters(BaseObject):
 
 
 class Info(BaseObject):
-    """VK Object account/Info"""
+    """VK Object account/Info
+
+    2fa_required - Two factor authentication is enabled
+    country - Country code
+    https_required - Information whether HTTPS-only is enabled
+    intro - Information whether user has been processed intro
+    mini_apps_ads_slot_id - Ads slot id for MyTarget
+    lang - Language ID
+    no_wall_replies - Information whether wall comments should be hidden
+    own_posts_default - Information whether only owners posts should be shown
+    """
 
     wishlists_ae_promo_banner_show: Optional[base.BoolInt] = None
     _2fa_required: Optional[base.BoolInt] = None
@@ -69,7 +96,21 @@ class NameRequestStatus(enum.Enum):
 
 
 class Offer(BaseObject):
-    """VK Object account/Offer"""
+    """VK Object account/Offer
+
+    description - Offer description
+    id - Offer ID
+    img - URL of the preview image
+    instruction - Instruction how to process the offer
+    instruction_html - Instruction how to process the offer (HTML format)
+    price - Offer price
+    short_description - Offer short description
+    tag - Offer tag
+    title - Offer title
+    currency_amount - Currency amount
+    link_id - Link id
+    link_type - Link type
+    """
 
     description: Optional[str] = None
     id: Optional[int] = None
@@ -86,14 +127,22 @@ class Offer(BaseObject):
 
 
 class PushConversations(BaseObject):
-    """VK Object account/PushConversations"""
+    """VK Object account/PushConversations
+
+    count - Items count
+    """
 
     count: Optional[int] = None
     items: Optional[List["PushConversationsItem"]]
 
 
 class PushConversationsItem(BaseObject):
-    """VK Object account/PushConversationsItem"""
+    """VK Object account/PushConversationsItem
+
+    disabled_until - Time until that notifications are disabled in seconds
+    peer_id - Peer ID
+    sound - Information whether the sound are enabled
+    """
 
     disabled_until: Optional[int] = None
     peer_id: Optional[int] = None
@@ -149,7 +198,11 @@ class PushParamsSettings(enum.Enum):
 
 
 class PushSettings(BaseObject):
-    """VK Object account/PushSettings"""
+    """VK Object account/PushSettings
+
+    disabled - Information whether notifications are disabled
+    disabled_until - Time until that notifications are disabled in Unixtime
+    """
 
     disabled: Optional[base.BoolInt] = None
     disabled_until: Optional[int] = None

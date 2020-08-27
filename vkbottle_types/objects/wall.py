@@ -1,16 +1,16 @@
 from .base_model import BaseObject
 from . import (
-    photos,
-    audio,
-    docs,
-    pages,
-    events,
-    market,
-    video,
-    groups,
-    base,
     polls,
+    base,
     comment,
+    pages,
+    photos,
+    groups,
+    market,
+    docs,
+    video,
+    audio,
+    events,
 )
 from typing import Optional, Union, Any, List
 import typing
@@ -18,7 +18,13 @@ import enum
 
 
 class AppPost(BaseObject):
-    """VK Object wall/AppPost"""
+    """VK Object wall/AppPost
+
+    id - Application ID
+    name - Application name
+    photo_130 - URL of the preview image with 130 px in width
+    photo_604 - URL of the preview image with 604 px in width
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -27,7 +33,16 @@ class AppPost(BaseObject):
 
 
 class AttachedNote(BaseObject):
-    """VK Object wall/AttachedNote"""
+    """VK Object wall/AttachedNote
+
+    comments - Comments number
+    date - Date when the note has been created in Unixtime
+    id - Note ID
+    owner_id - Note owner's ID
+    read_comments - Read comments number
+    title - Note title
+    view_url - URL of the page with note preview
+    """
 
     comments: Optional[int] = None
     date: Optional[int] = None
@@ -39,7 +54,10 @@ class AttachedNote(BaseObject):
 
 
 class CarouselBase(BaseObject):
-    """VK Object wall/CarouselBase"""
+    """VK Object wall/CarouselBase
+
+    carousel_offset - Index of current carousel element
+    """
 
     carousel_offset: Optional[int] = None
 
@@ -76,7 +94,12 @@ class CommentAttachmentType(enum.Enum):
 
 
 class Geo(BaseObject):
-    """VK Object wall/Geo"""
+    """VK Object wall/Geo
+
+    coordinates - Coordinates as string. <latitude> <longtitude>
+    showmap - Information whether a map is showed
+    type - Place type
+    """
 
     coordinates: Optional[str] = None
     place: Optional[base.Place] = None
@@ -85,7 +108,13 @@ class Geo(BaseObject):
 
 
 class Graffiti(BaseObject):
-    """VK Object wall/Graffiti"""
+    """VK Object wall/Graffiti
+
+    id - Graffiti ID
+    owner_id - Graffiti owner's ID
+    photo_200 - URL of the preview image with 200 px in width
+    photo_586 - URL of the preview image with 586 px in width
+    """
 
     id: Optional[int] = None
     owner_id: Optional[int] = None
@@ -132,7 +161,13 @@ class PostType(enum.Enum):
 
 
 class PostedPhoto(BaseObject):
-    """VK Object wall/PostedPhoto"""
+    """VK Object wall/PostedPhoto
+
+    id - Photo ID
+    owner_id - Photo owner's ID
+    photo_130 - URL of the preview image with 130 px in width
+    photo_604 - URL of the preview image with 604 px in width
+    """
 
     id: Optional[int] = None
     owner_id: Optional[int] = None
@@ -141,13 +176,25 @@ class PostedPhoto(BaseObject):
 
 
 class Views(BaseObject):
-    """VK Object wall/Views"""
+    """VK Object wall/Views
+
+    count - Count
+    """
 
     count: Optional[int] = None
 
 
 class WallComment(BaseObject):
-    """VK Object wall/WallComment"""
+    """VK Object wall/WallComment
+
+    date - Date when the comment has been added in Unixtime
+    from_id - Author ID
+    id - Comment ID
+    real_offset - Real position of the comment
+    reply_to_comment - Replied comment ID
+    reply_to_user - Replied user ID
+    text - Comment text
+    """
 
     attachments: Optional[List["CommentAttachment"]]
     date: Optional[int] = None
@@ -166,7 +213,23 @@ class WallComment(BaseObject):
 
 
 class Wallpost(BaseObject):
-    """VK Object wall/Wallpost"""
+    """VK Object wall/Wallpost
+
+    access_key - Access key to private object
+    copyright - Information about the source of the post
+    date - Date of publishing in Unixtime
+    edited - Date of editing in Unixtime
+    from_id - Post author ID
+    id - Post ID
+    is_archived - Is post archived, only for post owners
+    is_favorite - Information whether the post in favorites list
+    likes - Count of likes
+    owner_id - Wall owner's ID
+    reposts - Count of views
+    signer_id - Post signer ID
+    text - Post text
+    views - Count of views
+    """
 
     access_key: Optional[str] = None
     attachments: Optional[List["WallpostAttachment"]]
@@ -238,7 +301,19 @@ class WallpostFull(BaseObject):
 
 
 class WallpostToId(BaseObject):
-    """VK Object wall/WallpostToId"""
+    """VK Object wall/WallpostToId
+
+    copy_owner_id - ID of the source post owner
+    copy_post_id - ID of the source post
+    date - Date of publishing in Unixtime
+    from_id - Post author ID
+    id - Post ID
+    is_favorite - Information whether the post in favorites list
+    post_id - wall post ID (if comment)
+    signer_id - Post signer ID
+    text - Post text
+    to_id - Wall owner's ID
+    """
 
     attachments: Optional[List["WallpostAttachment"]]
     comments: Optional[base.CommentsInfo] = None

@@ -1,12 +1,22 @@
 from .base_model import BaseObject
-from . import audio, base, account
+from . import base, account, audio
 from typing import Optional, Union, Any, List
 import typing
 import enum
 
 
 class Career(BaseObject):
-    """VK Object users/Career"""
+    """VK Object users/Career
+
+    city_id - City ID
+    company - Company name
+    country_id - Country ID
+    from - From year
+    group_id - Community ID
+    id - Career ID
+    position - Position
+    until - Till year
+    """
 
     city_id: Optional[int] = None
     company: Optional[str] = None
@@ -105,14 +115,26 @@ class Fields(enum.Enum):
 
 
 class LastSeen(BaseObject):
-    """VK Object users/LastSeen"""
+    """VK Object users/LastSeen
+
+    platform - Type of the platform that used for the last authorization
+    time - Last visit date (in Unix time)
+    """
 
     platform: Optional[int] = None
     time: Optional[int] = None
 
 
 class Military(BaseObject):
-    """VK Object users/Military"""
+    """VK Object users/Military
+
+    country_id - Country ID
+    from - From year
+    id - Military ID
+    unit - Unit name
+    unit_id - Unit ID
+    until - Till year
+    """
 
     country_id: Optional[int] = None
     _from: Optional[int] = None
@@ -123,7 +145,12 @@ class Military(BaseObject):
 
 
 class Occupation(BaseObject):
-    """VK Object users/Occupation"""
+    """VK Object users/Occupation
+
+    id - ID of school, university, company group
+    name - Name of occupation
+    type - Type of occupation
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -131,7 +158,15 @@ class Occupation(BaseObject):
 
 
 class OnlineInfo(BaseObject):
-    """VK Object users/OnlineInfo"""
+    """VK Object users/OnlineInfo
+
+    visible - Whether you can see real online status of user or not
+    last_seen - Last time we saw user being active
+    is_online - Whether user is currently online or not
+    app_id - Application id from which user is currently online or was last seen online
+    is_mobile - Is user online from desktop app or mobile app
+    status - In case user online is not visible, it indicates approximate timeframe of user online
+    """
 
     visible: Optional[bool] = None
     last_seen: Optional[int] = None
@@ -142,7 +177,17 @@ class OnlineInfo(BaseObject):
 
 
 class Personal(BaseObject):
-    """VK Object users/Personal"""
+    """VK Object users/Personal
+
+    alcohol - User's views on alcohol
+    inspired_by - User's inspired by
+    life_main - User's personal priority in life
+    people_main - User's personal priority in people
+    political - User's political views
+    religion - User's religion
+    religion_id - User's religion id
+    smoking - User's views on smoking
+    """
 
     alcohol: Optional[int] = None
     inspired_by: Optional[str] = None
@@ -156,7 +201,13 @@ class Personal(BaseObject):
 
 
 class Relative(BaseObject):
-    """VK Object users/Relative"""
+    """VK Object users/Relative
+
+    birth_date - Date of child birthday (format dd.mm.yyyy)
+    id - Relative ID
+    name - Name of relative
+    type - Relative type
+    """
 
     birth_date: Optional[str] = None
     id: Optional[int] = None
@@ -165,7 +216,19 @@ class Relative(BaseObject):
 
 
 class School(BaseObject):
-    """VK Object users/School"""
+    """VK Object users/School
+
+    city - City ID
+    class - School class letter
+    country - Country ID
+    id - School ID
+    name - School name
+    type - School type ID
+    type_str - School type name
+    year_from - Year the user started to study
+    year_graduated - Graduation year
+    year_to - Year the user finished to study
+    """
 
     city: Optional[int] = None
     _class: Optional[str] = None
@@ -184,7 +247,20 @@ class SubscriptionsItem(BaseObject):
 
 
 class University(BaseObject):
-    """VK Object users/University"""
+    """VK Object users/University
+
+    chair - Chair ID
+    chair_name - Chair name
+    city - City ID
+    country - Country ID
+    education_form - Education form
+    education_status - Education status
+    faculty - Faculty ID
+    faculty_name - Faculty name
+    graduation - Graduation year
+    id - University ID
+    name - University name
+    """
 
     chair: Optional[int] = None
     chair_name: Optional[str] = None
@@ -204,7 +280,15 @@ class User(BaseObject):
 
 
 class UserConnections(BaseObject):
-    """VK Object users/UserConnections"""
+    """VK Object users/UserConnections
+
+    skype - User's Skype nickname
+    facebook - User's Facebook account
+    facebook_name - User's Facebook name
+    twitter - User's Twitter account
+    livejournal - User's Livejournal account
+    instagram - User's Instagram account
+    """
 
     skype: Optional[str] = None
     facebook: Optional[str] = None
@@ -215,7 +299,23 @@ class UserConnections(BaseObject):
 
 
 class UserCounters(BaseObject):
-    """VK Object users/UserCounters"""
+    """VK Object users/UserCounters
+
+    albums - Albums number
+    audios - Audios number
+    followers - Followers number
+    friends - Friends number
+    gifts - Gifts number
+    groups - Communities number
+    notes - Notes number
+    online_friends - Online friends number
+    pages - Public pages number
+    photos - Photos number
+    subscriptions - Subscriptions number
+    user_photos - Number of photos with user
+    user_videos - Number of videos with user
+    videos - Videos number
+    """
 
     albums: Optional[int] = None
     audios: Optional[int] = None
@@ -305,7 +405,10 @@ class UserXtrType(BaseObject):
 
 
 class UsersArray(BaseObject):
-    """VK Object users/UsersArray"""
+    """VK Object users/UsersArray
+
+    count - Users number
+    """
 
     count: Optional[int] = None
     items: Optional[List[int]] = None

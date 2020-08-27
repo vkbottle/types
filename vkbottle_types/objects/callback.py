@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import groups, base, photos
+from . import base, groups, photos
 from typing import Optional, Union, Any, List
 import typing
 import enum

@@ -1,5 +1,5 @@
 from .base_model import BaseObject
-from . import video, market, photos, link
+from . import link, photos, market, video
 from typing import Optional, Union, Any, List
 import typing
 import enum
@@ -13,14 +13,23 @@ class BoolInt(enum.IntEnum):
 
 
 class City(BaseObject):
-    """VK Object base/City"""
+    """VK Object base/City
+
+    id - City ID
+    title - City title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
 
 
 class CommentsInfo(BaseObject):
-    """VK Object base/CommentsInfo"""
+    """VK Object base/CommentsInfo
+
+    can_post - Information whether current user can comment the post
+    count - Comments number
+    groups_can_post - Information whether groups can comment the post
+    """
 
     can_post: Optional["BoolInt"]
     count: Optional[int] = None
@@ -28,7 +37,11 @@ class CommentsInfo(BaseObject):
 
 
 class Country(BaseObject):
-    """VK Object base/Country"""
+    """VK Object base/Country
+
+    id - Country ID
+    title - Country title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
@@ -43,7 +56,13 @@ class CropPhoto(BaseObject):
 
 
 class CropPhotoCrop(BaseObject):
-    """VK Object base/CropPhotoCrop"""
+    """VK Object base/CropPhotoCrop
+
+    x - Coordinate X of the left upper corner
+    y - Coordinate Y of the left upper corner
+    x2 - Coordinate X of the right lower corner
+    y2 - Coordinate Y of the right lower corner
+    """
 
     x: Optional[float] = None
     y: Optional[float] = None
@@ -52,7 +71,13 @@ class CropPhotoCrop(BaseObject):
 
 
 class CropPhotoRect(BaseObject):
-    """VK Object base/CropPhotoRect"""
+    """VK Object base/CropPhotoRect
+
+    x - Coordinate X of the left upper corner
+    y - Coordinate Y of the left upper corner
+    x2 - Coordinate X of the right lower corner
+    y2 - Coordinate Y of the right lower corner
+    """
 
     x: Optional[float] = None
     y: Optional[float] = None
@@ -61,7 +86,12 @@ class CropPhotoRect(BaseObject):
 
 
 class Error(BaseObject):
-    """VK Object base/Error"""
+    """VK Object base/Error
+
+    error_code - Error code
+    error_msg - Error message
+    error_text - Localized error message
+    """
 
     error_code: Optional[int] = None
     error_msg: Optional[str] = None
@@ -70,7 +100,11 @@ class Error(BaseObject):
 
 
 class Geo(BaseObject):
-    """VK Object base/Geo"""
+    """VK Object base/Geo
+
+    showmap - Information whether a map is showed
+    type - Place type
+    """
 
     coordinates: Optional["GeoCoordinates"]
     place: Optional["Place"]
@@ -86,14 +120,23 @@ class GeoCoordinates(BaseObject):
 
 
 class GradientPoint(BaseObject):
-    """VK Object base/GradientPoint"""
+    """VK Object base/GradientPoint
+
+    color - Hex color code without #
+    position - Point position
+    """
 
     color: Optional[str] = None
     position: Optional[float] = None
 
 
 class Image(BaseObject):
-    """VK Object base/Image"""
+    """VK Object base/Image
+
+    height - Image height
+    url - Image url
+    width - Image width
+    """
 
     id: Optional[str] = None
     height: Optional[int] = None
@@ -102,14 +145,24 @@ class Image(BaseObject):
 
 
 class Likes(BaseObject):
-    """VK Object base/Likes"""
+    """VK Object base/Likes
+
+    count - Likes number
+    user_likes - Information whether current user likes the photo
+    """
 
     count: Optional[int] = None
     user_likes: Optional["BoolInt"]
 
 
 class LikesInfo(BaseObject):
-    """VK Object base/LikesInfo"""
+    """VK Object base/LikesInfo
+
+    can_like - Information whether current user can like the post
+    can_publish - Information whether current user can repost
+    count - Likes number
+    user_likes - Information whether current uer has liked the post
+    """
 
     can_like: Optional["BoolInt"]
     can_publish: Optional["BoolInt"]
@@ -118,7 +171,18 @@ class LikesInfo(BaseObject):
 
 
 class Link(BaseObject):
-    """VK Object base/Link"""
+    """VK Object base/Link
+
+    caption - Link caption
+    description - Link description
+    id - Link ID
+    preview_page - String ID of the page with article preview
+    preview_url - URL of the page with article preview
+    title - Link title
+    url - Link URL
+    is_external - Information whether the current link is external
+    video - Video from link
+    """
 
     application: Optional["LinkApplication"]
     button: Optional["LinkButton"]
@@ -139,21 +203,36 @@ class Link(BaseObject):
 
 
 class LinkApplication(BaseObject):
-    """VK Object base/LinkApplication"""
+    """VK Object base/LinkApplication
+
+    app_id - Application Id
+    """
 
     app_id: Optional[float] = None
     store: Optional["LinkApplicationStore"]
 
 
 class LinkApplicationStore(BaseObject):
-    """VK Object base/LinkApplicationStore"""
+    """VK Object base/LinkApplicationStore
+
+    id - Store Id
+    name - Store name
+    """
 
     id: Optional[float] = None
     name: Optional[str] = None
 
 
 class LinkButton(BaseObject):
-    """VK Object base/LinkButton"""
+    """VK Object base/LinkButton
+
+    action - Button action
+    title - Button title
+    block_id - Target block id
+    section_id - Target section id
+    owner_id - Owner id
+    icon - Button icon name, e.g. 'phone' or 'gift'
+    """
 
     action: Optional["LinkButtonAction"]
     title: Optional[str] = None
@@ -191,34 +270,53 @@ class LinkProduct(BaseObject):
 
 
 class LinkRating(BaseObject):
-    """VK Object base/LinkRating"""
+    """VK Object base/LinkRating
+
+    reviews_count - Count of reviews
+    stars - Count of stars
+    """
 
     reviews_count: Optional[int] = None
     stars: Optional[float] = None
 
 
 class MessageError(BaseObject):
-    """VK Object base/MessageError"""
+    """VK Object base/MessageError
+
+    code - Error code
+    description - Error message
+    """
 
     code: Optional[int] = None
     description: Optional[str] = None
 
 
 class Object(BaseObject):
-    """VK Object base/Object"""
+    """VK Object base/Object
+
+    id - Object ID
+    title - Object title
+    """
 
     id: Optional[int] = None
     title: Optional[str] = None
 
 
 class ObjectCount(BaseObject):
-    """VK Object base/ObjectCount"""
+    """VK Object base/ObjectCount
+
+    count - Items count
+    """
 
     count: Optional[int] = None
 
 
 class ObjectWithName(BaseObject):
-    """VK Object base/ObjectWithName"""
+    """VK Object base/ObjectWithName
+
+    id - Object ID
+    name - Object name
+    """
 
     id: Optional[int] = None
     name: Optional[str] = None
@@ -247,7 +345,11 @@ class PropertyExists(enum.IntEnum):
 
 
 class RepostsInfo(BaseObject):
-    """VK Object base/RepostsInfo"""
+    """VK Object base/RepostsInfo
+
+    count - Reposts number
+    user_reposted - Information whether current user has reposted the post
+    """
 
     count: Optional[int] = None
     user_reposted: Optional[int] = None
@@ -269,7 +371,14 @@ class Sex(enum.IntEnum):
 
 
 class Sticker(BaseObject):
-    """VK Object base/Sticker"""
+    """VK Object base/Sticker
+
+    sticker_id - Sticker ID
+    product_id - Pack ID
+    animation_url - URL of sticker animation script
+    animations - Array of sticker animation script objects
+    is_allowed - Information whether the sticker is allowed
+    """
 
     sticker_id: Optional[int] = None
     product_id: Optional[int] = None
@@ -281,7 +390,11 @@ class Sticker(BaseObject):
 
 
 class StickerAnimation(BaseObject):
-    """VK Object base/StickerAnimation"""
+    """VK Object base/StickerAnimation
+
+    type - Type of animation script
+    url - URL of animation script
+    """
 
     type: Optional[str] = None
     url: Optional[str] = None
@@ -399,6 +512,9 @@ class UserGroupFields(enum.Enum):
 
 
 class UserId(BaseObject):
-    """VK Object base/UserId"""
+    """VK Object base/UserId
+
+    user_id - User ID
+    """
 
     user_id: Optional[int] = None

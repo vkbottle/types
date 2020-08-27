@@ -6,7 +6,13 @@ import enum
 
 
 class Answer(BaseObject):
-    """VK Object polls/Answer"""
+    """VK Object polls/Answer
+
+    id - Answer ID
+    rate - Answer rate in percents
+    text - Answer text
+    votes - Votes number
+    """
 
     id: Optional[int] = None
     rate: Optional[float] = None
@@ -15,7 +21,15 @@ class Answer(BaseObject):
 
 
 class Background(BaseObject):
-    """VK Object polls/Background"""
+    """VK Object polls/Background
+
+    angle - Gradient angle with 0 on positive X axis
+    color - Hex color code without #
+    height - Original height of pattern tile
+    images - Pattern tiles
+    points - Gradient points
+    width - Original with of pattern tile
+    """
 
     angle: Optional[int] = None
     color: Optional[str] = None
@@ -65,14 +79,20 @@ PollAnonymous = Optional[bool]  # Information whether the field is anonymous
 
 
 class Voters(BaseObject):
-    """VK Object polls/Voters"""
+    """VK Object polls/Voters
+
+    answer_id - Answer ID
+    """
 
     answer_id: Optional[int] = None
     users: Optional["VotersUsers"]
 
 
 class VotersUsers(BaseObject):
-    """VK Object polls/VotersUsers"""
+    """VK Object polls/VotersUsers
+
+    count - Votes number
+    """
 
     count: Optional[int] = None
     items: Optional[List[int]] = None
