@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import audio, account, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import audio, account, base
+from .base_model import BaseObject
 
 
 class Career(BaseObject):

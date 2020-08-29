@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import photos, video, polls, apps, market, audio, users, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import photos, video, polls, apps, market, audio, users, base
+from .base_model import BaseObject
 
 
 class ClickableArea(BaseObject):

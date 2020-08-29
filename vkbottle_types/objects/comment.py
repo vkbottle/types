@@ -1,8 +1,7 @@
-from .base_model import BaseObject
+from typing import Optional, List
+
 from . import wall
-from typing import Optional, Union, Any, List
-import typing
-import enum
+from .base_model import BaseObject
 
 
 class Thread(BaseObject):

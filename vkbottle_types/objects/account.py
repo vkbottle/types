@@ -1,8 +1,9 @@
-from .base_model import BaseObject
-from . import base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+import typing
+from typing import Optional, Any, List
+
+from . import base
+from .base_model import BaseObject
 
 
 class AccountCounters(BaseObject):

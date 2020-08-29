@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import wall, polls, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import wall, polls, base
+from .base_model import BaseObject
 
 
 class DefaultOrder(enum.IntEnum):
