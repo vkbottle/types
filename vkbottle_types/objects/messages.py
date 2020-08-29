@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import docs, stories, gifts, wall, photos, video, market, audio, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import docs, stories, gifts, wall, photos, video, market, audio, base
+from .base_model import BaseObject
 
 
 class AudioMessage(BaseObject):

@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import users, groups, apps, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional
+
+from . import users, groups, apps, base
+from .base_model import BaseObject
 
 
 class Hint(BaseObject):

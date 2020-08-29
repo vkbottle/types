@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import photos
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional
+
+from . import photos
+from .base_model import BaseObject
 
 
 class Currency(BaseObject):

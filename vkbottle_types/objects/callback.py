@@ -1,8 +1,9 @@
-from .base_model import BaseObject
-from . import groups, photos, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+import typing
+from typing import Optional, Any
+
+from . import groups, photos, base
+from .base_model import BaseObject
 
 
 class BoardPostDelete(BaseObject):

@@ -1,4 +1,6 @@
-from .base_model import BaseObject
+import enum
+from typing import Optional, List
+
 from . import (
     docs,
     events,
@@ -12,9 +14,7 @@ from . import (
     comment,
     base,
 )
-from typing import Optional, Union, Any, List
-import typing
-import enum
+from .base_model import BaseObject
 
 
 class AppPost(BaseObject):

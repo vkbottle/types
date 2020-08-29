@@ -1,7 +1,6 @@
+from typing import Optional, List
+
 from .base_model import BaseObject
-from typing import Optional, Union, Any, List
-import typing
-import enum
 
 
 class Amount(BaseObject):

@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import wall, video, groups, market, users, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import wall, video, groups, market, users, base
+from .base_model import BaseObject
 
 
 class Bookmark(BaseObject):

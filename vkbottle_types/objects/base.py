@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import link, photos, video, market
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import link, photos, video, market
+from .base_model import BaseObject
 
 
 class BoolInt(enum.IntEnum):

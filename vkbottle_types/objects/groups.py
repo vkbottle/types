@@ -1,8 +1,8 @@
-from .base_model import BaseObject
-from . import market, users, base
-from typing import Optional, Union, Any, List
-import typing
 import enum
+from typing import Optional, List
+
+from . import market, users, base
+from .base_model import BaseObject
 
 
 class Address(BaseObject):
