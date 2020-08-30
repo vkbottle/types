@@ -1,7 +1,14 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    MarketMarketCategory,
+    MarketMarketItem,
+    WallWallComment,
+    MarketMarketItemFull,
+    MarketMarketAlbum,
+    BaseBoolInt,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import market, wall, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddAlbumResponse(BaseResponse):
@@ -74,58 +81,74 @@ class AddResponseModel(BaseResponse):
 
 CreateCommentResponseModel = int
 
-
-DeleteCommentResponseModel = Optional["base.BoolInt"]
+DeleteCommentResponseModel = Optional[BaseBoolInt]
 
 
 class GetAlbumByIdResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketAlbum"]] = None
+    items: Optional[List["MarketMarketAlbum"]] = None
 
 
 class GetAlbumsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketAlbum"]] = None
+    items: Optional[List["MarketMarketAlbum"]] = None
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItemFull"]] = None
+    items: Optional[List["MarketMarketItemFull"]] = None
 
 
 class GetByIdResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItem"]] = None
+    items: Optional[List["MarketMarketItem"]] = None
 
 
 class GetCategoriesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketCategory"]] = None
+    items: Optional[List["MarketMarketCategory"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItemFull"]] = None
+    items: Optional[List["MarketMarketItemFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItem"]] = None
+    items: Optional[List["MarketMarketItem"]] = None
 
 
-RestoreCommentResponseModel = Optional["base.BoolInt"]
+RestoreCommentResponseModel = Optional[BaseBoolInt]
 
 
 class SearchExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItemFull"]] = None
+    items: Optional[List["MarketMarketItemFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["market.MarketItem"]] = None
+    items: Optional[List["MarketMarketItem"]] = None
+
+
+AddAlbumResponse.update_forward_refs()
+AddResponse.update_forward_refs()
+CreateCommentResponse.update_forward_refs()
+DeleteCommentResponse.update_forward_refs()
+GetAlbumByIdResponse.update_forward_refs()
+GetAlbumsResponse.update_forward_refs()
+GetByIdExtendedResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetCategoriesResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+RestoreCommentResponse.update_forward_refs()
+SearchExtendedResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

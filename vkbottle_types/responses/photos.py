@@ -1,7 +1,23 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    PhotosPhotoTag,
+    PhotosPhotoXtrTagInfo,
+    GroupsGroupFull,
+    PhotosCommentXtrPid,
+    PhotosPhotoXtrRealOffset,
+    WallWallComment,
+    PhotosPhotoUpload,
+    PhotosPhoto,
+    PhotosPhotoFullXtrRealOffset,
+    UsersUserFull,
+    PhotosPhotoAlbumFull,
+    PhotosPhotoFull,
+    BaseBoolInt,
+    BaseImage,
+    BaseUploadServer,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, groups, wall, photos, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CopyResponse(BaseResponse):
@@ -138,14 +154,11 @@ class SearchResponse(BaseResponse):
 
 CopyResponseModel = int
 
-
-CreateAlbumResponseModel = Optional["photos.PhotoAlbumFull"]
-
+CreateAlbumResponseModel = Optional[PhotosPhotoAlbumFull]
 
 CreateCommentResponseModel = int
 
-
-DeleteCommentResponseModel = Optional["base.BoolInt"]
+DeleteCommentResponseModel = Optional[BaseBoolInt]
 
 
 GetAlbumsCountResponseModel = int
@@ -153,102 +166,94 @@ GetAlbumsCountResponseModel = int
 
 class GetAlbumsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoAlbumFull"]] = None
+    items: Optional[List["PhotosPhotoAlbumFull"]] = None
 
 
 class GetAllCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.CommentXtrPid"]] = None
+    items: Optional[List["PhotosCommentXtrPid"]] = None
 
 
 class GetAllExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoFullXtrRealOffset"]] = None
-    more: Optional["base.BoolInt"] = None
+    items: Optional[List["PhotosPhotoFullXtrRealOffset"]] = None
+    more: Optional["BaseBoolInt"] = None
 
 
 class GetAllResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoXtrRealOffset"]] = None
-    more: Optional["base.BoolInt"] = None
+    items: Optional[List["PhotosPhotoXtrRealOffset"]] = None
+    more: Optional["BaseBoolInt"] = None
 
 
-GetByIdExtendedResponseModel = List["photos.PhotoFull"]
+GetByIdExtendedResponseModel = List[PhotosPhotoFull]
 
-
-GetByIdResponseModel = List["photos.Photo"]
+GetByIdResponseModel = List[PhotosPhoto]
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
     real_offset: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallComment"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
     real_offset: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
 
 
-GetMarketUploadServerResponseModel = Optional["base.UploadServer"]
+GetMarketUploadServerResponseModel = Optional[BaseUploadServer]
 
-
-GetMessagesUploadServerResponseModel = Optional["photos.PhotoUpload"]
+GetMessagesUploadServerResponseModel = Optional[PhotosPhotoUpload]
 
 
 class GetNewTagsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoXtrTagInfo"]] = None
+    items: Optional[List["PhotosPhotoXtrTagInfo"]] = None
 
 
-GetTagsResponseModel = List["photos.PhotoTag"]
+GetTagsResponseModel = List[PhotosPhotoTag]
 
-
-GetUploadServerResponseModel = Optional["photos.PhotoUpload"]
+GetUploadServerResponseModel = Optional[PhotosPhotoUpload]
 
 
 class GetUserPhotosExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoFull"]] = None
+    items: Optional[List["PhotosPhotoFull"]] = None
 
 
 class GetUserPhotosResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.Photo"]] = None
+    items: Optional[List["PhotosPhoto"]] = None
 
 
-GetWallUploadServerResponseModel = Optional["photos.PhotoUpload"]
+GetWallUploadServerResponseModel = Optional[PhotosPhotoUpload]
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.PhotoFull"]] = None
+    items: Optional[List["PhotosPhotoFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.Photo"]] = None
+    items: Optional[List["PhotosPhoto"]] = None
 
 
 PutTagResponseModel = int
 
+RestoreCommentResponseModel = Optional[BaseBoolInt]
 
-RestoreCommentResponseModel = Optional["base.BoolInt"]
+SaveMarketAlbumPhotoResponseModel = List[PhotosPhoto]
 
+SaveMarketPhotoResponseModel = List[PhotosPhoto]
 
-SaveMarketAlbumPhotoResponseModel = List["photos.Photo"]
+SaveMessagesPhotoResponseModel = List[PhotosPhoto]
 
-
-SaveMarketPhotoResponseModel = List["photos.Photo"]
-
-
-SaveMessagesPhotoResponseModel = List["photos.Photo"]
-
-
-SaveOwnerCoverPhotoResponseModel = List["base.Image"]
+SaveOwnerCoverPhotoResponseModel = List[BaseImage]
 
 
 class SaveOwnerPhotoResponseModel(BaseResponse):
@@ -260,12 +265,46 @@ class SaveOwnerPhotoResponseModel(BaseResponse):
     post_id: Optional[int] = None
 
 
-SaveWallPhotoResponseModel = List["photos.Photo"]
+SaveWallPhotoResponseModel = List[PhotosPhoto]
 
-
-SaveResponseModel = List["photos.Photo"]
+SaveResponseModel = List[PhotosPhoto]
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["photos.Photo"]] = None
+    items: Optional[List["PhotosPhoto"]] = None
+
+
+CopyResponse.update_forward_refs()
+CreateAlbumResponse.update_forward_refs()
+CreateCommentResponse.update_forward_refs()
+DeleteCommentResponse.update_forward_refs()
+GetAlbumsCountResponse.update_forward_refs()
+GetAlbumsResponse.update_forward_refs()
+GetAllCommentsResponse.update_forward_refs()
+GetAllExtendedResponse.update_forward_refs()
+GetAllResponse.update_forward_refs()
+GetByIdExtendedResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetCommentsExtendedResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetMarketUploadServerResponse.update_forward_refs()
+GetMessagesUploadServerResponse.update_forward_refs()
+GetNewTagsResponse.update_forward_refs()
+GetTagsResponse.update_forward_refs()
+GetUploadServerResponse.update_forward_refs()
+GetUserPhotosExtendedResponse.update_forward_refs()
+GetUserPhotosResponse.update_forward_refs()
+GetWallUploadServerResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+PutTagResponse.update_forward_refs()
+RestoreCommentResponse.update_forward_refs()
+SaveMarketAlbumPhotoResponse.update_forward_refs()
+SaveMarketPhotoResponse.update_forward_refs()
+SaveMessagesPhotoResponse.update_forward_refs()
+SaveOwnerCoverPhotoResponse.update_forward_refs()
+SaveOwnerPhotoResponse.update_forward_refs()
+SaveWallPhotoResponse.update_forward_refs()
+SaveResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

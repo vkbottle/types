@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import NotesNoteComment, NotesNote
 from .base_response import BaseResponse
-from vkbottle_types.objects import notes
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddResponse(BaseResponse):
@@ -26,18 +26,22 @@ class GetResponse(BaseResponse):
 
 AddResponseModel = int
 
-
 CreateCommentResponseModel = int
 
-
-GetByIdResponseModel = Optional["notes.Note"]
+GetByIdResponseModel = Optional[NotesNote]
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["notes.NoteComment"]] = None
+    items: Optional[List["NotesNoteComment"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["notes.Note"]] = None
+    items: Optional[List["NotesNote"]] = None
+
+AddResponse.update_forward_refs()
+CreateCommentResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetResponse.update_forward_refs()

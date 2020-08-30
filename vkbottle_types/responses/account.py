@@ -1,7 +1,17 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    AccountNameRequest,
+    AccountOffer,
+    UsersUserMin,
+    AccountPushSettings,
+    AccountInfo,
+    AccountUserSettings,
+    GroupsGroup,
+    BaseBoolInt,
+    AccountAccountCounters,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, account, base, groups
-from typing import Optional, Any, List, Union
-import typing
 
 
 class ChangePasswordResponse(BaseResponse):
@@ -47,7 +57,7 @@ class ChangePasswordResponseModel(BaseResponse):
 
 class GetActiveOffersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["account.Offer"]] = None
+    items: Optional[List["AccountOffer"]] = None
 
 
 GetAppPermissionsResponseModel = int
@@ -56,22 +66,30 @@ GetAppPermissionsResponseModel = int
 class GetBannedResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List[int]] = None
-    profiles: Optional[List["users.UserMin"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
-GetCountersResponseModel = Optional["account.AccountCounters"]
+GetCountersResponseModel = Optional[AccountAccountCounters]
 
+GetInfoResponseModel = Optional[AccountInfo]
 
-GetInfoResponseModel = Optional["account.Info"]
+GetProfileInfoResponseModel = Optional[AccountUserSettings]
 
-
-GetProfileInfoResponseModel = Optional["account.UserSettings"]
-
-
-GetPushSettingsResponseModel = Optional["account.PushSettings"]
+GetPushSettingsResponseModel = Optional[AccountPushSettings]
 
 
 class SaveProfileInfoResponseModel(BaseResponse):
-    changed: Optional["base.BoolInt"] = None
-    name_request: Optional["account.NameRequest"] = None
+    changed: Optional["BaseBoolInt"] = None
+    name_request: Optional["AccountNameRequest"] = None
+
+
+ChangePasswordResponse.update_forward_refs()
+GetActiveOffersResponse.update_forward_refs()
+GetAppPermissionsResponse.update_forward_refs()
+GetBannedResponse.update_forward_refs()
+GetCountersResponse.update_forward_refs()
+GetInfoResponse.update_forward_refs()
+GetProfileInfoResponse.update_forward_refs()
+GetPushSettingsResponse.update_forward_refs()
+SaveProfileInfoResponse.update_forward_refs()

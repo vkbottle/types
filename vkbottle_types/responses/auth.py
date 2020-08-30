@@ -1,7 +1,6 @@
-from .base_response import BaseResponse
+from typing import Optional
 
-from typing import Optional, Any, List, Union
-import typing
+from .base_response import BaseResponse
 
 
 class RestoreResponse(BaseResponse):
@@ -11,3 +10,5 @@ class RestoreResponse(BaseResponse):
 class RestoreResponseModel(BaseResponse):
     success: Optional[int] = None
     sid: Optional[str] = None
+
+RestoreResponse.update_forward_refs()

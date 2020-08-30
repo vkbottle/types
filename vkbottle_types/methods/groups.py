@@ -1,12 +1,15 @@
 from vkbottle_types.responses import base, groups
-from vkbottle_types.objects import (
-    base as objects_base,
-    addresses as objects_addresses,
-    users as objects_users,
-    groups as objects_groups,
-)
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import (
+        base as objects_base,
+        addresses as objects_addresses,
+        users as objects_users,
+        groups as objects_groups,
+    )
 
 
 class GroupsCategory(BaseCategory):
@@ -365,8 +368,8 @@ class GroupsCategory(BaseCategory):
         self,
         user_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        filter: Optional[List[objects_groups.Filter]] = None,
-        fields: Optional[List[objects_groups.Fields]] = None,
+        filter: Optional[List["objects_groups.Filter"]] = None,
+        fields: Optional[List["objects_groups.Fields"]] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
     ) -> groups.GetExtendedResponseModel:
@@ -392,7 +395,7 @@ class GroupsCategory(BaseCategory):
         longitude: Optional[float] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_addresses.Fields]] = None,
+        fields: Optional[List["objects_addresses.Fields"]] = None,
     ) -> groups.GetAddressesResponseModel:
         """Returns a list of community addresses.
         :param group_id: ID or screen name of the community.
@@ -414,7 +417,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         owner_id: Optional[int] = None,
     ) -> groups.GetBannedResponseModel:
         """Returns a list of users on a community blacklist.
@@ -434,7 +437,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_ids: Optional[List[str]] = None,
         group_id: Optional[str] = None,
-        fields: Optional[List[objects_groups.Fields]] = None,
+        fields: Optional[List["objects_groups.Fields"]] = None,
     ) -> groups.GetByIdResponseModel:
         """Returns information about communities by their IDs.
         :param group_ids: IDs or screen names of communities.
@@ -516,7 +519,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> groups.GetInvitedUsersResponseModel:
         """Returns invited users list of a community
@@ -579,7 +582,7 @@ class GroupsCategory(BaseCategory):
         sort: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         filter: Optional[str] = None,
     ) -> groups.GetMembersResponseModel:
         """Returns a list of community members.
@@ -601,7 +604,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["z"]] = None,
     ) -> groups.GetRequestsResponseModel:
         """Returns a list of requests to the community.
         :param group_id: Community ID.

@@ -1,7 +1,12 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    SecureTokenChecked,
+    SecureTransaction,
+    SecureLevel,
+    SecureSmsNotification,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import secure
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CheckTokenResponse(BaseResponse):
@@ -32,19 +37,15 @@ class SendNotificationResponse(BaseResponse):
     response: Optional["SendNotificationResponseModel"] = None
 
 
-CheckTokenResponseModel = Optional["secure.TokenChecked"]
-
+CheckTokenResponseModel = Optional[SecureTokenChecked]
 
 GetAppBalanceResponseModel = int
 
+GetSMSHistoryResponseModel = List[SecureSmsNotification]
 
-GetSMSHistoryResponseModel = List["secure.SmsNotification"]
+GetTransactionsHistoryResponseModel = List[SecureTransaction]
 
-
-GetTransactionsHistoryResponseModel = List["secure.Transaction"]
-
-
-GetUserLevelResponseModel = List["secure.Level"]
+GetUserLevelResponseModel = List[SecureLevel]
 
 
 class GiveEventStickerResponseModel(BaseResponse):
@@ -53,3 +54,12 @@ class GiveEventStickerResponseModel(BaseResponse):
 
 
 SendNotificationResponseModel = List[int]
+
+
+CheckTokenResponse.update_forward_refs()
+GetAppBalanceResponse.update_forward_refs()
+GetSMSHistoryResponse.update_forward_refs()
+GetTransactionsHistoryResponse.update_forward_refs()
+GetUserLevelResponse.update_forward_refs()
+GiveEventStickerResponse.update_forward_refs()
+SendNotificationResponse.update_forward_refs()

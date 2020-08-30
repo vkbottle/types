@@ -1,7 +1,17 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    FriendsMutualFriend,
+    FriendsUserXtrPhone,
+    FriendsFriendStatus,
+    FriendsUserXtrLists,
+    UsersUserFull,
+    FriendsFriendExtendedStatus,
+    FriendsRequestsXtrMessage,
+    FriendsFriendsList,
+    FriendsRequests,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, friends
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddListResponse(BaseResponse):
@@ -90,11 +100,9 @@ class AddListResponseModel(BaseResponse):
 
 AddResponseModel = int
 
+AreFriendsExtendedResponseModel = List[FriendsFriendExtendedStatus]
 
-AreFriendsExtendedResponseModel = List["friends.FriendExtendedStatus"]
-
-
-AreFriendsResponseModel = List["friends.FriendStatus"]
+AreFriendsResponseModel = List[FriendsFriendStatus]
 
 
 class DeleteResponseModel(BaseResponse):
@@ -107,19 +115,17 @@ class DeleteResponseModel(BaseResponse):
 
 GetAppUsersResponseModel = List[int]
 
-
-GetByPhonesResponseModel = List["friends.UserXtrPhone"]
+GetByPhonesResponseModel = List[FriendsUserXtrPhone]
 
 
 class GetListsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["friends.FriendsList"]] = None
+    items: Optional[List["FriendsFriendsList"]] = None
 
 
 GetMutualResponseModel = List[int]
 
-
-GetMutualTargetUidsResponseModel = List["friends.MutualFriend"]
+GetMutualTargetUidsResponseModel = List[FriendsMutualFriend]
 
 
 class GetOnlineOnlineMobileResponseModel(BaseResponse):
@@ -135,12 +141,12 @@ GetRecentResponseModel = List[int]
 
 class GetRequestsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["friends.RequestsXtrMessage"]] = None
+    items: Optional[List["FriendsRequestsXtrMessage"]] = None
 
 
 class GetRequestsNeedMutualResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["friends.Requests"]] = None
+    items: Optional[List["FriendsRequests"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
@@ -151,12 +157,12 @@ class GetRequestsResponseModel(BaseResponse):
 
 class GetSuggestionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
 
 
 class GetFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["friends.UserXtrLists"]] = None
+    items: Optional[List["FriendsUserXtrLists"]] = None
 
 
 class GetResponseModel(BaseResponse):
@@ -166,4 +172,25 @@ class GetResponseModel(BaseResponse):
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
+
+AddListResponse.update_forward_refs()
+AddResponse.update_forward_refs()
+AreFriendsExtendedResponse.update_forward_refs()
+AreFriendsResponse.update_forward_refs()
+DeleteResponse.update_forward_refs()
+GetAppUsersResponse.update_forward_refs()
+GetByPhonesResponse.update_forward_refs()
+GetListsResponse.update_forward_refs()
+GetMutualResponse.update_forward_refs()
+GetMutualTargetUidsResponse.update_forward_refs()
+GetOnlineOnlineMobileResponse.update_forward_refs()
+GetOnlineResponse.update_forward_refs()
+GetRecentResponse.update_forward_refs()
+GetRequestsExtendedResponse.update_forward_refs()
+GetRequestsNeedMutualResponse.update_forward_refs()
+GetRequestsResponse.update_forward_refs()
+GetSuggestionsResponse.update_forward_refs()
+GetFieldsResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

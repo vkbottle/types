@@ -1,7 +1,30 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    AdsTargSettings,
+    AdsTargStats,
+    AdsRejectReason,
+    AdsFloodStats,
+    AdsCampaign,
+    AdsTargSuggestions,
+    AdsDemoStats,
+    AdsCategory,
+    AdsStats,
+    AdsUsers,
+    AdsTargSuggestionsRegions,
+    AdsAccount,
+    AdsAd,
+    AdsTargSuggestionsSchools,
+    AdsLookalikeRequest,
+    AdsPromotedPostReach,
+    AdsAdLayout,
+    AdsMusician,
+    AdsTargetGroup,
+    AdsTargSuggestionsCities,
+    AdsLinkStatus,
+    AdsClient,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import ads
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddOfficeUsersResponse(BaseResponse):
@@ -155,15 +178,11 @@ class UpdateCampaignsResponse(BaseResponse):
 class UpdateClientsResponse(BaseResponse):
     response: Optional["UpdateClientsResponseModel"] = None
 
-
 AddOfficeUsersResponseModel = bool
 
-
-CheckLinkResponseModel = Optional["ads.LinkStatus"]
-
+CheckLinkResponseModel = Optional[AdsLinkStatus]
 
 CreateAdsResponseModel = List[int]
-
 
 CreateCampaignsResponseModel = List[int]
 
@@ -184,76 +203,60 @@ DeleteCampaignsResponseModel = int
 
 DeleteClientsResponseModel = int
 
+GetAccountsResponseModel = List[AdsAccount]
 
-GetAccountsResponseModel = List["ads.Account"]
+GetAdsLayoutResponseModel = List[AdsAdLayout]
 
+GetAdsTargetingResponseModel = List[AdsTargSettings]
 
-GetAdsLayoutResponseModel = List["ads.AdLayout"]
-
-
-GetAdsTargetingResponseModel = List["ads.TargSettings"]
-
-
-GetAdsResponseModel = List["ads.Ad"]
+GetAdsResponseModel = List[AdsAd]
 
 
 GetBudgetResponseModel = int
 
-
-GetCampaignsResponseModel = List["ads.Campaign"]
+GetCampaignsResponseModel = List[AdsCampaign]
 
 
 class GetCategoriesResponseModel(BaseResponse):
-    v1: Optional[List["ads.Category"]] = None
-    v2: Optional[List["ads.Category"]] = None
+    v1: Optional[List["AdsCategory"]] = None
+    v2: Optional[List["AdsCategory"]] = None
 
 
-GetClientsResponseModel = List["ads.Client"]
+GetClientsResponseModel = List[AdsClient]
 
+GetDemographicsResponseModel = List[AdsDemoStats]
 
-GetDemographicsResponseModel = List["ads.DemoStats"]
-
-
-GetFloodStatsResponseModel = Optional["ads.FloodStats"]
+GetFloodStatsResponseModel = Optional[AdsFloodStats]
 
 
 class GetLookalikeRequestsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["ads.LookalikeRequest"]] = None
+    items: Optional[List["AdsLookalikeRequest"]] = None
 
 
 class GetMusiciansResponseModel(BaseResponse):
-    items: Optional[List["ads.Musician"]] = None
+    items: Optional[List["AdsMusician"]] = None
 
 
-GetOfficeUsersResponseModel = List["ads.Users"]
+GetOfficeUsersResponseModel = List[AdsUsers]
 
+GetPostsReachResponseModel = List[AdsPromotedPostReach]
 
-GetPostsReachResponseModel = List["ads.PromotedPostReach"]
+GetRejectionReasonResponseModel = Optional[AdsRejectReason]
 
+GetStatisticsResponseModel = List[AdsStats]
 
-GetRejectionReasonResponseModel = Optional["ads.RejectReason"]
+GetSuggestionsCitiesResponseModel = List[AdsTargSuggestionsCities]
 
+GetSuggestionsRegionsResponseModel = List[AdsTargSuggestionsRegions]
 
-GetStatisticsResponseModel = List["ads.Stats"]
+GetSuggestionsResponseModel = List[AdsTargSuggestions]
 
+GetSuggestionsSchoolsResponseModel = List[AdsTargSuggestionsSchools]
 
-GetSuggestionsCitiesResponseModel = List["ads.TargSuggestionsCities"]
+GetTargetGroupsResponseModel = List[AdsTargetGroup]
 
-
-GetSuggestionsRegionsResponseModel = List["ads.TargSuggestionsRegions"]
-
-
-GetSuggestionsResponseModel = List["ads.TargSuggestions"]
-
-
-GetSuggestionsSchoolsResponseModel = List["ads.TargSuggestionsSchools"]
-
-
-GetTargetGroupsResponseModel = List["ads.TargetGroup"]
-
-
-GetTargetingStatsResponseModel = Optional["ads.TargStats"]
+GetTargetingStatsResponseModel = Optional[AdsTargStats]
 
 
 GetUploadURLResponseModel = str
@@ -275,3 +278,42 @@ UpdateCampaignsResponseModel = int
 
 
 UpdateClientsResponseModel = int
+
+AddOfficeUsersResponse.update_forward_refs()
+CheckLinkResponse.update_forward_refs()
+CreateAdsResponse.update_forward_refs()
+CreateCampaignsResponse.update_forward_refs()
+CreateClientsResponse.update_forward_refs()
+CreateTargetGroupResponse.update_forward_refs()
+DeleteAdsResponse.update_forward_refs()
+DeleteCampaignsResponse.update_forward_refs()
+DeleteClientsResponse.update_forward_refs()
+GetAccountsResponse.update_forward_refs()
+GetAdsLayoutResponse.update_forward_refs()
+GetAdsTargetingResponse.update_forward_refs()
+GetAdsResponse.update_forward_refs()
+GetBudgetResponse.update_forward_refs()
+GetCampaignsResponse.update_forward_refs()
+GetCategoriesResponse.update_forward_refs()
+GetClientsResponse.update_forward_refs()
+GetDemographicsResponse.update_forward_refs()
+GetFloodStatsResponse.update_forward_refs()
+GetLookalikeRequestsResponse.update_forward_refs()
+GetMusiciansResponse.update_forward_refs()
+GetOfficeUsersResponse.update_forward_refs()
+GetPostsReachResponse.update_forward_refs()
+GetRejectionReasonResponse.update_forward_refs()
+GetStatisticsResponse.update_forward_refs()
+GetSuggestionsCitiesResponse.update_forward_refs()
+GetSuggestionsRegionsResponse.update_forward_refs()
+GetSuggestionsResponse.update_forward_refs()
+GetSuggestionsSchoolsResponse.update_forward_refs()
+GetTargetGroupsResponse.update_forward_refs()
+GetTargetingStatsResponse.update_forward_refs()
+GetUploadURLResponse.update_forward_refs()
+GetVideoUploadURLResponse.update_forward_refs()
+ImportTargetContactsResponse.update_forward_refs()
+RemoveOfficeUsersResponse.update_forward_refs()
+UpdateAdsResponse.update_forward_refs()
+UpdateCampaignsResponse.update_forward_refs()
+UpdateClientsResponse.update_forward_refs()

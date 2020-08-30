@@ -1,7 +1,6 @@
-from .base_response import BaseResponse
+from typing import Optional
 
-from typing import Optional, Any, List, Union
-import typing
+from .base_response import BaseResponse
 
 
 class GetServerUrlResponse(BaseResponse):
@@ -11,3 +10,5 @@ class GetServerUrlResponse(BaseResponse):
 class GetServerUrlResponseModel(BaseResponse):
     endpoint: Optional[str] = None
     key: Optional[str] = None
+
+GetServerUrlResponse.update_forward_refs()

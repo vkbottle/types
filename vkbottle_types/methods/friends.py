@@ -1,7 +1,10 @@
 from vkbottle_types.responses import friends, base
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class FriendsCategory(BaseCategory):
@@ -117,7 +120,7 @@ class FriendsCategory(BaseCategory):
         list_id: Optional[int] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
         ref: Optional[str] = None,
     ) -> friends.GetResponseModel:
@@ -148,7 +151,7 @@ class FriendsCategory(BaseCategory):
     async def get_by_phones(
         self,
         phones: Optional[List[str]] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> friends.GetByPhonesResponseModel:
         """Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.
         :param phones: List of phone numbers in MSISDN format (maximum 1000). Example: "+79219876543,+79111234567"
@@ -242,7 +245,7 @@ class FriendsCategory(BaseCategory):
         need_viewed: Optional[bool] = None,
         suggested: Optional[bool] = None,
         ref: Optional[str] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> friends.GetRequestsExtendedResponseModel:
         """Returns information about the current user's incoming and outgoing friend requests.
         :param offset: Offset needed to return a specific subset of friend requests.
@@ -267,7 +270,7 @@ class FriendsCategory(BaseCategory):
         filter: Optional[List[str]] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> friends.GetSuggestionsResponseModel:
         """Returns a list of profiles of users whom the current user may know.
@@ -287,7 +290,7 @@ class FriendsCategory(BaseCategory):
         self,
         user_id: int,
         q: Optional[str] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,

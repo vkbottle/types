@@ -1,7 +1,16 @@
+from typing import Optional, List, Union
+
+from vkbottle_types.objects import (
+    GroupsGroupFull,
+    NewsfeedNewsfeedItem,
+    WallWallpostToId,
+    UsersUserFull,
+    UsersUserXtrType,
+    WallWallpostFull,
+    NewsfeedListFull,
+    NewsfeedList,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, newsfeed, wall, groups
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetBannedExtendedResponse(BaseResponse):
@@ -53,8 +62,8 @@ class SearchResponse(BaseResponse):
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
-    groups: Optional[List["users.UserFull"]] = None
-    profiles: Optional[List["groups.GroupFull"]] = None
+    groups: Optional[List["UsersUserFull"]] = None
+    profiles: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
@@ -63,44 +72,44 @@ class GetBannedResponseModel(BaseResponse):
 
 
 class GetCommentsResponseModel(BaseResponse):
-    items: Optional[List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["NewsfeedNewsfeedItem"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
     next_from: Optional[str] = None
 
 
 class GetListsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["newsfeed.ListFull"]] = None
+    items: Optional[List["NewsfeedListFull"]] = None
 
 
 class GetListsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["newsfeed.List"]] = None
+    items: Optional[List["NewsfeedList"]] = None
 
 
 class GetMentionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallpostToId"]] = None
+    items: Optional[List["WallWallpostToId"]] = None
 
 
 class GetRecommendedResponseModel(BaseResponse):
-    items: Optional[List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["NewsfeedNewsfeedItem"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
     new_offset: Optional[str] = None
     next_from: Optional[str] = None
 
 
 class GetSuggestedSourcesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[Union["groups.GroupFull", "users.UserXtrType"]] = None
+    items: Optional[Union["GroupsGroupFull", "UsersUserXtrType"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    items: Optional[List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["NewsfeedNewsfeedItem"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
     next_from: Optional[str] = None
 
 
@@ -108,9 +117,9 @@ SaveListResponseModel = int
 
 
 class SearchExtendedResponseModel(BaseResponse):
-    items: Optional[List["wall.WallpostFull"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
     suggested_queries: Optional[List[str]] = None
     next_from: Optional[str] = None
     count: Optional[int] = None
@@ -118,8 +127,22 @@ class SearchExtendedResponseModel(BaseResponse):
 
 
 class SearchResponseModel(BaseResponse):
-    items: Optional[List["wall.WallpostFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
     suggested_queries: Optional[List[str]] = None
     next_from: Optional[str] = None
     count: Optional[int] = None
     total_count: Optional[int] = None
+
+
+GetBannedExtendedResponse.update_forward_refs()
+GetBannedResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetListsExtendedResponse.update_forward_refs()
+GetListsResponse.update_forward_refs()
+GetMentionsResponse.update_forward_refs()
+GetRecommendedResponse.update_forward_refs()
+GetSuggestedSourcesResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+SaveListResponse.update_forward_refs()
+SearchExtendedResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

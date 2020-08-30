@@ -37,6 +37,7 @@ from vkbottle_types.methods import (
     wall,
 )
 
+
 class APICategories:
     account = account.AccountCategory()
     ads = ads.AdsCategory()

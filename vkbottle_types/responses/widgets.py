@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import WidgetsWidgetPage, WidgetsWidgetComment
 from .base_response import BaseResponse
-from vkbottle_types.objects import widgets
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetCommentsResponse(BaseResponse):
@@ -14,9 +14,12 @@ class GetPagesResponse(BaseResponse):
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    posts: Optional[List["widgets.WidgetComment"]] = None
+    posts: Optional[List["WidgetsWidgetComment"]] = None
 
 
 class GetPagesResponseModel(BaseResponse):
     count: Optional[int] = None
-    pages: Optional[List["widgets.WidgetPage"]] = None
+    pages: Optional[List["WidgetsWidgetPage"]] = None
+
+GetCommentsResponse.update_forward_refs()
+GetPagesResponse.update_forward_refs()

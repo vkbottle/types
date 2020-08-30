@@ -1,7 +1,10 @@
 from vkbottle_types.responses import base, stories as stories_responses
-from vkbottle_types.objects import base as objects_base
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import base as objects_base
 
 
 class StoriesCategory(BaseCategory):
@@ -26,7 +29,7 @@ class StoriesCategory(BaseCategory):
         self,
         owner_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> stories_responses.GetV5113ResponseModel:
         """Returns stories available for current user.
         :param owner_id: Owner ID.
@@ -42,7 +45,7 @@ class StoriesCategory(BaseCategory):
     async def get_banned(
         self,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> stories_responses.GetBannedExtendedResponseModel:
         """Returns list of sources hidden from current user's feed.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
@@ -58,7 +61,7 @@ class StoriesCategory(BaseCategory):
         self,
         stories: List[str],
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> stories_responses.GetByIdExtendedResponseModel:
         """Returns story by its ID.
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
@@ -102,7 +105,7 @@ class StoriesCategory(BaseCategory):
         story_id: int,
         access_key: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> stories_responses.GetV5113ResponseModel:
         """Returns replies to the story.
         :param owner_id: Story owner ID.

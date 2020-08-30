@@ -1,14 +1,17 @@
 from vkbottle_types.responses import users, base
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class UsersCategory(BaseCategory):
     async def get(
         self,
         user_ids: Optional[List[str]] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> users.GetResponseModel:
         """Returns detailed information on users.
@@ -25,7 +28,7 @@ class UsersCategory(BaseCategory):
         user_id: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> users.GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
@@ -47,7 +50,7 @@ class UsersCategory(BaseCategory):
         extended: Optional[bool] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> users.GetSubscriptionsExtendedResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
         :param user_id: User ID.
@@ -80,7 +83,7 @@ class UsersCategory(BaseCategory):
         sort: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         city: Optional[int] = None,
         country: Optional[int] = None,
         hometown: Optional[str] = None,

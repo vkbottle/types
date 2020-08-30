@@ -1,0 +1,1 @@
+from vkbottle_types.categories import APICategories

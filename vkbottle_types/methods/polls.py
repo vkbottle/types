@@ -1,7 +1,10 @@
 from vkbottle_types.responses import polls, base
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class PollsCategory(BaseCategory):
@@ -127,7 +130,7 @@ class PollsCategory(BaseCategory):
         friends_only: Optional[bool] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> polls.GetVotersResponseModel:
         """Returns a list of IDs of users who selected specific answers in the poll.

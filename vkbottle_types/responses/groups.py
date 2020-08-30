@@ -1,7 +1,40 @@
-from .base_response import BaseResponse
-from vkbottle_types.objects import users, base, groups
-from typing import Optional, Any, List, Union
 import typing
+from typing import Optional, Any, List
+
+from vkbottle_types.objects import (
+    GroupsCallbackSettings,
+    GroupsGroupFull,
+    GroupsGroupDocs,
+    GroupsGroupAudio,
+    GroupsSettingsTwitter,
+    GroupsMemberStatus,
+    GroupsGroupPublicCategoryList,
+    GroupsGroupLink,
+    GroupsGroup,
+    GroupsMemberRole,
+    GroupsGroupVideo,
+    GroupsLongPollServer,
+    GroupsLongPollSettings,
+    GroupsGroupAccess,
+    GroupsGroupTopics,
+    GroupsMemberStatusFull,
+    GroupsGroupFullMainSection,
+    GroupsGroupCategoryFull,
+    GroupsSubjectItem,
+    GroupsBannedItem,
+    GroupsCallbackServer,
+    BaseBoolInt,
+    GroupsGroupCategory,
+    GroupsAddress,
+    UsersUserMin,
+    GroupsTokenPermissionSetting,
+    GroupsGroupWall,
+    UsersUserFull,
+    GroupsGroupXtrInvitedBy,
+    GroupsGroupWiki,
+    GroupsUserXtrRole,
+)
+from .base_response import BaseResponse
 
 
 class AddAddressResponse(BaseResponse):
@@ -135,34 +168,31 @@ class IsMemberUserIdsResponse(BaseResponse):
 class SearchResponse(BaseResponse):
     response: Optional["SearchResponseModel"] = None
 
-
-AddAddressResponseModel = Optional["groups.Address"]
+AddAddressResponseModel = Optional[GroupsAddress]
 
 
 class AddCallbackServerResponseModel(BaseResponse):
     server_id: Optional[int] = None
 
 
-AddLinkResponseModel = Optional["groups.GroupLink"]
+AddLinkResponseModel = Optional[GroupsGroupLink]
 
+CreateResponseModel = Optional[GroupsGroup]
 
-CreateResponseModel = Optional["groups.Group"]
-
-
-EditAddressResponseModel = Optional["groups.Address"]
+EditAddressResponseModel = Optional[GroupsAddress]
 
 
 class GetAddressesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.Address"]] = None
+    items: Optional[List["GroupsAddress"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.BannedItem"]] = None
+    items: Optional[List["GroupsBannedItem"]] = None
 
 
-GetByIdResponseModel = List["groups.GroupFull"]
+GetByIdResponseModel = List[GroupsGroupFull]
 
 
 class GetCallbackConfirmationCodeResponseModel(BaseResponse):
@@ -171,58 +201,57 @@ class GetCallbackConfirmationCodeResponseModel(BaseResponse):
 
 class GetCallbackServersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.CallbackServer"]] = None
+    items: Optional[List["GroupsCallbackServer"]] = None
 
 
-GetCallbackSettingsResponseModel = Optional["groups.CallbackSettings"]
+GetCallbackSettingsResponseModel = Optional[GroupsCallbackSettings]
 
 
 class GetCatalogInfoExtendedResponseModel(BaseResponse):
     enabled: Optional[int] = None
-    categories: Optional[List["groups.GroupCategoryFull"]] = None
+    categories: Optional[List["GroupsGroupCategoryFull"]] = None
 
 
 class GetCatalogInfoResponseModel(BaseResponse):
     enabled: Optional[int] = None
-    categories: Optional[List["groups.GroupCategory"]] = None
+    categories: Optional[List["GroupsGroupCategory"]] = None
 
 
 class GetCatalogResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.Group"]] = None
+    items: Optional[List["GroupsGroup"]] = None
 
 
 class GetInvitedUsersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
 
 
 class GetInvitesExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.GroupXtrInvitedBy"]] = None
-    profiles: Optional[List["users.UserMin"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["GroupsGroupXtrInvitedBy"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetInvitesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.GroupXtrInvitedBy"]] = None
+    items: Optional[List["GroupsGroupXtrInvitedBy"]] = None
 
 
-GetLongPollServerResponseModel = Optional["groups.LongPollServer"]
+GetLongPollServerResponseModel = Optional[GroupsLongPollServer]
 
-
-GetLongPollSettingsResponseModel = Optional["groups.LongPollSettings"]
+GetLongPollSettingsResponseModel = Optional[GroupsLongPollSettings]
 
 
 class GetMembersFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.UserXtrRole"]] = None
+    items: Optional[List["GroupsUserXtrRole"]] = None
 
 
 class GetMembersFilterResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.MemberRole"]] = None
+    items: Optional[List["GroupsMemberRole"]] = None
 
 
 class GetMembersResponseModel(BaseResponse):
@@ -232,7 +261,7 @@ class GetMembersResponseModel(BaseResponse):
 
 class GetRequestsFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
@@ -241,28 +270,28 @@ class GetRequestsResponseModel(BaseResponse):
 
 
 class GetSettingsResponseModel(BaseResponse):
-    access: Optional["groups.GroupAccess"] = None
+    access: Optional["GroupsGroupAccess"] = None
     address: Optional[str] = None
-    audio: Optional["groups.GroupAudio"] = None
+    audio: Optional["GroupsGroupAudio"] = None
     articles: Optional[int] = None
     city_id: Optional[int] = None
-    contacts: Optional["base.BoolInt"] = None
-    links: Optional["base.BoolInt"] = None
+    contacts: Optional["BaseBoolInt"] = None
+    links: Optional["BaseBoolInt"] = None
     sections_list: Optional[typing.Dict[Any, Any]] = None
-    main_section: Optional["groups.GroupFullMainSection"] = None
+    main_section: Optional["GroupsGroupFullMainSection"] = None
     secondary_section: Optional[int] = None
     age_limits: Optional[int] = None
     country_id: Optional[int] = None
     description: Optional[str] = None
-    docs: Optional["groups.GroupDocs"] = None
-    events: Optional["base.BoolInt"] = None
-    obscene_filter: Optional["base.BoolInt"] = None
-    obscene_stopwords: Optional["base.BoolInt"] = None
+    docs: Optional["GroupsGroupDocs"] = None
+    events: Optional["BaseBoolInt"] = None
+    obscene_filter: Optional["BaseBoolInt"] = None
+    obscene_stopwords: Optional["BaseBoolInt"] = None
     obscene_words: Optional[List[str]] = None
     event_group_id: Optional[int] = None
     photos: Optional[int] = None
     public_category: Optional[int] = None
-    public_category_list: Optional[List["groups.GroupPublicCategoryList"]] = None
+    public_category_list: Optional[List["GroupsGroupPublicCategoryList"]] = None
     public_date: Optional[str] = None
     public_date_label: Optional[str] = None
     public_subcategory: Optional[int] = None
@@ -270,27 +299,27 @@ class GetSettingsResponseModel(BaseResponse):
     start_date: Optional[int] = None
     finish_date: Optional[int] = None
     subject: Optional[int] = None
-    subject_list: Optional[List["groups.SubjectItem"]] = None
+    subject_list: Optional[List["GroupsSubjectItem"]] = None
     suggested_privacy: Optional[int] = None
     title: Optional[str] = None
-    topics: Optional["groups.GroupTopics"] = None
-    twitter: Optional["groups.SettingsTwitter"] = None
-    video: Optional["groups.GroupVideo"] = None
-    wall: Optional["groups.GroupWall"] = None
+    topics: Optional["GroupsGroupTopics"] = None
+    twitter: Optional["GroupsSettingsTwitter"] = None
+    video: Optional["GroupsGroupVideo"] = None
+    wall: Optional["GroupsGroupWall"] = None
     website: Optional[str] = None
     phone: Optional[str] = None
     email: Optional[str] = None
-    wiki: Optional["groups.GroupWiki"] = None
+    wiki: Optional["GroupsGroupWiki"] = None
 
 
 class GetTokenPermissionsResponseModel(BaseResponse):
     mask: Optional[int] = None
-    permissions: Optional[List["groups.TokenPermissionSetting"]] = None
+    permissions: Optional[List["GroupsTokenPermissionSetting"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
@@ -299,22 +328,55 @@ class GetResponseModel(BaseResponse):
 
 
 class IsMemberExtendedResponseModel(BaseResponse):
-    member: Optional["base.BoolInt"] = None
-    invitation: Optional["base.BoolInt"] = None
-    can_invite: Optional["base.BoolInt"] = None
-    can_recall: Optional["base.BoolInt"] = None
-    request: Optional["base.BoolInt"] = None
+    member: Optional["BaseBoolInt"] = None
+    invitation: Optional["BaseBoolInt"] = None
+    can_invite: Optional["BaseBoolInt"] = None
+    can_recall: Optional["BaseBoolInt"] = None
+    request: Optional["BaseBoolInt"] = None
 
 
-IsMemberResponseModel = Optional["base.BoolInt"]
+IsMemberResponseModel = Optional[BaseBoolInt]
 
+IsMemberUserIdsExtendedResponseModel = List[GroupsMemberStatusFull]
 
-IsMemberUserIdsExtendedResponseModel = List["groups.MemberStatusFull"]
-
-
-IsMemberUserIdsResponseModel = List["groups.MemberStatus"]
+IsMemberUserIdsResponseModel = List[GroupsMemberStatus]
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["groups.Group"]] = None
+    items: Optional[List["GroupsGroup"]] = None
+
+
+AddAddressResponse.update_forward_refs()
+AddCallbackServerResponse.update_forward_refs()
+AddLinkResponse.update_forward_refs()
+CreateResponse.update_forward_refs()
+EditAddressResponse.update_forward_refs()
+GetAddressesResponse.update_forward_refs()
+GetBannedResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetCallbackConfirmationCodeResponse.update_forward_refs()
+GetCallbackServersResponse.update_forward_refs()
+GetCallbackSettingsResponse.update_forward_refs()
+GetCatalogInfoExtendedResponse.update_forward_refs()
+GetCatalogInfoResponse.update_forward_refs()
+GetCatalogResponse.update_forward_refs()
+GetInvitedUsersResponse.update_forward_refs()
+GetInvitesExtendedResponse.update_forward_refs()
+GetInvitesResponse.update_forward_refs()
+GetLongPollServerResponse.update_forward_refs()
+GetLongPollSettingsResponse.update_forward_refs()
+GetMembersFieldsResponse.update_forward_refs()
+GetMembersFilterResponse.update_forward_refs()
+GetMembersResponse.update_forward_refs()
+GetRequestsFieldsResponse.update_forward_refs()
+GetRequestsResponse.update_forward_refs()
+GetSettingsResponse.update_forward_refs()
+GetTokenPermissionsResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+IsMemberExtendedResponse.update_forward_refs()
+IsMemberResponse.update_forward_refs()
+IsMemberUserIdsExtendedResponse.update_forward_refs()
+IsMemberUserIdsResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

@@ -1,7 +1,13 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    UsersUserXtrCounters,
+    UsersUsersArray,
+    UsersUserFull,
+    GroupsGroupsArray,
+    UsersSubscriptionsItem,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, groups
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetFollowersFieldsResponse(BaseResponse):
@@ -30,7 +36,7 @@ class SearchResponse(BaseResponse):
 
 class GetFollowersFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
 
 
 class GetFollowersResponseModel(BaseResponse):
@@ -40,17 +46,25 @@ class GetFollowersResponseModel(BaseResponse):
 
 class GetSubscriptionsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.SubscriptionsItem"]] = None
+    items: Optional[List["UsersSubscriptionsItem"]] = None
 
 
 class GetSubscriptionsResponseModel(BaseResponse):
-    users: Optional["users.UsersArray"] = None
-    groups: Optional["groups.GroupsArray"] = None
+    users: Optional["UsersUsersArray"] = None
+    groups: Optional["GroupsGroupsArray"] = None
 
 
-GetResponseModel = List["users.UserXtrCounters"]
+GetResponseModel = List[UsersUserXtrCounters]
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
+
+
+GetFollowersFieldsResponse.update_forward_refs()
+GetFollowersResponse.update_forward_refs()
+GetSubscriptionsExtendedResponse.update_forward_refs()
+GetSubscriptionsResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

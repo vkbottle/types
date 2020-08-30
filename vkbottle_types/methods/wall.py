@@ -1,7 +1,10 @@
 from vkbottle_types.responses import wall, base
-from vkbottle_types.objects import base as objects_base
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import base as objects_base
 
 
 class WallCategory(BaseCategory):
@@ -166,7 +169,7 @@ class WallCategory(BaseCategory):
         count: Optional[int] = None,
         filter: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> wall.GetExtendedResponseModel:
         """Returns a list of posts on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
@@ -186,7 +189,7 @@ class WallCategory(BaseCategory):
         posts: List[str],
         extended: Optional[bool] = None,
         copy_history_depth: Optional[int] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> wall.GetByIdExtendedResponseModel:
         """Returns a list of posts from user or community walls by their IDs.
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
@@ -205,7 +208,7 @@ class WallCategory(BaseCategory):
         comment_id: int,
         owner_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> wall.GetCommentExtendedResponseModel:
         """Returns a comment on a post on a user wall or community wall.
         :param comment_id: Comment ID.
@@ -230,7 +233,7 @@ class WallCategory(BaseCategory):
         sort: Optional[str] = None,
         preview_length: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         comment_id: Optional[int] = None,
         thread_items_count: Optional[int] = None,
     ) -> wall.GetCommentsExtendedResponseModel:
@@ -447,7 +450,7 @@ class WallCategory(BaseCategory):
         count: Optional[int] = None,
         offset: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> wall.SearchExtendedResponseModel:
         """Allows to search posts on user or community walls.
         :param owner_id: user or community id. "Remember that for a community 'owner_id' must be negative."

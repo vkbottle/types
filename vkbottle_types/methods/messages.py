@@ -1,7 +1,10 @@
 from vkbottle_types.responses import messages, base
-from vkbottle_types.objects import users as objects_users, base as objects_base
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users, base as objects_base
 
 
 class MessagesCategory(BaseCategory):
@@ -160,7 +163,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         conversation_message_ids: List[int],
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetByConversationMessageIdResponseModel:
         """Returns messages by their IDs within the conversation.
@@ -181,7 +184,7 @@ class MessagesCategory(BaseCategory):
         message_ids: List[int],
         preview_length: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetByIdExtendedResponseModel:
         """Returns messages by their IDs.
@@ -201,7 +204,7 @@ class MessagesCategory(BaseCategory):
         self,
         peer_id: Optional[int] = None,
         link: Optional[str] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> messages.GetChatPreviewResponseModel:
         """messages.getChatPreview method
         :param peer_id:
@@ -217,7 +220,7 @@ class MessagesCategory(BaseCategory):
     async def get_conversation_members(
         self,
         peer_id: int,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetConversationMembersResponseModel:
         """Returns a list of IDs of users participating in a chat.
@@ -238,7 +241,7 @@ class MessagesCategory(BaseCategory):
         filter: Optional[str] = None,
         extended: Optional[bool] = None,
         start_message_id: Optional[int] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetConversationsResponseModel:
         """Returns a list of the current user's conversations.
@@ -260,7 +263,7 @@ class MessagesCategory(BaseCategory):
         self,
         peer_ids: List[int],
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetConversationsByIdExtendedResponseModel:
         """Returns conversations by their IDs
@@ -284,7 +287,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: Optional[int] = None,
         rev: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.GetHistoryResponseModel:
         """Returns message history for the specified user or group chat.
@@ -311,7 +314,7 @@ class MessagesCategory(BaseCategory):
         start_from: Optional[str] = None,
         count: Optional[int] = None,
         photo_sizes: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
         preserve_order: Optional[bool] = None,
         max_forwards_level: Optional[int] = None,
@@ -365,7 +368,7 @@ class MessagesCategory(BaseCategory):
         pts: Optional[int] = None,
         preview_length: Optional[int] = None,
         onlines: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         events_limit: Optional[int] = None,
         msgs_limit: Optional[int] = None,
         max_msg_id: Optional[int] = None,
@@ -575,7 +578,7 @@ class MessagesCategory(BaseCategory):
         q: Optional[str] = None,
         count: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
     ) -> messages.SearchConversationsResponseModel:
         """Returns a list of the current user's conversations that match search criteria.

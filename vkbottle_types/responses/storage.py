@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import StorageValue
 from .base_response import BaseResponse
-from vkbottle_types.objects import storage
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetKeysResponse(BaseResponse):
@@ -22,11 +22,13 @@ class GetWithKeysResponse(BaseResponse):
 
 GetKeysResponseModel = List[str]
 
-
 GetResponseModel = str
 
+GetV5110ResponseModel = List[StorageValue]
 
-GetV5110ResponseModel = List["storage.Value"]
+GetWithKeysResponseModel = List[StorageValue]
 
-
-GetWithKeysResponseModel = List["storage.Value"]
+GetKeysResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+GetV5110Response.update_forward_refs()
+GetWithKeysResponse.update_forward_refs()

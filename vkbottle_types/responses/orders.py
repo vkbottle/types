@@ -1,7 +1,12 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    OrdersAmount,
+    OrdersOrder,
+    OrdersSubscription,
+    BaseBoolInt,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import orders, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CancelSubscriptionResponse(BaseResponse):
@@ -36,27 +41,32 @@ class UpdateSubscriptionResponse(BaseResponse):
     response: Optional["UpdateSubscriptionResponseModel"] = None
 
 
-CancelSubscriptionResponseModel = Optional["base.BoolInt"]
-
+CancelSubscriptionResponseModel = Optional[BaseBoolInt]
 
 ChangeStateResponseModel = str
 
+GetAmountResponseModel = Optional[OrdersAmount]
 
-GetAmountResponseModel = Optional["orders.Amount"]
+GetByIdResponseModel = List[OrdersOrder]
 
-
-GetByIdResponseModel = List["orders.Order"]
-
-
-GetUserSubscriptionByIdResponseModel = Optional["orders.Subscription"]
+GetUserSubscriptionByIdResponseModel = Optional[OrdersSubscription]
 
 
 class GetUserSubscriptionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["orders.Subscription"]] = None
+    items: Optional[List["OrdersSubscription"]] = None
 
 
-GetResponseModel = List["orders.Order"]
+GetResponseModel = List[OrdersOrder]
+
+UpdateSubscriptionResponseModel = Optional[BaseBoolInt]
 
 
-UpdateSubscriptionResponseModel = Optional["base.BoolInt"]
+CancelSubscriptionResponse.update_forward_refs()
+ChangeStateResponse.update_forward_refs()
+GetAmountResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetUserSubscriptionByIdResponse.update_forward_refs()
+GetUserSubscriptionsResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+UpdateSubscriptionResponse.update_forward_refs()

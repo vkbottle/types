@@ -1,7 +1,10 @@
 from vkbottle_types.responses import base, market
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class MarketCategory(BaseCategory):
@@ -280,7 +283,7 @@ class MarketCategory(BaseCategory):
         count: Optional[int] = None,
         sort: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> market.GetCommentsResponseModel:
         """Returns comments list for an item.
         :param owner_id: ID of an item owner community

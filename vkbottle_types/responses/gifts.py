@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import GiftsGift
 from .base_response import BaseResponse
-from vkbottle_types.objects import gifts
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetResponse(BaseResponse):
@@ -10,4 +10,6 @@ class GetResponse(BaseResponse):
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["gifts.Gift"]] = None
+    items: Optional[List["GiftsGift"]] = None
+
+GetResponse.update_forward_refs()

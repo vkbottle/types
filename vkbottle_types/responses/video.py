@@ -1,7 +1,16 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    GroupsGroupFull,
+    VideoSaveResult,
+    UsersUserMin,
+    WallWallComment,
+    VideoVideo,
+    VideoVideoFull,
+    BaseBoolInt,
+    VideoVideoAlbumFull,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, groups, wall, video, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddAlbumResponse(BaseResponse):
@@ -70,13 +79,12 @@ class AddAlbumResponseModel(BaseResponse):
 
 CreateCommentResponseModel = int
 
-
-GetAlbumByIdResponseModel = Optional["video.VideoAlbumFull"]
+GetAlbumByIdResponseModel = Optional[VideoVideoAlbumFull]
 
 
 class GetAlbumsByVideoExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.VideoAlbumFull"]] = None
+    items: Optional[List["VideoVideoAlbumFull"]] = None
 
 
 GetAlbumsByVideoResponseModel = List[int]
@@ -84,51 +92,67 @@ GetAlbumsByVideoResponseModel = List[int]
 
 class GetAlbumsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.VideoAlbumFull"]] = None
+    items: Optional[List["VideoVideoAlbumFull"]] = None
 
 
 class GetAlbumsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.VideoAlbumFull"]] = None
+    items: Optional[List["VideoVideoAlbumFull"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
-    profiles: Optional[List["users.UserMin"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallComment"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.VideoFull"]] = None
-    profiles: Optional[List["users.UserMin"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["VideoVideoFull"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.Video"]] = None
+    items: Optional[List["VideoVideo"]] = None
 
 
-RestoreCommentResponseModel = Optional["base.BoolInt"]
+RestoreCommentResponseModel = Optional[BaseBoolInt]
 
-
-SaveResponseModel = Optional["video.SaveResult"]
+SaveResponseModel = Optional[VideoSaveResult]
 
 
 class SearchExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.Video"]] = None
-    profiles: Optional[List["users.UserMin"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["VideoVideo"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["video.Video"]] = None
+    items: Optional[List["VideoVideo"]] = None
+
+
+AddAlbumResponse.update_forward_refs()
+CreateCommentResponse.update_forward_refs()
+GetAlbumByIdResponse.update_forward_refs()
+GetAlbumsByVideoExtendedResponse.update_forward_refs()
+GetAlbumsByVideoResponse.update_forward_refs()
+GetAlbumsExtendedResponse.update_forward_refs()
+GetAlbumsResponse.update_forward_refs()
+GetCommentsExtendedResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+RestoreCommentResponse.update_forward_refs()
+SaveResponse.update_forward_refs()
+SearchExtendedResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

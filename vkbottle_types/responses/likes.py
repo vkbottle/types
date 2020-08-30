@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import UsersUserMin, BaseBoolInt
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddResponse(BaseResponse):
@@ -34,7 +34,7 @@ class DeleteResponseModel(BaseResponse):
 
 class GetListExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserMin"]] = None
+    items: Optional[List["UsersUserMin"]] = None
 
 
 class GetListResponseModel(BaseResponse):
@@ -43,5 +43,12 @@ class GetListResponseModel(BaseResponse):
 
 
 class IsLikedResponseModel(BaseResponse):
-    liked: Optional["base.BoolInt"] = None
-    copied: Optional["base.BoolInt"] = None
+    liked: Optional["BaseBoolInt"] = None
+    copied: Optional["BaseBoolInt"] = None
+
+
+AddResponse.update_forward_refs()
+DeleteResponse.update_forward_refs()
+GetListExtendedResponse.update_forward_refs()
+GetListResponse.update_forward_refs()
+IsLikedResponse.update_forward_refs()

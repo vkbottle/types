@@ -1,7 +1,11 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    PagesWikipageFull,
+    PagesWikipageHistory,
+    PagesWikipage,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import pages
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetHistoryResponse(BaseResponse):
@@ -32,22 +36,24 @@ class SaveResponse(BaseResponse):
     response: Optional["SaveResponseModel"] = None
 
 
-GetHistoryResponseModel = List["pages.WikipageHistory"]
+GetHistoryResponseModel = List[PagesWikipageHistory]
 
+GetTitlesResponseModel = List[PagesWikipage]
 
-GetTitlesResponseModel = List["pages.Wikipage"]
+GetVersionResponseModel = Optional[PagesWikipageFull]
 
-
-GetVersionResponseModel = Optional["pages.WikipageFull"]
-
-
-GetResponseModel = Optional["pages.WikipageFull"]
-
+GetResponseModel = Optional[PagesWikipageFull]
 
 ParseWikiResponseModel = str
 
-
 SaveAccessResponseModel = int
 
-
 SaveResponseModel = int
+
+GetHistoryResponse.update_forward_refs()
+GetTitlesResponse.update_forward_refs()
+GetVersionResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+ParseWikiResponse.update_forward_refs()
+SaveAccessResponse.update_forward_refs()
+SaveResponse.update_forward_refs()

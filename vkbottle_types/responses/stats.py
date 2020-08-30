@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import StatsWallpostStat, StatsPeriod
 from .base_response import BaseResponse
-from vkbottle_types.objects import stats
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetPostReachResponse(BaseResponse):
@@ -12,7 +12,9 @@ class GetResponse(BaseResponse):
     response: Optional["GetResponseModel"] = None
 
 
-GetPostReachResponseModel = List["stats.WallpostStat"]
+GetPostReachResponseModel = List[StatsWallpostStat]
 
+GetResponseModel = List[StatsPeriod]
 
-GetResponseModel = List["stats.Period"]
+GetPostReachResponse.update_forward_refs()
+GetResponse.update_forward_refs()

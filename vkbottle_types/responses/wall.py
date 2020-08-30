@@ -1,7 +1,14 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    GroupsGroupFull,
+    WallWallComment,
+    UsersUser,
+    UsersUserFull,
+    GroupsGroup,
+    WallWallpostFull,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, wall, groups
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CreateCommentResponse(BaseResponse):
@@ -77,59 +84,59 @@ class EditResponseModel(BaseResponse):
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
-    items: Optional[List["wall.WallpostFull"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
-GetByIdResponseModel = List["wall.WallpostFull"]
+GetByIdResponseModel = List[WallWallpostFull]
 
 
 class GetCommentExtendedResponseModel(BaseResponse):
-    items: Optional[List["wall.WallComment"]] = None
-    profiles: Optional[List["users.User"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    items: Optional[List["WallWallComment"]] = None
+    profiles: Optional[List["UsersUser"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
 class GetCommentResponseModel(BaseResponse):
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
     show_reply_button: Optional[bool] = None
     can_post: Optional[bool] = None
     groups_can_post: Optional[bool] = None
     current_level_count: Optional[int] = None
-    profiles: Optional[List["users.User"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    profiles: Optional[List["UsersUser"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallComment"]] = None
+    items: Optional[List["WallWallComment"]] = None
     can_post: Optional[bool] = None
     groups_can_post: Optional[bool] = None
     current_level_count: Optional[int] = None
 
 
 class GetRepostsResponseModel(BaseResponse):
-    items: Optional[List["wall.WallpostFull"]] = None
-    profiles: Optional[List["users.User"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+    profiles: Optional[List["UsersUser"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallpostFull"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallpostFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
 
 
 class PostAdsStealthResponseModel(BaseResponse):
@@ -149,11 +156,28 @@ class RepostResponseModel(BaseResponse):
 
 class SearchExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallpostFull"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["wall.WallpostFull"]] = None
+    items: Optional[List["WallWallpostFull"]] = None
+
+CreateCommentResponse.update_forward_refs()
+EditResponse.update_forward_refs()
+GetByIdExtendedResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetCommentExtendedResponse.update_forward_refs()
+GetCommentResponse.update_forward_refs()
+GetCommentsExtendedResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetRepostsResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+PostAdsStealthResponse.update_forward_refs()
+PostResponse.update_forward_refs()
+RepostResponse.update_forward_refs()
+SearchExtendedResponse.update_forward_refs()
+SearchResponse.update_forward_refs()

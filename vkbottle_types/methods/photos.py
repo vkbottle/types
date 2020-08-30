@@ -1,7 +1,10 @@
 from vkbottle_types.responses import photos, base
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class PhotosCategory(BaseCategory):
@@ -304,12 +307,12 @@ class PhotosCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        photos: List[str],
+        photos_: List[str],
         extended: Optional[bool] = None,
         photo_sizes: Optional[bool] = None,
     ) -> photos.GetByIdExtendedResponseModel:
         """Returns information about photos by their IDs.
-        :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
+        :param photos_: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
         :param extended: '1' — to return additional fields, '0' — (default)
         :param photo_sizes: '1' — to return photo sizes in a
         """
@@ -349,7 +352,7 @@ class PhotosCategory(BaseCategory):
         sort: Optional[str] = None,
         access_key: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> photos.GetCommentsExtendedResponseModel:
         """Returns a list of comments on a photo.
         :param photo_id: Photo ID.

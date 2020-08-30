@@ -1,7 +1,7 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import PollsVoters, PollsPoll, BaseBoolInt
 from .base_response import BaseResponse
-from vkbottle_types.objects import polls, base
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddVoteResponse(BaseResponse):
@@ -23,17 +23,18 @@ class GetByIdResponse(BaseResponse):
 class GetVotersResponse(BaseResponse):
     response: Optional["GetVotersResponseModel"] = None
 
+AddVoteResponseModel = Optional[BaseBoolInt]
 
-AddVoteResponseModel = Optional["base.BoolInt"]
+CreateResponseModel = Optional[PollsPoll]
 
+DeleteVoteResponseModel = Optional[BaseBoolInt]
 
-CreateResponseModel = Optional["polls.Poll"]
+GetByIdResponseModel = Optional[PollsPoll]
 
+GetVotersResponseModel = List[PollsVoters]
 
-DeleteVoteResponseModel = Optional["base.BoolInt"]
-
-
-GetByIdResponseModel = Optional["polls.Poll"]
-
-
-GetVotersResponseModel = List["polls.Voters"]
+AddVoteResponse.update_forward_refs()
+CreateResponse.update_forward_refs()
+DeleteVoteResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetVotersResponse.update_forward_refs()

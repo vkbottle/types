@@ -1,7 +1,16 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    BoardTopicComment,
+    UsersUserMin,
+    UsersUser,
+    GroupsGroup,
+    BaseBoolInt,
+    BoardTopicPoll,
+    BoardDefaultOrder,
+    BoardTopic,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, board, base, groups
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddTopicResponse(BaseResponse):
@@ -27,37 +36,42 @@ class GetTopicsExtendedResponse(BaseResponse):
 class GetTopicsResponse(BaseResponse):
     response: Optional["GetTopicsResponseModel"] = None
 
-
 AddTopicResponseModel = int
-
 
 CreateCommentResponseModel = int
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["board.TopicComment"]] = None
-    poll: Optional["board.TopicPoll"] = None
-    profiles: Optional[List["users.User"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    items: Optional[List["BoardTopicComment"]] = None
+    poll: Optional["BoardTopicPoll"] = None
+    profiles: Optional[List["UsersUser"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["board.TopicComment"]] = None
-    poll: Optional["board.TopicPoll"] = None
+    items: Optional[List["BoardTopicComment"]] = None
+    poll: Optional["BoardTopicPoll"] = None
 
 
 class GetTopicsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["board.Topic"]] = None
-    default_order: Optional["board.DefaultOrder"] = None
-    can_add_topics: Optional["base.BoolInt"] = None
-    profiles: Optional[List["users.UserMin"]] = None
+    items: Optional[List["BoardTopic"]] = None
+    default_order: Optional["BoardDefaultOrder"] = None
+    can_add_topics: Optional["BaseBoolInt"] = None
+    profiles: Optional[List["UsersUserMin"]] = None
 
 
 class GetTopicsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["board.Topic"]] = None
-    default_order: Optional["board.DefaultOrder"] = None
-    can_add_topics: Optional["base.BoolInt"] = None
+    items: Optional[List["BoardTopic"]] = None
+    default_order: Optional["BoardDefaultOrder"] = None
+    can_add_topics: Optional["BaseBoolInt"] = None
+
+AddTopicResponse.update_forward_refs()
+CreateCommentResponse.update_forward_refs()
+GetCommentsExtendedResponse.update_forward_refs()
+GetCommentsResponse.update_forward_refs()
+GetTopicsExtendedResponse.update_forward_refs()
+GetTopicsResponse.update_forward_refs()

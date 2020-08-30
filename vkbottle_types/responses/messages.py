@@ -1,7 +1,28 @@
-from .base_response import BaseResponse
-from vkbottle_types.objects import users, groups, message, messages, base
-from typing import Optional, Any, List, Union
 import typing
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    GroupsGroupFull,
+    GroupsGroup,
+    MessagesMessage,
+    MessagesPinnedMessage,
+    MessagesHistoryAttachment,
+    MessagesChatFull,
+    MessageChatPreview,
+    MessagesLongpollParams,
+    MessagesLastActivity,
+    MessagesConversation,
+    BaseMessageError,
+    MessagesConversationWithMessage,
+    BaseBoolInt,
+    MessagesChatRestrictions,
+    MessagesChat,
+    UsersUser,
+    UsersUserFull,
+    MessagesLongpollMessages,
+    MessagesConversationMember,
+)
+from .base_response import BaseResponse
 
 
 class CreateChatResponse(BaseResponse):
@@ -137,7 +158,7 @@ CreateChatResponseModel = int
 
 class DeleteChatPhotoResponseModel(BaseResponse):
     message_id: Optional[int] = None
-    chat: Optional["messages.Chat"] = None
+    chat: Optional["MessagesChat"] = None
 
 
 class DeleteConversationResponseModel(BaseResponse):
@@ -146,106 +167,102 @@ class DeleteConversationResponseModel(BaseResponse):
 
 DeleteResponseModel = typing.Dict[str, int]
 
-
-EditResponseModel = Optional["base.BoolInt"]
+EditResponseModel = Optional[BaseBoolInt]
 
 
 class GetByConversationMessageIdResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Message"]] = None
+    items: Optional[List["MessagesMessage"]] = None
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Message"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["MessagesMessage"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetByIdResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Message"]] = None
+    items: Optional[List["MessagesMessage"]] = None
 
 
 class GetChatPreviewResponseModel(BaseResponse):
-    preview: Optional["message.ChatPreview"] = None
-    profiles: Optional[List["users.UserFull"]] = None
+    preview: Optional["MessageChatPreview"] = None
+    profiles: Optional[List["UsersUserFull"]] = None
 
 
-GetChatChatIdsFieldsResponseModel = List["messages.ChatFull"]
+GetChatChatIdsFieldsResponseModel = List[MessagesChatFull]
 
+GetChatChatIdsResponseModel = List[MessagesChat]
 
-GetChatChatIdsResponseModel = List["messages.Chat"]
+GetChatFieldsResponseModel = Optional[MessagesChatFull]
 
-
-GetChatFieldsResponseModel = Optional["messages.ChatFull"]
-
-
-GetChatResponseModel = Optional["messages.Chat"]
+GetChatResponseModel = Optional[MessagesChat]
 
 
 class GetConversationMembersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.ConversationMember"]] = None
-    chat_restrictions: Optional["messages.ChatRestrictions"] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["MessagesConversationMember"]] = None
+    chat_restrictions: Optional["MessagesChatRestrictions"] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetConversationsByIdExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Conversation"]] = None
-    profiles: Optional[List["users.User"]] = None
+    items: Optional[List["MessagesConversation"]] = None
+    profiles: Optional[List["UsersUser"]] = None
 
 
 class GetConversationsByIdResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Conversation"]] = None
+    items: Optional[List["MessagesConversation"]] = None
 
 
 class GetConversationsResponseModel(BaseResponse):
     count: Optional[int] = None
     unread_count: Optional[int] = None
-    items: Optional[List["messages.ConversationWithMessage"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["MessagesConversationWithMessage"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetHistoryAttachmentsResponseModel(BaseResponse):
-    items: Optional[List["messages.HistoryAttachment"]] = None
+    items: Optional[List["MessagesHistoryAttachment"]] = None
     next_from: Optional[str] = None
 
 
 class GetHistoryResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Message"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["MessagesMessage"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class GetInviteLinkResponseModel(BaseResponse):
     link: Optional[str] = None
 
 
-GetLastActivityResponseModel = Optional["messages.LastActivity"]
+GetLastActivityResponseModel = Optional[MessagesLastActivity]
 
 
 class GetLongPollHistoryResponseModel(BaseResponse):
     history: Optional[List[List[int]]] = None
-    groups: Optional[List["groups.Group"]] = None
-    messages: Optional["messages.LongpollMessages"] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    chats: Optional[List["messages.Chat"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
+    messages: Optional["MessagesLongpollMessages"] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    chats: Optional[List["MessagesChat"]] = None
     new_pts: Optional[int] = None
     more: Optional[bool] = None
-    conversations: Optional[List["messages.Conversation"]] = None
+    conversations: Optional[List["MessagesConversation"]] = None
 
 
-GetLongPollServerResponseModel = Optional["messages.LongpollParams"]
+GetLongPollServerResponseModel = Optional[MessagesLongpollParams]
 
 
 class IsMessagesFromGroupAllowedResponseModel(BaseResponse):
-    is_allowed: Optional["base.BoolInt"] = None
+    is_allowed: Optional["BaseBoolInt"] = None
 
 
 class JoinChatByInviteLinkResponseModel(BaseResponse):
@@ -254,20 +271,19 @@ class JoinChatByInviteLinkResponseModel(BaseResponse):
 
 MarkAsImportantResponseModel = List[int]
 
-
-PinResponseModel = Optional["messages.PinnedMessage"]
+PinResponseModel = Optional[MessagesPinnedMessage]
 
 
 class SearchConversationsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Conversation"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.GroupFull"]] = None
+    items: Optional[List["MessagesConversation"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["messages.Message"]] = None
+    items: Optional[List["MessagesMessage"]] = None
 
 
 SendResponseModel = int
@@ -276,9 +292,43 @@ SendResponseModel = int
 class SendUserIdsResponseModel(BaseResponse):
     peer_id: Optional[int] = None
     message_id: Optional[int] = None
-    error: Optional["base.MessageError"] = None
+    error: Optional["BaseMessageError"] = None
 
 
 class SetChatPhotoResponseModel(BaseResponse):
     message_id: Optional[int] = None
-    chat: Optional["messages.Chat"] = None
+    chat: Optional["MessagesChat"] = None
+
+
+CreateChatResponse.update_forward_refs()
+DeleteChatPhotoResponse.update_forward_refs()
+DeleteConversationResponse.update_forward_refs()
+DeleteResponse.update_forward_refs()
+EditResponse.update_forward_refs()
+GetByConversationMessageIdResponse.update_forward_refs()
+GetByIdExtendedResponse.update_forward_refs()
+GetByIdResponse.update_forward_refs()
+GetChatPreviewResponse.update_forward_refs()
+GetChatChatIdsFieldsResponse.update_forward_refs()
+GetChatChatIdsResponse.update_forward_refs()
+GetChatFieldsResponse.update_forward_refs()
+GetChatResponse.update_forward_refs()
+GetConversationMembersResponse.update_forward_refs()
+GetConversationsByIdExtendedResponse.update_forward_refs()
+GetConversationsByIdResponse.update_forward_refs()
+GetConversationsResponse.update_forward_refs()
+GetHistoryAttachmentsResponse.update_forward_refs()
+GetHistoryResponse.update_forward_refs()
+GetInviteLinkResponse.update_forward_refs()
+GetLastActivityResponse.update_forward_refs()
+GetLongPollHistoryResponse.update_forward_refs()
+GetLongPollServerResponse.update_forward_refs()
+IsMessagesFromGroupAllowedResponse.update_forward_refs()
+JoinChatByInviteLinkResponse.update_forward_refs()
+MarkAsImportantResponse.update_forward_refs()
+PinResponse.update_forward_refs()
+SearchConversationsResponse.update_forward_refs()
+SearchResponse.update_forward_refs()
+SendResponse.update_forward_refs()
+SendUserIdsResponse.update_forward_refs()
+SetChatPhotoResponse.update_forward_refs()

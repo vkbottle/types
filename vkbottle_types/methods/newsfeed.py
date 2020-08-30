@@ -1,11 +1,14 @@
 from vkbottle_types.responses import newsfeed, base
-from vkbottle_types.objects import (
-    users as objects_users,
-    newsfeed as objects_newsfeed,
-    base as objects_base,
-)
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import (
+        users as objects_users,
+        newsfeed as objects_newsfeed,
+        base as objects_base,
+    )
 
 
 class NewsfeedCategory(BaseCategory):
@@ -45,7 +48,7 @@ class NewsfeedCategory(BaseCategory):
 
     async def get(
         self,
-        filters: Optional[List[objects_newsfeed.Filters]] = None,
+        filters: Optional[List["objects_newsfeed.Filters"]] = None,
         return_banned: Optional[bool] = None,
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
@@ -53,7 +56,7 @@ class NewsfeedCategory(BaseCategory):
         source_ids: Optional[str] = None,
         start_from: Optional[str] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         section: Optional[str] = None,
     ) -> newsfeed.GetResponseModel:
         """Returns data required to show newsfeed for the current user.
@@ -75,7 +78,7 @@ class NewsfeedCategory(BaseCategory):
     async def get_banned(
         self,
         extended: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> newsfeed.GetBannedExtendedResponseModel:
         """Returns a list of users and communities banned from the current user's newsfeed.
@@ -92,13 +95,13 @@ class NewsfeedCategory(BaseCategory):
     async def get_comments(
         self,
         count: Optional[int] = None,
-        filters: Optional[List[objects_newsfeed.CommentsFilters]] = None,
+        filters: Optional[List["objects_newsfeed.CommentsFilters"]] = None,
         reposts: Optional[str] = None,
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
         last_comments_count: Optional[int] = None,
         start_from: Optional[str] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> newsfeed.GetCommentsResponseModel:
         """Returns a list of comments in the current user's newsfeed.
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
@@ -157,7 +160,7 @@ class NewsfeedCategory(BaseCategory):
         max_photos: Optional[int] = None,
         start_from: Optional[str] = None,
         count: Optional[int] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> newsfeed.GetRecommendedResponseModel:
         """, Returns a list of newsfeeds recommended to the current user.
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
@@ -178,7 +181,7 @@ class NewsfeedCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         shuffle: Optional[bool] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> newsfeed.GetSuggestedSourcesResponseModel:
         """Returns communities and users that current user is suggested to follow.
         :param offset: offset required to choose a particular subset of communities or users.
@@ -233,7 +236,7 @@ class NewsfeedCategory(BaseCategory):
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
         start_from: Optional[str] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
     ) -> newsfeed.SearchExtendedResponseModel:
         """Returns search results by statuses.
         :param q: Search query string (e.g., 'New Year').

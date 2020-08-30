@@ -1,7 +1,6 @@
-from .base_response import BaseResponse
+from typing import Optional
 
-from typing import Optional, Any, List, Union
-import typing
+from .base_response import BaseResponse
 
 
 class PaidStatusResponse(BaseResponse):
@@ -10,3 +9,5 @@ class PaidStatusResponse(BaseResponse):
 
 class PaidStatusResponseModel(BaseResponse):
     is_paid: Optional[bool] = None
+
+PaidStatusResponse.update_forward_refs()

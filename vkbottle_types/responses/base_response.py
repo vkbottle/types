@@ -1,5 +1,6 @@
+from typing import Optional
+
 from pydantic import BaseModel
-from typing import Optional, TYPE_CHECKING
 
 
 class BaseResponse(BaseModel):

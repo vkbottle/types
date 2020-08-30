@@ -1,7 +1,10 @@
 from vkbottle_types.responses import fave, base
-from vkbottle_types.objects import base as objects_base
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import base as objects_base
 
 
 class FaveCategory(BaseCategory):
@@ -116,7 +119,7 @@ class FaveCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         type: Optional[str] = None,
-        fields: Optional[List[objects_base.UserGroupFields]] = None,
+        fields: Optional[List["objects_base.UserGroupFields"]] = None,
         tag_id: Optional[int] = None,
     ) -> fave.GetPagesResponseModel:
         """fave.getPages method

@@ -1,7 +1,13 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    AppsLeaderboard,
+    UsersUserMin,
+    AppsScope,
+    UsersUserFull,
+    AppsApp,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import users, apps
-from typing import Optional, Any, List, Union
-import typing
 
 
 class GetCatalogResponse(BaseResponse):
@@ -38,28 +44,28 @@ class SendRequestResponse(BaseResponse):
 
 class GetCatalogResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["apps.App"]] = None
+    items: Optional[List["AppsApp"]] = None
 
 
 class GetFriendsListResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["users.UserFull"]] = None
+    items: Optional[List["UsersUserFull"]] = None
 
 
 class GetLeaderboardExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["apps.Leaderboard"]] = None
-    profiles: Optional[List["users.UserMin"]] = None
+    items: Optional[List["AppsLeaderboard"]] = None
+    profiles: Optional[List["UsersUserMin"]] = None
 
 
 class GetLeaderboardResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["apps.Leaderboard"]] = None
+    items: Optional[List["AppsLeaderboard"]] = None
 
 
 class GetScopesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["apps.Scope"]] = None
+    items: Optional[List["AppsScope"]] = None
 
 
 GetScoreResponseModel = int
@@ -67,7 +73,16 @@ GetScoreResponseModel = int
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["apps.App"]] = None
+    items: Optional[List["AppsApp"]] = None
 
 
 SendRequestResponseModel = int
+
+GetCatalogResponse.update_forward_refs()
+GetFriendsListResponse.update_forward_refs()
+GetLeaderboardExtendedResponse.update_forward_refs()
+GetLeaderboardResponse.update_forward_refs()
+GetScopesResponse.update_forward_refs()
+GetScoreResponse.update_forward_refs()
+GetResponse.update_forward_refs()
+SendRequestResponse.update_forward_refs()

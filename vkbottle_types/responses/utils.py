@@ -1,7 +1,14 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    UtilsLinkStatsExtended,
+    UtilsLinkChecked,
+    UtilsShortLink,
+    UtilsLinkStats,
+    UtilsLastShortenedLink,
+    UtilsDomainResolved,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import utils
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CheckLinkResponse(BaseResponse):
@@ -31,25 +38,29 @@ class GetShortLinkResponse(BaseResponse):
 class ResolveScreenNameResponse(BaseResponse):
     response: Optional["ResolveScreenNameResponseModel"] = None
 
-
-CheckLinkResponseModel = Optional["utils.LinkChecked"]
+CheckLinkResponseModel = Optional[UtilsLinkChecked]
 
 
 class GetLastShortenedLinksResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["utils.LastShortenedLink"]] = None
+    items: Optional[List["UtilsLastShortenedLink"]] = None
 
 
-GetLinkStatsExtendedResponseModel = Optional["utils.LinkStatsExtended"]
+GetLinkStatsExtendedResponseModel = Optional[UtilsLinkStatsExtended]
 
-
-GetLinkStatsResponseModel = Optional["utils.LinkStats"]
+GetLinkStatsResponseModel = Optional[UtilsLinkStats]
 
 
 GetServerTimeResponseModel = int
 
+GetShortLinkResponseModel = Optional[UtilsShortLink]
 
-GetShortLinkResponseModel = Optional["utils.ShortLink"]
+ResolveScreenNameResponseModel = Optional[UtilsDomainResolved]
 
-
-ResolveScreenNameResponseModel = Optional["utils.DomainResolved"]
+CheckLinkResponse.update_forward_refs()
+GetLastShortenedLinksResponse.update_forward_refs()
+GetLinkStatsExtendedResponse.update_forward_refs()
+GetLinkStatsResponse.update_forward_refs()
+GetServerTimeResponse.update_forward_refs()
+GetShortLinkResponse.update_forward_refs()
+ResolveScreenNameResponse.update_forward_refs()

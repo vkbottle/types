@@ -1,7 +1,13 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    FaveBookmark,
+    UsersUserFull,
+    GroupsGroup,
+    FaveTag,
+    FavePage,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import fave, groups, users
-from typing import Optional, Any, List, Union
-import typing
 
 
 class AddTagResponse(BaseResponse):
@@ -23,27 +29,32 @@ class GetExtendedResponse(BaseResponse):
 class GetResponse(BaseResponse):
     response: Optional["GetResponseModel"] = None
 
-
-AddTagResponseModel = Optional["fave.Tag"]
+AddTagResponseModel = Optional[FaveTag]
 
 
 class GetPagesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["fave.Page"]] = None
+    items: Optional[List["FavePage"]] = None
 
 
 class GetTagsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["fave.Tag"]] = None
+    items: Optional[List["FaveTag"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["fave.Bookmark"]] = None
-    profiles: Optional[List["users.UserFull"]] = None
-    groups: Optional[List["groups.Group"]] = None
+    items: Optional[List["FaveBookmark"]] = None
+    profiles: Optional[List["UsersUserFull"]] = None
+    groups: Optional[List["GroupsGroup"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["fave.Bookmark"]] = None
+    items: Optional[List["FaveBookmark"]] = None
+
+AddTagResponse.update_forward_refs()
+GetPagesResponse.update_forward_refs()
+GetTagsResponse.update_forward_refs()
+GetExtendedResponse.update_forward_refs()
+GetResponse.update_forward_refs()

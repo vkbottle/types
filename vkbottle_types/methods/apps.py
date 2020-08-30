@@ -1,7 +1,10 @@
 from vkbottle_types.responses import apps, base
-from vkbottle_types.objects import users as objects_users
 from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+
+if typing.TYPE_CHECKING:
+    from vkbottle_types.objects import users as objects_users
 
 
 class AppsCategory(BaseCategory):
@@ -22,7 +25,7 @@ class AppsCategory(BaseCategory):
         platform: Optional[str] = None,
         extended: Optional[bool] = None,
         return_friends: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> apps.GetResponseModel:
         """Returns applications data.
@@ -46,7 +49,7 @@ class AppsCategory(BaseCategory):
         platform: Optional[str] = None,
         extended: Optional[bool] = None,
         return_friends: Optional[bool] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
         q: Optional[str] = None,
         genre_id: Optional[int] = None,
@@ -77,7 +80,7 @@ class AppsCategory(BaseCategory):
         count: Optional[int] = None,
         offset: Optional[int] = None,
         type: Optional[str] = None,
-        fields: Optional[List[objects_users.Fields]] = None,
+        fields: Optional[List["objects_users.Fields"]] = None,
     ) -> apps.GetFriendsListResponseModel:
         """Creates friends list for requests and invites in current app.
         :param extended:

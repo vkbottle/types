@@ -1,7 +1,13 @@
+from typing import Optional, List
+
+from vkbottle_types.objects import (
+    LeadsChecked,
+    LeadsComplete,
+    LeadsStart,
+    LeadsLead,
+    LeadsEntry,
+)
 from .base_response import BaseResponse
-from vkbottle_types.objects import leads
-from typing import Optional, Any, List, Union
-import typing
 
 
 class CheckUserResponse(BaseResponse):
@@ -27,17 +33,13 @@ class MetricHitResponse(BaseResponse):
 class StartResponse(BaseResponse):
     response: Optional["StartResponseModel"] = None
 
+CheckUserResponseModel = Optional[LeadsChecked]
 
-CheckUserResponseModel = Optional["leads.Checked"]
+CompleteResponseModel = Optional[LeadsComplete]
 
+GetStatsResponseModel = Optional[LeadsLead]
 
-CompleteResponseModel = Optional["leads.Complete"]
-
-
-GetStatsResponseModel = Optional["leads.Lead"]
-
-
-GetUsersResponseModel = List["leads.Entry"]
+GetUsersResponseModel = List[LeadsEntry]
 
 
 class MetricHitResponseModel(BaseResponse):
@@ -45,4 +47,11 @@ class MetricHitResponseModel(BaseResponse):
     redirect_link: Optional[str] = None
 
 
-StartResponseModel = Optional["leads.Start"]
+StartResponseModel = Optional[LeadsStart]
+
+CheckUserResponse.update_forward_refs()
+CompleteResponse.update_forward_refs()
+GetStatsResponse.update_forward_refs()
+GetUsersResponse.update_forward_refs()
+MetricHitResponse.update_forward_refs()
+StartResponse.update_forward_refs()
