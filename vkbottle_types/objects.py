@@ -3794,10 +3794,6 @@ class MessagesTemplateActionTypeNames(enum.Enum):
     OPEN_LINK = "open_link"
 
 
-class MessagesUserXtrInvitedBy(BaseObject):
-    """VK Object Messages/MessagesUserXtrInvitedBy"""
-
-
 class NewsfeedCommentsFilters(enum.Enum):
     """ NewsfeedCommentsFilters enum """
 
@@ -4653,7 +4649,7 @@ class PhotosPhotoFull(BaseObject):
     width: Optional[int] = None
 
 
-class PhotosPhotoFullXtrRealOffset(BaseObject):
+class PhotosPhotoFullXtrRealOffset(PhotosPhotoFull):
     """VK Object Photos/PhotosPhotoFullXtrRealOffset
 
     access_key - Access key for the photo
@@ -4793,7 +4789,7 @@ class PhotosPhotoUploadResponse(BaseObject):
     server: Optional[int] = None
 
 
-class PhotosPhotoXtrRealOffset(BaseObject):
+class PhotosPhotoXtrRealOffset(PhotosPhotoFull):
     """VK Object Photos/PhotosPhotoXtrRealOffset
 
     access_key - Access key for the photo
@@ -4841,7 +4837,7 @@ class PhotosPhotoXtrRealOffset(BaseObject):
     width: Optional[int] = None
 
 
-class PhotosPhotoXtrTagInfo(BaseObject):
+class PhotosPhotoXtrTagInfo(PhotosPhotoFull):
     """VK Object Photos/PhotosPhotoXtrTagInfo
 
     access_key - Access key for the photo
@@ -5932,11 +5928,11 @@ class UsersUserType(enum.Enum):
     PROFILE = "profile"
 
 
-class UsersUserXtrCounters(BaseObject):
+class UsersUserXtrCounters(UsersUserFull):
     """VK Object Users/UsersUserXtrCounters"""
 
 
-class UsersUserXtrType(BaseObject):
+class UsersUserXtrType(UsersUserFull):
     """VK Object Users/UsersUserXtrType"""
 
 
@@ -6617,6 +6613,10 @@ class WidgetsWidgetPage(BaseObject):
 class GroupsBannedItem(GroupsOwnerXtrBanInfo):
     """VK Object Groups/GroupsBannedItem
     #FIXME Comment is undefined"""
+
+
+class MessagesUserXtrInvitedBy(UsersUser, MessagesMessage):
+    """VK Object Messages/MessagesUserXtrInvitedBy"""
 
 
 AccountAccountCounters.update_forward_refs()

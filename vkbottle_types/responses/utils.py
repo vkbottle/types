@@ -38,6 +38,7 @@ class GetShortLinkResponse(BaseResponse):
 class ResolveScreenNameResponse(BaseResponse):
     response: Optional["ResolveScreenNameResponseModel"] = None
 
+
 CheckLinkResponseModel = Optional[UtilsLinkChecked]
 
 

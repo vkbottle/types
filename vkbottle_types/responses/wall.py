@@ -165,6 +165,7 @@ class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["WallWallpostFull"]] = None
 
+
 CreateCommentResponse.update_forward_refs()
 EditResponse.update_forward_refs()
 GetByIdExtendedResponse.update_forward_refs()

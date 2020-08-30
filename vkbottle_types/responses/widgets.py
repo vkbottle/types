@@ -21,5 +21,6 @@ class GetPagesResponseModel(BaseResponse):
     count: Optional[int] = None
     pages: Optional[List["WidgetsWidgetPage"]] = None
 
+
 GetCommentsResponse.update_forward_refs()
 GetPagesResponse.update_forward_refs()

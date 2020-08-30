@@ -36,6 +36,7 @@ class GetTopicsExtendedResponse(BaseResponse):
 class GetTopicsResponse(BaseResponse):
     response: Optional["GetTopicsResponseModel"] = None
 
+
 AddTopicResponseModel = int
 
 CreateCommentResponseModel = int
@@ -68,6 +69,7 @@ class GetTopicsResponseModel(BaseResponse):
     items: Optional[List["BoardTopic"]] = None
     default_order: Optional["BoardDefaultOrder"] = None
     can_add_topics: Optional["BaseBoolInt"] = None
+
 
 AddTopicResponse.update_forward_refs()
 CreateCommentResponse.update_forward_refs()

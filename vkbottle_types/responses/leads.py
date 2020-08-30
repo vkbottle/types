@@ -33,6 +33,7 @@ class MetricHitResponse(BaseResponse):
 class StartResponse(BaseResponse):
     response: Optional["StartResponseModel"] = None
 
+
 CheckUserResponseModel = Optional[LeadsChecked]
 
 CompleteResponseModel = Optional[LeadsComplete]

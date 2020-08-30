@@ -178,6 +178,7 @@ class UpdateCampaignsResponse(BaseResponse):
 class UpdateClientsResponse(BaseResponse):
     response: Optional["UpdateClientsResponseModel"] = None
 
+
 AddOfficeUsersResponseModel = bool
 
 CheckLinkResponseModel = Optional[AdsLinkStatus]

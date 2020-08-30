@@ -168,6 +168,7 @@ class IsMemberUserIdsResponse(BaseResponse):
 class SearchResponse(BaseResponse):
     response: Optional["SearchResponseModel"] = None
 
+
 AddAddressResponseModel = Optional[GroupsAddress]
 
 

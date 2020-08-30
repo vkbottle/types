@@ -29,6 +29,7 @@ class GetExtendedResponse(BaseResponse):
 class GetResponse(BaseResponse):
     response: Optional["GetResponseModel"] = None
 
+
 AddTagResponseModel = Optional[FaveTag]
 
 
@@ -52,6 +53,7 @@ class GetExtendedResponseModel(BaseResponse):
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["FaveBookmark"]] = None
+
 
 AddTagResponse.update_forward_refs()
 GetPagesResponse.update_forward_refs()

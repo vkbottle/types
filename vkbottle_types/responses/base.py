@@ -15,6 +15,7 @@ class GetUploadServerResponse(BaseResponse):
 class OkResponse(BaseResponse):
     response: Optional["OkResponseModel"] = None
 
+
 BoolResponseModel = Optional[BaseBoolInt]
 
 GetUploadServerResponseModel = Optional[BaseUploadServer]

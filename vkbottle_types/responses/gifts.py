@@ -12,4 +12,5 @@ class GetResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["GiftsGift"]] = None
 
+
 GetResponse.update_forward_refs()

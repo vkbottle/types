@@ -13,4 +13,5 @@ class GetHintsResponseModel(BaseResponse):
     items: Optional[List["SearchHint"]] = None
     suggested_queries: Optional[List[str]] = None
 
+
 GetHintsResponse.update_forward_refs()

@@ -8,7 +8,8 @@ if typing.TYPE_CHECKING:
 
 
 class BaseCategory:
-    api: "API"
+    def __init__(self, api: "API"):
+        self.api = api
 
     @classmethod
     def get_set_params(cls, params: dict) -> dict:

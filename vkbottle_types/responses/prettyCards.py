@@ -54,6 +54,7 @@ class GetResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["PrettyCardsPrettyCard"]] = None
 
+
 CreateResponse.update_forward_refs()
 DeleteResponse.update_forward_refs()
 EditResponse.update_forward_refs()

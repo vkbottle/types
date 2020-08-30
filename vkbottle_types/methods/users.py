@@ -10,7 +10,7 @@ if typing.TYPE_CHECKING:
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        user_ids: Optional[List[str]] = None,
+        user_ids: Optional[List[int]] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
     ) -> users.GetResponseModel:

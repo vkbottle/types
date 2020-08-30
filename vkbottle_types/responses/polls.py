@@ -23,6 +23,7 @@ class GetByIdResponse(BaseResponse):
 class GetVotersResponse(BaseResponse):
     response: Optional["GetVotersResponseModel"] = None
 
+
 AddVoteResponseModel = Optional[BaseBoolInt]
 
 CreateResponseModel = Optional[PollsPoll]

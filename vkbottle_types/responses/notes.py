@@ -40,6 +40,7 @@ class GetResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["NotesNote"]] = None
 
+
 AddResponse.update_forward_refs()
 CreateCommentResponse.update_forward_refs()
 GetByIdResponse.update_forward_refs()

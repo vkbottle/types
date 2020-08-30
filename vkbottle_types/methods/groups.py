@@ -435,7 +435,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        group_ids: Optional[List[str]] = None,
+        group_ids: Optional[List[int]] = None,
         group_id: Optional[str] = None,
         fields: Optional[List["objects_groups.Fields"]] = None,
     ) -> groups.GetByIdResponseModel:
@@ -604,7 +604,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["z"]] = None,
+        fields: Optional[List["str"]] = None,
     ) -> groups.GetRequestsResponseModel:
         """Returns a list of requests to the community.
         :param group_id: Community ID.

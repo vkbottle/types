@@ -174,6 +174,7 @@ class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["UsersUserFull"]] = None
 
+
 AddListResponse.update_forward_refs()
 AddResponse.update_forward_refs()
 AreFriendsExtendedResponse.update_forward_refs()
