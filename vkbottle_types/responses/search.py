@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import search
 from .base_response import BaseResponse
+from vkbottle_types.objects import search
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetHintsResponse(BaseResponse):
@@ -11,5 +10,5 @@ class GetHintsResponse(BaseResponse):
 
 class GetHintsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["search.Hint"]] = None
-    suggested_queries: Optional[typing.List[str]] = None
+    items: Optional[List["search.Hint"]] = None
+    suggested_queries: Optional[List[str]] = None

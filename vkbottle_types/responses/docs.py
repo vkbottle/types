@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import docs, base, messages
 from .base_response import BaseResponse
+from vkbottle_types.objects import messages, docs, base
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddResponse(BaseResponse):
@@ -10,7 +9,7 @@ class AddResponse(BaseResponse):
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional[typing.List["docs.Doc"]] = None
+    response: Optional["GetByIdResponseModel"] = None
 
 
 class GetTypesResponse(BaseResponse):
@@ -18,7 +17,7 @@ class GetTypesResponse(BaseResponse):
 
 
 class GetUploadServer(BaseResponse):
-    response: Optional[typing.List["base.UploadServer"]] = None
+    response: Optional["GetUploadServerModel"] = None
 
 
 class GetResponse(BaseResponse):
@@ -37,23 +36,29 @@ class AddResponseModel(BaseResponse):
     id: Optional[int] = None
 
 
+GetByIdResponseModel = List["docs.Doc"]
+
+
 class GetTypesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["docs.DocTypes"]] = None
+    items: Optional[List["docs.DocTypes"]] = None
+
+
+GetUploadServerModel = Optional["base.UploadServer"]
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["docs.Doc"]] = None
+    items: Optional[List["docs.Doc"]] = None
 
 
 class SaveResponseModel(BaseResponse):
-    type: Optional[typing.List["docs.DocAttachmentType"]] = None
-    audio_message: Optional[typing.List["messages.AudioMessage"]] = None
-    doc: Optional[typing.List["docs.Doc"]] = None
-    graffiti: Optional[typing.List["messages.Graffiti"]] = None
+    type: Optional["docs.DocAttachmentType"] = None
+    audio_message: Optional["messages.AudioMessage"] = None
+    doc: Optional["docs.Doc"] = None
+    graffiti: Optional["messages.Graffiti"] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["docs.Doc"]] = None
+    items: Optional[List["docs.Doc"]] = None

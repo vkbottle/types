@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import groups, account, base, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, account, base, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class ChangePasswordResponse(BaseResponse):
@@ -14,7 +13,7 @@ class GetActiveOffersResponse(BaseResponse):
 
 
 class GetAppPermissionsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["GetAppPermissionsResponseModel"] = None
 
 
 class GetBannedResponse(BaseResponse):
@@ -22,19 +21,19 @@ class GetBannedResponse(BaseResponse):
 
 
 class GetCountersResponse(BaseResponse):
-    response: Optional[typing.List["account.AccountCounters"]] = None
+    response: Optional["GetCountersResponseModel"] = None
 
 
 class GetInfoResponse(BaseResponse):
-    response: Optional[typing.List["account.Info"]] = None
+    response: Optional["GetInfoResponseModel"] = None
 
 
 class GetProfileInfoResponse(BaseResponse):
-    response: Optional[typing.List["account.UserSettings"]] = None
+    response: Optional["GetProfileInfoResponseModel"] = None
 
 
 class GetPushSettingsResponse(BaseResponse):
-    response: Optional[typing.List["account.PushSettings"]] = None
+    response: Optional["GetPushSettingsResponseModel"] = None
 
 
 class SaveProfileInfoResponse(BaseResponse):
@@ -48,16 +47,31 @@ class ChangePasswordResponseModel(BaseResponse):
 
 class GetActiveOffersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["account.Offer"]] = None
+    items: Optional[List["account.Offer"]] = None
+
+
+GetAppPermissionsResponseModel = int
 
 
 class GetBannedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List[int]] = None
+    profiles: Optional[List["users.UserMin"]] = None
+    groups: Optional[List["groups.Group"]] = None
+
+
+GetCountersResponseModel = Optional["account.AccountCounters"]
+
+
+GetInfoResponseModel = Optional["account.Info"]
+
+
+GetProfileInfoResponseModel = Optional["account.UserSettings"]
+
+
+GetPushSettingsResponseModel = Optional["account.PushSettings"]
 
 
 class SaveProfileInfoResponseModel(BaseResponse):
-    changed: Optional[typing.List["base.BoolInt"]] = None
-    name_request: Optional[typing.List["account.NameRequest"]] = None
+    changed: Optional["base.BoolInt"] = None
+    name_request: Optional["account.NameRequest"] = None

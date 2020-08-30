@@ -1,12 +1,11 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import utils
 from .base_response import BaseResponse
+from vkbottle_types.objects import utils
+from typing import Optional, Any, List, Union
+import typing
 
 
 class CheckLinkResponse(BaseResponse):
-    response: Optional[typing.List["utils.LinkChecked"]] = None
+    response: Optional["CheckLinkResponseModel"] = None
 
 
 class GetLastShortenedLinksResponse(BaseResponse):
@@ -14,25 +13,43 @@ class GetLastShortenedLinksResponse(BaseResponse):
 
 
 class GetLinkStatsExtendedResponse(BaseResponse):
-    response: Optional[typing.List["utils.LinkStatsExtended"]] = None
+    response: Optional["GetLinkStatsExtendedResponseModel"] = None
 
 
 class GetLinkStatsResponse(BaseResponse):
-    response: Optional[typing.List["utils.LinkStats"]] = None
+    response: Optional["GetLinkStatsResponseModel"] = None
 
 
 class GetServerTimeResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["GetServerTimeResponseModel"] = None
 
 
 class GetShortLinkResponse(BaseResponse):
-    response: Optional[typing.List["utils.ShortLink"]] = None
+    response: Optional["GetShortLinkResponseModel"] = None
 
 
 class ResolveScreenNameResponse(BaseResponse):
-    response: Optional[typing.List["utils.DomainResolved"]] = None
+    response: Optional["ResolveScreenNameResponseModel"] = None
+
+
+CheckLinkResponseModel = Optional["utils.LinkChecked"]
 
 
 class GetLastShortenedLinksResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["utils.LastShortenedLink"]] = None
+    items: Optional[List["utils.LastShortenedLink"]] = None
+
+
+GetLinkStatsExtendedResponseModel = Optional["utils.LinkStatsExtended"]
+
+
+GetLinkStatsResponseModel = Optional["utils.LinkStats"]
+
+
+GetServerTimeResponseModel = int
+
+
+GetShortLinkResponseModel = Optional["utils.ShortLink"]
+
+
+ResolveScreenNameResponseModel = Optional["utils.DomainResolved"]

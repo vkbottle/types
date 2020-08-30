@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import database, base
 from .base_response import BaseResponse
+from vkbottle_types.objects import database, base
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetChairsResponse(BaseResponse):
@@ -10,7 +9,7 @@ class GetChairsResponse(BaseResponse):
 
 
 class GetCitiesByIdResponse(BaseResponse):
-    response: Optional[typing.List["base.Object"]] = None
+    response: Optional["GetCitiesByIdResponseModel"] = None
 
 
 class GetCitiesResponse(BaseResponse):
@@ -18,7 +17,7 @@ class GetCitiesResponse(BaseResponse):
 
 
 class GetCountriesByIdResponse(BaseResponse):
-    response: Optional[typing.List["base.Country"]] = None
+    response: Optional["GetCountriesByIdResponseModel"] = None
 
 
 class GetCountriesResponse(BaseResponse):
@@ -30,7 +29,7 @@ class GetFacultiesResponse(BaseResponse):
 
 
 class GetMetroStationsByIdResponse(BaseResponse):
-    response: Optional[typing.List["database.Station"]] = None
+    response: Optional["GetMetroStationsByIdResponseModel"] = None
 
 
 class GetMetroStationsResponse(BaseResponse):
@@ -42,7 +41,7 @@ class GetRegionsResponse(BaseResponse):
 
 
 class GetSchoolClassesResponse(BaseResponse):
-    response: Optional[typing.List[typing.Union[str, int]]] = None
+    response: Optional["GetSchoolClassesResponseModel"] = None
 
 
 class GetSchoolsResponse(BaseResponse):
@@ -55,39 +54,51 @@ class GetUniversitiesResponse(BaseResponse):
 
 class GetChairsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["base.Object"]] = None
+    items: Optional[List["base.Object"]] = None
+
+
+GetCitiesByIdResponseModel = List["base.Object"]
 
 
 class GetCitiesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.City"]] = None
+    items: Optional[List["database.City"]] = None
+
+
+GetCountriesByIdResponseModel = List["base.Country"]
 
 
 class GetCountriesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["base.Country"]] = None
+    items: Optional[List["base.Country"]] = None
 
 
 class GetFacultiesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.Faculty"]] = None
+    items: Optional[List["database.Faculty"]] = None
+
+
+GetMetroStationsByIdResponseModel = List["database.Station"]
 
 
 class GetMetroStationsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.Station"]] = None
+    items: Optional[List["database.Station"]] = None
 
 
 class GetRegionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.Region"]] = None
+    items: Optional[List["database.Region"]] = None
+
+
+GetSchoolClassesResponseModel = List[List[Union[str, int]]]
 
 
 class GetSchoolsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.School"]] = None
+    items: Optional[List["database.School"]] = None
 
 
 class GetUniversitiesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["database.University"]] = None
+    items: Optional[List["database.University"]] = None

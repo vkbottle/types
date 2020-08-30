@@ -1,24 +1,23 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import leads
 from .base_response import BaseResponse
+from vkbottle_types.objects import leads
+from typing import Optional, Any, List, Union
+import typing
 
 
 class CheckUserResponse(BaseResponse):
-    response: Optional[typing.List["leads.Checked"]] = None
+    response: Optional["CheckUserResponseModel"] = None
 
 
 class CompleteResponse(BaseResponse):
-    response: Optional[typing.List["leads.Complete"]] = None
+    response: Optional["CompleteResponseModel"] = None
 
 
 class GetStatsResponse(BaseResponse):
-    response: Optional[typing.List["leads.Lead"]] = None
+    response: Optional["GetStatsResponseModel"] = None
 
 
 class GetUsersResponse(BaseResponse):
-    response: Optional[typing.List["leads.Entry"]] = None
+    response: Optional["GetUsersResponseModel"] = None
 
 
 class MetricHitResponse(BaseResponse):
@@ -26,9 +25,24 @@ class MetricHitResponse(BaseResponse):
 
 
 class StartResponse(BaseResponse):
-    response: Optional[typing.List["leads.Start"]] = None
+    response: Optional["StartResponseModel"] = None
+
+
+CheckUserResponseModel = Optional["leads.Checked"]
+
+
+CompleteResponseModel = Optional["leads.Complete"]
+
+
+GetStatsResponseModel = Optional["leads.Lead"]
+
+
+GetUsersResponseModel = List["leads.Entry"]
 
 
 class MetricHitResponseModel(BaseResponse):
     result: Optional[bool] = None
     redirect_link: Optional[str] = None
+
+
+StartResponseModel = Optional["leads.Start"]

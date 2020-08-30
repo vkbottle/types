@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import groups, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetFollowersFieldsResponse(BaseResponse):
@@ -22,7 +21,7 @@ class GetSubscriptionsResponse(BaseResponse):
 
 
 class GetResponse(BaseResponse):
-    response: Optional[typing.List["users.UserXtrCounters"]] = None
+    response: Optional["GetResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
@@ -31,24 +30,27 @@ class SearchResponse(BaseResponse):
 
 class GetFollowersFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None
 
 
 class GetFollowersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
 
 
 class GetSubscriptionsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.SubscriptionsItem"]] = None
+    items: Optional[List["users.SubscriptionsItem"]] = None
 
 
 class GetSubscriptionsResponseModel(BaseResponse):
-    users: Optional[typing.List["users.UsersArray"]] = None
-    groups: Optional[typing.List["groups.GroupsArray"]] = None
+    users: Optional["users.UsersArray"] = None
+    groups: Optional["groups.GroupsArray"] = None
+
+
+GetResponseModel = List["users.UserXtrCounters"]
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None

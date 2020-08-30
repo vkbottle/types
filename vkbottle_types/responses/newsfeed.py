@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import groups, wall, newsfeed, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, newsfeed, wall, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetBannedExtendedResponse(BaseResponse):
@@ -42,7 +41,7 @@ class GetResponse(BaseResponse):
 
 
 class SaveListResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["SaveListResponseModel"] = None
 
 
 class SearchExtendedResponse(BaseResponse):
@@ -54,69 +53,73 @@ class SearchResponse(BaseResponse):
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
-    groups: Optional[typing.List["users.UserFull"]] = None
-    profiles: Optional[typing.List["groups.GroupFull"]] = None
+    groups: Optional[List["users.UserFull"]] = None
+    profiles: Optional[List["groups.GroupFull"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
-    groups: Optional[typing.List[int]] = None
-    members: Optional[typing.List[int]] = None
+    groups: Optional[List[int]] = None
+    members: Optional[List[int]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
-    items: Optional[typing.List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["newsfeed.NewsfeedItem"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
     next_from: Optional[str] = None
 
 
 class GetListsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["newsfeed.ListFull"]] = None
+    items: Optional[List["newsfeed.ListFull"]] = None
 
 
 class GetListsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["newsfeed.List"]] = None
+    items: Optional[List["newsfeed.List"]] = None
 
 
 class GetMentionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallpostToId"]] = None
+    items: Optional[List["wall.WallpostToId"]] = None
 
 
 class GetRecommendedResponseModel(BaseResponse):
-    items: Optional[typing.List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["newsfeed.NewsfeedItem"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
     new_offset: Optional[str] = None
     next_from: Optional[str] = None
 
 
-class GetSuggestedSourcesResponseModel("groups.GroupFull", "users.UserXtrType"):
+class GetSuggestedSourcesResponseModel(BaseResponse):
     count: Optional[int] = None
+    items: Optional[Union["groups.GroupFull", "users.UserXtrType"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    items: Optional[typing.List["newsfeed.NewsfeedItem"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["newsfeed.NewsfeedItem"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
     next_from: Optional[str] = None
 
 
+SaveListResponseModel = int
+
+
 class SearchExtendedResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
-    suggested_queries: Optional[typing.List[str]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
+    suggested_queries: Optional[List[str]] = None
     next_from: Optional[str] = None
     count: Optional[int] = None
     total_count: Optional[int] = None
 
 
 class SearchResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    suggested_queries: Optional[typing.List[str]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    suggested_queries: Optional[List[str]] = None
     next_from: Optional[str] = None
     count: Optional[int] = None
     total_count: Optional[int] = None

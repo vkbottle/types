@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import friends, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, friends
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddListResponse(BaseResponse):
@@ -10,15 +9,15 @@ class AddListResponse(BaseResponse):
 
 
 class AddResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["AddResponseModel"] = None
 
 
 class AreFriendsExtendedResponse(BaseResponse):
-    response: Optional[typing.List["friends.FriendExtendedStatus"]] = None
+    response: Optional["AreFriendsExtendedResponseModel"] = None
 
 
 class AreFriendsResponse(BaseResponse):
-    response: Optional[typing.List["friends.FriendStatus"]] = None
+    response: Optional["AreFriendsResponseModel"] = None
 
 
 class DeleteResponse(BaseResponse):
@@ -26,11 +25,11 @@ class DeleteResponse(BaseResponse):
 
 
 class GetAppUsersResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["GetAppUsersResponseModel"] = None
 
 
 class GetByPhonesResponse(BaseResponse):
-    response: Optional[typing.List["friends.UserXtrPhone"]] = None
+    response: Optional["GetByPhonesResponseModel"] = None
 
 
 class GetListsResponse(BaseResponse):
@@ -38,11 +37,11 @@ class GetListsResponse(BaseResponse):
 
 
 class GetMutualResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["GetMutualResponseModel"] = None
 
 
 class GetMutualTargetUidsResponse(BaseResponse):
-    response: Optional[typing.List["friends.MutualFriend"]] = None
+    response: Optional["GetMutualTargetUidsResponseModel"] = None
 
 
 class GetOnlineOnlineMobileResponse(BaseResponse):
@@ -50,11 +49,11 @@ class GetOnlineOnlineMobileResponse(BaseResponse):
 
 
 class GetOnlineResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["GetOnlineResponseModel"] = None
 
 
 class GetRecentResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["GetRecentResponseModel"] = None
 
 
 class GetRequestsExtendedResponse(BaseResponse):
@@ -89,6 +88,15 @@ class AddListResponseModel(BaseResponse):
     list_id: Optional[int] = None
 
 
+AddResponseModel = int
+
+
+AreFriendsExtendedResponseModel = List["friends.FriendExtendedStatus"]
+
+
+AreFriendsResponseModel = List["friends.FriendStatus"]
+
+
 class DeleteResponseModel(BaseResponse):
     success: Optional[int] = None
     friend_deleted: Optional[int] = None
@@ -97,47 +105,65 @@ class DeleteResponseModel(BaseResponse):
     suggestion_deleted: Optional[int] = None
 
 
+GetAppUsersResponseModel = List[int]
+
+
+GetByPhonesResponseModel = List["friends.UserXtrPhone"]
+
+
 class GetListsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["friends.FriendsList"]] = None
+    items: Optional[List["friends.FriendsList"]] = None
+
+
+GetMutualResponseModel = List[int]
+
+
+GetMutualTargetUidsResponseModel = List["friends.MutualFriend"]
 
 
 class GetOnlineOnlineMobileResponseModel(BaseResponse):
-    online: Optional[typing.List[int]] = None
-    online_mobile: Optional[typing.List[int]] = None
+    online: Optional[List[int]] = None
+    online_mobile: Optional[List[int]] = None
+
+
+GetOnlineResponseModel = List[int]
+
+
+GetRecentResponseModel = List[int]
 
 
 class GetRequestsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["friends.RequestsXtrMessage"]] = None
+    items: Optional[List["friends.RequestsXtrMessage"]] = None
 
 
 class GetRequestsNeedMutualResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["friends.Requests"]] = None
+    items: Optional[List["friends.Requests"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
     count_unread: Optional[int] = None
 
 
 class GetSuggestionsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None
 
 
 class GetFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["friends.UserXtrLists"]] = None
+    items: Optional[List["friends.UserXtrLists"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None

@@ -1,9 +1,11 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import status
 from .base_response import BaseResponse
+from vkbottle_types.objects import status
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetResponse(BaseResponse):
-    response: Optional[typing.List["status.Status"]] = None
+    response: Optional["GetResponseModel"] = None
+
+
+GetResponseModel = Optional["status.Status"]

@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import apps, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, apps
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetCatalogResponse(BaseResponse):
@@ -26,7 +25,7 @@ class GetScopesResponse(BaseResponse):
 
 
 class GetScoreResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["GetScoreResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
@@ -34,35 +33,41 @@ class GetResponse(BaseResponse):
 
 
 class SendRequestResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["SendRequestResponseModel"] = None
 
 
 class GetCatalogResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["apps.App"]] = None
+    items: Optional[List["apps.App"]] = None
 
 
 class GetFriendsListResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None
 
 
 class GetLeaderboardExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["apps.Leaderboard"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
+    items: Optional[List["apps.Leaderboard"]] = None
+    profiles: Optional[List["users.UserMin"]] = None
 
 
 class GetLeaderboardResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["apps.Leaderboard"]] = None
+    items: Optional[List["apps.Leaderboard"]] = None
 
 
 class GetScopesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["apps.Scope"]] = None
+    items: Optional[List["apps.Scope"]] = None
+
+
+GetScoreResponseModel = int
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["apps.App"]] = None
+    items: Optional[List["apps.App"]] = None
+
+
+SendRequestResponseModel = int

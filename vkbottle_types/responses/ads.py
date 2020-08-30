@@ -1,28 +1,27 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import ads
 from .base_response import BaseResponse
+from vkbottle_types.objects import ads
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddOfficeUsersResponse(BaseResponse):
-    response: Optional[bool] = None
+    response: Optional["AddOfficeUsersResponseModel"] = None
 
 
 class CheckLinkResponse(BaseResponse):
-    response: Optional[typing.List["ads.LinkStatus"]] = None
+    response: Optional["CheckLinkResponseModel"] = None
 
 
 class CreateAdsResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["CreateAdsResponseModel"] = None
 
 
 class CreateCampaignsResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["CreateCampaignsResponseModel"] = None
 
 
 class CreateClientsResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["CreateClientsResponseModel"] = None
 
 
 class CreateTargetGroupResponse(BaseResponse):
@@ -30,39 +29,39 @@ class CreateTargetGroupResponse(BaseResponse):
 
 
 class DeleteAdsResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["DeleteAdsResponseModel"] = None
 
 
 class DeleteCampaignsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["DeleteCampaignsResponseModel"] = None
 
 
 class DeleteClientsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["DeleteClientsResponseModel"] = None
 
 
 class GetAccountsResponse(BaseResponse):
-    response: Optional[typing.List["ads.Account"]] = None
+    response: Optional["GetAccountsResponseModel"] = None
 
 
 class GetAdsLayoutResponse(BaseResponse):
-    response: Optional[typing.List["ads.AdLayout"]] = None
+    response: Optional["GetAdsLayoutResponseModel"] = None
 
 
 class GetAdsTargetingResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargSettings"]] = None
+    response: Optional["GetAdsTargetingResponseModel"] = None
 
 
 class GetAdsResponse(BaseResponse):
-    response: Optional[typing.List["ads.Ad"]] = None
+    response: Optional["GetAdsResponseModel"] = None
 
 
 class GetBudgetResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["GetBudgetResponseModel"] = None
 
 
 class GetCampaignsResponse(BaseResponse):
-    response: Optional[typing.List["ads.Campaign"]] = None
+    response: Optional["GetCampaignsResponseModel"] = None
 
 
 class GetCategoriesResponse(BaseResponse):
@@ -70,15 +69,15 @@ class GetCategoriesResponse(BaseResponse):
 
 
 class GetClientsResponse(BaseResponse):
-    response: Optional[typing.List["ads.Client"]] = None
+    response: Optional["GetClientsResponseModel"] = None
 
 
 class GetDemographicsResponse(BaseResponse):
-    response: Optional[typing.List["ads.DemoStats"]] = None
+    response: Optional["GetDemographicsResponseModel"] = None
 
 
 class GetFloodStatsResponse(BaseResponse):
-    response: Optional[typing.List["ads.FloodStats"]] = None
+    response: Optional["GetFloodStatsResponseModel"] = None
 
 
 class GetLookalikeRequestsResponse(BaseResponse):
@@ -90,71 +89,86 @@ class GetMusiciansResponse(BaseResponse):
 
 
 class GetOfficeUsersResponse(BaseResponse):
-    response: Optional[typing.List["ads.Users"]] = None
+    response: Optional["GetOfficeUsersResponseModel"] = None
 
 
 class GetPostsReachResponse(BaseResponse):
-    response: Optional[typing.List["ads.PromotedPostReach"]] = None
+    response: Optional["GetPostsReachResponseModel"] = None
 
 
 class GetRejectionReasonResponse(BaseResponse):
-    response: Optional[typing.List["ads.RejectReason"]] = None
+    response: Optional["GetRejectionReasonResponseModel"] = None
 
 
 class GetStatisticsResponse(BaseResponse):
-    response: Optional[typing.List["ads.Stats"]] = None
+    response: Optional["GetStatisticsResponseModel"] = None
 
 
 class GetSuggestionsCitiesResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargSuggestionsCities"]] = None
+    response: Optional["GetSuggestionsCitiesResponseModel"] = None
 
 
 class GetSuggestionsRegionsResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargSuggestionsRegions"]] = None
+    response: Optional["GetSuggestionsRegionsResponseModel"] = None
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargSuggestions"]] = None
+    response: Optional["GetSuggestionsResponseModel"] = None
 
 
 class GetSuggestionsSchoolsResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargSuggestionsSchools"]] = None
+    response: Optional["GetSuggestionsSchoolsResponseModel"] = None
 
 
 class GetTargetGroupsResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargetGroup"]] = None
+    response: Optional["GetTargetGroupsResponseModel"] = None
 
 
 class GetTargetingStatsResponse(BaseResponse):
-    response: Optional[typing.List["ads.TargStats"]] = None
+    response: Optional["GetTargetingStatsResponseModel"] = None
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: Optional[str] = None
+    response: Optional["GetUploadURLResponseModel"] = None
 
 
 class GetVideoUploadURLResponse(BaseResponse):
-    response: Optional[str] = None
+    response: Optional["GetVideoUploadURLResponseModel"] = None
 
 
 class ImportTargetContactsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["ImportTargetContactsResponseModel"] = None
 
 
 class RemoveOfficeUsersResponse(BaseResponse):
-    response: Optional[bool] = None
+    response: Optional["RemoveOfficeUsersResponseModel"] = None
 
 
 class UpdateAdsResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["UpdateAdsResponseModel"] = None
 
 
 class UpdateCampaignsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["UpdateCampaignsResponseModel"] = None
 
 
 class UpdateClientsResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["UpdateClientsResponseModel"] = None
+
+
+AddOfficeUsersResponseModel = bool
+
+
+CheckLinkResponseModel = Optional["ads.LinkStatus"]
+
+
+CreateAdsResponseModel = List[int]
+
+
+CreateCampaignsResponseModel = List[int]
+
+
+CreateClientsResponseModel = List[int]
 
 
 class CreateTargetGroupResponseModel(BaseResponse):
@@ -162,15 +176,102 @@ class CreateTargetGroupResponseModel(BaseResponse):
     pixel: Optional[str] = None
 
 
+DeleteAdsResponseModel = List[int]
+
+
+DeleteCampaignsResponseModel = int
+
+
+DeleteClientsResponseModel = int
+
+
+GetAccountsResponseModel = List["ads.Account"]
+
+
+GetAdsLayoutResponseModel = List["ads.AdLayout"]
+
+
+GetAdsTargetingResponseModel = List["ads.TargSettings"]
+
+
+GetAdsResponseModel = List["ads.Ad"]
+
+
+GetBudgetResponseModel = int
+
+
+GetCampaignsResponseModel = List["ads.Campaign"]
+
+
 class GetCategoriesResponseModel(BaseResponse):
-    v1: Optional[typing.List["ads.Category"]] = None
-    v2: Optional[typing.List["ads.Category"]] = None
+    v1: Optional[List["ads.Category"]] = None
+    v2: Optional[List["ads.Category"]] = None
+
+
+GetClientsResponseModel = List["ads.Client"]
+
+
+GetDemographicsResponseModel = List["ads.DemoStats"]
+
+
+GetFloodStatsResponseModel = Optional["ads.FloodStats"]
 
 
 class GetLookalikeRequestsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["ads.LookalikeRequest"]] = None
+    items: Optional[List["ads.LookalikeRequest"]] = None
 
 
 class GetMusiciansResponseModel(BaseResponse):
-    items: Optional[typing.List["ads.Musician"]] = None
+    items: Optional[List["ads.Musician"]] = None
+
+
+GetOfficeUsersResponseModel = List["ads.Users"]
+
+
+GetPostsReachResponseModel = List["ads.PromotedPostReach"]
+
+
+GetRejectionReasonResponseModel = Optional["ads.RejectReason"]
+
+
+GetStatisticsResponseModel = List["ads.Stats"]
+
+
+GetSuggestionsCitiesResponseModel = List["ads.TargSuggestionsCities"]
+
+
+GetSuggestionsRegionsResponseModel = List["ads.TargSuggestionsRegions"]
+
+
+GetSuggestionsResponseModel = List["ads.TargSuggestions"]
+
+
+GetSuggestionsSchoolsResponseModel = List["ads.TargSuggestionsSchools"]
+
+
+GetTargetGroupsResponseModel = List["ads.TargetGroup"]
+
+
+GetTargetingStatsResponseModel = Optional["ads.TargStats"]
+
+
+GetUploadURLResponseModel = str
+
+
+GetVideoUploadURLResponseModel = str
+
+
+ImportTargetContactsResponseModel = int
+
+
+RemoveOfficeUsersResponseModel = bool
+
+
+UpdateAdsResponseModel = List[int]
+
+
+UpdateCampaignsResponseModel = int
+
+
+UpdateClientsResponseModel = int

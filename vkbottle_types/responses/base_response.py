@@ -1,5 +1,14 @@
 from pydantic import BaseModel
+from typing import Optional, TYPE_CHECKING
 
 
 class BaseResponse(BaseModel):
-    pass
+    _raw_json: Optional[str] = None
+
+    @property
+    def raw_json(self) -> str:
+        if not self.raw_json:
+            raise AttributeError(
+                "You cannot get raw_json from here. Get a full raw_json from unnested response"
+            )
+        return self._raw_json

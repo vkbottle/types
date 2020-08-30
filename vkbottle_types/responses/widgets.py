@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import widgets
 from .base_response import BaseResponse
+from vkbottle_types.objects import widgets
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetCommentsResponse(BaseResponse):
@@ -15,9 +14,9 @@ class GetPagesResponse(BaseResponse):
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    posts: Optional[typing.List["widgets.WidgetComment"]] = None
+    posts: Optional[List["widgets.WidgetComment"]] = None
 
 
 class GetPagesResponseModel(BaseResponse):
     count: Optional[int] = None
-    pages: Optional[typing.List["widgets.WidgetPage"]] = None
+    pages: Optional[List["widgets.WidgetPage"]] = None

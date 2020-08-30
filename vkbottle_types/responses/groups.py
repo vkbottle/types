@@ -1,12 +1,11 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import users, base, groups
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, base, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddAddressResponse(BaseResponse):
-    response: Optional[typing.List["groups.Address"]] = None
+    response: Optional["AddAddressResponseModel"] = None
 
 
 class AddCallbackServerResponse(BaseResponse):
@@ -14,15 +13,15 @@ class AddCallbackServerResponse(BaseResponse):
 
 
 class AddLinkResponse(BaseResponse):
-    response: Optional[typing.List["groups.GroupLink"]] = None
+    response: Optional["AddLinkResponseModel"] = None
 
 
 class CreateResponse(BaseResponse):
-    response: Optional[typing.List["groups.Group"]] = None
+    response: Optional["CreateResponseModel"] = None
 
 
 class EditAddressResponse(BaseResponse):
-    response: Optional[typing.List["groups.Address"]] = None
+    response: Optional["EditAddressResponseModel"] = None
 
 
 class GetAddressesResponse(BaseResponse):
@@ -34,7 +33,7 @@ class GetBannedResponse(BaseResponse):
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional[typing.List["groups.GroupFull"]] = None
+    response: Optional["GetByIdResponseModel"] = None
 
 
 class GetCallbackConfirmationCodeResponse(BaseResponse):
@@ -46,7 +45,7 @@ class GetCallbackServersResponse(BaseResponse):
 
 
 class GetCallbackSettingsResponse(BaseResponse):
-    response: Optional[typing.List["groups.CallbackSettings"]] = None
+    response: Optional["GetCallbackSettingsResponseModel"] = None
 
 
 class GetCatalogInfoExtendedResponse(BaseResponse):
@@ -74,11 +73,11 @@ class GetInvitesResponse(BaseResponse):
 
 
 class GetLongPollServerResponse(BaseResponse):
-    response: Optional[typing.List["groups.LongPollServer"]] = None
+    response: Optional["GetLongPollServerResponseModel"] = None
 
 
 class GetLongPollSettingsResponse(BaseResponse):
-    response: Optional[typing.List["groups.LongPollSettings"]] = None
+    response: Optional["GetLongPollSettingsResponseModel"] = None
 
 
 class GetMembersFieldsResponse(BaseResponse):
@@ -122,33 +121,48 @@ class IsMemberExtendedResponse(BaseResponse):
 
 
 class IsMemberResponse(BaseResponse):
-    response: Optional[typing.List["base.BoolInt"]] = None
+    response: Optional["IsMemberResponseModel"] = None
 
 
 class IsMemberUserIdsExtendedResponse(BaseResponse):
-    response: Optional[typing.List["groups.MemberStatusFull"]] = None
+    response: Optional["IsMemberUserIdsExtendedResponseModel"] = None
 
 
 class IsMemberUserIdsResponse(BaseResponse):
-    response: Optional[typing.List["groups.MemberStatus"]] = None
+    response: Optional["IsMemberUserIdsResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
     response: Optional["SearchResponseModel"] = None
 
 
+AddAddressResponseModel = Optional["groups.Address"]
+
+
 class AddCallbackServerResponseModel(BaseResponse):
     server_id: Optional[int] = None
 
 
+AddLinkResponseModel = Optional["groups.GroupLink"]
+
+
+CreateResponseModel = Optional["groups.Group"]
+
+
+EditAddressResponseModel = Optional["groups.Address"]
+
+
 class GetAddressesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.Address"]] = None
+    items: Optional[List["groups.Address"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.BannedItem"]] = None
+    items: Optional[List["groups.BannedItem"]] = None
+
+
+GetByIdResponseModel = List["groups.GroupFull"]
 
 
 class GetCallbackConfirmationCodeResponseModel(BaseResponse):
@@ -157,89 +171,98 @@ class GetCallbackConfirmationCodeResponseModel(BaseResponse):
 
 class GetCallbackServersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.CallbackServer"]] = None
+    items: Optional[List["groups.CallbackServer"]] = None
+
+
+GetCallbackSettingsResponseModel = Optional["groups.CallbackSettings"]
 
 
 class GetCatalogInfoExtendedResponseModel(BaseResponse):
     enabled: Optional[int] = None
-    categories: Optional[typing.List["groups.GroupCategoryFull"]] = None
+    categories: Optional[List["groups.GroupCategoryFull"]] = None
 
 
 class GetCatalogInfoResponseModel(BaseResponse):
     enabled: Optional[int] = None
-    categories: Optional[typing.List["groups.GroupCategory"]] = None
+    categories: Optional[List["groups.GroupCategory"]] = None
 
 
 class GetCatalogResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["groups.Group"]] = None
 
 
 class GetInvitedUsersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None
 
 
 class GetInvitesExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.GroupXtrInvitedBy"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["groups.GroupXtrInvitedBy"]] = None
+    profiles: Optional[List["users.UserMin"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class GetInvitesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.GroupXtrInvitedBy"]] = None
+    items: Optional[List["groups.GroupXtrInvitedBy"]] = None
+
+
+GetLongPollServerResponseModel = Optional["groups.LongPollServer"]
+
+
+GetLongPollSettingsResponseModel = Optional["groups.LongPollSettings"]
 
 
 class GetMembersFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.UserXtrRole"]] = None
+    items: Optional[List["groups.UserXtrRole"]] = None
 
 
 class GetMembersFilterResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.MemberRole"]] = None
+    items: Optional[List["groups.MemberRole"]] = None
 
 
 class GetMembersResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
 
 
 class GetRequestsFieldsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["users.UserFull"]] = None
+    items: Optional[List["users.UserFull"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
 
 
 class GetSettingsResponseModel(BaseResponse):
-    access: Optional[typing.List["groups.GroupAccess"]] = None
+    access: Optional["groups.GroupAccess"] = None
     address: Optional[str] = None
-    audio: Optional[typing.List["groups.GroupAudio"]] = None
+    audio: Optional["groups.GroupAudio"] = None
     articles: Optional[int] = None
     city_id: Optional[int] = None
-    contacts: Optional[typing.List["base.BoolInt"]] = None
-    links: Optional[typing.List["base.BoolInt"]] = None
-    sections_list: Optional["GetSettingsResponseModelModel"] = None
-    main_section: Optional[typing.List["groups.GroupFullMainSection"]] = None
+    contacts: Optional["base.BoolInt"] = None
+    links: Optional["base.BoolInt"] = None
+    sections_list: Optional[typing.Dict[Any, Any]] = None
+    main_section: Optional["groups.GroupFullMainSection"] = None
     secondary_section: Optional[int] = None
     age_limits: Optional[int] = None
     country_id: Optional[int] = None
     description: Optional[str] = None
-    docs: Optional[typing.List["groups.GroupDocs"]] = None
-    events: Optional[typing.List["base.BoolInt"]] = None
-    obscene_filter: Optional[typing.List["base.BoolInt"]] = None
-    obscene_stopwords: Optional[typing.List["base.BoolInt"]] = None
-    obscene_words: Optional[typing.List[str]] = None
+    docs: Optional["groups.GroupDocs"] = None
+    events: Optional["base.BoolInt"] = None
+    obscene_filter: Optional["base.BoolInt"] = None
+    obscene_stopwords: Optional["base.BoolInt"] = None
+    obscene_words: Optional[List[str]] = None
     event_group_id: Optional[int] = None
     photos: Optional[int] = None
     public_category: Optional[int] = None
-    public_category_list: Optional[typing.List["groups.GroupPublicCategoryList"]] = None
+    public_category_list: Optional[List["groups.GroupPublicCategoryList"]] = None
     public_date: Optional[str] = None
     public_date_label: Optional[str] = None
     public_subcategory: Optional[int] = None
@@ -247,44 +270,51 @@ class GetSettingsResponseModel(BaseResponse):
     start_date: Optional[int] = None
     finish_date: Optional[int] = None
     subject: Optional[int] = None
-    subject_list: Optional[typing.List["groups.SubjectItem"]] = None
+    subject_list: Optional[List["groups.SubjectItem"]] = None
     suggested_privacy: Optional[int] = None
     title: Optional[str] = None
-    topics: Optional[typing.List["groups.GroupTopics"]] = None
-    twitter: Optional[typing.List["groups.SettingsTwitter"]] = None
-    video: Optional[typing.List["groups.GroupVideo"]] = None
-    wall: Optional[typing.List["groups.GroupWall"]] = None
+    topics: Optional["groups.GroupTopics"] = None
+    twitter: Optional["groups.SettingsTwitter"] = None
+    video: Optional["groups.GroupVideo"] = None
+    wall: Optional["groups.GroupWall"] = None
     website: Optional[str] = None
     phone: Optional[str] = None
     email: Optional[str] = None
-    wiki: Optional[typing.List["groups.GroupWiki"]] = None
+    wiki: Optional["groups.GroupWiki"] = None
 
 
 class GetTokenPermissionsResponseModel(BaseResponse):
     mask: Optional[int] = None
-    permissions: Optional[typing.List["groups.TokenPermissionSetting"]] = None
+    permissions: Optional[List["groups.TokenPermissionSetting"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["groups.GroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List[int]] = None
+    items: Optional[List[int]] = None
 
 
 class IsMemberExtendedResponseModel(BaseResponse):
-    member: Optional[typing.List["base.BoolInt"]] = None
-    invitation: Optional[typing.List["base.BoolInt"]] = None
-    can_invite: Optional[typing.List["base.BoolInt"]] = None
-    can_recall: Optional[typing.List["base.BoolInt"]] = None
-    request: Optional[typing.List["base.BoolInt"]] = None
+    member: Optional["base.BoolInt"] = None
+    invitation: Optional["base.BoolInt"] = None
+    can_invite: Optional["base.BoolInt"] = None
+    can_recall: Optional["base.BoolInt"] = None
+    request: Optional["base.BoolInt"] = None
+
+
+IsMemberResponseModel = Optional["base.BoolInt"]
+
+
+IsMemberUserIdsExtendedResponseModel = List["groups.MemberStatusFull"]
+
+
+IsMemberUserIdsResponseModel = List["groups.MemberStatus"]
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["groups.Group"]] = None
-
-    items: Optional[dict] = None
+    items: Optional[List["groups.Group"]] = None

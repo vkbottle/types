@@ -1,13 +1,18 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import stats
 from .base_response import BaseResponse
+from vkbottle_types.objects import stats
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetPostReachResponse(BaseResponse):
-    response: Optional[typing.List["stats.WallpostStat"]] = None
+    response: Optional["GetPostReachResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional[typing.List["stats.Period"]] = None
+    response: Optional["GetResponseModel"] = None
+
+
+GetPostReachResponseModel = List["stats.WallpostStat"]
+
+
+GetResponseModel = List["stats.Period"]

@@ -1,16 +1,15 @@
-import typing
-from typing import Optional
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
-    photos,
-    notifications,
-    video,
-    base,
+    users,
     groups,
     apps,
-    users,
+    photos,
+    video,
+    notifications,
+    base,
 )
-from .base_response import BaseResponse
+from typing import Optional, Any, List, Union
+import typing
 
 
 class GetResponse(BaseResponse):
@@ -18,21 +17,27 @@ class GetResponse(BaseResponse):
 
 
 class MarkAsViewedResponse(BaseResponse):
-    response: Optional[typing.List["base.BoolInt"]] = None
+    response: Optional["MarkAsViewedResponseModel"] = None
 
 
 class SendMessageResponse(BaseResponse):
-    response: Optional[typing.List["notifications.SendMessageItem"]] = None
+    response: Optional["SendMessageResponseModel"] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["notifications.NotificationItem"]] = None
-    profiles: Optional[typing.List["users.User"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["notifications.NotificationItem"]] = None
+    profiles: Optional[List["users.User"]] = None
+    groups: Optional[List["groups.Group"]] = None
     last_viewed: Optional[int] = None
-    photos: Optional[typing.List["photos.Photo"]] = None
-    videos: Optional[typing.List["video.Video"]] = None
-    apps: Optional[typing.List["apps.App"]] = None
+    photos: Optional[List["photos.Photo"]] = None
+    videos: Optional[List["video.Video"]] = None
+    apps: Optional[List["apps.App"]] = None
     next_from: Optional[str] = None
     ttl: Optional[int] = None
+
+
+MarkAsViewedResponseModel = Optional["base.BoolInt"]
+
+
+SendMessageResponseModel = List["notifications.SendMessageItem"]

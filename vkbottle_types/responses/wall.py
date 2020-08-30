@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import users, groups, wall
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, wall, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class CreateCommentResponse(BaseResponse):
@@ -18,7 +17,7 @@ class GetByIdExtendedResponse(BaseResponse):
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional[typing.List["wall.WallpostFull"]] = None
+    response: Optional["GetByIdResponseModel"] = None
 
 
 class GetCommentExtendedResponse(BaseResponse):
@@ -78,56 +77,59 @@ class EditResponseModel(BaseResponse):
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
+
+
+GetByIdResponseModel = List["wall.WallpostFull"]
 
 
 class GetCommentExtendedResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallComment"]] = None
-    profiles: Optional[typing.List["users.User"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["wall.WallComment"]] = None
+    profiles: Optional[List["users.User"]] = None
+    groups: Optional[List["groups.Group"]] = None
 
 
 class GetCommentResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallComment"]] = None
+    items: Optional[List["wall.WallComment"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
+    items: Optional[List["wall.WallComment"]] = None
     show_reply_button: Optional[bool] = None
     can_post: Optional[bool] = None
     groups_can_post: Optional[bool] = None
     current_level_count: Optional[int] = None
-    profiles: Optional[typing.List["users.User"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    profiles: Optional[List["users.User"]] = None
+    groups: Optional[List["groups.Group"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
+    items: Optional[List["wall.WallComment"]] = None
     can_post: Optional[bool] = None
     groups_can_post: Optional[bool] = None
     current_level_count: Optional[int] = None
 
 
 class GetRepostsResponseModel(BaseResponse):
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    profiles: Optional[typing.List["users.User"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    profiles: Optional[List["users.User"]] = None
+    groups: Optional[List["groups.Group"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallpostFull"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
 
 
 class PostAdsStealthResponseModel(BaseResponse):
@@ -147,11 +149,11 @@ class RepostResponseModel(BaseResponse):
 
 class SearchExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallpostFull"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallpostFull"]] = None
+    items: Optional[List["wall.WallpostFull"]] = None

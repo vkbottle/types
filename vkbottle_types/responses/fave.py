@@ -1,12 +1,11 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import fave, groups, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import fave, groups, users
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddTagResponse(BaseResponse):
-    response: Optional[typing.List["fave.Tag"]] = None
+    response: Optional["AddTagResponseModel"] = None
 
 
 class GetPagesResponse(BaseResponse):
@@ -25,23 +24,26 @@ class GetResponse(BaseResponse):
     response: Optional["GetResponseModel"] = None
 
 
+AddTagResponseModel = Optional["fave.Tag"]
+
+
 class GetPagesResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["fave.Page"]] = None
+    items: Optional[List["fave.Page"]] = None
 
 
 class GetTagsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["fave.Tag"]] = None
+    items: Optional[List["fave.Tag"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["fave.Bookmark"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["fave.Bookmark"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.Group"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["fave.Bookmark"]] = None
+    items: Optional[List["fave.Bookmark"]] = None

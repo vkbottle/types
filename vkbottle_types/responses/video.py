@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import video, base, groups, wall, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, groups, wall, video, base
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddAlbumResponse(BaseResponse):
@@ -10,11 +9,11 @@ class AddAlbumResponse(BaseResponse):
 
 
 class CreateCommentResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["CreateCommentResponseModel"] = None
 
 
 class GetAlbumByIdResponse(BaseResponse):
-    response: Optional[typing.List["video.VideoAlbumFull"]] = None
+    response: Optional["GetAlbumByIdResponseModel"] = None
 
 
 class GetAlbumsByVideoExtendedResponse(BaseResponse):
@@ -22,7 +21,7 @@ class GetAlbumsByVideoExtendedResponse(BaseResponse):
 
 
 class GetAlbumsByVideoResponse(BaseResponse):
-    response: Optional[typing.List[int]] = None
+    response: Optional["GetAlbumsByVideoResponseModel"] = None
 
 
 class GetAlbumsExtendedResponse(BaseResponse):
@@ -50,11 +49,11 @@ class GetResponse(BaseResponse):
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: Optional[typing.List["base.BoolInt"]] = None
+    response: Optional["RestoreCommentResponseModel"] = None
 
 
 class SaveResponse(BaseResponse):
-    response: Optional[typing.List["video.SaveResult"]] = None
+    response: Optional["SaveResponseModel"] = None
 
 
 class SearchExtendedResponse(BaseResponse):
@@ -69,52 +68,67 @@ class AddAlbumResponseModel(BaseResponse):
     album_id: Optional[int] = None
 
 
+CreateCommentResponseModel = int
+
+
+GetAlbumByIdResponseModel = Optional["video.VideoAlbumFull"]
+
+
 class GetAlbumsByVideoExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.VideoAlbumFull"]] = None
+    items: Optional[List["video.VideoAlbumFull"]] = None
+
+
+GetAlbumsByVideoResponseModel = List[int]
 
 
 class GetAlbumsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.VideoAlbumFull"]] = None
+    items: Optional[List["video.VideoAlbumFull"]] = None
 
 
 class GetAlbumsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.VideoAlbumFull"]] = None
+    items: Optional[List["video.VideoAlbumFull"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["wall.WallComment"]] = None
+    profiles: Optional[List["users.UserMin"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
+    items: Optional[List["wall.WallComment"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.VideoFull"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["video.VideoFull"]] = None
+    profiles: Optional[List["users.UserMin"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.Video"]] = None
+    items: Optional[List["video.Video"]] = None
+
+
+RestoreCommentResponseModel = Optional["base.BoolInt"]
+
+
+SaveResponseModel = Optional["video.SaveResult"]
 
 
 class SearchExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.Video"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["video.Video"]] = None
+    profiles: Optional[List["users.UserMin"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["video.Video"]] = None
+    items: Optional[List["video.Video"]] = None

@@ -1,28 +1,27 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import photos, base, groups, wall, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, groups, wall, photos, base
+from typing import Optional, Any, List, Union
+import typing
 
 
 class CopyResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["CopyResponseModel"] = None
 
 
 class CreateAlbumResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoAlbumFull"]] = None
+    response: Optional["CreateAlbumResponseModel"] = None
 
 
 class CreateCommentResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["CreateCommentResponseModel"] = None
 
 
 class DeleteCommentResponse(BaseResponse):
-    response: Optional[typing.List["base.BoolInt"]] = None
+    response: Optional["DeleteCommentResponseModel"] = None
 
 
 class GetAlbumsCountResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["GetAlbumsCountResponseModel"] = None
 
 
 class GetAlbumsResponse(BaseResponse):
@@ -42,11 +41,11 @@ class GetAllResponse(BaseResponse):
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoFull"]] = None
+    response: Optional["GetByIdExtendedResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["GetByIdResponseModel"] = None
 
 
 class GetCommentsExtendedResponse(BaseResponse):
@@ -58,11 +57,11 @@ class GetCommentsResponse(BaseResponse):
 
 
 class GetMarketUploadServerResponse(BaseResponse):
-    response: Optional[typing.List["base.UploadServer"]] = None
+    response: Optional["GetMarketUploadServerResponseModel"] = None
 
 
 class GetMessagesUploadServerResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoUpload"]] = None
+    response: Optional["GetMessagesUploadServerResponseModel"] = None
 
 
 class GetNewTagsResponse(BaseResponse):
@@ -70,11 +69,11 @@ class GetNewTagsResponse(BaseResponse):
 
 
 class GetTagsResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoTag"]] = None
+    response: Optional["GetTagsResponseModel"] = None
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoUpload"]] = None
+    response: Optional["GetUploadServerResponseModel"] = None
 
 
 class GetUserPhotosExtendedResponse(BaseResponse):
@@ -86,7 +85,7 @@ class GetUserPhotosResponse(BaseResponse):
 
 
 class GetWallUploadServerResponse(BaseResponse):
-    response: Optional[typing.List["photos.PhotoUpload"]] = None
+    response: Optional["GetWallUploadServerResponseModel"] = None
 
 
 class GetExtendedResponse(BaseResponse):
@@ -98,27 +97,27 @@ class GetResponse(BaseResponse):
 
 
 class PutTagResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["PutTagResponseModel"] = None
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: Optional[typing.List["base.BoolInt"]] = None
+    response: Optional["RestoreCommentResponseModel"] = None
 
 
 class SaveMarketAlbumPhotoResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["SaveMarketAlbumPhotoResponseModel"] = None
 
 
 class SaveMarketPhotoResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["SaveMarketPhotoResponseModel"] = None
 
 
 class SaveMessagesPhotoResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["SaveMessagesPhotoResponseModel"] = None
 
 
 class SaveOwnerCoverPhotoResponse(BaseResponse):
-    response: Optional[typing.List["base.Image"]] = None
+    response: Optional["SaveOwnerCoverPhotoResponseModel"] = None
 
 
 class SaveOwnerPhotoResponse(BaseResponse):
@@ -126,76 +125,130 @@ class SaveOwnerPhotoResponse(BaseResponse):
 
 
 class SaveWallPhotoResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["SaveWallPhotoResponseModel"] = None
 
 
 class SaveResponse(BaseResponse):
-    response: Optional[typing.List["photos.Photo"]] = None
+    response: Optional["SaveResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
     response: Optional["SearchResponseModel"] = None
 
 
+CopyResponseModel = int
+
+
+CreateAlbumResponseModel = Optional["photos.PhotoAlbumFull"]
+
+
+CreateCommentResponseModel = int
+
+
+DeleteCommentResponseModel = Optional["base.BoolInt"]
+
+
+GetAlbumsCountResponseModel = int
+
+
 class GetAlbumsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoAlbumFull"]] = None
+    items: Optional[List["photos.PhotoAlbumFull"]] = None
 
 
 class GetAllCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.CommentXtrPid"]] = None
+    items: Optional[List["photos.CommentXtrPid"]] = None
 
 
 class GetAllExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoFullXtrRealOffset"]] = None
-    more: Optional[typing.List["base.BoolInt"]] = None
+    items: Optional[List["photos.PhotoFullXtrRealOffset"]] = None
+    more: Optional["base.BoolInt"] = None
 
 
 class GetAllResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoXtrRealOffset"]] = None
-    more: Optional[typing.List["base.BoolInt"]] = None
+    items: Optional[List["photos.PhotoXtrRealOffset"]] = None
+    more: Optional["base.BoolInt"] = None
+
+
+GetByIdExtendedResponseModel = List["photos.PhotoFull"]
+
+
+GetByIdResponseModel = List["photos.Photo"]
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
     real_offset: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
-    profiles: Optional[typing.List["users.UserFull"]] = None
-    groups: Optional[typing.List["groups.GroupFull"]] = None
+    items: Optional[List["wall.WallComment"]] = None
+    profiles: Optional[List["users.UserFull"]] = None
+    groups: Optional[List["groups.GroupFull"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
     real_offset: Optional[int] = None
-    items: Optional[typing.List["wall.WallComment"]] = None
+    items: Optional[List["wall.WallComment"]] = None
+
+
+GetMarketUploadServerResponseModel = Optional["base.UploadServer"]
+
+
+GetMessagesUploadServerResponseModel = Optional["photos.PhotoUpload"]
 
 
 class GetNewTagsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoXtrTagInfo"]] = None
+    items: Optional[List["photos.PhotoXtrTagInfo"]] = None
+
+
+GetTagsResponseModel = List["photos.PhotoTag"]
+
+
+GetUploadServerResponseModel = Optional["photos.PhotoUpload"]
 
 
 class GetUserPhotosExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoFull"]] = None
+    items: Optional[List["photos.PhotoFull"]] = None
 
 
 class GetUserPhotosResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.Photo"]] = None
+    items: Optional[List["photos.Photo"]] = None
+
+
+GetWallUploadServerResponseModel = Optional["photos.PhotoUpload"]
 
 
 class GetExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.PhotoFull"]] = None
+    items: Optional[List["photos.PhotoFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.Photo"]] = None
+    items: Optional[List["photos.Photo"]] = None
+
+
+PutTagResponseModel = int
+
+
+RestoreCommentResponseModel = Optional["base.BoolInt"]
+
+
+SaveMarketAlbumPhotoResponseModel = List["photos.Photo"]
+
+
+SaveMarketPhotoResponseModel = List["photos.Photo"]
+
+
+SaveMessagesPhotoResponseModel = List["photos.Photo"]
+
+
+SaveOwnerCoverPhotoResponseModel = List["base.Image"]
 
 
 class SaveOwnerPhotoResponseModel(BaseResponse):
@@ -207,6 +260,12 @@ class SaveOwnerPhotoResponseModel(BaseResponse):
     post_id: Optional[int] = None
 
 
+SaveWallPhotoResponseModel = List["photos.Photo"]
+
+
+SaveResponseModel = List["photos.Photo"]
+
+
 class SearchResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["photos.Photo"]] = None
+    items: Optional[List["photos.Photo"]] = None

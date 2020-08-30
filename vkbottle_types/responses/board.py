@@ -1,16 +1,15 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import board, groups, base, users
 from .base_response import BaseResponse
+from vkbottle_types.objects import users, board, base, groups
+from typing import Optional, Any, List, Union
+import typing
 
 
 class AddTopicResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["AddTopicResponseModel"] = None
 
 
 class CreateCommentResponse(BaseResponse):
-    response: Optional[int] = None
+    response: Optional["CreateCommentResponseModel"] = None
 
 
 class GetCommentsExtendedResponse(BaseResponse):
@@ -29,30 +28,36 @@ class GetTopicsResponse(BaseResponse):
     response: Optional["GetTopicsResponseModel"] = None
 
 
+AddTopicResponseModel = int
+
+
+CreateCommentResponseModel = int
+
+
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["board.TopicComment"]] = None
-    poll: Optional[typing.List["board.TopicPoll"]] = None
-    profiles: Optional[typing.List["users.User"]] = None
-    groups: Optional[typing.List["groups.Group"]] = None
+    items: Optional[List["board.TopicComment"]] = None
+    poll: Optional["board.TopicPoll"] = None
+    profiles: Optional[List["users.User"]] = None
+    groups: Optional[List["groups.Group"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["board.TopicComment"]] = None
-    poll: Optional[typing.List["board.TopicPoll"]] = None
+    items: Optional[List["board.TopicComment"]] = None
+    poll: Optional["board.TopicPoll"] = None
 
 
 class GetTopicsExtendedResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["board.Topic"]] = None
-    default_order: Optional[typing.List["board.DefaultOrder"]] = None
-    can_add_topics: Optional[typing.List["base.BoolInt"]] = None
-    profiles: Optional[typing.List["users.UserMin"]] = None
+    items: Optional[List["board.Topic"]] = None
+    default_order: Optional["board.DefaultOrder"] = None
+    can_add_topics: Optional["base.BoolInt"] = None
+    profiles: Optional[List["users.UserMin"]] = None
 
 
 class GetTopicsResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["board.Topic"]] = None
-    default_order: Optional[typing.List["board.DefaultOrder"]] = None
-    can_add_topics: Optional[typing.List["base.BoolInt"]] = None
+    items: Optional[List["board.Topic"]] = None
+    default_order: Optional["board.DefaultOrder"] = None
+    can_add_topics: Optional["base.BoolInt"] = None

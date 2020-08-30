@@ -1,8 +1,7 @@
-import typing
-from typing import Optional
-
-from vkbottle_types.objects import prettyCards
 from .base_response import BaseResponse
+from vkbottle_types.objects import prettyCards
+from typing import Optional, Any, List, Union
+import typing
 
 
 class CreateResponse(BaseResponse):
@@ -18,11 +17,11 @@ class EditResponse(BaseResponse):
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional[typing.List["prettyCards.PrettyCard"]] = None
+    response: Optional["GetByIdResponseModel"] = None
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: Optional[str] = None
+    response: Optional["GetUploadURLResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
@@ -45,6 +44,12 @@ class EditResponseModel(BaseResponse):
     card_id: Optional[str] = None
 
 
+GetByIdResponseModel = List["prettyCards.PrettyCard"]
+
+
+GetUploadURLResponseModel = str
+
+
 class GetResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[typing.List["prettyCards.PrettyCard"]] = None
+    items: Optional[List["prettyCards.PrettyCard"]] = None
