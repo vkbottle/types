@@ -1,4 +1,3 @@
-from pydantic import BaseModel
 import typing
 
 if typing.TYPE_CHECKING:
@@ -8,7 +7,7 @@ if typing.TYPE_CHECKING:
 # RequestMethod = NamedTuple("RequestMethod", [("base_name", str), ("method_name", str), ("params", dict)])
 
 
-class BaseCategory(BaseModel):
+class BaseCategory:
     api: "API"
 
     @classmethod
