@@ -23,7 +23,7 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.GetResponse(**await self.api.request("users.get", params))
+        return users.GetResponse(**await self.api.request("users.get", params)).response
 
     async def get_followers(
         self,
@@ -45,7 +45,7 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         return users.GetFollowersResponse(
             **await self.api.request("users.getFollowers", params)
-        )
+        ).response
 
     async def get_subscriptions(
         self,
@@ -67,7 +67,7 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         return users.GetSubscriptionsExtendedResponse(
             **await self.api.request("users.getSubscriptions", params)
-        )
+        ).response
 
     async def report(
         self, user_id: int, type: str, comment: Optional[str] = None, **kwargs
@@ -79,7 +79,9 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("users.report", params))
+        return base.OkResponse(
+            **await self.api.request("users.report", params)
+        ).response
 
     async def search(
         self,
@@ -153,4 +155,6 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.SearchResponse(**await self.api.request("users.search", params))
+        return users.SearchResponse(
+            **await self.api.request("users.search", params)
+        ).response

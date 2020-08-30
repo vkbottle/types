@@ -31,7 +31,7 @@ class StatsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stats.GetResponse(**await self.api.request("stats.get", params))
+        return stats.GetResponse(**await self.api.request("stats.get", params)).response
 
     async def get_post_reach(
         self, owner_id: str, post_ids: List[int], **kwargs
@@ -44,7 +44,7 @@ class StatsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stats.GetPostReachResponse(
             **await self.api.request("stats.getPostReach", params)
-        )
+        ).response
 
     async def track_visitor(self, id: str, **kwargs) -> base.OkResponseModel:
         """stats.trackVisitor method
@@ -52,4 +52,6 @@ class StatsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("stats.trackVisitor", params))
+        return base.OkResponse(
+            **await self.api.request("stats.trackVisitor", params)
+        ).response

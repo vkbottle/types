@@ -18,7 +18,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(**await self.api.request("wall.closeComments", params))
+        return base.BoolResponse(
+            **await self.api.request("wall.closeComments", params)
+        ).response
 
     async def create_comment(
         self,
@@ -46,7 +48,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.CreateCommentResponse(
             **await self.api.request("wall.createComment", params)
-        )
+        ).response
 
     async def delete(
         self, owner_id: Optional[int] = None, post_id: Optional[int] = None, **kwargs
@@ -57,7 +59,7 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.delete", params))
+        return base.OkResponse(**await self.api.request("wall.delete", params)).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -68,7 +70,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.deleteComment", params))
+        return base.OkResponse(
+            **await self.api.request("wall.deleteComment", params)
+        ).response
 
     async def edit(
         self,
@@ -112,7 +116,7 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.EditResponse(**await self.api.request("wall.edit", params))
+        return wall.EditResponse(**await self.api.request("wall.edit", params)).response
 
     async def edit_ads_stealth(
         self,
@@ -146,7 +150,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.editAdsStealth", params))
+        return base.OkResponse(
+            **await self.api.request("wall.editAdsStealth", params)
+        ).response
 
     async def edit_comment(
         self,
@@ -164,7 +170,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.editComment", params))
+        return base.OkResponse(
+            **await self.api.request("wall.editComment", params)
+        ).response
 
     async def get(
         self,
@@ -188,7 +196,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetExtendedResponse(**await self.api.request("wall.get", params))
+        return wall.GetExtendedResponse(
+            **await self.api.request("wall.get", params)
+        ).response
 
     async def get_by_id(
         self,
@@ -208,7 +218,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.GetByIdExtendedResponse(
             **await self.api.request("wall.getById", params)
-        )
+        ).response
 
     async def get_comment(
         self,
@@ -228,7 +238,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.GetCommentExtendedResponse(
             **await self.api.request("wall.getComment", params)
-        )
+        ).response
 
     async def get_comments(
         self,
@@ -264,7 +274,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.GetCommentsExtendedResponse(
             **await self.api.request("wall.getComments", params)
-        )
+        ).response
 
     async def get_reposts(
         self,
@@ -284,7 +294,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.GetRepostsResponse(
             **await self.api.request("wall.getReposts", params)
-        )
+        ).response
 
     async def open_comments(
         self, owner_id: int, post_id: int, **kwargs
@@ -295,7 +305,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(**await self.api.request("wall.openComments", params))
+        return base.BoolResponse(
+            **await self.api.request("wall.openComments", params)
+        ).response
 
     async def pin(
         self, post_id: int, owner_id: Optional[int] = None, **kwargs
@@ -306,7 +318,7 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.pin", params))
+        return base.OkResponse(**await self.api.request("wall.pin", params)).response
 
     async def post(
         self,
@@ -350,7 +362,7 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.PostResponse(**await self.api.request("wall.post", params))
+        return wall.PostResponse(**await self.api.request("wall.post", params)).response
 
     async def post_ads_stealth(
         self,
@@ -386,7 +398,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.PostAdsStealthResponse(
             **await self.api.request("wall.postAdsStealth", params)
-        )
+        ).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
@@ -398,7 +410,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.reportComment", params))
+        return base.OkResponse(
+            **await self.api.request("wall.reportComment", params)
+        ).response
 
     async def report_post(
         self, owner_id: int, post_id: int, reason: Optional[int] = None, **kwargs
@@ -410,7 +424,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.reportPost", params))
+        return base.OkResponse(
+            **await self.api.request("wall.reportPost", params)
+        ).response
 
     async def repost(
         self,
@@ -430,7 +446,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.RepostResponse(**await self.api.request("wall.repost", params))
+        return wall.RepostResponse(
+            **await self.api.request("wall.repost", params)
+        ).response
 
     async def restore(
         self, owner_id: Optional[int] = None, post_id: Optional[int] = None, **kwargs
@@ -441,7 +459,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.restore", params))
+        return base.OkResponse(
+            **await self.api.request("wall.restore", params)
+        ).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -452,7 +472,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.restoreComment", params))
+        return base.OkResponse(
+            **await self.api.request("wall.restoreComment", params)
+        ).response
 
     async def search(
         self,
@@ -480,7 +502,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         return wall.SearchExtendedResponse(
             **await self.api.request("wall.search", params)
-        )
+        ).response
 
     async def unpin(
         self, post_id: int, owner_id: Optional[int] = None, **kwargs
@@ -491,4 +513,4 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.unpin", params))
+        return base.OkResponse(**await self.api.request("wall.unpin", params)).response

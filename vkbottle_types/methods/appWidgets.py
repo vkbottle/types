@@ -10,4 +10,6 @@ class AppWidgetsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("appWidgets.update", params))
+        return base.OkResponse(
+            **await self.api.request("appWidgets.update", params)
+        ).response

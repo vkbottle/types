@@ -15,7 +15,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("stories.banOwner", params))
+        return base.OkResponse(
+            **await self.api.request("stories.banOwner", params)
+        ).response
 
     async def delete(
         self, owner_id: int, story_id: int, **kwargs
@@ -26,7 +28,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("stories.delete", params))
+        return base.OkResponse(
+            **await self.api.request("stories.delete", params)
+        ).response
 
     async def get(
         self,
@@ -44,7 +48,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetV5113Response(
             **await self.api.request("stories.get", params)
-        )
+        ).response
 
     async def get_banned(
         self,
@@ -60,7 +64,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetBannedExtendedResponse(
             **await self.api.request("stories.getBanned", params)
-        )
+        ).response
 
     async def get_by_id(
         self,
@@ -78,7 +82,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetByIdExtendedResponse(
             **await self.api.request("stories.getById", params)
-        )
+        ).response
 
     async def get_photo_upload_server(
         self,
@@ -104,7 +108,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetPhotoUploadServerResponse(
             **await self.api.request("stories.getPhotoUploadServer", params)
-        )
+        ).response
 
     async def get_replies(
         self,
@@ -126,7 +130,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetV5113Response(
             **await self.api.request("stories.getReplies", params)
-        )
+        ).response
 
     async def get_stats(
         self, owner_id: int, story_id: int, **kwargs
@@ -139,7 +143,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetStatsResponse(
             **await self.api.request("stories.getStats", params)
-        )
+        ).response
 
     async def get_video_upload_server(
         self,
@@ -165,7 +169,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetVideoUploadServerResponse(
             **await self.api.request("stories.getVideoUploadServer", params)
-        )
+        ).response
 
     async def get_viewers(
         self,
@@ -187,7 +191,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetViewersExtendedV5115Response(
             **await self.api.request("stories.getViewers", params)
-        )
+        ).response
 
     async def hide_all_replies(
         self, owner_id: int, group_id: Optional[int] = None, **kwargs
@@ -200,7 +204,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("stories.hideAllReplies", params)
-        )
+        ).response
 
     async def hide_reply(
         self, owner_id: int, story_id: int, **kwargs
@@ -211,7 +215,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("stories.hideReply", params))
+        return base.OkResponse(
+            **await self.api.request("stories.hideReply", params)
+        ).response
 
     async def search(
         self,
@@ -241,7 +247,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return stories_responses.GetV5113Response(
             **await self.api.request("stories.search", params)
-        )
+        ).response
 
     async def unban_owner(
         self, owners_ids: List[int], **kwargs
@@ -251,4 +257,6 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("stories.unbanOwner", params))
+        return base.OkResponse(
+            **await self.api.request("stories.unbanOwner", params)
+        ).response

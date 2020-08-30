@@ -25,7 +25,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return board.AddTopicResponse(
             **await self.api.request("board.addTopic", params)
-        )
+        ).response
 
     async def close_topic(
         self, group_id: int, topic_id: int, **kwargs
@@ -36,7 +36,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.closeTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.closeTopic", params)
+        ).response
 
     async def create_comment(
         self,
@@ -62,7 +64,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return board.CreateCommentResponse(
             **await self.api.request("board.createComment", params)
-        )
+        ).response
 
     async def delete_comment(
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
@@ -74,7 +76,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.deleteComment", params))
+        return base.OkResponse(
+            **await self.api.request("board.deleteComment", params)
+        ).response
 
     async def delete_topic(
         self, group_id: int, topic_id: int, **kwargs
@@ -85,7 +89,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.deleteTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.deleteTopic", params)
+        ).response
 
     async def edit_comment(
         self,
@@ -105,7 +111,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.editComment", params))
+        return base.OkResponse(
+            **await self.api.request("board.editComment", params)
+        ).response
 
     async def edit_topic(
         self, group_id: int, topic_id: int, title: str, **kwargs
@@ -117,7 +125,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.editTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.editTopic", params)
+        ).response
 
     async def fix_topic(
         self, group_id: int, topic_id: int, **kwargs
@@ -128,7 +138,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.fixTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.fixTopic", params)
+        ).response
 
     async def get_comments(
         self,
@@ -156,7 +168,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return board.GetCommentsExtendedResponse(
             **await self.api.request("board.getComments", params)
-        )
+        ).response
 
     async def get_topics(
         self,
@@ -184,7 +196,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return board.GetTopicsExtendedResponse(
             **await self.api.request("board.getTopics", params)
-        )
+        ).response
 
     async def open_topic(
         self, group_id: int, topic_id: int, **kwargs
@@ -195,7 +207,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.openTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.openTopic", params)
+        ).response
 
     async def restore_comment(
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
@@ -207,7 +221,9 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.restoreComment", params))
+        return base.OkResponse(
+            **await self.api.request("board.restoreComment", params)
+        ).response
 
     async def unfix_topic(
         self, group_id: int, topic_id: int, **kwargs
@@ -218,4 +234,6 @@ class BoardCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("board.unfixTopic", params))
+        return base.OkResponse(
+            **await self.api.request("board.unfixTopic", params)
+        ).response

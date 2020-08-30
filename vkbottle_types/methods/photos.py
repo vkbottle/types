@@ -19,7 +19,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.confirmTag", params))
+        return base.OkResponse(
+            **await self.api.request("photos.confirmTag", params)
+        ).response
 
     async def copy(
         self, owner_id: int, photo_id: int, access_key: Optional[str] = None, **kwargs
@@ -31,7 +33,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.CopyResponse(**await self.api.request("photos.copy", params))
+        return photos.CopyResponse(
+            **await self.api.request("photos.copy", params)
+        ).response
 
     async def create_album(
         self,
@@ -57,7 +61,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.CreateAlbumResponse(
             **await self.api.request("photos.createAlbum", params)
-        )
+        ).response
 
     async def create_comment(
         self,
@@ -87,7 +91,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.CreateCommentResponse(
             **await self.api.request("photos.createComment", params)
-        )
+        ).response
 
     async def delete(
         self, photo_id: int, owner_id: Optional[int] = None, **kwargs
@@ -98,7 +102,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.delete", params))
+        return base.OkResponse(
+            **await self.api.request("photos.delete", params)
+        ).response
 
     async def delete_album(
         self, album_id: int, group_id: Optional[int] = None, **kwargs
@@ -109,7 +115,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.deleteAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("photos.deleteAlbum", params)
+        ).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -122,7 +130,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.DeleteCommentResponse(
             **await self.api.request("photos.deleteComment", params)
-        )
+        ).response
 
     async def edit(
         self,
@@ -148,7 +156,7 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.edit", params))
+        return base.OkResponse(**await self.api.request("photos.edit", params)).response
 
     async def edit_album(
         self,
@@ -174,7 +182,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.editAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("photos.editAlbum", params)
+        ).response
 
     async def edit_comment(
         self,
@@ -192,7 +202,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.editComment", params))
+        return base.OkResponse(
+            **await self.api.request("photos.editComment", params)
+        ).response
 
     async def get(
         self,
@@ -224,7 +236,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetExtendedResponse(
             **await self.api.request("photos.get", params)
-        )
+        ).response
 
     async def get_albums(
         self,
@@ -250,7 +262,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetAlbumsResponse(
             **await self.api.request("photos.getAlbums", params)
-        )
+        ).response
 
     async def get_albums_count(
         self, user_id: Optional[int] = None, group_id: Optional[int] = None, **kwargs
@@ -263,7 +275,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetAlbumsCountResponse(
             **await self.api.request("photos.getAlbumsCount", params)
-        )
+        ).response
 
     async def get_all(
         self,
@@ -291,7 +303,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetAllExtendedResponse(
             **await self.api.request("photos.getAll", params)
-        )
+        ).response
 
     async def get_all_comments(
         self,
@@ -313,7 +325,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetAllCommentsResponse(
             **await self.api.request("photos.getAllComments", params)
-        )
+        ).response
 
     async def get_by_id(
         self,
@@ -331,7 +343,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetByIdExtendedResponse(
             **await self.api.request("photos.getById", params)
-        )
+        ).response
 
     async def get_chat_upload_server(
         self,
@@ -351,7 +363,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.GetUploadServerResponse(
             **await self.api.request("photos.getChatUploadServer", params)
-        )
+        ).response
 
     async def get_comments(
         self,
@@ -383,7 +395,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetCommentsExtendedResponse(
             **await self.api.request("photos.getComments", params)
-        )
+        ).response
 
     async def get_market_album_upload_server(
         self, group_id: int, **kwargs
@@ -395,7 +407,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.GetUploadServerResponse(
             **await self.api.request("photos.getMarketAlbumUploadServer", params)
-        )
+        ).response
 
     async def get_market_upload_server(
         self,
@@ -417,7 +429,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetMarketUploadServerResponse(
             **await self.api.request("photos.getMarketUploadServer", params)
-        )
+        ).response
 
     async def get_messages_upload_server(
         self, peer_id: Optional[int] = None, **kwargs
@@ -429,7 +441,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetMessagesUploadServerResponse(
             **await self.api.request("photos.getMessagesUploadServer", params)
-        )
+        ).response
 
     async def get_new_tags(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
@@ -442,7 +454,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetNewTagsResponse(
             **await self.api.request("photos.getNewTags", params)
-        )
+        ).response
 
     async def get_owner_cover_photo_upload_server(
         self,
@@ -464,7 +476,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.GetUploadServerResponse(
             **await self.api.request("photos.getOwnerCoverPhotoUploadServer", params)
-        )
+        ).response
 
     async def get_owner_photo_upload_server(
         self, owner_id: Optional[int] = None, **kwargs
@@ -476,7 +488,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.GetUploadServerResponse(
             **await self.api.request("photos.getOwnerPhotoUploadServer", params)
-        )
+        ).response
 
     async def get_tags(
         self,
@@ -494,7 +506,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetTagsResponse(
             **await self.api.request("photos.getTags", params)
-        )
+        ).response
 
     async def get_upload_server(
         self, group_id: Optional[int] = None, album_id: Optional[int] = None, **kwargs
@@ -507,7 +519,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetUploadServerResponse(
             **await self.api.request("photos.getUploadServer", params)
-        )
+        ).response
 
     async def get_user_photos(
         self,
@@ -529,7 +541,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetUserPhotosExtendedResponse(
             **await self.api.request("photos.getUserPhotos", params)
-        )
+        ).response
 
     async def get_wall_upload_server(
         self, group_id: Optional[int] = None, **kwargs
@@ -541,7 +553,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.GetWallUploadServerResponse(
             **await self.api.request("photos.getWallUploadServer", params)
-        )
+        ).response
 
     async def make_cover(
         self,
@@ -557,7 +569,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.makeCover", params))
+        return base.OkResponse(
+            **await self.api.request("photos.makeCover", params)
+        ).response
 
     async def move(
         self,
@@ -573,7 +587,7 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.move", params))
+        return base.OkResponse(**await self.api.request("photos.move", params)).response
 
     async def put_tag(
         self,
@@ -597,7 +611,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.PutTagResponse(**await self.api.request("photos.putTag", params))
+        return photos.PutTagResponse(
+            **await self.api.request("photos.putTag", params)
+        ).response
 
     async def remove_tag(
         self, photo_id: int, tag_id: int, owner_id: Optional[int] = None, **kwargs
@@ -609,7 +625,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.removeTag", params))
+        return base.OkResponse(
+            **await self.api.request("photos.removeTag", params)
+        ).response
 
     async def reorder_albums(
         self,
@@ -627,7 +645,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.reorderAlbums", params))
+        return base.OkResponse(
+            **await self.api.request("photos.reorderAlbums", params)
+        ).response
 
     async def reorder_photos(
         self,
@@ -645,7 +665,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.reorderPhotos", params))
+        return base.OkResponse(
+            **await self.api.request("photos.reorderPhotos", params)
+        ).response
 
     async def report(
         self, owner_id: int, photo_id: int, reason: Optional[int] = None, **kwargs
@@ -657,7 +679,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.report", params))
+        return base.OkResponse(
+            **await self.api.request("photos.report", params)
+        ).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
@@ -669,7 +693,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.reportComment", params))
+        return base.OkResponse(
+            **await self.api.request("photos.reportComment", params)
+        ).response
 
     async def restore(
         self, photo_id: int, owner_id: Optional[int] = None, **kwargs
@@ -680,7 +706,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.restore", params))
+        return base.OkResponse(
+            **await self.api.request("photos.restore", params)
+        ).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -693,7 +721,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.RestoreCommentResponse(
             **await self.api.request("photos.restoreComment", params)
-        )
+        ).response
 
     async def save(
         self,
@@ -719,7 +747,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveResponse(**await self.api.request("photos.save", params))
+        return photos.SaveResponse(
+            **await self.api.request("photos.save", params)
+        ).response
 
     async def save_market_album_photo(
         self, group_id: int, photo: str, server: int, hash: str, **kwargs
@@ -734,7 +764,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveMarketAlbumPhotoResponse(
             **await self.api.request("photos.saveMarketAlbumPhoto", params)
-        )
+        ).response
 
     async def save_market_photo(
         self,
@@ -758,7 +788,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveMarketPhotoResponse(
             **await self.api.request("photos.saveMarketPhoto", params)
-        )
+        ).response
 
     async def save_messages_photo(
         self,
@@ -776,7 +806,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveMessagesPhotoResponse(
             **await self.api.request("photos.saveMessagesPhoto", params)
-        )
+        ).response
 
     async def save_owner_cover_photo(
         self, hash: str, photo: str, **kwargs
@@ -789,7 +819,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveOwnerCoverPhotoResponse(
             **await self.api.request("photos.saveOwnerCoverPhoto", params)
-        )
+        ).response
 
     async def save_owner_photo(
         self,
@@ -807,7 +837,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveOwnerPhotoResponse(
             **await self.api.request("photos.saveOwnerPhoto", params)
-        )
+        ).response
 
     async def save_wall_photo(
         self,
@@ -835,7 +865,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         return photos.SaveWallPhotoResponse(
             **await self.api.request("photos.saveWallPhoto", params)
-        )
+        ).response
 
     async def search(
         self,
@@ -863,4 +893,6 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SearchResponse(**await self.api.request("photos.search", params))
+        return photos.SearchResponse(
+            **await self.api.request("photos.search", params)
+        ).response

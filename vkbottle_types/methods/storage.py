@@ -19,7 +19,9 @@ class StorageCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return storage.GetV5110Response(**await self.api.request("storage.get", params))
+        return storage.GetV5110Response(
+            **await self.api.request("storage.get", params)
+        ).response
 
     async def get_keys(
         self,
@@ -37,7 +39,7 @@ class StorageCategory(BaseCategory):
         params = self.get_set_params(locals())
         return storage.GetKeysResponse(
             **await self.api.request("storage.getKeys", params)
-        )
+        ).response
 
     async def set(
         self,
@@ -53,4 +55,4 @@ class StorageCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("storage.set", params))
+        return base.OkResponse(**await self.api.request("storage.set", params)).response

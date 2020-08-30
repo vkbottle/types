@@ -23,7 +23,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.AddResponse(**await self.api.request("friends.add", params))
+        return friends.AddResponse(
+            **await self.api.request("friends.add", params)
+        ).response
 
     async def add_list(
         self, name: str, user_ids: Optional[List[int]] = None, **kwargs
@@ -36,7 +38,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.AddListResponse(
             **await self.api.request("friends.addList", params)
-        )
+        ).response
 
     async def are_friends(
         self,
@@ -54,7 +56,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.AreFriendsExtendedResponse(
             **await self.api.request("friends.areFriends", params)
-        )
+        ).response
 
     async def delete(
         self, user_id: Optional[int] = None, **kwargs
@@ -66,7 +68,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.DeleteResponse(
             **await self.api.request("friends.delete", params)
-        )
+        ).response
 
     async def delete_all_requests(self, **kwargs) -> base.OkResponseModel:
         """Marks all incoming friend requests as viewed."""
@@ -74,7 +76,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("friends.deleteAllRequests", params)
-        )
+        ).response
 
     async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
         """Deletes a friend list of the current user.
@@ -82,7 +84,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("friends.deleteList", params))
+        return base.OkResponse(
+            **await self.api.request("friends.deleteList", params)
+        ).response
 
     async def edit(
         self, user_id: int, list_ids: Optional[List[int]] = None, **kwargs
@@ -93,7 +97,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("friends.edit", params))
+        return base.OkResponse(
+            **await self.api.request("friends.edit", params)
+        ).response
 
     async def edit_list(
         self,
@@ -113,7 +119,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("friends.editList", params))
+        return base.OkResponse(
+            **await self.api.request("friends.editList", params)
+        ).response
 
     async def get(
         self,
@@ -139,7 +147,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetResponse(**await self.api.request("friends.get", params))
+        return friends.GetResponse(
+            **await self.api.request("friends.get", params)
+        ).response
 
     async def get_app_users(self, **kwargs) -> friends.GetAppUsersResponseModel:
         """Returns a list of IDs of the current user's friends who installed the application."""
@@ -147,7 +157,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetAppUsersResponse(
             **await self.api.request("friends.getAppUsers", params)
-        )
+        ).response
 
     async def get_by_phones(
         self,
@@ -163,7 +173,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetByPhonesResponse(
             **await self.api.request("friends.getByPhones", params)
-        )
+        ).response
 
     async def get_lists(
         self,
@@ -179,7 +189,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetListsResponse(
             **await self.api.request("friends.getLists", params)
-        )
+        ).response
 
     async def get_mutual(
         self,
@@ -203,7 +213,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetMutualResponse(
             **await self.api.request("friends.getMutual", params)
-        )
+        ).response
 
     async def get_online(
         self,
@@ -227,7 +237,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetOnlineResponse(
             **await self.api.request("friends.getOnline", params)
-        )
+        ).response
 
     async def get_recent(
         self, count: Optional[int] = None, **kwargs
@@ -239,7 +249,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetRecentResponse(
             **await self.api.request("friends.getRecent", params)
-        )
+        ).response
 
     async def get_requests(
         self,
@@ -271,7 +281,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetRequestsExtendedResponse(
             **await self.api.request("friends.getRequests", params)
-        )
+        ).response
 
     async def get_suggestions(
         self,
@@ -293,7 +303,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.GetSuggestionsResponse(
             **await self.api.request("friends.getSuggestions", params)
-        )
+        ).response
 
     async def search(
         self,
@@ -317,4 +327,4 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return friends.SearchResponse(
             **await self.api.request("friends.search", params)
-        )
+        ).response

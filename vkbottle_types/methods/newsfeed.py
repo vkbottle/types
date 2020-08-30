@@ -25,7 +25,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("newsfeed.addBan", params))
+        return base.OkResponse(
+            **await self.api.request("newsfeed.addBan", params)
+        ).response
 
     async def delete_ban(
         self,
@@ -39,7 +41,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("newsfeed.deleteBan", params))
+        return base.OkResponse(
+            **await self.api.request("newsfeed.deleteBan", params)
+        ).response
 
     async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
         """newsfeed.deleteList method
@@ -47,7 +51,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("newsfeed.deleteList", params))
+        return base.OkResponse(
+            **await self.api.request("newsfeed.deleteList", params)
+        ).response
 
     async def get(
         self,
@@ -77,7 +83,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetResponse(**await self.api.request("newsfeed.get", params))
+        return newsfeed.GetResponse(
+            **await self.api.request("newsfeed.get", params)
+        ).response
 
     async def get_banned(
         self,
@@ -95,7 +103,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetBannedExtendedResponse(
             **await self.api.request("newsfeed.getBanned", params)
-        )
+        ).response
 
     async def get_comments(
         self,
@@ -123,7 +131,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetCommentsResponse(
             **await self.api.request("newsfeed.getComments", params)
-        )
+        ).response
 
     async def get_lists(
         self,
@@ -139,7 +147,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetListsExtendedResponse(
             **await self.api.request("newsfeed.getLists", params)
-        )
+        ).response
 
     async def get_mentions(
         self,
@@ -161,7 +169,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetMentionsResponse(
             **await self.api.request("newsfeed.getMentions", params)
-        )
+        ).response
 
     async def get_recommended(
         self,
@@ -185,7 +193,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetRecommendedResponse(
             **await self.api.request("newsfeed.getRecommended", params)
-        )
+        ).response
 
     async def get_suggested_sources(
         self,
@@ -205,7 +213,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.GetSuggestedSourcesResponse(
             **await self.api.request("newsfeed.getSuggestedSources", params)
-        )
+        ).response
 
     async def ignore_item(
         self, type: str, owner_id: int, item_id: int, **kwargs
@@ -217,7 +225,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("newsfeed.ignoreItem", params))
+        return base.OkResponse(
+            **await self.api.request("newsfeed.ignoreItem", params)
+        ).response
 
     async def save_list(
         self,
@@ -237,7 +247,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.SaveListResponse(
             **await self.api.request("newsfeed.saveList", params)
-        )
+        ).response
 
     async def search(
         self,
@@ -267,7 +277,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return newsfeed.SearchExtendedResponse(
             **await self.api.request("newsfeed.search", params)
-        )
+        ).response
 
     async def unignore_item(
         self,
@@ -287,7 +297,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("newsfeed.unignoreItem", params)
-        )
+        ).response
 
     async def unsubscribe(
         self, type: str, item_id: int, owner_id: Optional[int] = None, **kwargs
@@ -299,4 +309,6 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("newsfeed.unsubscribe", params))
+        return base.OkResponse(
+            **await self.api.request("newsfeed.unsubscribe", params)
+        ).response

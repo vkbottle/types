@@ -27,7 +27,7 @@ class LeadsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return leads.CheckUserResponse(
             **await self.api.request("leads.checkUser", params)
-        )
+        ).response
 
     async def complete(
         self, vk_sid: str, secret: str, comment: Optional[str] = None, **kwargs
@@ -41,7 +41,7 @@ class LeadsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return leads.CompleteResponse(
             **await self.api.request("leads.complete", params)
-        )
+        ).response
 
     async def get_stats(
         self,
@@ -61,7 +61,7 @@ class LeadsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return leads.GetStatsResponse(
             **await self.api.request("leads.getStats", params)
-        )
+        ).response
 
     async def get_users(
         self,
@@ -85,7 +85,7 @@ class LeadsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return leads.GetUsersResponse(
             **await self.api.request("leads.getUsers", params)
-        )
+        ).response
 
     async def metric_hit(self, data: str, **kwargs) -> leads.MetricHitResponseModel:
         """Counts the metric event.
@@ -95,7 +95,7 @@ class LeadsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return leads.MetricHitResponse(
             **await self.api.request("leads.metricHit", params)
-        )
+        ).response
 
     async def start(
         self,
@@ -117,4 +117,6 @@ class LeadsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return leads.StartResponse(**await self.api.request("leads.start", params))
+        return leads.StartResponse(
+            **await self.api.request("leads.start", params)
+        ).response

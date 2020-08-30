@@ -13,7 +13,7 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.ban", params))
+        return base.OkResponse(**await self.api.request("account.ban", params)).response
 
     async def change_password(
         self,
@@ -33,7 +33,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.ChangePasswordResponse(
             **await self.api.request("account.changePassword", params)
-        )
+        ).response
 
     async def get_active_offers(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
@@ -46,7 +46,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetActiveOffersResponse(
             **await self.api.request("account.getActiveOffers", params)
-        )
+        ).response
 
     async def get_app_permissions(
         self, user_id: int, **kwargs
@@ -58,7 +58,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetAppPermissionsResponse(
             **await self.api.request("account.getAppPermissions", params)
-        )
+        ).response
 
     async def get_banned(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
@@ -71,7 +71,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetBannedResponse(
             **await self.api.request("account.getBanned", params)
-        )
+        ).response
 
     async def get_counters(
         self, filter: Optional[List[str]] = None, **kwargs
@@ -83,7 +83,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetCountersResponse(
             **await self.api.request("account.getCounters", params)
-        )
+        ).response
 
     async def get_info(
         self, fields: Optional[List[str]] = None, **kwargs
@@ -95,7 +95,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetInfoResponse(
             **await self.api.request("account.getInfo", params)
-        )
+        ).response
 
     async def get_profile_info(self, **kwargs) -> account.GetProfileInfoResponseModel:
         """Returns the current account info."""
@@ -103,7 +103,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetProfileInfoResponse(
             **await self.api.request("account.getProfileInfo", params)
-        )
+        ).response
 
     async def get_push_settings(
         self, device_id: Optional[str] = None, **kwargs
@@ -115,7 +115,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.GetPushSettingsResponse(
             **await self.api.request("account.getPushSettings", params)
-        )
+        ).response
 
     async def register_device(
         self,
@@ -141,7 +141,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("account.registerDevice", params)
-        )
+        ).response
 
     async def save_profile_info(
         self,
@@ -181,7 +181,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return account.SaveProfileInfoResponse(
             **await self.api.request("account.saveProfileInfo", params)
-        )
+        ).response
 
     async def set_info(
         self, name: Optional[str] = None, value: Optional[str] = None, **kwargs
@@ -192,7 +192,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.setInfo", params))
+        return base.OkResponse(
+            **await self.api.request("account.setInfo", params)
+        ).response
 
     async def set_name_in_menu(
         self, user_id: int, name: Optional[str] = None, **kwargs
@@ -205,13 +207,15 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("account.setNameInMenu", params)
-        )
+        ).response
 
     async def set_offline(self, **kwargs) -> base.OkResponseModel:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.setOffline", params))
+        return base.OkResponse(
+            **await self.api.request("account.setOffline", params)
+        ).response
 
     async def set_online(
         self, voip: Optional[bool] = None, **kwargs
@@ -221,7 +225,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.setOnline", params))
+        return base.OkResponse(
+            **await self.api.request("account.setOnline", params)
+        ).response
 
     async def set_push_settings(
         self,
@@ -241,7 +247,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("account.setPushSettings", params)
-        )
+        ).response
 
     async def set_silence_mode(
         self,
@@ -261,7 +267,7 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("account.setSilenceMode", params)
-        )
+        ).response
 
     async def unban(
         self, owner_id: Optional[int] = None, **kwargs
@@ -271,7 +277,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.unban", params))
+        return base.OkResponse(
+            **await self.api.request("account.unban", params)
+        ).response
 
     async def unregister_device(
         self, device_id: Optional[str] = None, sandbox: Optional[bool] = None, **kwargs
@@ -284,4 +292,4 @@ class AccountCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("account.unregisterDevice", params)
-        )
+        ).response

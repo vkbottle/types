@@ -11,7 +11,7 @@ class StreamingCategory(BaseCategory):
         params = self.get_set_params(locals())
         return streaming.GetServerUrlResponse(
             **await self.api.request("streaming.getServerUrl", params)
-        )
+        ).response
 
     async def set_settings(
         self, monthly_tier: Optional[str] = None, **kwargs
@@ -23,4 +23,4 @@ class StreamingCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("streaming.setSettings", params)
-        )
+        ).response

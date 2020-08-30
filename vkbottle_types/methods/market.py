@@ -45,7 +45,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return market.AddResponse(**await self.api.request("market.add", params))
+        return market.AddResponse(
+            **await self.api.request("market.add", params)
+        ).response
 
     async def add_album(
         self,
@@ -65,7 +67,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.AddAlbumResponse(
             **await self.api.request("market.addAlbum", params)
-        )
+        ).response
 
     async def add_to_album(
         self, owner_id: int, item_id: int, album_ids: List[int], **kwargs
@@ -77,7 +79,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.addToAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("market.addToAlbum", params)
+        ).response
 
     async def create_comment(
         self,
@@ -105,7 +109,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.CreateCommentResponse(
             **await self.api.request("market.createComment", params)
-        )
+        ).response
 
     async def delete(
         self, owner_id: int, item_id: int, **kwargs
@@ -116,7 +120,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.delete", params))
+        return base.OkResponse(
+            **await self.api.request("market.delete", params)
+        ).response
 
     async def delete_album(
         self, owner_id: int, album_id: int, **kwargs
@@ -127,7 +133,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.deleteAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("market.deleteAlbum", params)
+        ).response
 
     async def delete_comment(
         self, owner_id: int, comment_id: int, **kwargs
@@ -140,7 +148,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.DeleteCommentResponse(
             **await self.api.request("market.deleteComment", params)
-        )
+        ).response
 
     async def edit(
         self,
@@ -170,7 +178,7 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.edit", params))
+        return base.OkResponse(**await self.api.request("market.edit", params)).response
 
     async def edit_album(
         self,
@@ -190,7 +198,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.editAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("market.editAlbum", params)
+        ).response
 
     async def edit_comment(
         self,
@@ -208,7 +218,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.editComment", params))
+        return base.OkResponse(
+            **await self.api.request("market.editComment", params)
+        ).response
 
     async def get(
         self,
@@ -230,7 +242,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetExtendedResponse(
             **await self.api.request("market.get", params)
-        )
+        ).response
 
     async def get_album_by_id(
         self, owner_id: int, album_ids: List[int], **kwargs
@@ -243,7 +255,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetAlbumByIdResponse(
             **await self.api.request("market.getAlbumById", params)
-        )
+        ).response
 
     async def get_albums(
         self,
@@ -261,7 +273,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetAlbumsResponse(
             **await self.api.request("market.getAlbums", params)
-        )
+        ).response
 
     async def get_by_id(
         self, item_ids: List[str], extended: Optional[bool] = None, **kwargs
@@ -274,7 +286,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetByIdExtendedResponse(
             **await self.api.request("market.getById", params)
-        )
+        ).response
 
     async def get_categories(
         self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
@@ -287,7 +299,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetCategoriesResponse(
             **await self.api.request("market.getCategories", params)
-        )
+        ).response
 
     async def get_comments(
         self,
@@ -317,7 +329,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.GetCommentsResponse(
             **await self.api.request("market.getComments", params)
-        )
+        ).response
 
     async def remove_from_album(
         self, owner_id: int, item_id: int, album_ids: List[int], **kwargs
@@ -331,7 +343,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("market.removeFromAlbum", params)
-        )
+        ).response
 
     async def reorder_albums(
         self,
@@ -349,7 +361,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.reorderAlbums", params))
+        return base.OkResponse(
+            **await self.api.request("market.reorderAlbums", params)
+        ).response
 
     async def reorder_items(
         self,
@@ -369,7 +383,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.reorderItems", params))
+        return base.OkResponse(
+            **await self.api.request("market.reorderItems", params)
+        ).response
 
     async def report(
         self, owner_id: int, item_id: int, reason: Optional[int] = None, **kwargs
@@ -381,7 +397,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.report", params))
+        return base.OkResponse(
+            **await self.api.request("market.report", params)
+        ).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: int, **kwargs
@@ -393,7 +411,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.reportComment", params))
+        return base.OkResponse(
+            **await self.api.request("market.reportComment", params)
+        ).response
 
     async def restore(
         self, owner_id: int, item_id: int, **kwargs
@@ -404,7 +424,9 @@ class MarketCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("market.restore", params))
+        return base.OkResponse(
+            **await self.api.request("market.restore", params)
+        ).response
 
     async def restore_comment(
         self, owner_id: int, comment_id: int, **kwargs
@@ -417,7 +439,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.RestoreCommentResponse(
             **await self.api.request("market.restoreComment", params)
-        )
+        ).response
 
     async def search(
         self,
@@ -451,4 +473,4 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         return market.SearchExtendedResponse(
             **await self.api.request("market.search", params)
-        )
+        ).response

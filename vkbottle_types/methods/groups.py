@@ -50,7 +50,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.AddAddressResponse(
             **await self.api.request("groups.addAddress", params)
-        )
+        ).response
 
     async def add_callback_server(
         self,
@@ -70,7 +70,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.AddCallbackServerResponse(
             **await self.api.request("groups.addCallbackServer", params)
-        )
+        ).response
 
     async def add_link(
         self, group_id: int, link: str, text: Optional[str] = None, **kwargs
@@ -84,7 +84,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.AddLinkResponse(
             **await self.api.request("groups.addLink", params)
-        )
+        ).response
 
     async def approve_request(
         self, group_id: int, user_id: int, **kwargs
@@ -97,7 +97,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("groups.approveRequest", params)
-        )
+        ).response
 
     async def ban(
         self,
@@ -119,7 +119,7 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.ban", params))
+        return base.OkResponse(**await self.api.request("groups.ban", params)).response
 
     async def create(
         self,
@@ -139,7 +139,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.CreateResponse(**await self.api.request("groups.create", params))
+        return groups.CreateResponse(
+            **await self.api.request("groups.create", params)
+        ).response
 
     async def delete_callback_server(
         self, group_id: int, server_id: int, **kwargs
@@ -152,7 +154,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("groups.deleteCallbackServer", params)
-        )
+        ).response
 
     async def delete_link(
         self, group_id: int, link_id: int, **kwargs
@@ -163,7 +165,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.deleteLink", params))
+        return base.OkResponse(
+            **await self.api.request("groups.deleteLink", params)
+        ).response
 
     async def disable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.disableOnline method
@@ -171,7 +175,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.disableOnline", params))
+        return base.OkResponse(
+            **await self.api.request("groups.disableOnline", params)
+        ).response
 
     async def edit(
         self,
@@ -271,7 +277,7 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.edit", params))
+        return base.OkResponse(**await self.api.request("groups.edit", params)).response
 
     async def edit_address(
         self,
@@ -311,7 +317,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.EditAddressResponse(
             **await self.api.request("groups.editAddress", params)
-        )
+        ).response
 
     async def edit_callback_server(
         self,
@@ -333,7 +339,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("groups.editCallbackServer", params)
-        )
+        ).response
 
     async def edit_link(
         self, group_id: int, link_id: int, text: Optional[str] = None, **kwargs
@@ -345,7 +351,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.editLink", params))
+        return base.OkResponse(
+            **await self.api.request("groups.editLink", params)
+        ).response
 
     async def edit_manager(
         self,
@@ -369,7 +377,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.editManager", params))
+        return base.OkResponse(
+            **await self.api.request("groups.editManager", params)
+        ).response
 
     async def enable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.enableOnline method
@@ -377,7 +387,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.enableOnline", params))
+        return base.OkResponse(
+            **await self.api.request("groups.enableOnline", params)
+        ).response
 
     async def get(
         self,
@@ -401,7 +413,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetExtendedResponse(
             **await self.api.request("groups.get", params)
-        )
+        ).response
 
     async def get_addresses(
         self,
@@ -427,7 +439,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetAddressesResponse(
             **await self.api.request("groups.getAddresses", params)
-        )
+        ).response
 
     async def get_banned(
         self,
@@ -449,7 +461,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetBannedResponse(
             **await self.api.request("groups.getBanned", params)
-        )
+        ).response
 
     async def get_by_id(
         self,
@@ -467,7 +479,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetByIdResponse(
             **await self.api.request("groups.getById", params)
-        )
+        ).response
 
     async def get_callback_confirmation_code(
         self, group_id: int, **kwargs
@@ -479,7 +491,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetCallbackConfirmationCodeResponse(
             **await self.api.request("groups.getCallbackConfirmationCode", params)
-        )
+        ).response
 
     async def get_callback_servers(
         self, group_id: int, server_ids: Optional[List[int]] = None, **kwargs
@@ -492,7 +504,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetCallbackServersResponse(
             **await self.api.request("groups.getCallbackServers", params)
-        )
+        ).response
 
     async def get_callback_settings(
         self, group_id: int, server_id: Optional[int] = None, **kwargs
@@ -505,7 +517,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetCallbackSettingsResponse(
             **await self.api.request("groups.getCallbackSettings", params)
-        )
+        ).response
 
     async def get_catalog(
         self,
@@ -521,7 +533,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetCatalogResponse(
             **await self.api.request("groups.getCatalog", params)
-        )
+        ).response
 
     async def get_catalog_info(
         self,
@@ -537,7 +549,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetCatalogInfoExtendedResponse(
             **await self.api.request("groups.getCatalogInfo", params)
-        )
+        ).response
 
     async def get_invited_users(
         self,
@@ -559,7 +571,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetInvitedUsersResponse(
             **await self.api.request("groups.getInvitedUsers", params)
-        )
+        ).response
 
     async def get_invites(
         self,
@@ -577,7 +589,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetInvitesExtendedResponse(
             **await self.api.request("groups.getInvites", params)
-        )
+        ).response
 
     async def get_long_poll_server(
         self, group_id: int, **kwargs
@@ -589,7 +601,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetLongPollServerResponse(
             **await self.api.request("groups.getLongPollServer", params)
-        )
+        ).response
 
     async def get_long_poll_settings(
         self, group_id: int, **kwargs
@@ -601,7 +613,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetLongPollSettingsResponse(
             **await self.api.request("groups.getLongPollSettings", params)
-        )
+        ).response
 
     async def get_members(
         self,
@@ -625,7 +637,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetMembersResponse(
             **await self.api.request("groups.getMembers", params)
-        )
+        ).response
 
     async def get_requests(
         self,
@@ -645,7 +657,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetRequestsResponse(
             **await self.api.request("groups.getRequests", params)
-        )
+        ).response
 
     async def get_settings(
         self, group_id: int, **kwargs
@@ -657,7 +669,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetSettingsResponse(
             **await self.api.request("groups.getSettings", params)
-        )
+        ).response
 
     async def get_token_permissions(
         self, **kwargs
@@ -667,7 +679,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.GetTokenPermissionsResponse(
             **await self.api.request("groups.getTokenPermissions", params)
-        )
+        ).response
 
     async def invite(
         self, group_id: int, user_id: int, **kwargs
@@ -678,7 +690,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.invite", params))
+        return base.OkResponse(
+            **await self.api.request("groups.invite", params)
+        ).response
 
     async def is_member(
         self,
@@ -698,7 +712,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return groups.IsMemberExtendedResponse(
             **await self.api.request("groups.isMember", params)
-        )
+        ).response
 
     async def join(
         self, group_id: Optional[int] = None, not_sure: Optional[str] = None, **kwargs
@@ -709,7 +723,7 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.join", params))
+        return base.OkResponse(**await self.api.request("groups.join", params)).response
 
     async def leave(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """With this method you can leave a group, public page, or event.
@@ -717,7 +731,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.leave", params))
+        return base.OkResponse(
+            **await self.api.request("groups.leave", params)
+        ).response
 
     async def remove_user(
         self, group_id: int, user_id: int, **kwargs
@@ -728,7 +744,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.removeUser", params))
+        return base.OkResponse(
+            **await self.api.request("groups.removeUser", params)
+        ).response
 
     async def reorder_link(
         self, group_id: int, link_id: int, after: Optional[int] = None, **kwargs
@@ -740,7 +758,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.reorderLink", params))
+        return base.OkResponse(
+            **await self.api.request("groups.reorderLink", params)
+        ).response
 
     async def search(
         self,
@@ -768,7 +788,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.SearchResponse(**await self.api.request("groups.search", params))
+        return groups.SearchResponse(
+            **await self.api.request("groups.search", params)
+        ).response
 
     async def set_callback_settings(
         self,
@@ -872,7 +894,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("groups.setCallbackSettings", params)
-        )
+        ).response
 
     async def set_long_poll_settings(
         self,
@@ -974,7 +996,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("groups.setLongPollSettings", params)
-        )
+        ).response
 
     async def unban(
         self, group_id: int, owner_id: Optional[int] = None, **kwargs
@@ -985,4 +1007,6 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.unban", params))
+        return base.OkResponse(
+            **await self.api.request("groups.unban", params)
+        ).response

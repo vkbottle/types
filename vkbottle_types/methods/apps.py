@@ -15,7 +15,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("apps.deleteAppRequests", params)
-        )
+        ).response
 
     async def get(
         self,
@@ -39,7 +39,7 @@ class AppsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return apps.GetResponse(**await self.api.request("apps.get", params))
+        return apps.GetResponse(**await self.api.request("apps.get", params)).response
 
     async def get_catalog(
         self,
@@ -73,7 +73,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return apps.GetCatalogResponse(
             **await self.api.request("apps.getCatalog", params)
-        )
+        ).response
 
     async def get_friends_list(
         self,
@@ -95,7 +95,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return apps.GetFriendsListResponse(
             **await self.api.request("apps.getFriendsList", params)
-        )
+        ).response
 
     async def get_leaderboard(
         self,
@@ -113,7 +113,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return apps.GetLeaderboardExtendedResponse(
             **await self.api.request("apps.getLeaderboard", params)
-        )
+        ).response
 
     async def get_scopes(
         self, type: Optional[str] = None, **kwargs
@@ -125,7 +125,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return apps.GetScopesResponse(
             **await self.api.request("apps.getScopes", params)
-        )
+        ).response
 
     async def get_score(self, user_id: int, **kwargs) -> apps.GetScoreResponseModel:
         """Returns user score in app
@@ -133,7 +133,9 @@ class AppsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return apps.GetScoreResponse(**await self.api.request("apps.getScore", params))
+        return apps.GetScoreResponse(
+            **await self.api.request("apps.getScore", params)
+        ).response
 
     async def promo_has_active_gift(
         self, promo_id: int, user_id: Optional[int] = None, **kwargs
@@ -146,7 +148,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.BoolResponse(
             **await self.api.request("apps.promoHasActiveGift", params)
-        )
+        ).response
 
     async def promo_use_gift(
         self, promo_id: int, user_id: Optional[int] = None, **kwargs
@@ -157,7 +159,9 @@ class AppsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(**await self.api.request("apps.promoUseGift", params))
+        return base.BoolResponse(
+            **await self.api.request("apps.promoUseGift", params)
+        ).response
 
     async def send_request(
         self,
@@ -181,4 +185,4 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return apps.SendRequestResponse(
             **await self.api.request("apps.sendRequest", params)
-        )
+        ).response

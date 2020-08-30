@@ -21,7 +21,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetChairsResponse(
             **await self.api.request("database.getChairs", params)
-        )
+        ).response
 
     async def get_cities(
         self,
@@ -45,7 +45,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetCitiesResponse(
             **await self.api.request("database.getCities", params)
-        )
+        ).response
 
     async def get_cities_by_id(
         self, city_ids: Optional[List[int]] = None, **kwargs
@@ -57,7 +57,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetCitiesByIdResponse(
             **await self.api.request("database.getCitiesById", params)
-        )
+        ).response
 
     async def get_countries(
         self,
@@ -77,7 +77,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetCountriesResponse(
             **await self.api.request("database.getCountries", params)
-        )
+        ).response
 
     async def get_countries_by_id(
         self, country_ids: Optional[List[int]] = None, **kwargs
@@ -89,7 +89,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetCountriesByIdResponse(
             **await self.api.request("database.getCountriesById", params)
-        )
+        ).response
 
     async def get_faculties(
         self,
@@ -107,7 +107,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetFacultiesResponse(
             **await self.api.request("database.getFaculties", params)
-        )
+        ).response
 
     async def get_metro_stations(
         self,
@@ -127,7 +127,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetMetroStationsResponse(
             **await self.api.request("database.getMetroStations", params)
-        )
+        ).response
 
     async def get_metro_stations_by_id(
         self, station_ids: Optional[List[int]] = None, **kwargs
@@ -139,7 +139,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetMetroStationsByIdResponse(
             **await self.api.request("database.getMetroStationsById", params)
-        )
+        ).response
 
     async def get_regions(
         self,
@@ -159,7 +159,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetRegionsResponse(
             **await self.api.request("database.getRegions", params)
-        )
+        ).response
 
     async def get_school_classes(
         self, country_id: Optional[int] = None, **kwargs
@@ -171,7 +171,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetSchoolClassesResponse(
             **await self.api.request("database.getSchoolClasses", params)
-        )
+        ).response
 
     async def get_schools(
         self,
@@ -191,7 +191,7 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetSchoolsResponse(
             **await self.api.request("database.getSchools", params)
-        )
+        ).response
 
     async def get_universities(
         self,
@@ -213,4 +213,4 @@ class DatabaseCategory(BaseCategory):
         params = self.get_set_params(locals())
         return database.GetUniversitiesResponse(
             **await self.api.request("database.getUniversities", params)
-        )
+        ).response

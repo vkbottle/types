@@ -21,7 +21,7 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.AddResponse(**await self.api.request("likes.add", params))
+        return likes.AddResponse(**await self.api.request("likes.add", params)).response
 
     async def delete(
         self,
@@ -39,7 +39,9 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.DeleteResponse(**await self.api.request("likes.delete", params))
+        return likes.DeleteResponse(
+            **await self.api.request("likes.delete", params)
+        ).response
 
     async def get_list(
         self,
@@ -71,7 +73,7 @@ class LikesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return likes.GetListExtendedResponse(
             **await self.api.request("likes.getList", params)
-        )
+        ).response
 
     async def is_liked(
         self,
@@ -89,4 +91,6 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.IsLikedResponse(**await self.api.request("likes.isLiked", params))
+        return likes.IsLikedResponse(
+            **await self.api.request("likes.isLiked", params)
+        ).response

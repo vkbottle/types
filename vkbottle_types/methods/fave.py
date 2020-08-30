@@ -15,7 +15,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addArticle", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addArticle", params)
+        ).response
 
     async def add_link(self, link: str, **kwargs) -> base.OkResponseModel:
         """Adds a link to user faves.
@@ -23,7 +25,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addLink", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addLink", params)
+        ).response
 
     async def add_page(
         self, user_id: Optional[int] = None, group_id: Optional[int] = None, **kwargs
@@ -34,7 +38,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addPage", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addPage", params)
+        ).response
 
     async def add_post(
         self, owner_id: int, id: int, access_key: Optional[str] = None, **kwargs
@@ -46,7 +52,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addPost", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addPost", params)
+        ).response
 
     async def add_product(
         self, owner_id: int, id: int, access_key: Optional[str] = None, **kwargs
@@ -58,7 +66,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addProduct", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addProduct", params)
+        ).response
 
     async def add_tag(
         self, name: Optional[str] = None, position: Optional[str] = None, **kwargs
@@ -69,7 +79,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return fave.AddTagResponse(**await self.api.request("fave.addTag", params))
+        return fave.AddTagResponse(
+            **await self.api.request("fave.addTag", params)
+        ).response
 
     async def add_video(
         self, owner_id: int, id: int, access_key: Optional[str] = None, **kwargs
@@ -81,7 +93,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.addVideo", params))
+        return base.OkResponse(
+            **await self.api.request("fave.addVideo", params)
+        ).response
 
     async def edit_tag(self, id: int, name: str, **kwargs) -> base.OkResponseModel:
         """fave.editTag method
@@ -90,7 +104,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.editTag", params))
+        return base.OkResponse(
+            **await self.api.request("fave.editTag", params)
+        ).response
 
     async def get(
         self,
@@ -114,7 +130,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return fave.GetExtendedResponse(**await self.api.request("fave.get", params))
+        return fave.GetExtendedResponse(
+            **await self.api.request("fave.get", params)
+        ).response
 
     async def get_pages(
         self,
@@ -134,19 +152,25 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return fave.GetPagesResponse(**await self.api.request("fave.getPages", params))
+        return fave.GetPagesResponse(
+            **await self.api.request("fave.getPages", params)
+        ).response
 
     async def get_tags(self, **kwargs) -> fave.GetTagsResponseModel:
         """fave.getTags method"""
 
         params = self.get_set_params(locals())
-        return fave.GetTagsResponse(**await self.api.request("fave.getTags", params))
+        return fave.GetTagsResponse(
+            **await self.api.request("fave.getTags", params)
+        ).response
 
     async def mark_seen(self, **kwargs) -> base.BoolResponseModel:
         """fave.markSeen method"""
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(**await self.api.request("fave.markSeen", params))
+        return base.BoolResponse(
+            **await self.api.request("fave.markSeen", params)
+        ).response
 
     async def remove_article(
         self, owner_id: int, article_id: int, **kwargs
@@ -157,7 +181,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(**await self.api.request("fave.removeArticle", params))
+        return base.BoolResponse(
+            **await self.api.request("fave.removeArticle", params)
+        ).response
 
     async def remove_link(
         self, link_id: Optional[str] = None, link: Optional[str] = None, **kwargs
@@ -168,7 +194,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.removeLink", params))
+        return base.OkResponse(
+            **await self.api.request("fave.removeLink", params)
+        ).response
 
     async def remove_page(
         self, user_id: Optional[int] = None, group_id: Optional[int] = None, **kwargs
@@ -179,7 +207,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.removePage", params))
+        return base.OkResponse(
+            **await self.api.request("fave.removePage", params)
+        ).response
 
     async def remove_post(
         self, owner_id: int, id: int, **kwargs
@@ -190,7 +220,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.removePost", params))
+        return base.OkResponse(
+            **await self.api.request("fave.removePost", params)
+        ).response
 
     async def remove_product(
         self, owner_id: int, id: int, **kwargs
@@ -201,7 +233,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.removeProduct", params))
+        return base.OkResponse(
+            **await self.api.request("fave.removeProduct", params)
+        ).response
 
     async def remove_tag(self, id: int, **kwargs) -> base.OkResponseModel:
         """fave.removeTag method
@@ -209,7 +243,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.removeTag", params))
+        return base.OkResponse(
+            **await self.api.request("fave.removeTag", params)
+        ).response
 
     async def reorder_tags(self, ids: List[int], **kwargs) -> base.OkResponseModel:
         """fave.reorderTags method
@@ -217,7 +253,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.reorderTags", params))
+        return base.OkResponse(
+            **await self.api.request("fave.reorderTags", params)
+        ).response
 
     async def set_page_tags(
         self,
@@ -233,7 +271,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.setPageTags", params))
+        return base.OkResponse(
+            **await self.api.request("fave.setPageTags", params)
+        ).response
 
     async def set_tags(
         self,
@@ -255,7 +295,9 @@ class FaveCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("fave.setTags", params))
+        return base.OkResponse(
+            **await self.api.request("fave.setTags", params)
+        ).response
 
     async def track_page_interaction(
         self, user_id: Optional[int] = None, group_id: Optional[int] = None, **kwargs
@@ -268,4 +310,4 @@ class FaveCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("fave.trackPageInteraction", params)
-        )
+        ).response

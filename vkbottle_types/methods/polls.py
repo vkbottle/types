@@ -25,7 +25,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.AddVoteResponse(**await self.api.request("polls.addVote", params))
+        return polls.AddVoteResponse(
+            **await self.api.request("polls.addVote", params)
+        ).response
 
     async def create(
         self,
@@ -53,7 +55,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.CreateResponse(**await self.api.request("polls.create", params))
+        return polls.CreateResponse(
+            **await self.api.request("polls.create", params)
+        ).response
 
     async def delete_vote(
         self,
@@ -73,7 +77,7 @@ class PollsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return polls.DeleteVoteResponse(
             **await self.api.request("polls.deleteVote", params)
-        )
+        ).response
 
     async def edit(
         self,
@@ -101,7 +105,7 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("polls.edit", params))
+        return base.OkResponse(**await self.api.request("polls.edit", params)).response
 
     async def get_by_id(
         self,
@@ -125,7 +129,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.GetByIdResponse(**await self.api.request("polls.getById", params))
+        return polls.GetByIdResponse(
+            **await self.api.request("polls.getById", params)
+        ).response
 
     async def get_voters(
         self,
@@ -155,4 +161,4 @@ class PollsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return polls.GetVotersResponse(
             **await self.api.request("polls.getVoters", params)
-        )
+        ).response

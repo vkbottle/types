@@ -19,4 +19,4 @@ class GiftsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return gifts.GetResponse(**await self.api.request("gifts.get", params))
+        return gifts.GetResponse(**await self.api.request("gifts.get", params)).response

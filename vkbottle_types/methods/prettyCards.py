@@ -29,7 +29,7 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.CreateResponse(
             **await self.api.request("prettyCards.create", params)
-        )
+        ).response
 
     async def delete(
         self, owner_id: int, card_id: int, **kwargs
@@ -42,7 +42,7 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.DeleteResponse(
             **await self.api.request("prettyCards.delete", params)
-        )
+        ).response
 
     async def edit(
         self,
@@ -70,7 +70,7 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.EditResponse(
             **await self.api.request("prettyCards.edit", params)
-        )
+        ).response
 
     async def get(
         self,
@@ -88,7 +88,7 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.GetResponse(
             **await self.api.request("prettyCards.get", params)
-        )
+        ).response
 
     async def get_by_id(
         self, owner_id: int, card_ids: List[int], **kwargs
@@ -101,7 +101,7 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.GetByIdResponse(
             **await self.api.request("prettyCards.getById", params)
-        )
+        ).response
 
     async def get_upload_url(self, **kwargs) -> prettyCards.GetUploadURLResponseModel:
         """prettyCards.getUploadURL method"""
@@ -109,4 +109,4 @@ class PrettyCardsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return prettyCards.GetUploadURLResponse(
             **await self.api.request("prettyCards.getUploadURL", params)
-        )
+        ).response

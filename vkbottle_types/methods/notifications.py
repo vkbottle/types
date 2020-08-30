@@ -25,7 +25,7 @@ class NotificationsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return notifications.GetResponse(
             **await self.api.request("notifications.get", params)
-        )
+        ).response
 
     async def mark_as_viewed(self, **kwargs) -> notifications.MarkAsViewedResponseModel:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
@@ -33,7 +33,7 @@ class NotificationsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return notifications.MarkAsViewedResponse(
             **await self.api.request("notifications.markAsViewed", params)
-        )
+        ).response
 
     async def send_message(
         self,
@@ -55,4 +55,4 @@ class NotificationsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return notifications.SendMessageResponse(
             **await self.api.request("notifications.sendMessage", params)
-        )
+        ).response

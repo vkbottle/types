@@ -21,7 +21,9 @@ class AuthCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("auth.checkPhone", params))
+        return base.OkResponse(
+            **await self.api.request("auth.checkPhone", params)
+        ).response
 
     async def restore(
         self, phone: str, last_name: str, **kwargs
@@ -32,4 +34,6 @@ class AuthCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return auth.RestoreResponse(**await self.api.request("auth.restore", params))
+        return auth.RestoreResponse(
+            **await self.api.request("auth.restore", params)
+        ).response

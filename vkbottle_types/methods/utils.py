@@ -13,7 +13,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.CheckLinkResponse(
             **await self.api.request("utils.checkLink", params)
-        )
+        ).response
 
     async def delete_from_last_shortened(
         self, key: str, **kwargs
@@ -25,7 +25,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("utils.deleteFromLastShortened", params)
-        )
+        ).response
 
     async def get_last_shortened_links(
         self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
@@ -38,7 +38,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.GetLastShortenedLinksResponse(
             **await self.api.request("utils.getLastShortenedLinks", params)
-        )
+        ).response
 
     async def get_link_stats(
         self,
@@ -62,7 +62,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.GetLinkStatsExtendedResponse(
             **await self.api.request("utils.getLinkStats", params)
-        )
+        ).response
 
     async def get_server_time(self, **kwargs) -> utils.GetServerTimeResponseModel:
         """Returns the current time of the VK server."""
@@ -70,7 +70,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.GetServerTimeResponse(
             **await self.api.request("utils.getServerTime", params)
-        )
+        ).response
 
     async def get_short_link(
         self, url: str, private: Optional[bool] = None, **kwargs
@@ -83,7 +83,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.GetShortLinkResponse(
             **await self.api.request("utils.getShortLink", params)
-        )
+        ).response
 
     async def resolve_screen_name(
         self, screen_name: str, **kwargs
@@ -95,4 +95,4 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return utils.ResolveScreenNameResponse(
             **await self.api.request("utils.resolveScreenName", params)
-        )
+        ).response

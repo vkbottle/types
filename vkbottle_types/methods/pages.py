@@ -11,7 +11,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("pages.clearCache", params))
+        return base.OkResponse(
+            **await self.api.request("pages.clearCache", params)
+        ).response
 
     async def get(
         self,
@@ -35,7 +37,7 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.GetResponse(**await self.api.request("pages.get", params))
+        return pages.GetResponse(**await self.api.request("pages.get", params)).response
 
     async def get_history(
         self,
@@ -53,7 +55,7 @@ class PagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return pages.GetHistoryResponse(
             **await self.api.request("pages.getHistory", params)
-        )
+        ).response
 
     async def get_titles(
         self, group_id: Optional[int] = None, **kwargs
@@ -65,7 +67,7 @@ class PagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return pages.GetTitlesResponse(
             **await self.api.request("pages.getTitles", params)
-        )
+        ).response
 
     async def get_version(
         self,
@@ -85,7 +87,7 @@ class PagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return pages.GetVersionResponse(
             **await self.api.request("pages.getVersion", params)
-        )
+        ).response
 
     async def parse_wiki(
         self, text: str, group_id: Optional[int] = None, **kwargs
@@ -98,7 +100,7 @@ class PagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return pages.ParseWikiResponse(
             **await self.api.request("pages.parseWiki", params)
-        )
+        ).response
 
     async def save(
         self,
@@ -118,7 +120,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.SaveResponse(**await self.api.request("pages.save", params))
+        return pages.SaveResponse(
+            **await self.api.request("pages.save", params)
+        ).response
 
     async def save_access(
         self,
@@ -140,4 +144,4 @@ class PagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return pages.SaveAccessResponse(
             **await self.api.request("pages.saveAccess", params)
-        )
+        ).response

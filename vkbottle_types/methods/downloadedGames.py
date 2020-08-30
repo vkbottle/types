@@ -15,4 +15,4 @@ class DownloadedGamesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return downloadedGames.PaidStatusResponse(
             **await self.api.request("downloadedGames.getPaidStatus", params)
-        )
+        ).response

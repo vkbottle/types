@@ -14,7 +14,9 @@ class StatusCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return status.GetResponse(**await self.api.request("status.get", params))
+        return status.GetResponse(
+            **await self.api.request("status.get", params)
+        ).response
 
     async def set(
         self, text: Optional[str] = None, group_id: Optional[int] = None, **kwargs
@@ -25,4 +27,4 @@ class StatusCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("status.set", params))
+        return base.OkResponse(**await self.api.request("status.set", params)).response

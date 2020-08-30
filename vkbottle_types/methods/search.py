@@ -27,4 +27,4 @@ class SearchCategory(BaseCategory):
         params = self.get_set_params(locals())
         return search.GetHintsResponse(
             **await self.api.request("search.getHints", params)
-        )
+        ).response

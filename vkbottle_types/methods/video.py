@@ -15,7 +15,7 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.add", params))
+        return base.OkResponse(**await self.api.request("video.add", params)).response
 
     async def add_album(
         self,
@@ -33,7 +33,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.AddAlbumResponse(
             **await self.api.request("video.addAlbum", params)
-        )
+        ).response
 
     async def add_to_album(
         self,
@@ -53,7 +53,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.addToAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("video.addToAlbum", params)
+        ).response
 
     async def create_comment(
         self,
@@ -81,7 +83,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.CreateCommentResponse(
             **await self.api.request("video.createComment", params)
-        )
+        ).response
 
     async def delete(
         self,
@@ -97,7 +99,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.delete", params))
+        return base.OkResponse(
+            **await self.api.request("video.delete", params)
+        ).response
 
     async def delete_album(
         self, album_id: int, group_id: Optional[int] = None, **kwargs
@@ -108,7 +112,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.deleteAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("video.deleteAlbum", params)
+        ).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -119,7 +125,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.deleteComment", params))
+        return base.OkResponse(
+            **await self.api.request("video.deleteComment", params)
+        ).response
 
     async def edit(
         self,
@@ -145,7 +153,7 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.edit", params))
+        return base.OkResponse(**await self.api.request("video.edit", params)).response
 
     async def edit_album(
         self,
@@ -163,7 +171,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.editAlbum", params))
+        return base.OkResponse(
+            **await self.api.request("video.editAlbum", params)
+        ).response
 
     async def edit_comment(
         self,
@@ -181,7 +191,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.editComment", params))
+        return base.OkResponse(
+            **await self.api.request("video.editComment", params)
+        ).response
 
     async def get(
         self,
@@ -203,7 +215,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return video.GetExtendedResponse(**await self.api.request("video.get", params))
+        return video.GetExtendedResponse(
+            **await self.api.request("video.get", params)
+        ).response
 
     async def get_album_by_id(
         self, album_id: int, owner_id: Optional[int] = None, **kwargs
@@ -216,7 +230,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.GetAlbumByIdResponse(
             **await self.api.request("video.getAlbumById", params)
-        )
+        ).response
 
     async def get_albums(
         self,
@@ -238,7 +252,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.GetAlbumsExtendedResponse(
             **await self.api.request("video.getAlbums", params)
-        )
+        ).response
 
     async def get_albums_by_video(
         self,
@@ -258,7 +272,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.GetAlbumsByVideoExtendedResponse(
             **await self.api.request("video.getAlbumsByVideo", params)
-        )
+        ).response
 
     async def get_comments(
         self,
@@ -288,7 +302,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.GetCommentsExtendedResponse(
             **await self.api.request("video.getComments", params)
-        )
+        ).response
 
     async def remove_from_album(
         self,
@@ -310,7 +324,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("video.removeFromAlbum", params)
-        )
+        ).response
 
     async def reorder_albums(
         self,
@@ -328,7 +342,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.reorderAlbums", params))
+        return base.OkResponse(
+            **await self.api.request("video.reorderAlbums", params)
+        ).response
 
     async def reorder_videos(
         self,
@@ -354,7 +370,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.reorderVideos", params))
+        return base.OkResponse(
+            **await self.api.request("video.reorderVideos", params)
+        ).response
 
     async def report(
         self,
@@ -374,7 +392,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.report", params))
+        return base.OkResponse(
+            **await self.api.request("video.report", params)
+        ).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
@@ -386,7 +406,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.reportComment", params))
+        return base.OkResponse(
+            **await self.api.request("video.reportComment", params)
+        ).response
 
     async def restore(
         self, video_id: int, owner_id: Optional[int] = None, **kwargs
@@ -397,7 +419,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("video.restore", params))
+        return base.OkResponse(
+            **await self.api.request("video.restore", params)
+        ).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -410,7 +434,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.RestoreCommentResponse(
             **await self.api.request("video.restoreComment", params)
-        )
+        ).response
 
     async def save(
         self,
@@ -444,7 +468,9 @@ class VideoCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return video.SaveResponse(**await self.api.request("video.save", params))
+        return video.SaveResponse(
+            **await self.api.request("video.save", params)
+        ).response
 
     async def search(
         self,
@@ -478,4 +504,4 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         return video.SearchExtendedResponse(
             **await self.api.request("video.search", params)
-        )
+        ).response

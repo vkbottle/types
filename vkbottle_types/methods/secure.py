@@ -15,7 +15,9 @@ class SecureCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("secure.addAppEvent", params))
+        return base.OkResponse(
+            **await self.api.request("secure.addAppEvent", params)
+        ).response
 
     async def check_token(
         self, token: Optional[str] = None, ip: Optional[str] = None, **kwargs
@@ -28,7 +30,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.CheckTokenResponse(
             **await self.api.request("secure.checkToken", params)
-        )
+        ).response
 
     async def get_app_balance(self, **kwargs) -> secure.GetAppBalanceResponseModel:
         """Returns payment balance of the application in hundredth of a vote."""
@@ -36,7 +38,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.GetAppBalanceResponse(
             **await self.api.request("secure.getAppBalance", params)
-        )
+        ).response
 
     async def get_s_m_s_history(
         self,
@@ -56,7 +58,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.GetSMSHistoryResponse(
             **await self.api.request("secure.getSMSHistory", params)
-        )
+        ).response
 
     async def get_transactions_history(
         self,
@@ -80,7 +82,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.GetTransactionsHistoryResponse(
             **await self.api.request("secure.getTransactionsHistory", params)
-        )
+        ).response
 
     async def get_user_level(
         self, user_ids: List[int], **kwargs
@@ -92,7 +94,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.GetUserLevelResponse(
             **await self.api.request("secure.getUserLevel", params)
-        )
+        ).response
 
     async def give_event_sticker(
         self, user_ids: List[int], achievement_id: int, **kwargs
@@ -105,7 +107,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.GiveEventStickerResponse(
             **await self.api.request("secure.giveEventSticker", params)
-        )
+        ).response
 
     async def send_notification(
         self,
@@ -123,7 +125,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return secure.SendNotificationResponse(
             **await self.api.request("secure.sendNotification", params)
-        )
+        ).response
 
     async def send_s_m_s_notification(
         self, user_id: int, message: str, **kwargs
@@ -136,7 +138,7 @@ class SecureCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(
             **await self.api.request("secure.sendSMSNotification", params)
-        )
+        ).response
 
     async def set_counter(
         self,
@@ -154,4 +156,6 @@ class SecureCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("secure.setCounter", params))
+        return base.OkResponse(
+            **await self.api.request("secure.setCounter", params)
+        ).response
