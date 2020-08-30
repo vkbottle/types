@@ -1,7 +1,6 @@
-import enum
-import typing
 from typing import Optional, Union, Any, List
-
+import typing
+import enum
 from pydantic import BaseModel
 
 
@@ -11,6 +10,7 @@ class BaseObject(BaseModel):
 
 class AccountAccountCounters(BaseObject):
     """VK Object Account/AccountAccountCounters
+
     app_requests - New app requests number
     events - New events number
     faves - New faves number
@@ -211,10 +211,6 @@ class AccountPushSettings(BaseObject):
     disabled_until: Optional[int] = None
     settings: Optional["AccountPushParams"] = None
     conversations: Optional["AccountPushConversations"] = None
-
-
-class AccountUserSettings(BaseObject):
-    """VK Object Account/AccountUserSettings"""
 
 
 class AccountUserSettingsInterest(BaseObject):
@@ -747,8 +743,15 @@ class AdsStatsViewsTimes(BaseObject):
     views_ads_times_11_plus: Optional[int] = None
 
 
-class AdsTargSettings(BaseObject):
-    """VK Object Ads/AdsTargSettings"""
+class AdsTargSettings(AdsCriteria):
+    """VK Object Ads/AdsTargSettings
+
+    id - Ad ID
+    campaign_id - Campaign ID
+    """
+
+    id: Optional[int] = None
+    campaign_id: Optional[int] = None
 
 
 class AdsTargStats(BaseObject):
@@ -861,10 +864,6 @@ class AdsUsers(BaseObject):
     user_id: Optional[int] = None
 
 
-class AppsApp(BaseObject):
-    """VK Object Apps/AppsApp"""
-
-
 class AppsAppLeaderboardType(enum.IntEnum):
     """ Leaderboard type """
 
@@ -888,6 +887,31 @@ class AppsAppMin(BaseObject):
     background_loader_color: Optional[str] = None
     loader_icon: Optional[str] = None
     icon_75: Optional[str] = None
+
+
+class AppsApp(AppsAppMin):
+    """VK Object Apps/AppsApp"""
+
+    author_url: Optional[str] = None
+    banner_1120: Optional[str] = None
+    banner_560: Optional[str] = None
+    icon_16: Optional[str] = None
+    is_new: Optional["BaseBoolInt"] = None
+    push_enabled: Optional["BaseBoolInt"] = None
+    screen_orientation: Optional[int] = None
+    friends: Optional[List[int]] = None
+    catalog_position: Optional[int] = None
+    description: Optional[str] = None
+    genre: Optional[str] = None
+    genre_id: Optional[int] = None
+    international: Optional[bool] = None
+    is_in_catalog: Optional[int] = None
+    leaderboard_type: Optional["AppsAppLeaderboardType"] = None
+    members_count: Optional[int] = None
+    platform_id: Optional[str] = None
+    published_date: Optional[int] = None
+    screen_name: Optional[str] = None
+    section: Optional[str] = None
 
 
 class AppsAppType(enum.Enum):
@@ -1813,7 +1837,16 @@ class CommentThread(BaseObject):
 
 
 class DatabaseCity(BaseObject):
-    """VK Object Database/DatabaseCity"""
+    """VK Object Database/DatabaseCity
+
+    area - Area title
+    region - Region title
+    important - Information whether the city is included in important cities list
+    """
+
+    area: Optional[str] = None
+    region: Optional[str] = None
+    important: Optional["BaseBoolInt"] = None
 
 
 class DatabaseFaculty(BaseObject):
@@ -2069,16 +2102,21 @@ class FaveTag(BaseObject):
     name: Optional[str] = None
 
 
-class FriendsFriendExtendedStatus(BaseObject):
-    """VK Object Friends/FriendsFriendExtendedStatus"""
-
-
 class FriendsFriendStatus(BaseObject):
     """VK Object Friends/FriendsFriendStatus"""
 
     friend_status: Optional["FriendsFriendStatusStatus"] = None
     sign: Optional[str] = None
     user_id: Optional[int] = None
+
+
+class FriendsFriendExtendedStatus(FriendsFriendStatus):
+    """VK Object Friends/FriendsFriendExtendedStatus
+
+    is_request_unread - Is friend request from other user unread
+    """
+
+    is_request_unread: Optional[bool] = None
 
 
 class FriendsFriendStatusStatus(enum.IntEnum):
@@ -2147,14 +2185,6 @@ class FriendsRequestsXtrMessage(BaseObject):
     message: Optional[str] = None
     mutual: Optional["FriendsRequestsMutual"] = None
     user_id: Optional[int] = None
-
-
-class FriendsUserXtrLists(BaseObject):
-    """VK Object Friends/FriendsUserXtrLists"""
-
-
-class FriendsUserXtrPhone(BaseObject):
-    """VK Object Friends/FriendsUserXtrPhone"""
 
 
 class GiftsGift(BaseObject):
@@ -2559,8 +2589,55 @@ class GroupsGroupDocs(enum.IntEnum):
     limited = 2
 
 
-class GroupsGroupFull(BaseObject):
+class GroupsGroupFull(GroupsGroup):
     """VK Object Groups/GroupsGroupFull"""
+
+    market: Optional["GroupsMarketInfo"] = None
+    member_status: Optional["GroupsGroupFullMemberStatus"] = None
+    is_adult: Optional["BaseBoolInt"] = None
+    is_hidden_from_feed: Optional["BaseBoolInt"] = None
+    is_favorite: Optional["BaseBoolInt"] = None
+    is_subscribed: Optional["BaseBoolInt"] = None
+    city: Optional["BaseObject"] = None
+    country: Optional["BaseCountry"] = None
+    verified: Optional["BaseBoolInt"] = None
+    description: Optional[str] = None
+    wiki_page: Optional[str] = None
+    members_count: Optional[int] = None
+    video_live_level: Optional[int] = None
+    video_live_count: Optional[int] = None
+    counters: Optional["GroupsCountersGroup"] = None
+    cover: Optional["GroupsCover"] = None
+    can_post: Optional["BaseBoolInt"] = None
+    can_see_all_posts: Optional["BaseBoolInt"] = None
+    activity: Optional[str] = None
+    fixed_post: Optional[int] = None
+    can_create_topic: Optional["BaseBoolInt"] = None
+    can_upload_doc: Optional["BaseBoolInt"] = None
+    can_upload_story: Optional["BaseBoolInt"] = None
+    can_upload_video: Optional["BaseBoolInt"] = None
+    has_photo: Optional["BaseBoolInt"] = None
+    crop_photo: Optional["BaseCropPhoto"] = None
+    status: Optional[str] = None
+    main_album_id: Optional[int] = None
+    links: Optional[List["GroupsLinksItem"]] = None
+    contacts: Optional[List["GroupsContactsItem"]] = None
+    wall: Optional[int] = None
+    site: Optional[str] = None
+    main_section: Optional["GroupsGroupFullMainSection"] = None
+    trending: Optional["BaseBoolInt"] = None
+    can_message: Optional["BaseBoolInt"] = None
+    is_messages_blocked: Optional["BaseBoolInt"] = None
+    can_send_notify: Optional["BaseBoolInt"] = None
+    online_status: Optional["GroupsOnlineStatus"] = None
+    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
+    ban_info: Optional["GroupsGroupBanInfo"] = None
+    has_market_app: Optional[bool] = None
+    addresses: Optional["GroupsAddressesInfo"] = None
+    is_subscribed_podcasts: Optional[bool] = None
+    can_subscribe_podcasts: Optional[bool] = None
+    can_subscribe_posts: Optional[bool] = None
+    live_covers: Optional["GroupsLiveCovers"] = None
 
 
 class GroupsGroupFullAgeLimits(enum.IntEnum):
@@ -3021,10 +3098,6 @@ class GroupsTokenPermissionSetting(BaseObject):
     setting: Optional[int] = None
 
 
-class GroupsUserXtrRole(BaseObject):
-    """VK Object Groups/GroupsUserXtrRole"""
-
-
 class LeadsChecked(BaseObject):
     """VK Object Leads/LeadsChecked"""
 
@@ -3222,8 +3295,21 @@ class MarketMarketItemAvailability(enum.IntEnum):
     unavailable = 2
 
 
-class MarketMarketItemFull(BaseObject):
-    """VK Object Market/MarketMarketItemFull"""
+class MarketMarketItemFull(MarketMarketItem):
+    """VK Object Market/MarketMarketItemFull
+
+    can_comment - Information whether current use can comment the item
+    can_repost - Information whether current use can repost the item
+    views_count - Views number
+    """
+
+    albums_ids: Optional[List[int]] = None
+    photos: Optional[List["PhotosPhoto"]] = None
+    can_comment: Optional["BaseBoolInt"] = None
+    can_repost: Optional["BaseBoolInt"] = None
+    likes: Optional["BaseLikes"] = None
+    reposts: Optional["BaseRepostsInfo"] = None
+    views_count: Optional[int] = None
 
 
 class MarketPrice(BaseObject):
@@ -3842,10 +3928,6 @@ class NewsfeedIgnoreItemType(enum.Enum):
     AUDIO = "audio"
 
 
-class NewsfeedItemAudio(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemAudio"""
-
-
 class NewsfeedItemAudioAudio(BaseObject):
     """VK Object Newsfeed/NewsfeedItemAudioAudio
 
@@ -3868,12 +3950,26 @@ class NewsfeedItemBase(BaseObject):
     date: Optional[int] = None
 
 
-class NewsfeedItemDigest(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemDigest"""
+class NewsfeedItemDigest(NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemDigest
+
+    feed_id - id of feed in digest
+    template - type of digest
+    """
+
+    button_text: Optional[str] = None
+    feed_id: Optional[str] = None
+    items: Optional[List["WallWallpost"]] = None
+    main_post_ids: Optional[List[str]] = None
+    template: Optional[str] = None
+    title: Optional[str] = None
+    track_code: Optional[str] = None
 
 
-class NewsfeedItemFriend(BaseObject):
+class NewsfeedItemFriend(NewsfeedItemBase):
     """VK Object Newsfeed/NewsfeedItemFriend"""
+
+    friends: Optional["NewsfeedItemFriendFriends"] = None
 
 
 class NewsfeedItemFriendFriends(BaseObject):
@@ -3899,8 +3995,10 @@ class NewsfeedItemHolidayRecommendationsBlockHeader(BaseObject):
     action: Optional["BaseLinkButtonAction"] = None
 
 
-class NewsfeedItemNote(BaseObject):
+class NewsfeedItemNote(NewsfeedItemBase):
     """VK Object Newsfeed/NewsfeedItemNote"""
+
+    notes: Optional["NewsfeedItemNoteNotes"] = None
 
 
 class NewsfeedItemNoteNotes(BaseObject):
@@ -3913,10 +4011,6 @@ class NewsfeedItemNoteNotes(BaseObject):
     items: Optional[List["NewsfeedNewsfeedNote"]] = None
 
 
-class NewsfeedItemPhoto(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemPhoto"""
-
-
 class NewsfeedItemPhotoPhotos(BaseObject):
     """VK Object Newsfeed/NewsfeedItemPhotoPhotos
 
@@ -3925,10 +4019,6 @@ class NewsfeedItemPhotoPhotos(BaseObject):
 
     count: Optional[int] = None
     items: Optional[List["NewsfeedNewsfeedPhoto"]] = None
-
-
-class NewsfeedItemPhotoTag(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemPhotoTag"""
 
 
 class NewsfeedItemPhotoTagPhotoTags(BaseObject):
@@ -3941,8 +4031,14 @@ class NewsfeedItemPhotoTagPhotoTags(BaseObject):
     items: Optional[List["NewsfeedNewsfeedPhoto"]] = None
 
 
-class NewsfeedItemPromoButton(BaseObject):
+class NewsfeedItemPromoButton(NewsfeedItemBase):
     """VK Object Newsfeed/NewsfeedItemPromoButton"""
+
+    text: Optional[str] = None
+    title: Optional[str] = None
+    action: Optional["NewsfeedItemPromoButtonAction"] = None
+    images: Optional[List["NewsfeedItemPromoButtonImage"]] = None
+    track_code: Optional[str] = None
 
 
 class NewsfeedItemPromoButtonAction(BaseObject):
@@ -3961,12 +4057,17 @@ class NewsfeedItemPromoButtonImage(BaseObject):
     url: Optional[str] = None
 
 
-class NewsfeedItemTopic(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemTopic"""
+class NewsfeedItemTopic(NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemTopic
 
+    post_id - Topic post ID
+    text - Post text
+    """
 
-class NewsfeedItemVideo(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemVideo"""
+    comments: Optional["BaseCommentsInfo"] = None
+    likes: Optional["BaseLikesInfo"] = None
+    post_id: Optional[int] = None
+    text: Optional[str] = None
 
 
 class NewsfeedItemVideoVideo(BaseObject):
@@ -3977,10 +4078,6 @@ class NewsfeedItemVideoVideo(BaseObject):
 
     count: Optional[int] = None
     items: Optional[List["VideoVideo"]] = None
-
-
-class NewsfeedItemWallpost(BaseObject):
-    """VK Object Newsfeed/NewsfeedItemWallpost"""
 
 
 class NewsfeedItemWallpostFeedback(BaseObject):
@@ -4026,8 +4123,14 @@ class NewsfeedList(BaseObject):
     title: Optional[str] = None
 
 
-class NewsfeedListFull(BaseObject):
-    """VK Object Newsfeed/NewsfeedListFull"""
+class NewsfeedListFull(NewsfeedList):
+    """VK Object Newsfeed/NewsfeedListFull
+
+    no_reposts - Information whether reposts hiding is enabled
+    """
+
+    no_reposts: Optional["BaseBoolInt"] = None
+    source_ids: Optional[List[int]] = None
 
 
 class NewsfeedNewsfeedItem(BaseObject):
@@ -4064,10 +4167,6 @@ class NewsfeedNewsfeedNote(BaseObject):
     id: Optional[int] = None
     owner_id: Optional[int] = None
     title: Optional[str] = None
-
-
-class NewsfeedNewsfeedPhoto(BaseObject):
-    """VK Object Newsfeed/NewsfeedNewsfeedPhoto"""
 
 
 class NotesNote(BaseObject):
@@ -4151,10 +4250,6 @@ class NotificationsNotification(BaseObject):
 
 class NotificationsNotificationItem(BaseObject):
     """VK Object Notifications/NotificationsNotificationItem"""
-
-
-class NotificationsNotificationParent(BaseObject):
-    """VK Object Notifications/NotificationsNotificationParent"""
 
 
 class NotificationsNotificationsComment(BaseObject):
@@ -4649,7 +4744,7 @@ class PhotosPhotoFull(BaseObject):
     width: Optional[int] = None
 
 
-class PhotosPhotoFullXtrRealOffset(PhotosPhotoFull):
+class PhotosPhotoFullXtrRealOffset(BaseObject):
     """VK Object Photos/PhotosPhotoFullXtrRealOffset
 
     access_key - Access key for the photo
@@ -4789,7 +4884,7 @@ class PhotosPhotoUploadResponse(BaseObject):
     server: Optional[int] = None
 
 
-class PhotosPhotoXtrRealOffset(PhotosPhotoFull):
+class PhotosPhotoXtrRealOffset(BaseObject):
     """VK Object Photos/PhotosPhotoXtrRealOffset
 
     access_key - Access key for the photo
@@ -4837,7 +4932,7 @@ class PhotosPhotoXtrRealOffset(PhotosPhotoFull):
     width: Optional[int] = None
 
 
-class PhotosPhotoXtrTagInfo(PhotosPhotoFull):
+class PhotosPhotoXtrTagInfo(BaseObject):
     """VK Object Photos/PhotosPhotoXtrTagInfo
 
     access_key - Access key for the photo
@@ -5807,10 +5902,6 @@ class UsersUniversity(BaseObject):
     name: Optional[str] = None
 
 
-class UsersUser(BaseObject):
-    """VK Object Users/UsersUser"""
-
-
 class UsersUserConnections(BaseObject):
     """VK Object Users/UsersUserConnections
 
@@ -5865,10 +5956,6 @@ class UsersUserCounters(BaseObject):
     videos: Optional[int] = None
 
 
-class UsersUserFull(BaseObject):
-    """VK Object Users/UsersUserFull"""
-
-
 class UsersUserMin(BaseObject):
     """VK Object Users/UsersUserMin"""
 
@@ -5879,6 +5966,172 @@ class UsersUserMin(BaseObject):
     last_name: Optional[str] = None
     can_access_closed: Optional[bool] = None
     is_closed: Optional[bool] = None
+
+
+class UsersUser(UsersUserMin):
+    """VK Object Users/UsersUser
+
+    sex - User sex
+    screen_name - Domain name of the user's page
+    photo_50 - URL of square photo of the user with 50 pixels in width
+    photo_100 - URL of square photo of the user with 100 pixels in width
+    online - Information whether the user is online
+    online_mobile - Information whether the user is online in mobile site or application
+    online_app - Application ID
+    verified - Information whether the user is verified
+    trending - Information whether the user has a "fire" pictogram.
+    """
+
+    sex: Optional["BaseSex"] = None
+    screen_name: Optional[str] = None
+    photo_50: Optional[str] = None
+    photo_100: Optional[str] = None
+    online_info: Optional["UsersOnlineInfo"] = None
+    online: Optional["BaseBoolInt"] = None
+    online_mobile: Optional["BaseBoolInt"] = None
+    online_app: Optional[int] = None
+    verified: Optional["BaseBoolInt"] = None
+    trending: Optional["BaseBoolInt"] = None
+    friend_status: Optional["FriendsFriendStatusStatus"] = None
+    mutual: Optional["FriendsRequestsMutual"] = None
+
+
+class UsersUserFull(UsersUser):
+    """VK Object Users/UsersUserFull
+
+    first_name_nom - User's first name in nominative case
+    first_name_gen - User's first name in genitive case
+    first_name_dat - User's first name in dative case
+    first_name_acc - User's first name in accusative case
+    first_name_ins - User's first name in instrumental case
+    first_name_abl - User's first name in prepositional case
+    last_name_nom - User's last name in nominative case
+    last_name_gen - User's last name in genitive case
+    last_name_dat - User's last name in dative case
+    last_name_acc - User's last name in accusative case
+    last_name_ins - User's last name in instrumental case
+    last_name_abl - User's last name in prepositional case
+    nickname - User nickname
+    maiden_name - User maiden name
+    domain - Domain name of the user's page
+    bdate - User's date of birth
+    timezone - User's timezone
+    photo_200 - URL of square photo of the user with 200 pixels in width
+    photo_max - URL of square photo of the user with maximum width
+    photo_200_orig - URL of user's photo with 200 pixels in width
+    photo_400_orig - URL of user's photo with 400 pixels in width
+    photo_max_orig - URL of user's photo of maximum size
+    photo_id - ID of the user's main photo
+    has_photo - Information whether the user has main photo
+    has_mobile - Information whether the user specified his phone number
+    is_friend - Information whether the user is a friend of current user
+    wall_comments - Information whether current user can comment wall posts
+    can_post - Information whether current user can post on the user's wall
+    can_see_all_posts - Information whether current user can see other users' audio on the wall
+    can_see_audio - Information whether current user can see the user's audio
+    can_write_private_message - Information whether current user can write private message
+    can_send_friend_request - Information whether current user can send a friend request
+    can_be_invited_group - Information whether current user can be invited to the community
+    mobile_phone - User's mobile phone number
+    home_phone - User's additional phone number
+    site - User's website
+    status - User's status
+    activity - User's status
+    followers_count - Number of user's followers
+    video_live_level - User level in live streams achievements
+    video_live_count - Number of user's live streams
+    blacklisted - Information whether current user is in the requested user's blacklist.
+    blacklisted_by_me - Information whether the requested user is in current user's blacklist
+    is_favorite - Information whether the requested user is in faves of current user
+    is_hidden_from_feed - Information whether the requested user is hidden from current user's newsfeed
+    common_count - Number of common friends with current user
+    university - University ID
+    university_name - University name
+    faculty - Faculty ID
+    faculty_name - Faculty name
+    graduation - Graduation year
+    education_form - Education form
+    education_status - User's education status
+    home_town - User hometown
+    relation - User relationship status
+    is_subscribed_podcasts - Information whether current user is subscribed to podcasts
+    can_subscribe_podcasts - Owner in whitelist or not
+    can_subscribe_posts - Can subscribe to wall
+    """
+
+    first_name_nom: Optional[str] = None
+    first_name_gen: Optional[str] = None
+    first_name_dat: Optional[str] = None
+    first_name_acc: Optional[str] = None
+    first_name_ins: Optional[str] = None
+    first_name_abl: Optional[str] = None
+    last_name_nom: Optional[str] = None
+    last_name_gen: Optional[str] = None
+    last_name_dat: Optional[str] = None
+    last_name_acc: Optional[str] = None
+    last_name_ins: Optional[str] = None
+    last_name_abl: Optional[str] = None
+    nickname: Optional[str] = None
+    maiden_name: Optional[str] = None
+    domain: Optional[str] = None
+    bdate: Optional[str] = None
+    city: Optional["BaseObject"] = None
+    country: Optional["BaseCountry"] = None
+    timezone: Optional[int] = None
+    owner_state: Optional["OwnerState"] = None
+    photo_200: Optional[str] = None
+    photo_max: Optional[str] = None
+    photo_200_orig: Optional[str] = None
+    photo_400_orig: Optional[str] = None
+    photo_max_orig: Optional[str] = None
+    photo_id: Optional[str] = None
+    has_photo: Optional["BaseBoolInt"] = None
+    has_mobile: Optional["BaseBoolInt"] = None
+    is_friend: Optional["BaseBoolInt"] = None
+    wall_comments: Optional["BaseBoolInt"] = None
+    can_post: Optional["BaseBoolInt"] = None
+    can_see_all_posts: Optional["BaseBoolInt"] = None
+    can_see_audio: Optional["BaseBoolInt"] = None
+    can_write_private_message: Optional["BaseBoolInt"] = None
+    can_send_friend_request: Optional["BaseBoolInt"] = None
+    can_be_invited_group: Optional[bool] = None
+    mobile_phone: Optional[str] = None
+    home_phone: Optional[str] = None
+    site: Optional[str] = None
+    status_audio: Optional["AudioAudio"] = None
+    status: Optional[str] = None
+    activity: Optional[str] = None
+    last_seen: Optional["UsersLastSeen"] = None
+    exports: Optional["UsersExports"] = None
+    crop_photo: Optional["BaseCropPhoto"] = None
+    followers_count: Optional[int] = None
+    video_live_level: Optional[int] = None
+    video_live_count: Optional[int] = None
+    blacklisted: Optional["BaseBoolInt"] = None
+    blacklisted_by_me: Optional["BaseBoolInt"] = None
+    is_favorite: Optional["BaseBoolInt"] = None
+    is_hidden_from_feed: Optional["BaseBoolInt"] = None
+    common_count: Optional[int] = None
+    occupation: Optional["UsersOccupation"] = None
+    career: Optional[List["UsersCareer"]] = None
+    military: Optional[List["UsersMilitary"]] = None
+    university: Optional[int] = None
+    university_name: Optional[str] = None
+    faculty: Optional[int] = None
+    faculty_name: Optional[str] = None
+    graduation: Optional[int] = None
+    education_form: Optional[str] = None
+    education_status: Optional[str] = None
+    home_town: Optional[str] = None
+    relation: Optional["UsersUserRelation"] = None
+    relation_partner: Optional["UsersUserMin"] = None
+    personal: Optional["UsersPersonal"] = None
+    universities: Optional[List["UsersUniversity"]] = None
+    schools: Optional[List["UsersSchool"]] = None
+    relatives: Optional[List["UsersRelative"]] = None
+    is_subscribed_podcasts: Optional[bool] = None
+    can_subscribe_podcasts: Optional[bool] = None
+    can_subscribe_posts: Optional[bool] = None
 
 
 class UsersUserRelation(enum.IntEnum):
@@ -5931,9 +6184,13 @@ class UsersUserType(enum.Enum):
 class UsersUserXtrCounters(UsersUserFull):
     """VK Object Users/UsersUserXtrCounters"""
 
+    counters: Optional["UsersUserCounters"] = None
 
-class UsersUserXtrType(UsersUserFull):
+
+class UsersUserXtrType(UsersUser):
     """VK Object Users/UsersUserXtrType"""
+
+    type: Optional["UsersUserType"] = None
 
 
 class UsersUsersArray(BaseObject):
@@ -6132,7 +6389,93 @@ class VideoSaveResult(BaseObject):
 
 
 class VideoVideo(BaseObject):
-    """VK Object Video/VideoVideo"""
+    """VK Object Video/VideoVideo
+
+    access_key - Video access key
+    adding_date - Date when the video has been added in Unixtime
+    can_comment - Information whether current user can comment the video
+    can_edit - Information whether current user can edit the video
+    can_like - Information whether current user can like the video
+    can_repost - Information whether current user can repost the video
+    can_subscribe - Information whether current user can subscribe to author of the video
+    can_add_to_faves - Information whether current user can add the video to favourites
+    can_add - Information whether current user can add the video
+    can_attach_link - Information whether current user can attach action button to the video
+    is_private - 1 if video is private
+    comments - Number of comments
+    date - Date when video has been uploaded in Unixtime
+    description - Video description
+    duration - Video duration in seconds
+    width - Video width
+    height - Video height
+    id - Video ID
+    owner_id - Video owner ID
+    user_id - Id of the user who uploaded the video if it was uploaded to a group by member
+    title - Video title
+    is_favorite - Whether video is added to bookmarks
+    player - Video embed URL
+    processing - Returns if the video is processing
+    converting - 1 if  video is being converted
+    added - 1 if video is added to user's albums
+    is_subscribed - 1 if user is subscribed to author of the video
+    repeat - Information whether the video is repeated
+    views - Number of views
+    local_views - If video is external, number of views on vk
+    content_restricted - Restriction code
+    content_restricted_message - Restriction text
+    balance - Live donations balance
+    live_status - Live stream status
+    live - 1 if the video is a live stream
+    upcoming - 1 if the video is an upcoming stream
+    spectators - Number of spectators of the stream
+    platform - External platform
+    """
+
+    access_key: Optional[str] = None
+    adding_date: Optional[int] = None
+    can_comment: Optional["BaseBoolInt"] = None
+    can_edit: Optional["BaseBoolInt"] = None
+    can_like: Optional["BaseBoolInt"] = None
+    can_repost: Optional["BaseBoolInt"] = None
+    can_subscribe: Optional["BaseBoolInt"] = None
+    can_add_to_faves: Optional["BaseBoolInt"] = None
+    can_add: Optional["BaseBoolInt"] = None
+    can_attach_link: Optional["BaseBoolInt"] = None
+    is_private: Optional["BaseBoolInt"] = None
+    comments: Optional[int] = None
+    date: Optional[int] = None
+    description: Optional[str] = None
+    duration: Optional[int] = None
+    image: Optional[List["VideoVideoImage"]] = None
+    first_frame: Optional[List["VideoVideoImage"]] = None
+    width: Optional[int] = None
+    height: Optional[int] = None
+    id: Optional[int] = None
+    owner_id: Optional[int] = None
+    user_id: Optional[int] = None
+    title: Optional[str] = None
+    is_favorite: Optional[bool] = None
+    player: Optional[str] = None
+    processing: Optional["BasePropertyExists"] = None
+    converting: Optional["BaseBoolInt"] = None
+    restriction: Optional["MediaRestriction"] = None
+    added: Optional["BaseBoolInt"] = None
+    is_subscribed: Optional["BaseBoolInt"] = None
+    track_code: Optional[str] = None
+    repeat: Optional["BasePropertyExists"] = None
+    type: Optional[str] = None
+    views: Optional[int] = None
+    local_views: Optional[int] = None
+    content_restricted: Optional[int] = None
+    content_restricted_message: Optional[str] = None
+    balance: Optional[int] = None
+    live_status: Optional[str] = None
+    live: Optional["BasePropertyExists"] = None
+    upcoming: Optional["BasePropertyExists"] = None
+    spectators: Optional[int] = None
+    platform: Optional[str] = None
+    likes: Optional["BaseLikes"] = None
+    reposts: Optional["BaseRepostsInfo"] = None
 
 
 class VideoVideoAlbumFull(BaseObject):
@@ -6179,12 +6522,20 @@ class VideoVideoFiles(BaseObject):
     flv_320: Optional[str] = None
 
 
-class VideoVideoFull(BaseObject):
-    """VK Object Video/VideoVideoFull"""
+class VideoVideoFull(VideoVideo):
+    """VK Object Video/VideoVideoFull
+
+    live_settings - Settings for live stream
+    """
+
+    files: Optional["VideoVideoFiles"] = None
+    live_settings: Optional["VideoLiveSettings"] = None
 
 
-class VideoVideoImage(BaseObject):
+class VideoVideoImage(BaseImage):
     """VK Object Video/VideoVideoImage"""
+
+    with_padding: Optional["BasePropertyExists"] = None
 
 
 class WallAppPost(BaseObject):
@@ -6466,8 +6817,27 @@ class WallWallpostAttachmentType(enum.Enum):
     EVENT = "event"
 
 
-class WallWallpostFull(BaseObject):
-    """VK Object Wall/WallWallpostFull"""
+class WallWallpostFull(WallCarouselBase, WallWallpost):
+    """VK Object Wall/WallWallpostFull
+
+    can_edit - Information whether current user can edit the post
+    created_by - Post creator ID (if post still can be edited)
+    can_delete - Information whether current user can delete the post
+    can_pin - Information whether current user can pin the post
+    is_pinned - Information whether the post is pinned
+    marked_as_ads - Information whether the post is marked as ads
+    short_text_rate - Preview length control parameter
+    """
+
+    copy_history: Optional[List["WallWallpost"]] = None
+    can_edit: Optional["BaseBoolInt"] = None
+    created_by: Optional[int] = None
+    can_delete: Optional["BaseBoolInt"] = None
+    can_pin: Optional["BaseBoolInt"] = None
+    is_pinned: Optional[int] = None
+    comments: Optional["BaseCommentsInfo"] = None
+    marked_as_ads: Optional["BaseBoolInt"] = None
+    short_text_rate: Optional[float] = None
 
 
 class WallWallpostToId(BaseObject):
@@ -6610,13 +6980,136 @@ class WidgetsWidgetPage(BaseObject):
     url: Optional[str] = None
 
 
+class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
+    """VK Object Account/AccountUserSettings
+
+    photo_200 - URL of square photo of the user with 200 pixels in width
+    is_service_account - flag about service account
+    """
+
+    photo_200: Optional[str] = None
+    is_service_account: Optional[bool] = None
+
+
+class FriendsUserXtrPhone(UsersUserFull):
+    """VK Object Friends/FriendsUserXtrPhone
+
+    phone - User phone
+    """
+
+    phone: Optional[str] = None
+
+
+class MessagesUserXtrInvitedBy(UsersUserXtrType):
+    """VK Object Messages/MessagesUserXtrInvitedBy"""
+
+    invited_by: Optional[int] = None
+
+
+class FriendsUserXtrLists(UsersUserFull):
+    """VK Object Friends/FriendsUserXtrLists"""
+
+    lists: Optional[List[int]] = None
+
+
+class GroupsUserXtrRole(UsersUserFull):
+    """VK Object Groups/GroupsUserXtrRole"""
+
+    role: Optional["GroupsRoleOptions"] = None
+
+
+class NotificationsNotificationParent(
+    WallWallpostToId,
+    PhotosPhoto,
+    BoardTopic,
+    VideoVideo,
+    NotificationsNotificationsComment,
+):
+    """VK Object Notifications/NotificationsNotificationParent"""
+
+
+class NewsfeedNewsfeedPhoto(PhotosPhoto):
+    """VK Object Newsfeed/NewsfeedNewsfeedPhoto
+
+    can_repost - Information whether current user can repost the photo
+    """
+
+    likes: Optional["BaseLikes"] = None
+    comments: Optional["BaseObjectCount"] = None
+    can_repost: Optional["BaseBoolInt"] = None
+
+
+class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemWallpost
+
+    is_favorite - Information whether the post in favorites list
+    marked_as_ads - Information whether the post is marked as ads
+    post_id - Post ID
+    signer_id - Post signer ID
+    text - Post text
+    views - Count of views
+    short_text_rate - Preview length control parameter
+    """
+
+    activity: Optional["NewsfeedEventActivity"] = None
+    attachments: Optional[List["WallWallpostAttachment"]] = None
+    comments: Optional["BaseCommentsInfo"] = None
+    copy_history: Optional[List["WallWallpost"]] = None
+    feedback: Optional["NewsfeedItemWallpostFeedback"] = None
+    geo: Optional["BaseGeo"] = None
+    is_favorite: Optional[bool] = None
+    likes: Optional["BaseLikesInfo"] = None
+    marked_as_ads: Optional["BaseBoolInt"] = None
+    post_id: Optional[int] = None
+    post_source: Optional["WallPostSource"] = None
+    post_type: Optional["NewsfeedItemWallpostType"] = None
+    reposts: Optional["BaseRepostsInfo"] = None
+    signer_id: Optional[int] = None
+    text: Optional[str] = None
+    views: Optional["WallViews"] = None
+    short_text_rate: Optional[float] = None
+
+
+class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemVideo"""
+
+    video: Optional["NewsfeedItemVideoVideo"] = None
+
+
+class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemPhotoTag
+
+    post_id - Post ID
+    """
+
+    photo_tags: Optional["NewsfeedItemPhotoTagPhotoTags"] = None
+    post_id: Optional[int] = None
+
+
+class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemPhoto
+
+    post_id - Post ID
+    """
+
+    photos: Optional["NewsfeedItemPhotoPhotos"] = None
+    post_id: Optional[int] = None
+
+
+class NewsfeedItemAudio(NewsfeedItemBase):
+    """VK Object Newsfeed/NewsfeedItemAudio
+
+    post_id - Post ID
+    """
+
+    audio: Optional["NewsfeedItemAudioAudio"] = None
+    post_id: Optional[int] = None
+
+
 class GroupsBannedItem(GroupsOwnerXtrBanInfo):
     """VK Object Groups/GroupsBannedItem
-    #FIXME Comment is undefined"""
-
-
-class MessagesUserXtrInvitedBy(UsersUser, MessagesMessage):
-    """VK Object Messages/MessagesUserXtrInvitedBy"""
+    #FIXME Comment is undefined
+    """
 
 
 AccountAccountCounters.update_forward_refs()
@@ -6627,7 +7120,6 @@ AccountPushConversations.update_forward_refs()
 AccountPushConversationsItem.update_forward_refs()
 AccountPushParams.update_forward_refs()
 AccountPushSettings.update_forward_refs()
-AccountUserSettings.update_forward_refs()
 AccountUserSettingsInterest.update_forward_refs()
 AccountUserSettingsInterests.update_forward_refs()
 AdsAccesses.update_forward_refs()
@@ -6656,7 +7148,6 @@ AdsStatsFormat.update_forward_refs()
 AdsStatsSex.update_forward_refs()
 AdsStatsSexAge.update_forward_refs()
 AdsStatsViewsTimes.update_forward_refs()
-AdsTargSettings.update_forward_refs()
 AdsTargStats.update_forward_refs()
 AdsTargSuggestions.update_forward_refs()
 AdsTargSuggestionsCities.update_forward_refs()
@@ -6664,7 +7155,6 @@ AdsTargSuggestionsRegions.update_forward_refs()
 AdsTargSuggestionsSchools.update_forward_refs()
 AdsTargetGroup.update_forward_refs()
 AdsUsers.update_forward_refs()
-AppsApp.update_forward_refs()
 AppsAppMin.update_forward_refs()
 AppsLeaderboard.update_forward_refs()
 AppsScope.update_forward_refs()
@@ -6746,15 +7236,12 @@ EventsEventAttach.update_forward_refs()
 FaveBookmark.update_forward_refs()
 FavePage.update_forward_refs()
 FaveTag.update_forward_refs()
-FriendsFriendExtendedStatus.update_forward_refs()
 FriendsFriendStatus.update_forward_refs()
 FriendsFriendsList.update_forward_refs()
 FriendsMutualFriend.update_forward_refs()
 FriendsRequests.update_forward_refs()
 FriendsRequestsMutual.update_forward_refs()
 FriendsRequestsXtrMessage.update_forward_refs()
-FriendsUserXtrLists.update_forward_refs()
-FriendsUserXtrPhone.update_forward_refs()
 GiftsGift.update_forward_refs()
 GiftsLayout.update_forward_refs()
 GroupsAddress.update_forward_refs()
@@ -6773,7 +7260,6 @@ GroupsGroupBanInfo.update_forward_refs()
 GroupsGroupCategory.update_forward_refs()
 GroupsGroupCategoryFull.update_forward_refs()
 GroupsGroupCategoryType.update_forward_refs()
-GroupsGroupFull.update_forward_refs()
 GroupsGroupLink.update_forward_refs()
 GroupsGroupPublicCategoryList.update_forward_refs()
 GroupsGroupXtrInvitedBy.update_forward_refs()
@@ -6792,7 +7278,6 @@ GroupsOwnerXtrBanInfo.update_forward_refs()
 GroupsSettingsTwitter.update_forward_refs()
 GroupsSubjectItem.update_forward_refs()
 GroupsTokenPermissionSetting.update_forward_refs()
-GroupsUserXtrRole.update_forward_refs()
 LeadsChecked.update_forward_refs()
 LeadsComplete.update_forward_refs()
 LeadsEntry.update_forward_refs()
@@ -6804,7 +7289,6 @@ MarketCurrency.update_forward_refs()
 MarketMarketAlbum.update_forward_refs()
 MarketMarketCategory.update_forward_refs()
 MarketMarketItem.update_forward_refs()
-MarketMarketItemFull.update_forward_refs()
 MarketPrice.update_forward_refs()
 MarketSection.update_forward_refs()
 MediaRestriction.update_forward_refs()
@@ -6834,41 +7318,27 @@ MessagesMessageActionPhoto.update_forward_refs()
 MessagesMessageAttachment.update_forward_refs()
 MessagesMessageRequestData.update_forward_refs()
 MessagesPinnedMessage.update_forward_refs()
-MessagesUserXtrInvitedBy.update_forward_refs()
 NewsfeedEventActivity.update_forward_refs()
-NewsfeedItemAudio.update_forward_refs()
 NewsfeedItemAudioAudio.update_forward_refs()
 NewsfeedItemBase.update_forward_refs()
-NewsfeedItemDigest.update_forward_refs()
-NewsfeedItemFriend.update_forward_refs()
 NewsfeedItemFriendFriends.update_forward_refs()
 NewsfeedItemHolidayRecommendationsBlockHeader.update_forward_refs()
-NewsfeedItemNote.update_forward_refs()
 NewsfeedItemNoteNotes.update_forward_refs()
-NewsfeedItemPhoto.update_forward_refs()
 NewsfeedItemPhotoPhotos.update_forward_refs()
-NewsfeedItemPhotoTag.update_forward_refs()
 NewsfeedItemPhotoTagPhotoTags.update_forward_refs()
-NewsfeedItemPromoButton.update_forward_refs()
 NewsfeedItemPromoButtonAction.update_forward_refs()
 NewsfeedItemPromoButtonImage.update_forward_refs()
-NewsfeedItemTopic.update_forward_refs()
-NewsfeedItemVideo.update_forward_refs()
 NewsfeedItemVideoVideo.update_forward_refs()
-NewsfeedItemWallpost.update_forward_refs()
 NewsfeedItemWallpostFeedback.update_forward_refs()
 NewsfeedItemWallpostFeedbackAnswer.update_forward_refs()
 NewsfeedList.update_forward_refs()
-NewsfeedListFull.update_forward_refs()
 NewsfeedNewsfeedItem.update_forward_refs()
 NewsfeedNewsfeedNote.update_forward_refs()
-NewsfeedNewsfeedPhoto.update_forward_refs()
 NotesNote.update_forward_refs()
 NotesNoteComment.update_forward_refs()
 NotificationsFeedback.update_forward_refs()
 NotificationsNotification.update_forward_refs()
 NotificationsNotificationItem.update_forward_refs()
-NotificationsNotificationParent.update_forward_refs()
 NotificationsNotificationsComment.update_forward_refs()
 NotificationsReply.update_forward_refs()
 NotificationsSendMessageError.update_forward_refs()
@@ -6947,14 +7417,10 @@ UsersRelative.update_forward_refs()
 UsersSchool.update_forward_refs()
 UsersSubscriptionsItem.update_forward_refs()
 UsersUniversity.update_forward_refs()
-UsersUser.update_forward_refs()
 UsersUserConnections.update_forward_refs()
 UsersUserCounters.update_forward_refs()
-UsersUserFull.update_forward_refs()
 UsersUserMin.update_forward_refs()
 UsersUserSettingsXtr.update_forward_refs()
-UsersUserXtrCounters.update_forward_refs()
-UsersUserXtrType.update_forward_refs()
 UsersUsersArray.update_forward_refs()
 UtilsDomainResolved.update_forward_refs()
 UtilsLastShortenedLink.update_forward_refs()
@@ -6970,11 +7436,8 @@ UtilsStatsSexAge.update_forward_refs()
 VideoLiveSettings.update_forward_refs()
 VideoRestrictionButton.update_forward_refs()
 VideoSaveResult.update_forward_refs()
-VideoVideo.update_forward_refs()
 VideoVideoAlbumFull.update_forward_refs()
 VideoVideoFiles.update_forward_refs()
-VideoVideoFull.update_forward_refs()
-VideoVideoImage.update_forward_refs()
 WallAppPost.update_forward_refs()
 WallAttachedNote.update_forward_refs()
 WallCarouselBase.update_forward_refs()
@@ -6988,7 +7451,6 @@ WallViews.update_forward_refs()
 WallWallComment.update_forward_refs()
 WallWallpost.update_forward_refs()
 WallWallpostAttachment.update_forward_refs()
-WallWallpostFull.update_forward_refs()
 WallWallpostToId.update_forward_refs()
 WidgetsCommentMedia.update_forward_refs()
 WidgetsCommentReplies.update_forward_refs()
