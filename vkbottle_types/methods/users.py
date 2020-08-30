@@ -1,6 +1,7 @@
-from vkbottle_types.responses import users, base
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import users, base
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -13,6 +14,7 @@ class UsersCategory(BaseCategory):
         user_ids: Optional[List[int]] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> users.GetResponseModel:
         """Returns detailed information on users.
         :param user_ids: User IDs or screen names ('screen_name'). By default, current user ID.
@@ -30,6 +32,7 @@ class UsersCategory(BaseCategory):
         count: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> users.GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
         :param user_id: User ID.
@@ -51,6 +54,7 @@ class UsersCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
+        **kwargs
     ) -> users.GetSubscriptionsExtendedResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
         :param user_id: User ID.
@@ -66,9 +70,9 @@ class UsersCategory(BaseCategory):
         )
 
     async def report(
-        self, user_id: int, type: str, comment: Optional[str] = None
+        self, user_id: int, type: str, comment: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complain about) a user.
+        """Reports (submits a complain about, **kwargs) a user.
         :param user_id: ID of the user about whom a complaint is being made.
         :param type: Type of complaint: 'porn' – pornography, 'spam' – spamming, 'insult' – abusive behavior, 'advertisement' – disruptive advertisements
         :param comment: Comment describing the complaint.
@@ -111,6 +115,7 @@ class UsersCategory(BaseCategory):
         position: Optional[str] = None,
         group_id: Optional[int] = None,
         from_list: Optional[List[str]] = None,
+        **kwargs
     ) -> users.SearchResponseModel:
         """Returns a list of users matching the search criteria.
         :param q: Search query string (e.g., 'Vasya Babich').

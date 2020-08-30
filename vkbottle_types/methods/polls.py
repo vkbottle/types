@@ -1,6 +1,7 @@
-from vkbottle_types.responses import polls, base
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import polls, base
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -14,6 +15,7 @@ class PollsCategory(BaseCategory):
         answer_ids: List[int],
         owner_id: Optional[int] = None,
         is_board: Optional[bool] = None,
+        **kwargs
     ) -> polls.AddVoteResponseModel:
         """Adds the current user's vote to the selected answer in the poll.
         :param poll_id: Poll ID.
@@ -36,6 +38,7 @@ class PollsCategory(BaseCategory):
         photo_id: Optional[int] = None,
         background_id: Optional[str] = None,
         disable_unvote: Optional[bool] = None,
+        **kwargs
     ) -> polls.CreateResponseModel:
         """Creates polls that can be attached to the users' or communities' posts.
         :param question: question text
@@ -58,6 +61,7 @@ class PollsCategory(BaseCategory):
         answer_id: int,
         owner_id: Optional[int] = None,
         is_board: Optional[bool] = None,
+        **kwargs
     ) -> polls.DeleteVoteResponseModel:
         """Deletes the current user's vote from the selected answer in the poll.
         :param poll_id: Poll ID.
@@ -82,6 +86,7 @@ class PollsCategory(BaseCategory):
         end_date: Optional[int] = None,
         photo_id: Optional[int] = None,
         background_id: Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits created polls
         :param poll_id: edited poll's id
@@ -107,6 +112,7 @@ class PollsCategory(BaseCategory):
         friends_count: Optional[int] = None,
         fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> polls.GetByIdResponseModel:
         """Returns detailed information about a poll by its ID.
         :param poll_id: Poll ID.
@@ -132,6 +138,7 @@ class PollsCategory(BaseCategory):
         count: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> polls.GetVotersResponseModel:
         """Returns a list of IDs of users who selected specific answers in the poll.
         :param poll_id: Poll ID.
@@ -142,7 +149,7 @@ class PollsCategory(BaseCategory):
         :param offset: Offset needed to return a specific subset of voters. '0' — (default)
         :param count: Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' — (default)
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         """
 
         params = self.get_set_params(locals())

@@ -1,5 +1,6 @@
+from typing import Optional
+
 from vkbottle_types.responses import auth, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -10,6 +11,7 @@ class AuthCategory(BaseCategory):
         client_id: Optional[int] = None,
         client_secret: Optional[str] = None,
         auth_by_phone: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Checks a user's phone number for correctness.
         :param phone: Phone number.
@@ -21,7 +23,9 @@ class AuthCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("auth.checkPhone", params))
 
-    async def restore(self, phone: str, last_name: str) -> auth.RestoreResponseModel:
+    async def restore(
+        self, phone: str, last_name: str, **kwargs
+    ) -> auth.RestoreResponseModel:
         """Allows to restore account access using a code received via SMS. " This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. "
         :param phone: User phone number.
         :param last_name: User last name.

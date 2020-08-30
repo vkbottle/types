@@ -1,5 +1,6 @@
+from typing import Optional
+
 from vkbottle_types.responses import gifts
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -9,6 +10,7 @@ class GiftsCategory(BaseCategory):
         user_id: Optional[int] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
+        **kwargs
     ) -> gifts.GetResponseModel:
         """Returns a list of user gifts.
         :param user_id: User ID.

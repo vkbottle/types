@@ -1,11 +1,16 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import database
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
 class DatabaseCategory(BaseCategory):
     async def get_chairs(
-        self, faculty_id: int, offset: Optional[int] = None, count: Optional[int] = None
+        self,
+        faculty_id: int,
+        offset: Optional[int] = None,
+        count: Optional[int] = None,
+        **kwargs
     ) -> database.GetChairsResponseModel:
         """Returns list of chairs on a specified faculty.
         :param faculty_id: id of the faculty to get chairs from
@@ -26,6 +31,7 @@ class DatabaseCategory(BaseCategory):
         need_all: Optional[bool] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetCitiesResponseModel:
         """Returns a list of cities.
         :param country_id: Country ID.
@@ -42,7 +48,7 @@ class DatabaseCategory(BaseCategory):
         )
 
     async def get_cities_by_id(
-        self, city_ids: Optional[List[int]] = None
+        self, city_ids: Optional[List[int]] = None, **kwargs
     ) -> database.GetCitiesByIdResponseModel:
         """Returns information about cities by their IDs.
         :param city_ids: City IDs.
@@ -59,6 +65,7 @@ class DatabaseCategory(BaseCategory):
         code: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetCountriesResponseModel:
         """Returns a list of countries.
         :param need_all: '1' — to return a full list of all countries, '0' — to return a list of countries near the current user's country (default).
@@ -73,7 +80,7 @@ class DatabaseCategory(BaseCategory):
         )
 
     async def get_countries_by_id(
-        self, country_ids: Optional[List[int]] = None
+        self, country_ids: Optional[List[int]] = None, **kwargs
     ) -> database.GetCountriesByIdResponseModel:
         """Returns information about countries by their IDs.
         :param country_ids: Country IDs.
@@ -89,6 +96,7 @@ class DatabaseCategory(BaseCategory):
         university_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetFacultiesResponseModel:
         """Returns a list of faculties (i.e., university departments).
         :param university_id: University ID.
@@ -107,6 +115,7 @@ class DatabaseCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> database.GetMetroStationsResponseModel:
         """Get metro stations by city
         :param city_id:
@@ -121,7 +130,7 @@ class DatabaseCategory(BaseCategory):
         )
 
     async def get_metro_stations_by_id(
-        self, station_ids: Optional[List[int]] = None
+        self, station_ids: Optional[List[int]] = None, **kwargs
     ) -> database.GetMetroStationsByIdResponseModel:
         """Get metro station by his id
         :param station_ids:
@@ -138,6 +147,7 @@ class DatabaseCategory(BaseCategory):
         q: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetRegionsResponseModel:
         """Returns a list of regions.
         :param country_id: Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.
@@ -152,7 +162,7 @@ class DatabaseCategory(BaseCategory):
         )
 
     async def get_school_classes(
-        self, country_id: Optional[int] = None
+        self, country_id: Optional[int] = None, **kwargs
     ) -> database.GetSchoolClassesResponseModel:
         """Returns a list of school classes specified for the country.
         :param country_id: Country ID.
@@ -169,6 +179,7 @@ class DatabaseCategory(BaseCategory):
         q: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetSchoolsResponseModel:
         """Returns a list of schools.
         :param city_id: City ID.
@@ -189,6 +200,7 @@ class DatabaseCategory(BaseCategory):
         city_id: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> database.GetUniversitiesResponseModel:
         """Returns a list of higher education institutions.
         :param q: Search query.

@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import notes, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -10,6 +11,7 @@ class NotesCategory(BaseCategory):
         text: str,
         privacy_view: Optional[List[str]] = None,
         privacy_comment: Optional[List[str]] = None,
+        **kwargs
     ) -> notes.AddResponseModel:
         """Creates a new note for the current user.
         :param title: Note title.
@@ -28,6 +30,7 @@ class NotesCategory(BaseCategory):
         owner_id: Optional[int] = None,
         reply_to: Optional[int] = None,
         guid: Optional[str] = None,
+        **kwargs
     ) -> notes.CreateCommentResponseModel:
         """Adds a new comment on a note.
         :param note_id: Note ID.
@@ -42,7 +45,7 @@ class NotesCategory(BaseCategory):
             **await self.api.request("notes.createComment", params)
         )
 
-    async def delete(self, note_id: int) -> base.OkResponseModel:
+    async def delete(self, note_id: int, **kwargs) -> base.OkResponseModel:
         """Deletes a note of the current user.
         :param note_id: Note ID.
         """
@@ -51,7 +54,7 @@ class NotesCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("notes.delete", params))
 
     async def delete_comment(
-        self, comment_id: int, owner_id: Optional[int] = None
+        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Deletes a comment on a note.
         :param comment_id: Comment ID.
@@ -68,6 +71,7 @@ class NotesCategory(BaseCategory):
         text: str,
         privacy_view: Optional[List[str]] = None,
         privacy_comment: Optional[List[str]] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits a note of the current user.
         :param note_id: Note ID.
@@ -81,7 +85,7 @@ class NotesCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("notes.edit", params))
 
     async def edit_comment(
-        self, comment_id: int, message: str, owner_id: Optional[int] = None
+        self, comment_id: int, message: str, owner_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Edits a comment on a note.
         :param comment_id: Comment ID.
@@ -99,6 +103,7 @@ class NotesCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         sort: Optional[int] = None,
+        **kwargs
     ) -> notes.GetResponseModel:
         """Returns a list of notes created by a user.
         :param note_ids: Note IDs.
@@ -116,6 +121,7 @@ class NotesCategory(BaseCategory):
         note_id: int,
         owner_id: Optional[int] = None,
         need_wiki: Optional[bool] = None,
+        **kwargs
     ) -> notes.GetByIdResponseModel:
         """Returns a note by its ID.
         :param note_id: Note ID.
@@ -133,6 +139,7 @@ class NotesCategory(BaseCategory):
         sort: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> notes.GetCommentsResponseModel:
         """Returns a list of comments on a note.
         :param note_id: Note ID.
@@ -148,7 +155,7 @@ class NotesCategory(BaseCategory):
         )
 
     async def restore_comment(
-        self, comment_id: int, owner_id: Optional[int] = None
+        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Restores a deleted comment on a note.
         :param comment_id: Comment ID.

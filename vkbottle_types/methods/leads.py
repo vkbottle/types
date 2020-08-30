@@ -1,5 +1,6 @@
+from typing import Optional
+
 from vkbottle_types.responses import leads
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -12,6 +13,7 @@ class LeadsCategory(BaseCategory):
         auto_start: Optional[bool] = None,
         age: Optional[int] = None,
         country: Optional[str] = None,
+        **kwargs
     ) -> leads.CheckUserResponseModel:
         """Checks if the user can start the lead.
         :param lead_id: Lead ID.
@@ -28,7 +30,7 @@ class LeadsCategory(BaseCategory):
         )
 
     async def complete(
-        self, vk_sid: str, secret: str, comment: Optional[str] = None
+        self, vk_sid: str, secret: str, comment: Optional[str] = None, **kwargs
     ) -> leads.CompleteResponseModel:
         """Completes the lead started by user.
         :param vk_sid: Session obtained as GET parameter when session started.
@@ -47,6 +49,7 @@ class LeadsCategory(BaseCategory):
         secret: Optional[str] = None,
         date_start: Optional[str] = None,
         date_end: Optional[str] = None,
+        **kwargs
     ) -> leads.GetStatsResponseModel:
         """Returns lead stats data.
         :param lead_id: Lead ID.
@@ -68,6 +71,7 @@ class LeadsCategory(BaseCategory):
         count: Optional[int] = None,
         status: Optional[int] = None,
         reverse: Optional[bool] = None,
+        **kwargs
     ) -> leads.GetUsersResponseModel:
         """Returns a list of last user actions for the offer.
         :param offer_id: Offer ID.
@@ -83,7 +87,7 @@ class LeadsCategory(BaseCategory):
             **await self.api.request("leads.getUsers", params)
         )
 
-    async def metric_hit(self, data: str) -> leads.MetricHitResponseModel:
+    async def metric_hit(self, data: str, **kwargs) -> leads.MetricHitResponseModel:
         """Counts the metric event.
         :param data: Metric data obtained in the lead interface.
         """
@@ -101,6 +105,7 @@ class LeadsCategory(BaseCategory):
         aid: Optional[int] = None,
         test_mode: Optional[bool] = None,
         force: Optional[bool] = None,
+        **kwargs
     ) -> leads.StartResponseModel:
         """Creates new session for the user passing the offer.
         :param lead_id: Lead ID.

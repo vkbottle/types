@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import board, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -11,6 +12,7 @@ class BoardCategory(BaseCategory):
         text: Optional[str] = None,
         from_group: Optional[bool] = None,
         attachments: Optional[List[str]] = None,
+        **kwargs
     ) -> board.AddTopicResponseModel:
         """Creates a new topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -25,7 +27,9 @@ class BoardCategory(BaseCategory):
             **await self.api.request("board.addTopic", params)
         )
 
-    async def close_topic(self, group_id: int, topic_id: int) -> base.OkResponseModel:
+    async def close_topic(
+        self, group_id: int, topic_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Closes a topic on a community's discussion board so that comments cannot be posted.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -43,12 +47,13 @@ class BoardCategory(BaseCategory):
         from_group: Optional[bool] = None,
         sticker_id: Optional[int] = None,
         guid: Optional[str] = None,
+        **kwargs
     ) -> board.CreateCommentResponseModel:
         """Adds a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: ID of the topic to be commented on.
-        :param message: (Required if 'attachments' is not set.) Text of the comment.
-        :param attachments: (Required if 'text' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID.
+        :param message: (Required if 'attachments' is not set., **kwargs) Text of the comment.
+        :param attachments: (Required if 'text' is not set., **kwargs) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID.
         :param from_group: '1' — to post the comment as by the community, '0' — to post the comment as by the user (default)
         :param sticker_id: Sticker ID.
         :param guid: Unique identifier to avoid repeated comments.
@@ -60,7 +65,7 @@ class BoardCategory(BaseCategory):
         )
 
     async def delete_comment(
-        self, group_id: int, topic_id: int, comment_id: int
+        self, group_id: int, topic_id: int, comment_id: int, **kwargs
     ) -> base.OkResponseModel:
         """Deletes a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -71,7 +76,9 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("board.deleteComment", params))
 
-    async def delete_topic(self, group_id: int, topic_id: int) -> base.OkResponseModel:
+    async def delete_topic(
+        self, group_id: int, topic_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Deletes a topic from a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -87,20 +94,21 @@ class BoardCategory(BaseCategory):
         comment_id: int,
         message: Optional[str] = None,
         attachments: Optional[List[str]] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param comment_id: ID of the comment on the topic.
         :param message: (Required if 'attachments' is not set). New comment text.
-        :param attachments: (Required if 'message' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: "photo100172_166443618,photo66748_265827614"
+        :param attachments: (Required if 'message' is not set., **kwargs) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media object: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. Example: "photo100172_166443618,photo66748_265827614"
         """
 
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("board.editComment", params))
 
     async def edit_topic(
-        self, group_id: int, topic_id: int, title: str
+        self, group_id: int, topic_id: int, title: str, **kwargs
     ) -> base.OkResponseModel:
         """Edits the title of a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -111,8 +119,10 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("board.editTopic", params))
 
-    async def fix_topic(self, group_id: int, topic_id: int) -> base.OkResponseModel:
-        """Pins a topic (fixes its place) to the top of a community's discussion board.
+    async def fix_topic(
+        self, group_id: int, topic_id: int, **kwargs
+    ) -> base.OkResponseModel:
+        """Pins a topic (fixes its place, **kwargs) to the top of a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """
@@ -130,6 +140,7 @@ class BoardCategory(BaseCategory):
         count: Optional[int] = None,
         extended: Optional[bool] = None,
         sort: Optional[str] = None,
+        **kwargs
     ) -> board.GetCommentsExtendedResponseModel:
         """Returns a list of comments on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -157,6 +168,7 @@ class BoardCategory(BaseCategory):
         extended: Optional[bool] = None,
         preview: Optional[int] = None,
         preview_length: Optional[int] = None,
+        **kwargs
     ) -> board.GetTopicsExtendedResponseModel:
         """Returns a list of topics on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -174,7 +186,9 @@ class BoardCategory(BaseCategory):
             **await self.api.request("board.getTopics", params)
         )
 
-    async def open_topic(self, group_id: int, topic_id: int) -> base.OkResponseModel:
+    async def open_topic(
+        self, group_id: int, topic_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Re-opens a previously closed topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -184,7 +198,7 @@ class BoardCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("board.openTopic", params))
 
     async def restore_comment(
-        self, group_id: int, topic_id: int, comment_id: int
+        self, group_id: int, topic_id: int, comment_id: int, **kwargs
     ) -> base.OkResponseModel:
         """Restores a comment deleted from a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
@@ -195,7 +209,9 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("board.restoreComment", params))
 
-    async def unfix_topic(self, group_id: int, topic_id: int) -> base.OkResponseModel:
+    async def unfix_topic(
+        self, group_id: int, topic_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Unpins a pinned topic from the top of a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.

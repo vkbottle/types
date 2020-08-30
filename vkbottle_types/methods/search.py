@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import search
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -12,6 +13,7 @@ class SearchCategory(BaseCategory):
         filters: Optional[List[str]] = None,
         fields: Optional[List[str]] = None,
         search_global: Optional[bool] = None,
+        **kwargs
     ) -> search.GetHintsResponseModel:
         """Allows the programmer to do a quick search for any substring.
         :param q: Search query string.

@@ -1,6 +1,7 @@
-from vkbottle_types.responses import base, stories as stories_responses
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import base, stories as stories_responses
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -8,7 +9,7 @@ if typing.TYPE_CHECKING:
 
 
 class StoriesCategory(BaseCategory):
-    async def ban_owner(self, owners_ids: List[int]) -> base.OkResponseModel:
+    async def ban_owner(self, owners_ids: List[int], **kwargs) -> base.OkResponseModel:
         """Allows to hide stories from chosen sources from current user's feed.
         :param owners_ids: List of sources IDs
         """
@@ -16,7 +17,9 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("stories.banOwner", params))
 
-    async def delete(self, owner_id: int, story_id: int) -> base.OkResponseModel:
+    async def delete(
+        self, owner_id: int, story_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Allows to delete story.
         :param owner_id: Story owner's ID. Current user id is used by default.
         :param story_id: Story ID.
@@ -30,6 +33,7 @@ class StoriesCategory(BaseCategory):
         owner_id: Optional[int] = None,
         extended: Optional[bool] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        **kwargs
     ) -> stories_responses.GetV5113ResponseModel:
         """Returns stories available for current user.
         :param owner_id: Owner ID.
@@ -46,6 +50,7 @@ class StoriesCategory(BaseCategory):
         self,
         extended: Optional[bool] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        **kwargs
     ) -> stories_responses.GetBannedExtendedResponseModel:
         """Returns list of sources hidden from current user's feed.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
@@ -62,6 +67,7 @@ class StoriesCategory(BaseCategory):
         stories: List[str],
         extended: Optional[bool] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        **kwargs
     ) -> stories_responses.GetByIdExtendedResponseModel:
         """Returns story by its ID.
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
@@ -83,6 +89,7 @@ class StoriesCategory(BaseCategory):
         link_url: Optional[str] = None,
         group_id: Optional[int] = None,
         clickable_stickers: Optional[str] = None,
+        **kwargs
     ) -> stories_responses.GetPhotoUploadServerResponseModel:
         """Returns URL for uploading a story with photo.
         :param add_to_news: 1 — to add the story to friend's feed.
@@ -106,6 +113,7 @@ class StoriesCategory(BaseCategory):
         access_key: Optional[str] = None,
         extended: Optional[bool] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        **kwargs
     ) -> stories_responses.GetV5113ResponseModel:
         """Returns replies to the story.
         :param owner_id: Story owner ID.
@@ -121,7 +129,7 @@ class StoriesCategory(BaseCategory):
         )
 
     async def get_stats(
-        self, owner_id: int, story_id: int
+        self, owner_id: int, story_id: int, **kwargs
     ) -> stories_responses.GetStatsResponseModel:
         """Returns stories available for current user.
         :param owner_id: Story owner ID.
@@ -142,6 +150,7 @@ class StoriesCategory(BaseCategory):
         link_url: Optional[str] = None,
         group_id: Optional[int] = None,
         clickable_stickers: Optional[str] = None,
+        **kwargs
     ) -> stories_responses.GetVideoUploadServerResponseModel:
         """Allows to receive URL for uploading story with video.
         :param add_to_news: 1 — to add the story to friend's feed.
@@ -165,6 +174,7 @@ class StoriesCategory(BaseCategory):
         count: Optional[int] = None,
         offset: Optional[int] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> stories_responses.GetViewersExtendedV5115ResponseModel:
         """Returns a list of story viewers.
         :param owner_id: Story owner ID.
@@ -180,7 +190,7 @@ class StoriesCategory(BaseCategory):
         )
 
     async def hide_all_replies(
-        self, owner_id: int, group_id: Optional[int] = None
+        self, owner_id: int, group_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Hides all replies in the last 24 hours from the user to current user's stories.
         :param owner_id: ID of the user whose replies should be hidden.
@@ -192,7 +202,9 @@ class StoriesCategory(BaseCategory):
             **await self.api.request("stories.hideAllReplies", params)
         )
 
-    async def hide_reply(self, owner_id: int, story_id: int) -> base.OkResponseModel:
+    async def hide_reply(
+        self, owner_id: int, story_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Hides the reply to the current user's story.
         :param owner_id: ID of the user whose replies should be hidden.
         :param story_id: Story ID.
@@ -212,6 +224,7 @@ class StoriesCategory(BaseCategory):
         count: Optional[int] = None,
         extended: Optional[bool] = None,
         fields: Optional[List[str]] = None,
+        **kwargs
     ) -> stories_responses.GetV5113ResponseModel:
         """stories.search method
         :param q:
@@ -230,7 +243,9 @@ class StoriesCategory(BaseCategory):
             **await self.api.request("stories.search", params)
         )
 
-    async def unban_owner(self, owners_ids: List[int]) -> base.OkResponseModel:
+    async def unban_owner(
+        self, owners_ids: List[int], **kwargs
+    ) -> base.OkResponseModel:
         """Allows to show stories from hidden sources in current user's feed.
         :param owners_ids: List of hidden sources to show stories from.
         """

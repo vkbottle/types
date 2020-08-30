@@ -1,11 +1,16 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import orders
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
 class OrdersCategory(BaseCategory):
     async def cancel_subscription(
-        self, user_id: int, subscription_id: int, pending_cancel: Optional[bool] = None
+        self,
+        user_id: int,
+        subscription_id: int,
+        pending_cancel: Optional[bool] = None,
+        **kwargs
     ) -> orders.CancelSubscriptionResponseModel:
         """orders.cancelSubscription method
         :param user_id:
@@ -24,6 +29,7 @@ class OrdersCategory(BaseCategory):
         action: str,
         app_order_id: Optional[int] = None,
         test_mode: Optional[bool] = None,
+        **kwargs
     ) -> orders.ChangeStateResponseModel:
         """Changes order status.
         :param order_id: order ID.
@@ -42,6 +48,7 @@ class OrdersCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         test_mode: Optional[bool] = None,
+        **kwargs
     ) -> orders.GetResponseModel:
         """Returns a list of orders.
         :param offset:
@@ -53,7 +60,7 @@ class OrdersCategory(BaseCategory):
         return orders.GetResponse(**await self.api.request("orders.get", params))
 
     async def get_amount(
-        self, user_id: int, votes: List[str]
+        self, user_id: int, votes: List[str], **kwargs
     ) -> orders.GetAmountResponseModel:
         """orders.getAmount method
         :param user_id:
@@ -70,6 +77,7 @@ class OrdersCategory(BaseCategory):
         order_id: Optional[int] = None,
         order_ids: Optional[List[int]] = None,
         test_mode: Optional[bool] = None,
+        **kwargs
     ) -> orders.GetByIdResponseModel:
         """Returns information about orders by their IDs.
         :param order_id: order ID.
@@ -83,7 +91,7 @@ class OrdersCategory(BaseCategory):
         )
 
     async def get_user_subscription_by_id(
-        self, user_id: int, subscription_id: int
+        self, user_id: int, subscription_id: int, **kwargs
     ) -> orders.GetUserSubscriptionByIdResponseModel:
         """orders.getUserSubscriptionById method
         :param user_id:
@@ -96,7 +104,7 @@ class OrdersCategory(BaseCategory):
         )
 
     async def get_user_subscriptions(
-        self, user_id: int
+        self, user_id: int, **kwargs
     ) -> orders.GetUserSubscriptionsResponseModel:
         """orders.getUserSubscriptions method
         :param user_id:
@@ -108,7 +116,7 @@ class OrdersCategory(BaseCategory):
         )
 
     async def update_subscription(
-        self, user_id: int, subscription_id: int, price: int
+        self, user_id: int, subscription_id: int, price: int, **kwargs
     ) -> orders.UpdateSubscriptionResponseModel:
         """orders.updateSubscription method
         :param user_id:

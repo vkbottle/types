@@ -1,6 +1,7 @@
-from vkbottle_types.responses import apps, base
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import apps, base
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -8,9 +9,7 @@ if typing.TYPE_CHECKING:
 
 
 class AppsCategory(BaseCategory):
-    async def delete_app_requests(
-        self,
-    ) -> base.OkResponseModel:
+    async def delete_app_requests(self, **kwargs) -> base.OkResponseModel:
         """Deletes all request notifications from the current app."""
 
         params = self.get_set_params(locals())
@@ -27,6 +26,7 @@ class AppsCategory(BaseCategory):
         return_friends: Optional[bool] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> apps.GetResponseModel:
         """Returns applications data.
         :param app_id: Application ID
@@ -54,8 +54,9 @@ class AppsCategory(BaseCategory):
         q: Optional[str] = None,
         genre_id: Optional[int] = None,
         filter: Optional[str] = None,
+        **kwargs
     ) -> apps.GetCatalogResponseModel:
-        """Returns a list of applications (apps) available to users in the App Catalog.
+        """Returns a list of applications (apps, **kwargs) available to users in the App Catalog.
         :param count: Number of apps to return.
         :param sort: Sort order: 'popular_today' — popular for one day (default), 'visitors' — by visitors number , 'create_date' — by creation date, 'growth_rate' — by growth rate, 'popular_week' — popular for one week
         :param offset: Offset required to return a specific subset of apps.
@@ -81,6 +82,7 @@ class AppsCategory(BaseCategory):
         offset: Optional[int] = None,
         type: Optional[str] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
+        **kwargs
     ) -> apps.GetFriendsListResponseModel:
         """Creates friends list for requests and invites in current app.
         :param extended:
@@ -96,7 +98,11 @@ class AppsCategory(BaseCategory):
         )
 
     async def get_leaderboard(
-        self, type: str, global_: Optional[bool] = None, extended: Optional[bool] = None
+        self,
+        type: str,
+        global_: Optional[bool] = None,
+        extended: Optional[bool] = None,
+        **kwargs
     ) -> apps.GetLeaderboardExtendedResponseModel:
         """Returns players rating in the game.
         :param type: Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().
@@ -110,7 +116,7 @@ class AppsCategory(BaseCategory):
         )
 
     async def get_scopes(
-        self, type: Optional[str] = None
+        self, type: Optional[str] = None, **kwargs
     ) -> apps.GetScopesResponseModel:
         """Returns scopes for auth
         :param type:
@@ -121,7 +127,7 @@ class AppsCategory(BaseCategory):
             **await self.api.request("apps.getScopes", params)
         )
 
-    async def get_score(self, user_id: int) -> apps.GetScoreResponseModel:
+    async def get_score(self, user_id: int, **kwargs) -> apps.GetScoreResponseModel:
         """Returns user score in app
         :param user_id:
         """
@@ -130,7 +136,7 @@ class AppsCategory(BaseCategory):
         return apps.GetScoreResponse(**await self.api.request("apps.getScore", params))
 
     async def promo_has_active_gift(
-        self, promo_id: int, user_id: Optional[int] = None
+        self, promo_id: int, user_id: Optional[int] = None, **kwargs
     ) -> base.BoolResponseModel:
         """apps.promoHasActiveGift method
         :param promo_id: Id of game promo action
@@ -143,7 +149,7 @@ class AppsCategory(BaseCategory):
         )
 
     async def promo_use_gift(
-        self, promo_id: int, user_id: Optional[int] = None
+        self, promo_id: int, user_id: Optional[int] = None, **kwargs
     ) -> base.BoolResponseModel:
         """apps.promoUseGift method
         :param promo_id: Id of game promo action
@@ -161,6 +167,7 @@ class AppsCategory(BaseCategory):
         name: Optional[str] = None,
         key: Optional[str] = None,
         separate: Optional[bool] = None,
+        **kwargs
     ) -> apps.SendRequestResponseModel:
         """Sends a request to another user in an app that uses VK authorization.
         :param user_id: id of the user to send a request

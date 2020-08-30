@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import prettyCards
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -13,6 +14,7 @@ class PrettyCardsCategory(BaseCategory):
         price: Optional[str] = None,
         price_old: Optional[str] = None,
         button: Optional[str] = None,
+        **kwargs
     ) -> prettyCards.CreateResponseModel:
         """prettyCards.create method
         :param owner_id:
@@ -30,7 +32,7 @@ class PrettyCardsCategory(BaseCategory):
         )
 
     async def delete(
-        self, owner_id: int, card_id: int
+        self, owner_id: int, card_id: int, **kwargs
     ) -> prettyCards.DeleteResponseModel:
         """prettyCards.delete method
         :param owner_id:
@@ -52,6 +54,7 @@ class PrettyCardsCategory(BaseCategory):
         price: Optional[str] = None,
         price_old: Optional[str] = None,
         button: Optional[str] = None,
+        **kwargs
     ) -> prettyCards.EditResponseModel:
         """prettyCards.edit method
         :param owner_id:
@@ -70,7 +73,11 @@ class PrettyCardsCategory(BaseCategory):
         )
 
     async def get(
-        self, owner_id: int, offset: Optional[int] = None, count: Optional[int] = None
+        self,
+        owner_id: int,
+        offset: Optional[int] = None,
+        count: Optional[int] = None,
+        **kwargs
     ) -> prettyCards.GetResponseModel:
         """prettyCards.get method
         :param owner_id:
@@ -84,7 +91,7 @@ class PrettyCardsCategory(BaseCategory):
         )
 
     async def get_by_id(
-        self, owner_id: int, card_ids: List[int]
+        self, owner_id: int, card_ids: List[int], **kwargs
     ) -> prettyCards.GetByIdResponseModel:
         """prettyCards.getById method
         :param owner_id:
@@ -96,9 +103,7 @@ class PrettyCardsCategory(BaseCategory):
             **await self.api.request("prettyCards.getById", params)
         )
 
-    async def get_upload_url(
-        self,
-    ) -> prettyCards.GetUploadURLResponseModel:
+    async def get_upload_url(self, **kwargs) -> prettyCards.GetUploadURLResponseModel:
         """prettyCards.getUploadURL method"""
 
         params = self.get_set_params(locals())

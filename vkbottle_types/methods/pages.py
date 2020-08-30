@@ -1,10 +1,11 @@
+from typing import Optional
+
 from vkbottle_types.responses import pages, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
 class PagesCategory(BaseCategory):
-    async def clear_cache(self, url: str) -> base.OkResponseModel:
+    async def clear_cache(self, url: str, **kwargs) -> base.OkResponseModel:
         """Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
         :param url: Address of the page where you need to refesh the cached version
         """
@@ -21,6 +22,7 @@ class PagesCategory(BaseCategory):
         title: Optional[str] = None,
         need_source: Optional[bool] = None,
         need_html: Optional[bool] = None,
+        **kwargs
     ) -> pages.GetResponseModel:
         """Returns information about a wiki page.
         :param owner_id: Page owner ID.
@@ -40,6 +42,7 @@ class PagesCategory(BaseCategory):
         page_id: int,
         group_id: Optional[int] = None,
         user_id: Optional[int] = None,
+        **kwargs
     ) -> pages.GetHistoryResponseModel:
         """Returns a list of all previous versions of a wiki page.
         :param page_id: Wiki page ID.
@@ -53,7 +56,7 @@ class PagesCategory(BaseCategory):
         )
 
     async def get_titles(
-        self, group_id: Optional[int] = None
+        self, group_id: Optional[int] = None, **kwargs
     ) -> pages.GetTitlesResponseModel:
         """Returns a list of wiki pages in a group.
         :param group_id: ID of the community that owns the wiki page.
@@ -70,6 +73,7 @@ class PagesCategory(BaseCategory):
         group_id: Optional[int] = None,
         user_id: Optional[int] = None,
         need_html: Optional[bool] = None,
+        **kwargs
     ) -> pages.GetVersionResponseModel:
         """Returns the text of one of the previous versions of a wiki page.
         :param version_id:
@@ -84,7 +88,7 @@ class PagesCategory(BaseCategory):
         )
 
     async def parse_wiki(
-        self, text: str, group_id: Optional[int] = None
+        self, text: str, group_id: Optional[int] = None, **kwargs
     ) -> pages.ParseWikiResponseModel:
         """Returns HTML representation of the wiki markup.
         :param text: Text of the wiki page.
@@ -103,6 +107,7 @@ class PagesCategory(BaseCategory):
         group_id: Optional[int] = None,
         user_id: Optional[int] = None,
         title: Optional[str] = None,
+        **kwargs
     ) -> pages.SaveResponseModel:
         """Saves the text of a wiki page.
         :param text: Text of the wiki page in wiki-format.
@@ -122,6 +127,7 @@ class PagesCategory(BaseCategory):
         user_id: Optional[int] = None,
         view: Optional[int] = None,
         edit: Optional[int] = None,
+        **kwargs
     ) -> pages.SaveAccessResponseModel:
         """Saves modified read and edit access settings for a wiki page.
         :param page_id: Wiki page ID.

@@ -1,6 +1,7 @@
-from vkbottle_types.responses import messages, base
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import messages, base
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -13,6 +14,7 @@ class MessagesCategory(BaseCategory):
         chat_id: int,
         user_id: Optional[int] = None,
         visible_messages_count: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Adds a new user to a chat.
         :param chat_id: Chat ID.
@@ -24,7 +26,7 @@ class MessagesCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("messages.addChatUser", params))
 
     async def allow_messages_from_group(
-        self, group_id: int, key: Optional[str] = None
+        self, group_id: int, key: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows sending messages from community to the current user.
         :param group_id: Group ID.
@@ -41,6 +43,7 @@ class MessagesCategory(BaseCategory):
         user_ids: Optional[List[int]] = None,
         title: Optional[str] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.CreateChatResponseModel:
         """Creates a chat with several participants.
         :param user_ids: IDs of the users to be added to the chat.
@@ -59,6 +62,7 @@ class MessagesCategory(BaseCategory):
         spam: Optional[bool] = None,
         group_id: Optional[int] = None,
         delete_for_all: Optional[bool] = None,
+        **kwargs
     ) -> messages.DeleteResponseModel:
         """Deletes one or more messages.
         :param message_ids: Message IDs.
@@ -73,7 +77,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def delete_chat_photo(
-        self, chat_id: int, group_id: Optional[int] = None
+        self, chat_id: int, group_id: Optional[int] = None, **kwargs
     ) -> messages.DeleteChatPhotoResponseModel:
         """Deletes a chat's cover picture.
         :param chat_id: Chat ID.
@@ -90,6 +94,7 @@ class MessagesCategory(BaseCategory):
         user_id: Optional[int] = None,
         peer_id: Optional[int] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.DeleteConversationResponseModel:
         """Deletes all private messages in a conversation.
         :param user_id: User ID. To clear a chat history use 'chat_id'
@@ -102,7 +107,9 @@ class MessagesCategory(BaseCategory):
             **await self.api.request("messages.deleteConversation", params)
         )
 
-    async def deny_messages_from_group(self, group_id: int) -> base.OkResponseModel:
+    async def deny_messages_from_group(
+        self, group_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Denies sending message from community to the current user.
         :param group_id: Group ID.
         """
@@ -127,13 +134,14 @@ class MessagesCategory(BaseCategory):
         conversation_message_id: Optional[int] = None,
         template: Optional[str] = None,
         keyboard: Optional[str] = None,
+        **kwargs
     ) -> messages.EditResponseModel:
         """Edits the message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
-        :param message: (Required if 'attachments' is not set.) Text of the message.
+        :param message: (Required if 'attachments' is not set., **kwargs) Text of the message.
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
-        :param attachment: (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
+        :param attachment: (Required if 'message' is not set., **kwargs) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
         :param keep_forward_messages: '1' — to keep forwarded, messages.
         :param keep_snippets: '1' — to keep attached snippets.
         :param group_id: Group ID (for group messages with user access token)
@@ -148,7 +156,7 @@ class MessagesCategory(BaseCategory):
         return messages.EditResponse(**await self.api.request("messages.edit", params))
 
     async def edit_chat(
-        self, chat_id: int, title: Optional[str] = None
+        self, chat_id: int, title: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Edits the title of a chat.
         :param chat_id: Chat ID.
@@ -165,6 +173,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetByConversationMessageIdResponseModel:
         """Returns messages by their IDs within the conversation.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -186,6 +195,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetByIdExtendedResponseModel:
         """Returns messages by their IDs.
         :param message_ids: Message IDs.
@@ -205,6 +215,7 @@ class MessagesCategory(BaseCategory):
         peer_id: Optional[int] = None,
         link: Optional[str] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
+        **kwargs
     ) -> messages.GetChatPreviewResponseModel:
         """messages.getChatPreview method
         :param peer_id:
@@ -222,6 +233,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetConversationMembersResponseModel:
         """Returns a list of IDs of users participating in a chat.
         :param peer_id: Peer ID.
@@ -243,6 +255,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: Optional[int] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetConversationsResponseModel:
         """Returns a list of the current user's conversations.
         :param offset: Offset needed to return a specific subset of conversations.
@@ -265,6 +278,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetConversationsByIdExtendedResponseModel:
         """Returns conversations by their IDs
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -289,6 +303,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetHistoryResponseModel:
         """Returns message history for the specified user or group chat.
         :param offset: Offset needed to return a specific subset of messages.
@@ -318,6 +333,7 @@ class MessagesCategory(BaseCategory):
         group_id: Optional[int] = None,
         preserve_order: Optional[bool] = None,
         max_forwards_level: Optional[int] = None,
+        **kwargs
     ) -> messages.GetHistoryAttachmentsResponseModel:
         """Returns media files from the dialog or group chat.
         :param peer_id: Peer ID. ", For group chat: '2000000000 + chat ID' , , For community: '-community ID'"
@@ -337,7 +353,11 @@ class MessagesCategory(BaseCategory):
         )
 
     async def get_invite_link(
-        self, peer_id: int, reset: Optional[bool] = None, group_id: Optional[int] = None
+        self,
+        peer_id: int,
+        reset: Optional[bool] = None,
+        group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.GetInviteLinkResponseModel:
         """messages.getInviteLink method
         :param peer_id: Destination ID.
@@ -351,7 +371,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def get_last_activity(
-        self, user_id: int
+        self, user_id: int, **kwargs
     ) -> messages.GetLastActivityResponseModel:
         """Returns a user's current status and date of last activity.
         :param user_id: User ID.
@@ -376,6 +396,7 @@ class MessagesCategory(BaseCategory):
         lp_version: Optional[int] = None,
         last_n: Optional[int] = None,
         credentials: Optional[bool] = None,
+        **kwargs
     ) -> messages.GetLongPollHistoryResponseModel:
         """Returns updates in user's private messages.
         :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
@@ -385,7 +406,7 @@ class MessagesCategory(BaseCategory):
         :param fields: Additional profile [vk.com/dev/fields|fields] to return.
         :param events_limit: Maximum number of events to return.
         :param msgs_limit: Maximum number of messages to return.
-        :param max_msg_id: Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.
+        :param max_msg_id: Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4, **kwargs) are taken into account.
         :param group_id: Group ID (for group messages with user access token)
         :param lp_version:
         :param last_n:
@@ -402,6 +423,7 @@ class MessagesCategory(BaseCategory):
         need_pts: Optional[bool] = None,
         group_id: Optional[int] = None,
         lp_version: Optional[int] = None,
+        **kwargs
     ) -> messages.GetLongPollServerResponseModel:
         """Returns data required for connection to a Long Poll server.
         :param need_pts: '1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
@@ -415,7 +437,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def is_messages_from_group_allowed(
-        self, group_id: int, user_id: int
+        self, group_id: int, user_id: int, **kwargs
     ) -> messages.IsMessagesFromGroupAllowedResponseModel:
         """Returns information whether sending messages from the community to current user is allowed.
         :param group_id: Group ID.
@@ -428,7 +450,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def join_chat_by_invite_link(
-        self, link: str
+        self, link: str, **kwargs
     ) -> messages.JoinChatByInviteLinkResponseModel:
         """messages.joinChatByInviteLink method
         :param link: Invitation link.
@@ -444,6 +466,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         answered: Optional[bool] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Marks and unmarks conversations as unanswered.
         :param peer_id: ID of conversation to mark as important.
@@ -457,7 +480,10 @@ class MessagesCategory(BaseCategory):
         )
 
     async def mark_as_important(
-        self, message_ids: Optional[List[int]] = None, important: Optional[int] = None
+        self,
+        message_ids: Optional[List[int]] = None,
+        important: Optional[int] = None,
+        **kwargs
     ) -> messages.MarkAsImportantResponseModel:
         """Marks and unmarks messages as important (starred).
         :param message_ids: IDs of messages to mark as important.
@@ -474,6 +500,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         important: Optional[bool] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Marks and unmarks conversations as important.
         :param peer_id: ID of conversation to mark as important.
@@ -493,6 +520,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: Optional[int] = None,
         group_id: Optional[int] = None,
         mark_conversation_as_read: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Marks messages as read.
         :param message_ids: IDs of messages to mark as read.
@@ -506,7 +534,7 @@ class MessagesCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("messages.markAsRead", params))
 
     async def pin(
-        self, peer_id: int, message_id: Optional[int] = None
+        self, peer_id: int, message_id: Optional[int] = None, **kwargs
     ) -> messages.PinResponseModel:
         """Pin a message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
@@ -521,6 +549,7 @@ class MessagesCategory(BaseCategory):
         chat_id: int,
         user_id: Optional[int] = None,
         member_id: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
         :param chat_id: Chat ID.
@@ -534,7 +563,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def restore(
-        self, message_id: int, group_id: Optional[int] = None
+        self, message_id: int, group_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Restores a deleted message.
         :param message_id: ID of a previously-deleted message to restore.
@@ -555,6 +584,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.SearchResponseModel:
         """Returns a list of the current user's private messages that match search criteria.
         :param q: Search query string.
@@ -580,6 +610,7 @@ class MessagesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> messages.SearchConversationsResponseModel:
         """Returns a list of the current user's conversations that match search criteria.
         :param q: Search query string.
@@ -616,6 +647,7 @@ class MessagesCategory(BaseCategory):
         disable_mentions: Optional[bool] = None,
         intent: Optional[str] = None,
         subscribe_id: Optional[int] = None,
+        **kwargs
     ) -> messages.SendResponseModel:
         """Sends a message.
         :param user_id: User ID (by default — current user).
@@ -624,10 +656,10 @@ class MessagesCategory(BaseCategory):
         :param domain: User's short address (for example, 'illarionov').
         :param chat_id: ID of conversation the message will relate to.
         :param user_ids: IDs of message recipients (if new conversation shall be started).
-        :param message: (Required if 'attachments' is not set.) Text of the message.
+        :param message: (Required if 'attachments' is not set., **kwargs) Text of the message.
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
-        :param attachment: (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
+        :param attachment: (Required if 'message' is not set., **kwargs) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
         :param reply_to:
         :param forward_messages: ID of forwarded messages, separated with a comma. Listed messages of the sender will be shown in the message body at the recipient's. Example: "123,431,544"
         :param sticker_id: Sticker id.
@@ -649,6 +681,7 @@ class MessagesCategory(BaseCategory):
         user_id: int,
         peer_id: int,
         event_data: Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """messages.sendMessageEventAnswer method
         :param event_id:
@@ -668,6 +701,7 @@ class MessagesCategory(BaseCategory):
         type: Optional[str] = None,
         peer_id: Optional[int] = None,
         group_id: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Changes the status of a user as typing in a conversation.
         :param user_id: User ID.
@@ -679,7 +713,9 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("messages.setActivity", params))
 
-    async def set_chat_photo(self, file: str) -> messages.SetChatPhotoResponseModel:
+    async def set_chat_photo(
+        self, file: str, **kwargs
+    ) -> messages.SetChatPhotoResponseModel:
         """Sets a previously-uploaded picture as the cover picture of a chat.
         :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """
@@ -690,7 +726,7 @@ class MessagesCategory(BaseCategory):
         )
 
     async def unpin(
-        self, peer_id: int, group_id: Optional[int] = None
+        self, peer_id: int, group_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """messages.unpin method
         :param peer_id:

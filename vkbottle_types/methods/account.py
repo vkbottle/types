@@ -1,10 +1,13 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import account, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
 class AccountCategory(BaseCategory):
-    async def ban(self, owner_id: Optional[int] = None) -> base.OkResponseModel:
+    async def ban(
+        self, owner_id: Optional[int] = None, **kwargs
+    ) -> base.OkResponseModel:
         """account.ban method
         :param owner_id:
         """
@@ -18,6 +21,7 @@ class AccountCategory(BaseCategory):
         restore_sid: Optional[str] = None,
         change_password_hash: Optional[str] = None,
         old_password: Optional[str] = None,
+        **kwargs
     ) -> account.ChangePasswordResponseModel:
         """Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
         :param new_password: New password that will be set as a current
@@ -32,9 +36,9 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_active_offers(
-        self, offset: Optional[int] = None, count: Optional[int] = None
+        self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
     ) -> account.GetActiveOffersResponseModel:
-        """Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
+        """Returns a list of active ads (offers, **kwargs) which executed by the user will bring him/her respective number of votes to his balance in the application.
         :param offset:
         :param count: Number of results to return.
         """
@@ -45,7 +49,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_app_permissions(
-        self, user_id: int
+        self, user_id: int, **kwargs
     ) -> account.GetAppPermissionsResponseModel:
         """Gets settings of the user in this application.
         :param user_id: User ID whose settings information shall be got. By default: current user.
@@ -57,7 +61,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_banned(
-        self, offset: Optional[int] = None, count: Optional[int] = None
+        self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
     ) -> account.GetBannedResponseModel:
         """Returns a user's blacklist.
         :param offset: Offset needed to return a specific subset of results.
@@ -70,7 +74,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_counters(
-        self, filter: Optional[List[str]] = None
+        self, filter: Optional[List[str]] = None, **kwargs
     ) -> account.GetCountersResponseModel:
         """Returns non-null values of user counters.
         :param filter: Counters to be returned.
@@ -82,7 +86,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_info(
-        self, fields: Optional[List[str]] = None
+        self, fields: Optional[List[str]] = None, **kwargs
     ) -> account.GetInfoResponseModel:
         """Returns current account info.
         :param fields: Fields to return. Possible values: *'country' — user country,, *'https_required' — is "HTTPS only" option enabled,, *'own_posts_default' — is "Show my posts only" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.
@@ -93,9 +97,7 @@ class AccountCategory(BaseCategory):
             **await self.api.request("account.getInfo", params)
         )
 
-    async def get_profile_info(
-        self,
-    ) -> account.GetProfileInfoResponseModel:
+    async def get_profile_info(self, **kwargs) -> account.GetProfileInfoResponseModel:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
@@ -104,7 +106,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def get_push_settings(
-        self, device_id: Optional[str] = None
+        self, device_id: Optional[str] = None, **kwargs
     ) -> account.GetPushSettingsResponseModel:
         """Gets settings of push notifications.
         :param device_id: Unique device ID.
@@ -124,6 +126,7 @@ class AccountCategory(BaseCategory):
         system_version: Optional[str] = None,
         settings: Optional[str] = None,
         sandbox: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
         :param token: Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)
@@ -156,6 +159,7 @@ class AccountCategory(BaseCategory):
         country_id: Optional[int] = None,
         city_id: Optional[int] = None,
         status: Optional[str] = None,
+        **kwargs
     ) -> account.SaveProfileInfoResponseModel:
         """Edits current profile info.
         :param first_name: User first name.
@@ -180,7 +184,7 @@ class AccountCategory(BaseCategory):
         )
 
     async def set_info(
-        self, name: Optional[str] = None, value: Optional[str] = None
+        self, name: Optional[str] = None, value: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows to edit the current account info.
         :param name: Setting name.
@@ -191,7 +195,7 @@ class AccountCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("account.setInfo", params))
 
     async def set_name_in_menu(
-        self, user_id: int, name: Optional[str] = None
+        self, user_id: int, name: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.
         :param user_id: User ID.
@@ -203,15 +207,15 @@ class AccountCategory(BaseCategory):
             **await self.api.request("account.setNameInMenu", params)
         )
 
-    async def set_offline(
-        self,
-    ) -> base.OkResponseModel:
+    async def set_offline(self, **kwargs) -> base.OkResponseModel:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("account.setOffline", params))
 
-    async def set_online(self, voip: Optional[bool] = None) -> base.OkResponseModel:
+    async def set_online(
+        self, voip: Optional[bool] = None, **kwargs
+    ) -> base.OkResponseModel:
         """Marks the current user as online for 15 minutes.
         :param voip: '1' if videocalls are available for current device.
         """
@@ -225,6 +229,7 @@ class AccountCategory(BaseCategory):
         settings: Optional[str] = None,
         key: Optional[str] = None,
         value: Optional[List[str]] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Change push settings.
         :param device_id: Unique device ID.
@@ -244,6 +249,7 @@ class AccountCategory(BaseCategory):
         time: Optional[int] = None,
         peer_id: Optional[int] = None,
         sound: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Mutes push notifications for the set period of time.
         :param device_id: Unique device ID.
@@ -257,7 +263,9 @@ class AccountCategory(BaseCategory):
             **await self.api.request("account.setSilenceMode", params)
         )
 
-    async def unban(self, owner_id: Optional[int] = None) -> base.OkResponseModel:
+    async def unban(
+        self, owner_id: Optional[int] = None, **kwargs
+    ) -> base.OkResponseModel:
         """account.unban method
         :param owner_id:
         """
@@ -266,7 +274,7 @@ class AccountCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("account.unban", params))
 
     async def unregister_device(
-        self, device_id: Optional[str] = None, sandbox: Optional[bool] = None
+        self, device_id: Optional[str] = None, sandbox: Optional[bool] = None, **kwargs
     ) -> base.OkResponseModel:
         """Unsubscribes a device from push notifications.
         :param device_id: Unique device ID.

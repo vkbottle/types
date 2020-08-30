@@ -1,5 +1,6 @@
+from typing import Optional
+
 from vkbottle_types.responses import likes
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -10,6 +11,7 @@ class LikesCategory(BaseCategory):
         item_id: int,
         owner_id: Optional[int] = None,
         access_key: Optional[str] = None,
+        **kwargs
     ) -> likes.AddResponseModel:
         """Adds the specified object to the 'Likes' list of the current user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
@@ -27,6 +29,7 @@ class LikesCategory(BaseCategory):
         item_id: int,
         owner_id: Optional[int] = None,
         access_key: Optional[str] = None,
+        **kwargs
     ) -> likes.DeleteResponseModel:
         """Deletes the specified object from the 'Likes' list of the current user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
@@ -50,6 +53,7 @@ class LikesCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         skip_own: Optional[bool] = None,
+        **kwargs
     ) -> likes.GetListExtendedResponseModel:
         """Returns a list of IDs of users who added the specified object to their 'Likes' list.
         :param type: , Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
@@ -75,6 +79,7 @@ class LikesCategory(BaseCategory):
         item_id: int,
         user_id: Optional[int] = None,
         owner_id: Optional[int] = None,
+        **kwargs
     ) -> likes.IsLikedResponseModel:
         """Checks for the object in the 'Likes' list of the specified user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion

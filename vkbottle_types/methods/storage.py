@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import base, storage
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -9,6 +10,7 @@ class StorageCategory(BaseCategory):
         key: Optional[str] = None,
         keys: Optional[List[str]] = None,
         user_id: Optional[int] = None,
+        **kwargs
     ) -> storage.GetV5110ResponseModel:
         """Returns a value of variable with the name set by key parameter.
         :param key:
@@ -24,6 +26,7 @@ class StorageCategory(BaseCategory):
         user_id: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> storage.GetKeysResponseModel:
         """Returns the names of all variables.
         :param user_id: user id, whose variables names are returned if they were requested with a server method.
@@ -37,7 +40,11 @@ class StorageCategory(BaseCategory):
         )
 
     async def set(
-        self, key: str, value: Optional[str] = None, user_id: Optional[int] = None
+        self,
+        key: str,
+        value: Optional[str] = None,
+        user_id: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Saves a value of variable with the name set by 'key' parameter.
         :param key:

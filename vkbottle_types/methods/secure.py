@@ -1,11 +1,12 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import secure, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
 class SecureCategory(BaseCategory):
     async def add_app_event(
-        self, user_id: int, activity_id: int, value: Optional[int] = None
+        self, user_id: int, activity_id: int, value: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Adds user activity information to an application
         :param user_id: ID of a user to save the data
@@ -17,7 +18,7 @@ class SecureCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("secure.addAppEvent", params))
 
     async def check_token(
-        self, token: Optional[str] = None, ip: Optional[str] = None
+        self, token: Optional[str] = None, ip: Optional[str] = None, **kwargs
     ) -> secure.CheckTokenResponseModel:
         """Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
         :param token: client 'access_token'
@@ -29,9 +30,7 @@ class SecureCategory(BaseCategory):
             **await self.api.request("secure.checkToken", params)
         )
 
-    async def get_app_balance(
-        self,
-    ) -> secure.GetAppBalanceResponseModel:
+    async def get_app_balance(self, **kwargs) -> secure.GetAppBalanceResponseModel:
         """Returns payment balance of the application in hundredth of a vote."""
 
         params = self.get_set_params(locals())
@@ -45,6 +44,7 @@ class SecureCategory(BaseCategory):
         date_from: Optional[int] = None,
         date_to: Optional[int] = None,
         limit: Optional[int] = None,
+        **kwargs
     ) -> secure.GetSMSHistoryResponseModel:
         """Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
         :param user_id:
@@ -66,6 +66,7 @@ class SecureCategory(BaseCategory):
         date_from: Optional[int] = None,
         date_to: Optional[int] = None,
         limit: Optional[int] = None,
+        **kwargs
     ) -> secure.GetTransactionsHistoryResponseModel:
         """Shows history of votes transaction between users and the application.
         :param type:
@@ -82,7 +83,7 @@ class SecureCategory(BaseCategory):
         )
 
     async def get_user_level(
-        self, user_ids: List[int]
+        self, user_ids: List[int], **kwargs
     ) -> secure.GetUserLevelResponseModel:
         """Returns one of the previously set game levels of one or more users in the application.
         :param user_ids:
@@ -94,7 +95,7 @@ class SecureCategory(BaseCategory):
         )
 
     async def give_event_sticker(
-        self, user_ids: List[int], achievement_id: int
+        self, user_ids: List[int], achievement_id: int, **kwargs
     ) -> secure.GiveEventStickerResponseModel:
         """Opens the game achievement and gives the user a sticker
         :param user_ids:
@@ -111,6 +112,7 @@ class SecureCategory(BaseCategory):
         message: str,
         user_ids: Optional[List[int]] = None,
         user_id: Optional[int] = None,
+        **kwargs
     ) -> secure.SendNotificationResponseModel:
         """Sends notification to the user.
         :param message: notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).
@@ -124,7 +126,7 @@ class SecureCategory(BaseCategory):
         )
 
     async def send_s_m_s_notification(
-        self, user_id: int, message: str
+        self, user_id: int, message: str, **kwargs
     ) -> base.OkResponseModel:
         """Sends 'SMS' notification to a user's mobile device.
         :param user_id: ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).
@@ -142,6 +144,7 @@ class SecureCategory(BaseCategory):
         user_id: Optional[int] = None,
         counter: Optional[int] = None,
         increment: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Sets a counter which is shown to the user in bold in the left menu.
         :param counters:

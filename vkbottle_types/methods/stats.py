@@ -1,5 +1,6 @@
+from typing import Optional, List
+
 from vkbottle_types.responses import stats, base
-from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -15,6 +16,7 @@ class StatsCategory(BaseCategory):
         filters: Optional[List[str]] = None,
         stats_groups: Optional[List[str]] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> stats.GetResponseModel:
         """Returns statistics of a community or an application.
         :param group_id: Community ID.
@@ -32,7 +34,7 @@ class StatsCategory(BaseCategory):
         return stats.GetResponse(**await self.api.request("stats.get", params))
 
     async def get_post_reach(
-        self, owner_id: str, post_ids: List[int]
+        self, owner_id: str, post_ids: List[int], **kwargs
     ) -> stats.GetPostReachResponseModel:
         """Returns stats for a wall post.
         :param owner_id: post owner community id. Specify with "-" sign.
@@ -44,7 +46,7 @@ class StatsCategory(BaseCategory):
             **await self.api.request("stats.getPostReach", params)
         )
 
-    async def track_visitor(self, id: str) -> base.OkResponseModel:
+    async def track_visitor(self, id: str, **kwargs) -> base.OkResponseModel:
         """stats.trackVisitor method
         :param id:
         """

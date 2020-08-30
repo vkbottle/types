@@ -1,6 +1,7 @@
-from vkbottle_types.responses import friends, base
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import friends, base
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -13,10 +14,11 @@ class FriendsCategory(BaseCategory):
         user_id: Optional[int] = None,
         text: Optional[str] = None,
         follow: Optional[bool] = None,
+        **kwargs
     ) -> friends.AddResponseModel:
         """Approves or creates a friend request.
         :param user_id: ID of the user whose friend request will be approved or to whom a friend request will be sent.
-        :param text: Text of the message (up to 500 characters) for the friend request, if any.
+        :param text: Text of the message (up to 500 characters, **kwargs) for the friend request, if any.
         :param follow: '1' to pass an incoming request to followers list.
         """
 
@@ -24,7 +26,7 @@ class FriendsCategory(BaseCategory):
         return friends.AddResponse(**await self.api.request("friends.add", params))
 
     async def add_list(
-        self, name: str, user_ids: Optional[List[int]] = None
+        self, name: str, user_ids: Optional[List[int]] = None, **kwargs
     ) -> friends.AddListResponseModel:
         """Creates a new friend list for the current user.
         :param name: Name of the friend list.
@@ -41,6 +43,7 @@ class FriendsCategory(BaseCategory):
         user_ids: List[int],
         need_sign: Optional[bool] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> friends.AreFriendsExtendedResponseModel:
         """Checks the current user's friendship status with other specified users.
         :param user_ids: IDs of the users whose friendship status to check.
@@ -54,7 +57,7 @@ class FriendsCategory(BaseCategory):
         )
 
     async def delete(
-        self, user_id: Optional[int] = None
+        self, user_id: Optional[int] = None, **kwargs
     ) -> friends.DeleteResponseModel:
         """Declines a friend request or deletes a user from the current user's friend list.
         :param user_id: ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.
@@ -65,9 +68,7 @@ class FriendsCategory(BaseCategory):
             **await self.api.request("friends.delete", params)
         )
 
-    async def delete_all_requests(
-        self,
-    ) -> base.OkResponseModel:
+    async def delete_all_requests(self, **kwargs) -> base.OkResponseModel:
         """Marks all incoming friend requests as viewed."""
 
         params = self.get_set_params(locals())
@@ -75,7 +76,7 @@ class FriendsCategory(BaseCategory):
             **await self.api.request("friends.deleteAllRequests", params)
         )
 
-    async def delete_list(self, list_id: int) -> base.OkResponseModel:
+    async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
         """Deletes a friend list of the current user.
         :param list_id: ID of the friend list to delete.
         """
@@ -84,7 +85,7 @@ class FriendsCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("friends.deleteList", params))
 
     async def edit(
-        self, user_id: int, list_ids: Optional[List[int]] = None
+        self, user_id: int, list_ids: Optional[List[int]] = None, **kwargs
     ) -> base.OkResponseModel:
         """Edits the friend lists of the selected user.
         :param user_id: ID of the user whose friend list is to be edited.
@@ -101,6 +102,7 @@ class FriendsCategory(BaseCategory):
         user_ids: Optional[List[int]] = None,
         add_user_ids: Optional[List[int]] = None,
         delete_user_ids: Optional[List[int]] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits a friend list of the current user.
         :param list_id: Friend list ID.
@@ -123,6 +125,7 @@ class FriendsCategory(BaseCategory):
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
         ref: Optional[str] = None,
+        **kwargs
     ) -> friends.GetResponseModel:
         """Returns a list of user IDs or detailed information about a user's friends.
         :param user_id: User ID. By default, the current user ID.
@@ -131,16 +134,14 @@ class FriendsCategory(BaseCategory):
         :param count: Number of friends to return.
         :param offset: Offset needed to return a specific subset of friends.
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         :param ref:
         """
 
         params = self.get_set_params(locals())
         return friends.GetResponse(**await self.api.request("friends.get", params))
 
-    async def get_app_users(
-        self,
-    ) -> friends.GetAppUsersResponseModel:
+    async def get_app_users(self, **kwargs) -> friends.GetAppUsersResponseModel:
         """Returns a list of IDs of the current user's friends who installed the application."""
 
         params = self.get_set_params(locals())
@@ -152,6 +153,7 @@ class FriendsCategory(BaseCategory):
         self,
         phones: Optional[List[str]] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
+        **kwargs
     ) -> friends.GetByPhonesResponseModel:
         """Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.
         :param phones: List of phone numbers in MSISDN format (maximum 1000). Example: "+79219876543,+79111234567"
@@ -164,7 +166,10 @@ class FriendsCategory(BaseCategory):
         )
 
     async def get_lists(
-        self, user_id: Optional[int] = None, return_system: Optional[bool] = None
+        self,
+        user_id: Optional[int] = None,
+        return_system: Optional[bool] = None,
+        **kwargs
     ) -> friends.GetListsResponseModel:
         """Returns a list of the user's friend lists.
         :param user_id: User ID.
@@ -184,6 +189,7 @@ class FriendsCategory(BaseCategory):
         order: Optional[str] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
+        **kwargs
     ) -> friends.GetMutualResponseModel:
         """Returns a list of user IDs of the mutual friends of two users.
         :param source_uid: ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.
@@ -207,6 +213,7 @@ class FriendsCategory(BaseCategory):
         order: Optional[str] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
+        **kwargs
     ) -> friends.GetOnlineResponseModel:
         """Returns a list of user IDs of a user's friends who are online.
         :param user_id: User ID.
@@ -223,7 +230,7 @@ class FriendsCategory(BaseCategory):
         )
 
     async def get_recent(
-        self, count: Optional[int] = None
+        self, count: Optional[int] = None, **kwargs
     ) -> friends.GetRecentResponseModel:
         """Returns a list of user IDs of the current user's recently added friends.
         :param count: Number of recently added friends to return.
@@ -246,6 +253,7 @@ class FriendsCategory(BaseCategory):
         suggested: Optional[bool] = None,
         ref: Optional[str] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
+        **kwargs
     ) -> friends.GetRequestsExtendedResponseModel:
         """Returns information about the current user's incoming and outgoing friend requests.
         :param offset: Offset needed to return a specific subset of friend requests.
@@ -272,13 +280,14 @@ class FriendsCategory(BaseCategory):
         offset: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> friends.GetSuggestionsResponseModel:
         """Returns a list of profiles of users whom the current user may know.
         :param filter: Types of potential friends to return: 'mutual' — users with many mutual friends , 'contacts' — users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' — users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method
         :param count: Number of suggestions to return.
         :param offset: Offset needed to return a specific subset of suggestions.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         """
 
         params = self.get_set_params(locals())
@@ -294,6 +303,7 @@ class FriendsCategory(BaseCategory):
         name_case: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> friends.SearchResponseModel:
         """Returns a list of friends matching the search criteria.
         :param user_id: User ID.

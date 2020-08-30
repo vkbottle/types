@@ -1,6 +1,7 @@
-from vkbottle_types.responses import base, groups
-from typing import Optional, Any, List
 import typing
+from typing import Optional, List
+
+from vkbottle_types.responses import base, groups
 from .base_category import BaseCategory
 
 if typing.TYPE_CHECKING:
@@ -28,6 +29,7 @@ class GroupsCategory(BaseCategory):
         work_info_status: Optional[str] = None,
         timetable: Optional[str] = None,
         is_main_address: Optional[bool] = None,
+        **kwargs
     ) -> groups.AddAddressResponseModel:
         """groups.addAddress method
         :param group_id:
@@ -51,7 +53,12 @@ class GroupsCategory(BaseCategory):
         )
 
     async def add_callback_server(
-        self, group_id: int, url: str, title: str, secret_key: Optional[str] = None
+        self,
+        group_id: int,
+        url: str,
+        title: str,
+        secret_key: Optional[str] = None,
+        **kwargs
     ) -> groups.AddCallbackServerResponseModel:
         """groups.addCallbackServer method
         :param group_id:
@@ -66,7 +73,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def add_link(
-        self, group_id: int, link: str, text: Optional[str] = None
+        self, group_id: int, link: str, text: Optional[str] = None, **kwargs
     ) -> groups.AddLinkResponseModel:
         """Allows to add a link to the community.
         :param group_id: Community ID.
@@ -80,7 +87,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def approve_request(
-        self, group_id: int, user_id: int
+        self, group_id: int, user_id: int, **kwargs
     ) -> base.OkResponseModel:
         """Allows to approve join request to the community.
         :param group_id: Community ID.
@@ -100,6 +107,7 @@ class GroupsCategory(BaseCategory):
         reason: Optional[int] = None,
         comment: Optional[str] = None,
         comment_visible: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """groups.ban method
         :param group_id:
@@ -120,6 +128,7 @@ class GroupsCategory(BaseCategory):
         type: Optional[str] = None,
         public_category: Optional[int] = None,
         subtype: Optional[int] = None,
+        **kwargs
     ) -> groups.CreateResponseModel:
         """Creates a new community.
         :param title: Community title.
@@ -133,7 +142,7 @@ class GroupsCategory(BaseCategory):
         return groups.CreateResponse(**await self.api.request("groups.create", params))
 
     async def delete_callback_server(
-        self, group_id: int, server_id: int
+        self, group_id: int, server_id: int, **kwargs
     ) -> base.OkResponseModel:
         """groups.deleteCallbackServer method
         :param group_id:
@@ -145,7 +154,9 @@ class GroupsCategory(BaseCategory):
             **await self.api.request("groups.deleteCallbackServer", params)
         )
 
-    async def delete_link(self, group_id: int, link_id: int) -> base.OkResponseModel:
+    async def delete_link(
+        self, group_id: int, link_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Allows to delete a link from the community.
         :param group_id: Community ID.
         :param link_id: Link ID.
@@ -154,7 +165,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("groups.deleteLink", params))
 
-    async def disable_online(self, group_id: int) -> base.OkResponseModel:
+    async def disable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.disableOnline method
         :param group_id:
         """
@@ -209,6 +220,7 @@ class GroupsCategory(BaseCategory):
         secondary_section: Optional[int] = None,
         country: Optional[int] = None,
         city: Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits a community.
         :param group_id: Community ID.
@@ -277,6 +289,7 @@ class GroupsCategory(BaseCategory):
         work_info_status: Optional[str] = None,
         timetable: Optional[str] = None,
         is_main_address: Optional[bool] = None,
+        **kwargs
     ) -> groups.EditAddressResponseModel:
         """groups.editAddress method
         :param group_id:
@@ -307,6 +320,7 @@ class GroupsCategory(BaseCategory):
         url: str,
         title: str,
         secret_key: Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """groups.editCallbackServer method
         :param group_id:
@@ -322,7 +336,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def edit_link(
-        self, group_id: int, link_id: int, text: Optional[str] = None
+        self, group_id: int, link_id: int, text: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows to edit a link in the community.
         :param group_id: Community ID.
@@ -342,6 +356,7 @@ class GroupsCategory(BaseCategory):
         contact_position: Optional[str] = None,
         contact_phone: Optional[str] = None,
         contact_email: Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Allows to add, remove or edit the community manager.
         :param group_id: Community ID.
@@ -356,7 +371,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("groups.editManager", params))
 
-    async def enable_online(self, group_id: int) -> base.OkResponseModel:
+    async def enable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.enableOnline method
         :param group_id:
         """
@@ -372,6 +387,7 @@ class GroupsCategory(BaseCategory):
         fields: Optional[List["objects_groups.Fields"]] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> groups.GetExtendedResponseModel:
         """Returns a list of the communities to which a user belongs.
         :param user_id: User ID.
@@ -396,6 +412,7 @@ class GroupsCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         fields: Optional[List["objects_addresses.Fields"]] = None,
+        **kwargs
     ) -> groups.GetAddressesResponseModel:
         """Returns a list of community addresses.
         :param group_id: ID or screen name of the community.
@@ -419,6 +436,7 @@ class GroupsCategory(BaseCategory):
         count: Optional[int] = None,
         fields: Optional[List["objects_base.UserGroupFields"]] = None,
         owner_id: Optional[int] = None,
+        **kwargs
     ) -> groups.GetBannedResponseModel:
         """Returns a list of users on a community blacklist.
         :param group_id: Community ID.
@@ -438,6 +456,7 @@ class GroupsCategory(BaseCategory):
         group_ids: Optional[List[int]] = None,
         group_id: Optional[str] = None,
         fields: Optional[List["objects_groups.Fields"]] = None,
+        **kwargs
     ) -> groups.GetByIdResponseModel:
         """Returns information about communities by their IDs.
         :param group_ids: IDs or screen names of communities.
@@ -451,7 +470,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_callback_confirmation_code(
-        self, group_id: int
+        self, group_id: int, **kwargs
     ) -> groups.GetCallbackConfirmationCodeResponseModel:
         """Returns Callback API confirmation code for the community.
         :param group_id: Community ID.
@@ -463,7 +482,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_callback_servers(
-        self, group_id: int, server_ids: Optional[List[int]] = None
+        self, group_id: int, server_ids: Optional[List[int]] = None, **kwargs
     ) -> groups.GetCallbackServersResponseModel:
         """groups.getCallbackServers method
         :param group_id:
@@ -476,7 +495,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_callback_settings(
-        self, group_id: int, server_id: Optional[int] = None
+        self, group_id: int, server_id: Optional[int] = None, **kwargs
     ) -> groups.GetCallbackSettingsResponseModel:
         """Returns [vk.com/dev/callback_api|Callback API] notifications settings.
         :param group_id: Community ID.
@@ -489,7 +508,10 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_catalog(
-        self, category_id: Optional[int] = None, subcategory_id: Optional[int] = None
+        self,
+        category_id: Optional[int] = None,
+        subcategory_id: Optional[int] = None,
+        **kwargs
     ) -> groups.GetCatalogResponseModel:
         """Returns communities list for a catalog category.
         :param category_id: Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].
@@ -502,7 +524,10 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_catalog_info(
-        self, extended: Optional[bool] = None, subcategories: Optional[bool] = None
+        self,
+        extended: Optional[bool] = None,
+        subcategories: Optional[bool] = None,
+        **kwargs
     ) -> groups.GetCatalogInfoExtendedResponseModel:
         """Returns categories list for communities catalog
         :param extended: 1 – to return communities count and three communities for preview. By default: 0.
@@ -521,6 +546,7 @@ class GroupsCategory(BaseCategory):
         count: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         name_case: Optional[str] = None,
+        **kwargs
     ) -> groups.GetInvitedUsersResponseModel:
         """Returns invited users list of a community
         :param group_id: Group ID to return invited users for.
@@ -540,6 +566,7 @@ class GroupsCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> groups.GetInvitesExtendedResponseModel:
         """Returns a list of invitations to join communities and events.
         :param offset: Offset needed to return a specific subset of invitations.
@@ -553,7 +580,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_long_poll_server(
-        self, group_id: int
+        self, group_id: int, **kwargs
     ) -> groups.GetLongPollServerResponseModel:
         """Returns the data needed to query a Long Poll server for events
         :param group_id: Community ID
@@ -565,7 +592,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_long_poll_settings(
-        self, group_id: int
+        self, group_id: int, **kwargs
     ) -> groups.GetLongPollSettingsResponseModel:
         """Returns Long Poll notification settings
         :param group_id: Community ID.
@@ -584,6 +611,7 @@ class GroupsCategory(BaseCategory):
         count: Optional[int] = None,
         fields: Optional[List["objects_users.Fields"]] = None,
         filter: Optional[str] = None,
+        **kwargs
     ) -> groups.GetMembersResponseModel:
         """Returns a list of community members.
         :param group_id: ID or screen name of the community.
@@ -605,6 +633,7 @@ class GroupsCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         fields: Optional[List["str"]] = None,
+        **kwargs
     ) -> groups.GetRequestsResponseModel:
         """Returns a list of requests to the community.
         :param group_id: Community ID.
@@ -618,7 +647,9 @@ class GroupsCategory(BaseCategory):
             **await self.api.request("groups.getRequests", params)
         )
 
-    async def get_settings(self, group_id: int) -> groups.GetSettingsResponseModel:
+    async def get_settings(
+        self, group_id: int, **kwargs
+    ) -> groups.GetSettingsResponseModel:
         """Returns community settings.
         :param group_id: Community ID.
         """
@@ -629,7 +660,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def get_token_permissions(
-        self,
+        self, **kwargs
     ) -> groups.GetTokenPermissionsResponseModel:
         """groups.getTokenPermissions method"""
 
@@ -638,7 +669,9 @@ class GroupsCategory(BaseCategory):
             **await self.api.request("groups.getTokenPermissions", params)
         )
 
-    async def invite(self, group_id: int, user_id: int) -> base.OkResponseModel:
+    async def invite(
+        self, group_id: int, user_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Allows to invite friends to the community.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -653,6 +686,7 @@ class GroupsCategory(BaseCategory):
         user_id: Optional[int] = None,
         user_ids: Optional[List[int]] = None,
         extended: Optional[bool] = None,
+        **kwargs
     ) -> groups.IsMemberExtendedResponseModel:
         """Returns information specifying whether a user is a member of a community.
         :param group_id: ID or screen name of the community.
@@ -667,7 +701,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def join(
-        self, group_id: Optional[int] = None, not_sure: Optional[str] = None
+        self, group_id: Optional[int] = None, not_sure: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """With this method you can join the group or public page, and also confirm your participation in an event.
         :param group_id: ID or screen name of the community.
@@ -677,7 +711,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("groups.join", params))
 
-    async def leave(self, group_id: int) -> base.OkResponseModel:
+    async def leave(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """With this method you can leave a group, public page, or event.
         :param group_id: ID or screen name of the community.
         """
@@ -685,7 +719,9 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         return base.OkResponse(**await self.api.request("groups.leave", params))
 
-    async def remove_user(self, group_id: int, user_id: int) -> base.OkResponseModel:
+    async def remove_user(
+        self, group_id: int, user_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Removes a user from the community.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -695,7 +731,7 @@ class GroupsCategory(BaseCategory):
         return base.OkResponse(**await self.api.request("groups.removeUser", params))
 
     async def reorder_link(
-        self, group_id: int, link_id: int, after: Optional[int] = None
+        self, group_id: int, link_id: int, after: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows to reorder links in the community.
         :param group_id: Community ID.
@@ -717,6 +753,7 @@ class GroupsCategory(BaseCategory):
         sort: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
+        **kwargs
     ) -> groups.SearchResponseModel:
         """Returns a list of communities matching the search criteria.
         :param q: Search query string.
@@ -781,6 +818,7 @@ class GroupsCategory(BaseCategory):
         like_add: Optional[bool] = None,
         like_remove: Optional[bool] = None,
         message_event: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Allow to set notifications settings for group.
         :param group_id: Community ID.
@@ -883,6 +921,7 @@ class GroupsCategory(BaseCategory):
         like_add: Optional[bool] = None,
         like_remove: Optional[bool] = None,
         message_event: Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Sets Long Poll notification settings
         :param group_id: Community ID.
@@ -938,7 +977,7 @@ class GroupsCategory(BaseCategory):
         )
 
     async def unban(
-        self, group_id: int, owner_id: Optional[int] = None
+        self, group_id: int, owner_id: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """groups.unban method
         :param group_id:

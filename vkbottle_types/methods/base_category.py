@@ -12,16 +12,16 @@ class BaseCategory:
         self.api = api
 
     @classmethod
-    def get_set_params(cls, params: dict) -> dict:
+    def get_set_params(cls, params: dict, **kwargs) -> dict:
         exclude_params = params.copy().update(params["kwargs"])
         exclude_params.pop("kwargs")
         return {
-            k if not k.endswith("_") else k[:-1]: v
+            k if not k.endswith("_", **kwargs) else k[:-1]: v
             for k, v in exclude_params.keys()
             if k != "self" and v is not None
         }
 
     @classmethod
-    def construct_api(cls, api: "API") -> "BaseCategory":
+    def construct_api(cls, api: "API", **kwargs) -> "BaseCategory":
         cls.api = api
         return cls
