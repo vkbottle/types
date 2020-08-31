@@ -32,7 +32,7 @@ class EventsBase:
 
     def get(
         self, event_type: Union[int, str, GroupEventType, UserEventType]
-    ) -> BaseModel:
+    ) -> Union[BaseGroupEvent, BaseUserEvent]:
         if not str(event_type).startswith(self.type_enum.__name__):
             event_type = self.type_enum(event_type)
 
