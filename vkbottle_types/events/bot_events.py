@@ -5,137 +5,137 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-class BaseBotEvent(BaseModel):
+class BaseGroupEvent(BaseModel):
     type: Optional[GroupEventType] = None
     object: Optional[BaseEventObject] = None
     group_id: Optional[int] = None
 
 
-class Message(BaseBotEvent):
+class Message(BaseGroupEvent):
     object: "group_event_objects.MessageObject"
 
 
-class MessageNew(BaseBotEvent):
+class MessageNew(BaseGroupEvent):
     object: "group_event_objects.MessageNewObject"
 
 
-class MessageAllow(BaseBotEvent):
+class MessageAllow(BaseGroupEvent):
     object: "group_event_objects.MessageAllowObject"
 
 
-class MessageTypingState(BaseBotEvent):
+class MessageTypingState(BaseGroupEvent):
     object: "group_event_objects.MessageTypingStateObject"
 
 
-class MessageDeny(BaseBotEvent):
+class MessageDeny(BaseGroupEvent):
     object: "group_event_objects.MessageDenyObject"
 
 
-class MessageEvent(BaseBotEvent):
+class MessageEvent(BaseGroupEvent):
     object: "group_event_objects.MessageEventObject"
 
 
-class PhotoNew(BaseBotEvent):
+class PhotoNew(BaseGroupEvent):
     object: "group_event_objects.PhotosPhoto"
 
 
-class PhotoComment(BaseBotEvent):
+class PhotoComment(BaseGroupEvent):
     object: "group_event_objects.PhotoCommentObject"
 
 
-class PhotoCommentDelete(BaseBotEvent):
+class PhotoCommentDelete(BaseGroupEvent):
     object: "group_event_objects.PhotoCommentDeleteObject"
 
 
-class AudioNew(BaseBotEvent):
+class AudioNew(BaseGroupEvent):
     object: "group_event_objects.AudioNewObject"
 
 
-class VideoNew(BaseBotEvent):
+class VideoNew(BaseGroupEvent):
     object: "group_event_objects.VideoNewObject"
 
 
-class VideoComment(BaseBotEvent):
+class VideoComment(BaseGroupEvent):
     object: "group_event_objects.VideoCommentObject"
 
 
-class VideoCommentDelete(BaseBotEvent):
+class VideoCommentDelete(BaseGroupEvent):
     object: "group_event_objects.VideoCommentDeleteObject"
 
 
-class WallPostNew(BaseBotEvent):
+class WallPostNew(BaseGroupEvent):
     object: "group_event_objects.WallPostNewObject"
 
 
-class WallReply(BaseBotEvent):
+class WallReply(BaseGroupEvent):
     object: "group_event_objects.WallReplyNewObject"
 
 
-class WallReplyDelete(BaseBotEvent):
+class WallReplyDelete(BaseGroupEvent):
     object: "group_event_objects.WallReplyDeleteObject"
 
 
-class Like(BaseBotEvent):
+class Like(BaseGroupEvent):
     object: "group_event_objects.LikeObject"
 
 
-class BoardPost(BaseBotEvent):
+class BoardPost(BaseGroupEvent):
     object: "group_event_objects.BoardPostNewObject"
 
 
-class BoardPostDelete(BaseBotEvent):
+class BoardPostDelete(BaseGroupEvent):
     object: "group_event_objects.BoardPostDeleteObject"
 
 
-class MarketOrder(BaseBotEvent):
+class MarketOrder(BaseGroupEvent):
     object: "group_event_objects.MarketOrderObject"
 
 
-class MarketComment(BaseBotEvent):
+class MarketComment(BaseGroupEvent):
     object: "group_event_objects.MarketCommentNewObject"
 
 
-class MarketCommentDelete(BaseBotEvent):
+class MarketCommentDelete(BaseGroupEvent):
     object: "group_event_objects.MarketCommentDeleteObject"
 
 
-class GroupLeave(BaseBotEvent):
+class GroupLeave(BaseGroupEvent):
     object: "group_event_objects.GroupLeaveObject"
 
 
-class GroupJoin(BaseBotEvent):
+class GroupJoin(BaseGroupEvent):
     object: "group_event_objects.GroupJoinObject"
 
 
-class UserBlock(BaseBotEvent):
+class UserBlock(BaseGroupEvent):
     object: "group_event_objects.UserBlockObject"
 
 
-class UserUnblock(BaseBotEvent):
+class UserUnblock(BaseGroupEvent):
     object: "group_event_objects.UserUnblockObject"
 
 
-class PollVoteNew(BaseBotEvent):
+class PollVoteNew(BaseGroupEvent):
     object: "group_event_objects.PollVoteNewObject"
 
 
-class GroupOfficersEdit(BaseBotEvent):
+class GroupOfficersEdit(BaseGroupEvent):
     object: "group_event_objects.GroupOfficersEditObject"
 
 
-class GroupChangeSettings(BaseBotEvent):
+class GroupChangeSettings(BaseGroupEvent):
     object: "group_event_objects.GroupChangeSettingsObject"
 
 
-class GroupChangePhoto(BaseBotEvent):
+class GroupChangePhoto(BaseGroupEvent):
     object: "group_event_objects.GroupChangePhotoObject"
 
 
-class VkPayTransaction(BaseBotEvent):
+class VkPayTransaction(BaseGroupEvent):
     object: "group_event_objects.VkPayTransactionObject"
 
 
-class AppPayload(BaseBotEvent):
+class AppPayload(BaseGroupEvent):
     object: "group_event_objects.AppPayloadObject"
 
 

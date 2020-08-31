@@ -1,10 +1,17 @@
-from typing import Union, Dict, Type, Callable, Any
+from typing import Union, Dict, Type, Callable, Any, TYPE_CHECKING
 from .enums import GroupEventType, UserEventType
 from pydantic import BaseModel
 
 
+if TYPE_CHECKING:
+    from .bot_events import BaseGroupEvent
+    from .user_events import BaseUserEvent
+
+
 class EventsBase:
-    events_registered: Dict[Union[GroupEventType, UserEventType], BaseModel] = {}
+    events_registered: Dict[
+        Union[GroupEventType, UserEventType], Union[BaseGroupEvent, BaseUserEvent]
+    ] = {}
 
     def __init__(
         self,
@@ -17,7 +24,9 @@ class EventsBase:
         self.on_undefined = on_undefined
 
     def register(
-        self, event_type: Union[GroupEventType, UserEventType], event_model: BaseModel
+        self,
+        event_type: Union[GroupEventType, UserEventType],
+        event_model: Union[BaseGroupEvent, BaseUserEvent],
     ):
         self.events_registered[event_type] = event_model
 
