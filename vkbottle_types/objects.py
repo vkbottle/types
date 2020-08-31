@@ -3326,6 +3326,55 @@ class MarketPrice(BaseObject):
     text: Optional[str] = None
 
 
+class PropertyValue(BaseObject):
+    variant_id: Optional[int] = None
+    variant_name: Optional[str] = None
+    property_name: Optional[str] = None
+
+
+class MarketStatus(enum.IntEnum):
+    NEW = 0
+    AGREE = 1
+    PATCH = 2
+    DELIVER = 3
+    DONE = 4
+    CANCELLED = 5
+    RETURNED = 6
+
+
+class MarketDelivery(BaseObject):
+    address: Optional[str] = None
+    type: Optional[str] = None
+    track_number: Optional[str] = None
+    track_link: Optional[str] = None
+    delivery_point: Optional[dict] = None
+
+
+class MarketRecipient(BaseObject):
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    display_text: Optional[str] = None
+
+
+class MarketOrder(BaseObject):
+    id: Optional[int] = None
+    group_id: Optional[int] = None
+    user_id: Optional[int] = None
+    date: Optional[int] = None
+    variants_grouping_id: Optional[int] = None
+    is_main_variant: Optional[int] = None
+    property_values: Optional[List[PropertyValue]] = None
+    cart_quantity: Optional[int] = None
+    status: Optional[MarketStatus] = None
+    items_count: Optional[int] = None
+    total_price: Optional[MarketPrice] = None
+    display_order_id: Optional[str] = None
+    comment: Optional[str] = None
+    preview_order_items: Optional[List[MarketMarketItemFull]] = None
+    delivery: Optional[MarketDelivery] = None
+    recipient: Optional[MarketRecipient] = None
+
+
 class MarketSection(BaseObject):
     """VK Object Market/MarketSection
 
@@ -6254,6 +6303,14 @@ class UtilsLinkCheckedStatus(enum.Enum):
     PROCESSING = "processing"
 
 
+class UsersBlockReason(enum.IntEnum):
+    OTHER = 0
+    SPAM = 1
+    VERBAL_ABUSE = 2
+    STRONG_LANGUAGE = 3
+    IRRELEVANT_MESSAGES = 4
+
+
 class UtilsLinkStats(BaseObject):
     """VK Object Utils/UtilsLinkStats
 
@@ -7112,6 +7169,35 @@ class GroupsBannedItem(GroupsOwnerXtrBanInfo):
     """
 
 
+class ClientInfoButtonActions(enum.Enum):
+    TEXT = "text"
+    VKPAY = "vkpay"
+    OPEN_APP = "open_app"
+    LOCATION = "location"
+    OPEN_LINK = "open_link"
+    CALLBACK = "callback"
+
+
+class MessagesClientInfo(BaseObject):
+    button_actions: Optional[List[ClientInfoButtonActions]] = None
+    keyboard: Optional[bool] = None
+    inline_keyboard: Optional[bool] = None
+    carousel: Optional[bool] = None
+    lang_id: Optional[int] = None
+
+
+class ObjectType(enum.Enum):
+    VIDEO = "video"
+    PHOTO = "photo"
+    COMMENT = "comment"
+    NOTE = "note"
+    TOPIC_COMMENT = "topic_comment"
+    PHOTO_COMMENT = "photo_comment"
+    VIDEO_COMMENT = "video_comment"
+    MARKET = "market"
+    MARKET_COMMENT = "market_comment"
+
+
 AccountAccountCounters.update_forward_refs()
 AccountInfo.update_forward_refs()
 AccountNameRequest.update_forward_refs()
@@ -7489,3 +7575,5 @@ NewsfeedItemPhotoTag.update_forward_refs()
 NewsfeedItemPhoto.update_forward_refs()
 NewsfeedItemAudio.update_forward_refs()
 GroupsBannedItem.update_forward_refs()
+MessagesClientInfo.update_forward_refs()
+MarketOrder.update_forward_refs()
