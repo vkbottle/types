@@ -4,6 +4,7 @@ from .bot_events import *
 
 
 class GroupTypes:
+    MessageNew = MessageNew
     MessageAllow = MessageAllow
     MessageReply = Message
     MessageEdit = Message
