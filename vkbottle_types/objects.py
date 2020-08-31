@@ -7175,6 +7175,7 @@ class ClientInfoButtonActions(enum.Enum):
     OPEN_APP = "open_app"
     LOCATION = "location"
     OPEN_LINK = "open_link"
+    OPEN_PHOTO = "open_photo"
     CALLBACK = "callback"
 
 
