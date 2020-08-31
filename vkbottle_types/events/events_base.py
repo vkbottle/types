@@ -1,6 +1,5 @@
 from typing import Union, Dict, Type, Callable, Any, TYPE_CHECKING
 from .enums import GroupEventType, UserEventType
-from pydantic import BaseModel
 
 
 if TYPE_CHECKING:
@@ -10,7 +9,7 @@ if TYPE_CHECKING:
 
 class EventsBase:
     events_registered: Dict[
-        Union[GroupEventType, UserEventType], Union[BaseGroupEvent, BaseUserEvent]
+        Union[GroupEventType, UserEventType], Union["BaseGroupEvent", "BaseUserEvent"]
     ] = {}
 
     def __init__(
@@ -26,13 +25,13 @@ class EventsBase:
     def register(
         self,
         event_type: Union[GroupEventType, UserEventType],
-        event_model: Union[BaseGroupEvent, BaseUserEvent],
+        event_model: Union["BaseGroupEvent", "BaseUserEvent"],
     ):
         self.events_registered[event_type] = event_model
 
     def get(
         self, event_type: Union[int, str, GroupEventType, UserEventType]
-    ) -> Union[BaseGroupEvent, BaseUserEvent]:
+    ) -> Union["BaseGroupEvent", "BaseUserEvent"]:
         if not str(event_type).startswith(self.type_enum.__name__):
             event_type = self.type_enum(event_type)
 
