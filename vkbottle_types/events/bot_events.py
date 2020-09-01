@@ -230,6 +230,7 @@ DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.APP_PAYLOAD, AppPayload)
 
 __all__ = (
     "DEFAULT_EVENTS_BASE_GROUP",
+    "BaseGroupEvent",
     "MessageNew",
     "Message",
     "MessageAllow",

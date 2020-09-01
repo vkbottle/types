@@ -3,13 +3,15 @@ from .enums import GroupEventType, UserEventType
 
 
 if TYPE_CHECKING:
+    from .typings import GroupTypes, UserTypes
     from .bot_events import BaseGroupEvent
     from .user_events import BaseUserEvent
 
 
 class EventsBase:
     events_registered: Dict[
-        Union[GroupEventType, UserEventType], Union["BaseGroupEvent", "BaseUserEvent"]
+        Union[GroupEventType, UserEventType],
+        Union["GroupTypes.UnifiedTypes", "UserTypes.UnifiedTypes"],
     ] = {}
 
     def __init__(
@@ -31,7 +33,7 @@ class EventsBase:
 
     def get(
         self, event_type: Union[int, str, GroupEventType, UserEventType]
-    ) -> Union["BaseGroupEvent", "BaseUserEvent"]:
+    ) -> Union["GroupTypes.UnifiedTypes", "UserTypes.UnifiedTypes"]:
         if not str(event_type).startswith(self.type_enum.__name__):
             event_type = self.type_enum(event_type)
 
