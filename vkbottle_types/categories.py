@@ -192,3 +192,6 @@ class APICategories(ABC):
     @abstractmethod
     def api_instance(self) -> "API":
         pass
+
+    async def execute(self, code: str) -> typing.Any:
+        return await self.api_instance.request("execute", {"code": code})
