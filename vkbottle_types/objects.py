@@ -3807,6 +3807,34 @@ class MessagesMessage(BaseObject):
     was_listened: Optional[bool] = None
     pinned_at: Optional[int] = None
 
+    def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:
+        return [attachment.photo for attachment in self.attachments if attachment.photo]
+
+    def get_video_attachments(self) -> typing.List["VideoVideo"]:
+        return [attachment.video for attachment in self.attachments if attachment.video]
+
+    def get_doc_attachments(self) -> typing.List["DocsDoc"]:
+        return [attachment.doc for attachment in self.attachments if attachment.doc]
+
+    def get_audio_attachments(self) -> typing.List["AudioAudio"]:
+        return [attachment.audio for attachment in self.attachments if attachment.audio]
+
+    def get_message_id(self) -> int:
+        return self.id or self.conversation_message_id
+
+    def get_payload_json(
+        self,
+        throw_error: bool = False,
+        unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
+        json: Any = __import__("json"),
+    ) -> typing.Union[dict, None]:
+        try:
+            return json.loads(self.payload)
+        except (json.decoder.JSONDecodeError, TypeError) as e:
+            if throw_error:
+                raise e
+        return unpack_failure(self.payload)
+
 
 class MessagesMessageAction(BaseObject):
     """VK Object Messages/MessagesMessageAction

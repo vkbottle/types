@@ -5,6 +5,4 @@ class BaseUserEvent(BaseModel):
     pass
 
 
-__all__ = (
-    "BaseUserEvent",
-)
+__all__ = ("BaseUserEvent",)
