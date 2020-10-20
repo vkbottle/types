@@ -1,5 +1,8 @@
 from pydantic import BaseModel
+from typing import Optional
+from vkbottle_types.state import StatePeer
 
 
 class BaseEventObject(BaseModel):
-    pass
+    state: Optional[StatePeer] = None
+
