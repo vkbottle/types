@@ -4,5 +4,5 @@ from vkbottle_types.state import StatePeer
 
 
 class BaseEventObject(BaseModel):
-    state: Optional[StatePeer] = None
+    state_peer: Optional[StatePeer] = None
 
