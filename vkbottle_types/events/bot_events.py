@@ -2,13 +2,21 @@ from .enums import GroupEventType
 from .objects import BaseEventObject, group_event_objects
 from .events_base import EventsBase
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Any, Union, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from vkbottle import ABCAPI, API
 
 
 class BaseGroupEvent(BaseModel):
     type: Optional[GroupEventType] = None
     object: Optional[BaseEventObject] = None
     group_id: Optional[int] = None
+    unprepared_ctx_api: Optional[Any] = None
+
+    @property
+    def ctx_api(self) -> Optional[Union["ABCAPI", "API"]]:
+        return getattr(self, "unprepared_ctx_api")
 
 
 class Message(BaseGroupEvent):
