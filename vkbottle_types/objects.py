@@ -7225,6 +7225,7 @@ class ObjectType(enum.Enum):
     VIDEO_COMMENT = "video_comment"
     MARKET = "market"
     MARKET_COMMENT = "market_comment"
+    POST = "post"
 
 
 AccountAccountCounters.update_forward_refs()
