@@ -15,7 +15,7 @@ from vkbottle_types.objects import (
     MarketOrder,
 )
 import enum
-from typing import Optional, Any, Union
+from typing import Optional, Any, Union, Callable
 
 
 class MessageNewObject(BaseEventObject):
@@ -50,6 +50,23 @@ class MessageEventObject(BaseEventObject):
     event_id: Optional[str] = None
     payload: Optional[Union[dict, str, Any]] = None
     conversation_message_id: Optional[int] = None
+    
+    @property
+    def chat_id(self) -> int:
+        return self.peer_id - 2_000_000_000
+
+    def get_payload_json(
+        self,
+        throw_error: bool = False,
+        unpack_failure: Callable[[str], dict] = lambda payload: payload,
+        json: Any = __import__("json"),
+    ) -> Union[dict, None]:
+        try:
+            return json.loads(self.payload)
+        except (json.decoder.JSONDecodeError, TypeError) as e:
+            if throw_error:
+                raise e
+        return unpack_failure(self.payload)
 
 
 class PhotoNewObject(PhotosPhoto):
