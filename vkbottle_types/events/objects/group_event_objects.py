@@ -15,7 +15,7 @@ from vkbottle_types.objects import (
     MarketOrder,
 )
 import enum
-from typing import Optional, Any
+from typing import Optional, Any, Union
 
 
 class MessageNewObject(BaseEventObject):
@@ -48,7 +48,7 @@ class MessageEventObject(BaseEventObject):
     user_id: Optional[int] = None
     peer_id: Optional[int] = None
     event_id: Optional[str] = None
-    payload: Optional[str] = None
+    payload: Optional[Union[dict, str, Any]] = None
     conversation_message_id: Optional[int] = None
 
 
@@ -232,6 +232,7 @@ class AppPayloadObject(BaseEventObject):
 MessageAllowObject.update_forward_refs()
 MessageTypingStateObject.update_forward_refs()
 MessageDenyObject.update_forward_refs()
+MessageEventObject.update_forward_refs()
 PhotoCommentObject.update_forward_refs()
 PhotoCommentDeleteObject.update_forward_refs()
 VideoCommentObject.update_forward_refs()
