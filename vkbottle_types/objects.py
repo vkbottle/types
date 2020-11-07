@@ -3807,6 +3807,14 @@ class MessagesMessage(BaseObject):
     was_listened: Optional[bool] = None
     pinned_at: Optional[int] = None
 
+    @property
+    def chat_id(self) -> int:
+        return self.peer_id - 2_000_000_000
+
+    @property
+    def message_id(self) -> int:
+        return self.conversation_message_id or self.id
+
     def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:
         return [attachment.photo for attachment in self.attachments if attachment.photo]
 
@@ -6754,6 +6762,7 @@ class WallPostSourceType(enum.Enum):
     API = "api"
     RSS = "rss"
     SMS = "sms"
+    MVK = "mvk"
 
 
 class WallPostType(enum.Enum):
