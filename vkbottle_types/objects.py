@@ -3889,6 +3889,7 @@ class MessagesMessageAttachment(BaseObject):
     """VK Object Messages/MessagesMessageAttachment"""
 
     audio: Optional["AudioAudio"] = None
+    poll: Optional["PollsPoll"] = None
     audio_message: Optional["MessagesAudioMessage"] = None
     doc: Optional["DocsDoc"] = None
     gift: Optional["GiftsLayout"] = None
@@ -3912,6 +3913,7 @@ class MessagesMessageAttachmentType(enum.Enum):
     AUDIO = "audio"
     VIDEO = "video"
     DOC = "doc"
+    POLL = "poll"
     LINK = "link"
     MARKET = "market"
     MARKET_ALBUM = "market_album"
