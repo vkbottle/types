@@ -1,5 +1,5 @@
 import typing
-from typing import Optional, List
+from typing import Optional, List, Union
 
 from vkbottle_types.objects import (
     GroupsGroupFull,
@@ -286,7 +286,14 @@ class SearchResponseModel(BaseResponse):
     items: Optional[List["MessagesMessage"]] = None
 
 
-SendResponseModel = int
+SendResponseModel = Union[int, SendUserIdsResponse]
+
+
+class SendResponsePeerIdsModel(BaseResponse):
+    peer_id: Optional[int] = None
+    message_id: Optional[int] = None
+    conversation_message_id: Optional[int] = None
+    error: Optional["BaseMessageError"] = None
 
 
 class SendUserIdsResponseModel(BaseResponse):
