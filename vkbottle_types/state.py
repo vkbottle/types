@@ -11,6 +11,7 @@ class BaseStateGroup(IntEnum):
 class StatePeer(BaseModel):
     peer_id: int
     state: int
+    payload: dict
 
     def get_state_path(self) -> Tuple[Type[BaseStateGroup], BaseStateGroup]:
         return self.state.__class__, self.state
