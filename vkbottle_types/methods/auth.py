@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import auth, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -21,9 +20,9 @@ class AuthCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("auth.checkPhone", params)
-        ).response
+        response = await self.api.request("auth.checkPhone", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def restore(
         self, phone: str, last_name: str, **kwargs
@@ -34,6 +33,6 @@ class AuthCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return auth.RestoreResponse(
-            **await self.api.request("auth.restore", params)
-        ).response
+        response = await self.api.request("auth.restore", params)
+        model = auth.RestoreResponse
+        return model(**response).response

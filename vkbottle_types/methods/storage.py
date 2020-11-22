@@ -1,6 +1,5 @@
-from typing import Optional, List
-
-from vkbottle_types.responses import base, storage
+from vkbottle_types.responses import storage, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -19,9 +18,13 @@ class StorageCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return storage.GetV5110Response(
-            **await self.api.request("storage.get", params)
-        ).response
+        response = await self.api.request("storage.get", params)
+        model = self.get_model(
+            {("keys",): storage.GetWithKeysResponse},
+            default=storage.GetV5110Response,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_keys(
         self,
@@ -37,9 +40,9 @@ class StorageCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return storage.GetKeysResponse(
-            **await self.api.request("storage.getKeys", params)
-        ).response
+        response = await self.api.request("storage.getKeys", params)
+        model = storage.GetKeysResponse
+        return model(**response).response
 
     async def set(
         self,
@@ -55,4 +58,6 @@ class StorageCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("storage.set", params)).response
+        response = await self.api.request("storage.set", params)
+        model = base.OkResponse
+        return model(**response).response

@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
-from vkbottle_types.responses import base, stories as stories_responses
+from vkbottle_types.responses import stories, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import base as objects_base
 
 
 class StoriesCategory(BaseCategory):
@@ -15,9 +10,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stories.banOwner", params)
-        ).response
+        response = await self.api.request("stories.banOwner", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete(
         self, owner_id: int, story_id: int, **kwargs
@@ -28,17 +23,17 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stories.delete", params)
-        ).response
+        response = await self.api.request("stories.delete", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
         owner_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> stories_responses.GetV5113ResponseModel:
+    ) -> stories.GetV5113ResponseModel:
         """Returns stories available for current user.
         :param owner_id: Owner ID.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
@@ -46,43 +41,51 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetV5113Response(
-            **await self.api.request("stories.get", params)
-        ).response
+        response = await self.api.request("stories.get", params)
+        model = stories.GetV5113Response
+        return model(**response).response
 
     async def get_banned(
         self,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> stories_responses.GetBannedExtendedResponseModel:
+    ) -> stories.GetBannedResponseModel:
         """Returns list of sources hidden from current user's feed.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
         :param fields: Additional fields to return
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetBannedExtendedResponse(
-            **await self.api.request("stories.getBanned", params)
-        ).response
+        response = await self.api.request("stories.getBanned", params)
+        model = self.get_model(
+            {("extended",): stories.GetBannedExtendedResponse},
+            default=stories.GetBannedResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_by_id(
         self,
-        stories: List[str],
+        stories_: List[str],
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> stories_responses.GetByIdExtendedResponseModel:
+    ) -> stories.GetByIdResponseModel:
         """Returns story by its ID.
-        :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
+        :param stories_: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
         :param fields: Additional fields to return
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetByIdExtendedResponse(
-            **await self.api.request("stories.getById", params)
-        ).response
+        response = await self.api.request("stories.getById", params)
+        model = self.get_model(
+            {("extended",): stories.GetByIdExtendedResponse},
+            default=stories.GetByIdResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_photo_upload_server(
         self,
@@ -94,7 +97,7 @@ class StoriesCategory(BaseCategory):
         group_id: Optional[int] = None,
         clickable_stickers: Optional[str] = None,
         **kwargs
-    ) -> stories_responses.GetPhotoUploadServerResponseModel:
+    ) -> stories.GetPhotoUploadServerResponseModel:
         """Returns URL for uploading a story with photo.
         :param add_to_news: 1 — to add the story to friend's feed.
         :param user_ids: List of users IDs who can see the story.
@@ -106,9 +109,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetPhotoUploadServerResponse(
-            **await self.api.request("stories.getPhotoUploadServer", params)
-        ).response
+        response = await self.api.request("stories.getPhotoUploadServer", params)
+        model = stories.GetPhotoUploadServerResponse
+        return model(**response).response
 
     async def get_replies(
         self,
@@ -116,9 +119,9 @@ class StoriesCategory(BaseCategory):
         story_id: int,
         access_key: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> stories_responses.GetV5113ResponseModel:
+    ) -> stories.GetV5113ResponseModel:
         """Returns replies to the story.
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
@@ -128,22 +131,22 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetV5113Response(
-            **await self.api.request("stories.getReplies", params)
-        ).response
+        response = await self.api.request("stories.getReplies", params)
+        model = stories.GetV5113Response
+        return model(**response).response
 
     async def get_stats(
         self, owner_id: int, story_id: int, **kwargs
-    ) -> stories_responses.GetStatsResponseModel:
+    ) -> stories.GetStatsResponseModel:
         """Returns stories available for current user.
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetStatsResponse(
-            **await self.api.request("stories.getStats", params)
-        ).response
+        response = await self.api.request("stories.getStats", params)
+        model = stories.GetStatsResponse
+        return model(**response).response
 
     async def get_video_upload_server(
         self,
@@ -155,7 +158,7 @@ class StoriesCategory(BaseCategory):
         group_id: Optional[int] = None,
         clickable_stickers: Optional[str] = None,
         **kwargs
-    ) -> stories_responses.GetVideoUploadServerResponseModel:
+    ) -> stories.GetVideoUploadServerResponseModel:
         """Allows to receive URL for uploading story with video.
         :param add_to_news: 1 — to add the story to friend's feed.
         :param user_ids: List of users IDs who can see the story.
@@ -167,9 +170,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetVideoUploadServerResponse(
-            **await self.api.request("stories.getVideoUploadServer", params)
-        ).response
+        response = await self.api.request("stories.getVideoUploadServer", params)
+        model = stories.GetVideoUploadServerResponse
+        return model(**response).response
 
     async def get_viewers(
         self,
@@ -179,7 +182,7 @@ class StoriesCategory(BaseCategory):
         offset: Optional[int] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> stories_responses.GetViewersExtendedV5115ResponseModel:
+    ) -> stories.GetViewersExtendedV5115ResponseModel:
         """Returns a list of story viewers.
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
@@ -189,9 +192,13 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetViewersExtendedV5115Response(
-            **await self.api.request("stories.getViewers", params)
-        ).response
+        response = await self.api.request("stories.getViewers", params)
+        model = self.get_model(
+            {("extended",): stories.GetViewersExtendedV5115Response},
+            default=stories.GetViewersExtendedV5115Response,
+            params=params,
+        )
+        return model(**response).response
 
     async def hide_all_replies(
         self, owner_id: int, group_id: Optional[int] = None, **kwargs
@@ -202,9 +209,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stories.hideAllReplies", params)
-        ).response
+        response = await self.api.request("stories.hideAllReplies", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def hide_reply(
         self, owner_id: int, story_id: int, **kwargs
@@ -215,9 +222,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stories.hideReply", params)
-        ).response
+        response = await self.api.request("stories.hideReply", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -231,7 +238,7 @@ class StoriesCategory(BaseCategory):
         extended: Optional[bool] = None,
         fields: Optional[List[str]] = None,
         **kwargs
-    ) -> stories_responses.GetV5113ResponseModel:
+    ) -> stories.GetV5113ResponseModel:
         """stories.search method
         :param q:
         :param place_id:
@@ -245,9 +252,9 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stories_responses.GetV5113Response(
-            **await self.api.request("stories.search", params)
-        ).response
+        response = await self.api.request("stories.search", params)
+        model = stories.GetV5113Response
+        return model(**response).response
 
     async def unban_owner(
         self, owners_ids: List[int], **kwargs
@@ -257,6 +264,6 @@ class StoriesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stories.unbanOwner", params)
-        ).response
+        response = await self.api.request("stories.unbanOwner", params)
+        model = base.OkResponse
+        return model(**response).response

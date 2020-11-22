@@ -1,15 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import newsfeed, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import (
-        users as objects_users,
-        newsfeed as objects_newsfeed,
-        base as objects_base,
-    )
 
 
 class NewsfeedCategory(BaseCategory):
@@ -25,9 +16,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.addBan", params)
-        ).response
+        response = await self.api.request("newsfeed.addBan", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_ban(
         self,
@@ -41,9 +32,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.deleteBan", params)
-        ).response
+        response = await self.api.request("newsfeed.deleteBan", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
         """newsfeed.deleteList method
@@ -51,13 +42,13 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.deleteList", params)
-        ).response
+        response = await self.api.request("newsfeed.deleteList", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
-        filters: Optional[List["objects_newsfeed.Filters"]] = None,
+        filters: Optional[List[str]] = None,
         return_banned: Optional[bool] = None,
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
@@ -65,15 +56,15 @@ class NewsfeedCategory(BaseCategory):
         source_ids: Optional[str] = None,
         start_from: Optional[str] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         section: Optional[str] = None,
         **kwargs
     ) -> newsfeed.GetResponseModel:
         """Returns data required to show newsfeed for the current user.
         :param filters: Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends, 'note' — new notes
         :param return_banned: '1' — to return news items from banned sources
-        :param start_time: Earliest timestamp (in Unix time, **kwargs) of a news item to return. By default, 24 hours ago.
-        :param end_time: Latest timestamp (in Unix time, **kwargs) of a news item to return. By default, the current time.
+        :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+        :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param source_ids: Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.
         :param start_from: identifier required to get the next page of results. Value for this parameter is returned in 'next_from' field in a reply.
@@ -83,17 +74,17 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetResponse(
-            **await self.api.request("newsfeed.get", params)
-        ).response
+        response = await self.api.request("newsfeed.get", params)
+        model = newsfeed.GetResponse
+        return model(**response).response
 
     async def get_banned(
         self,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         **kwargs
-    ) -> newsfeed.GetBannedExtendedResponseModel:
+    ) -> newsfeed.GetBannedResponseModel:
         """Returns a list of users and communities banned from the current user's newsfeed.
         :param extended: '1' — return extra information about users and communities
         :param fields: Profile fields to return.
@@ -101,53 +92,61 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetBannedExtendedResponse(
-            **await self.api.request("newsfeed.getBanned", params)
-        ).response
+        response = await self.api.request("newsfeed.getBanned", params)
+        model = self.get_model(
+            {("extended",): newsfeed.GetBannedExtendedResponse},
+            default=newsfeed.GetBannedResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_comments(
         self,
         count: Optional[int] = None,
-        filters: Optional[List["objects_newsfeed.CommentsFilters"]] = None,
+        filters: Optional[List[str]] = None,
         reposts: Optional[str] = None,
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
         last_comments_count: Optional[int] = None,
         start_from: Optional[str] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> newsfeed.GetCommentsResponseModel:
         """Returns a list of comments in the current user's newsfeed.
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param filters: Filters to apply: 'post' — new comments on wall posts, 'photo' — new comments on photos, 'video' — new comments on videos, 'topic' — new comments on discussions, 'note' — new comments on notes,
         :param reposts: Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),
-        :param start_time: Earliest timestamp (in Unix time, **kwargs) of a comment to return. By default, 24 hours ago.
-        :param end_time: Latest timestamp (in Unix time, **kwargs) of a comment to return. By default, the current time.
+        :param start_time: Earliest timestamp (in Unix time) of a comment to return. By default, 24 hours ago.
+        :param end_time: Latest timestamp (in Unix time) of a comment to return. By default, the current time.
         :param last_comments_count:
         :param start_from: Identificator needed to return the next page with results. Value for this parameter returns in 'next_from' field.
         :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetCommentsResponse(
-            **await self.api.request("newsfeed.getComments", params)
-        ).response
+        response = await self.api.request("newsfeed.getComments", params)
+        model = newsfeed.GetCommentsResponse
+        return model(**response).response
 
     async def get_lists(
         self,
         list_ids: Optional[List[int]] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> newsfeed.GetListsExtendedResponseModel:
+    ) -> newsfeed.GetListsResponseModel:
         """Returns a list of newsfeeds followed by the current user.
         :param list_ids: numeric list identifiers.
         :param extended: Return additional list info
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetListsExtendedResponse(
-            **await self.api.request("newsfeed.getLists", params)
-        ).response
+        response = await self.api.request("newsfeed.getLists", params)
+        model = self.get_model(
+            {("extended",): newsfeed.GetListsExtendedResponse},
+            default=newsfeed.GetListsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_mentions(
         self,
@@ -160,16 +159,16 @@ class NewsfeedCategory(BaseCategory):
     ) -> newsfeed.GetMentionsResponseModel:
         """Returns a list of posts on user walls in which the current user is mentioned.
         :param owner_id: Owner ID.
-        :param start_time: Earliest timestamp (in Unix time, **kwargs) of a post to return. By default, 24 hours ago.
-        :param end_time: Latest timestamp (in Unix time, **kwargs) of a post to return. By default, the current time.
+        :param start_time: Earliest timestamp (in Unix time) of a post to return. By default, 24 hours ago.
+        :param end_time: Latest timestamp (in Unix time) of a post to return. By default, the current time.
         :param offset: Offset needed to return a specific subset of posts.
         :param count: Number of posts to return.
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetMentionsResponse(
-            **await self.api.request("newsfeed.getMentions", params)
-        ).response
+        response = await self.api.request("newsfeed.getMentions", params)
+        model = newsfeed.GetMentionsResponse
+        return model(**response).response
 
     async def get_recommended(
         self,
@@ -178,12 +177,12 @@ class NewsfeedCategory(BaseCategory):
         max_photos: Optional[int] = None,
         start_from: Optional[str] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> newsfeed.GetRecommendedResponseModel:
         """, Returns a list of newsfeeds recommended to the current user.
-        :param start_time: Earliest timestamp (in Unix time, **kwargs) of a news item to return. By default, 24 hours ago.
-        :param end_time: Latest timestamp (in Unix time, **kwargs) of a news item to return. By default, the current time.
+        :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+        :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param start_from: 'new_from' value obtained in previous call.
         :param count: Number of news items to return.
@@ -191,16 +190,16 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetRecommendedResponse(
-            **await self.api.request("newsfeed.getRecommended", params)
-        ).response
+        response = await self.api.request("newsfeed.getRecommended", params)
+        model = newsfeed.GetRecommendedResponse
+        return model(**response).response
 
     async def get_suggested_sources(
         self,
         offset: Optional[int] = None,
         count: Optional[int] = None,
         shuffle: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> newsfeed.GetSuggestedSourcesResponseModel:
         """Returns communities and users that current user is suggested to follow.
@@ -211,9 +210,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.GetSuggestedSourcesResponse(
-            **await self.api.request("newsfeed.getSuggestedSources", params)
-        ).response
+        response = await self.api.request("newsfeed.getSuggestedSources", params)
+        model = newsfeed.GetSuggestedSourcesResponse
+        return model(**response).response
 
     async def ignore_item(
         self, type: str, owner_id: int, item_id: int, **kwargs
@@ -225,9 +224,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.ignoreItem", params)
-        ).response
+        response = await self.api.request("newsfeed.ignoreItem", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def save_list(
         self,
@@ -245,9 +244,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.SaveListResponse(
-            **await self.api.request("newsfeed.saveList", params)
-        ).response
+        response = await self.api.request("newsfeed.saveList", params)
+        model = newsfeed.SaveListResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -259,25 +258,29 @@ class NewsfeedCategory(BaseCategory):
         start_time: Optional[int] = None,
         end_time: Optional[int] = None,
         start_from: Optional[str] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> newsfeed.SearchExtendedResponseModel:
+    ) -> newsfeed.SearchResponseModel:
         """Returns search results by statuses.
         :param q: Search query string (e.g., 'New Year').
         :param extended: '1' — to return additional information about the user or community that placed the post.
         :param count: Number of posts to return.
-        :param latitude: Geographical latitude point (in degrees, -90 to 90, **kwargs) within which to search.
-        :param longitude: Geographical longitude point (in degrees, -180 to 180, **kwargs) within which to search.
-        :param start_time: Earliest timestamp (in Unix time, **kwargs) of a news item to return. By default, 24 hours ago.
-        :param end_time: Latest timestamp (in Unix time, **kwargs) of a news item to return. By default, the current time.
+        :param latitude: Geographical latitude point (in degrees, -90 to 90) within which to search.
+        :param longitude: Geographical longitude point (in degrees, -180 to 180) within which to search.
+        :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
+        :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
         :param start_from:
         :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         """
 
         params = self.get_set_params(locals())
-        return newsfeed.SearchExtendedResponse(
-            **await self.api.request("newsfeed.search", params)
-        ).response
+        response = await self.api.request("newsfeed.search", params)
+        model = self.get_model(
+            {("extended",): newsfeed.SearchExtendedResponse},
+            default=newsfeed.SearchResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def unignore_item(
         self,
@@ -295,9 +298,9 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.unignoreItem", params)
-        ).response
+        response = await self.api.request("newsfeed.unignoreItem", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def unsubscribe(
         self, type: str, item_id: int, owner_id: Optional[int] = None, **kwargs
@@ -309,6 +312,6 @@ class NewsfeedCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("newsfeed.unsubscribe", params)
-        ).response
+        response = await self.api.request("newsfeed.unsubscribe", params)
+        model = base.OkResponse
+        return model(**response).response

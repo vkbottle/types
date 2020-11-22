@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import status, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -14,9 +13,9 @@ class StatusCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return status.GetResponse(
-            **await self.api.request("status.get", params)
-        ).response
+        response = await self.api.request("status.get", params)
+        model = status.GetResponse
+        return model(**response).response
 
     async def set(
         self, text: Optional[str] = None, group_id: Optional[int] = None, **kwargs
@@ -27,4 +26,6 @@ class StatusCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("status.set", params)).response
+        response = await self.api.request("status.set", params)
+        model = base.OkResponse
+        return model(**response).response

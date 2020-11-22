@@ -3814,13 +3814,17 @@ class MessagesMessage(BaseObject):
     @property
     def message_id(self) -> int:
         return self.conversation_message_id or self.id
-    
+
     def get_wall_attachment(self) -> typing.List["WallWallpostFull"]:
         result = [attachment.wall for attachment in self.attachments if attachment.wall]
         return result if result else None
 
     def get_wall_reply_attachment(self) -> typing.List["WallWallComment"]:
-        result = [attachment.wall_reply for attachment in self.attachments if attachment.wall_reply]
+        result = [
+            attachment.wall_reply
+            for attachment in self.attachments
+            if attachment.wall_reply
+        ]
         return result if result else None
 
     def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:

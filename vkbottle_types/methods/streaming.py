@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import streaming, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -9,9 +8,9 @@ class StreamingCategory(BaseCategory):
         """Allows to receive data for the connection to Streaming API."""
 
         params = self.get_set_params(locals())
-        return streaming.GetServerUrlResponse(
-            **await self.api.request("streaming.getServerUrl", params)
-        ).response
+        response = await self.api.request("streaming.getServerUrl", params)
+        model = streaming.GetServerUrlResponse
+        return model(**response).response
 
     async def set_settings(
         self, monthly_tier: Optional[str] = None, **kwargs
@@ -21,6 +20,6 @@ class StreamingCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("streaming.setSettings", params)
-        ).response
+        response = await self.api.request("streaming.setSettings", params)
+        model = base.OkResponse
+        return model(**response).response

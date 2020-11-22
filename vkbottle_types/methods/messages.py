@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import messages, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import users as objects_users, base as objects_base
 
 
 class MessagesCategory(BaseCategory):
@@ -23,9 +18,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.addChatUser", params)
-        ).response
+        response = await self.api.request("messages.addChatUser", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def allow_messages_from_group(
         self, group_id: int, key: Optional[str] = None, **kwargs
@@ -36,9 +31,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.allowMessagesFromGroup", params)
-        ).response
+        response = await self.api.request("messages.allowMessagesFromGroup", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def create_chat(
         self,
@@ -54,9 +49,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.CreateChatResponse(
-            **await self.api.request("messages.createChat", params)
-        ).response
+        response = await self.api.request("messages.createChat", params)
+        model = messages.CreateChatResponse
+        return model(**response).response
 
     async def delete(
         self,
@@ -74,9 +69,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.DeleteResponse(
-            **await self.api.request("messages.delete", params)
-        ).response
+        response = await self.api.request("messages.delete", params)
+        model = messages.DeleteResponse
+        return model(**response).response
 
     async def delete_chat_photo(
         self, chat_id: int, group_id: Optional[int] = None, **kwargs
@@ -87,9 +82,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.DeleteChatPhotoResponse(
-            **await self.api.request("messages.deleteChatPhoto", params)
-        ).response
+        response = await self.api.request("messages.deleteChatPhoto", params)
+        model = messages.DeleteChatPhotoResponse
+        return model(**response).response
 
     async def delete_conversation(
         self,
@@ -105,9 +100,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.DeleteConversationResponse(
-            **await self.api.request("messages.deleteConversation", params)
-        ).response
+        response = await self.api.request("messages.deleteConversation", params)
+        model = messages.DeleteConversationResponse
+        return model(**response).response
 
     async def deny_messages_from_group(
         self, group_id: int, **kwargs
@@ -117,9 +112,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.denyMessagesFromGroup", params)
-        ).response
+        response = await self.api.request("messages.denyMessagesFromGroup", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -140,10 +135,10 @@ class MessagesCategory(BaseCategory):
     ) -> messages.EditResponseModel:
         """Edits the message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the message.
+        :param message: (Required if 'attachments' is not set.) Text of the message.
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
-        :param attachment: (Required if 'message' is not set., **kwargs) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
+        :param attachment: (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
         :param keep_forward_messages: '1' — to keep forwarded, messages.
         :param keep_snippets: '1' — to keep attached snippets.
         :param group_id: Group ID (for group messages with user access token)
@@ -155,9 +150,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.EditResponse(
-            **await self.api.request("messages.edit", params)
-        ).response
+        response = await self.api.request("messages.edit", params)
+        model = messages.EditResponse
+        return model(**response).response
 
     async def edit_chat(
         self, chat_id: int, title: Optional[str] = None, **kwargs
@@ -168,16 +163,16 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.editChat", params)
-        ).response
+        response = await self.api.request("messages.editChat", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get_by_conversation_message_id(
         self,
         peer_id: int,
         conversation_message_ids: List[int],
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
     ) -> messages.GetByConversationMessageIdResponseModel:
@@ -190,19 +185,19 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetByConversationMessageIdResponse(
-            **await self.api.request("messages.getByConversationMessageId", params)
-        ).response
+        response = await self.api.request("messages.getByConversationMessageId", params)
+        model = messages.GetByConversationMessageIdResponse
+        return model(**response).response
 
     async def get_by_id(
         self,
         message_ids: List[int],
         preview_length: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
-    ) -> messages.GetByIdExtendedResponseModel:
+    ) -> messages.GetByIdResponseModel:
         """Returns messages by their IDs.
         :param message_ids: Message IDs.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
@@ -212,15 +207,19 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetByIdExtendedResponse(
-            **await self.api.request("messages.getById", params)
-        ).response
+        response = await self.api.request("messages.getById", params)
+        model = self.get_model(
+            {("extended",): messages.GetByIdExtendedResponse},
+            default=messages.GetByIdResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_chat_preview(
         self,
         peer_id: Optional[int] = None,
         link: Optional[str] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> messages.GetChatPreviewResponseModel:
         """messages.getChatPreview method
@@ -230,14 +229,14 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetChatPreviewResponse(
-            **await self.api.request("messages.getChatPreview", params)
-        ).response
+        response = await self.api.request("messages.getChatPreview", params)
+        model = messages.GetChatPreviewResponse
+        return model(**response).response
 
     async def get_conversation_members(
         self,
         peer_id: int,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
     ) -> messages.GetConversationMembersResponseModel:
@@ -248,9 +247,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetConversationMembersResponse(
-            **await self.api.request("messages.getConversationMembers", params)
-        ).response
+        response = await self.api.request("messages.getConversationMembers", params)
+        model = messages.GetConversationMembersResponse
+        return model(**response).response
 
     async def get_conversations(
         self,
@@ -259,7 +258,7 @@ class MessagesCategory(BaseCategory):
         filter: Optional[str] = None,
         extended: Optional[bool] = None,
         start_message_id: Optional[int] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
     ) -> messages.GetConversationsResponseModel:
@@ -274,18 +273,18 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetConversationsResponse(
-            **await self.api.request("messages.getConversations", params)
-        ).response
+        response = await self.api.request("messages.getConversations", params)
+        model = messages.GetConversationsResponse
+        return model(**response).response
 
     async def get_conversations_by_id(
         self,
         peer_ids: List[int],
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
-    ) -> messages.GetConversationsByIdExtendedResponseModel:
+    ) -> messages.GetConversationsByIdResponseModel:
         """Returns conversations by their IDs
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param extended: Return extended properties
@@ -294,9 +293,13 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetConversationsByIdExtendedResponse(
-            **await self.api.request("messages.getConversationsById", params)
-        ).response
+        response = await self.api.request("messages.getConversationsById", params)
+        model = self.get_model(
+            {("extended",): messages.GetConversationsByIdExtendedResponse},
+            default=messages.GetConversationsByIdResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_history(
         self,
@@ -307,7 +310,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: Optional[int] = None,
         rev: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
     ) -> messages.GetHistoryResponseModel:
@@ -324,9 +327,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetHistoryResponse(
-            **await self.api.request("messages.getHistory", params)
-        ).response
+        response = await self.api.request("messages.getHistory", params)
+        model = messages.GetHistoryResponse
+        return model(**response).response
 
     async def get_history_attachments(
         self,
@@ -335,7 +338,7 @@ class MessagesCategory(BaseCategory):
         start_from: Optional[str] = None,
         count: Optional[int] = None,
         photo_sizes: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         preserve_order: Optional[bool] = None,
         max_forwards_level: Optional[int] = None,
@@ -354,9 +357,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetHistoryAttachmentsResponse(
-            **await self.api.request("messages.getHistoryAttachments", params)
-        ).response
+        response = await self.api.request("messages.getHistoryAttachments", params)
+        model = messages.GetHistoryAttachmentsResponse
+        return model(**response).response
 
     async def get_invite_link(
         self,
@@ -372,9 +375,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetInviteLinkResponse(
-            **await self.api.request("messages.getInviteLink", params)
-        ).response
+        response = await self.api.request("messages.getInviteLink", params)
+        model = messages.GetInviteLinkResponse
+        return model(**response).response
 
     async def get_last_activity(
         self, user_id: int, **kwargs
@@ -384,9 +387,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetLastActivityResponse(
-            **await self.api.request("messages.getLastActivity", params)
-        ).response
+        response = await self.api.request("messages.getLastActivity", params)
+        model = messages.GetLastActivityResponse
+        return model(**response).response
 
     async def get_long_poll_history(
         self,
@@ -394,7 +397,7 @@ class MessagesCategory(BaseCategory):
         pts: Optional[int] = None,
         preview_length: Optional[int] = None,
         onlines: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         events_limit: Optional[int] = None,
         msgs_limit: Optional[int] = None,
         max_msg_id: Optional[int] = None,
@@ -412,7 +415,7 @@ class MessagesCategory(BaseCategory):
         :param fields: Additional profile [vk.com/dev/fields|fields] to return.
         :param events_limit: Maximum number of events to return.
         :param msgs_limit: Maximum number of messages to return.
-        :param max_msg_id: Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4, **kwargs) are taken into account.
+        :param max_msg_id: Maximum ID of the message among existing ones in the local copy. Both messages received with API methods (for example, , ), and data received from a Long Poll server (events with code 4) are taken into account.
         :param group_id: Group ID (for group messages with user access token)
         :param lp_version:
         :param last_n:
@@ -420,9 +423,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetLongPollHistoryResponse(
-            **await self.api.request("messages.getLongPollHistory", params)
-        ).response
+        response = await self.api.request("messages.getLongPollHistory", params)
+        model = messages.GetLongPollHistoryResponse
+        return model(**response).response
 
     async def get_long_poll_server(
         self,
@@ -438,9 +441,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.GetLongPollServerResponse(
-            **await self.api.request("messages.getLongPollServer", params)
-        ).response
+        response = await self.api.request("messages.getLongPollServer", params)
+        model = messages.GetLongPollServerResponse
+        return model(**response).response
 
     async def is_messages_from_group_allowed(
         self, group_id: int, user_id: int, **kwargs
@@ -451,9 +454,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.IsMessagesFromGroupAllowedResponse(
-            **await self.api.request("messages.isMessagesFromGroupAllowed", params)
-        ).response
+        response = await self.api.request("messages.isMessagesFromGroupAllowed", params)
+        model = messages.IsMessagesFromGroupAllowedResponse
+        return model(**response).response
 
     async def join_chat_by_invite_link(
         self, link: str, **kwargs
@@ -463,9 +466,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.JoinChatByInviteLinkResponse(
-            **await self.api.request("messages.joinChatByInviteLink", params)
-        ).response
+        response = await self.api.request("messages.joinChatByInviteLink", params)
+        model = messages.JoinChatByInviteLinkResponse
+        return model(**response).response
 
     async def mark_as_answered_conversation(
         self,
@@ -481,9 +484,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.markAsAnsweredConversation", params)
-        ).response
+        response = await self.api.request("messages.markAsAnsweredConversation", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def mark_as_important(
         self,
@@ -497,9 +500,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.MarkAsImportantResponse(
-            **await self.api.request("messages.markAsImportant", params)
-        ).response
+        response = await self.api.request("messages.markAsImportant", params)
+        model = messages.MarkAsImportantResponse
+        return model(**response).response
 
     async def mark_as_important_conversation(
         self,
@@ -515,9 +518,11 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.markAsImportantConversation", params)
-        ).response
+        response = await self.api.request(
+            "messages.markAsImportantConversation", params
+        )
+        model = base.OkResponse
+        return model(**response).response
 
     async def mark_as_read(
         self,
@@ -537,9 +542,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.markAsRead", params)
-        ).response
+        response = await self.api.request("messages.markAsRead", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def pin(
         self, peer_id: int, message_id: Optional[int] = None, **kwargs
@@ -550,9 +555,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.PinResponse(
-            **await self.api.request("messages.pin", params)
-        ).response
+        response = await self.api.request("messages.pin", params)
+        model = messages.PinResponse
+        return model(**response).response
 
     async def remove_chat_user(
         self,
@@ -568,9 +573,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.removeChatUser", params)
-        ).response
+        response = await self.api.request("messages.removeChatUser", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def restore(
         self, message_id: int, group_id: Optional[int] = None, **kwargs
@@ -581,9 +586,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.restore", params)
-        ).response
+        response = await self.api.request("messages.restore", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -611,16 +616,16 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.SearchResponse(
-            **await self.api.request("messages.search", params)
-        ).response
+        response = await self.api.request("messages.search", params)
+        model = messages.SearchResponse
+        return model(**response).response
 
     async def search_conversations(
         self,
         q: Optional[str] = None,
         count: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         group_id: Optional[int] = None,
         **kwargs
     ) -> messages.SearchConversationsResponseModel:
@@ -633,9 +638,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.SearchConversationsResponse(
-            **await self.api.request("messages.searchConversations", params)
-        ).response
+        response = await self.api.request("messages.searchConversations", params)
+        model = messages.SearchConversationsResponse
+        return model(**response).response
 
     async def send(
         self,
@@ -668,10 +673,10 @@ class MessagesCategory(BaseCategory):
         :param domain: User's short address (for example, 'illarionov').
         :param chat_id: ID of conversation the message will relate to.
         :param user_ids: IDs of message recipients (if new conversation shall be started).
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the message.
+        :param message: (Required if 'attachments' is not set.) Text of the message.
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
-        :param attachment: (Required if 'message' is not set., **kwargs) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
+        :param attachment: (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'wall' — wall post, '<owner_id>' — ID of the media attachment owner. '<media_id>' — media attachment ID. Example: "photo100172_166443618"
         :param reply_to:
         :param forward_messages: ID of forwarded messages, separated with a comma. Listed messages of the sender will be shown in the message body at the recipient's. Example: "123,431,544"
         :param sticker_id: Sticker id.
@@ -685,9 +690,13 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.SendResponse(
-            **await self.api.request("messages.send", params)
-        ).response
+        response = await self.api.request("messages.send", params)
+        model = self.get_model(
+            {("user_ids",): messages.SendUserIdsResponse},
+            default=messages.SendResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def send_message_event_answer(
         self,
@@ -705,9 +714,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.sendMessageEventAnswer", params)
-        ).response
+        response = await self.api.request("messages.sendMessageEventAnswer", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_activity(
         self,
@@ -725,9 +734,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.setActivity", params)
-        ).response
+        response = await self.api.request("messages.setActivity", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_chat_photo(
         self, file: str, **kwargs
@@ -737,9 +746,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return messages.SetChatPhotoResponse(
-            **await self.api.request("messages.setChatPhoto", params)
-        ).response
+        response = await self.api.request("messages.setChatPhoto", params)
+        model = messages.SetChatPhotoResponse
+        return model(**response).response
 
     async def unpin(
         self, peer_id: int, group_id: Optional[int] = None, **kwargs
@@ -750,6 +759,6 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("messages.unpin", params)
-        ).response
+        response = await self.api.request("messages.unpin", params)
+        model = base.OkResponse
+        return model(**response).response

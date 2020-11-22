@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import wall, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import base as objects_base
 
 
 class WallCategory(BaseCategory):
@@ -18,9 +13,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(
-            **await self.api.request("wall.closeComments", params)
-        ).response
+        response = await self.api.request("wall.closeComments", params)
+        model = base.BoolResponse
+        return model(**response).response
 
     async def create_comment(
         self,
@@ -38,17 +33,17 @@ class WallCategory(BaseCategory):
         :param post_id: Post ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param from_group: Group ID.
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the comment.
+        :param message: (Required if 'attachments' is not set.) Text of the comment.
         :param reply_to_comment: ID of comment to reply.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media ojbect: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. For example: "photo100172_166443618,photo66748_265827614"
+        :param attachments: (Required if 'message' is not set.) List of media objects attached to the comment, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media ojbect: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media owner. '<media_id>' — Media ID. For example: "photo100172_166443618,photo66748_265827614"
         :param sticker_id: Sticker ID.
         :param guid: Unique identifier to avoid repeated comments.
         """
 
         params = self.get_set_params(locals())
-        return wall.CreateCommentResponse(
-            **await self.api.request("wall.createComment", params)
-        ).response
+        response = await self.api.request("wall.createComment", params)
+        model = wall.CreateCommentResponse
+        return model(**response).response
 
     async def delete(
         self, owner_id: Optional[int] = None, post_id: Optional[int] = None, **kwargs
@@ -59,7 +54,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.delete", params)).response
+        response = await self.api.request("wall.delete", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -70,9 +67,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.deleteComment", params)
-        ).response
+        response = await self.api.request("wall.deleteComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -99,8 +96,8 @@ class WallCategory(BaseCategory):
         :param post_id:
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param friends_only:
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the post.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error is thrown."
+        :param message: (Required if 'attachments' is not set.) Text of the post.
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error is thrown."
         :param services:
         :param signed:
         :param publish_date:
@@ -116,7 +113,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.EditResponse(**await self.api.request("wall.edit", params)).response
+        response = await self.api.request("wall.edit", params)
+        model = wall.EditResponse
+        return model(**response).response
 
     async def edit_ads_stealth(
         self,
@@ -137,8 +136,8 @@ class WallCategory(BaseCategory):
         """Allows to edit hidden post.
         :param post_id: Post ID. Used for publishing of scheduled and suggested posts.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the post.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+        :param message: (Required if 'attachments' is not set.) Text of the post.
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
         :param signed: Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
@@ -150,9 +149,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.editAdsStealth", params)
-        ).response
+        response = await self.api.request("wall.editAdsStealth", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_comment(
         self,
@@ -170,9 +169,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.editComment", params)
-        ).response
+        response = await self.api.request("wall.editComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -182,9 +181,9 @@ class WallCategory(BaseCategory):
         count: Optional[int] = None,
         filter: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> wall.GetExtendedResponseModel:
+    ) -> wall.GetResponseModel:
         """Returns a list of posts on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
         :param domain: User or community short address.
@@ -196,18 +195,22 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetExtendedResponse(
-            **await self.api.request("wall.get", params)
-        ).response
+        response = await self.api.request("wall.get", params)
+        model = self.get_model(
+            {("extended",): wall.GetExtendedResponse},
+            default=wall.GetResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_by_id(
         self,
         posts: List[str],
         extended: Optional[bool] = None,
         copy_history_depth: Optional[int] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> wall.GetByIdExtendedResponseModel:
+    ) -> wall.GetByIdResponseModel:
         """Returns a list of posts from user or community walls by their IDs.
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
         :param extended: '1' — to return user and community objects needed to display posts, '0' — no additional fields are returned (default)
@@ -216,18 +219,22 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetByIdExtendedResponse(
-            **await self.api.request("wall.getById", params)
-        ).response
+        response = await self.api.request("wall.getById", params)
+        model = self.get_model(
+            {("extended",): wall.GetByIdExtendedResponse},
+            default=wall.GetByIdResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_comment(
         self,
         comment_id: int,
         owner_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> wall.GetCommentExtendedResponseModel:
+    ) -> wall.GetCommentResponseModel:
         """Returns a comment on a post on a user wall or community wall.
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -236,9 +243,13 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetCommentExtendedResponse(
-            **await self.api.request("wall.getComment", params)
-        ).response
+        response = await self.api.request("wall.getComment", params)
+        model = self.get_model(
+            {("extended",): wall.GetCommentExtendedResponse},
+            default=wall.GetCommentResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_comments(
         self,
@@ -251,11 +262,11 @@ class WallCategory(BaseCategory):
         sort: Optional[str] = None,
         preview_length: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         comment_id: Optional[int] = None,
         thread_items_count: Optional[int] = None,
         **kwargs
-    ) -> wall.GetCommentsExtendedResponseModel:
+    ) -> wall.GetCommentsResponseModel:
         """Returns a list of comments on a post on a user wall or community wall.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param post_id: Post ID.
@@ -272,9 +283,13 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetCommentsExtendedResponse(
-            **await self.api.request("wall.getComments", params)
-        ).response
+        response = await self.api.request("wall.getComments", params)
+        model = self.get_model(
+            {("extended",): wall.GetCommentsExtendedResponse},
+            default=wall.GetCommentsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_reposts(
         self,
@@ -292,9 +307,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.GetRepostsResponse(
-            **await self.api.request("wall.getReposts", params)
-        ).response
+        response = await self.api.request("wall.getReposts", params)
+        model = wall.GetRepostsResponse
+        return model(**response).response
 
     async def open_comments(
         self, owner_id: int, post_id: int, **kwargs
@@ -305,9 +320,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.BoolResponse(
-            **await self.api.request("wall.openComments", params)
-        ).response
+        response = await self.api.request("wall.openComments", params)
+        model = base.BoolResponse
+        return model(**response).response
 
     async def pin(
         self, post_id: int, owner_id: Optional[int] = None, **kwargs
@@ -318,7 +333,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.pin", params)).response
+        response = await self.api.request("wall.pin", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def post(
         self,
@@ -345,8 +362,8 @@ class WallCategory(BaseCategory):
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param friends_only: '1' — post will be available to friends only, '0' — post will be available to all users (default)
         :param from_group: For a community: '1' — post will be published by the community, '0' — post will be published by the user (default)
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the post.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+        :param message: (Required if 'attachments' is not set.) Text of the post.
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
         :param services: List of services or websites the update will be exported to, if the user has so requested. Sample values: 'twitter', 'facebook'.
         :param signed: Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)
         :param publish_date: Publication date (in Unix time). If used, posting will be delayed until the set time.
@@ -362,7 +379,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.PostResponse(**await self.api.request("wall.post", params)).response
+        response = await self.api.request("wall.post", params)
+        model = wall.PostResponse
+        return model(**response).response
 
     async def post_ads_stealth(
         self,
@@ -382,8 +401,8 @@ class WallCategory(BaseCategory):
     ) -> wall.PostAdsStealthResponseModel:
         """Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
-        :param message: (Required if 'attachments' is not set., **kwargs) Text of the post.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
+        :param message: (Required if 'attachments' is not set.) Text of the post.
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
         :param signed: Only for posts in communities with 'from_group' set to '1': '1' — post will be signed with the name of the posting user, '0' — post will not be signed (default)
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
         :param long: Geographical longitude of a check-in, in degrees (from -180 to 180).
@@ -396,37 +415,37 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.PostAdsStealthResponse(
-            **await self.api.request("wall.postAdsStealth", params)
-        ).response
+        response = await self.api.request("wall.postAdsStealth", params)
+        model = wall.PostAdsStealthResponse
+        return model(**response).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complaint about, **kwargs) a comment on a post on a user wall or community wall.
+        """Reports (submits a complaint about) a comment on a post on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall.
         :param comment_id: Comment ID.
         :param reason: Reason for the complaint: '0' – spam, '1' – child pornography, '2' – extremism, '3' – violence, '4' – drug propaganda, '5' – adult material, '6' – insult, abuse
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.reportComment", params)
-        ).response
+        response = await self.api.request("wall.reportComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def report_post(
         self, owner_id: int, post_id: int, reason: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complaint about, **kwargs) a post on a user wall or community wall.
+        """Reports (submits a complaint about) a post on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall.
         :param post_id: Post ID.
         :param reason: Reason for the complaint: '0' – spam, '1' – child pornography, '2' – extremism, '3' – violence, '4' – drug propaganda, '5' – adult material, '6' – insult, abuse
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.reportPost", params)
-        ).response
+        response = await self.api.request("wall.reportPost", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def repost(
         self,
@@ -437,7 +456,7 @@ class WallCategory(BaseCategory):
         mute_notifications: Optional[bool] = None,
         **kwargs
     ) -> wall.RepostResponseModel:
-        """Reposts (copies, **kwargs) an object to a user wall or community wall.
+        """Reposts (copies) an object to a user wall or community wall.
         :param object: ID of the object to be reposted on the wall. Example: "wall66748_3675"
         :param message: Comment to be added along with the reposted object.
         :param group_id: Target community ID when reposting to a community.
@@ -446,9 +465,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.RepostResponse(
-            **await self.api.request("wall.repost", params)
-        ).response
+        response = await self.api.request("wall.repost", params)
+        model = wall.RepostResponse
+        return model(**response).response
 
     async def restore(
         self, owner_id: Optional[int] = None, post_id: Optional[int] = None, **kwargs
@@ -459,9 +478,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.restore", params)
-        ).response
+        response = await self.api.request("wall.restore", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -472,9 +491,9 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("wall.restoreComment", params)
-        ).response
+        response = await self.api.request("wall.restoreComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -485,9 +504,9 @@ class WallCategory(BaseCategory):
         count: Optional[int] = None,
         offset: Optional[int] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> wall.SearchExtendedResponseModel:
+    ) -> wall.SearchResponseModel:
         """Allows to search posts on user or community walls.
         :param owner_id: user or community id. "Remember that for a community 'owner_id' must be negative."
         :param domain: user or community screen name.
@@ -500,9 +519,13 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return wall.SearchExtendedResponse(
-            **await self.api.request("wall.search", params)
-        ).response
+        response = await self.api.request("wall.search", params)
+        model = self.get_model(
+            {("extended",): wall.SearchExtendedResponse},
+            default=wall.SearchResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def unpin(
         self, post_id: int, owner_id: Optional[int] = None, **kwargs
@@ -513,4 +536,6 @@ class WallCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("wall.unpin", params)).response
+        response = await self.api.request("wall.unpin", params)
+        model = base.OkResponse
+        return model(**response).response

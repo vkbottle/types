@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import downloadedGames
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -13,6 +12,6 @@ class DownloadedGamesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return downloadedGames.PaidStatusResponse(
-            **await self.api.request("downloadedGames.getPaidStatus", params)
-        ).response
+        response = await self.api.request("downloadedGames.getPaidStatus", params)
+        model = downloadedGames.PaidStatusResponse
+        return model(**response).response

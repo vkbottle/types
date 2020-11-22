@@ -1,6 +1,5 @@
-from typing import Optional, List
-
 from vkbottle_types.responses import search
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -25,6 +24,6 @@ class SearchCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return search.GetHintsResponse(
-            **await self.api.request("search.getHints", params)
-        ).response
+        response = await self.api.request("search.getHints", params)
+        model = search.GetHintsResponse
+        return model(**response).response

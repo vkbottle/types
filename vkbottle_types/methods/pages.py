@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import pages, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -11,9 +10,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("pages.clearCache", params)
-        ).response
+        response = await self.api.request("pages.clearCache", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -29,7 +28,7 @@ class PagesCategory(BaseCategory):
         """Returns information about a wiki page.
         :param owner_id: Page owner ID.
         :param page_id: Wiki page ID.
-        :param global: '1' — to return information about a global wiki page
+        :param global_: '1' — to return information about a global wiki page
         :param site_preview: '1' — resulting wiki page is a preview for the attached link
         :param title: Wiki page title.
         :param need_source:
@@ -37,7 +36,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.GetResponse(**await self.api.request("pages.get", params)).response
+        response = await self.api.request("pages.get", params)
+        model = pages.GetResponse
+        return model(**response).response
 
     async def get_history(
         self,
@@ -53,9 +54,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.GetHistoryResponse(
-            **await self.api.request("pages.getHistory", params)
-        ).response
+        response = await self.api.request("pages.getHistory", params)
+        model = pages.GetHistoryResponse
+        return model(**response).response
 
     async def get_titles(
         self, group_id: Optional[int] = None, **kwargs
@@ -65,9 +66,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.GetTitlesResponse(
-            **await self.api.request("pages.getTitles", params)
-        ).response
+        response = await self.api.request("pages.getTitles", params)
+        model = pages.GetTitlesResponse
+        return model(**response).response
 
     async def get_version(
         self,
@@ -85,9 +86,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.GetVersionResponse(
-            **await self.api.request("pages.getVersion", params)
-        ).response
+        response = await self.api.request("pages.getVersion", params)
+        model = pages.GetVersionResponse
+        return model(**response).response
 
     async def parse_wiki(
         self, text: str, group_id: Optional[int] = None, **kwargs
@@ -98,9 +99,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.ParseWikiResponse(
-            **await self.api.request("pages.parseWiki", params)
-        ).response
+        response = await self.api.request("pages.parseWiki", params)
+        model = pages.ParseWikiResponse
+        return model(**response).response
 
     async def save(
         self,
@@ -120,9 +121,9 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.SaveResponse(
-            **await self.api.request("pages.save", params)
-        ).response
+        response = await self.api.request("pages.save", params)
+        model = pages.SaveResponse
+        return model(**response).response
 
     async def save_access(
         self,
@@ -142,6 +143,6 @@ class PagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return pages.SaveAccessResponse(
-            **await self.api.request("pages.saveAccess", params)
-        ).response
+        response = await self.api.request("pages.saveAccess", params)
+        model = pages.SaveAccessResponse
+        return model(**response).response

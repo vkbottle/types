@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import photos, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import users as objects_users
 
 
 class PhotosCategory(BaseCategory):
@@ -19,9 +14,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.confirmTag", params)
-        ).response
+        response = await self.api.request("photos.confirmTag", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def copy(
         self, owner_id: int, photo_id: int, access_key: Optional[str] = None, **kwargs
@@ -33,9 +28,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.CopyResponse(
-            **await self.api.request("photos.copy", params)
-        ).response
+        response = await self.api.request("photos.copy", params)
+        model = photos.CopyResponse
+        return model(**response).response
 
     async def create_album(
         self,
@@ -59,9 +54,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.CreateAlbumResponse(
-            **await self.api.request("photos.createAlbum", params)
-        ).response
+        response = await self.api.request("photos.createAlbum", params)
+        model = photos.CreateAlbumResponse
+        return model(**response).response
 
     async def create_comment(
         self,
@@ -80,7 +75,7 @@ class PhotosCategory(BaseCategory):
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param message: Comment text.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
         :param from_group: '1' — to post a comment from the community
         :param reply_to_comment:
         :param sticker_id:
@@ -89,9 +84,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.CreateCommentResponse(
-            **await self.api.request("photos.createComment", params)
-        ).response
+        response = await self.api.request("photos.createComment", params)
+        model = photos.CreateCommentResponse
+        return model(**response).response
 
     async def delete(
         self, photo_id: int, owner_id: Optional[int] = None, **kwargs
@@ -102,9 +97,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.delete", params)
-        ).response
+        response = await self.api.request("photos.delete", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_album(
         self, album_id: int, group_id: Optional[int] = None, **kwargs
@@ -115,9 +110,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.deleteAlbum", params)
-        ).response
+        response = await self.api.request("photos.deleteAlbum", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -128,9 +123,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.DeleteCommentResponse(
-            **await self.api.request("photos.deleteComment", params)
-        ).response
+        response = await self.api.request("photos.deleteComment", params)
+        model = photos.DeleteCommentResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -156,7 +151,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.edit", params)).response
+        response = await self.api.request("photos.edit", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_album(
         self,
@@ -182,9 +179,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.editAlbum", params)
-        ).response
+        response = await self.api.request("photos.editAlbum", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_comment(
         self,
@@ -198,13 +195,13 @@ class PhotosCategory(BaseCategory):
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param message: New text of the comment.
-        :param attachments: (Required if 'message' is not set., **kwargs) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
+        :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, '<owner_id>' — Media attachment owner ID. '<media_id>' — Media attachment ID. Example: "photo100172_166443618,photo66748_265827614"
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.editComment", params)
-        ).response
+        response = await self.api.request("photos.editComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -219,7 +216,7 @@ class PhotosCategory(BaseCategory):
         offset: Optional[int] = None,
         count: Optional[int] = None,
         **kwargs
-    ) -> photos.GetExtendedResponseModel:
+    ) -> photos.GetResponseModel:
         """Returns a list of a user's or community's photos.
         :param owner_id: ID of the user or community that owns the photos. Use a negative value to designate a community ID.
         :param album_id: Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
@@ -234,9 +231,13 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetExtendedResponse(
-            **await self.api.request("photos.get", params)
-        ).response
+        response = await self.api.request("photos.get", params)
+        model = self.get_model(
+            {("extended",): photos.GetExtendedResponse},
+            default=photos.GetResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_albums(
         self,
@@ -260,9 +261,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetAlbumsResponse(
-            **await self.api.request("photos.getAlbums", params)
-        ).response
+        response = await self.api.request("photos.getAlbums", params)
+        model = photos.GetAlbumsResponse
+        return model(**response).response
 
     async def get_albums_count(
         self, user_id: Optional[int] = None, group_id: Optional[int] = None, **kwargs
@@ -273,9 +274,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetAlbumsCountResponse(
-            **await self.api.request("photos.getAlbumsCount", params)
-        ).response
+        response = await self.api.request("photos.getAlbumsCount", params)
+        model = photos.GetAlbumsCountResponse
+        return model(**response).response
 
     async def get_all(
         self,
@@ -288,7 +289,7 @@ class PhotosCategory(BaseCategory):
         need_hidden: Optional[bool] = None,
         skip_hidden: Optional[bool] = None,
         **kwargs
-    ) -> photos.GetAllExtendedResponseModel:
+    ) -> photos.GetAllResponseModel:
         """Returns a list of photos belonging to a user or community, in reverse chronological order.
         :param owner_id: ID of a user or community that owns the photos. Use a negative value to designate a community ID.
         :param extended: '1' — to return detailed information about photos
@@ -301,9 +302,13 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetAllExtendedResponse(
-            **await self.api.request("photos.getAll", params)
-        ).response
+        response = await self.api.request("photos.getAll", params)
+        model = self.get_model(
+            {("extended",): photos.GetAllExtendedResponse},
+            default=photos.GetAllResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_all_comments(
         self,
@@ -323,27 +328,31 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetAllCommentsResponse(
-            **await self.api.request("photos.getAllComments", params)
-        ).response
+        response = await self.api.request("photos.getAllComments", params)
+        model = photos.GetAllCommentsResponse
+        return model(**response).response
 
     async def get_by_id(
         self,
-        photos_: List[str],
+        photos: List[str],
         extended: Optional[bool] = None,
         photo_sizes: Optional[bool] = None,
         **kwargs
-    ) -> photos.GetByIdExtendedResponseModel:
+    ) -> photos.GetByIdResponseModel:
         """Returns information about photos by their IDs.
-        :param photos_: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
+        :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
         :param extended: '1' — to return additional fields, '0' — (default)
         :param photo_sizes: '1' — to return photo sizes in a
         """
 
         params = self.get_set_params(locals())
-        return photos.GetByIdExtendedResponse(
-            **await self.api.request("photos.getById", params)
-        ).response
+        response = await self.api.request("photos.getById", params)
+        model = self.get_model(
+            {("extended",): photos.GetByIdExtendedResponse},
+            default=photos.GetByIdResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_chat_upload_server(
         self,
@@ -357,13 +366,13 @@ class PhotosCategory(BaseCategory):
         :param chat_id: ID of the chat for which you want to upload a cover photo.
         :param crop_x:
         :param crop_y:
-        :param crop_width: Width (in pixels, **kwargs) of the photo after cropping.
+        :param crop_width: Width (in pixels) of the photo after cropping.
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("photos.getChatUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getChatUploadServer", params)
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def get_comments(
         self,
@@ -376,9 +385,9 @@ class PhotosCategory(BaseCategory):
         sort: Optional[str] = None,
         access_key: Optional[str] = None,
         extended: Optional[bool] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> photos.GetCommentsExtendedResponseModel:
+    ) -> photos.GetCommentsResponseModel:
         """Returns a list of comments on a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -393,9 +402,13 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetCommentsExtendedResponse(
-            **await self.api.request("photos.getComments", params)
-        ).response
+        response = await self.api.request("photos.getComments", params)
+        model = self.get_model(
+            {("extended",): photos.GetCommentsExtendedResponse},
+            default=photos.GetCommentsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_market_album_upload_server(
         self, group_id: int, **kwargs
@@ -405,9 +418,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("photos.getMarketAlbumUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getMarketAlbumUploadServer", params)
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def get_market_upload_server(
         self,
@@ -427,9 +440,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetMarketUploadServerResponse(
-            **await self.api.request("photos.getMarketUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getMarketUploadServer", params)
+        model = photos.GetMarketUploadServerResponse
+        return model(**response).response
 
     async def get_messages_upload_server(
         self, peer_id: Optional[int] = None, **kwargs
@@ -439,9 +452,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetMessagesUploadServerResponse(
-            **await self.api.request("photos.getMessagesUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getMessagesUploadServer", params)
+        model = photos.GetMessagesUploadServerResponse
+        return model(**response).response
 
     async def get_new_tags(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
@@ -452,9 +465,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetNewTagsResponse(
-            **await self.api.request("photos.getNewTags", params)
-        ).response
+        response = await self.api.request("photos.getNewTags", params)
+        model = photos.GetNewTagsResponse
+        return model(**response).response
 
     async def get_owner_cover_photo_upload_server(
         self,
@@ -474,9 +487,11 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("photos.getOwnerCoverPhotoUploadServer", params)
-        ).response
+        response = await self.api.request(
+            "photos.getOwnerCoverPhotoUploadServer", params
+        )
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def get_owner_photo_upload_server(
         self, owner_id: Optional[int] = None, **kwargs
@@ -486,9 +501,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("photos.getOwnerPhotoUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getOwnerPhotoUploadServer", params)
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def get_tags(
         self,
@@ -504,9 +519,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetTagsResponse(
-            **await self.api.request("photos.getTags", params)
-        ).response
+        response = await self.api.request("photos.getTags", params)
+        model = photos.GetTagsResponse
+        return model(**response).response
 
     async def get_upload_server(
         self, group_id: Optional[int] = None, album_id: Optional[int] = None, **kwargs
@@ -517,9 +532,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetUploadServerResponse(
-            **await self.api.request("photos.getUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getUploadServer", params)
+        model = photos.GetUploadServerResponse
+        return model(**response).response
 
     async def get_user_photos(
         self,
@@ -529,7 +544,7 @@ class PhotosCategory(BaseCategory):
         extended: Optional[bool] = None,
         sort: Optional[str] = None,
         **kwargs
-    ) -> photos.GetUserPhotosExtendedResponseModel:
+    ) -> photos.GetUserPhotosResponseModel:
         """Returns a list of photos in which a user is tagged.
         :param user_id: User ID.
         :param offset: Offset needed to return a specific subset of photos. By default, '0'.
@@ -539,9 +554,13 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetUserPhotosExtendedResponse(
-            **await self.api.request("photos.getUserPhotos", params)
-        ).response
+        response = await self.api.request("photos.getUserPhotos", params)
+        model = self.get_model(
+            {("extended",): photos.GetUserPhotosExtendedResponse},
+            default=photos.GetUserPhotosResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_wall_upload_server(
         self, group_id: Optional[int] = None, **kwargs
@@ -551,9 +570,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.GetWallUploadServerResponse(
-            **await self.api.request("photos.getWallUploadServer", params)
-        ).response
+        response = await self.api.request("photos.getWallUploadServer", params)
+        model = photos.GetWallUploadServerResponse
+        return model(**response).response
 
     async def make_cover(
         self,
@@ -569,9 +588,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.makeCover", params)
-        ).response
+        response = await self.api.request("photos.makeCover", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def move(
         self,
@@ -587,7 +606,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("photos.move", params)).response
+        response = await self.api.request("photos.move", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def put_tag(
         self,
@@ -611,9 +632,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.PutTagResponse(
-            **await self.api.request("photos.putTag", params)
-        ).response
+        response = await self.api.request("photos.putTag", params)
+        model = photos.PutTagResponse
+        return model(**response).response
 
     async def remove_tag(
         self, photo_id: int, tag_id: int, owner_id: Optional[int] = None, **kwargs
@@ -625,9 +646,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.removeTag", params)
-        ).response
+        response = await self.api.request("photos.removeTag", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def reorder_albums(
         self,
@@ -645,9 +666,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.reorderAlbums", params)
-        ).response
+        response = await self.api.request("photos.reorderAlbums", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def reorder_photos(
         self,
@@ -665,37 +686,37 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.reorderPhotos", params)
-        ).response
+        response = await self.api.request("photos.reorderPhotos", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def report(
         self, owner_id: int, photo_id: int, reason: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complaint about, **kwargs) a photo.
+        """Reports (submits a complaint about) a photo.
         :param owner_id: ID of the user or community that owns the photo.
         :param photo_id: Photo ID.
         :param reason: Reason for the complaint: '0' – spam, '1' – child pornography, '2' – extremism, '3' – violence, '4' – drug propaganda, '5' – adult material, '6' – insult, abuse
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.report", params)
-        ).response
+        response = await self.api.request("photos.report", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complaint about, **kwargs) a comment on a photo.
+        """Reports (submits a complaint about) a comment on a photo.
         :param owner_id: ID of the user or community that owns the photo.
         :param comment_id: ID of the comment being reported.
         :param reason: Reason for the complaint: '0' – spam, '1' – child pornography, '2' – extremism, '3' – violence, '4' – drug propaganda, '5' – adult material, '6' – insult, abuse
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.reportComment", params)
-        ).response
+        response = await self.api.request("photos.reportComment", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def restore(
         self, photo_id: int, owner_id: Optional[int] = None, **kwargs
@@ -706,9 +727,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("photos.restore", params)
-        ).response
+        response = await self.api.request("photos.restore", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: Optional[int] = None, **kwargs
@@ -719,9 +740,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.RestoreCommentResponse(
-            **await self.api.request("photos.restoreComment", params)
-        ).response
+        response = await self.api.request("photos.restoreComment", params)
+        model = photos.RestoreCommentResponse
+        return model(**response).response
 
     async def save(
         self,
@@ -747,9 +768,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveResponse(
-            **await self.api.request("photos.save", params)
-        ).response
+        response = await self.api.request("photos.save", params)
+        model = photos.SaveResponse
+        return model(**response).response
 
     async def save_market_album_photo(
         self, group_id: int, photo: str, server: int, hash: str, **kwargs
@@ -762,9 +783,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveMarketAlbumPhotoResponse(
-            **await self.api.request("photos.saveMarketAlbumPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveMarketAlbumPhoto", params)
+        model = photos.SaveMarketAlbumPhotoResponse
+        return model(**response).response
 
     async def save_market_photo(
         self,
@@ -786,9 +807,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveMarketPhotoResponse(
-            **await self.api.request("photos.saveMarketPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveMarketPhoto", params)
+        model = photos.SaveMarketPhotoResponse
+        return model(**response).response
 
     async def save_messages_photo(
         self,
@@ -804,9 +825,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveMessagesPhotoResponse(
-            **await self.api.request("photos.saveMessagesPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveMessagesPhoto", params)
+        model = photos.SaveMessagesPhotoResponse
+        return model(**response).response
 
     async def save_owner_cover_photo(
         self, hash: str, photo: str, **kwargs
@@ -817,9 +838,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveOwnerCoverPhotoResponse(
-            **await self.api.request("photos.saveOwnerCoverPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveOwnerCoverPhoto", params)
+        model = photos.SaveOwnerCoverPhotoResponse
+        return model(**response).response
 
     async def save_owner_photo(
         self,
@@ -835,9 +856,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveOwnerPhotoResponse(
-            **await self.api.request("photos.saveOwnerPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveOwnerPhoto", params)
+        model = photos.SaveOwnerPhotoResponse
+        return model(**response).response
 
     async def save_wall_photo(
         self,
@@ -863,9 +884,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SaveWallPhotoResponse(
-            **await self.api.request("photos.saveWallPhoto", params)
-        ).response
+        response = await self.api.request("photos.saveWallPhoto", params)
+        model = photos.SaveWallPhotoResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -893,6 +914,6 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return photos.SearchResponse(
-            **await self.api.request("photos.search", params)
-        ).response
+        response = await self.api.request("photos.search", params)
+        model = photos.SearchResponse
+        return model(**response).response

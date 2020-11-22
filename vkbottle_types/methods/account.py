@@ -1,6 +1,5 @@
-from typing import Optional, List
-
 from vkbottle_types.responses import account, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -13,7 +12,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("account.ban", params)).response
+        response = await self.api.request("account.ban", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def change_password(
         self,
@@ -31,22 +32,22 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.ChangePasswordResponse(
-            **await self.api.request("account.changePassword", params)
-        ).response
+        response = await self.api.request("account.changePassword", params)
+        model = account.ChangePasswordResponse
+        return model(**response).response
 
     async def get_active_offers(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
     ) -> account.GetActiveOffersResponseModel:
-        """Returns a list of active ads (offers, **kwargs) which executed by the user will bring him/her respective number of votes to his balance in the application.
+        """Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
         :param offset:
         :param count: Number of results to return.
         """
 
         params = self.get_set_params(locals())
-        return account.GetActiveOffersResponse(
-            **await self.api.request("account.getActiveOffers", params)
-        ).response
+        response = await self.api.request("account.getActiveOffers", params)
+        model = account.GetActiveOffersResponse
+        return model(**response).response
 
     async def get_app_permissions(
         self, user_id: int, **kwargs
@@ -56,9 +57,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.GetAppPermissionsResponse(
-            **await self.api.request("account.getAppPermissions", params)
-        ).response
+        response = await self.api.request("account.getAppPermissions", params)
+        model = account.GetAppPermissionsResponse
+        return model(**response).response
 
     async def get_banned(
         self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
@@ -69,9 +70,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.GetBannedResponse(
-            **await self.api.request("account.getBanned", params)
-        ).response
+        response = await self.api.request("account.getBanned", params)
+        model = account.GetBannedResponse
+        return model(**response).response
 
     async def get_counters(
         self, filter: Optional[List[str]] = None, **kwargs
@@ -81,9 +82,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.GetCountersResponse(
-            **await self.api.request("account.getCounters", params)
-        ).response
+        response = await self.api.request("account.getCounters", params)
+        model = account.GetCountersResponse
+        return model(**response).response
 
     async def get_info(
         self, fields: Optional[List[str]] = None, **kwargs
@@ -93,17 +94,17 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.GetInfoResponse(
-            **await self.api.request("account.getInfo", params)
-        ).response
+        response = await self.api.request("account.getInfo", params)
+        model = account.GetInfoResponse
+        return model(**response).response
 
     async def get_profile_info(self, **kwargs) -> account.GetProfileInfoResponseModel:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
-        return account.GetProfileInfoResponse(
-            **await self.api.request("account.getProfileInfo", params)
-        ).response
+        response = await self.api.request("account.getProfileInfo", params)
+        model = account.GetProfileInfoResponse
+        return model(**response).response
 
     async def get_push_settings(
         self, device_id: Optional[str] = None, **kwargs
@@ -113,9 +114,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.GetPushSettingsResponse(
-            **await self.api.request("account.getPushSettings", params)
-        ).response
+        response = await self.api.request("account.getPushSettings", params)
+        model = account.GetPushSettingsResponse
+        return model(**response).response
 
     async def register_device(
         self,
@@ -139,9 +140,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.registerDevice", params)
-        ).response
+        response = await self.api.request("account.registerDevice", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def save_profile_info(
         self,
@@ -179,9 +180,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return account.SaveProfileInfoResponse(
-            **await self.api.request("account.saveProfileInfo", params)
-        ).response
+        response = await self.api.request("account.saveProfileInfo", params)
+        model = account.SaveProfileInfoResponse
+        return model(**response).response
 
     async def set_info(
         self, name: Optional[str] = None, value: Optional[str] = None, **kwargs
@@ -192,9 +193,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setInfo", params)
-        ).response
+        response = await self.api.request("account.setInfo", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_name_in_menu(
         self, user_id: int, name: Optional[str] = None, **kwargs
@@ -205,17 +206,17 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setNameInMenu", params)
-        ).response
+        response = await self.api.request("account.setNameInMenu", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_offline(self, **kwargs) -> base.OkResponseModel:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setOffline", params)
-        ).response
+        response = await self.api.request("account.setOffline", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_online(
         self, voip: Optional[bool] = None, **kwargs
@@ -225,9 +226,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setOnline", params)
-        ).response
+        response = await self.api.request("account.setOnline", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_push_settings(
         self,
@@ -245,9 +246,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setPushSettings", params)
-        ).response
+        response = await self.api.request("account.setPushSettings", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_silence_mode(
         self,
@@ -265,9 +266,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.setSilenceMode", params)
-        ).response
+        response = await self.api.request("account.setSilenceMode", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def unban(
         self, owner_id: Optional[int] = None, **kwargs
@@ -277,9 +278,9 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.unban", params)
-        ).response
+        response = await self.api.request("account.unban", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def unregister_device(
         self, device_id: Optional[str] = None, sandbox: Optional[bool] = None, **kwargs
@@ -290,6 +291,6 @@ class AccountCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("account.unregisterDevice", params)
-        ).response
+        response = await self.api.request("account.unregisterDevice", params)
+        model = base.OkResponse
+        return model(**response).response

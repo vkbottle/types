@@ -1,6 +1,5 @@
-from typing import Optional
-
-from vkbottle_types.responses import base, utils
+from vkbottle_types.responses import utils, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -11,9 +10,9 @@ class UtilsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return utils.CheckLinkResponse(
-            **await self.api.request("utils.checkLink", params)
-        ).response
+        response = await self.api.request("utils.checkLink", params)
+        model = utils.CheckLinkResponse
+        return model(**response).response
 
     async def delete_from_last_shortened(
         self, key: str, **kwargs
@@ -23,9 +22,9 @@ class UtilsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("utils.deleteFromLastShortened", params)
-        ).response
+        response = await self.api.request("utils.deleteFromLastShortened", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get_last_shortened_links(
         self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
@@ -36,9 +35,9 @@ class UtilsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return utils.GetLastShortenedLinksResponse(
-            **await self.api.request("utils.getLastShortenedLinks", params)
-        ).response
+        response = await self.api.request("utils.getLastShortenedLinks", params)
+        model = utils.GetLastShortenedLinksResponse
+        return model(**response).response
 
     async def get_link_stats(
         self,
@@ -49,7 +48,7 @@ class UtilsCategory(BaseCategory):
         intervals_count: Optional[int] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> utils.GetLinkStatsExtendedResponseModel:
+    ) -> utils.GetLinkStatsResponseModel:
         """Returns stats data for shortened link.
         :param key: Link key (characters after vk.cc/).
         :param source: Source of scope
@@ -60,17 +59,21 @@ class UtilsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return utils.GetLinkStatsExtendedResponse(
-            **await self.api.request("utils.getLinkStats", params)
-        ).response
+        response = await self.api.request("utils.getLinkStats", params)
+        model = self.get_model(
+            {("extended",): utils.GetLinkStatsExtendedResponse},
+            default=utils.GetLinkStatsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_server_time(self, **kwargs) -> utils.GetServerTimeResponseModel:
         """Returns the current time of the VK server."""
 
         params = self.get_set_params(locals())
-        return utils.GetServerTimeResponse(
-            **await self.api.request("utils.getServerTime", params)
-        ).response
+        response = await self.api.request("utils.getServerTime", params)
+        model = utils.GetServerTimeResponse
+        return model(**response).response
 
     async def get_short_link(
         self, url: str, private: Optional[bool] = None, **kwargs
@@ -81,18 +84,18 @@ class UtilsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return utils.GetShortLinkResponse(
-            **await self.api.request("utils.getShortLink", params)
-        ).response
+        response = await self.api.request("utils.getShortLink", params)
+        model = utils.GetShortLinkResponse
+        return model(**response).response
 
     async def resolve_screen_name(
         self, screen_name: str, **kwargs
     ) -> utils.ResolveScreenNameResponseModel:
-        """Detects a type of object (e.g., user, community, application, **kwargs) and its ID by screen name.
+        """Detects a type of object (e.g., user, community, application) and its ID by screen name.
         :param screen_name: Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
         """
 
         params = self.get_set_params(locals())
-        return utils.ResolveScreenNameResponse(
-            **await self.api.request("utils.resolveScreenName", params)
-        ).response
+        response = await self.api.request("utils.resolveScreenName", params)
+        model = utils.ResolveScreenNameResponse
+        return model(**response).response

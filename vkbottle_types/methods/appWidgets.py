@@ -1,4 +1,5 @@
 from vkbottle_types.responses import base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -10,6 +11,6 @@ class AppWidgetsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("appWidgets.update", params)
-        ).response
+        response = await self.api.request("appWidgets.update", params)
+        model = base.OkResponse
+        return model(**response).response

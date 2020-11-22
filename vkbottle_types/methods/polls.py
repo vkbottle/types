@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import polls, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import users as objects_users
 
 
 class PollsCategory(BaseCategory):
@@ -25,9 +20,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.AddVoteResponse(
-            **await self.api.request("polls.addVote", params)
-        ).response
+        response = await self.api.request("polls.addVote", params)
+        model = polls.AddVoteResponse
+        return model(**response).response
 
     async def create(
         self,
@@ -55,9 +50,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.CreateResponse(
-            **await self.api.request("polls.create", params)
-        ).response
+        response = await self.api.request("polls.create", params)
+        model = polls.CreateResponse
+        return model(**response).response
 
     async def delete_vote(
         self,
@@ -75,9 +70,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.DeleteVoteResponse(
-            **await self.api.request("polls.deleteVote", params)
-        ).response
+        response = await self.api.request("polls.deleteVote", params)
+        model = polls.DeleteVoteResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -105,7 +100,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("polls.edit", params)).response
+        response = await self.api.request("polls.edit", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get_by_id(
         self,
@@ -129,9 +126,9 @@ class PollsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return polls.GetByIdResponse(
-            **await self.api.request("polls.getById", params)
-        ).response
+        response = await self.api.request("polls.getById", params)
+        model = polls.GetByIdResponse
+        return model(**response).response
 
     async def get_voters(
         self,
@@ -142,7 +139,7 @@ class PollsCategory(BaseCategory):
         friends_only: Optional[bool] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[objectsusers.Fields]] = None,
         name_case: Optional[str] = None,
         **kwargs
     ) -> polls.GetVotersResponseModel:
@@ -155,10 +152,10 @@ class PollsCategory(BaseCategory):
         :param offset: Offset needed to return a specific subset of voters. '0' — (default)
         :param count: Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' — (default)
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         """
 
         params = self.get_set_params(locals())
-        return polls.GetVotersResponse(
-            **await self.api.request("polls.getVoters", params)
-        ).response
+        response = await self.api.request("polls.getVoters", params)
+        model = polls.GetVotersResponse
+        return model(**response).response

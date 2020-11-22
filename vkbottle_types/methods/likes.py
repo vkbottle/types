@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import likes
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -21,7 +20,9 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.AddResponse(**await self.api.request("likes.add", params)).response
+        response = await self.api.request("likes.add", params)
+        model = likes.AddResponse
+        return model(**response).response
 
     async def delete(
         self,
@@ -39,9 +40,9 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.DeleteResponse(
-            **await self.api.request("likes.delete", params)
-        ).response
+        response = await self.api.request("likes.delete", params)
+        model = likes.DeleteResponse
+        return model(**response).response
 
     async def get_list(
         self,
@@ -56,7 +57,7 @@ class LikesCategory(BaseCategory):
         count: Optional[int] = None,
         skip_own: Optional[bool] = None,
         **kwargs
-    ) -> likes.GetListExtendedResponseModel:
+    ) -> likes.GetListResponseModel:
         """Returns a list of IDs of users who added the specified object to their 'Likes' list.
         :param type: , Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
         :param owner_id: ID of the user, community, or application that owns the object. If the 'type' parameter is set as 'sitepage', the application ID is passed as 'owner_id'. Use negative value for a community id. If the 'type' parameter is not set, the 'owner_id' is assumed to be either the current user or the same application ID as if the 'type' parameter was set to 'sitepage'.
@@ -71,9 +72,13 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.GetListExtendedResponse(
-            **await self.api.request("likes.getList", params)
-        ).response
+        response = await self.api.request("likes.getList", params)
+        model = self.get_model(
+            {("extended",): likes.GetListExtendedResponse},
+            default=likes.GetListResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def is_liked(
         self,
@@ -91,6 +96,6 @@ class LikesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return likes.IsLikedResponse(
-            **await self.api.request("likes.isLiked", params)
-        ).response
+        response = await self.api.request("likes.isLiked", params)
+        model = likes.IsLikedResponse
+        return model(**response).response

@@ -1,6 +1,5 @@
-from typing import Optional
-
 from vkbottle_types.responses import gifts
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -19,4 +18,6 @@ class GiftsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return gifts.GetResponse(**await self.api.request("gifts.get", params)).response
+        response = await self.api.request("gifts.get", params)
+        model = gifts.GetResponse
+        return model(**response).response

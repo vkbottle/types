@@ -1,6 +1,5 @@
-from typing import Optional, List
-
 from vkbottle_types.responses import docs, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -15,7 +14,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.AddResponse(**await self.api.request("docs.add", params)).response
+        response = await self.api.request("docs.add", params)
+        model = docs.AddResponse
+        return model(**response).response
 
     async def delete(
         self, owner_id: int, doc_id: int, **kwargs
@@ -26,7 +27,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("docs.delete", params)).response
+        response = await self.api.request("docs.delete", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -44,7 +47,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("docs.edit", params)).response
+        response = await self.api.request("docs.edit", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -64,20 +69,22 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.GetResponse(**await self.api.request("docs.get", params)).response
+        response = await self.api.request("docs.get", params)
+        model = docs.GetResponse
+        return model(**response).response
 
     async def get_by_id(
-        self, docs: List[str], return_tags: Optional[bool] = None, **kwargs
+        self, docs_: List[str], return_tags: Optional[bool] = None, **kwargs
     ) -> docs.GetByIdResponseModel:
         """Returns information about documents by their IDs.
-        :param docs: Document IDs. Example: , "66748_91488,66748_91455",
+        :param docs_: Document IDs. Example: , "66748_91488,66748_91455",
         :param return_tags:
         """
 
         params = self.get_set_params(locals())
-        return docs.GetByIdResponse(
-            **await self.api.request("docs.getById", params)
-        ).response
+        response = await self.api.request("docs.getById", params)
+        model = docs.GetByIdResponse
+        return model(**response).response
 
     async def get_messages_upload_server(
         self, type: Optional[str] = None, peer_id: Optional[int] = None, **kwargs
@@ -88,9 +95,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("docs.getMessagesUploadServer", params)
-        ).response
+        response = await self.api.request("docs.getMessagesUploadServer", params)
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def get_types(self, owner_id: int, **kwargs) -> docs.GetTypesResponseModel:
         """Returns documents types available for current user.
@@ -98,9 +105,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.GetTypesResponse(
-            **await self.api.request("docs.getTypes", params)
-        ).response
+        response = await self.api.request("docs.getTypes", params)
+        model = docs.GetTypesResponse
+        return model(**response).response
 
     async def get_upload_server(
         self, group_id: Optional[int] = None, **kwargs
@@ -110,9 +117,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.GetUploadServer(
-            **await self.api.request("docs.getUploadServer", params)
-        ).response
+        response = await self.api.request("docs.getUploadServer", params)
+        model = docs.GetUploadServer
+        return model(**response).response
 
     async def get_wall_upload_server(
         self, group_id: Optional[int] = None, **kwargs
@@ -122,9 +129,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.GetUploadServerResponse(
-            **await self.api.request("docs.getWallUploadServer", params)
-        ).response
+        response = await self.api.request("docs.getWallUploadServer", params)
+        model = base.GetUploadServerResponse
+        return model(**response).response
 
     async def save(
         self,
@@ -142,7 +149,9 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.SaveResponse(**await self.api.request("docs.save", params)).response
+        response = await self.api.request("docs.save", params)
+        model = docs.SaveResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -162,6 +171,6 @@ class DocsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return docs.SearchResponse(
-            **await self.api.request("docs.search", params)
-        ).response
+        response = await self.api.request("docs.search", params)
+        model = docs.SearchResponse
+        return model(**response).response

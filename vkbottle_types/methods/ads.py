@@ -1,6 +1,5 @@
-from typing import Optional, List
-
 from vkbottle_types.responses import ads, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -14,9 +13,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.AddOfficeUsersResponse(
-            **await self.api.request("ads.addOfficeUsers", params)
-        ).response
+        response = await self.api.request("ads.addOfficeUsers", params)
+        model = ads.AddOfficeUsersResponse
+        return model(**response).response
 
     async def check_link(
         self,
@@ -34,9 +33,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.CheckLinkResponse(
-            **await self.api.request("ads.checkLink", params)
-        ).response
+        response = await self.api.request("ads.checkLink", params)
+        model = ads.CheckLinkResponse
+        return model(**response).response
 
     async def create_ads(
         self, account_id: int, data: str, **kwargs
@@ -47,9 +46,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.CreateAdsResponse(
-            **await self.api.request("ads.createAds", params)
-        ).response
+        response = await self.api.request("ads.createAds", params)
+        model = ads.CreateAdsResponse
+        return model(**response).response
 
     async def create_campaigns(
         self, account_id: int, data: str, **kwargs
@@ -60,9 +59,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.CreateCampaignsResponse(
-            **await self.api.request("ads.createCampaigns", params)
-        ).response
+        response = await self.api.request("ads.createCampaigns", params)
+        model = ads.CreateCampaignsResponse
+        return model(**response).response
 
     async def create_clients(
         self, account_id: int, data: str, **kwargs
@@ -73,9 +72,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.CreateClientsResponse(
-            **await self.api.request("ads.createClients", params)
-        ).response
+        response = await self.api.request("ads.createClients", params)
+        model = ads.CreateClientsResponse
+        return model(**response).response
 
     async def create_target_group(
         self,
@@ -97,9 +96,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.CreateTargetGroupResponse(
-            **await self.api.request("ads.createTargetGroup", params)
-        ).response
+        response = await self.api.request("ads.createTargetGroup", params)
+        model = ads.CreateTargetGroupResponse
+        return model(**response).response
 
     async def delete_ads(
         self, account_id: int, ids: str, **kwargs
@@ -110,9 +109,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.DeleteAdsResponse(
-            **await self.api.request("ads.deleteAds", params)
-        ).response
+        response = await self.api.request("ads.deleteAds", params)
+        model = ads.DeleteAdsResponse
+        return model(**response).response
 
     async def delete_campaigns(
         self, account_id: int, ids: str, **kwargs
@@ -123,9 +122,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.DeleteCampaignsResponse(
-            **await self.api.request("ads.deleteCampaigns", params)
-        ).response
+        response = await self.api.request("ads.deleteCampaigns", params)
+        model = ads.DeleteCampaignsResponse
+        return model(**response).response
 
     async def delete_clients(
         self, account_id: int, ids: str, **kwargs
@@ -136,9 +135,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.DeleteClientsResponse(
-            **await self.api.request("ads.deleteClients", params)
-        ).response
+        response = await self.api.request("ads.deleteClients", params)
+        model = ads.DeleteClientsResponse
+        return model(**response).response
 
     async def delete_target_group(
         self,
@@ -154,17 +153,17 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("ads.deleteTargetGroup", params)
-        ).response
+        response = await self.api.request("ads.deleteTargetGroup", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get_accounts(self, **kwargs) -> ads.GetAccountsResponseModel:
         """Returns a list of advertising accounts."""
 
         params = self.get_set_params(locals())
-        return ads.GetAccountsResponse(
-            **await self.api.request("ads.getAccounts", params)
-        ).response
+        response = await self.api.request("ads.getAccounts", params)
+        model = ads.GetAccountsResponse
+        return model(**response).response
 
     async def get_ads(
         self,
@@ -190,9 +189,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetAdsResponse(
-            **await self.api.request("ads.getAds", params)
-        ).response
+        response = await self.api.request("ads.getAds", params)
+        model = ads.GetAdsResponse
+        return model(**response).response
 
     async def get_ads_layout(
         self,
@@ -216,9 +215,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetAdsLayoutResponse(
-            **await self.api.request("ads.getAdsLayout", params)
-        ).response
+        response = await self.api.request("ads.getAdsLayout", params)
+        model = ads.GetAdsLayoutResponse
+        return model(**response).response
 
     async def get_ads_targeting(
         self,
@@ -242,9 +241,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetAdsTargetingResponse(
-            **await self.api.request("ads.getAdsTargeting", params)
-        ).response
+        response = await self.api.request("ads.getAdsTargeting", params)
+        model = ads.GetAdsTargetingResponse
+        return model(**response).response
 
     async def get_budget(self, account_id: int, **kwargs) -> ads.GetBudgetResponseModel:
         """Returns current budget of the advertising account.
@@ -252,9 +251,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetBudgetResponse(
-            **await self.api.request("ads.getBudget", params)
-        ).response
+        response = await self.api.request("ads.getBudget", params)
+        model = ads.GetBudgetResponse
+        return model(**response).response
 
     async def get_campaigns(
         self,
@@ -274,9 +273,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetCampaignsResponse(
-            **await self.api.request("ads.getCampaigns", params)
-        ).response
+        response = await self.api.request("ads.getCampaigns", params)
+        model = ads.GetCampaignsResponse
+        return model(**response).response
 
     async def get_categories(
         self, lang: Optional[str] = None, **kwargs
@@ -286,9 +285,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetCategoriesResponse(
-            **await self.api.request("ads.getCategories", params)
-        ).response
+        response = await self.api.request("ads.getCategories", params)
+        model = ads.GetCategoriesResponse
+        return model(**response).response
 
     async def get_clients(
         self, account_id: int, **kwargs
@@ -298,9 +297,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetClientsResponse(
-            **await self.api.request("ads.getClients", params)
-        ).response
+        response = await self.api.request("ads.getClients", params)
+        model = ads.GetClientsResponse
+        return model(**response).response
 
     async def get_demographics(
         self,
@@ -322,9 +321,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetDemographicsResponse(
-            **await self.api.request("ads.getDemographics", params)
-        ).response
+        response = await self.api.request("ads.getDemographics", params)
+        model = ads.GetDemographicsResponse
+        return model(**response).response
 
     async def get_flood_stats(
         self, account_id: int, **kwargs
@@ -334,9 +333,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetFloodStatsResponse(
-            **await self.api.request("ads.getFloodStats", params)
-        ).response
+        response = await self.api.request("ads.getFloodStats", params)
+        model = ads.GetFloodStatsResponse
+        return model(**response).response
 
     async def get_lookalike_requests(
         self,
@@ -358,9 +357,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetLookalikeRequestsResponse(
-            **await self.api.request("ads.getLookalikeRequests", params)
-        ).response
+        response = await self.api.request("ads.getLookalikeRequests", params)
+        model = ads.GetLookalikeRequestsResponse
+        return model(**response).response
 
     async def get_musicians(
         self, artist_name: str, **kwargs
@@ -370,9 +369,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetMusiciansResponse(
-            **await self.api.request("ads.getMusicians", params)
-        ).response
+        response = await self.api.request("ads.getMusicians", params)
+        model = ads.GetMusiciansResponse
+        return model(**response).response
 
     async def get_office_users(
         self, account_id: int, **kwargs
@@ -382,9 +381,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetOfficeUsersResponse(
-            **await self.api.request("ads.getOfficeUsers", params)
-        ).response
+        response = await self.api.request("ads.getOfficeUsers", params)
+        model = ads.GetOfficeUsersResponse
+        return model(**response).response
 
     async def get_posts_reach(
         self, account_id: int, ids_type: str, ids: str, **kwargs
@@ -396,9 +395,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetPostsReachResponse(
-            **await self.api.request("ads.getPostsReach", params)
-        ).response
+        response = await self.api.request("ads.getPostsReach", params)
+        model = ads.GetPostsReachResponse
+        return model(**response).response
 
     async def get_rejection_reason(
         self, account_id: int, ad_id: int, **kwargs
@@ -409,9 +408,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetRejectionReasonResponse(
-            **await self.api.request("ads.getRejectionReason", params)
-        ).response
+        response = await self.api.request("ads.getRejectionReason", params)
+        model = ads.GetRejectionReasonResponse
+        return model(**response).response
 
     async def get_statistics(
         self,
@@ -435,9 +434,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetStatisticsResponse(
-            **await self.api.request("ads.getStatistics", params)
-        ).response
+        response = await self.api.request("ads.getStatistics", params)
+        model = ads.GetStatisticsResponse
+        return model(**response).response
 
     async def get_suggestions(
         self,
@@ -459,9 +458,17 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetSuggestionsResponse(
-            **await self.api.request("ads.getSuggestions", params)
-        ).response
+        response = await self.api.request("ads.getSuggestions", params)
+        model = self.get_model(
+            {
+                ("regions",): ads.GetSuggestionsRegionsResponse,
+                ("cities",): ads.GetSuggestionsCitiesResponse,
+                ("schools",): ads.GetSuggestionsSchoolsResponse,
+            },
+            default=ads.GetSuggestionsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_target_groups(
         self,
@@ -477,9 +484,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetTargetGroupsResponse(
-            **await self.api.request("ads.getTargetGroups", params)
-        ).response
+        response = await self.api.request("ads.getTargetGroups", params)
+        model = ads.GetTargetGroupsResponse
+        return model(**response).response
 
     async def get_targeting_stats(
         self,
@@ -511,9 +518,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetTargetingStatsResponse(
-            **await self.api.request("ads.getTargetingStats", params)
-        ).response
+        response = await self.api.request("ads.getTargetingStats", params)
+        model = ads.GetTargetingStatsResponse
+        return model(**response).response
 
     async def get_upload_url(
         self, ad_format: int, icon: Optional[int] = None, **kwargs
@@ -524,9 +531,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.GetUploadURLResponse(
-            **await self.api.request("ads.getUploadURL", params)
-        ).response
+        response = await self.api.request("ads.getUploadURL", params)
+        model = ads.GetUploadURLResponse
+        return model(**response).response
 
     async def get_video_upload_url(
         self, **kwargs
@@ -534,9 +541,9 @@ class AdsCategory(BaseCategory):
         """Returns URL to upload an ad video to."""
 
         params = self.get_set_params(locals())
-        return ads.GetVideoUploadURLResponse(
-            **await self.api.request("ads.getVideoUploadURL", params)
-        ).response
+        response = await self.api.request("ads.getVideoUploadURL", params)
+        model = ads.GetVideoUploadURLResponse
+        return model(**response).response
 
     async def import_target_contacts(
         self,
@@ -554,9 +561,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.ImportTargetContactsResponse(
-            **await self.api.request("ads.importTargetContacts", params)
-        ).response
+        response = await self.api.request("ads.importTargetContacts", params)
+        model = ads.ImportTargetContactsResponse
+        return model(**response).response
 
     async def remove_office_users(
         self, account_id: int, ids: str, **kwargs
@@ -567,9 +574,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.RemoveOfficeUsersResponse(
-            **await self.api.request("ads.removeOfficeUsers", params)
-        ).response
+        response = await self.api.request("ads.removeOfficeUsers", params)
+        model = ads.RemoveOfficeUsersResponse
+        return model(**response).response
 
     async def update_ads(
         self, account_id: int, data: str, **kwargs
@@ -580,9 +587,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.UpdateAdsResponse(
-            **await self.api.request("ads.updateAds", params)
-        ).response
+        response = await self.api.request("ads.updateAds", params)
+        model = ads.UpdateAdsResponse
+        return model(**response).response
 
     async def update_campaigns(
         self, account_id: int, data: str, **kwargs
@@ -593,9 +600,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.UpdateCampaignsResponse(
-            **await self.api.request("ads.updateCampaigns", params)
-        ).response
+        response = await self.api.request("ads.updateCampaigns", params)
+        model = ads.UpdateCampaignsResponse
+        return model(**response).response
 
     async def update_clients(
         self, account_id: int, data: str, **kwargs
@@ -606,9 +613,9 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return ads.UpdateClientsResponse(
-            **await self.api.request("ads.updateClients", params)
-        ).response
+        response = await self.api.request("ads.updateClients", params)
+        model = ads.UpdateClientsResponse
+        return model(**response).response
 
     async def update_target_group(
         self,
@@ -634,6 +641,6 @@ class AdsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("ads.updateTargetGroup", params)
-        ).response
+        response = await self.api.request("ads.updateTargetGroup", params)
+        model = base.OkResponse
+        return model(**response).response

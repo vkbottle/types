@@ -1,6 +1,5 @@
-from typing import Optional, List
-
 from vkbottle_types.responses import orders
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -19,9 +18,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.CancelSubscriptionResponse(
-            **await self.api.request("orders.cancelSubscription", params)
-        ).response
+        response = await self.api.request("orders.cancelSubscription", params)
+        model = orders.CancelSubscriptionResponse
+        return model(**response).response
 
     async def change_state(
         self,
@@ -39,9 +38,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.ChangeStateResponse(
-            **await self.api.request("orders.changeState", params)
-        ).response
+        response = await self.api.request("orders.changeState", params)
+        model = orders.ChangeStateResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -57,9 +56,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.GetResponse(
-            **await self.api.request("orders.get", params)
-        ).response
+        response = await self.api.request("orders.get", params)
+        model = orders.GetResponse
+        return model(**response).response
 
     async def get_amount(
         self, user_id: int, votes: List[str], **kwargs
@@ -70,9 +69,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.GetAmountResponse(
-            **await self.api.request("orders.getAmount", params)
-        ).response
+        response = await self.api.request("orders.getAmount", params)
+        model = orders.GetAmountResponse
+        return model(**response).response
 
     async def get_by_id(
         self,
@@ -88,9 +87,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.GetByIdResponse(
-            **await self.api.request("orders.getById", params)
-        ).response
+        response = await self.api.request("orders.getById", params)
+        model = orders.GetByIdResponse
+        return model(**response).response
 
     async def get_user_subscription_by_id(
         self, user_id: int, subscription_id: int, **kwargs
@@ -101,9 +100,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.GetUserSubscriptionByIdResponse(
-            **await self.api.request("orders.getUserSubscriptionById", params)
-        ).response
+        response = await self.api.request("orders.getUserSubscriptionById", params)
+        model = orders.GetUserSubscriptionByIdResponse
+        return model(**response).response
 
     async def get_user_subscriptions(
         self, user_id: int, **kwargs
@@ -113,9 +112,9 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.GetUserSubscriptionsResponse(
-            **await self.api.request("orders.getUserSubscriptions", params)
-        ).response
+        response = await self.api.request("orders.getUserSubscriptions", params)
+        model = orders.GetUserSubscriptionsResponse
+        return model(**response).response
 
     async def update_subscription(
         self, user_id: int, subscription_id: int, price: int, **kwargs
@@ -127,6 +126,6 @@ class OrdersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return orders.UpdateSubscriptionResponse(
-            **await self.api.request("orders.updateSubscription", params)
-        ).response
+        response = await self.api.request("orders.updateSubscription", params)
+        model = orders.UpdateSubscriptionResponse
+        return model(**response).response

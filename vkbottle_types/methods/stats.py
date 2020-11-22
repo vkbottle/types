@@ -1,6 +1,5 @@
-from typing import Optional, List
-
-from vkbottle_types.responses import stats, base
+from vkbottle_types.responses import base, stats
+from typing import Optional, Any, List
 from .base_category import BaseCategory
 
 
@@ -31,7 +30,9 @@ class StatsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stats.GetResponse(**await self.api.request("stats.get", params)).response
+        response = await self.api.request("stats.get", params)
+        model = stats.GetResponse
+        return model(**response).response
 
     async def get_post_reach(
         self, owner_id: str, post_ids: List[int], **kwargs
@@ -42,9 +43,9 @@ class StatsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return stats.GetPostReachResponse(
-            **await self.api.request("stats.getPostReach", params)
-        ).response
+        response = await self.api.request("stats.getPostReach", params)
+        model = stats.GetPostReachResponse
+        return model(**response).response
 
     async def track_visitor(self, id: str, **kwargs) -> base.OkResponseModel:
         """stats.trackVisitor method
@@ -52,6 +53,6 @@ class StatsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("stats.trackVisitor", params)
-        ).response
+        response = await self.api.request("stats.trackVisitor", params)
+        model = base.OkResponse
+        return model(**response).response

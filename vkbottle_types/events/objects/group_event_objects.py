@@ -50,7 +50,7 @@ class MessageEventObject(BaseEventObject):
     event_id: Optional[str] = None
     payload: Optional[Union[dict, str, Any]] = None
     conversation_message_id: Optional[int] = None
-    
+
     @property
     def chat_id(self) -> int:
         return self.peer_id - 2_000_000_000

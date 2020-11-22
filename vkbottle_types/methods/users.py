@@ -1,18 +1,13 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import users, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import users as objects_users
 
 
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        user_ids: Optional[List[int]] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        user_ids: Optional[List[str]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         **kwargs
     ) -> users.GetResponseModel:
@@ -23,14 +18,16 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.GetResponse(**await self.api.request("users.get", params)).response
+        response = await self.api.request("users.get", params)
+        model = users.GetResponse
+        return model(**response).response
 
     async def get_followers(
         self,
         user_id: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         **kwargs
     ) -> users.GetFollowersResponseModel:
@@ -43,9 +40,13 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.GetFollowersResponse(
-            **await self.api.request("users.getFollowers", params)
-        ).response
+        response = await self.api.request("users.getFollowers", params)
+        model = self.get_model(
+            {("fields",): users.GetFollowersFieldsResponse},
+            default=users.GetFollowersResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_subscriptions(
         self,
@@ -53,9 +54,9 @@ class UsersCategory(BaseCategory):
         extended: Optional[bool] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> users.GetSubscriptionsExtendedResponseModel:
+    ) -> users.GetSubscriptionsResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
         :param user_id: User ID.
         :param extended: '1' — to return a combined list of users and communities, '0' — to return separate lists of users and communities (default)
@@ -65,23 +66,27 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.GetSubscriptionsExtendedResponse(
-            **await self.api.request("users.getSubscriptions", params)
-        ).response
+        response = await self.api.request("users.getSubscriptions", params)
+        model = self.get_model(
+            {("extended",): users.GetSubscriptionsExtendedResponse},
+            default=users.GetSubscriptionsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def report(
         self, user_id: int, type: str, comment: Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
-        """Reports (submits a complain about, **kwargs) a user.
+        """Reports (submits a complain about) a user.
         :param user_id: ID of the user about whom a complaint is being made.
         :param type: Type of complaint: 'porn' – pornography, 'spam' – spamming, 'insult' – abusive behavior, 'advertisement' – disruptive advertisements
         :param comment: Comment describing the complaint.
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("users.report", params)
-        ).response
+        response = await self.api.request("users.report", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -89,7 +94,7 @@ class UsersCategory(BaseCategory):
         sort: Optional[int] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         city: Optional[int] = None,
         country: Optional[int] = None,
         hometown: Optional[str] = None,
@@ -155,6 +160,6 @@ class UsersCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return users.SearchResponse(
-            **await self.api.request("users.search", params)
-        ).response
+        response = await self.api.request("users.search", params)
+        model = users.SearchResponse
+        return model(**response).response

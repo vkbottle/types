@@ -7,6 +7,9 @@ if typing.TYPE_CHECKING:
 # RequestMethod = NamedTuple("RequestMethod", [("base_name", str), ("method_name", str), ("params", dict)])
 
 
+T = typing.TypeVar("T")
+
+
 class BaseCategory:
     def __init__(self, api: "API"):
         self.api = api
@@ -21,6 +24,16 @@ class BaseCategory:
             for k, v in exclude_params.items()
             if k != "self" and v is not None
         }
+
+    @classmethod
+    def get_model(
+        cls, dependent: typing.Dict[typing.Tuple[str, ...], T], default: T, params: dict
+    ) -> T:
+        for items in sorted(dependent.items(), key=len):
+            ks, model = items
+            if all(params.get(k) is not None for k in ks):
+                return model
+        return default
 
     @classmethod
     def construct_api(cls, api: "API") -> "BaseCategory":

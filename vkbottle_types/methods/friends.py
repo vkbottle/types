@@ -1,11 +1,6 @@
-import typing
-from typing import Optional, List
-
 from vkbottle_types.responses import friends, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import users as objects_users
 
 
 class FriendsCategory(BaseCategory):
@@ -18,14 +13,14 @@ class FriendsCategory(BaseCategory):
     ) -> friends.AddResponseModel:
         """Approves or creates a friend request.
         :param user_id: ID of the user whose friend request will be approved or to whom a friend request will be sent.
-        :param text: Text of the message (up to 500 characters, **kwargs) for the friend request, if any.
+        :param text: Text of the message (up to 500 characters) for the friend request, if any.
         :param follow: '1' to pass an incoming request to followers list.
         """
 
         params = self.get_set_params(locals())
-        return friends.AddResponse(
-            **await self.api.request("friends.add", params)
-        ).response
+        response = await self.api.request("friends.add", params)
+        model = friends.AddResponse
+        return model(**response).response
 
     async def add_list(
         self, name: str, user_ids: Optional[List[int]] = None, **kwargs
@@ -36,9 +31,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.AddListResponse(
-            **await self.api.request("friends.addList", params)
-        ).response
+        response = await self.api.request("friends.addList", params)
+        model = friends.AddListResponse
+        return model(**response).response
 
     async def are_friends(
         self,
@@ -46,7 +41,7 @@ class FriendsCategory(BaseCategory):
         need_sign: Optional[bool] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> friends.AreFriendsExtendedResponseModel:
+    ) -> friends.AreFriendsResponseModel:
         """Checks the current user's friendship status with other specified users.
         :param user_ids: IDs of the users whose friendship status to check.
         :param need_sign: '1' — to return 'sign' field. 'sign' is md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.
@@ -54,9 +49,13 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.AreFriendsExtendedResponse(
-            **await self.api.request("friends.areFriends", params)
-        ).response
+        response = await self.api.request("friends.areFriends", params)
+        model = self.get_model(
+            {("extended",): friends.AreFriendsExtendedResponse},
+            default=friends.AreFriendsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def delete(
         self, user_id: Optional[int] = None, **kwargs
@@ -66,17 +65,17 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.DeleteResponse(
-            **await self.api.request("friends.delete", params)
-        ).response
+        response = await self.api.request("friends.delete", params)
+        model = friends.DeleteResponse
+        return model(**response).response
 
     async def delete_all_requests(self, **kwargs) -> base.OkResponseModel:
         """Marks all incoming friend requests as viewed."""
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("friends.deleteAllRequests", params)
-        ).response
+        response = await self.api.request("friends.deleteAllRequests", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
         """Deletes a friend list of the current user.
@@ -84,9 +83,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("friends.deleteList", params)
-        ).response
+        response = await self.api.request("friends.deleteList", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit(
         self, user_id: int, list_ids: Optional[List[int]] = None, **kwargs
@@ -97,9 +96,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("friends.edit", params)
-        ).response
+        response = await self.api.request("friends.edit", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_list(
         self,
@@ -119,9 +118,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("friends.editList", params)
-        ).response
+        response = await self.api.request("friends.editList", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
@@ -130,7 +129,7 @@ class FriendsCategory(BaseCategory):
         list_id: Optional[int] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         ref: Optional[str] = None,
         **kwargs
@@ -142,27 +141,31 @@ class FriendsCategory(BaseCategory):
         :param count: Number of friends to return.
         :param offset: Offset needed to return a specific subset of friends.
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         :param ref:
         """
 
         params = self.get_set_params(locals())
-        return friends.GetResponse(
-            **await self.api.request("friends.get", params)
-        ).response
+        response = await self.api.request("friends.get", params)
+        model = self.get_model(
+            {("fields",): friends.GetFieldsResponse},
+            default=friends.GetResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_app_users(self, **kwargs) -> friends.GetAppUsersResponseModel:
         """Returns a list of IDs of the current user's friends who installed the application."""
 
         params = self.get_set_params(locals())
-        return friends.GetAppUsersResponse(
-            **await self.api.request("friends.getAppUsers", params)
-        ).response
+        response = await self.api.request("friends.getAppUsers", params)
+        model = friends.GetAppUsersResponse
+        return model(**response).response
 
     async def get_by_phones(
         self,
         phones: Optional[List[str]] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> friends.GetByPhonesResponseModel:
         """Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.
@@ -171,9 +174,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetByPhonesResponse(
-            **await self.api.request("friends.getByPhones", params)
-        ).response
+        response = await self.api.request("friends.getByPhones", params)
+        model = friends.GetByPhonesResponse
+        return model(**response).response
 
     async def get_lists(
         self,
@@ -187,9 +190,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetListsResponse(
-            **await self.api.request("friends.getLists", params)
-        ).response
+        response = await self.api.request("friends.getLists", params)
+        model = friends.GetListsResponse
+        return model(**response).response
 
     async def get_mutual(
         self,
@@ -211,9 +214,13 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetMutualResponse(
-            **await self.api.request("friends.getMutual", params)
-        ).response
+        response = await self.api.request("friends.getMutual", params)
+        model = self.get_model(
+            {("target_uids",): friends.GetMutualTargetUidsResponse},
+            default=friends.GetMutualResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_online(
         self,
@@ -235,9 +242,13 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetOnlineResponse(
-            **await self.api.request("friends.getOnline", params)
-        ).response
+        response = await self.api.request("friends.getOnline", params)
+        model = self.get_model(
+            {("online_mobile",): friends.GetOnlineOnlineMobileResponse},
+            default=friends.GetOnlineResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_recent(
         self, count: Optional[int] = None, **kwargs
@@ -247,9 +258,9 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetRecentResponse(
-            **await self.api.request("friends.getRecent", params)
-        ).response
+        response = await self.api.request("friends.getRecent", params)
+        model = friends.GetRecentResponse
+        return model(**response).response
 
     async def get_requests(
         self,
@@ -262,9 +273,9 @@ class FriendsCategory(BaseCategory):
         need_viewed: Optional[bool] = None,
         suggested: Optional[bool] = None,
         ref: Optional[str] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
-    ) -> friends.GetRequestsExtendedResponseModel:
+    ) -> friends.GetRequestsResponseModel:
         """Returns information about the current user's incoming and outgoing friend requests.
         :param offset: Offset needed to return a specific subset of friend requests.
         :param count: Number of friend requests to return (default 100, maximum 1000).
@@ -279,16 +290,23 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.GetRequestsExtendedResponse(
-            **await self.api.request("friends.getRequests", params)
-        ).response
+        response = await self.api.request("friends.getRequests", params)
+        model = self.get_model(
+            {
+                ("need_mutual",): friends.GetRequestsNeedMutualResponse,
+                ("extended",): friends.GetRequestsExtendedResponse,
+            },
+            default=friends.GetRequestsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_suggestions(
         self,
         filter: Optional[List[str]] = None,
         count: Optional[int] = None,
         offset: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         **kwargs
     ) -> friends.GetSuggestionsResponseModel:
@@ -297,19 +315,19 @@ class FriendsCategory(BaseCategory):
         :param count: Number of suggestions to return.
         :param offset: Offset needed to return a specific subset of suggestions.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default, **kwargs) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
         """
 
         params = self.get_set_params(locals())
-        return friends.GetSuggestionsResponse(
-            **await self.api.request("friends.getSuggestions", params)
-        ).response
+        response = await self.api.request("friends.getSuggestions", params)
+        model = friends.GetSuggestionsResponse
+        return model(**response).response
 
     async def search(
         self,
         user_id: int,
         q: Optional[str] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
@@ -325,6 +343,6 @@ class FriendsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return friends.SearchResponse(
-            **await self.api.request("friends.search", params)
-        ).response
+        response = await self.api.request("friends.search", params)
+        model = friends.SearchResponse
+        return model(**response).response

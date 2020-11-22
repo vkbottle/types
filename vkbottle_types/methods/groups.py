@@ -1,16 +1,6 @@
-import typing
-from typing import Optional, List
-
-from vkbottle_types.responses import base, groups
+from vkbottle_types.responses import groups, base
+from typing import Optional, Any, List
 from .base_category import BaseCategory
-
-if typing.TYPE_CHECKING:
-    from vkbottle_types.objects import (
-        base as objects_base,
-        addresses as objects_addresses,
-        users as objects_users,
-        groups as objects_groups,
-    )
 
 
 class GroupsCategory(BaseCategory):
@@ -48,9 +38,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.AddAddressResponse(
-            **await self.api.request("groups.addAddress", params)
-        ).response
+        response = await self.api.request("groups.addAddress", params)
+        model = groups.AddAddressResponse
+        return model(**response).response
 
     async def add_callback_server(
         self,
@@ -68,9 +58,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.AddCallbackServerResponse(
-            **await self.api.request("groups.addCallbackServer", params)
-        ).response
+        response = await self.api.request("groups.addCallbackServer", params)
+        model = groups.AddCallbackServerResponse
+        return model(**response).response
 
     async def add_link(
         self, group_id: int, link: str, text: Optional[str] = None, **kwargs
@@ -82,9 +72,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.AddLinkResponse(
-            **await self.api.request("groups.addLink", params)
-        ).response
+        response = await self.api.request("groups.addLink", params)
+        model = groups.AddLinkResponse
+        return model(**response).response
 
     async def approve_request(
         self, group_id: int, user_id: int, **kwargs
@@ -95,9 +85,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.approveRequest", params)
-        ).response
+        response = await self.api.request("groups.approveRequest", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def ban(
         self,
@@ -119,7 +109,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.ban", params)).response
+        response = await self.api.request("groups.ban", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def create(
         self,
@@ -139,9 +131,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.CreateResponse(
-            **await self.api.request("groups.create", params)
-        ).response
+        response = await self.api.request("groups.create", params)
+        model = groups.CreateResponse
+        return model(**response).response
 
     async def delete_callback_server(
         self, group_id: int, server_id: int, **kwargs
@@ -152,9 +144,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.deleteCallbackServer", params)
-        ).response
+        response = await self.api.request("groups.deleteCallbackServer", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def delete_link(
         self, group_id: int, link_id: int, **kwargs
@@ -165,9 +157,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.deleteLink", params)
-        ).response
+        response = await self.api.request("groups.deleteLink", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def disable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.disableOnline method
@@ -175,9 +167,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.disableOnline", params)
-        ).response
+        response = await self.api.request("groups.disableOnline", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit(
         self,
@@ -277,7 +269,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.edit", params)).response
+        response = await self.api.request("groups.edit", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_address(
         self,
@@ -315,9 +309,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.EditAddressResponse(
-            **await self.api.request("groups.editAddress", params)
-        ).response
+        response = await self.api.request("groups.editAddress", params)
+        model = groups.EditAddressResponse
+        return model(**response).response
 
     async def edit_callback_server(
         self,
@@ -337,9 +331,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.editCallbackServer", params)
-        ).response
+        response = await self.api.request("groups.editCallbackServer", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_link(
         self, group_id: int, link_id: int, text: Optional[str] = None, **kwargs
@@ -351,9 +345,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.editLink", params)
-        ).response
+        response = await self.api.request("groups.editLink", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def edit_manager(
         self,
@@ -377,9 +371,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.editManager", params)
-        ).response
+        response = await self.api.request("groups.editManager", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def enable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """groups.enableOnline method
@@ -387,20 +381,20 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.enableOnline", params)
-        ).response
+        response = await self.api.request("groups.enableOnline", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def get(
         self,
         user_id: Optional[int] = None,
         extended: Optional[bool] = None,
-        filter: Optional[List["objects_groups.Filter"]] = None,
-        fields: Optional[List["objects_groups.Fields"]] = None,
+        filter: Optional[List[str]] = None,
+        fields: Optional[List[str]] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
         **kwargs
-    ) -> groups.GetExtendedResponseModel:
+    ) -> groups.GetResponseModel:
         """Returns a list of the communities to which a user belongs.
         :param user_id: User ID.
         :param extended: '1' — to return complete information about a user's communities, '0' — to return a list of community IDs without any additional fields (default),
@@ -411,9 +405,13 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetExtendedResponse(
-            **await self.api.request("groups.get", params)
-        ).response
+        response = await self.api.request("groups.get", params)
+        model = self.get_model(
+            {("extended",): groups.GetExtendedResponse},
+            default=groups.GetResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_addresses(
         self,
@@ -423,7 +421,7 @@ class GroupsCategory(BaseCategory):
         longitude: Optional[float] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_addresses.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> groups.GetAddressesResponseModel:
         """Returns a list of community addresses.
@@ -437,16 +435,16 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetAddressesResponse(
-            **await self.api.request("groups.getAddresses", params)
-        ).response
+        response = await self.api.request("groups.getAddresses", params)
+        model = groups.GetAddressesResponse
+        return model(**response).response
 
     async def get_banned(
         self,
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_base.UserGroupFields"]] = None,
+        fields: Optional[List[str]] = None,
         owner_id: Optional[int] = None,
         **kwargs
     ) -> groups.GetBannedResponseModel:
@@ -459,15 +457,15 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetBannedResponse(
-            **await self.api.request("groups.getBanned", params)
-        ).response
+        response = await self.api.request("groups.getBanned", params)
+        model = groups.GetBannedResponse
+        return model(**response).response
 
     async def get_by_id(
         self,
-        group_ids: Optional[List[int]] = None,
+        group_ids: Optional[List[str]] = None,
         group_id: Optional[str] = None,
-        fields: Optional[List["objects_groups.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> groups.GetByIdResponseModel:
         """Returns information about communities by their IDs.
@@ -477,9 +475,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetByIdResponse(
-            **await self.api.request("groups.getById", params)
-        ).response
+        response = await self.api.request("groups.getById", params)
+        model = groups.GetByIdResponse
+        return model(**response).response
 
     async def get_callback_confirmation_code(
         self, group_id: int, **kwargs
@@ -489,9 +487,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetCallbackConfirmationCodeResponse(
-            **await self.api.request("groups.getCallbackConfirmationCode", params)
-        ).response
+        response = await self.api.request("groups.getCallbackConfirmationCode", params)
+        model = groups.GetCallbackConfirmationCodeResponse
+        return model(**response).response
 
     async def get_callback_servers(
         self, group_id: int, server_ids: Optional[List[int]] = None, **kwargs
@@ -502,9 +500,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetCallbackServersResponse(
-            **await self.api.request("groups.getCallbackServers", params)
-        ).response
+        response = await self.api.request("groups.getCallbackServers", params)
+        model = groups.GetCallbackServersResponse
+        return model(**response).response
 
     async def get_callback_settings(
         self, group_id: int, server_id: Optional[int] = None, **kwargs
@@ -515,9 +513,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetCallbackSettingsResponse(
-            **await self.api.request("groups.getCallbackSettings", params)
-        ).response
+        response = await self.api.request("groups.getCallbackSettings", params)
+        model = groups.GetCallbackSettingsResponse
+        return model(**response).response
 
     async def get_catalog(
         self,
@@ -531,32 +529,36 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetCatalogResponse(
-            **await self.api.request("groups.getCatalog", params)
-        ).response
+        response = await self.api.request("groups.getCatalog", params)
+        model = groups.GetCatalogResponse
+        return model(**response).response
 
     async def get_catalog_info(
         self,
         extended: Optional[bool] = None,
         subcategories: Optional[bool] = None,
         **kwargs
-    ) -> groups.GetCatalogInfoExtendedResponseModel:
+    ) -> groups.GetCatalogInfoResponseModel:
         """Returns categories list for communities catalog
         :param extended: 1 – to return communities count and three communities for preview. By default: 0.
         :param subcategories: 1 – to return subcategories info. By default: 0.
         """
 
         params = self.get_set_params(locals())
-        return groups.GetCatalogInfoExtendedResponse(
-            **await self.api.request("groups.getCatalogInfo", params)
-        ).response
+        response = await self.api.request("groups.getCatalogInfo", params)
+        model = self.get_model(
+            {("extended",): groups.GetCatalogInfoExtendedResponse},
+            default=groups.GetCatalogInfoResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_invited_users(
         self,
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         name_case: Optional[str] = None,
         **kwargs
     ) -> groups.GetInvitedUsersResponseModel:
@@ -569,9 +571,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetInvitedUsersResponse(
-            **await self.api.request("groups.getInvitedUsers", params)
-        ).response
+        response = await self.api.request("groups.getInvitedUsers", params)
+        model = groups.GetInvitedUsersResponse
+        return model(**response).response
 
     async def get_invites(
         self,
@@ -579,7 +581,7 @@ class GroupsCategory(BaseCategory):
         count: Optional[int] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> groups.GetInvitesExtendedResponseModel:
+    ) -> groups.GetInvitesResponseModel:
         """Returns a list of invitations to join communities and events.
         :param offset: Offset needed to return a specific subset of invitations.
         :param count: Number of invitations to return.
@@ -587,9 +589,13 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetInvitesExtendedResponse(
-            **await self.api.request("groups.getInvites", params)
-        ).response
+        response = await self.api.request("groups.getInvites", params)
+        model = self.get_model(
+            {("extended",): groups.GetInvitesExtendedResponse},
+            default=groups.GetInvitesResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_long_poll_server(
         self, group_id: int, **kwargs
@@ -599,9 +605,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetLongPollServerResponse(
-            **await self.api.request("groups.getLongPollServer", params)
-        ).response
+        response = await self.api.request("groups.getLongPollServer", params)
+        model = groups.GetLongPollServerResponse
+        return model(**response).response
 
     async def get_long_poll_settings(
         self, group_id: int, **kwargs
@@ -611,9 +617,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetLongPollSettingsResponse(
-            **await self.api.request("groups.getLongPollSettings", params)
-        ).response
+        response = await self.api.request("groups.getLongPollSettings", params)
+        model = groups.GetLongPollSettingsResponse
+        return model(**response).response
 
     async def get_members(
         self,
@@ -621,7 +627,7 @@ class GroupsCategory(BaseCategory):
         sort: Optional[str] = None,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["objects_users.Fields"]] = None,
+        fields: Optional[List[str]] = None,
         filter: Optional[str] = None,
         **kwargs
     ) -> groups.GetMembersResponseModel:
@@ -635,16 +641,23 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetMembersResponse(
-            **await self.api.request("groups.getMembers", params)
-        ).response
+        response = await self.api.request("groups.getMembers", params)
+        model = self.get_model(
+            {
+                ("fields",): groups.GetMembersFieldsResponse,
+                ("filter",): groups.GetMembersFilterResponse,
+            },
+            default=groups.GetMembersResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_requests(
         self,
         group_id: int,
         offset: Optional[int] = None,
         count: Optional[int] = None,
-        fields: Optional[List["str"]] = None,
+        fields: Optional[List[str]] = None,
         **kwargs
     ) -> groups.GetRequestsResponseModel:
         """Returns a list of requests to the community.
@@ -655,9 +668,13 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetRequestsResponse(
-            **await self.api.request("groups.getRequests", params)
-        ).response
+        response = await self.api.request("groups.getRequests", params)
+        model = self.get_model(
+            {("fields",): groups.GetRequestsFieldsResponse},
+            default=groups.GetRequestsResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def get_settings(
         self, group_id: int, **kwargs
@@ -667,9 +684,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.GetSettingsResponse(
-            **await self.api.request("groups.getSettings", params)
-        ).response
+        response = await self.api.request("groups.getSettings", params)
+        model = groups.GetSettingsResponse
+        return model(**response).response
 
     async def get_token_permissions(
         self, **kwargs
@@ -677,9 +694,9 @@ class GroupsCategory(BaseCategory):
         """groups.getTokenPermissions method"""
 
         params = self.get_set_params(locals())
-        return groups.GetTokenPermissionsResponse(
-            **await self.api.request("groups.getTokenPermissions", params)
-        ).response
+        response = await self.api.request("groups.getTokenPermissions", params)
+        model = groups.GetTokenPermissionsResponse
+        return model(**response).response
 
     async def invite(
         self, group_id: int, user_id: int, **kwargs
@@ -690,9 +707,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.invite", params)
-        ).response
+        response = await self.api.request("groups.invite", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def is_member(
         self,
@@ -701,7 +718,7 @@ class GroupsCategory(BaseCategory):
         user_ids: Optional[List[int]] = None,
         extended: Optional[bool] = None,
         **kwargs
-    ) -> groups.IsMemberExtendedResponseModel:
+    ) -> groups.IsMemberResponseModel:
         """Returns information specifying whether a user is a member of a community.
         :param group_id: ID or screen name of the community.
         :param user_id: User ID.
@@ -710,9 +727,17 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.IsMemberExtendedResponse(
-            **await self.api.request("groups.isMember", params)
-        ).response
+        response = await self.api.request("groups.isMember", params)
+        model = self.get_model(
+            {
+                ("user_ids",): groups.IsMemberUserIdsResponse,
+                ("extended",): groups.IsMemberExtendedResponse,
+                ("user_ids", "extended"): groups.IsMemberUserIdsExtendedResponse,
+            },
+            default=groups.IsMemberResponse,
+            params=params,
+        )
+        return model(**response).response
 
     async def join(
         self, group_id: Optional[int] = None, not_sure: Optional[str] = None, **kwargs
@@ -723,7 +748,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(**await self.api.request("groups.join", params)).response
+        response = await self.api.request("groups.join", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def leave(self, group_id: int, **kwargs) -> base.OkResponseModel:
         """With this method you can leave a group, public page, or event.
@@ -731,9 +758,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.leave", params)
-        ).response
+        response = await self.api.request("groups.leave", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def remove_user(
         self, group_id: int, user_id: int, **kwargs
@@ -744,9 +771,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.removeUser", params)
-        ).response
+        response = await self.api.request("groups.removeUser", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def reorder_link(
         self, group_id: int, link_id: int, after: Optional[int] = None, **kwargs
@@ -758,9 +785,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.reorderLink", params)
-        ).response
+        response = await self.api.request("groups.reorderLink", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def search(
         self,
@@ -788,9 +815,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return groups.SearchResponse(
-            **await self.api.request("groups.search", params)
-        ).response
+        response = await self.api.request("groups.search", params)
+        model = groups.SearchResponse
+        return model(**response).response
 
     async def set_callback_settings(
         self,
@@ -892,9 +919,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.setCallbackSettings", params)
-        ).response
+        response = await self.api.request("groups.setCallbackSettings", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def set_long_poll_settings(
         self,
@@ -994,9 +1021,9 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.setLongPollSettings", params)
-        ).response
+        response = await self.api.request("groups.setLongPollSettings", params)
+        model = base.OkResponse
+        return model(**response).response
 
     async def unban(
         self, group_id: int, owner_id: Optional[int] = None, **kwargs
@@ -1007,6 +1034,6 @@ class GroupsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        return base.OkResponse(
-            **await self.api.request("groups.unban", params)
-        ).response
+        response = await self.api.request("groups.unban", params)
+        model = base.OkResponse
+        return model(**response).response
