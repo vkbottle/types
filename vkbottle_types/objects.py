@@ -4922,6 +4922,8 @@ class PhotosPhotoSizesType(enum.Enum):
     Z = "z"
     C = "c"
     W = "w"
+    I = "i"
+    D = "d"
 
 
 class PhotosPhotoTag(BaseObject):
