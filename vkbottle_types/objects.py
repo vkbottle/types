@@ -3529,6 +3529,8 @@ class MessagesConversation(BaseObject):
     out_read - Last outcoming message have been read by the opponent
     unread_count - Unread messages number
     is_marked_unread - Is this conversation uread
+    can_write - Information about whether you can write to the dialog
+    chat_settings - Chat settings
     mentions - Ids of messages with mentions
     """
 
@@ -3540,6 +3542,8 @@ class MessagesConversation(BaseObject):
     is_marked_unread: Optional[bool] = None
     important: Optional[bool] = None
     unanswered: Optional[bool] = None
+    can_write: Optional["MessagesConversationCanWrite"] = None
+    chat_settings: Optional["MessagesConversationChatSettings"] = None
     special_service_type: Optional[str] = None
     message_request_data: Optional["MessagesMessageRequestData"] = None
     mentions: Optional[List[int]] = None
@@ -3585,6 +3589,38 @@ class MessagesConversationWithMessage(BaseObject):
 
     conversation: Optional["MessagesConversation"] = None
     last_message: Optional["MessagesMessage"] = None
+
+
+class MessagesConversationCanWrite(BaseObject):
+    """VK Object Messages/MessagesConversationCanWrite
+
+    allowed - Can the user write to the dialog
+    reason - Reason code why the user can't write to the dialog
+    """
+
+    allowed: Optional[bool] = None
+    reason: Optional[int] = None
+
+
+class MessagesConversationChatSettings(BaseObject):
+    """VK Object Messages/MessagesConversationChatSettings
+
+    members_count - Number of chat members
+    title - Chat title
+    pinned_message - Pinned message object
+    state - Status of the current user in the chat
+    photo - The cover image of the chat
+    active_ids - IDs of the last users who wrote to the chat
+    is_group_channel - information about whether the conversation is a community channel
+    """
+
+    members_count: Optional[int] = None
+    title: Optional[str] = None
+    pinned_message: Optional["MessagesPinnedMessage"] = None
+    state: Optional[str] = None
+    photo: Optional["MessagesMessageActionPhoto"] = None
+    active_ids: Optional[list] = None
+    is_group_channel: Optional[bool] = None
 
 
 class MessagesForeignMessage(BaseObject):
