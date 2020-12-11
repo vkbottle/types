@@ -7266,6 +7266,8 @@ class ClientInfoButtonActions(enum.Enum):
     OPEN_LINK = "open_link"
     OPEN_PHOTO = "open_photo"
     CALLBACK = "callback"
+    INTENT_SUBSCRIBE = "intent_subscribe"
+    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
 
 
 class MessagesClientInfo(BaseObject):
