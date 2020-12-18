@@ -1,5 +1,5 @@
 import typing
-from typing import Optional, Any, List
+from typing import Optional, Any, List, Union
 
 from vkbottle_types.objects import (
     GroupsCallbackSettings,
@@ -250,9 +250,12 @@ class GetMembersFieldsResponseModel(BaseResponse):
     items: Optional[List["GroupsUserXtrRole"]] = None
 
 
-class GetMembersFilterResponseModel(BaseResponse):
+class GetMembersFilterExtResponseModel(BaseResponse):
     count: Optional[int] = None
     items: Optional[List["GroupsMemberRole"]] = None
+
+
+GetMembersFilterResponseModel = Union[List[int], GetMembersFilterExtResponseModel]
 
 
 class GetMembersResponseModel(BaseResponse):
