@@ -46,6 +46,13 @@ class GroupTypes:
     GroupChangePhoto = GroupChangePhoto
     VkPayTransaction = VkPayTransaction
     AppPayload = AppPayload
+    DonutSubscriptionCreate = DonutSubscriptionCreate
+    DonutSubscriptionProlonged = DonutSubscriptionProlonged
+    DonutSubscriptionCancelled = DonutSubscriptionCancelled
+    DonutSubscriptionExpired = DonutSubscriptionExpired
+    DonutSubscriptionPriceChanged = DonutSubscriptionPriceChanged
+    DonutMoneyWithdraw = DonutMoneyWithdraw
+    DonutMoneyWithdrawError = DonutMoneyWithdrawError
 
     UnifiedTypes = Union[
         BaseGroupEvent,
@@ -80,6 +87,13 @@ class GroupTypes:
         GroupChangePhoto,
         VkPayTransaction,
         AppPayload,
+        DonutSubscriptionCreate,
+        DonutSubscriptionProlonged,
+        DonutSubscriptionCancelled,
+        DonutSubscriptionExpired,
+        DonutSubscriptionPriceChanged,
+        DonutMoneyWithdraw,
+        DonutMoneyWithdrawError,
     ]
 
 

@@ -326,4 +326,11 @@ __all__ = (
     "GroupChangePhoto",
     "VkPayTransaction",
     "AppPayload",
+    "DonutSubscriptionCreate",
+    "DonutSubscriptionProlonged",
+    "DonutSubscriptionExpired",
+    "DonutSubscriptionCancelled",
+    "DonutSubscriptionPriceChanged",
+    "DonutMoneyWithdraw",
+    "DonutMoneyWithdrawError",
 )
