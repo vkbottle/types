@@ -250,12 +250,9 @@ class GetMembersFieldsResponseModel(BaseResponse):
     items: Optional[List["GroupsUserXtrRole"]] = None
 
 
-class GetMembersFilterExtResponseModel(BaseResponse):
+class GetMembersFilterResponseModel(BaseResponse):
     count: Optional[int] = None
-    items: Optional[List["GroupsMemberRole"]] = None
-
-
-GetMembersFilterResponseModel = Union[List[int], GetMembersFilterExtResponseModel]
+    items: Optional[List[Union["GroupsMemberRole", int]]] = None
 
 
 class GetMembersResponseModel(BaseResponse):
