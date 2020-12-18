@@ -147,6 +147,34 @@ class AppPayload(BaseGroupEvent):
     object: "group_event_objects.AppPayloadObject"
 
 
+class DonutSubscriptionCreate(BaseGroupEvent):
+    object: "group_event_objects.DonutSubscriptionCreateObject"
+
+
+class DonutSubscriptionProlonged(BaseGroupEvent):
+    object: "group_event_objects.DonutSubscriptionProlongedObject"
+
+
+class DonutSubscriptionExpired(BaseGroupEvent):
+    object: "group_event_objects.DonutSubscriptionExpiredObject"
+
+
+class DonutSubscriptionCancelled(BaseGroupEvent):
+    object: "group_event_objects.DonutSubscriptionCancelledObject"
+
+
+class DonutSubscriptionPriceChanged(BaseGroupEvent):
+    object: "group_event_objects.DonutSubscriptionPriceChangedObject"
+
+
+class DonutMoneyWithdraw(BaseGroupEvent):
+    object: "group_event_objects.DonutMoneyWithdrawObject"
+
+
+class DonutMoneyWithdrawError(BaseGroupEvent):
+    object: "group_event_objects.DonutMoneyWithdrawErrorObject"
+
+
 Message.update_forward_refs()
 MessageNew.update_forward_refs()
 MessageAllow.update_forward_refs()
@@ -174,6 +202,13 @@ GroupChangeSettings.update_forward_refs()
 GroupChangePhoto.update_forward_refs()
 VkPayTransaction.update_forward_refs()
 AppPayload.update_forward_refs()
+DonutSubscriptionCreate.update_forward_refs()
+DonutSubscriptionProlonged.update_forward_refs()
+DonutSubscriptionExpired.update_forward_refs()
+DonutSubscriptionCancelled.update_forward_refs()
+DonutSubscriptionPriceChanged.update_forward_refs()
+DonutMoneyWithdraw.update_forward_refs()
+DonutMoneyWithdrawError.update_forward_refs()
 
 DEFAULT_EVENTS_BASE_GROUP = EventsBase(GroupEventType)
 DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_NEW, MessageNew)
@@ -235,6 +270,27 @@ DEFAULT_EVENTS_BASE_GROUP.register(
 DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.GROUP_CHANGE_PHOTO, GroupChangePhoto)
 DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VKPAY_TRANSACTION, VkPayTransaction)
 DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.APP_PAYLOAD, AppPayload)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_SUBSCRIPTION_CREATE, DonutSubscriptionCreate
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_SUBSCRIPTION_PROLONGED, DonutSubscriptionProlonged
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_SUBSCRIPTION_EXPIRED, DonutSubscriptionExpired
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_SUBSCRIPTION_CANCELLED, DonutSubscriptionCancelled
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_SUBSCRIPTION_PRICE_CHANGED, DonutSubscriptionPriceChanged
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_MONEY_WITHDRAW, DonutMoneyWithdraw
+)
+DEFAULT_EVENTS_BASE_GROUP.register(
+    GroupEventType.DONUT_MONEY_WITHDRAW_ERROR, DonutMoneyWithdrawError
+)
 
 __all__ = (
     "DEFAULT_EVENTS_BASE_GROUP",

@@ -62,3 +62,11 @@ class GroupEventType(enum.Enum):
 
     VKPAY_TRANSACTION = "vkpay_transaction"
     APP_PAYLOAD = "app_payload"
+
+    DONUT_SUBSCRIPTION_CREATE = "donut_subscription_create"
+    DONUT_SUBSCRIPTION_PROLONGED = "donut_subscription_prolonged"
+    DONUT_SUBSCRIPTION_EXPIRED = "donut_subscription_expired"
+    DONUT_SUBSCRIPTION_CANCELLED = "donut_subscription_cancelled"
+    DONUT_SUBSCRIPTION_PRICE_CHANGED = "donut_subscription_price_changed"
+    DONUT_MONEY_WITHDRAW = "donut_money_withdraw"
+    DONUT_MONEY_WITHDRAW_ERROR = "donut_money_withdraw_error"

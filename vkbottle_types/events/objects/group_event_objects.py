@@ -246,6 +246,43 @@ class AppPayloadObject(BaseEventObject):
     group_id: Optional[int] = None
 
 
+class DonutSubscriptionObject(BaseEventObject):
+    user_id: Optional[int] = None
+
+
+class DonutSubscriptionCreateObject(DonutSubscriptionObject):
+    amount: Optional[int] = None
+    amount_without_fee: Optional[float] = None
+
+
+class DonutSubscriptionProlongedObject(DonutSubscriptionCreateObject):
+    pass
+
+
+class DonutSubscriptionExpiredObject(DonutSubscriptionObject):
+    pass
+
+
+class DonutSubscriptionCancelledObject(DonutSubscriptionObject):
+    pass
+
+
+class DonutSubscriptionPriceChangedObject(DonutSubscriptionObject):
+    amount_old: Optional[int] = None
+    amount_new: Optional[int] = None
+    amount_diff: Optional[float] = None
+    amount_diff_without_fee: Optional[float] = None
+
+
+class DonutMoneyWithdrawObject(BaseEventObject):
+    amount: Optional[float] = None
+    amount_without_fee: Optional[float] = None
+
+
+class DonutMoneyWithdrawErrorObject(BaseEventObject):
+    reason: Optional[str] = None
+
+
 MessageAllowObject.update_forward_refs()
 MessageTypingStateObject.update_forward_refs()
 MessageDenyObject.update_forward_refs()
