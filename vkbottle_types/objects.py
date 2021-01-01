@@ -3940,7 +3940,7 @@ class MessagesMessageAttachment(BaseModel):
     graffiti: Optional["MessagesGraffiti"] = None
     link: Optional["BaseLink"] = None
     market: Optional["MarketMarketItem"] = None
-    market_market_album: Optional["MarketMarketAlbum"] = None
+    market_album: Optional["MarketMarketAlbum"] = None
     photo: Optional["PhotosPhoto"] = None
     sticker: Optional["BaseSticker"] = None
     story: Optional["StoriesStory"] = None
@@ -3968,6 +3968,7 @@ class MessagesMessageAttachmentType(enum.Enum):
     ARTICLE = "article"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
+    STORY = "story"
 
 
 class MessagesMessageRequestData(BaseModel):
