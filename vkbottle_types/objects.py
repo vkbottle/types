@@ -6818,6 +6818,7 @@ class WallPostType(enum.Enum):
     """ Post type """
 
     POST = "post"
+    PHOTO = "photo"
     COPY = "copy"
     REPLY = "reply"
     POSTPONE = "postpone"
