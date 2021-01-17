@@ -3621,8 +3621,8 @@ class MessagesConversationChatSettings(BaseModel):
     pinned_message: Optional["MessagesPinnedMessage"] = None
     state: Optional[str] = None
     photo: Optional["MessagesMessageActionPhoto"] = None
-    admin_ids: Optional[list] = None
-    active_ids: Optional[list] = None
+    admin_ids: List[int] = None
+    active_ids: List[int] = None
     is_group_channel: Optional[bool] = None
 
 
