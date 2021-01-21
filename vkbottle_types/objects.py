@@ -1,6 +1,7 @@
-from typing import Optional, Union, Any, List
-import typing
 import enum
+import typing
+from typing import Any, List, Optional, Union
+
 from pydantic import BaseModel
 
 
@@ -3602,20 +3603,26 @@ class MessagesConversationChatSettings(BaseModel):
     """VK Object Messages/MessagesConversationChatSettings
 
     members_count - Number of chat members
+    friends_count - Number of friends in chat
+    owner_id - Id of chat owner
     title - Chat title
     pinned_message - Pinned message object
     state - Status of the current user in the chat
     photo - The cover image of the chat
+    admin_ids - IDs of admins
     active_ids - IDs of the last users who wrote to the chat
     is_group_channel - information about whether the conversation is a community channel
     """
 
     members_count: Optional[int] = None
+    friends_count: Optional[int] = None
+    owner_id: Optional[int] = None
     title: Optional[str] = None
     pinned_message: Optional["MessagesPinnedMessage"] = None
     state: Optional[str] = None
     photo: Optional["MessagesMessageActionPhoto"] = None
-    active_ids: Optional[list] = None
+    admin_ids: Optional[List[int]] = None
+    active_ids: Optional[List[int]] = None
     is_group_channel: Optional[bool] = None
 
 
