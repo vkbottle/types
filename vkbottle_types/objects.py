@@ -4965,6 +4965,19 @@ class PhotosPhotoSizesType(enum.Enum):
     I = "i"
     D = "d"
 
+    # undocumented sizes
+    A = "a"
+    B = "b"
+    E = "e"
+    F = "f"
+    G = "g"
+    H = "h"
+    J = "j"
+    N = "n"
+    T = "t"
+    U = "u"
+    V = "v"
+
 
 class PhotosPhotoTag(BaseModel):
     """VK Object Photos/PhotosPhotoTag
