@@ -1,5 +1,4 @@
 from .bot_events import *
-from .user_events import *
 from typing import Any, Union
 
 
@@ -95,7 +94,3 @@ class GroupTypes:
         DonutMoneyWithdraw,
         DonutMoneyWithdrawError,
     ]
-
-
-class UserTypes:
-    UnifiedTypes = Union[BaseUserEvent, Any]

@@ -1,7 +1,7 @@
-import enum
+from enum import IntEnum
 
 
-class UserEventType(enum.IntEnum):
+class UserEventType(IntEnum):
     REPLACE_MESSAGE_FLAGS = 1
     INSTALL_MESSAGE_FLAGS = 2
     RESET_MESSAGE_FLAGS = 3
