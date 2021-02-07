@@ -1,8 +1,9 @@
 from .base_event_object import BaseEventObject
+from vkbottle_types.objects import MessagesMessage
 from typing import Optional, Union, List
 
 
-class MessageFieldsObject(BaseEventObject):
+class MessageObject(BaseEventObject):
     message_id: Optional[int] = None
     peer_id: Optional[int] = None
     timestamp: Optional[int] = None
@@ -13,15 +14,19 @@ class MessageFieldsObject(BaseEventObject):
     random_id: Optional[int] = None
 
 
-class ReplaceMessageFlagsObject(MessageFieldsObject):
+class MessageNewObject(MessagesMessage):
+    pass
+
+
+class ReplaceMessageFlagsObject(MessageObject):
     flags: Optional[int] = None
 
 
-class InstallMessageFlagsObject(MessageFieldsObject):
+class InstallMessageFlagsObject(MessageObject):
     mask: Optional[int] = None
 
 
-class ResetMessageFlagsObject(MessageFieldsObject):
+class ResetMessageFlagsObject(MessageObject):
     mask: Optional[int] = None
 
 
@@ -125,7 +130,7 @@ class ChatEditObject(BaseEventObject):
     self: Optional[int] = None
 
 
-MessageFieldsObject.update_forward_refs()
+MessageObject.update_forward_refs()
 ReplaceMessageFlagsObject.update_forward_refs()
 InstallMessageFlagsObject.update_forward_refs()
 ResetMessageFlagsObject.update_forward_refs()
