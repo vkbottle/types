@@ -4,7 +4,7 @@ from typing import Any, Union
 class UserTypes:
     MessageNew = MessageNew
     MessagesDelete = MessagesDelete
-    MessageRestore = MessageRestore
+    ChatRestore = ChatRestore
     EditMessage = EditMessage
     ReplaceMessageFlags = ReplaceMessageFlags
     InstallMessageFlags = InstallMessageFlags
@@ -29,7 +29,7 @@ class UserTypes:
         MessageNew,
         Message,
         MessagesDelete,
-        MessageRestore,
+        ChatRestore,
         EditMessage,
         ReplaceMessageFlags,
         InstallMessageFlags,
@@ -47,5 +47,5 @@ class UserTypes:
         Counter,
         ChangedNotificationsSettings,
         InRead,
-        OutRead
+        OutRead,
     ]

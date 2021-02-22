@@ -647,6 +647,7 @@ class MessagesCategory(BaseCategory):
         user_id: Optional[int] = None,
         random_id: Optional[int] = None,
         peer_id: Optional[int] = None,
+        peer_ids: Optional[List[int]] = None,
         domain: Optional[str] = None,
         chat_id: Optional[int] = None,
         user_ids: Optional[List[int]] = None,
@@ -670,6 +671,7 @@ class MessagesCategory(BaseCategory):
         :param user_id: User ID (by default — current user).
         :param random_id: Unique identifier to avoid resending the message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+        :param peer_ids:
         :param domain: User's short address (for example, 'illarionov').
         :param chat_id: ID of conversation the message will relate to.
         :param user_ids: IDs of message recipients (if new conversation shall be started).
@@ -692,7 +694,10 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.send", params)
         model = self.get_model(
-            {("user_ids",): messages.SendUserIdsResponse},
+            {
+                ("peer_ids",): messages.SendPeerIdsResponse,
+                ("user_ids",): messages.SendUserIdsResponse
+            },
             default=messages.SendResponse,
             params=params,
         )

@@ -28,7 +28,7 @@ class MessagesDelete(BaseUserEvent):
 	object: "user_event_objects.DeleteMessagesObject"
 
 
-class MessageRestore(BaseUserEvent):
+class ChatRestore(BaseUserEvent):
 	object: "user_event_objects.RestoreDeletedObject"
 
 
@@ -114,7 +114,7 @@ class OutRead(BaseUserEvent):
 
 MessageNew.update_forward_refs()
 MessagesDelete.update_forward_refs()
-MessageRestore.update_forward_refs()
+ChatRestore.update_forward_refs()
 EditMessage.update_forward_refs()
 ReplaceMessageFlags.update_forward_refs()
 InstallMessageFlags.update_forward_refs()
@@ -140,7 +140,7 @@ DEFAULT_EVENTS_BASE_USER = EventsBase(UserEventType)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.NEW_MESSAGE, MessageNew)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.DELETE_MESSAGES, MessagesDelete)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.EDIT_MESSAGE, EditMessage)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.MESSAGE_RESTORE, MessageRestore)
+DEFAULT_EVENTS_BASE_USER.register(UserEventType.CHAT_RESTORE, ChatRestore)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.INSTALL_MESSAGE_FLAGS, InstallMessageFlags)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.REPLACE_MESSAGE_FLAGS, ReplaceMessageFlags)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.RESET_MESSAGE_FLAGS, ResetMessageFlags)
