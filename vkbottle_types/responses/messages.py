@@ -145,6 +145,10 @@ class SendResponse(BaseResponse):
     response: Optional["SendResponseModel"] = None
 
 
+class SendPeerIdsResponse(BaseResponse):
+    response: Optional[List["SendResponsePeerIdsModel"]] = None
+
+
 class SendUserIdsResponse(BaseResponse):
     response: Optional["SendUserIdsResponseModel"] = None
 
@@ -337,5 +341,6 @@ PinResponse.update_forward_refs()
 SearchConversationsResponse.update_forward_refs()
 SearchResponse.update_forward_refs()
 SendResponse.update_forward_refs()
+SendPeerIdsResponse.update_forward_refs()
 SendUserIdsResponse.update_forward_refs()
 SetChatPhotoResponse.update_forward_refs()
