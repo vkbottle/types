@@ -1,0 +1,23 @@
+schema_objects_path:
+  vk_schema/objects.json
+schema_methods_path:
+  vk_schema/methods.json
+schema_responses_path:
+  vk_schema/responses.json
+object_models_imports:
+  enum:
+    None
+  typing:
+    - Any
+    - List
+    - Optional
+    - Union
+  pydantic:
+    - BaseModel
+object_methods_imports:
+  typing:
+    - Optional
+    - List
+    - Any
+  .base_category:
+    - BaseCategory
