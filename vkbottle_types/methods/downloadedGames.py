@@ -5,7 +5,7 @@ from vkbottle_types.responses import downloadedGames
 from .base_category import BaseCategory
 
 
-class DownloadedgamesCategory(BaseCategory):
+class DownloadedGamesCategory(BaseCategory):
     async def get_paid_status(
         self, user_id: typing.Optional[int] = None, **kwargs
     ) -> downloadedGames.PaidStatusResponseModel:

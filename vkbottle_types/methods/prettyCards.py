@@ -5,7 +5,7 @@ from vkbottle_types.responses import prettyCards
 from .base_category import BaseCategory
 
 
-class PrettycardsCategory(BaseCategory):
+class PrettyCardsCategory(BaseCategory):
     async def create(
         self,
         owner_id: int,

@@ -1144,7 +1144,9 @@ class GroupsCategory(BaseCategory):
         model = base.BoolResponse
         return model(**response).response
 
-    async def tag_delete(self, group_id: int, tag_id: int, **kwargs) -> base.BoolResponseModel:
+    async def tag_delete(
+        self, group_id: int, tag_id: int, **kwargs
+    ) -> base.BoolResponseModel:
         """Delete group's tag
         :param group_id:
         :param tag_id:

@@ -5,7 +5,7 @@ from vkbottle_types.responses import appWidgets, base
 from .base_category import BaseCategory
 
 
-class AppwidgetsCategory(BaseCategory):
+class AppWidgetsCategory(BaseCategory):
     async def get_app_image_upload_server(
         self, image_type: str, **kwargs
     ) -> appWidgets.GetAppImageUploadServerResponseModel:
