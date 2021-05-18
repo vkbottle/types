@@ -6,19 +6,19 @@ from .base_category import BaseCategory
 
 
 class WallCategory(BaseCategory):
-    async def check_copyright_link(self, link: str, **kwargs) -> base.BoolModel:
+    async def check_copyright_link(self, link: str, **kwargs) -> base.BoolResponseModel:
         """wall.checkCopyrightLink method
         :param link:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.checkCopyrightLink", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def close_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """wall.closeComments method
         :param owner_id:
         :param post_id:
@@ -26,7 +26,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.closeComments", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def create_comment(
@@ -330,7 +330,7 @@ class WallCategory(BaseCategory):
 
     async def open_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """wall.openComments method
         :param owner_id:
         :param post_id:
@@ -338,7 +338,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.openComments", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def pin(

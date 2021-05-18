@@ -374,7 +374,7 @@ class PhotosCategory(BaseCategory):
         crop_y: typing.Optional[int] = None,
         crop_width: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns an upload link for chat cover pictures.
         :param chat_id: ID of the chat for which you want to upload a cover photo.
         :param crop_x:
@@ -384,7 +384,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getChatUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_comments(
@@ -425,14 +425,14 @@ class PhotosCategory(BaseCategory):
 
     async def get_market_album_upload_server(
         self, group_id: int, **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns the server address for market album photo upload.
         :param group_id: Community ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getMarketAlbumUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_market_upload_server(
@@ -493,7 +493,7 @@ class PhotosCategory(BaseCategory):
         crop_x2: typing.Optional[int] = None,
         crop_y2: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns the server address for owner cover upload.
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param crop_x: X coordinate of the left-upper corner
@@ -506,19 +506,19 @@ class PhotosCategory(BaseCategory):
         response = await self.api.request(
             "photos.getOwnerCoverPhotoUploadServer", params
         )
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_owner_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns an upload server address for a profile or community photo.
         :param owner_id: identifier of a community or current user. "Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, "
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getOwnerPhotoUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_tags(

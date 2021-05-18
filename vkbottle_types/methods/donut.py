@@ -56,12 +56,12 @@ class DonutCategory(BaseCategory):
         model = donut.GetSubscriptionsResponse
         return model(**response).response
 
-    async def is_don(self, owner_id: int, **kwargs) -> base.BoolModel:
+    async def is_don(self, owner_id: int, **kwargs) -> base.BoolResponseModel:
         """donut.isDon method
         :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.isDon", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response

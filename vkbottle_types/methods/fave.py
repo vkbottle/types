@@ -171,17 +171,17 @@ class FaveCategory(BaseCategory):
         model = fave.GetTagsResponse
         return model(**response).response
 
-    async def mark_seen(self, **kwargs) -> base.BoolModel:
+    async def mark_seen(self, **kwargs) -> base.BoolResponseModel:
         """fave.markSeen method"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("fave.markSeen", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def remove_article(
         self, owner_id: int, article_id: int, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """fave.removeArticle method
         :param owner_id:
         :param article_id:
@@ -189,7 +189,7 @@ class FaveCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("fave.removeArticle", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def remove_link(

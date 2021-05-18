@@ -100,7 +100,7 @@ class DocsCategory(BaseCategory):
         type: typing.Optional[str] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns the server address for document upload.
         :param type: Document type.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
@@ -108,7 +108,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getMessagesUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_types(self, owner_id: int, **kwargs) -> docs.GetTypesResponseModel:
@@ -135,14 +135,14 @@ class DocsCategory(BaseCategory):
 
     async def get_wall_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """Returns the server address for document upload onto a user's or community's wall.
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getWallUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def save(

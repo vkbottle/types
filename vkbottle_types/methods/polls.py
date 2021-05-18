@@ -144,14 +144,14 @@ class PollsCategory(BaseCategory):
 
     async def get_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerModel:
+    ) -> base.GetUploadServerResponseModel:
         """polls.getPhotoUploadServer method
         :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getPhotoUploadServer", params)
-        model = base.GetUploadServer
+        model = base.GetUploadServerResponse
         return model(**response).response
 
     async def get_voters(

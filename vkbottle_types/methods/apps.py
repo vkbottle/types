@@ -154,7 +154,7 @@ class AppsCategory(BaseCategory):
 
     async def promo_has_active_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """apps.promoHasActiveGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -162,12 +162,12 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoHasActiveGift", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def promo_use_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """apps.promoUseGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -175,7 +175,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoUseGift", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def send_request(

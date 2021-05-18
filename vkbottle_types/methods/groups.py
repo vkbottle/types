@@ -1099,7 +1099,7 @@ class GroupsCategory(BaseCategory):
 
     async def set_user_note(
         self, group_id: int, user_id: int, note: typing.Optional[str] = None, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """In order to save note about group participant
         :param group_id:
         :param user_id:
@@ -1108,7 +1108,7 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.setUserNote", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def tag_add(
@@ -1117,7 +1117,7 @@ class GroupsCategory(BaseCategory):
         tag_name: str,
         tag_color: typing.Optional[str] = None,
         **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """Add new group's tag
         :param group_id:
         :param tag_name:
@@ -1126,12 +1126,12 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.tagAdd", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def tag_bind(
         self, group_id: int, tag_id: int, user_id: int, act: str, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """Bind or unbind group's tag to user
         :param group_id:
         :param tag_id:
@@ -1141,10 +1141,10 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.tagBind", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
-    async def tag_delete(self, group_id: int, tag_id: int, **kwargs) -> base.BoolModel:
+    async def tag_delete(self, group_id: int, tag_id: int, **kwargs) -> base.BoolResponseModel:
         """Delete group's tag
         :param group_id:
         :param tag_id:
@@ -1152,12 +1152,12 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.tagDelete", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def tag_update(
         self, group_id: int, tag_id: int, tag_name: str, **kwargs
-    ) -> base.BoolModel:
+    ) -> base.BoolResponseModel:
         """Update group's tag
         :param group_id:
         :param tag_id:
@@ -1166,7 +1166,7 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.tagUpdate", params)
-        model = base.Bool
+        model = base.BoolResponse
         return model(**response).response
 
     async def toggle_market(
