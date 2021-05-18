@@ -5487,6 +5487,8 @@ class MessagesTemplateActionTypeNames(enum.Enum):
     OPEN_PHOTO = "open_photo"
     OPEN_LINK = "open_link"
     CALLBACK = "callback"
+    INTENT_SUBSCRIBE = "intent_subscribe"
+    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
 
 
 class UsersUserXtrType(UsersUser):
