@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
 
@@ -6,22 +7,23 @@ from .base_response import BaseResponse
 
 
 class GetCommentsResponse(BaseResponse):
-    response: Optional["GetCommentsResponseModel"] = None
+    response: typing.Optional["GetCommentsResponseModel"] = None
 
 
 class GetPagesResponse(BaseResponse):
-    response: Optional["GetPagesResponseModel"] = None
+    response: typing.Optional["GetPagesResponseModel"] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    posts: Optional[List["WidgetsWidgetComment"]] = None
+    count: typing.Optional[int] = None
+    posts: typing.Optional[typing.List["WidgetsWidgetComment"]] = None
 
 
 class GetPagesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    pages: Optional[List["WidgetsWidgetPage"]] = None
+    count: typing.Optional[int] = None
+    pages: typing.Optional[typing.List["WidgetsWidgetPage"]] = None
 
 
-GetCommentsResponse.update_forward_refs()
-GetPagesResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

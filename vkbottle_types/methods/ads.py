@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import ads, base
 
@@ -7,7 +7,7 @@ from .base_category import BaseCategory
 
 class AdsCategory(BaseCategory):
     async def add_office_users(
-        self, account_id: int, data: str, **kwargs
+        self, account_id: int, data: typing.List[str], **kwargs
     ) -> ads.AddOfficeUsersResponseModel:
         """Adds managers and/or supervisors to advertising account.
         :param account_id: Advertising account ID.
@@ -24,7 +24,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         link_type: str,
         link_url: str,
-        campaign_id: Optional[int] = None,
+        campaign_id: typing.Optional[int] = None,
         **kwargs
     ) -> ads.CheckLinkResponseModel:
         """Allows to check the ad link.
@@ -83,9 +83,9 @@ class AdsCategory(BaseCategory):
         account_id: int,
         name: str,
         lifetime: int,
-        client_id: Optional[int] = None,
-        target_pixel_id: Optional[int] = None,
-        target_pixel_rules: Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        target_pixel_id: typing.Optional[int] = None,
+        target_pixel_rules: typing.Optional[str] = None,
         **kwargs
     ) -> ads.CreateTargetGroupResponseModel:
         """Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).
@@ -145,7 +145,7 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         target_group_id: int,
-        client_id: Optional[int] = None,
+        client_id: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Deletes a retarget group.
@@ -170,13 +170,13 @@ class AdsCategory(BaseCategory):
     async def get_ads(
         self,
         account_id: int,
-        ad_ids: Optional[str] = None,
-        campaign_ids: Optional[str] = None,
-        client_id: Optional[int] = None,
-        include_deleted: Optional[bool] = None,
-        only_deleted: Optional[bool] = None,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
+        ad_ids: typing.Optional[str] = None,
+        campaign_ids: typing.Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        include_deleted: typing.Optional[bool] = None,
+        only_deleted: typing.Optional[bool] = None,
+        limit: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
         **kwargs
     ) -> ads.GetAdsResponseModel:
         """Returns number of ads.
@@ -198,12 +198,12 @@ class AdsCategory(BaseCategory):
     async def get_ads_layout(
         self,
         account_id: int,
-        ad_ids: Optional[str] = None,
-        campaign_ids: Optional[str] = None,
-        client_id: Optional[int] = None,
-        include_deleted: Optional[bool] = None,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
+        ad_ids: typing.Optional[str] = None,
+        campaign_ids: typing.Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        include_deleted: typing.Optional[bool] = None,
+        limit: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
         **kwargs
     ) -> ads.GetAdsLayoutResponseModel:
         """Returns descriptions of ad layouts.
@@ -224,12 +224,12 @@ class AdsCategory(BaseCategory):
     async def get_ads_targeting(
         self,
         account_id: int,
-        ad_ids: Optional[str] = None,
-        campaign_ids: Optional[str] = None,
-        client_id: Optional[int] = None,
-        include_deleted: Optional[bool] = None,
-        limit: Optional[int] = None,
-        offset: Optional[int] = None,
+        ad_ids: typing.Optional[str] = None,
+        campaign_ids: typing.Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        include_deleted: typing.Optional[bool] = None,
+        limit: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
         **kwargs
     ) -> ads.GetAdsTargetingResponseModel:
         """Returns ad targeting parameters.
@@ -260,10 +260,10 @@ class AdsCategory(BaseCategory):
     async def get_campaigns(
         self,
         account_id: int,
-        client_id: Optional[int] = None,
-        include_deleted: Optional[bool] = None,
-        campaign_ids: Optional[str] = None,
-        fields: Optional[List[str]] = None,
+        client_id: typing.Optional[int] = None,
+        include_deleted: typing.Optional[bool] = None,
+        campaign_ids: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> ads.GetCampaignsResponseModel:
         """Returns a list of campaigns in an advertising account.
@@ -280,7 +280,7 @@ class AdsCategory(BaseCategory):
         return model(**response).response
 
     async def get_categories(
-        self, lang: Optional[str] = None, **kwargs
+        self, lang: typing.Optional[str] = None, **kwargs
     ) -> ads.GetCategoriesResponseModel:
         """Returns a list of possible ad categories.
         :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
@@ -342,11 +342,11 @@ class AdsCategory(BaseCategory):
     async def get_lookalike_requests(
         self,
         account_id: int,
-        client_id: Optional[int] = None,
-        requests_ids: Optional[str] = None,
-        offset: Optional[int] = None,
-        limit: Optional[int] = None,
-        sort_by: Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        requests_ids: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        limit: typing.Optional[int] = None,
+        sort_by: typing.Optional[str] = None,
         **kwargs
     ) -> ads.GetLookalikeRequestsResponseModel:
         """ads.getLookalikeRequests method
@@ -372,6 +372,18 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getMusicians", params)
+        model = ads.GetMusiciansResponse
+        return model(**response).response
+
+    async def get_musicians_by_ids(
+        self, ids: typing.List[int], **kwargs
+    ) -> ads.GetMusiciansResponseModel:
+        """ads.getMusiciansByIds method
+        :param ids:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("ads.getMusiciansByIds", params)
         model = ads.GetMusiciansResponse
         return model(**response).response
 
@@ -422,7 +434,7 @@ class AdsCategory(BaseCategory):
         period: str,
         date_from: str,
         date_to: str,
-        stats_fields: Optional[List[str]] = None,
+        stats_fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> ads.GetStatisticsResponseModel:
         """Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
@@ -443,11 +455,11 @@ class AdsCategory(BaseCategory):
     async def get_suggestions(
         self,
         section: str,
-        ids: Optional[str] = None,
-        q: Optional[str] = None,
-        country: Optional[int] = None,
-        cities: Optional[str] = None,
-        lang: Optional[str] = None,
+        ids: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+        country: typing.Optional[int] = None,
+        cities: typing.Optional[str] = None,
+        lang: typing.Optional[str] = None,
         **kwargs
     ) -> ads.GetSuggestionsResponseModel:
         """Returns a set of auto-suggestions for various targeting parameters.
@@ -461,22 +473,14 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getSuggestions", params)
-        model = self.get_model(
-            {
-                ("regions",): ads.GetSuggestionsRegionsResponse,
-                ("cities",): ads.GetSuggestionsCitiesResponse,
-                ("schools",): ads.GetSuggestionsSchoolsResponse,
-            },
-            default=ads.GetSuggestionsResponse,
-            params=params,
-        )
+        model = ads.GetSuggestionsResponse
         return model(**response).response
 
     async def get_target_groups(
         self,
         account_id: int,
-        client_id: Optional[int] = None,
-        extended: Optional[bool] = None,
+        client_id: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> ads.GetTargetGroupsResponseModel:
         """Returns a list of target groups.
@@ -494,15 +498,17 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         link_url: str,
-        client_id: Optional[int] = None,
-        criteria: Optional[str] = None,
-        ad_id: Optional[int] = None,
-        ad_format: Optional[int] = None,
-        ad_platform: Optional[str] = None,
-        ad_platform_no_wall: Optional[str] = None,
-        ad_platform_no_ad_network: Optional[str] = None,
-        link_domain: Optional[str] = None,
-        need_precise: Optional[bool] = None,
+        client_id: typing.Optional[int] = None,
+        criteria: typing.Optional[str] = None,
+        ad_id: typing.Optional[int] = None,
+        ad_format: typing.Optional[int] = None,
+        ad_platform: typing.Optional[str] = None,
+        ad_platform_no_wall: typing.Optional[str] = None,
+        ad_platform_no_ad_network: typing.Optional[str] = None,
+        publisher_platforms: typing.Optional[str] = None,
+        link_domain: typing.Optional[str] = None,
+        need_precise: typing.Optional[bool] = None,
+        impressions_limit_period: typing.Optional[int] = None,
         **kwargs
     ) -> ads.GetTargetingStatsResponseModel:
         """Returns the size of targeting audience, and also recommended values for CPC and CPM.
@@ -515,8 +521,10 @@ class AdsCategory(BaseCategory):
         :param ad_platform: Platforms to use for ad showing. Possible values: (for 'ad_format' = '1'), *'0' — VK and partner sites,, *'1' — VK only. (for 'ad_format' = '9'), *'all' — all platforms,, *'desktop' — desktop version,, *'mobile' — mobile version and apps.
         :param ad_platform_no_wall:
         :param ad_platform_no_ad_network:
+        :param publisher_platforms:
         :param link_domain: Domain of the advertised object.
         :param need_precise: Additionally return recommended cpc and cpm to reach 5,10..95 percents of audience.
+        :param impressions_limit_period: Impressions limit period in seconds, must be a multiple of 86400(day)
         """
 
         params = self.get_set_params(locals())
@@ -524,8 +532,8 @@ class AdsCategory(BaseCategory):
         model = ads.GetTargetingStatsResponse
         return model(**response).response
 
-    async def get_upload_url(
-        self, ad_format: int, icon: Optional[int] = None, **kwargs
+    async def get_upload_u_r_l(
+        self, ad_format: int, icon: typing.Optional[int] = None, **kwargs
     ) -> ads.GetUploadURLResponseModel:
         """Returns URL to upload an ad photo to.
         :param ad_format: Ad format: *1 — image and text,, *2 — big image,, *3 — exclusive format,, *4 — community, square image,, *7 — special app format.
@@ -537,7 +545,7 @@ class AdsCategory(BaseCategory):
         model = ads.GetUploadURLResponse
         return model(**response).response
 
-    async def get_video_upload_url(
+    async def get_video_upload_u_r_l(
         self, **kwargs
     ) -> ads.GetVideoUploadURLResponseModel:
         """Returns URL to upload an ad video to."""
@@ -552,7 +560,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         target_group_id: int,
         contacts: str,
-        client_id: Optional[int] = None,
+        client_id: typing.Optional[int] = None,
         **kwargs
     ) -> ads.ImportTargetContactsResponseModel:
         """Imports a list of advertiser's contacts to count VK registered users against the target group.
@@ -619,16 +627,29 @@ class AdsCategory(BaseCategory):
         model = ads.UpdateClientsResponse
         return model(**response).response
 
+    async def update_office_users(
+        self, account_id: int, data: typing.List[str], **kwargs
+    ) -> ads.UpdateOfficeUsersResponseModel:
+        """Adds managers and/or supervisors to advertising account.
+        :param account_id: Advertising account ID.
+        :param data: Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("ads.updateOfficeUsers", params)
+        model = ads.UpdateOfficeUsersResponse
+        return model(**response).response
+
     async def update_target_group(
         self,
         account_id: int,
         target_group_id: int,
         name: str,
         lifetime: int,
-        client_id: Optional[int] = None,
-        domain: Optional[str] = None,
-        target_pixel_id: Optional[int] = None,
-        target_pixel_rules: Optional[str] = None,
+        client_id: typing.Optional[int] = None,
+        domain: typing.Optional[str] = None,
+        target_pixel_id: typing.Optional[int] = None,
+        target_pixel_rules: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a retarget group.

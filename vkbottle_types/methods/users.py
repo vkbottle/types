@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, users
 
@@ -8,9 +8,9 @@ from .base_category import BaseCategory
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        user_ids: Optional[List[str]] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        user_ids: typing.Optional[typing.List[str]] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> users.GetResponseModel:
         """Returns detailed information on users.
@@ -26,11 +26,11 @@ class UsersCategory(BaseCategory):
 
     async def get_followers(
         self,
-        user_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        user_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> users.GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
@@ -43,20 +43,16 @@ class UsersCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("users.getFollowers", params)
-        model = self.get_model(
-            {("fields",): users.GetFollowersFieldsResponse},
-            default=users.GetFollowersResponse,
-            params=params,
-        )
+        model = users.GetFollowersResponse
         return model(**response).response
 
     async def get_subscriptions(
         self,
-        user_id: Optional[int] = None,
-        extended: Optional[bool] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
+        user_id: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> users.GetSubscriptionsResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
@@ -77,11 +73,11 @@ class UsersCategory(BaseCategory):
         return model(**response).response
 
     async def report(
-        self, user_id: int, type: str, comment: Optional[str] = None, **kwargs
+        self, user_id: int, type: str, comment: typing.Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Reports (submits a complain about) a user.
         :param user_id: ID of the user about whom a complaint is being made.
-        :param type: Type of complaint: 'porn' – pornography, 'spam' – spamming, 'insult' – abusive behavior, 'advertisement' – disruptive advertisements
+        :param type: Type of complaint: 'porn' - pornography, 'spam' - spamming, 'insult' - abusive behavior, 'advertisement' - disruptive advertisements
         :param comment: Comment describing the complaint.
         """
 
@@ -92,38 +88,38 @@ class UsersCategory(BaseCategory):
 
     async def search(
         self,
-        q: Optional[str] = None,
-        sort: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        city: Optional[int] = None,
-        country: Optional[int] = None,
-        hometown: Optional[str] = None,
-        university_country: Optional[int] = None,
-        university: Optional[int] = None,
-        university_year: Optional[int] = None,
-        university_faculty: Optional[int] = None,
-        university_chair: Optional[int] = None,
-        sex: Optional[int] = None,
-        status: Optional[int] = None,
-        age_from: Optional[int] = None,
-        age_to: Optional[int] = None,
-        birth_day: Optional[int] = None,
-        birth_month: Optional[int] = None,
-        birth_year: Optional[int] = None,
-        online: Optional[bool] = None,
-        has_photo: Optional[bool] = None,
-        school_country: Optional[int] = None,
-        school_city: Optional[int] = None,
-        school_class: Optional[int] = None,
-        school: Optional[int] = None,
-        school_year: Optional[int] = None,
-        religion: Optional[str] = None,
-        company: Optional[str] = None,
-        position: Optional[str] = None,
-        group_id: Optional[int] = None,
-        from_list: Optional[List[str]] = None,
+        q: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        city: typing.Optional[int] = None,
+        country: typing.Optional[int] = None,
+        hometown: typing.Optional[str] = None,
+        university_country: typing.Optional[int] = None,
+        university: typing.Optional[int] = None,
+        university_year: typing.Optional[int] = None,
+        university_faculty: typing.Optional[int] = None,
+        university_chair: typing.Optional[int] = None,
+        sex: typing.Optional[int] = None,
+        status: typing.Optional[int] = None,
+        age_from: typing.Optional[int] = None,
+        age_to: typing.Optional[int] = None,
+        birth_day: typing.Optional[int] = None,
+        birth_month: typing.Optional[int] = None,
+        birth_year: typing.Optional[int] = None,
+        online: typing.Optional[bool] = None,
+        has_photo: typing.Optional[bool] = None,
+        school_country: typing.Optional[int] = None,
+        school_city: typing.Optional[int] = None,
+        school_class: typing.Optional[int] = None,
+        school: typing.Optional[int] = None,
+        school_year: typing.Optional[int] = None,
+        religion: typing.Optional[str] = None,
+        company: typing.Optional[str] = None,
+        position: typing.Optional[str] = None,
+        group_id: typing.Optional[int] = None,
+        from_list: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> users.SearchResponseModel:
         """Returns a list of users matching the search criteria.

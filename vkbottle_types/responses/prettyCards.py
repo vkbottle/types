@@ -1,64 +1,62 @@
-from typing import List, Optional
+import inspect
+import typing
 
-from vkbottle_types.objects import PrettyCardsPrettyCard
+from vkbottle_types.objects import PrettyCardsPrettycard
 
 from .base_response import BaseResponse
 
 
 class CreateResponse(BaseResponse):
-    response: Optional["CreateResponseModel"] = None
+    response: typing.Optional["CreateResponseModel"] = None
 
 
 class DeleteResponse(BaseResponse):
-    response: Optional["DeleteResponseModel"] = None
+    response: typing.Optional["DeleteResponseModel"] = None
 
 
 class EditResponse(BaseResponse):
-    response: Optional["EditResponseModel"] = None
+    response: typing.Optional["EditResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: Optional["GetUploadURLResponseModel"] = None
+    response: typing.Optional["GetUploadURLResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class CreateResponseModel(BaseResponse):
-    owner_id: Optional[int] = None
-    card_id: Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    card_id: typing.Optional[str] = None
 
 
 class DeleteResponseModel(BaseResponse):
-    owner_id: Optional[int] = None
-    card_id: Optional[str] = None
-    error: Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    card_id: typing.Optional[str] = None
+    error: typing.Optional[str] = None
 
 
 class EditResponseModel(BaseResponse):
-    owner_id: Optional[int] = None
-    card_id: Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    card_id: typing.Optional[str] = None
 
 
-GetByIdResponseModel = List[PrettyCardsPrettyCard]
+GetByIdResponseModel = typing.List[PrettyCardsPrettycard]
 
 
 GetUploadURLResponseModel = str
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["PrettyCardsPrettyCard"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["PrettyCardsPrettycard"]] = None
 
 
-CreateResponse.update_forward_refs()
-DeleteResponse.update_forward_refs()
-EditResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetUploadURLResponse.update_forward_refs()
-GetResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

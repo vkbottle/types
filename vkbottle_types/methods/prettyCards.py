@@ -1,20 +1,20 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import prettyCards
 
 from .base_category import BaseCategory
 
 
-class PrettyCardsCategory(BaseCategory):
+class PrettycardsCategory(BaseCategory):
     async def create(
         self,
         owner_id: int,
         photo: str,
         title: str,
         link: str,
-        price: Optional[str] = None,
-        price_old: Optional[str] = None,
-        button: Optional[str] = None,
+        price: typing.Optional[str] = None,
+        price_old: typing.Optional[str] = None,
+        button: typing.Optional[str] = None,
         **kwargs
     ) -> prettyCards.CreateResponseModel:
         """prettyCards.create method
@@ -49,12 +49,12 @@ class PrettyCardsCategory(BaseCategory):
         self,
         owner_id: int,
         card_id: int,
-        photo: Optional[str] = None,
-        title: Optional[str] = None,
-        link: Optional[str] = None,
-        price: Optional[str] = None,
-        price_old: Optional[str] = None,
-        button: Optional[str] = None,
+        photo: typing.Optional[str] = None,
+        title: typing.Optional[str] = None,
+        link: typing.Optional[str] = None,
+        price: typing.Optional[str] = None,
+        price_old: typing.Optional[str] = None,
+        button: typing.Optional[str] = None,
         **kwargs
     ) -> prettyCards.EditResponseModel:
         """prettyCards.edit method
@@ -76,8 +76,8 @@ class PrettyCardsCategory(BaseCategory):
     async def get(
         self,
         owner_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> prettyCards.GetResponseModel:
         """prettyCards.get method
@@ -92,7 +92,7 @@ class PrettyCardsCategory(BaseCategory):
         return model(**response).response
 
     async def get_by_id(
-        self, owner_id: int, card_ids: List[int], **kwargs
+        self, owner_id: int, card_ids: typing.List[int], **kwargs
     ) -> prettyCards.GetByIdResponseModel:
         """prettyCards.getById method
         :param owner_id:
@@ -104,7 +104,7 @@ class PrettyCardsCategory(BaseCategory):
         model = prettyCards.GetByIdResponse
         return model(**response).response
 
-    async def get_upload_url(self, **kwargs) -> prettyCards.GetUploadURLResponseModel:
+    async def get_upload_u_r_l(self, **kwargs) -> prettyCards.GetUploadURLResponseModel:
         """prettyCards.getUploadURL method"""
 
         params = self.get_set_params(locals())

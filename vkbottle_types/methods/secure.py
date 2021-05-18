@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, secure
 
@@ -7,12 +7,16 @@ from .base_category import BaseCategory
 
 class SecureCategory(BaseCategory):
     async def add_app_event(
-        self, user_id: int, activity_id: int, value: Optional[int] = None, **kwargs
+        self,
+        user_id: int,
+        activity_id: int,
+        value: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Adds user activity information to an application
         :param user_id: ID of a user to save the data
-        :param activity_id: there are 2 default activities: , * 1 – level. Works similar to ,, * 2 – points, saves points amount, Any other value is for saving completed missions
-        :param value: depends on activity_id: * 1 – number, current level number,, * 2 – number, current user's points amount, , Any other value is ignored
+        :param activity_id: there are 2 default activities: , * 1 - level. Works similar to ,, * 2 - points, saves points amount, Any other value is for saving completed missions
+        :param value: depends on activity_id: * 1 - number, current level number,, * 2 - number, current user's points amount, , Any other value is ignored
         """
 
         params = self.get_set_params(locals())
@@ -21,7 +25,10 @@ class SecureCategory(BaseCategory):
         return model(**response).response
 
     async def check_token(
-        self, token: Optional[str] = None, ip: Optional[str] = None, **kwargs
+        self,
+        token: typing.Optional[str] = None,
+        ip: typing.Optional[str] = None,
+        **kwargs
     ) -> secure.CheckTokenResponseModel:
         """Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
         :param token: client 'access_token'
@@ -43,10 +50,10 @@ class SecureCategory(BaseCategory):
 
     async def get_s_m_s_history(
         self,
-        user_id: Optional[int] = None,
-        date_from: Optional[int] = None,
-        date_to: Optional[int] = None,
-        limit: Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        date_from: typing.Optional[int] = None,
+        date_to: typing.Optional[int] = None,
+        limit: typing.Optional[int] = None,
         **kwargs
     ) -> secure.GetSMSHistoryResponseModel:
         """Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
@@ -63,12 +70,12 @@ class SecureCategory(BaseCategory):
 
     async def get_transactions_history(
         self,
-        type: Optional[int] = None,
-        uid_from: Optional[int] = None,
-        uid_to: Optional[int] = None,
-        date_from: Optional[int] = None,
-        date_to: Optional[int] = None,
-        limit: Optional[int] = None,
+        type: typing.Optional[int] = None,
+        uid_from: typing.Optional[int] = None,
+        uid_to: typing.Optional[int] = None,
+        date_from: typing.Optional[int] = None,
+        date_to: typing.Optional[int] = None,
+        limit: typing.Optional[int] = None,
         **kwargs
     ) -> secure.GetTransactionsHistoryResponseModel:
         """Shows history of votes transaction between users and the application.
@@ -86,7 +93,7 @@ class SecureCategory(BaseCategory):
         return model(**response).response
 
     async def get_user_level(
-        self, user_ids: List[int], **kwargs
+        self, user_ids: typing.List[int], **kwargs
     ) -> secure.GetUserLevelResponseModel:
         """Returns one of the previously set game levels of one or more users in the application.
         :param user_ids:
@@ -98,7 +105,7 @@ class SecureCategory(BaseCategory):
         return model(**response).response
 
     async def give_event_sticker(
-        self, user_ids: List[int], achievement_id: int, **kwargs
+        self, user_ids: typing.List[int], achievement_id: int, **kwargs
     ) -> secure.GiveEventStickerResponseModel:
         """Opens the game achievement and gives the user a sticker
         :param user_ids:
@@ -113,8 +120,8 @@ class SecureCategory(BaseCategory):
     async def send_notification(
         self,
         message: str,
-        user_ids: Optional[List[int]] = None,
-        user_id: Optional[int] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
+        user_id: typing.Optional[int] = None,
         **kwargs
     ) -> secure.SendNotificationResponseModel:
         """Sends notification to the user.
@@ -143,10 +150,10 @@ class SecureCategory(BaseCategory):
 
     async def set_counter(
         self,
-        counters: Optional[List[str]] = None,
-        user_id: Optional[int] = None,
-        counter: Optional[int] = None,
-        increment: Optional[bool] = None,
+        counters: typing.Optional[typing.List[str]] = None,
+        user_id: typing.Optional[int] = None,
+        counter: typing.Optional[int] = None,
+        increment: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Sets a counter which is shown to the user in bold in the left menu.

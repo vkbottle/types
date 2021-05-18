@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import StorageValue
 
@@ -6,30 +7,19 @@ from .base_response import BaseResponse
 
 
 class GetKeysResponse(BaseResponse):
-    response: Optional["GetKeysResponseModel"] = None
+    response: typing.Optional["GetKeysResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
-class GetV5110Response(BaseResponse):
-    response: Optional["GetV5110ResponseModel"] = None
+GetKeysResponseModel = typing.List[str]
 
 
-class GetWithKeysResponse(BaseResponse):
-    response: Optional["GetWithKeysResponseModel"] = None
+GetResponseModel = typing.List[StorageValue]
 
 
-GetKeysResponseModel = List[str]
-
-GetResponseModel = str
-
-GetV5110ResponseModel = List[StorageValue]
-
-GetWithKeysResponseModel = List[StorageValue]
-
-GetKeysResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-GetV5110Response.update_forward_refs()
-GetWithKeysResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

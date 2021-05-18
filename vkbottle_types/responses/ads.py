@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     AdsAccount,
@@ -22,6 +23,7 @@ from vkbottle_types.objects import (
     AdsTargSuggestionsCities,
     AdsTargSuggestionsRegions,
     AdsTargSuggestionsSchools,
+    AdsUpdateofficeusersResult,
     AdsUsers,
 )
 
@@ -29,175 +31,182 @@ from .base_response import BaseResponse
 
 
 class AddOfficeUsersResponse(BaseResponse):
-    response: Optional["AddOfficeUsersResponseModel"] = None
+    response: typing.Optional["AddOfficeUsersResponseModel"] = None
 
 
 class CheckLinkResponse(BaseResponse):
-    response: Optional["CheckLinkResponseModel"] = None
+    response: typing.Optional["CheckLinkResponseModel"] = None
 
 
 class CreateAdsResponse(BaseResponse):
-    response: Optional["CreateAdsResponseModel"] = None
+    response: typing.Optional["CreateAdsResponseModel"] = None
 
 
 class CreateCampaignsResponse(BaseResponse):
-    response: Optional["CreateCampaignsResponseModel"] = None
+    response: typing.Optional["CreateCampaignsResponseModel"] = None
 
 
 class CreateClientsResponse(BaseResponse):
-    response: Optional["CreateClientsResponseModel"] = None
+    response: typing.Optional["CreateClientsResponseModel"] = None
 
 
 class CreateTargetGroupResponse(BaseResponse):
-    response: Optional["CreateTargetGroupResponseModel"] = None
+    response: typing.Optional["CreateTargetGroupResponseModel"] = None
 
 
 class DeleteAdsResponse(BaseResponse):
-    response: Optional["DeleteAdsResponseModel"] = None
+    response: typing.Optional["DeleteAdsResponseModel"] = None
 
 
 class DeleteCampaignsResponse(BaseResponse):
-    response: Optional["DeleteCampaignsResponseModel"] = None
+    response: typing.Optional["DeleteCampaignsResponseModel"] = None
 
 
 class DeleteClientsResponse(BaseResponse):
-    response: Optional["DeleteClientsResponseModel"] = None
+    response: typing.Optional["DeleteClientsResponseModel"] = None
 
 
 class GetAccountsResponse(BaseResponse):
-    response: Optional["GetAccountsResponseModel"] = None
+    response: typing.Optional["GetAccountsResponseModel"] = None
 
 
 class GetAdsLayoutResponse(BaseResponse):
-    response: Optional["GetAdsLayoutResponseModel"] = None
+    response: typing.Optional["GetAdsLayoutResponseModel"] = None
 
 
 class GetAdsTargetingResponse(BaseResponse):
-    response: Optional["GetAdsTargetingResponseModel"] = None
+    response: typing.Optional["GetAdsTargetingResponseModel"] = None
 
 
 class GetAdsResponse(BaseResponse):
-    response: Optional["GetAdsResponseModel"] = None
+    response: typing.Optional["GetAdsResponseModel"] = None
 
 
 class GetBudgetResponse(BaseResponse):
-    response: Optional["GetBudgetResponseModel"] = None
+    response: typing.Optional["GetBudgetResponseModel"] = None
 
 
 class GetCampaignsResponse(BaseResponse):
-    response: Optional["GetCampaignsResponseModel"] = None
+    response: typing.Optional["GetCampaignsResponseModel"] = None
 
 
 class GetCategoriesResponse(BaseResponse):
-    response: Optional["GetCategoriesResponseModel"] = None
+    response: typing.Optional["GetCategoriesResponseModel"] = None
 
 
 class GetClientsResponse(BaseResponse):
-    response: Optional["GetClientsResponseModel"] = None
+    response: typing.Optional["GetClientsResponseModel"] = None
 
 
 class GetDemographicsResponse(BaseResponse):
-    response: Optional["GetDemographicsResponseModel"] = None
+    response: typing.Optional["GetDemographicsResponseModel"] = None
 
 
 class GetFloodStatsResponse(BaseResponse):
-    response: Optional["GetFloodStatsResponseModel"] = None
+    response: typing.Optional["GetFloodStatsResponseModel"] = None
 
 
 class GetLookalikeRequestsResponse(BaseResponse):
-    response: Optional["GetLookalikeRequestsResponseModel"] = None
+    response: typing.Optional["GetLookalikeRequestsResponseModel"] = None
 
 
 class GetMusiciansResponse(BaseResponse):
-    response: Optional["GetMusiciansResponseModel"] = None
+    response: typing.Optional["GetMusiciansResponseModel"] = None
 
 
 class GetOfficeUsersResponse(BaseResponse):
-    response: Optional["GetOfficeUsersResponseModel"] = None
+    response: typing.Optional["GetOfficeUsersResponseModel"] = None
 
 
 class GetPostsReachResponse(BaseResponse):
-    response: Optional["GetPostsReachResponseModel"] = None
+    response: typing.Optional["GetPostsReachResponseModel"] = None
 
 
 class GetRejectionReasonResponse(BaseResponse):
-    response: Optional["GetRejectionReasonResponseModel"] = None
+    response: typing.Optional["GetRejectionReasonResponseModel"] = None
 
 
 class GetStatisticsResponse(BaseResponse):
-    response: Optional["GetStatisticsResponseModel"] = None
+    response: typing.Optional["GetStatisticsResponseModel"] = None
 
 
 class GetSuggestionsCitiesResponse(BaseResponse):
-    response: Optional["GetSuggestionsCitiesResponseModel"] = None
+    response: typing.Optional["GetSuggestionsCitiesResponseModel"] = None
 
 
 class GetSuggestionsRegionsResponse(BaseResponse):
-    response: Optional["GetSuggestionsRegionsResponseModel"] = None
+    response: typing.Optional["GetSuggestionsRegionsResponseModel"] = None
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: Optional["GetSuggestionsResponseModel"] = None
+    response: typing.Optional["GetSuggestionsResponseModel"] = None
 
 
 class GetSuggestionsSchoolsResponse(BaseResponse):
-    response: Optional["GetSuggestionsSchoolsResponseModel"] = None
+    response: typing.Optional["GetSuggestionsSchoolsResponseModel"] = None
 
 
 class GetTargetGroupsResponse(BaseResponse):
-    response: Optional["GetTargetGroupsResponseModel"] = None
+    response: typing.Optional["GetTargetGroupsResponseModel"] = None
 
 
 class GetTargetingStatsResponse(BaseResponse):
-    response: Optional["GetTargetingStatsResponseModel"] = None
+    response: typing.Optional["GetTargetingStatsResponseModel"] = None
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: Optional["GetUploadURLResponseModel"] = None
+    response: typing.Optional["GetUploadURLResponseModel"] = None
 
 
 class GetVideoUploadURLResponse(BaseResponse):
-    response: Optional["GetVideoUploadURLResponseModel"] = None
+    response: typing.Optional["GetVideoUploadURLResponseModel"] = None
 
 
 class ImportTargetContactsResponse(BaseResponse):
-    response: Optional["ImportTargetContactsResponseModel"] = None
+    response: typing.Optional["ImportTargetContactsResponseModel"] = None
 
 
 class RemoveOfficeUsersResponse(BaseResponse):
-    response: Optional["RemoveOfficeUsersResponseModel"] = None
+    response: typing.Optional["RemoveOfficeUsersResponseModel"] = None
 
 
 class UpdateAdsResponse(BaseResponse):
-    response: Optional["UpdateAdsResponseModel"] = None
+    response: typing.Optional["UpdateAdsResponseModel"] = None
 
 
 class UpdateCampaignsResponse(BaseResponse):
-    response: Optional["UpdateCampaignsResponseModel"] = None
+    response: typing.Optional["UpdateCampaignsResponseModel"] = None
 
 
 class UpdateClientsResponse(BaseResponse):
-    response: Optional["UpdateClientsResponseModel"] = None
+    response: typing.Optional["UpdateClientsResponseModel"] = None
+
+
+class UpdateOfficeUsersResponse(BaseResponse):
+    response: typing.Optional["UpdateOfficeUsersResponseModel"] = None
 
 
 AddOfficeUsersResponseModel = bool
 
-CheckLinkResponseModel = Optional[AdsLinkStatus]
 
-CreateAdsResponseModel = List[int]
-
-CreateCampaignsResponseModel = List[int]
+CheckLinkResponseModel = AdsLinkStatus
 
 
-CreateClientsResponseModel = List[int]
+CreateAdsResponseModel = typing.List[int]
+
+
+CreateCampaignsResponseModel = typing.List[int]
+
+
+CreateClientsResponseModel = typing.List[int]
 
 
 class CreateTargetGroupResponseModel(BaseResponse):
-    id: Optional[int] = None
-    pixel: Optional[str] = None
+    id: typing.Optional[int] = None
+    pixel: typing.Optional[str] = None
 
 
-DeleteAdsResponseModel = List[int]
+DeleteAdsResponseModel = typing.List[int]
 
 
 DeleteCampaignsResponseModel = int
@@ -205,60 +214,76 @@ DeleteCampaignsResponseModel = int
 
 DeleteClientsResponseModel = int
 
-GetAccountsResponseModel = List[AdsAccount]
 
-GetAdsLayoutResponseModel = List[AdsAdLayout]
+GetAccountsResponseModel = typing.List[AdsAccount]
 
-GetAdsTargetingResponseModel = List[AdsTargSettings]
 
-GetAdsResponseModel = List[AdsAd]
+GetAdsLayoutResponseModel = typing.List[AdsAdLayout]
+
+
+GetAdsTargetingResponseModel = typing.List[AdsTargSettings]
+
+
+GetAdsResponseModel = typing.List[AdsAd]
 
 
 GetBudgetResponseModel = int
 
-GetCampaignsResponseModel = List[AdsCampaign]
+
+GetCampaignsResponseModel = typing.List[AdsCampaign]
 
 
 class GetCategoriesResponseModel(BaseResponse):
-    v1: Optional[List["AdsCategory"]] = None
-    v2: Optional[List["AdsCategory"]] = None
+    v1: typing.Optional[typing.List["AdsCategory"]] = None
+    v2: typing.Optional[typing.List["AdsCategory"]] = None
 
 
-GetClientsResponseModel = List[AdsClient]
+GetClientsResponseModel = typing.List[AdsClient]
 
-GetDemographicsResponseModel = List[AdsDemoStats]
 
-GetFloodStatsResponseModel = Optional[AdsFloodStats]
+GetDemographicsResponseModel = typing.List[AdsDemoStats]
+
+
+GetFloodStatsResponseModel = AdsFloodStats
 
 
 class GetLookalikeRequestsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AdsLookalikeRequest"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AdsLookalikeRequest"]] = None
 
 
 class GetMusiciansResponseModel(BaseResponse):
-    items: Optional[List["AdsMusician"]] = None
+    items: typing.Optional[typing.List["AdsMusician"]] = None
 
 
-GetOfficeUsersResponseModel = List[AdsUsers]
+GetOfficeUsersResponseModel = typing.List[AdsUsers]
 
-GetPostsReachResponseModel = List[AdsPromotedPostReach]
 
-GetRejectionReasonResponseModel = Optional[AdsRejectReason]
+GetPostsReachResponseModel = typing.List[AdsPromotedPostReach]
 
-GetStatisticsResponseModel = List[AdsStats]
 
-GetSuggestionsCitiesResponseModel = List[AdsTargSuggestionsCities]
+GetRejectionReasonResponseModel = AdsRejectReason
 
-GetSuggestionsRegionsResponseModel = List[AdsTargSuggestionsRegions]
 
-GetSuggestionsResponseModel = List[AdsTargSuggestions]
+GetStatisticsResponseModel = typing.List[AdsStats]
 
-GetSuggestionsSchoolsResponseModel = List[AdsTargSuggestionsSchools]
 
-GetTargetGroupsResponseModel = List[AdsTargetGroup]
+GetSuggestionsCitiesResponseModel = typing.List[AdsTargSuggestionsCities]
 
-GetTargetingStatsResponseModel = Optional[AdsTargStats]
+
+GetSuggestionsRegionsResponseModel = typing.List[AdsTargSuggestionsRegions]
+
+
+GetSuggestionsResponseModel = typing.List[AdsTargSuggestions]
+
+
+GetSuggestionsSchoolsResponseModel = typing.List[AdsTargSuggestionsSchools]
+
+
+GetTargetGroupsResponseModel = typing.List[AdsTargetGroup]
+
+
+GetTargetingStatsResponseModel = AdsTargStats
 
 
 GetUploadURLResponseModel = str
@@ -273,7 +298,7 @@ ImportTargetContactsResponseModel = int
 RemoveOfficeUsersResponseModel = bool
 
 
-UpdateAdsResponseModel = List[int]
+UpdateAdsResponseModel = typing.List[int]
 
 
 UpdateCampaignsResponseModel = int
@@ -281,41 +306,10 @@ UpdateCampaignsResponseModel = int
 
 UpdateClientsResponseModel = int
 
-AddOfficeUsersResponse.update_forward_refs()
-CheckLinkResponse.update_forward_refs()
-CreateAdsResponse.update_forward_refs()
-CreateCampaignsResponse.update_forward_refs()
-CreateClientsResponse.update_forward_refs()
-CreateTargetGroupResponse.update_forward_refs()
-DeleteAdsResponse.update_forward_refs()
-DeleteCampaignsResponse.update_forward_refs()
-DeleteClientsResponse.update_forward_refs()
-GetAccountsResponse.update_forward_refs()
-GetAdsLayoutResponse.update_forward_refs()
-GetAdsTargetingResponse.update_forward_refs()
-GetAdsResponse.update_forward_refs()
-GetBudgetResponse.update_forward_refs()
-GetCampaignsResponse.update_forward_refs()
-GetCategoriesResponse.update_forward_refs()
-GetClientsResponse.update_forward_refs()
-GetDemographicsResponse.update_forward_refs()
-GetFloodStatsResponse.update_forward_refs()
-GetLookalikeRequestsResponse.update_forward_refs()
-GetMusiciansResponse.update_forward_refs()
-GetOfficeUsersResponse.update_forward_refs()
-GetPostsReachResponse.update_forward_refs()
-GetRejectionReasonResponse.update_forward_refs()
-GetStatisticsResponse.update_forward_refs()
-GetSuggestionsCitiesResponse.update_forward_refs()
-GetSuggestionsRegionsResponse.update_forward_refs()
-GetSuggestionsResponse.update_forward_refs()
-GetSuggestionsSchoolsResponse.update_forward_refs()
-GetTargetGroupsResponse.update_forward_refs()
-GetTargetingStatsResponse.update_forward_refs()
-GetUploadURLResponse.update_forward_refs()
-GetVideoUploadURLResponse.update_forward_refs()
-ImportTargetContactsResponse.update_forward_refs()
-RemoveOfficeUsersResponse.update_forward_refs()
-UpdateAdsResponse.update_forward_refs()
-UpdateCampaignsResponse.update_forward_refs()
-UpdateClientsResponse.update_forward_refs()
+
+UpdateOfficeUsersResponseModel = typing.List[AdsUpdateofficeusersResult]
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

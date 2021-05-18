@@ -1,12 +1,13 @@
-from typing import List, Optional, Union
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     GroupsGroupFull,
     NewsfeedList,
     NewsfeedListFull,
     NewsfeedNewsfeedItem,
+    UsersSubscriptionsItem,
     UsersUserFull,
-    UsersUserXtrType,
     WallWallpostFull,
     WallWallpostToId,
 )
@@ -15,135 +16,133 @@ from .base_response import BaseResponse
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: Optional["GetBannedExtendedResponseModel"] = None
+    response: typing.Optional["GetBannedExtendedResponseModel"] = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: Optional["GetBannedResponseModel"] = None
+    response: typing.Optional["GetBannedResponseModel"] = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: Optional["GetCommentsResponseModel"] = None
+    response: typing.Optional["GetCommentsResponseModel"] = None
 
 
 class GetListsExtendedResponse(BaseResponse):
-    response: Optional["GetListsExtendedResponseModel"] = None
+    response: typing.Optional["GetListsExtendedResponseModel"] = None
 
 
 class GetListsResponse(BaseResponse):
-    response: Optional["GetListsResponseModel"] = None
+    response: typing.Optional["GetListsResponseModel"] = None
 
 
 class GetMentionsResponse(BaseResponse):
-    response: Optional["GetMentionsResponseModel"] = None
+    response: typing.Optional["GetMentionsResponseModel"] = None
 
 
 class GetRecommendedResponse(BaseResponse):
-    response: Optional["GetRecommendedResponseModel"] = None
+    response: typing.Optional["GetRecommendedResponseModel"] = None
 
 
 class GetSuggestedSourcesResponse(BaseResponse):
-    response: Optional["GetSuggestedSourcesResponseModel"] = None
+    response: typing.Optional["GetSuggestedSourcesResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
+
+
+class IgnoreItemResponse(BaseResponse):
+    response: typing.Optional["IgnoreItemResponseModel"] = None
 
 
 class SaveListResponse(BaseResponse):
-    response: Optional["SaveListResponseModel"] = None
+    response: typing.Optional["SaveListResponseModel"] = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: Optional["SearchExtendedResponseModel"] = None
+    response: typing.Optional["SearchExtendedResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
-    groups: Optional[List["UsersUserFull"]] = None
-    profiles: Optional[List["GroupsGroupFull"]] = None
+    groups: typing.Optional[typing.List["UsersUserFull"]] = None
+    profiles: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
-    groups: Optional[List[int]] = None
-    members: Optional[List[int]] = None
+    groups: typing.Optional[typing.List[int]] = None
+    members: typing.Optional[typing.List[int]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
-    items: Optional[List["NewsfeedNewsfeedItem"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
-    next_from: Optional[str] = None
+    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    next_from: typing.Optional[str] = None
 
 
 class GetListsExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["NewsfeedListFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NewsfeedListFull"]] = None
 
 
 class GetListsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["NewsfeedList"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NewsfeedList"]] = None
 
 
 class GetMentionsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallpostToId"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostToId"]] = None
 
 
 class GetRecommendedResponseModel(BaseResponse):
-    items: Optional[List["NewsfeedNewsfeedItem"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
-    new_offset: Optional[str] = None
-    next_from: Optional[str] = None
+    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    next_from: typing.Optional[str] = None
 
 
 class GetSuggestedSourcesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[Union["GroupsGroupFull", "UsersUserXtrType"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersSubscriptionsItem"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    items: Optional[List["NewsfeedNewsfeedItem"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
-    next_from: Optional[str] = None
+    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    next_from: typing.Optional[str] = None
+
+
+class IgnoreItemResponseModel(BaseResponse):
+    status: typing.Optional[bool] = None
 
 
 SaveListResponseModel = int
 
 
 class SearchExtendedResponseModel(BaseResponse):
-    items: Optional[List["WallWallpostFull"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
-    suggested_queries: Optional[List[str]] = None
-    next_from: Optional[str] = None
-    count: Optional[int] = None
-    total_count: Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    suggested_queries: typing.Optional[typing.List[str]] = None
+    next_from: typing.Optional[str] = None
+    count: typing.Optional[int] = None
+    total_count: typing.Optional[int] = None
 
 
 class SearchResponseModel(BaseResponse):
-    items: Optional[List["WallWallpostFull"]] = None
-    suggested_queries: Optional[List[str]] = None
-    next_from: Optional[str] = None
-    count: Optional[int] = None
-    total_count: Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    suggested_queries: typing.Optional[typing.List[str]] = None
+    next_from: typing.Optional[str] = None
+    count: typing.Optional[int] = None
+    total_count: typing.Optional[int] = None
 
 
-GetBannedExtendedResponse.update_forward_refs()
-GetBannedResponse.update_forward_refs()
-GetCommentsResponse.update_forward_refs()
-GetListsExtendedResponse.update_forward_refs()
-GetListsResponse.update_forward_refs()
-GetMentionsResponse.update_forward_refs()
-GetRecommendedResponse.update_forward_refs()
-GetSuggestedSourcesResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-SaveListResponse.update_forward_refs()
-SearchExtendedResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

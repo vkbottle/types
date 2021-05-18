@@ -1,4 +1,5 @@
-from typing import Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import StatusStatus
 
@@ -6,9 +7,12 @@ from .base_response import BaseResponse
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
-GetResponseModel = Optional[StatusStatus]
+GetResponseModel = StatusStatus
 
-GetResponse.update_forward_refs()
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

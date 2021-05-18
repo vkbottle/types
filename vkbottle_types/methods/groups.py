@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, groups
 
@@ -13,14 +13,14 @@ class GroupsCategory(BaseCategory):
         address: str,
         country_id: int,
         city_id: int,
-        latitude: float,
-        longitude: float,
-        additional_address: Optional[str] = None,
-        metro_id: Optional[int] = None,
-        phone: Optional[str] = None,
-        work_info_status: Optional[str] = None,
-        timetable: Optional[str] = None,
-        is_main_address: Optional[bool] = None,
+        latitude: int,
+        longitude: int,
+        additional_address: typing.Optional[str] = None,
+        metro_id: typing.Optional[int] = None,
+        phone: typing.Optional[str] = None,
+        work_info_status: typing.Optional[str] = None,
+        timetable: typing.Optional[str] = None,
+        is_main_address: typing.Optional[bool] = None,
         **kwargs
     ) -> groups.AddAddressResponseModel:
         """groups.addAddress method
@@ -49,7 +49,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         url: str,
         title: str,
-        secret_key: Optional[str] = None,
+        secret_key: typing.Optional[str] = None,
         **kwargs
     ) -> groups.AddCallbackServerResponseModel:
         """groups.addCallbackServer method
@@ -65,7 +65,7 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def add_link(
-        self, group_id: int, link: str, text: Optional[str] = None, **kwargs
+        self, group_id: int, link: str, text: typing.Optional[str] = None, **kwargs
     ) -> groups.AddLinkResponseModel:
         """Allows to add a link to the community.
         :param group_id: Community ID.
@@ -94,11 +94,11 @@ class GroupsCategory(BaseCategory):
     async def ban(
         self,
         group_id: int,
-        owner_id: Optional[int] = None,
-        end_date: Optional[int] = None,
-        reason: Optional[int] = None,
-        comment: Optional[str] = None,
-        comment_visible: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        end_date: typing.Optional[int] = None,
+        reason: typing.Optional[int] = None,
+        comment: typing.Optional[str] = None,
+        comment_visible: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """groups.ban method
@@ -118,23 +118,36 @@ class GroupsCategory(BaseCategory):
     async def create(
         self,
         title: str,
-        description: Optional[str] = None,
-        type: Optional[str] = None,
-        public_category: Optional[int] = None,
-        subtype: Optional[int] = None,
+        description: typing.Optional[str] = None,
+        type: typing.Optional[str] = None,
+        public_category: typing.Optional[int] = None,
+        subtype: typing.Optional[int] = None,
         **kwargs
     ) -> groups.CreateResponseModel:
         """Creates a new community.
         :param title: Community title.
         :param description: Community description (ignored for 'type' = 'public').
-        :param type: Community type. Possible values: *'group' – group,, *'event' – event,, *'public' – public page
+        :param type: Community type. Possible values: *'group' - group,, *'event' - event,, *'public' - public page
         :param public_category: Category ID (for 'type' = 'public' only).
-        :param subtype: Public page subtype. Possible values: *'1' – place or small business,, *'2' – company, organization or website,, *'3' – famous person or group of people,, *'4' – product or work of art.
+        :param subtype: Public page subtype. Possible values: *'1' - place or small business,, *'2' - company, organization or website,, *'3' - famous person or group of people,, *'4' - product or work of art.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.create", params)
         model = groups.CreateResponse
+        return model(**response).response
+
+    async def delete_address(
+        self, group_id: int, address_id: int, **kwargs
+    ) -> base.OkResponseModel:
+        """groups.deleteAddress method
+        :param group_id:
+        :param address_id:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.deleteAddress", params)
+        model = base.OkResponse
         return model(**response).response
 
     async def delete_callback_server(
@@ -176,50 +189,50 @@ class GroupsCategory(BaseCategory):
     async def edit(
         self,
         group_id: int,
-        title: Optional[str] = None,
-        description: Optional[str] = None,
-        screen_name: Optional[str] = None,
-        access: Optional[int] = None,
-        website: Optional[str] = None,
-        subject: Optional[str] = None,
-        email: Optional[str] = None,
-        phone: Optional[str] = None,
-        rss: Optional[str] = None,
-        event_start_date: Optional[int] = None,
-        event_finish_date: Optional[int] = None,
-        event_group_id: Optional[int] = None,
-        public_category: Optional[int] = None,
-        public_subcategory: Optional[int] = None,
-        public_date: Optional[str] = None,
-        wall: Optional[int] = None,
-        topics: Optional[int] = None,
-        photos: Optional[int] = None,
-        video: Optional[int] = None,
-        audio: Optional[int] = None,
-        links: Optional[bool] = None,
-        events: Optional[bool] = None,
-        places: Optional[bool] = None,
-        contacts: Optional[bool] = None,
-        docs: Optional[int] = None,
-        wiki: Optional[int] = None,
-        messages: Optional[bool] = None,
-        articles: Optional[bool] = None,
-        addresses: Optional[bool] = None,
-        age_limits: Optional[int] = None,
-        market: Optional[bool] = None,
-        market_comments: Optional[bool] = None,
-        market_country: Optional[List[int]] = None,
-        market_city: Optional[List[int]] = None,
-        market_currency: Optional[int] = None,
-        market_contact: Optional[int] = None,
-        market_wiki: Optional[int] = None,
-        obscene_filter: Optional[bool] = None,
-        obscene_stopwords: Optional[bool] = None,
-        obscene_words: Optional[List[str]] = None,
-        main_section: Optional[int] = None,
-        secondary_section: Optional[int] = None,
-        country: Optional[int] = None,
-        city: Optional[int] = None,
+        title: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        screen_name: typing.Optional[str] = None,
+        access: typing.Optional[int] = None,
+        website: typing.Optional[str] = None,
+        subject: typing.Optional[str] = None,
+        email: typing.Optional[str] = None,
+        phone: typing.Optional[str] = None,
+        rss: typing.Optional[str] = None,
+        event_start_date: typing.Optional[int] = None,
+        event_finish_date: typing.Optional[int] = None,
+        event_group_id: typing.Optional[int] = None,
+        public_category: typing.Optional[int] = None,
+        public_subcategory: typing.Optional[int] = None,
+        public_date: typing.Optional[str] = None,
+        wall: typing.Optional[int] = None,
+        topics: typing.Optional[int] = None,
+        photos: typing.Optional[int] = None,
+        video: typing.Optional[int] = None,
+        audio: typing.Optional[int] = None,
+        links: typing.Optional[bool] = None,
+        events: typing.Optional[bool] = None,
+        places: typing.Optional[bool] = None,
+        contacts: typing.Optional[bool] = None,
+        docs: typing.Optional[int] = None,
+        wiki: typing.Optional[int] = None,
+        messages: typing.Optional[bool] = None,
+        articles: typing.Optional[bool] = None,
+        addresses: typing.Optional[bool] = None,
+        age_limits: typing.Optional[int] = None,
+        market: typing.Optional[bool] = None,
+        market_comments: typing.Optional[bool] = None,
+        market_country: typing.Optional[typing.List[int]] = None,
+        market_city: typing.Optional[typing.List[int]] = None,
+        market_currency: typing.Optional[int] = None,
+        market_contact: typing.Optional[int] = None,
+        market_wiki: typing.Optional[int] = None,
+        obscene_filter: typing.Optional[bool] = None,
+        obscene_stopwords: typing.Optional[bool] = None,
+        obscene_words: typing.Optional[typing.List[str]] = None,
+        main_section: typing.Optional[int] = None,
+        secondary_section: typing.Optional[int] = None,
+        country: typing.Optional[int] = None,
+        city: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a community.
@@ -227,9 +240,9 @@ class GroupsCategory(BaseCategory):
         :param title: Community title.
         :param description: Community description.
         :param screen_name: Community screen name.
-        :param access: Community type. Possible values: *'0' – open,, *'1' – closed,, *'2' – private.
+        :param access: Community type. Possible values: *'0' - open,, *'1' - closed,, *'2' - private.
         :param website: Website that will be displayed in the community information field.
-        :param subject: Community subject. Possible values: , *'1' – auto/moto,, *'2' – activity holidays,, *'3' – business,, *'4' – pets,, *'5' – health,, *'6' – dating and communication, , *'7' – games,, *'8' – IT (computers and software),, *'9' – cinema,, *'10' – beauty and fashion,, *'11' – cooking,, *'12' – art and culture,, *'13' – literature,, *'14' – mobile services and internet,, *'15' – music,, *'16' – science and technology,, *'17' – real estate,, *'18' – news and media,, *'19' – security,, *'20' – education,, *'21' – home and renovations,, *'22' – politics,, *'23' – food,, *'24' – industry,, *'25' – travel,, *'26' – work,, *'27' – entertainment,, *'28' – religion,, *'29' – family,, *'30' – sports,, *'31' – insurance,, *'32' – television,, *'33' – goods and services,, *'34' – hobbies,, *'35' – finance,, *'36' – photo,, *'37' – esoterics,, *'38' – electronics and appliances,, *'39' – erotic,, *'40' – humor,, *'41' – society, humanities,, *'42' – design and graphics.
+        :param subject: Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.
         :param email: Organizer email (for events).
         :param phone: Organizer phone number (for events).
         :param rss: RSS feed address for import (available only to communities with special permission. Contact vk.com/support to get it.
@@ -239,30 +252,30 @@ class GroupsCategory(BaseCategory):
         :param public_category: Public page category ID.
         :param public_subcategory: Public page subcategory ID.
         :param public_date: Founding date of a company or organization owning the community in "dd.mm.YYYY" format.
-        :param wall: Wall settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (groups and events only),, *'3' – closed (groups and events only).
-        :param topics: Board topics settings. Possbile values: , *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
-        :param photos: Photos settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
-        :param video: Video settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
-        :param audio: Audio settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
-        :param links: Links settings (for public pages only). Possible values: *'0' – disabled,, *'1' – enabled.
-        :param events: Events settings (for public pages only). Possible values: *'0' – disabled,, *'1' – enabled.
-        :param places: Places settings (for public pages only). Possible values: *'0' – disabled,, *'1' – enabled.
-        :param contacts: Contacts settings (for public pages only). Possible values: *'0' – disabled,, *'1' – enabled.
-        :param docs: Documents settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
-        :param wiki: Wiki pages settings. Possible values: *'0' – disabled,, *'1' – open,, *'2' – limited (for groups and events only).
+        :param wall: Wall settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (groups and events only),, *'3' - closed (groups and events only).
+        :param topics: Board topics settings. Possbile values: , *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+        :param photos: Photos settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+        :param video: Video settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+        :param audio: Audio settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+        :param links: Links settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+        :param events: Events settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+        :param places: Places settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+        :param contacts: Contacts settings (for public pages only). Possible values: *'0' - disabled,, *'1' - enabled.
+        :param docs: Documents settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
+        :param wiki: Wiki pages settings. Possible values: *'0' - disabled,, *'1' - open,, *'2' - limited (for groups and events only).
         :param messages: Community messages. Possible values: *'0' — disabled,, *'1' — enabled.
         :param articles:
         :param addresses:
         :param age_limits: Community age limits. Possible values: *'1' — no limits,, *'2' — 16+,, *'3' — 18+.
-        :param market: Market settings. Possible values: *'0' – disabled,, *'1' – enabled.
-        :param market_comments: market comments settings. Possible values: *'0' – disabled,, *'1' – enabled.
+        :param market: Market settings. Possible values: *'0' - disabled,, *'1' - enabled.
+        :param market_comments: market comments settings. Possible values: *'0' - disabled,, *'1' - enabled.
         :param market_country: Market delivery countries.
         :param market_city: Market delivery cities (if only one country is specified).
-        :param market_currency: Market currency settings. Possbile values: , *'643' – Russian rubles,, *'980' – Ukrainian hryvnia,, *'398' – Kazakh tenge,, *'978' – Euro,, *'840' – US dollars
+        :param market_currency: Market currency settings. Possbile values: , *'643' - Russian rubles,, *'980' - Ukrainian hryvnia,, *'398' - Kazakh tenge,, *'978' - Euro,, *'840' - US dollars
         :param market_contact: Seller contact for market. Set '0' for community messages.
         :param market_wiki: ID of a wiki page with market description.
-        :param obscene_filter: Obscene expressions filter in comments. Possible values: , *'0' – disabled,, *'1' – enabled.
-        :param obscene_stopwords: Stopwords filter in comments. Possible values: , *'0' – disabled,, *'1' – enabled.
+        :param obscene_filter: Obscene expressions filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
+        :param obscene_stopwords: Stopwords filter in comments. Possible values: , *'0' - disabled,, *'1' - enabled.
         :param obscene_words: Keywords for stopwords filter.
         :param main_section:
         :param secondary_section:
@@ -279,18 +292,18 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         address_id: int,
-        title: Optional[str] = None,
-        address: Optional[str] = None,
-        additional_address: Optional[str] = None,
-        country_id: Optional[int] = None,
-        city_id: Optional[int] = None,
-        metro_id: Optional[int] = None,
-        latitude: Optional[float] = None,
-        longitude: Optional[float] = None,
-        phone: Optional[str] = None,
-        work_info_status: Optional[str] = None,
-        timetable: Optional[str] = None,
-        is_main_address: Optional[bool] = None,
+        title: typing.Optional[str] = None,
+        address: typing.Optional[str] = None,
+        additional_address: typing.Optional[str] = None,
+        country_id: typing.Optional[int] = None,
+        city_id: typing.Optional[int] = None,
+        metro_id: typing.Optional[int] = None,
+        latitude: typing.Optional[int] = None,
+        longitude: typing.Optional[int] = None,
+        phone: typing.Optional[str] = None,
+        work_info_status: typing.Optional[str] = None,
+        timetable: typing.Optional[str] = None,
+        is_main_address: typing.Optional[bool] = None,
         **kwargs
     ) -> groups.EditAddressResponseModel:
         """groups.editAddress method
@@ -321,7 +334,7 @@ class GroupsCategory(BaseCategory):
         server_id: int,
         url: str,
         title: str,
-        secret_key: Optional[str] = None,
+        secret_key: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """groups.editCallbackServer method
@@ -338,7 +351,7 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def edit_link(
-        self, group_id: int, link_id: int, text: Optional[str] = None, **kwargs
+        self, group_id: int, link_id: int, text: typing.Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows to edit a link in the community.
         :param group_id: Community ID.
@@ -355,11 +368,11 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         user_id: int,
-        role: Optional[str] = None,
-        is_contact: Optional[bool] = None,
-        contact_position: Optional[str] = None,
-        contact_phone: Optional[str] = None,
-        contact_email: Optional[str] = None,
+        role: typing.Optional[str] = None,
+        is_contact: typing.Optional[bool] = None,
+        contact_position: typing.Optional[str] = None,
+        contact_phone: typing.Optional[str] = None,
+        contact_email: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Allows to add, remove or edit the community manager.
@@ -389,12 +402,12 @@ class GroupsCategory(BaseCategory):
 
     async def get(
         self,
-        user_id: Optional[int] = None,
-        extended: Optional[bool] = None,
-        filter: Optional[List[str]] = None,
-        fields: Optional[List[str]] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        filter: typing.Optional[typing.List[str]] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> groups.GetResponseModel:
         """Returns a list of the communities to which a user belongs.
@@ -418,12 +431,12 @@ class GroupsCategory(BaseCategory):
     async def get_addresses(
         self,
         group_id: int,
-        address_ids: Optional[List[int]] = None,
-        latitude: Optional[float] = None,
-        longitude: Optional[float] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
+        address_ids: typing.Optional[typing.List[int]] = None,
+        latitude: typing.Optional[int] = None,
+        longitude: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> groups.GetAddressesResponseModel:
         """Returns a list of community addresses.
@@ -444,10 +457,10 @@ class GroupsCategory(BaseCategory):
     async def get_banned(
         self,
         group_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        owner_id: Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        owner_id: typing.Optional[int] = None,
         **kwargs
     ) -> groups.GetBannedResponseModel:
         """Returns a list of users on a community blacklist.
@@ -465,11 +478,11 @@ class GroupsCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        group_ids: Optional[List[str]] = None,
-        group_id: Optional[str] = None,
-        fields: Optional[List[str]] = None,
+        group_ids: typing.Optional[typing.List[str]] = None,
+        group_id: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> groups.GetByIdResponseModel:
+    ) -> groups.GetByIdLegacyResponseModel:
         """Returns information about communities by their IDs.
         :param group_ids: IDs or screen names of communities.
         :param group_id: ID or screen name of the community.
@@ -478,7 +491,7 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getById", params)
-        model = groups.GetByIdResponse
+        model = groups.GetByIdLegacyResponse
         return model(**response).response
 
     async def get_callback_confirmation_code(
@@ -494,7 +507,10 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def get_callback_servers(
-        self, group_id: int, server_ids: Optional[List[int]] = None, **kwargs
+        self,
+        group_id: int,
+        server_ids: typing.Optional[typing.List[int]] = None,
+        **kwargs
     ) -> groups.GetCallbackServersResponseModel:
         """groups.getCallbackServers method
         :param group_id:
@@ -507,7 +523,7 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def get_callback_settings(
-        self, group_id: int, server_id: Optional[int] = None, **kwargs
+        self, group_id: int, server_id: typing.Optional[int] = None, **kwargs
     ) -> groups.GetCallbackSettingsResponseModel:
         """Returns [vk.com/dev/callback_api|Callback API] notifications settings.
         :param group_id: Community ID.
@@ -521,8 +537,8 @@ class GroupsCategory(BaseCategory):
 
     async def get_catalog(
         self,
-        category_id: Optional[int] = None,
-        subcategory_id: Optional[int] = None,
+        category_id: typing.Optional[int] = None,
+        subcategory_id: typing.Optional[int] = None,
         **kwargs
     ) -> groups.GetCatalogResponseModel:
         """Returns communities list for a catalog category.
@@ -537,13 +553,13 @@ class GroupsCategory(BaseCategory):
 
     async def get_catalog_info(
         self,
-        extended: Optional[bool] = None,
-        subcategories: Optional[bool] = None,
+        extended: typing.Optional[bool] = None,
+        subcategories: typing.Optional[bool] = None,
         **kwargs
     ) -> groups.GetCatalogInfoResponseModel:
         """Returns categories list for communities catalog
-        :param extended: 1 – to return communities count and three communities for preview. By default: 0.
-        :param subcategories: 1 – to return subcategories info. By default: 0.
+        :param extended: 1 - to return communities count and three communities for preview. By default: 0.
+        :param subcategories: 1 - to return subcategories info. By default: 0.
         """
 
         params = self.get_set_params(locals())
@@ -558,10 +574,10 @@ class GroupsCategory(BaseCategory):
     async def get_invited_users(
         self,
         group_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> groups.GetInvitedUsersResponseModel:
         """Returns invited users list of a community
@@ -579,9 +595,9 @@ class GroupsCategory(BaseCategory):
 
     async def get_invites(
         self,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> groups.GetInvitesResponseModel:
         """Returns a list of invitations to join communities and events.
@@ -625,12 +641,12 @@ class GroupsCategory(BaseCategory):
 
     async def get_members(
         self,
-        group_id: Optional[str] = None,
-        sort: Optional[str] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        filter: Optional[str] = None,
+        group_id: typing.Optional[str] = None,
+        sort: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        filter: typing.Optional[str] = None,
         **kwargs
     ) -> groups.GetMembersResponseModel:
         """Returns a list of community members.
@@ -639,27 +655,20 @@ class GroupsCategory(BaseCategory):
         :param offset: Offset needed to return a specific subset of community members.
         :param count: Number of community members to return.
         :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
-        :param filter: *'friends' – only friends in this community will be returned,, *'unsure' – only those who pressed 'I may attend' will be returned (if it's an event).
+        :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getMembers", params)
-        model = self.get_model(
-            {
-                ("fields",): groups.GetMembersFieldsResponse,
-                ("filter",): groups.GetMembersFilterResponse,
-            },
-            default=groups.GetMembersResponse,
-            params=params,
-        )
+        model = groups.GetMembersResponse
         return model(**response).response
 
     async def get_requests(
         self,
         group_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> groups.GetRequestsResponseModel:
         """Returns a list of requests to the community.
@@ -671,11 +680,7 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getRequests", params)
-        model = self.get_model(
-            {("fields",): groups.GetRequestsFieldsResponse},
-            default=groups.GetRequestsResponse,
-            params=params,
-        )
+        model = groups.GetRequestsResponse
         return model(**response).response
 
     async def get_settings(
@@ -688,6 +693,18 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getSettings", params)
         model = groups.GetSettingsResponse
+        return model(**response).response
+
+    async def get_tag_list(
+        self, group_id: int, **kwargs
+    ) -> groups.GetTagListResponseModel:
+        """List of group's tags
+        :param group_id:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.getTagList", params)
+        model = groups.GetTagListResponse
         return model(**response).response
 
     async def get_token_permissions(
@@ -716,9 +733,9 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: str,
-        user_id: Optional[int] = None,
-        user_ids: Optional[List[int]] = None,
-        extended: Optional[bool] = None,
+        user_id: typing.Optional[int] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> groups.IsMemberResponseModel:
         """Returns information specifying whether a user is a member of a community.
@@ -731,18 +748,17 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
-            {
-                ("user_ids",): groups.IsMemberUserIdsResponse,
-                ("extended",): groups.IsMemberExtendedResponse,
-                ("user_ids", "extended"): groups.IsMemberUserIdsExtendedResponse,
-            },
+            {("extended",): groups.IsMemberExtendedResponse},
             default=groups.IsMemberResponse,
             params=params,
         )
         return model(**response).response
 
     async def join(
-        self, group_id: Optional[int] = None, not_sure: Optional[str] = None, **kwargs
+        self,
+        group_id: typing.Optional[int] = None,
+        not_sure: typing.Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """With this method you can join the group or public page, and also confirm your participation in an event.
         :param group_id: ID or screen name of the community.
@@ -778,7 +794,7 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def reorder_link(
-        self, group_id: int, link_id: int, after: Optional[int] = None, **kwargs
+        self, group_id: int, link_id: int, after: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Allows to reorder links in the community.
         :param group_id: Community ID.
@@ -794,14 +810,14 @@ class GroupsCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        type: Optional[str] = None,
-        country_id: Optional[int] = None,
-        city_id: Optional[int] = None,
-        future: Optional[bool] = None,
-        market: Optional[bool] = None,
-        sort: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        type: typing.Optional[str] = None,
+        country_id: typing.Optional[int] = None,
+        city_id: typing.Optional[int] = None,
+        future: typing.Optional[bool] = None,
+        market: typing.Optional[bool] = None,
+        sort: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> groups.SearchResponseModel:
         """Returns a list of communities matching the search criteria.
@@ -824,51 +840,60 @@ class GroupsCategory(BaseCategory):
     async def set_callback_settings(
         self,
         group_id: int,
-        server_id: Optional[int] = None,
-        api_version: Optional[str] = None,
-        message_new: Optional[bool] = None,
-        message_reply: Optional[bool] = None,
-        message_allow: Optional[bool] = None,
-        message_edit: Optional[bool] = None,
-        message_deny: Optional[bool] = None,
-        message_typing_state: Optional[bool] = None,
-        photo_new: Optional[bool] = None,
-        audio_new: Optional[bool] = None,
-        video_new: Optional[bool] = None,
-        wall_reply_new: Optional[bool] = None,
-        wall_reply_edit: Optional[bool] = None,
-        wall_reply_delete: Optional[bool] = None,
-        wall_reply_restore: Optional[bool] = None,
-        wall_post_new: Optional[bool] = None,
-        wall_repost: Optional[bool] = None,
-        board_post_new: Optional[bool] = None,
-        board_post_edit: Optional[bool] = None,
-        board_post_restore: Optional[bool] = None,
-        board_post_delete: Optional[bool] = None,
-        photo_comment_new: Optional[bool] = None,
-        photo_comment_edit: Optional[bool] = None,
-        photo_comment_delete: Optional[bool] = None,
-        photo_comment_restore: Optional[bool] = None,
-        video_comment_new: Optional[bool] = None,
-        video_comment_edit: Optional[bool] = None,
-        video_comment_delete: Optional[bool] = None,
-        video_comment_restore: Optional[bool] = None,
-        market_comment_new: Optional[bool] = None,
-        market_comment_edit: Optional[bool] = None,
-        market_comment_delete: Optional[bool] = None,
-        market_comment_restore: Optional[bool] = None,
-        poll_vote_new: Optional[bool] = None,
-        group_join: Optional[bool] = None,
-        group_leave: Optional[bool] = None,
-        group_change_settings: Optional[bool] = None,
-        group_change_photo: Optional[bool] = None,
-        group_officers_edit: Optional[bool] = None,
-        user_block: Optional[bool] = None,
-        user_unblock: Optional[bool] = None,
-        lead_forms_new: Optional[bool] = None,
-        like_add: Optional[bool] = None,
-        like_remove: Optional[bool] = None,
-        message_event: Optional[bool] = None,
+        server_id: typing.Optional[int] = None,
+        api_version: typing.Optional[str] = None,
+        message_new: typing.Optional[bool] = None,
+        message_reply: typing.Optional[bool] = None,
+        message_allow: typing.Optional[bool] = None,
+        message_edit: typing.Optional[bool] = None,
+        message_deny: typing.Optional[bool] = None,
+        message_typing_state: typing.Optional[bool] = None,
+        photo_new: typing.Optional[bool] = None,
+        audio_new: typing.Optional[bool] = None,
+        video_new: typing.Optional[bool] = None,
+        wall_reply_new: typing.Optional[bool] = None,
+        wall_reply_edit: typing.Optional[bool] = None,
+        wall_reply_delete: typing.Optional[bool] = None,
+        wall_reply_restore: typing.Optional[bool] = None,
+        wall_post_new: typing.Optional[bool] = None,
+        wall_repost: typing.Optional[bool] = None,
+        board_post_new: typing.Optional[bool] = None,
+        board_post_edit: typing.Optional[bool] = None,
+        board_post_restore: typing.Optional[bool] = None,
+        board_post_delete: typing.Optional[bool] = None,
+        photo_comment_new: typing.Optional[bool] = None,
+        photo_comment_edit: typing.Optional[bool] = None,
+        photo_comment_delete: typing.Optional[bool] = None,
+        photo_comment_restore: typing.Optional[bool] = None,
+        video_comment_new: typing.Optional[bool] = None,
+        video_comment_edit: typing.Optional[bool] = None,
+        video_comment_delete: typing.Optional[bool] = None,
+        video_comment_restore: typing.Optional[bool] = None,
+        market_comment_new: typing.Optional[bool] = None,
+        market_comment_edit: typing.Optional[bool] = None,
+        market_comment_delete: typing.Optional[bool] = None,
+        market_comment_restore: typing.Optional[bool] = None,
+        market_order_new: typing.Optional[bool] = None,
+        market_order_edit: typing.Optional[bool] = None,
+        poll_vote_new: typing.Optional[bool] = None,
+        group_join: typing.Optional[bool] = None,
+        group_leave: typing.Optional[bool] = None,
+        group_change_settings: typing.Optional[bool] = None,
+        group_change_photo: typing.Optional[bool] = None,
+        group_officers_edit: typing.Optional[bool] = None,
+        user_block: typing.Optional[bool] = None,
+        user_unblock: typing.Optional[bool] = None,
+        lead_forms_new: typing.Optional[bool] = None,
+        like_add: typing.Optional[bool] = None,
+        like_remove: typing.Optional[bool] = None,
+        message_event: typing.Optional[bool] = None,
+        donut_subscription_create: typing.Optional[bool] = None,
+        donut_subscription_prolonged: typing.Optional[bool] = None,
+        donut_subscription_cancelled: typing.Optional[bool] = None,
+        donut_subscription_price_changed: typing.Optional[bool] = None,
+        donut_subscription_expired: typing.Optional[bool] = None,
+        donut_money_withdraw: typing.Optional[bool] = None,
+        donut_money_withdraw_error: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Allow to set notifications settings for group.
@@ -906,6 +931,8 @@ class GroupsCategory(BaseCategory):
         :param market_comment_edit: A market comment has been edited ('0' — disabled, '1' — enabled).
         :param market_comment_delete: A market comment has been deleted ('0' — disabled, '1' — enabled).
         :param market_comment_restore: A market comment has been restored ('0' — disabled, '1' — enabled).
+        :param market_order_new:
+        :param market_order_edit:
         :param poll_vote_new: A vote in a public poll has been added ('0' — disabled, '1' — enabled).
         :param group_join: Joined community notifications ('0' — disabled, '1' — enabled).
         :param group_leave: Left community notifications ('0' — disabled, '1' — enabled).
@@ -918,6 +945,13 @@ class GroupsCategory(BaseCategory):
         :param like_add:
         :param like_remove:
         :param message_event:
+        :param donut_subscription_create:
+        :param donut_subscription_prolonged:
+        :param donut_subscription_cancelled:
+        :param donut_subscription_price_changed:
+        :param donut_subscription_expired:
+        :param donut_money_withdraw:
+        :param donut_money_withdraw_error:
         """
 
         params = self.get_set_params(locals())
@@ -928,50 +962,57 @@ class GroupsCategory(BaseCategory):
     async def set_long_poll_settings(
         self,
         group_id: int,
-        enabled: Optional[bool] = None,
-        api_version: Optional[str] = None,
-        message_new: Optional[bool] = None,
-        message_reply: Optional[bool] = None,
-        message_allow: Optional[bool] = None,
-        message_deny: Optional[bool] = None,
-        message_edit: Optional[bool] = None,
-        message_typing_state: Optional[bool] = None,
-        photo_new: Optional[bool] = None,
-        audio_new: Optional[bool] = None,
-        video_new: Optional[bool] = None,
-        wall_reply_new: Optional[bool] = None,
-        wall_reply_edit: Optional[bool] = None,
-        wall_reply_delete: Optional[bool] = None,
-        wall_reply_restore: Optional[bool] = None,
-        wall_post_new: Optional[bool] = None,
-        wall_repost: Optional[bool] = None,
-        board_post_new: Optional[bool] = None,
-        board_post_edit: Optional[bool] = None,
-        board_post_restore: Optional[bool] = None,
-        board_post_delete: Optional[bool] = None,
-        photo_comment_new: Optional[bool] = None,
-        photo_comment_edit: Optional[bool] = None,
-        photo_comment_delete: Optional[bool] = None,
-        photo_comment_restore: Optional[bool] = None,
-        video_comment_new: Optional[bool] = None,
-        video_comment_edit: Optional[bool] = None,
-        video_comment_delete: Optional[bool] = None,
-        video_comment_restore: Optional[bool] = None,
-        market_comment_new: Optional[bool] = None,
-        market_comment_edit: Optional[bool] = None,
-        market_comment_delete: Optional[bool] = None,
-        market_comment_restore: Optional[bool] = None,
-        poll_vote_new: Optional[bool] = None,
-        group_join: Optional[bool] = None,
-        group_leave: Optional[bool] = None,
-        group_change_settings: Optional[bool] = None,
-        group_change_photo: Optional[bool] = None,
-        group_officers_edit: Optional[bool] = None,
-        user_block: Optional[bool] = None,
-        user_unblock: Optional[bool] = None,
-        like_add: Optional[bool] = None,
-        like_remove: Optional[bool] = None,
-        message_event: Optional[bool] = None,
+        enabled: typing.Optional[bool] = None,
+        api_version: typing.Optional[str] = None,
+        message_new: typing.Optional[bool] = None,
+        message_reply: typing.Optional[bool] = None,
+        message_allow: typing.Optional[bool] = None,
+        message_deny: typing.Optional[bool] = None,
+        message_edit: typing.Optional[bool] = None,
+        message_typing_state: typing.Optional[bool] = None,
+        photo_new: typing.Optional[bool] = None,
+        audio_new: typing.Optional[bool] = None,
+        video_new: typing.Optional[bool] = None,
+        wall_reply_new: typing.Optional[bool] = None,
+        wall_reply_edit: typing.Optional[bool] = None,
+        wall_reply_delete: typing.Optional[bool] = None,
+        wall_reply_restore: typing.Optional[bool] = None,
+        wall_post_new: typing.Optional[bool] = None,
+        wall_repost: typing.Optional[bool] = None,
+        board_post_new: typing.Optional[bool] = None,
+        board_post_edit: typing.Optional[bool] = None,
+        board_post_restore: typing.Optional[bool] = None,
+        board_post_delete: typing.Optional[bool] = None,
+        photo_comment_new: typing.Optional[bool] = None,
+        photo_comment_edit: typing.Optional[bool] = None,
+        photo_comment_delete: typing.Optional[bool] = None,
+        photo_comment_restore: typing.Optional[bool] = None,
+        video_comment_new: typing.Optional[bool] = None,
+        video_comment_edit: typing.Optional[bool] = None,
+        video_comment_delete: typing.Optional[bool] = None,
+        video_comment_restore: typing.Optional[bool] = None,
+        market_comment_new: typing.Optional[bool] = None,
+        market_comment_edit: typing.Optional[bool] = None,
+        market_comment_delete: typing.Optional[bool] = None,
+        market_comment_restore: typing.Optional[bool] = None,
+        poll_vote_new: typing.Optional[bool] = None,
+        group_join: typing.Optional[bool] = None,
+        group_leave: typing.Optional[bool] = None,
+        group_change_settings: typing.Optional[bool] = None,
+        group_change_photo: typing.Optional[bool] = None,
+        group_officers_edit: typing.Optional[bool] = None,
+        user_block: typing.Optional[bool] = None,
+        user_unblock: typing.Optional[bool] = None,
+        like_add: typing.Optional[bool] = None,
+        like_remove: typing.Optional[bool] = None,
+        message_event: typing.Optional[bool] = None,
+        donut_subscription_create: typing.Optional[bool] = None,
+        donut_subscription_prolonged: typing.Optional[bool] = None,
+        donut_subscription_cancelled: typing.Optional[bool] = None,
+        donut_subscription_price_changed: typing.Optional[bool] = None,
+        donut_subscription_expired: typing.Optional[bool] = None,
+        donut_money_withdraw: typing.Optional[bool] = None,
+        donut_money_withdraw_error: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Sets Long Poll notification settings
@@ -1020,6 +1061,13 @@ class GroupsCategory(BaseCategory):
         :param like_add:
         :param like_remove:
         :param message_event:
+        :param donut_subscription_create:
+        :param donut_subscription_prolonged:
+        :param donut_subscription_cancelled:
+        :param donut_subscription_price_changed:
+        :param donut_subscription_expired:
+        :param donut_money_withdraw:
+        :param donut_money_withdraw_error:
         """
 
         params = self.get_set_params(locals())
@@ -1027,8 +1075,116 @@ class GroupsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
+    async def set_settings(
+        self,
+        group_id: int,
+        messages: typing.Optional[bool] = None,
+        bots_capabilities: typing.Optional[bool] = None,
+        bots_start_button: typing.Optional[bool] = None,
+        bots_add_to_chat: typing.Optional[bool] = None,
+        **kwargs
+    ) -> base.OkResponseModel:
+        """groups.setSettings method
+        :param group_id:
+        :param messages:
+        :param bots_capabilities:
+        :param bots_start_button:
+        :param bots_add_to_chat:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.setSettings", params)
+        model = base.OkResponse
+        return model(**response).response
+
+    async def set_user_note(
+        self, group_id: int, user_id: int, note: typing.Optional[str] = None, **kwargs
+    ) -> base.BoolModel:
+        """In order to save note about group participant
+        :param group_id:
+        :param user_id:
+        :param note: Note body
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.setUserNote", params)
+        model = base.Bool
+        return model(**response).response
+
+    async def tag_add(
+        self,
+        group_id: int,
+        tag_name: str,
+        tag_color: typing.Optional[str] = None,
+        **kwargs
+    ) -> base.BoolModel:
+        """Add new group's tag
+        :param group_id:
+        :param tag_name:
+        :param tag_color:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.tagAdd", params)
+        model = base.Bool
+        return model(**response).response
+
+    async def tag_bind(
+        self, group_id: int, tag_id: int, user_id: int, act: str, **kwargs
+    ) -> base.BoolModel:
+        """Bind or unbind group's tag to user
+        :param group_id:
+        :param tag_id:
+        :param user_id:
+        :param act: Describe the action
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.tagBind", params)
+        model = base.Bool
+        return model(**response).response
+
+    async def tag_delete(self, group_id: int, tag_id: int, **kwargs) -> base.BoolModel:
+        """Delete group's tag
+        :param group_id:
+        :param tag_id:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.tagDelete", params)
+        model = base.Bool
+        return model(**response).response
+
+    async def tag_update(
+        self, group_id: int, tag_id: int, tag_name: str, **kwargs
+    ) -> base.BoolModel:
+        """Update group's tag
+        :param group_id:
+        :param tag_id:
+        :param tag_name:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.tagUpdate", params)
+        model = base.Bool
+        return model(**response).response
+
+    async def toggle_market(
+        self, group_id: int, state: str, ref: typing.Optional[str] = None, **kwargs
+    ) -> base.OkResponseModel:
+        """groups.toggleMarket method
+        :param group_id:
+        :param state:
+        :param ref:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("groups.toggleMarket", params)
+        model = base.OkResponse
+        return model(**response).response
+
     async def unban(
-        self, group_id: int, owner_id: Optional[int] = None, **kwargs
+        self, group_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """groups.unban method
         :param group_id:

@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, notes
 
@@ -10,8 +10,8 @@ class NotesCategory(BaseCategory):
         self,
         title: str,
         text: str,
-        privacy_view: Optional[List[str]] = None,
-        privacy_comment: Optional[List[str]] = None,
+        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> notes.AddResponseModel:
         """Creates a new note for the current user.
@@ -30,9 +30,9 @@ class NotesCategory(BaseCategory):
         self,
         note_id: int,
         message: str,
-        owner_id: Optional[int] = None,
-        reply_to: Optional[int] = None,
-        guid: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        reply_to: typing.Optional[int] = None,
+        guid: typing.Optional[str] = None,
         **kwargs
     ) -> notes.CreateCommentResponseModel:
         """Adds a new comment on a note.
@@ -59,7 +59,7 @@ class NotesCategory(BaseCategory):
         return model(**response).response
 
     async def delete_comment(
-        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
+        self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Deletes a comment on a note.
         :param comment_id: Comment ID.
@@ -76,8 +76,8 @@ class NotesCategory(BaseCategory):
         note_id: int,
         title: str,
         text: str,
-        privacy_view: Optional[List[str]] = None,
-        privacy_comment: Optional[List[str]] = None,
+        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a note of the current user.
@@ -94,7 +94,11 @@ class NotesCategory(BaseCategory):
         return model(**response).response
 
     async def edit_comment(
-        self, comment_id: int, message: str, owner_id: Optional[int] = None, **kwargs
+        self,
+        comment_id: int,
+        message: str,
+        owner_id: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits a comment on a note.
         :param comment_id: Comment ID.
@@ -109,11 +113,11 @@ class NotesCategory(BaseCategory):
 
     async def get(
         self,
-        note_ids: Optional[List[int]] = None,
-        user_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        sort: Optional[int] = None,
+        note_ids: typing.Optional[typing.List[int]] = None,
+        user_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: typing.Optional[int] = None,
         **kwargs
     ) -> notes.GetResponseModel:
         """Returns a list of notes created by a user.
@@ -132,8 +136,8 @@ class NotesCategory(BaseCategory):
     async def get_by_id(
         self,
         note_id: int,
-        owner_id: Optional[int] = None,
-        need_wiki: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        need_wiki: typing.Optional[bool] = None,
         **kwargs
     ) -> notes.GetByIdResponseModel:
         """Returns a note by its ID.
@@ -150,10 +154,10 @@ class NotesCategory(BaseCategory):
     async def get_comments(
         self,
         note_id: int,
-        owner_id: Optional[int] = None,
-        sort: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        sort: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> notes.GetCommentsResponseModel:
         """Returns a list of comments on a note.
@@ -170,7 +174,7 @@ class NotesCategory(BaseCategory):
         return model(**response).response
 
     async def restore_comment(
-        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
+        self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Restores a deleted comment on a note.
         :param comment_id: Comment ID.

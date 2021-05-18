@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     AppsApp,
@@ -12,78 +13,93 @@ from .base_response import BaseResponse
 
 
 class GetCatalogResponse(BaseResponse):
-    response: Optional["GetCatalogResponseModel"] = None
+    response: typing.Optional["GetCatalogResponseModel"] = None
 
 
 class GetFriendsListResponse(BaseResponse):
-    response: Optional["GetFriendsListResponseModel"] = None
+    response: typing.Optional["GetFriendsListResponseModel"] = None
 
 
 class GetLeaderboardExtendedResponse(BaseResponse):
-    response: Optional["GetLeaderboardExtendedResponseModel"] = None
+    response: typing.Optional["GetLeaderboardExtendedResponseModel"] = None
 
 
 class GetLeaderboardResponse(BaseResponse):
-    response: Optional["GetLeaderboardResponseModel"] = None
+    response: typing.Optional["GetLeaderboardResponseModel"] = None
+
+
+class GetMiniAppPoliciesResponse(BaseResponse):
+    response: typing.Optional["GetMiniAppPoliciesResponseModel"] = None
 
 
 class GetScopesResponse(BaseResponse):
-    response: Optional["GetScopesResponseModel"] = None
+    response: typing.Optional["GetScopesResponseModel"] = None
 
 
 class GetScoreResponse(BaseResponse):
-    response: Optional["GetScoreResponseModel"] = None
+    response: typing.Optional["GetScoreResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
+
+
+class ImageUploadResponse(BaseResponse):
+    response: typing.Optional["ImageUploadResponseModel"] = None
 
 
 class SendRequestResponse(BaseResponse):
-    response: Optional["SendRequestResponseModel"] = None
+    response: typing.Optional["SendRequestResponseModel"] = None
 
 
 class GetCatalogResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AppsApp"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppsApp"]] = None
+    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
 
 
 class GetFriendsListResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetLeaderboardExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AppsLeaderboard"]] = None
-    profiles: Optional[List["UsersUserMin"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppsLeaderboard"]] = None
+    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
 
 
 class GetLeaderboardResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AppsLeaderboard"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppsLeaderboard"]] = None
+
+
+class GetMiniAppPoliciesResponseModel(BaseResponse):
+    privacy_policy: typing.Optional[str] = None
+    terms: typing.Optional[str] = None
 
 
 class GetScopesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AppsScope"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppsScope"]] = None
 
 
 GetScoreResponseModel = int
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AppsApp"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppsApp"]] = None
+
+
+class ImageUploadResponseModel(BaseResponse):
+    hash: typing.Optional[str] = None
+    image: typing.Optional[str] = None
 
 
 SendRequestResponseModel = int
 
-GetCatalogResponse.update_forward_refs()
-GetFriendsListResponse.update_forward_refs()
-GetLeaderboardExtendedResponse.update_forward_refs()
-GetLeaderboardResponse.update_forward_refs()
-GetScopesResponse.update_forward_refs()
-GetScoreResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-SendRequestResponse.update_forward_refs()
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

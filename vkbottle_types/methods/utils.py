@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 
 from vkbottle_types.responses import base, utils
 
@@ -29,7 +29,10 @@ class UtilsCategory(BaseCategory):
         return model(**response).response
 
     async def get_last_shortened_links(
-        self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
+        self,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs
     ) -> utils.GetLastShortenedLinksResponseModel:
         """Returns a list of user's shortened links.
         :param count: Number of links to return.
@@ -44,11 +47,11 @@ class UtilsCategory(BaseCategory):
     async def get_link_stats(
         self,
         key: str,
-        source: Optional[str] = None,
-        access_key: Optional[str] = None,
-        interval: Optional[str] = None,
-        intervals_count: Optional[int] = None,
-        extended: Optional[bool] = None,
+        source: typing.Optional[str] = None,
+        access_key: typing.Optional[str] = None,
+        interval: typing.Optional[str] = None,
+        intervals_count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> utils.GetLinkStatsResponseModel:
         """Returns stats data for shortened link.
@@ -78,7 +81,7 @@ class UtilsCategory(BaseCategory):
         return model(**response).response
 
     async def get_short_link(
-        self, url: str, private: Optional[bool] = None, **kwargs
+        self, url: str, private: typing.Optional[bool] = None, **kwargs
     ) -> utils.GetShortLinkResponseModel:
         """Allows to receive a link shortened via vk.cc.
         :param url: URL to be shortened.

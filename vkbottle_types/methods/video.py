@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, video
 
@@ -7,7 +7,11 @@ from .base_category import BaseCategory
 
 class VideoCategory(BaseCategory):
     async def add(
-        self, video_id: int, owner_id: int, target_id: Optional[int] = None, **kwargs
+        self,
+        video_id: int,
+        owner_id: int,
+        target_id: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Adds a video to a user or community page.
         :param video_id: Video ID.
@@ -22,15 +26,15 @@ class VideoCategory(BaseCategory):
 
     async def add_album(
         self,
-        group_id: Optional[int] = None,
-        title: Optional[str] = None,
-        privacy: Optional[List[str]] = None,
+        group_id: typing.Optional[int] = None,
+        title: typing.Optional[str] = None,
+        privacy: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> video.AddAlbumResponseModel:
         """Creates an empty album for videos.
         :param group_id: Community ID (if the album will be created in a community).
         :param title: Album title.
-        :param privacy: new access permissions for the album. Possible values: , *'0' – all users,, *'1' – friends only,, *'2' – friends and friends of friends,, *'3' – "only me".
+        :param privacy: new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - "only me".
         """
 
         params = self.get_set_params(locals())
@@ -42,9 +46,9 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        target_id: Optional[int] = None,
-        album_id: Optional[int] = None,
-        album_ids: Optional[List[int]] = None,
+        target_id: typing.Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        album_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """video.addToAlbum method
@@ -63,13 +67,13 @@ class VideoCategory(BaseCategory):
     async def create_comment(
         self,
         video_id: int,
-        owner_id: Optional[int] = None,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
-        from_group: Optional[bool] = None,
-        reply_to_comment: Optional[int] = None,
-        sticker_id: Optional[int] = None,
-        guid: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
+        from_group: typing.Optional[bool] = None,
+        reply_to_comment: typing.Optional[int] = None,
+        sticker_id: typing.Optional[int] = None,
+        guid: typing.Optional[str] = None,
         **kwargs
     ) -> video.CreateCommentResponseModel:
         """Adds a new comment on a video.
@@ -91,8 +95,8 @@ class VideoCategory(BaseCategory):
     async def delete(
         self,
         video_id: int,
-        owner_id: Optional[int] = None,
-        target_id: Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        target_id: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Deletes a video from a user or community page.
@@ -107,7 +111,7 @@ class VideoCategory(BaseCategory):
         return model(**response).response
 
     async def delete_album(
-        self, album_id: int, group_id: Optional[int] = None, **kwargs
+        self, album_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Deletes a video album.
         :param album_id: Album ID.
@@ -120,7 +124,7 @@ class VideoCategory(BaseCategory):
         return model(**response).response
 
     async def delete_comment(
-        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
+        self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Deletes a comment on a video.
         :param comment_id: ID of the comment to be deleted.
@@ -135,13 +139,13 @@ class VideoCategory(BaseCategory):
     async def edit(
         self,
         video_id: int,
-        owner_id: Optional[int] = None,
-        name: Optional[str] = None,
-        desc: Optional[str] = None,
-        privacy_view: Optional[List[str]] = None,
-        privacy_comment: Optional[List[str]] = None,
-        no_comments: Optional[bool] = None,
-        repeat: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        name: typing.Optional[str] = None,
+        desc: typing.Optional[str] = None,
+        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: typing.Optional[typing.List[str]] = None,
+        no_comments: typing.Optional[bool] = None,
+        repeat: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits information about a video on a user or community page.
@@ -164,15 +168,15 @@ class VideoCategory(BaseCategory):
         self,
         album_id: int,
         title: str,
-        group_id: Optional[int] = None,
-        privacy: Optional[List[str]] = None,
+        group_id: typing.Optional[int] = None,
+        privacy: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits the title of a video album.
         :param album_id: Album ID.
         :param title: New album title.
         :param group_id: Community ID (if the album edited is owned by a community).
-        :param privacy: new access permissions for the album. Possible values: , *'0' – all users,, *'1' – friends only,, *'2' – friends and friends of friends,, *'3' – "only me".
+        :param privacy: new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - "only me".
         """
 
         params = self.get_set_params(locals())
@@ -183,9 +187,9 @@ class VideoCategory(BaseCategory):
     async def edit_comment(
         self,
         comment_id: int,
-        owner_id: Optional[int] = None,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
+        owner_id: typing.Optional[int] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits the text of a comment on a video.
@@ -202,12 +206,13 @@ class VideoCategory(BaseCategory):
 
     async def get(
         self,
-        owner_id: Optional[int] = None,
-        videos: Optional[List[str]] = None,
-        album_id: Optional[int] = None,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
-        extended: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        videos: typing.Optional[typing.List[str]] = None,
+        album_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> video.GetResponseModel:
         """Returns detailed information about videos.
@@ -217,19 +222,16 @@ class VideoCategory(BaseCategory):
         :param count: Number of videos to return.
         :param offset: Offset needed to return a specific subset of videos.
         :param extended: '1' — to return an extended response with additional fields
+        :param fields:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.get", params)
-        model = self.get_model(
-            {("extended",): video.GetExtendedResponse},
-            default=video.GetResponse,
-            params=params,
-        )
+        model = video.GetResponse
         return model(**response).response
 
     async def get_album_by_id(
-        self, album_id: int, owner_id: Optional[int] = None, **kwargs
+        self, album_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> video.GetAlbumByIdResponseModel:
         """Returns video album info
         :param album_id: Album ID.
@@ -243,11 +245,11 @@ class VideoCategory(BaseCategory):
 
     async def get_albums(
         self,
-        owner_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
-        need_system: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        need_system: typing.Optional[bool] = None,
         **kwargs
     ) -> video.GetAlbumsResponseModel:
         """Returns a list of video albums owned by a user or community.
@@ -271,8 +273,8 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        target_id: Optional[int] = None,
-        extended: Optional[bool] = None,
+        target_id: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> video.GetAlbumsByVideoResponseModel:
         """video.getAlbumsByVideo method
@@ -294,14 +296,14 @@ class VideoCategory(BaseCategory):
     async def get_comments(
         self,
         video_id: int,
-        owner_id: Optional[int] = None,
-        need_likes: Optional[bool] = None,
-        start_comment_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        sort: Optional[str] = None,
-        extended: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
+        owner_id: typing.Optional[int] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: typing.Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> video.GetCommentsResponseModel:
         """Returns a list of comments on a video.
@@ -329,9 +331,9 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        target_id: Optional[int] = None,
-        album_id: Optional[int] = None,
-        album_ids: Optional[List[int]] = None,
+        target_id: typing.Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        album_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """video.removeFromAlbum method
@@ -350,9 +352,9 @@ class VideoCategory(BaseCategory):
     async def reorder_albums(
         self,
         album_id: int,
-        owner_id: Optional[int] = None,
-        before: Optional[int] = None,
-        after: Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        before: typing.Optional[int] = None,
+        after: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Reorders the album in the list of user video albums.
@@ -371,12 +373,12 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        target_id: Optional[int] = None,
-        album_id: Optional[int] = None,
-        before_owner_id: Optional[int] = None,
-        before_video_id: Optional[int] = None,
-        after_owner_id: Optional[int] = None,
-        after_video_id: Optional[int] = None,
+        target_id: typing.Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        before_owner_id: typing.Optional[int] = None,
+        before_video_id: typing.Optional[int] = None,
+        after_owner_id: typing.Optional[int] = None,
+        after_video_id: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Reorders the video in the video album.
@@ -399,15 +401,15 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        reason: Optional[int] = None,
-        comment: Optional[str] = None,
-        search_query: Optional[str] = None,
+        reason: typing.Optional[int] = None,
+        comment: typing.Optional[str] = None,
+        search_query: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Reports (submits a complaint about) a video.
         :param owner_id: ID of the user or community that owns the video.
         :param video_id: Video ID.
-        :param reason: Reason for the complaint: '0' – spam, '1' – child pornography, '2' – extremism, '3' – violence, '4' – drug propaganda, '5' – adult material, '6' – insult, abuse
+        :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
         :param comment: Comment describing the complaint.
         :param search_query: (If the video was found in search results.) Search query string.
         """
@@ -418,12 +420,16 @@ class VideoCategory(BaseCategory):
         return model(**response).response
 
     async def report_comment(
-        self, owner_id: int, comment_id: int, reason: Optional[int] = None, **kwargs
+        self,
+        owner_id: int,
+        comment_id: int,
+        reason: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Reports (submits a complaint about) a comment on a video.
         :param owner_id: ID of the user or community that owns the video.
         :param comment_id: ID of the comment being reported.
-        :param reason: Reason for the complaint: , 0 – spam , 1 – child pornography , 2 – extremism , 3 – violence , 4 – drug propaganda , 5 – adult material , 6 – insult, abuse
+        :param reason: Reason for the complaint: , 0 - spam , 1 - child pornography , 2 - extremism , 3 - violence , 4 - drug propaganda , 5 - adult material , 6 - insult, abuse
         """
 
         params = self.get_set_params(locals())
@@ -432,7 +438,7 @@ class VideoCategory(BaseCategory):
         return model(**response).response
 
     async def restore(
-        self, video_id: int, owner_id: Optional[int] = None, **kwargs
+        self, video_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Restores a previously deleted video.
         :param video_id: Video ID.
@@ -445,7 +451,7 @@ class VideoCategory(BaseCategory):
         return model(**response).response
 
     async def restore_comment(
-        self, comment_id: int, owner_id: Optional[int] = None, **kwargs
+        self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> video.RestoreCommentResponseModel:
         """Restores a previously deleted comment on a video.
         :param comment_id: ID of the deleted comment.
@@ -459,18 +465,18 @@ class VideoCategory(BaseCategory):
 
     async def save(
         self,
-        name: Optional[str] = None,
-        description: Optional[str] = None,
-        is_private: Optional[bool] = None,
-        wallpost: Optional[bool] = None,
-        link: Optional[str] = None,
-        group_id: Optional[int] = None,
-        album_id: Optional[int] = None,
-        privacy_view: Optional[List[str]] = None,
-        privacy_comment: Optional[List[str]] = None,
-        no_comments: Optional[bool] = None,
-        repeat: Optional[bool] = None,
-        compression: Optional[bool] = None,
+        name: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        is_private: typing.Optional[bool] = None,
+        wallpost: typing.Optional[bool] = None,
+        link: typing.Optional[str] = None,
+        group_id: typing.Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: typing.Optional[typing.List[str]] = None,
+        no_comments: typing.Optional[bool] = None,
+        repeat: typing.Optional[bool] = None,
+        compression: typing.Optional[bool] = None,
         **kwargs
     ) -> video.SaveResponseModel:
         """Returns a server address (required for upload) and video data.
@@ -496,16 +502,16 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        sort: Optional[int] = None,
-        hd: Optional[int] = None,
-        adult: Optional[bool] = None,
-        filters: Optional[List[str]] = None,
-        search_own: Optional[bool] = None,
-        offset: Optional[int] = None,
-        longer: Optional[int] = None,
-        shorter: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
+        sort: typing.Optional[int] = None,
+        hd: typing.Optional[int] = None,
+        adult: typing.Optional[bool] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        search_own: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        longer: typing.Optional[int] = None,
+        shorter: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> video.SearchResponseModel:
         """Returns a list of videos under the set search criterion.

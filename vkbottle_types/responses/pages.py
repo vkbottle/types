@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     PagesWikipage,
@@ -10,51 +11,54 @@ from .base_response import BaseResponse
 
 
 class GetHistoryResponse(BaseResponse):
-    response: Optional["GetHistoryResponseModel"] = None
+    response: typing.Optional["GetHistoryResponseModel"] = None
 
 
 class GetTitlesResponse(BaseResponse):
-    response: Optional["GetTitlesResponseModel"] = None
+    response: typing.Optional["GetTitlesResponseModel"] = None
 
 
 class GetVersionResponse(BaseResponse):
-    response: Optional["GetVersionResponseModel"] = None
+    response: typing.Optional["GetVersionResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class ParseWikiResponse(BaseResponse):
-    response: Optional["ParseWikiResponseModel"] = None
+    response: typing.Optional["ParseWikiResponseModel"] = None
 
 
 class SaveAccessResponse(BaseResponse):
-    response: Optional["SaveAccessResponseModel"] = None
+    response: typing.Optional["SaveAccessResponseModel"] = None
 
 
 class SaveResponse(BaseResponse):
-    response: Optional["SaveResponseModel"] = None
+    response: typing.Optional["SaveResponseModel"] = None
 
 
-GetHistoryResponseModel = List[PagesWikipageHistory]
+GetHistoryResponseModel = typing.List[PagesWikipageHistory]
 
-GetTitlesResponseModel = List[PagesWikipage]
 
-GetVersionResponseModel = Optional[PagesWikipageFull]
+GetTitlesResponseModel = typing.List[PagesWikipage]
 
-GetResponseModel = Optional[PagesWikipageFull]
+
+GetVersionResponseModel = PagesWikipageFull
+
+
+GetResponseModel = PagesWikipageFull
+
 
 ParseWikiResponseModel = str
 
+
 SaveAccessResponseModel = int
+
 
 SaveResponseModel = int
 
-GetHistoryResponse.update_forward_refs()
-GetTitlesResponse.update_forward_refs()
-GetVersionResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-ParseWikiResponse.update_forward_refs()
-SaveAccessResponse.update_forward_refs()
-SaveResponse.update_forward_refs()
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

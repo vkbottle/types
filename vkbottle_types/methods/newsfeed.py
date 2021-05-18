@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, newsfeed
 
@@ -8,8 +8,8 @@ from .base_category import BaseCategory
 class NewsfeedCategory(BaseCategory):
     async def add_ban(
         self,
-        user_ids: Optional[List[int]] = None,
-        group_ids: Optional[List[int]] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
+        group_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Prevents news from specified users and communities from appearing in the current user's newsfeed.
@@ -24,8 +24,8 @@ class NewsfeedCategory(BaseCategory):
 
     async def delete_ban(
         self,
-        user_ids: Optional[List[int]] = None,
-        group_ids: Optional[List[int]] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
+        group_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Allows news from previously banned users and communities to be shown in the current user's newsfeed.
@@ -50,20 +50,20 @@ class NewsfeedCategory(BaseCategory):
 
     async def get(
         self,
-        filters: Optional[List[str]] = None,
-        return_banned: Optional[bool] = None,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
-        max_photos: Optional[int] = None,
-        source_ids: Optional[str] = None,
-        start_from: Optional[str] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        section: Optional[str] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        return_banned: typing.Optional[bool] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        max_photos: typing.Optional[int] = None,
+        source_ids: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        section: typing.Optional[str] = None,
         **kwargs
     ) -> newsfeed.GetResponseModel:
         """Returns data required to show newsfeed for the current user.
-        :param filters: Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends, 'note' — new notes
+        :param filters: Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends
         :param return_banned: '1' — to return news items from banned sources
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
@@ -82,9 +82,9 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_banned(
         self,
-        extended: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> newsfeed.GetBannedResponseModel:
         """Returns a list of users and communities banned from the current user's newsfeed.
@@ -104,14 +104,14 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_comments(
         self,
-        count: Optional[int] = None,
-        filters: Optional[List[str]] = None,
-        reposts: Optional[str] = None,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
-        last_comments_count: Optional[int] = None,
-        start_from: Optional[str] = None,
-        fields: Optional[List[str]] = None,
+        count: typing.Optional[int] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        reposts: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        last_comments_count: typing.Optional[int] = None,
+        start_from: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> newsfeed.GetCommentsResponseModel:
         """Returns a list of comments in the current user's newsfeed.
@@ -132,8 +132,8 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_lists(
         self,
-        list_ids: Optional[List[int]] = None,
-        extended: Optional[bool] = None,
+        list_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> newsfeed.GetListsResponseModel:
         """Returns a list of newsfeeds followed by the current user.
@@ -152,11 +152,11 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_mentions(
         self,
-        owner_id: Optional[int] = None,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> newsfeed.GetMentionsResponseModel:
         """Returns a list of posts on user walls in which the current user is mentioned.
@@ -174,12 +174,12 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_recommended(
         self,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
-        max_photos: Optional[int] = None,
-        start_from: Optional[str] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        max_photos: typing.Optional[int] = None,
+        start_from: typing.Optional[str] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> newsfeed.GetRecommendedResponseModel:
         """, Returns a list of newsfeeds recommended to the current user.
@@ -198,10 +198,10 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_suggested_sources(
         self,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        shuffle: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        shuffle: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> newsfeed.GetSuggestedSourcesResponseModel:
         """Returns communities and users that current user is suggested to follow.
@@ -217,11 +217,15 @@ class NewsfeedCategory(BaseCategory):
         return model(**response).response
 
     async def ignore_item(
-        self, type: str, owner_id: int, item_id: int, **kwargs
+        self,
+        type: str,
+        owner_id: typing.Optional[int] = None,
+        item_id: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Hides an item from the newsfeed.
-        :param type: Item type. Possible values: *'wall' – post on the wall,, *'tag' – tag on a photo,, *'profilephoto' – profile photo,, *'video' – video,, *'audio' – audio.
-        :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' – user , 'owner_id=-1' – community "
+        :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
+        :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
         :param item_id: Item identifier
         """
 
@@ -233,9 +237,9 @@ class NewsfeedCategory(BaseCategory):
     async def save_list(
         self,
         title: str,
-        list_id: Optional[int] = None,
-        source_ids: Optional[List[int]] = None,
-        no_reposts: Optional[bool] = None,
+        list_id: typing.Optional[int] = None,
+        source_ids: typing.Optional[typing.List[int]] = None,
+        no_reposts: typing.Optional[bool] = None,
         **kwargs
     ) -> newsfeed.SaveListResponseModel:
         """Creates and edits user newsfeed lists
@@ -252,15 +256,15 @@ class NewsfeedCategory(BaseCategory):
 
     async def search(
         self,
-        q: Optional[str] = None,
-        extended: Optional[bool] = None,
-        count: Optional[int] = None,
-        latitude: Optional[float] = None,
-        longitude: Optional[float] = None,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
-        start_from: Optional[str] = None,
-        fields: Optional[List[str]] = None,
+        q: typing.Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        latitude: typing.Optional[int] = None,
+        longitude: typing.Optional[int] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        start_from: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> newsfeed.SearchResponseModel:
         """Returns search results by statuses.
@@ -289,12 +293,12 @@ class NewsfeedCategory(BaseCategory):
         type: str,
         owner_id: int,
         item_id: int,
-        track_code: Optional[str] = None,
+        track_code: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Returns a hidden item to the newsfeed.
-        :param type: Item type. Possible values: *'wall' – post on the wall,, *'tag' – tag on a photo,, *'profilephoto' – profile photo,, *'video' – video,, *'audio' – audio.
-        :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' – user , 'owner_id=-1' – community "
+        :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
+        :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
         :param item_id: Item identifier
         :param track_code: Track code of unignored item
         """
@@ -305,7 +309,7 @@ class NewsfeedCategory(BaseCategory):
         return model(**response).response
 
     async def unsubscribe(
-        self, type: str, item_id: int, owner_id: Optional[int] = None, **kwargs
+        self, type: str, item_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """Unsubscribes the current user from specified newsfeeds.
         :param type: Type of object from which to unsubscribe: 'note' — note, 'photo' — photo, 'post' — post on user wall or community wall, 'topic' — topic, 'video' — video

@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     FriendsFriendExtendedStatus,
@@ -16,183 +17,170 @@ from .base_response import BaseResponse
 
 
 class AddListResponse(BaseResponse):
-    response: Optional["AddListResponseModel"] = None
+    response: typing.Optional["AddListResponseModel"] = None
 
 
 class AddResponse(BaseResponse):
-    response: Optional["AddResponseModel"] = None
+    response: typing.Optional["AddResponseModel"] = None
 
 
 class AreFriendsExtendedResponse(BaseResponse):
-    response: Optional["AreFriendsExtendedResponseModel"] = None
+    response: typing.Optional["AreFriendsExtendedResponseModel"] = None
 
 
 class AreFriendsResponse(BaseResponse):
-    response: Optional["AreFriendsResponseModel"] = None
+    response: typing.Optional["AreFriendsResponseModel"] = None
 
 
 class DeleteResponse(BaseResponse):
-    response: Optional["DeleteResponseModel"] = None
+    response: typing.Optional["DeleteResponseModel"] = None
 
 
 class GetAppUsersResponse(BaseResponse):
-    response: Optional["GetAppUsersResponseModel"] = None
+    response: typing.Optional["GetAppUsersResponseModel"] = None
 
 
 class GetByPhonesResponse(BaseResponse):
-    response: Optional["GetByPhonesResponseModel"] = None
+    response: typing.Optional["GetByPhonesResponseModel"] = None
 
 
 class GetListsResponse(BaseResponse):
-    response: Optional["GetListsResponseModel"] = None
+    response: typing.Optional["GetListsResponseModel"] = None
 
 
 class GetMutualResponse(BaseResponse):
-    response: Optional["GetMutualResponseModel"] = None
+    response: typing.Optional["GetMutualResponseModel"] = None
 
 
 class GetMutualTargetUidsResponse(BaseResponse):
-    response: Optional["GetMutualTargetUidsResponseModel"] = None
+    response: typing.Optional["GetMutualTargetUidsResponseModel"] = None
 
 
 class GetOnlineOnlineMobileResponse(BaseResponse):
-    response: Optional["GetOnlineOnlineMobileResponseModel"] = None
+    response: typing.Optional["GetOnlineOnlineMobileResponseModel"] = None
 
 
 class GetOnlineResponse(BaseResponse):
-    response: Optional["GetOnlineResponseModel"] = None
+    response: typing.Optional["GetOnlineResponseModel"] = None
 
 
 class GetRecentResponse(BaseResponse):
-    response: Optional["GetRecentResponseModel"] = None
+    response: typing.Optional["GetRecentResponseModel"] = None
 
 
 class GetRequestsExtendedResponse(BaseResponse):
-    response: Optional["GetRequestsExtendedResponseModel"] = None
+    response: typing.Optional["GetRequestsExtendedResponseModel"] = None
 
 
 class GetRequestsNeedMutualResponse(BaseResponse):
-    response: Optional["GetRequestsNeedMutualResponseModel"] = None
+    response: typing.Optional["GetRequestsNeedMutualResponseModel"] = None
 
 
 class GetRequestsResponse(BaseResponse):
-    response: Optional["GetRequestsResponseModel"] = None
+    response: typing.Optional["GetRequestsResponseModel"] = None
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: Optional["GetSuggestionsResponseModel"] = None
+    response: typing.Optional["GetSuggestionsResponseModel"] = None
 
 
 class GetFieldsResponse(BaseResponse):
-    response: Optional["GetFieldsResponseModel"] = None
+    response: typing.Optional["GetFieldsResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
 class AddListResponseModel(BaseResponse):
-    list_id: Optional[int] = None
+    list_id: typing.Optional[int] = None
 
 
 AddResponseModel = int
 
-AreFriendsExtendedResponseModel = List[FriendsFriendExtendedStatus]
 
-AreFriendsResponseModel = List[FriendsFriendStatus]
+AreFriendsExtendedResponseModel = typing.List[FriendsFriendExtendedStatus]
+
+
+AreFriendsResponseModel = typing.List[FriendsFriendStatus]
 
 
 class DeleteResponseModel(BaseResponse):
-    success: Optional[int] = None
-    friend_deleted: Optional[int] = None
-    out_request_deleted: Optional[int] = None
-    in_request_deleted: Optional[int] = None
-    suggestion_deleted: Optional[int] = None
+    success: typing.Optional[int] = None
+    friend_deleted: typing.Optional[int] = None
+    out_request_deleted: typing.Optional[int] = None
+    in_request_deleted: typing.Optional[int] = None
+    suggestion_deleted: typing.Optional[int] = None
 
 
-GetAppUsersResponseModel = List[int]
+GetAppUsersResponseModel = typing.List[int]
 
-GetByPhonesResponseModel = List[FriendsUserXtrPhone]
+
+GetByPhonesResponseModel = typing.List[FriendsUserXtrPhone]
 
 
 class GetListsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["FriendsFriendsList"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["FriendsFriendsList"]] = None
 
 
-GetMutualResponseModel = List[int]
+GetMutualResponseModel = typing.List[int]
 
-GetMutualTargetUidsResponseModel = List[FriendsMutualFriend]
+
+GetMutualTargetUidsResponseModel = typing.List[FriendsMutualFriend]
 
 
 class GetOnlineOnlineMobileResponseModel(BaseResponse):
-    online: Optional[List[int]] = None
-    online_mobile: Optional[List[int]] = None
+    online: typing.Optional[typing.List[int]] = None
+    online_mobile: typing.Optional[typing.List[int]] = None
 
 
-GetOnlineResponseModel = List[int]
+GetOnlineResponseModel = typing.List[int]
 
 
-GetRecentResponseModel = List[int]
+GetRecentResponseModel = typing.List[int]
 
 
 class GetRequestsExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["FriendsRequestsXtrMessage"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["FriendsRequestsXtrMessage"]] = None
 
 
 class GetRequestsNeedMutualResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["FriendsRequests"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["FriendsRequests"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
-    count_unread: Optional[int] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
+    count_unread: typing.Optional[int] = None
 
 
 class GetSuggestionsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetFieldsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["FriendsUserXtrLists"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["FriendsUserXtrLists"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
-AddListResponse.update_forward_refs()
-AddResponse.update_forward_refs()
-AreFriendsExtendedResponse.update_forward_refs()
-AreFriendsResponse.update_forward_refs()
-DeleteResponse.update_forward_refs()
-GetAppUsersResponse.update_forward_refs()
-GetByPhonesResponse.update_forward_refs()
-GetListsResponse.update_forward_refs()
-GetMutualResponse.update_forward_refs()
-GetMutualTargetUidsResponse.update_forward_refs()
-GetOnlineOnlineMobileResponse.update_forward_refs()
-GetOnlineResponse.update_forward_refs()
-GetRecentResponse.update_forward_refs()
-GetRequestsExtendedResponse.update_forward_refs()
-GetRequestsNeedMutualResponse.update_forward_refs()
-GetRequestsResponse.update_forward_refs()
-GetSuggestionsResponse.update_forward_refs()
-GetFieldsResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

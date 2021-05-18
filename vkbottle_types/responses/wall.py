@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     GroupsGroup,
@@ -13,173 +14,170 @@ from .base_response import BaseResponse
 
 
 class CreateCommentResponse(BaseResponse):
-    response: Optional["CreateCommentResponseModel"] = None
+    response: typing.Optional["CreateCommentResponseModel"] = None
 
 
 class EditResponse(BaseResponse):
-    response: Optional["EditResponseModel"] = None
+    response: typing.Optional["EditResponseModel"] = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: Optional["GetByIdExtendedResponseModel"] = None
+    response: typing.Optional["GetByIdExtendedResponseModel"] = None
+
+
+class GetByIdLegacyResponse(BaseResponse):
+    response: typing.Optional["GetByIdLegacyResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetCommentExtendedResponse(BaseResponse):
-    response: Optional["GetCommentExtendedResponseModel"] = None
+    response: typing.Optional["GetCommentExtendedResponseModel"] = None
 
 
 class GetCommentResponse(BaseResponse):
-    response: Optional["GetCommentResponseModel"] = None
+    response: typing.Optional["GetCommentResponseModel"] = None
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: Optional["GetCommentsExtendedResponseModel"] = None
+    response: typing.Optional["GetCommentsExtendedResponseModel"] = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: Optional["GetCommentsResponseModel"] = None
+    response: typing.Optional["GetCommentsResponseModel"] = None
 
 
 class GetRepostsResponse(BaseResponse):
-    response: Optional["GetRepostsResponseModel"] = None
+    response: typing.Optional["GetRepostsResponseModel"] = None
 
 
 class GetExtendedResponse(BaseResponse):
-    response: Optional["GetExtendedResponseModel"] = None
+    response: typing.Optional["GetExtendedResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class PostAdsStealthResponse(BaseResponse):
-    response: Optional["PostAdsStealthResponseModel"] = None
+    response: typing.Optional["PostAdsStealthResponseModel"] = None
 
 
 class PostResponse(BaseResponse):
-    response: Optional["PostResponseModel"] = None
+    response: typing.Optional["PostResponseModel"] = None
 
 
 class RepostResponse(BaseResponse):
-    response: Optional["RepostResponseModel"] = None
+    response: typing.Optional["RepostResponseModel"] = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: Optional["SearchExtendedResponseModel"] = None
+    response: typing.Optional["SearchExtendedResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
 class CreateCommentResponseModel(BaseResponse):
-    comment_id: Optional[int] = None
+    comment_id: typing.Optional[int] = None
 
 
 class EditResponseModel(BaseResponse):
-    post_id: Optional[int] = None
+    post_id: typing.Optional[int] = None
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
-    items: Optional[List["WallWallpostFull"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
-GetByIdResponseModel = List[WallWallpostFull]
+GetByIdLegacyResponseModel = typing.List[WallWallpostFull]
+
+
+class GetByIdResponseModel(BaseResponse):
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
 
 
 class GetCommentExtendedResponseModel(BaseResponse):
-    items: Optional[List["WallWallComment"]] = None
-    profiles: Optional[List["UsersUser"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
 class GetCommentResponseModel(BaseResponse):
-    items: Optional[List["WallWallComment"]] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallComment"]] = None
-    show_reply_button: Optional[bool] = None
-    can_post: Optional[bool] = None
-    groups_can_post: Optional[bool] = None
-    current_level_count: Optional[int] = None
-    profiles: Optional[List["UsersUser"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
+    show_reply_button: typing.Optional[bool] = None
+    can_post: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
+    current_level_count: typing.Optional[int] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallComment"]] = None
-    can_post: Optional[bool] = None
-    groups_can_post: Optional[bool] = None
-    current_level_count: Optional[int] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
+    can_post: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
+    current_level_count: typing.Optional[int] = None
 
 
 class GetRepostsResponseModel(BaseResponse):
-    items: Optional[List["WallWallpostFull"]] = None
-    profiles: Optional[List["UsersUser"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallpostFull"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallpostFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
 
 
 class PostAdsStealthResponseModel(BaseResponse):
-    post_id: Optional[int] = None
+    post_id: typing.Optional[int] = None
 
 
 class PostResponseModel(BaseResponse):
-    post_id: Optional[int] = None
+    post_id: typing.Optional[int] = None
 
 
 class RepostResponseModel(BaseResponse):
-    success: Optional[int] = None
-    post_id: Optional[int] = None
-    reposts_count: Optional[int] = None
-    likes_count: Optional[int] = None
+    success: typing.Optional[int] = None
+    post_id: typing.Optional[int] = None
+    reposts_count: typing.Optional[int] = None
+    wall_repost_count: typing.Optional[int] = None
+    mail_repost_count: typing.Optional[int] = None
+    likes_count: typing.Optional[int] = None
 
 
 class SearchExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallpostFull"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["WallWallpostFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["WallWallpostFull"]] = None
 
 
-CreateCommentResponse.update_forward_refs()
-EditResponse.update_forward_refs()
-GetByIdExtendedResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetCommentExtendedResponse.update_forward_refs()
-GetCommentResponse.update_forward_refs()
-GetCommentsExtendedResponse.update_forward_refs()
-GetCommentsResponse.update_forward_refs()
-GetRepostsResponse.update_forward_refs()
-GetExtendedResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-PostAdsStealthResponse.update_forward_refs()
-PostResponse.update_forward_refs()
-RepostResponse.update_forward_refs()
-SearchExtendedResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

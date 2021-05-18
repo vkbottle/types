@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, polls
 
@@ -9,9 +9,9 @@ class PollsCategory(BaseCategory):
     async def add_vote(
         self,
         poll_id: int,
-        answer_ids: List[int],
-        owner_id: Optional[int] = None,
-        is_board: Optional[bool] = None,
+        answer_ids: typing.List[int],
+        owner_id: typing.Optional[int] = None,
+        is_board: typing.Optional[bool] = None,
         **kwargs
     ) -> polls.AddVoteResponseModel:
         """Adds the current user's vote to the selected answer in the poll.
@@ -28,23 +28,25 @@ class PollsCategory(BaseCategory):
 
     async def create(
         self,
-        question: Optional[str] = None,
-        is_anonymous: Optional[bool] = None,
-        is_multiple: Optional[bool] = None,
-        end_date: Optional[int] = None,
-        owner_id: Optional[int] = None,
-        add_answers: Optional[str] = None,
-        photo_id: Optional[int] = None,
-        background_id: Optional[str] = None,
-        disable_unvote: Optional[bool] = None,
+        question: typing.Optional[str] = None,
+        is_anonymous: typing.Optional[bool] = None,
+        is_multiple: typing.Optional[bool] = None,
+        end_date: typing.Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        app_id: typing.Optional[int] = None,
+        add_answers: typing.Optional[str] = None,
+        photo_id: typing.Optional[int] = None,
+        background_id: typing.Optional[str] = None,
+        disable_unvote: typing.Optional[bool] = None,
         **kwargs
     ) -> polls.CreateResponseModel:
         """Creates polls that can be attached to the users' or communities' posts.
         :param question: question text
-        :param is_anonymous: '1' – anonymous poll, participants list is hidden,, '0' – public poll, participants list is available,, Default value is '0'.
+        :param is_anonymous: '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
         :param is_multiple:
         :param end_date:
         :param owner_id: If a poll will be added to a communty it is required to send a negative group identifier. Current user by default.
+        :param app_id:
         :param add_answers: available answers list, for example: " ["yes","no","maybe"]", There can be from 1 to 10 answers.
         :param photo_id:
         :param background_id:
@@ -60,8 +62,8 @@ class PollsCategory(BaseCategory):
         self,
         poll_id: int,
         answer_id: int,
-        owner_id: Optional[int] = None,
-        is_board: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        is_board: typing.Optional[bool] = None,
         **kwargs
     ) -> polls.DeleteVoteResponseModel:
         """Deletes the current user's vote from the selected answer in the poll.
@@ -79,14 +81,14 @@ class PollsCategory(BaseCategory):
     async def edit(
         self,
         poll_id: int,
-        owner_id: Optional[int] = None,
-        question: Optional[str] = None,
-        add_answers: Optional[str] = None,
-        edit_answers: Optional[str] = None,
-        delete_answers: Optional[str] = None,
-        end_date: Optional[int] = None,
-        photo_id: Optional[int] = None,
-        background_id: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        question: typing.Optional[str] = None,
+        add_answers: typing.Optional[str] = None,
+        edit_answers: typing.Optional[str] = None,
+        delete_answers: typing.Optional[str] = None,
+        end_date: typing.Optional[int] = None,
+        photo_id: typing.Optional[int] = None,
+        background_id: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits created polls
@@ -94,7 +96,7 @@ class PollsCategory(BaseCategory):
         :param owner_id: poll owner id
         :param question: new question text
         :param add_answers: answers list, for example: , "["yes","no","maybe"]"
-        :param edit_answers: object containing answers that need to be edited,, key – answer id, value – new answer text. Example: {"382967099":"option1", "382967103":"option2"}"
+        :param edit_answers: object containing answers that need to be edited,, key - answer id, value - new answer text. Example: {"382967099":"option1", "382967103":"option2"}"
         :param delete_answers: list of answer ids to be deleted. For example: "[382967099, 382967103]"
         :param end_date:
         :param photo_id:
@@ -106,21 +108,29 @@ class PollsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
+    async def get_backgrounds(self, **kwargs) -> polls.GetBackgroundsResponseModel:
+        """polls.getBackgrounds method"""
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("polls.getBackgrounds", params)
+        model = polls.GetBackgroundsResponse
+        return model(**response).response
+
     async def get_by_id(
         self,
         poll_id: int,
-        owner_id: Optional[int] = None,
-        is_board: Optional[bool] = None,
-        extended: Optional[bool] = None,
-        friends_count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        is_board: typing.Optional[bool] = None,
+        extended: typing.Optional[bool] = None,
+        friends_count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> polls.GetByIdResponseModel:
         """Returns detailed information about a poll by its ID.
         :param poll_id: Poll ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
-        :param is_board: '1' – poll is in a board, '0' – poll is on a wall. '0' by default.
+        :param is_board: '1' - poll is in a board, '0' - poll is on a wall. '0' by default.
         :param extended:
         :param friends_count:
         :param fields:
@@ -132,17 +142,29 @@ class PollsCategory(BaseCategory):
         model = polls.GetByIdResponse
         return model(**response).response
 
+    async def get_photo_upload_server(
+        self, owner_id: typing.Optional[int] = None, **kwargs
+    ) -> base.GetUploadServerModel:
+        """polls.getPhotoUploadServer method
+        :param owner_id:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("polls.getPhotoUploadServer", params)
+        model = base.GetUploadServer
+        return model(**response).response
+
     async def get_voters(
         self,
         poll_id: int,
-        answer_ids: List[int],
-        owner_id: Optional[int] = None,
-        is_board: Optional[bool] = None,
-        friends_only: Optional[bool] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        answer_ids: typing.List[int],
+        owner_id: typing.Optional[int] = None,
+        is_board: typing.Optional[bool] = None,
+        friends_only: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> polls.GetVotersResponseModel:
         """Returns a list of IDs of users who selected specific answers in the poll.
@@ -160,4 +182,17 @@ class PollsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getVoters", params)
         model = polls.GetVotersResponse
+        return model(**response).response
+
+    async def save_photo(
+        self, photo: str, hash: str, **kwargs
+    ) -> polls.SavePhotoResponseModel:
+        """polls.savePhoto method
+        :param photo:
+        :param hash:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("polls.savePhoto", params)
+        model = polls.SavePhotoResponse
         return model(**response).response

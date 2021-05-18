@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import BaseBoolInt, UsersUserMin
 
@@ -6,50 +7,48 @@ from .base_response import BaseResponse
 
 
 class AddResponse(BaseResponse):
-    response: Optional["AddResponseModel"] = None
+    response: typing.Optional["AddResponseModel"] = None
 
 
 class DeleteResponse(BaseResponse):
-    response: Optional["DeleteResponseModel"] = None
+    response: typing.Optional["DeleteResponseModel"] = None
 
 
 class GetListExtendedResponse(BaseResponse):
-    response: Optional["GetListExtendedResponseModel"] = None
+    response: typing.Optional["GetListExtendedResponseModel"] = None
 
 
 class GetListResponse(BaseResponse):
-    response: Optional["GetListResponseModel"] = None
+    response: typing.Optional["GetListResponseModel"] = None
 
 
 class IsLikedResponse(BaseResponse):
-    response: Optional["IsLikedResponseModel"] = None
+    response: typing.Optional["IsLikedResponseModel"] = None
 
 
 class AddResponseModel(BaseResponse):
-    likes: Optional[int] = None
+    likes: typing.Optional[int] = None
 
 
 class DeleteResponseModel(BaseResponse):
-    likes: Optional[int] = None
+    likes: typing.Optional[int] = None
 
 
 class GetListExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserMin"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserMin"]] = None
 
 
 class GetListResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class IsLikedResponseModel(BaseResponse):
-    liked: Optional["BaseBoolInt"] = None
-    copied: Optional["BaseBoolInt"] = None
+    liked: typing.Optional["BaseBoolInt"] = None
+    copied: typing.Optional["BaseBoolInt"] = None
 
 
-AddResponse.update_forward_refs()
-DeleteResponse.update_forward_refs()
-GetListExtendedResponse.update_forward_refs()
-GetListResponse.update_forward_refs()
-IsLikedResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

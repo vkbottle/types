@@ -1,14 +1,13 @@
+import inspect
 import typing
-from typing import List, Optional, Union
 
 from vkbottle_types.objects import (
     BaseBoolInt,
-    BaseMessageError,
     GroupsGroup,
     GroupsGroupFull,
-    MessageChatPreview,
     MessagesChat,
     MessagesChatFull,
+    MessagesChatPreview,
     MessagesChatRestrictions,
     MessagesConversation,
     MessagesConversationMember,
@@ -18,6 +17,7 @@ from vkbottle_types.objects import (
     MessagesLongpollMessages,
     MessagesLongpollParams,
     MessagesMessage,
+    MessagesMessagesArray,
     MessagesPinnedMessage,
     UsersUser,
     UsersUserFull,
@@ -27,321 +27,348 @@ from .base_response import BaseResponse
 
 
 class CreateChatResponse(BaseResponse):
-    response: Optional["CreateChatResponseModel"] = None
+    response: typing.Optional["CreateChatResponseModel"] = None
 
 
 class DeleteChatPhotoResponse(BaseResponse):
-    response: Optional["DeleteChatPhotoResponseModel"] = None
+    response: typing.Optional["DeleteChatPhotoResponseModel"] = None
 
 
 class DeleteConversationResponse(BaseResponse):
-    response: Optional["DeleteConversationResponseModel"] = None
+    response: typing.Optional["DeleteConversationResponseModel"] = None
 
 
 class DeleteResponse(BaseResponse):
-    response: Optional["DeleteResponseModel"] = None
+    response: typing.Optional["DeleteResponseModel"] = None
 
 
 class EditResponse(BaseResponse):
-    response: Optional["EditResponseModel"] = None
+    response: typing.Optional["EditResponseModel"] = None
 
 
 class GetByConversationMessageIdResponse(BaseResponse):
-    response: Optional["GetByConversationMessageIdResponseModel"] = None
+    response: typing.Optional["GetByConversationMessageIdResponseModel"] = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: Optional["GetByIdExtendedResponseModel"] = None
+    response: typing.Optional["GetByIdExtendedResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetChatPreviewResponse(BaseResponse):
-    response: Optional["GetChatPreviewResponseModel"] = None
+    response: typing.Optional["GetChatPreviewResponseModel"] = None
 
 
 class GetChatChatIdsFieldsResponse(BaseResponse):
-    response: Optional["GetChatChatIdsFieldsResponseModel"] = None
+    response: typing.Optional["GetChatChatIdsFieldsResponseModel"] = None
 
 
 class GetChatChatIdsResponse(BaseResponse):
-    response: Optional["GetChatChatIdsResponseModel"] = None
+    response: typing.Optional["GetChatChatIdsResponseModel"] = None
 
 
 class GetChatFieldsResponse(BaseResponse):
-    response: Optional["GetChatFieldsResponseModel"] = None
+    response: typing.Optional["GetChatFieldsResponseModel"] = None
 
 
 class GetChatResponse(BaseResponse):
-    response: Optional["GetChatResponseModel"] = None
+    response: typing.Optional["GetChatResponseModel"] = None
 
 
 class GetConversationMembersResponse(BaseResponse):
-    response: Optional["GetConversationMembersResponseModel"] = None
+    response: typing.Optional["GetConversationMembersResponseModel"] = None
 
 
 class GetConversationsByIdExtendedResponse(BaseResponse):
-    response: Optional["GetConversationsByIdExtendedResponseModel"] = None
+    response: typing.Optional["GetConversationsByIdExtendedResponseModel"] = None
 
 
 class GetConversationsByIdResponse(BaseResponse):
-    response: Optional["GetConversationsByIdResponseModel"] = None
+    response: typing.Optional["GetConversationsByIdResponseModel"] = None
 
 
 class GetConversationsResponse(BaseResponse):
-    response: Optional["GetConversationsResponseModel"] = None
+    response: typing.Optional["GetConversationsResponseModel"] = None
 
 
 class GetHistoryAttachmentsResponse(BaseResponse):
-    response: Optional["GetHistoryAttachmentsResponseModel"] = None
+    response: typing.Optional["GetHistoryAttachmentsResponseModel"] = None
+
+
+class GetHistoryExtendedResponse(BaseResponse):
+    response: typing.Optional["GetHistoryExtendedResponseModel"] = None
 
 
 class GetHistoryResponse(BaseResponse):
-    response: Optional["GetHistoryResponseModel"] = None
+    response: typing.Optional["GetHistoryResponseModel"] = None
+
+
+class GetImportantMessagesExtendedResponse(BaseResponse):
+    response: typing.Optional["GetImportantMessagesExtendedResponseModel"] = None
+
+
+class GetImportantMessagesResponse(BaseResponse):
+    response: typing.Optional["GetImportantMessagesResponseModel"] = None
+
+
+class GetIntentUsersResponse(BaseResponse):
+    response: typing.Optional["GetIntentUsersResponseModel"] = None
 
 
 class GetInviteLinkResponse(BaseResponse):
-    response: Optional["GetInviteLinkResponseModel"] = None
+    response: typing.Optional["GetInviteLinkResponseModel"] = None
 
 
 class GetLastActivityResponse(BaseResponse):
-    response: Optional["GetLastActivityResponseModel"] = None
+    response: typing.Optional["GetLastActivityResponseModel"] = None
 
 
 class GetLongPollHistoryResponse(BaseResponse):
-    response: Optional["GetLongPollHistoryResponseModel"] = None
+    response: typing.Optional["GetLongPollHistoryResponseModel"] = None
 
 
 class GetLongPollServerResponse(BaseResponse):
-    response: Optional["GetLongPollServerResponseModel"] = None
+    response: typing.Optional["GetLongPollServerResponseModel"] = None
 
 
 class IsMessagesFromGroupAllowedResponse(BaseResponse):
-    response: Optional["IsMessagesFromGroupAllowedResponseModel"] = None
+    response: typing.Optional["IsMessagesFromGroupAllowedResponseModel"] = None
 
 
 class JoinChatByInviteLinkResponse(BaseResponse):
-    response: Optional["JoinChatByInviteLinkResponseModel"] = None
+    response: typing.Optional["JoinChatByInviteLinkResponseModel"] = None
 
 
 class MarkAsImportantResponse(BaseResponse):
-    response: Optional["MarkAsImportantResponseModel"] = None
+    response: typing.Optional["MarkAsImportantResponseModel"] = None
 
 
 class PinResponse(BaseResponse):
-    response: Optional["PinResponseModel"] = None
+    response: typing.Optional["PinResponseModel"] = None
+
+
+class SearchConversationsExtendedResponse(BaseResponse):
+    response: typing.Optional["SearchConversationsExtendedResponseModel"] = None
 
 
 class SearchConversationsResponse(BaseResponse):
-    response: Optional["SearchConversationsResponseModel"] = None
+    response: typing.Optional["SearchConversationsResponseModel"] = None
+
+
+class SearchExtendedResponse(BaseResponse):
+    response: typing.Optional["SearchExtendedResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
 class SendResponse(BaseResponse):
-    response: Optional["SendResponseModel"] = None
-
-
-class SendPeerIdsResponse(BaseResponse):
-    response: Optional[List["SendResponsePeerIdsModel"]] = None
+    response: typing.Optional["SendResponseModel"] = None
 
 
 class SendUserIdsResponse(BaseResponse):
-    response: Optional["SendUserIdsResponseModel"] = None
+    response: typing.Optional["SendUserIdsResponseModel"] = None
 
 
 class SetChatPhotoResponse(BaseResponse):
-    response: Optional["SetChatPhotoResponseModel"] = None
+    response: typing.Optional["SetChatPhotoResponseModel"] = None
 
 
 CreateChatResponseModel = int
 
 
 class DeleteChatPhotoResponseModel(BaseResponse):
-    message_id: Optional[int] = None
-    chat: Optional["MessagesChat"] = None
+    message_id: typing.Optional[int] = None
+    chat: typing.Optional["MessagesChat"] = None
 
 
 class DeleteConversationResponseModel(BaseResponse):
-    last_deleted_id: Optional[int] = None
+    last_deleted_id: typing.Optional[int] = None
 
 
 DeleteResponseModel = typing.Dict[str, int]
 
-EditResponseModel = Optional[BaseBoolInt]
+
+EditResponseModel = BaseBoolInt
 
 
 class GetByConversationMessageIdResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetByIdResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
 
 
 class GetChatPreviewResponseModel(BaseResponse):
-    preview: Optional["MessageChatPreview"] = None
-    profiles: Optional[List["UsersUserFull"]] = None
+    preview: typing.Optional["MessagesChatPreview"] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
-GetChatChatIdsFieldsResponseModel = List[MessagesChatFull]
+GetChatChatIdsFieldsResponseModel = typing.List[MessagesChatFull]
 
-GetChatChatIdsResponseModel = List[MessagesChat]
 
-GetChatFieldsResponseModel = Optional[MessagesChatFull]
+GetChatChatIdsResponseModel = typing.List[MessagesChat]
 
-GetChatResponseModel = Optional[MessagesChat]
+
+GetChatFieldsResponseModel = MessagesChatFull
+
+
+GetChatResponseModel = MessagesChat
 
 
 class GetConversationMembersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesConversationMember"]] = None
-    chat_restrictions: Optional["MessagesChatRestrictions"] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversationMember"]] = None
+    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetConversationsByIdExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesConversation"]] = None
-    profiles: Optional[List["UsersUser"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversation"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetConversationsByIdResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesConversation"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
 class GetConversationsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    unread_count: Optional[int] = None
-    items: Optional[List["MessagesConversationWithMessage"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    unread_count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversationWithMessage"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetHistoryAttachmentsResponseModel(BaseResponse):
-    items: Optional[List["MessagesHistoryAttachment"]] = None
-    next_from: Optional[str] = None
+    items: typing.Optional[typing.List["MessagesHistoryAttachment"]] = None
+    next_from: typing.Optional[str] = None
+
+
+class GetHistoryExtendedResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    conversations: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
 class GetHistoryResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+
+
+class GetImportantMessagesExtendedResponseModel(BaseResponse):
+    messages: typing.Optional["MessagesMessagesArray"] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    conversations: typing.Optional[typing.List["MessagesConversation"]] = None
+
+
+class GetImportantMessagesResponseModel(BaseResponse):
+    messages: typing.Optional["MessagesMessagesArray"] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    conversations: typing.Optional[typing.List["MessagesConversation"]] = None
+
+
+class GetIntentUsersResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetInviteLinkResponseModel(BaseResponse):
-    link: Optional[str] = None
+    link: typing.Optional[str] = None
 
 
-GetLastActivityResponseModel = Optional[MessagesLastActivity]
+GetLastActivityResponseModel = MessagesLastActivity
 
 
 class GetLongPollHistoryResponseModel(BaseResponse):
-    history: Optional[List[List[int]]] = None
-    groups: Optional[List["GroupsGroup"]] = None
-    messages: Optional["MessagesLongpollMessages"] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    chats: Optional[List["MessagesChat"]] = None
-    new_pts: Optional[int] = None
-    more: Optional[bool] = None
-    conversations: Optional[List["MessagesConversation"]] = None
+    history: typing.Optional[typing.List["list"]] = None
+    messages: typing.Optional["MessagesLongpollMessages"] = None
+    credentials: typing.Optional["MessagesLongpollParams"] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    chats: typing.Optional[typing.List["MessagesChat"]] = None
+    new_pts: typing.Optional[int] = None
+    from_pts: typing.Optional[int] = None
+    more: typing.Optional[bool] = None
+    conversations: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
-GetLongPollServerResponseModel = Optional[MessagesLongpollParams]
+GetLongPollServerResponseModel = MessagesLongpollParams
 
 
 class IsMessagesFromGroupAllowedResponseModel(BaseResponse):
-    is_allowed: Optional["BaseBoolInt"] = None
+    is_allowed: typing.Optional["BaseBoolInt"] = None
 
 
 class JoinChatByInviteLinkResponseModel(BaseResponse):
-    chat_id: Optional[int] = None
+    chat_id: typing.Optional[int] = None
 
 
-MarkAsImportantResponseModel = List[int]
+MarkAsImportantResponseModel = typing.List[int]
 
-PinResponseModel = Optional[MessagesPinnedMessage]
+
+PinResponseModel = MessagesPinnedMessage
+
+
+class SearchConversationsExtendedResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversation"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class SearchConversationsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesConversation"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesConversation"]] = None
+
+
+class SearchExtendedResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    conversations: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
 
 
-SendResponseModel = Union[int, SendUserIdsResponse]
+SendResponseModel = int
 
 
-class SendResponsePeerIdsModel(BaseResponse):
-    peer_id: Optional[int] = None
-    message_id: Optional[int] = None
-    conversation_message_id: Optional[int] = None
-    error: Optional["BaseMessageError"] = None
-
-
-class SendUserIdsResponseModel(BaseResponse):
-    peer_id: Optional[int] = None
-    message_id: Optional[int] = None
-    error: Optional["BaseMessageError"] = None
+SendUserIdsResponseModel = typing.List["typing.Any"]
 
 
 class SetChatPhotoResponseModel(BaseResponse):
-    message_id: Optional[int] = None
-    chat: Optional["MessagesChat"] = None
+    message_id: typing.Optional[int] = None
+    chat: typing.Optional["MessagesChat"] = None
 
 
-CreateChatResponse.update_forward_refs()
-DeleteChatPhotoResponse.update_forward_refs()
-DeleteConversationResponse.update_forward_refs()
-DeleteResponse.update_forward_refs()
-EditResponse.update_forward_refs()
-GetByConversationMessageIdResponse.update_forward_refs()
-GetByIdExtendedResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetChatPreviewResponse.update_forward_refs()
-GetChatChatIdsFieldsResponse.update_forward_refs()
-GetChatChatIdsResponse.update_forward_refs()
-GetChatFieldsResponse.update_forward_refs()
-GetChatResponse.update_forward_refs()
-GetConversationMembersResponse.update_forward_refs()
-GetConversationsByIdExtendedResponse.update_forward_refs()
-GetConversationsByIdResponse.update_forward_refs()
-GetConversationsResponse.update_forward_refs()
-GetHistoryAttachmentsResponse.update_forward_refs()
-GetHistoryResponse.update_forward_refs()
-GetInviteLinkResponse.update_forward_refs()
-GetLastActivityResponse.update_forward_refs()
-GetLongPollHistoryResponse.update_forward_refs()
-GetLongPollServerResponse.update_forward_refs()
-IsMessagesFromGroupAllowedResponse.update_forward_refs()
-JoinChatByInviteLinkResponse.update_forward_refs()
-MarkAsImportantResponse.update_forward_refs()
-PinResponse.update_forward_refs()
-SearchConversationsResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
-SendResponse.update_forward_refs()
-SendPeerIdsResponse.update_forward_refs()
-SendUserIdsResponse.update_forward_refs()
-SetChatPhotoResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

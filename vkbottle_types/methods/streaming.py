@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 
 from vkbottle_types.responses import base, streaming
 
@@ -15,7 +15,7 @@ class StreamingCategory(BaseCategory):
         return model(**response).response
 
     async def set_settings(
-        self, monthly_tier: Optional[str] = None, **kwargs
+        self, monthly_tier: typing.Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """streaming.setSettings method
         :param monthly_tier:

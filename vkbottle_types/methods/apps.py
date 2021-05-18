@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import apps, base
 
@@ -16,13 +16,13 @@ class AppsCategory(BaseCategory):
 
     async def get(
         self,
-        app_id: Optional[int] = None,
-        app_ids: Optional[List[str]] = None,
-        platform: Optional[str] = None,
-        extended: Optional[bool] = None,
-        return_friends: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
+        app_id: typing.Optional[int] = None,
+        app_ids: typing.Optional[typing.List[str]] = None,
+        platform: typing.Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        return_friends: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
         **kwargs
     ) -> apps.GetResponseModel:
         """Returns applications data.
@@ -43,16 +43,16 @@ class AppsCategory(BaseCategory):
     async def get_catalog(
         self,
         count: int,
-        sort: Optional[str] = None,
-        offset: Optional[int] = None,
-        platform: Optional[str] = None,
-        extended: Optional[bool] = None,
-        return_friends: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
-        name_case: Optional[str] = None,
-        q: Optional[str] = None,
-        genre_id: Optional[int] = None,
-        filter: Optional[str] = None,
+        sort: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        platform: typing.Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        return_friends: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+        genre_id: typing.Optional[int] = None,
+        filter: typing.Optional[str] = None,
         **kwargs
     ) -> apps.GetCatalogResponseModel:
         """Returns a list of applications (apps) available to users in the App Catalog.
@@ -76,11 +76,11 @@ class AppsCategory(BaseCategory):
 
     async def get_friends_list(
         self,
-        extended: Optional[bool] = None,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
-        type: Optional[str] = None,
-        fields: Optional[List[str]] = None,
+        extended: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        type: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> apps.GetFriendsListResponseModel:
         """Creates friends list for requests and invites in current app.
@@ -99,13 +99,13 @@ class AppsCategory(BaseCategory):
     async def get_leaderboard(
         self,
         type: str,
-        global_: Optional[bool] = None,
-        extended: Optional[bool] = None,
+        _global: typing.Optional[bool] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> apps.GetLeaderboardResponseModel:
         """Returns players rating in the game.
         :param type: Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().
-        :param global: Rating type. Possible values: *'1' — global rating among all players,, *'0' — rating among user friends.
+        :param _global: Rating type. Possible values: *'1' — global rating among all players,, *'0' — rating among user friends.
         :param extended: 1 — to return additional info about users
         """
 
@@ -118,8 +118,20 @@ class AppsCategory(BaseCategory):
         )
         return model(**response).response
 
+    async def get_mini_app_policies(
+        self, app_id: int, **kwargs
+    ) -> apps.GetMiniAppPoliciesResponseModel:
+        """Returns policies and terms given to a mini app.
+        :param app_id: Mini App ID
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("apps.getMiniAppPolicies", params)
+        model = apps.GetMiniAppPoliciesResponse
+        return model(**response).response
+
     async def get_scopes(
-        self, type: Optional[str] = None, **kwargs
+        self, type: typing.Optional[str] = None, **kwargs
     ) -> apps.GetScopesResponseModel:
         """Returns scopes for auth
         :param type:
@@ -141,8 +153,8 @@ class AppsCategory(BaseCategory):
         return model(**response).response
 
     async def promo_has_active_gift(
-        self, promo_id: int, user_id: Optional[int] = None, **kwargs
-    ) -> base.BoolResponseModel:
+        self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
+    ) -> base.BoolModel:
         """apps.promoHasActiveGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -150,12 +162,12 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoHasActiveGift", params)
-        model = base.BoolResponse
+        model = base.Bool
         return model(**response).response
 
     async def promo_use_gift(
-        self, promo_id: int, user_id: Optional[int] = None, **kwargs
-    ) -> base.BoolResponseModel:
+        self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
+    ) -> base.BoolModel:
         """apps.promoUseGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -163,23 +175,23 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoUseGift", params)
-        model = base.BoolResponse
+        model = base.Bool
         return model(**response).response
 
     async def send_request(
         self,
         user_id: int,
-        text: Optional[str] = None,
-        type: Optional[str] = None,
-        name: Optional[str] = None,
-        key: Optional[str] = None,
-        separate: Optional[bool] = None,
+        text: typing.Optional[str] = None,
+        type: typing.Optional[str] = None,
+        name: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        separate: typing.Optional[bool] = None,
         **kwargs
     ) -> apps.SendRequestResponseModel:
         """Sends a request to another user in an app that uses VK authorization.
         :param user_id: id of the user to send a request
         :param text: request text
-        :param type: request type. Values: 'invite' – if the request is sent to a user who does not have the app installed,, 'request' – if a user has already installed the app
+        :param type: request type. Values: 'invite' - if the request is sent to a user who does not have the app installed,, 'request' - if a user has already installed the app
         :param name:
         :param key: special string key to be sent with the request
         :param separate:

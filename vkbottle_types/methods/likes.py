@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 
 from vkbottle_types.responses import likes
 
@@ -10,8 +10,8 @@ class LikesCategory(BaseCategory):
         self,
         type: str,
         item_id: int,
-        owner_id: Optional[int] = None,
-        access_key: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        access_key: typing.Optional[str] = None,
         **kwargs
     ) -> likes.AddResponseModel:
         """Adds the specified object to the 'Likes' list of the current user.
@@ -30,8 +30,8 @@ class LikesCategory(BaseCategory):
         self,
         type: str,
         item_id: int,
-        owner_id: Optional[int] = None,
-        access_key: Optional[str] = None,
+        owner_id: typing.Optional[int] = None,
+        access_key: typing.Optional[str] = None,
         **kwargs
     ) -> likes.DeleteResponseModel:
         """Deletes the specified object from the 'Likes' list of the current user.
@@ -49,15 +49,15 @@ class LikesCategory(BaseCategory):
     async def get_list(
         self,
         type: str,
-        owner_id: Optional[int] = None,
-        item_id: Optional[int] = None,
-        page_url: Optional[str] = None,
-        filter: Optional[str] = None,
-        friends_only: Optional[int] = None,
-        extended: Optional[bool] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        skip_own: Optional[bool] = None,
+        owner_id: typing.Optional[int] = None,
+        item_id: typing.Optional[int] = None,
+        page_url: typing.Optional[str] = None,
+        filter: typing.Optional[str] = None,
+        friends_only: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        skip_own: typing.Optional[bool] = None,
         **kwargs
     ) -> likes.GetListResponseModel:
         """Returns a list of IDs of users who added the specified object to their 'Likes' list.
@@ -86,8 +86,8 @@ class LikesCategory(BaseCategory):
         self,
         type: str,
         item_id: int,
-        user_id: Optional[int] = None,
-        owner_id: Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
         **kwargs
     ) -> likes.IsLikedResponseModel:
         """Checks for the object in the 'Likes' list of the specified user.

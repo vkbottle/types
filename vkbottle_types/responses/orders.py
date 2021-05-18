@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     BaseBoolInt,
@@ -11,63 +12,63 @@ from .base_response import BaseResponse
 
 
 class CancelSubscriptionResponse(BaseResponse):
-    response: Optional["CancelSubscriptionResponseModel"] = None
+    response: typing.Optional["CancelSubscriptionResponseModel"] = None
 
 
 class ChangeStateResponse(BaseResponse):
-    response: Optional["ChangeStateResponseModel"] = None
+    response: typing.Optional["ChangeStateResponseModel"] = None
 
 
 class GetAmountResponse(BaseResponse):
-    response: Optional["GetAmountResponseModel"] = None
+    response: typing.Optional["GetAmountResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetUserSubscriptionByIdResponse(BaseResponse):
-    response: Optional["GetUserSubscriptionByIdResponseModel"] = None
+    response: typing.Optional["GetUserSubscriptionByIdResponseModel"] = None
 
 
 class GetUserSubscriptionsResponse(BaseResponse):
-    response: Optional["GetUserSubscriptionsResponseModel"] = None
+    response: typing.Optional["GetUserSubscriptionsResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class UpdateSubscriptionResponse(BaseResponse):
-    response: Optional["UpdateSubscriptionResponseModel"] = None
+    response: typing.Optional["UpdateSubscriptionResponseModel"] = None
 
 
-CancelSubscriptionResponseModel = Optional[BaseBoolInt]
+CancelSubscriptionResponseModel = BaseBoolInt
+
 
 ChangeStateResponseModel = str
 
-GetAmountResponseModel = Optional[OrdersAmount]
 
-GetByIdResponseModel = List[OrdersOrder]
+GetAmountResponseModel = OrdersAmount
 
-GetUserSubscriptionByIdResponseModel = Optional[OrdersSubscription]
+
+GetByIdResponseModel = typing.List[OrdersOrder]
+
+
+GetUserSubscriptionByIdResponseModel = OrdersSubscription
 
 
 class GetUserSubscriptionsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["OrdersSubscription"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["OrdersSubscription"]] = None
 
 
-GetResponseModel = List[OrdersOrder]
-
-UpdateSubscriptionResponseModel = Optional[BaseBoolInt]
+GetResponseModel = typing.List[OrdersOrder]
 
 
-CancelSubscriptionResponse.update_forward_refs()
-ChangeStateResponse.update_forward_refs()
-GetAmountResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetUserSubscriptionByIdResponse.update_forward_refs()
-GetUserSubscriptionsResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-UpdateSubscriptionResponse.update_forward_refs()
+UpdateSubscriptionResponseModel = BaseBoolInt
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

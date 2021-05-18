@@ -1,4 +1,5 @@
-from typing import List, Optional
+import inspect
+import typing
 
 from vkbottle_types.objects import (
     GroupsGroupsArray,
@@ -12,60 +13,57 @@ from .base_response import BaseResponse
 
 
 class GetFollowersFieldsResponse(BaseResponse):
-    response: Optional["GetFollowersFieldsResponseModel"] = None
+    response: typing.Optional["GetFollowersFieldsResponseModel"] = None
 
 
 class GetFollowersResponse(BaseResponse):
-    response: Optional["GetFollowersResponseModel"] = None
+    response: typing.Optional["GetFollowersResponseModel"] = None
 
 
 class GetSubscriptionsExtendedResponse(BaseResponse):
-    response: Optional["GetSubscriptionsExtendedResponseModel"] = None
+    response: typing.Optional["GetSubscriptionsExtendedResponseModel"] = None
 
 
 class GetSubscriptionsResponse(BaseResponse):
-    response: Optional["GetSubscriptionsResponseModel"] = None
+    response: typing.Optional["GetSubscriptionsResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
 class GetFollowersFieldsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetFollowersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class GetSubscriptionsExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersSubscriptionsItem"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersSubscriptionsItem"]] = None
 
 
 class GetSubscriptionsResponseModel(BaseResponse):
-    users: Optional["UsersUsersArray"] = None
-    groups: Optional["GroupsGroupsArray"] = None
+    users: typing.Optional["UsersUsersArray"] = None
+    groups: typing.Optional["GroupsGroupsArray"] = None
 
 
-GetResponseModel = List[UsersUserXtrCounters]
+GetResponseModel = typing.List[UsersUserXtrCounters]
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
-GetFollowersFieldsResponse.update_forward_refs()
-GetFollowersResponse.update_forward_refs()
-GetSubscriptionsExtendedResponse.update_forward_refs()
-GetSubscriptionsResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

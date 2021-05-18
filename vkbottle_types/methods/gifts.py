@@ -1,4 +1,4 @@
-from typing import Optional
+import typing
 
 from vkbottle_types.responses import gifts
 
@@ -8,9 +8,9 @@ from .base_category import BaseCategory
 class GiftsCategory(BaseCategory):
     async def get(
         self,
-        user_id: Optional[int] = None,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
         **kwargs
     ) -> gifts.GetResponseModel:
         """Returns a list of user gifts.

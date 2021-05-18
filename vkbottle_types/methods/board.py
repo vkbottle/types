@@ -1,4 +1,4 @@
-from typing import List, Optional
+import typing
 
 from vkbottle_types.responses import base, board
 
@@ -10,9 +10,9 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         title: str,
-        text: Optional[str] = None,
-        from_group: Optional[bool] = None,
-        attachments: Optional[List[str]] = None,
+        text: typing.Optional[str] = None,
+        from_group: typing.Optional[bool] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> board.AddTopicResponseModel:
         """Creates a new topic on a community's discussion board.
@@ -45,11 +45,11 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_id: int,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
-        from_group: Optional[bool] = None,
-        sticker_id: Optional[int] = None,
-        guid: Optional[str] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
+        from_group: typing.Optional[bool] = None,
+        sticker_id: typing.Optional[int] = None,
+        guid: typing.Optional[str] = None,
         **kwargs
     ) -> board.CreateCommentResponseModel:
         """Adds a comment on a topic on a community's discussion board.
@@ -99,8 +99,8 @@ class BoardCategory(BaseCategory):
         group_id: int,
         topic_id: int,
         comment_id: int,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a comment on a topic on a community's discussion board.
@@ -147,12 +147,12 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_id: int,
-        need_likes: Optional[bool] = None,
-        start_comment_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
-        sort: Optional[str] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        sort: typing.Optional[str] = None,
         **kwargs
     ) -> board.GetCommentsResponseModel:
         """Returns a list of comments on a topic on a community's discussion board.
@@ -178,13 +178,13 @@ class BoardCategory(BaseCategory):
     async def get_topics(
         self,
         group_id: int,
-        topic_ids: Optional[List[int]] = None,
-        order: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
-        preview: Optional[int] = None,
-        preview_length: Optional[int] = None,
+        topic_ids: typing.Optional[typing.List[int]] = None,
+        order: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        preview: typing.Optional[int] = None,
+        preview_length: typing.Optional[int] = None,
         **kwargs
     ) -> board.GetTopicsResponseModel:
         """Returns a list of topics on a community's discussion board.
