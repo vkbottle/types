@@ -4,12 +4,14 @@ from abc import ABC, abstractmethod
 from vkbottle_types.methods import (
     account,
     ads,
+    adsweb,
     apps,
     appWidgets,
     auth,
     board,
     database,
     docs,
+    donut,
     downloadedGames,
     fave,
     friends,
@@ -24,6 +26,7 @@ from vkbottle_types.methods import (
     orders,
     pages,
     photos,
+    podcasts,
     polls,
     prettyCards,
     search,
@@ -31,12 +34,14 @@ from vkbottle_types.methods import (
     stats,
     status,
     storage,
+    store,
     stories,
     streaming,
     users,
     utils,
     video,
     wall,
+    widgets,
 )
 
 if typing.TYPE_CHECKING:
@@ -51,6 +56,10 @@ class APICategories(ABC):
     @property
     def ads(self) -> ads.AdsCategory:
         return ads.AdsCategory(self.api_instance)
+
+    @property
+    def adsweb(self) -> adsweb.AdswebCategory:
+        return adsweb.AdswebCategory(self.api_instance)
 
     @property
     def apps(self) -> apps.AppsCategory:
@@ -75,6 +84,10 @@ class APICategories(ABC):
     @property
     def docs(self) -> docs.DocsCategory:
         return docs.DocsCategory(self.api_instance)
+
+    @property
+    def donut(self) -> donut.DonutCategory:
+        return donut.DonutCategory(self.api_instance)
 
     @property
     def downloaded_games(self) -> downloadedGames.DownloadedGamesCategory:
@@ -133,6 +146,10 @@ class APICategories(ABC):
         return photos.PhotosCategory(self.api_instance)
 
     @property
+    def podcasts(self) -> podcasts.PodcastsCategory:
+        return podcasts.PodcastsCategory(self.api_instance)
+
+    @property
     def polls(self) -> polls.PollsCategory:
         return polls.PollsCategory(self.api_instance)
 
@@ -161,6 +178,10 @@ class APICategories(ABC):
         return storage.StorageCategory(self.api_instance)
 
     @property
+    def store(self) -> store.StoreCategory:
+        return store.StoreCategory(self.api_instance)
+
+    @property
     def stories(self) -> stories.StoriesCategory:
         return stories.StoriesCategory(self.api_instance)
 
@@ -183,6 +204,10 @@ class APICategories(ABC):
     @property
     def wall(self) -> wall.WallCategory:
         return wall.WallCategory(self.api_instance)
+
+    @property
+    def widgets(self) -> widgets.WidgetsCategory:
+        return widgets.WidgetsCategory(self.api_instance)
 
     @property
     @abstractmethod
