@@ -2493,6 +2493,9 @@ class ClientInfoForBots(BaseModel):
     lang_id: typing.Optional[int] = None
 
 
+MessagesClientInfo = ClientInfoForBots  # alias for vkbottle
+
+
 class CommentThread(BaseModel):
     """VK Object CommentThread
 
