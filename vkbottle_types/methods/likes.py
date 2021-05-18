@@ -1,5 +1,7 @@
+from typing import Optional
+
 from vkbottle_types.responses import likes
-from typing import Optional, Any, List
+
 from .base_category import BaseCategory
 
 

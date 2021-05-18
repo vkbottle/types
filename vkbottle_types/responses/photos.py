@@ -1,22 +1,23 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
-    PhotosPhotoTag,
-    PhotosPhotoXtrTagInfo,
-    GroupsGroupFull,
-    PhotosCommentXtrPid,
-    PhotosPhotoXtrRealOffset,
-    WallWallComment,
-    PhotosPhotoUpload,
-    PhotosPhoto,
-    PhotosPhotoFullXtrRealOffset,
-    UsersUserFull,
-    PhotosPhotoAlbumFull,
-    PhotosPhotoFull,
     BaseBoolInt,
     BaseImage,
     BaseUploadServer,
+    GroupsGroupFull,
+    PhotosCommentXtrPid,
+    PhotosPhoto,
+    PhotosPhotoAlbumFull,
+    PhotosPhotoFull,
+    PhotosPhotoFullXtrRealOffset,
+    PhotosPhotoTag,
+    PhotosPhotoUpload,
+    PhotosPhotoXtrRealOffset,
+    PhotosPhotoXtrTagInfo,
+    UsersUserFull,
+    WallWallComment,
 )
+
 from .base_response import BaseResponse
 
 

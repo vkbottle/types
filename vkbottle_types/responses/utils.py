@@ -1,13 +1,14 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
-    UtilsLinkStatsExtended,
-    UtilsLinkChecked,
-    UtilsShortLink,
-    UtilsLinkStats,
-    UtilsLastShortenedLink,
     UtilsDomainResolved,
+    UtilsLastShortenedLink,
+    UtilsLinkChecked,
+    UtilsLinkStats,
+    UtilsLinkStatsExtended,
+    UtilsShortLink,
 )
+
 from .base_response import BaseResponse
 
 

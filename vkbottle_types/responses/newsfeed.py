@@ -1,15 +1,16 @@
-from typing import Optional, List, Union
+from typing import List, Optional, Union
 
 from vkbottle_types.objects import (
     GroupsGroupFull,
+    NewsfeedList,
+    NewsfeedListFull,
     NewsfeedNewsfeedItem,
-    WallWallpostToId,
     UsersUserFull,
     UsersUserXtrType,
     WallWallpostFull,
-    NewsfeedListFull,
-    NewsfeedList,
+    WallWallpostToId,
 )
+
 from .base_response import BaseResponse
 
 

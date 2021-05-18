@@ -1,5 +1,5 @@
 from vkbottle_types.responses import base
-from typing import Optional, Any, List
+
 from .base_category import BaseCategory
 
 

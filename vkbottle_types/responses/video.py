@@ -1,15 +1,16 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
-    GroupsGroupFull,
-    VideoSaveResult,
-    UsersUserMin,
-    WallWallComment,
-    VideoVideo,
-    VideoVideoFull,
     BaseBoolInt,
+    GroupsGroupFull,
+    UsersUserMin,
+    VideoSaveResult,
+    VideoVideo,
     VideoVideoAlbumFull,
+    VideoVideoFull,
+    WallWallComment,
 )
+
 from .base_response import BaseResponse
 
 

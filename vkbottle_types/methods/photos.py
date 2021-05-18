@@ -1,5 +1,7 @@
-from vkbottle_types.responses import photos, base
-from typing import Optional, Any, List
+from typing import List, Optional
+
+from vkbottle_types.responses import base, photos
+
 from .base_category import BaseCategory
 
 

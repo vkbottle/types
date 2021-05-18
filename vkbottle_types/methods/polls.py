@@ -1,5 +1,7 @@
-from vkbottle_types.responses import polls, base
-from typing import Optional, List
+from typing import List, Optional
+
+from vkbottle_types.responses import base, polls
+
 from .base_category import BaseCategory
 
 

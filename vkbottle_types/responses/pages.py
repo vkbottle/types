@@ -1,10 +1,11 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
+    PagesWikipage,
     PagesWikipageFull,
     PagesWikipageHistory,
-    PagesWikipage,
 )
+
 from .base_response import BaseResponse
 
 

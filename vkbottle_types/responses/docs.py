@@ -1,13 +1,14 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
+    BaseUploadServer,
+    DocsDoc,
+    DocsDocAttachmentType,
     DocsDocTypes,
     MessagesAudioMessage,
     MessagesGraffiti,
-    DocsDocAttachmentType,
-    DocsDoc,
-    BaseUploadServer,
 )
+
 from .base_response import BaseResponse
 
 

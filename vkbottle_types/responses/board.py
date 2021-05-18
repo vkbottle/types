@@ -1,15 +1,16 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
-    BoardTopicComment,
-    UsersUserMin,
-    UsersUser,
-    GroupsGroup,
     BaseBoolInt,
-    BoardTopicPoll,
     BoardDefaultOrder,
     BoardTopic,
+    BoardTopicComment,
+    BoardTopicPoll,
+    GroupsGroup,
+    UsersUser,
+    UsersUserMin,
 )
+
 from .base_response import BaseResponse
 
 

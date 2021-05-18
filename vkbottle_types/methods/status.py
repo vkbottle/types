@@ -1,5 +1,7 @@
-from vkbottle_types.responses import status, base
-from typing import Optional, Any, List
+from typing import Optional
+
+from vkbottle_types.responses import base, status
+
 from .base_category import BaseCategory
 
 

@@ -1,12 +1,13 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
+    AppsApp,
     AppsLeaderboard,
-    UsersUserMin,
     AppsScope,
     UsersUserFull,
-    AppsApp,
+    UsersUserMin,
 )
+
 from .base_response import BaseResponse
 
 

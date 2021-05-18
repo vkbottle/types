@@ -1,5 +1,7 @@
-from vkbottle_types.responses import streaming, base
-from typing import Optional, Any, List
+from typing import Optional
+
+from vkbottle_types.responses import base, streaming
+
 from .base_category import BaseCategory
 
 

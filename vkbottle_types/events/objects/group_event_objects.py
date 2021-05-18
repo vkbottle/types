@@ -1,21 +1,23 @@
-from .base_event_object import BaseEventObject
+import enum
+from typing import Any, Callable, Optional, Union
+
 from vkbottle_types.objects import (
+    AudioAudio,
+    BoardTopicComment,
+    CallbackGroupJoinType,
+    GroupsGroupAdminLevel,
+    MarketOrder,
+    MessagesClientInfo,
+    MessagesMessage,
+    ObjectType,
+    PhotosPhoto,
+    UsersBlockReason,
+    VideoVideo,
     WallWallComment,
     WallWallpost,
-    BoardTopicComment,
-    PhotosPhoto,
-    CallbackGroupJoinType,
-    UsersBlockReason,
-    GroupsGroupAdminLevel,
-    MessagesMessage,
-    MessagesClientInfo,
-    AudioAudio,
-    ObjectType,
-    VideoVideo,
-    MarketOrder,
 )
-import enum
-from typing import Optional, Any, Union, Callable
+
+from .base_event_object import BaseEventObject
 
 
 class MessageNewObject(BaseEventObject):

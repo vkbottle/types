@@ -1,6 +1,7 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import SearchHint
+
 from .base_response import BaseResponse
 
 

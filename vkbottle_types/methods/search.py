@@ -1,5 +1,7 @@
+from typing import List, Optional
+
 from vkbottle_types.responses import search
-from typing import Optional, Any, List
+
 from .base_category import BaseCategory
 
 

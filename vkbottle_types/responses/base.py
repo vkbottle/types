@@ -1,6 +1,7 @@
 from typing import Optional
 
-from vkbottle_types.objects import BaseUploadServer, BaseBoolInt
+from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
+
 from .base_response import BaseResponse
 
 

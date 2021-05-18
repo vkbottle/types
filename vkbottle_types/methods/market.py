@@ -1,5 +1,7 @@
-from vkbottle_types.responses import market, base
-from typing import Optional, Any, List
+from typing import List, Optional
+
+from vkbottle_types.responses import base, market
+
 from .base_category import BaseCategory
 
 

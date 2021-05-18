@@ -1,6 +1,8 @@
-from .base_event_object import BaseEventObject
+from typing import List, Optional, Union
+
 from vkbottle_types.objects import MessagesMessage
-from typing import Optional, Union, List
+
+from .base_event_object import BaseEventObject
 
 
 class MessageObject(BaseEventObject):

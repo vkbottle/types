@@ -1,4 +1,6 @@
+import typing
 from abc import ABC, abstractmethod
+
 from vkbottle_types.methods import (
     account,
     ads,
@@ -37,7 +39,6 @@ from vkbottle_types.methods import (
     video,
     wall,
 )
-import typing
 
 if typing.TYPE_CHECKING:
     from vkbottle import API

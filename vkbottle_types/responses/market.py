@@ -1,13 +1,14 @@
-from typing import Optional, List
+from typing import List, Optional
 
 from vkbottle_types.objects import (
+    BaseBoolInt,
+    MarketMarketAlbum,
     MarketMarketCategory,
     MarketMarketItem,
-    WallWallComment,
     MarketMarketItemFull,
-    MarketMarketAlbum,
-    BaseBoolInt,
+    WallWallComment,
 )
+
 from .base_response import BaseResponse
 
 

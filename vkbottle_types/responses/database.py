@@ -1,15 +1,16 @@
-from typing import Optional, List, Union
+from typing import List, Optional, Union
 
 from vkbottle_types.objects import (
-    DatabaseUniversity,
-    BaseObject,
-    DatabaseSchool,
     BaseCountry,
+    BaseObject,
     DatabaseCity,
     DatabaseFaculty,
-    DatabaseStation,
     DatabaseRegion,
+    DatabaseSchool,
+    DatabaseStation,
+    DatabaseUniversity,
 )
+
 from .base_response import BaseResponse
 
 

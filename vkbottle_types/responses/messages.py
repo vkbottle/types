@@ -1,27 +1,28 @@
 import typing
-from typing import Optional, List, Union
+from typing import List, Optional, Union
 
 from vkbottle_types.objects import (
-    GroupsGroupFull,
+    BaseBoolInt,
+    BaseMessageError,
     GroupsGroup,
+    GroupsGroupFull,
+    MessageChatPreview,
+    MessagesChat,
+    MessagesChatFull,
+    MessagesChatRestrictions,
+    MessagesConversation,
+    MessagesConversationMember,
+    MessagesConversationWithMessage,
+    MessagesHistoryAttachment,
+    MessagesLastActivity,
+    MessagesLongpollMessages,
+    MessagesLongpollParams,
     MessagesMessage,
     MessagesPinnedMessage,
-    MessagesHistoryAttachment,
-    MessagesChatFull,
-    MessageChatPreview,
-    MessagesLongpollParams,
-    MessagesLastActivity,
-    MessagesConversation,
-    BaseMessageError,
-    MessagesConversationWithMessage,
-    BaseBoolInt,
-    MessagesChatRestrictions,
-    MessagesChat,
     UsersUser,
     UsersUserFull,
-    MessagesLongpollMessages,
-    MessagesConversationMember,
 )
+
 from .base_response import BaseResponse
 
 
