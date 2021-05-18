@@ -7,11 +7,11 @@ from vkbottle_types.objects import (
     CallbackGroupJoinType,
     GroupsGroupAdminLevel,
     MarketOrder,
-    MessagesClientInfo,
+    ClientInfoForBots,
     MessagesMessage,
     ObjectType,
     PhotosPhoto,
-    UsersBlockReason,
+    GroupsBanInfoReason,
     VideoVideo,
     WallWallComment,
     WallWallpost,
@@ -22,7 +22,7 @@ from .base_event_object import BaseEventObject
 
 class MessageNewObject(BaseEventObject):
     message: Optional[MessagesMessage] = None
-    client_info: Optional[MessagesClientInfo] = None
+    client_info: Optional[ClientInfoForBots] = None
 
 
 class MessageObject(MessagesMessage):
@@ -170,7 +170,7 @@ class UserBlockObject(BaseEventObject):
     admin_id: Optional[int] = None
     user_id: Optional[int] = None
     unblock_data: Optional[int] = None
-    reason: Optional[UsersBlockReason] = None
+    reason: Optional[GroupsBanInfoReason] = None
     comment: Optional[str] = None
 
 
