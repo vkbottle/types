@@ -1,6 +1,6 @@
 import typing
 
-from vkbottle_types.responses import base, donut
+from vkbottle_types.responses import base, donut, groups
 
 from .base_category import BaseCategory
 
@@ -13,7 +13,7 @@ class DonutCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> donut.GroupsGetmembersFieldsResponseModel:
+    ) -> groups.GetMembersFieldsResponseModel:
         """donut.getFriends method
         :param owner_id:
         :param offset:
@@ -23,7 +23,7 @@ class DonutCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.getFriends", params)
-        model = donut.GroupsGetmembersFieldsResponse
+        model = groups.GetMembersFieldsResponseModel
         return model(**response).response
 
     async def get_subscription(
