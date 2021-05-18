@@ -15,7 +15,6 @@ from vkbottle_types.methods import (
     friends,
     gifts,
     groups,
-    leads,
     likes,
     market,
     messages,
@@ -96,10 +95,6 @@ class APICategories(ABC):
     @property
     def groups(self) -> groups.GroupsCategory:
         return groups.GroupsCategory(self.api_instance)
-
-    @property
-    def leads(self) -> leads.LeadsCategory:
-        return leads.LeadsCategory(self.api_instance)
 
     @property
     def likes(self) -> likes.LikesCategory:
