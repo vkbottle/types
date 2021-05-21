@@ -735,7 +735,7 @@ class AdsLinkStatus(BaseModel):
     status: str = None
 
 
-class Status(enum.Enum):
+class LookalikeRequestStatus(enum.Enum):
     """ Lookalike request status """
 
     SEARCH_IN_PROGRESS = "search_in_progress"
@@ -746,7 +746,7 @@ class Status(enum.Enum):
     SAVE_DONE = "save_done"
 
 
-class SourceType(enum.Enum):
+class LookalikeRequestSourceType(enum.Enum):
     """ Lookalike request source type """
 
     RETARGETING_GROUP = "retargeting_group"
@@ -770,14 +770,12 @@ class AdsLookalikeRequest(BaseModel):
     audience_count: typing.Optional[int] = None
     create_time: int = None
     id: int = None
-    save_audience_levels: typing.Optional[
-        typing.List["AdsLookalikeRequestSaveAudienceLevel"]
-    ] = None
+    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = None
     scheduled_delete_time: typing.Optional[int] = None
     source_name: typing.Optional[str] = None
     source_retargeting_group_id: typing.Optional[int] = None
-    source_type: "SourceType" = None
-    status: "Status" = None
+    source_type: "LookalikeRequestSourceType" = None
+    status: "LookalikeRequestStatus" = None
     update_time: int = None
 
 
@@ -1345,7 +1343,7 @@ class AppsLeaderboard(BaseModel):
     user_id: int = None
 
 
-class Name(enum.Enum):
+class ScopeName(enum.Enum):
     """ Scope name """
 
     FRIENDS = "friends"
@@ -1368,7 +1366,7 @@ class AppsScope(BaseModel):
     title - Scope title
     """
 
-    name: "Name" = None
+    name: "ScopeName" = None
     title: typing.Optional[str] = None
 
 
@@ -1695,6 +1693,8 @@ class BaseLinkProduct(BaseModel):
 class BaseLinkProductCategory(BaseModel):
     """VK Object BaseLinkProductCategory"""
 
+    pass
+
 
 class BaseLinkProductStatus(enum.Enum):
     """ Status representation """
@@ -1849,7 +1849,7 @@ class BaseSticker(BaseModel):
     sticker_id: typing.Optional[int] = None
 
 
-class Type(enum.Enum):
+class AnimationScriptType(enum.Enum):
     """ Type of animation script """
 
     LIGHT = "light"
@@ -1863,7 +1863,7 @@ class BaseStickerAnimation(BaseModel):
     url - URL of animation script
     """
 
-    type: typing.Optional["Type"] = None
+    type: typing.Optional["AnimationScriptType"] = None
     url: typing.Optional[str] = None
 
 
@@ -2221,8 +2221,8 @@ class CallbackGroupSettingsChanges(BaseModel):
     website: typing.Optional[str] = None
 
 
-class ObjectType(enum.Enum):
-    """ ObjectType enum """
+class CallbackLikeAddRemoveObjectType(enum.Enum):
+    """ CallbackLikeAddRemoveObjectType enum """
 
     VIDEO = "video"
     PHOTO = "photo"
@@ -2242,7 +2242,7 @@ class CallbackLikeAddRemove(BaseModel):
     liker_id: int = None
     object_id: int = None
     object_owner_id: int = None
-    object_type: "ObjectType" = None
+    object_type: "CallbackLikeAddRemoveObjectType" = None
     post_id: int = None
     thread_reply_id: typing.Optional[int] = None
 
@@ -2484,9 +2484,7 @@ class ClientInfoForBots(BaseModel):
     lang_id - client or user language id
     """
 
-    button_actions: typing.Optional[
-        typing.List["MessagesTemplateActionTypeNames"]
-    ] = None
+    button_actions: typing.Optional[typing.List["MessagesTemplateActionTypeNames"]] = None
     carousel: typing.Optional[bool] = None
     inline_keyboard: typing.Optional[bool] = None
     keyboard: typing.Optional[bool] = None
@@ -3396,6 +3394,8 @@ class GroupsOwnerXtrBanInfo(BaseModel):
 class GroupsBannedItem(GroupsOwnerXtrBanInfo):
     """VK Object GroupsBannedItem"""
 
+    pass
+
 
 class GroupsCallbackServerStatus(enum.Enum):
     """ GroupsCallbackServerStatus enum """
@@ -3969,8 +3969,8 @@ class GroupsGroupSuggestedPrivacy(enum.IntEnum):
     subscribers = 2
 
 
-class Color(enum.Enum):
-    """ Color enum """
+class GroupsGroupTagColor(enum.Enum):
+    """ GroupsGroupTagColor enum """
 
     _454647 = "454647"
     _45678F = "45678f"
@@ -3997,7 +3997,7 @@ class Color(enum.Enum):
 class GroupsGroupTag(BaseModel):
     """VK Object GroupsGroupTag"""
 
-    color: "Color" = None
+    color: "GroupsGroupTagColor" = None
     id: int = None
     name: str = None
     uses: typing.Optional[int] = None
@@ -4307,9 +4307,7 @@ class GroupsRoleOptions(enum.Enum):
     CREATOR = "creator"
 
 
-GroupsSectionsListItem = typing.Optional[
-    typing.List[typing.Union[int, str]]
-]  # (index, title) tuples
+GroupsSectionsListItem = typing.Optional[typing.List[typing.Union[int, str]]]  # (index, title) tuples
 
 
 class GroupsSettingsTwitterStatus(enum.Enum):
@@ -4427,6 +4425,8 @@ class MarketMarketCategoryOld(BaseModel):
 
 class MarketMarketCategory(MarketMarketCategoryOld):
     """VK Object MarketMarketCategory"""
+
+    pass
 
 
 class MarketMarketCategoryNested(BaseModel):
@@ -4834,7 +4834,7 @@ class MessagesChatSettingsAcl(BaseModel):
     can_use_mass_mentions: bool = None
 
 
-class Invite(enum.Enum):
+class MessagesChatSettingsPermissionsInvite(enum.Enum):
     """ Who can invite users to chat """
 
     OWNER = "owner"
@@ -4842,7 +4842,7 @@ class Invite(enum.Enum):
     ALL = "all"
 
 
-class ChangeInfo(enum.Enum):
+class MessagesChatSettingsPermissionsChangeInfo(enum.Enum):
     """ Who can change chat info """
 
     OWNER = "owner"
@@ -4850,7 +4850,7 @@ class ChangeInfo(enum.Enum):
     ALL = "all"
 
 
-class ChangePin(enum.Enum):
+class MessagesChatSettingsPermissionsChangePin(enum.Enum):
     """ Who can change pinned message """
 
     OWNER = "owner"
@@ -4858,7 +4858,7 @@ class ChangePin(enum.Enum):
     ALL = "all"
 
 
-class UseMassMentions(enum.Enum):
+class MessagesChatSettingsPermissionsUseMassMentions(enum.Enum):
     """ Who can use mass mentions """
 
     OWNER = "owner"
@@ -4866,7 +4866,7 @@ class UseMassMentions(enum.Enum):
     ALL = "all"
 
 
-class SeeInviteLink(enum.Enum):
+class MessagesChatSettingsPermissionsSeeInviteLink(enum.Enum):
     """ Who can see invite link """
 
     OWNER = "owner"
@@ -4874,7 +4874,7 @@ class SeeInviteLink(enum.Enum):
     ALL = "all"
 
 
-class Call(enum.Enum):
+class WhoCanMakeCalls(enum.Enum):
     """ Who can make calls """
 
     OWNER = "owner"
@@ -4882,7 +4882,7 @@ class Call(enum.Enum):
     ALL = "all"
 
 
-class ChangeAdmins(enum.Enum):
+class WhoCanChangeAdmins(enum.Enum):
     """ Who can change admins """
 
     OWNER = "owner"
@@ -4901,13 +4901,13 @@ class MessagesChatSettingsPermissions(BaseModel):
     use_mass_mentions - Who can use mass mentions
     """
 
-    call: typing.Optional["Call"] = None
-    change_admins: typing.Optional["ChangeAdmins"] = None
-    change_info: typing.Optional["ChangeInfo"] = None
-    change_pin: typing.Optional["ChangePin"] = None
-    invite: typing.Optional["Invite"] = None
-    see_invite_link: typing.Optional["SeeInviteLink"] = None
-    use_mass_mentions: typing.Optional["UseMassMentions"] = None
+    call: typing.Optional["WhoCanMakeCalls"] = None
+    change_admins: typing.Optional["WhoCanChangeAdmins"] = None
+    change_info: typing.Optional["MessagesChatSettingsPermissionsChangeInfo"] = None
+    change_pin: typing.Optional["MessagesChatSettingsPermissionsChangePin"] = None
+    invite: typing.Optional["MessagesChatSettingsPermissionsInvite"] = None
+    see_invite_link: typing.Optional["MessagesChatSettingsPermissionsSeeInviteLink"] = None
+    use_mass_mentions: typing.Optional["MessagesChatSettingsPermissionsUseMassMentions"] = None
 
 
 class MessagesChatSettingsPhoto(BaseModel):
@@ -4933,8 +4933,8 @@ class MessagesChatSettingsState(enum.Enum):
     LEFT = "left"
 
 
-class SpecialServiceType(enum.Enum):
-    """ SpecialServiceType enum """
+class MessagesConversationSpecialServiceType(enum.Enum):
+    """ MessagesConversationSpecialServiceType enum """
 
     BUSINESS_NOTIFY = "business_notify"
 
@@ -4975,7 +4975,7 @@ class MessagesConversation(BaseModel):
     peer: "MessagesConversationPeer" = None
     push_settings: typing.Optional["MessagesPushSettings"] = None
     sort_id: typing.Optional["MessagesConversationSortId"] = None
-    special_service_type: typing.Optional["SpecialServiceType"] = None
+    special_service_type: typing.Optional["MessagesConversationSpecialServiceType"] = None
     unanswered: typing.Optional[bool] = None
     unread_count: typing.Optional[int] = None
 
@@ -5175,7 +5175,7 @@ class MessagesKeyboard(BaseModel):
     one_time: bool = None
 
 
-class MessagesKeyboardButtonColor(enum.Enum):
+class ButtonColor(enum.Enum):
     """ Button color """
 
     DEFAULT = "default"
@@ -5192,7 +5192,7 @@ class MessagesKeyboardButton(BaseModel):
     """
 
     action: "MessagesKeyboardButtonAction" = None
-    color: typing.Optional["MessagesKeyboardButtonColor"] = None
+    color: typing.Optional["ButtonColor"] = None
 
 
 class MessagesKeyboardButtonAction(BaseModel):
@@ -5357,6 +5357,7 @@ class MessagesMessageActionStatus(enum.Enum):
     CHAT_KICK_USER = "chat_kick_user"
     CHAT_PIN_MESSAGE = "chat_pin_message"
     CHAT_UNPIN_MESSAGE = "chat_unpin_message"
+    CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
 
@@ -5618,8 +5619,8 @@ class NewsfeedItemDigest(NewsfeedItemBase):
     track_code: typing.Optional[str] = None
 
 
-class Style(enum.Enum):
-    """ Style enum """
+class NewsfeedItemDigestButtonStyle(enum.Enum):
+    """ NewsfeedItemDigestButtonStyle enum """
 
     PRIMARY = "primary"
 
@@ -5627,7 +5628,7 @@ class Style(enum.Enum):
 class NewsfeedItemDigestButton(BaseModel):
     """VK Object NewsfeedItemDigestButton"""
 
-    style: typing.Optional["Style"] = None
+    style: typing.Optional["NewsfeedItemDigestButtonStyle"] = None
     title: str = None
 
 
@@ -5743,6 +5744,8 @@ class WallWallpost(BaseModel):
 
 class NewsfeedItemDigestItem(WallWallpost):
     """VK Object NewsfeedItemDigestItem"""
+
+    pass
 
 
 class NewsfeedItemFriend(NewsfeedItemBase):
@@ -5992,9 +5995,11 @@ class NewsfeedNewsfeedItem(
     NewsfeedItemVideo,
     NewsfeedItemTopic,
     NewsfeedItemDigest,
-    NewsfeedItemPromoButton,
+    NewsfeedItemPromoButton
 ):
     """VK Object NewsfeedNewsfeedItem"""
+
+    pass
 
 
 class NewsfeedNewsfeedItemType(enum.Enum):
@@ -6158,6 +6163,8 @@ class NotificationsNotification(BaseModel):
 
 class NotificationsNotificationItem(NotificationsNotification):
     """VK Object NotificationsNotificationItem"""
+
+    pass
 
 
 class WallWallpostToId(BaseModel):
@@ -6330,9 +6337,11 @@ class NotificationsNotificationParent(
     PhotosPhoto,
     BoardTopic,
     VideoVideo,
-    NotificationsNotificationsComment,
+    NotificationsNotificationsComment
 ):
     """VK Object NotificationsNotificationParent"""
+
+    pass
 
 
 class NotificationsReply(BaseModel):
@@ -6348,7 +6357,7 @@ class NotificationsReply(BaseModel):
     text: typing.Optional[int] = None
 
 
-class Code(enum.IntEnum):
+class ErrorCode(enum.IntEnum):
     """ Error code """
 
     notifications_disabled = 1
@@ -6364,7 +6373,7 @@ class NotificationsSendMessageError(BaseModel):
     description - Error description
     """
 
-    code: typing.Optional["Code"] = None
+    code: typing.Optional["ErrorCode"] = None
     description: typing.Optional[str] = None
 
 
@@ -6478,8 +6487,8 @@ class OrdersSubscription(BaseModel):
     update_time: int = None
 
 
-class State(enum.IntEnum):
-    """ State enum """
+class OwnerStateState(enum.IntEnum):
+    """ OwnerStateState enum """
 
     banned = 1
     adult = 2
@@ -6496,7 +6505,7 @@ class OwnerState(BaseModel):
     """
 
     description: typing.Optional[str] = None
-    state: typing.Optional["State"] = None
+    state: typing.Optional["OwnerStateState"] = None
 
 
 class PagesPrivacySettings(enum.IntEnum):
@@ -7016,8 +7025,8 @@ class PhotosTagsSuggestionItem(BaseModel):
     type: typing.Optional[str] = None
 
 
-class Action(enum.Enum):
-    """ Action enum """
+class PhotosTagsSuggestionItemButtonAction(enum.Enum):
+    """ PhotosTagsSuggestionItemButtonAction enum """
 
     CONFIRM = "confirm"
     DECLINE = "decline"
@@ -7034,7 +7043,7 @@ class PhotosTagsSuggestionItemButtonStyle(enum.Enum):
 class PhotosTagsSuggestionItemButton(BaseModel):
     """VK Object PhotosTagsSuggestionItemButton"""
 
-    action: typing.Optional["Action"] = None
+    action: typing.Optional["PhotosTagsSuggestionItemButtonAction"] = None
     style: typing.Optional["PhotosTagsSuggestionItemButtonStyle"] = None
     title: typing.Optional[str] = None
 
@@ -7512,7 +7521,7 @@ class StorageValue(BaseModel):
     value: str = None
 
 
-class StoreProductType(enum.Enum):
+class ProductType(enum.Enum):
     """ Product type """
 
     STICKERS = "stickers"
@@ -7550,7 +7559,7 @@ class StoreProduct(BaseModel):
     style_sticker_ids: typing.Optional[typing.List[int]] = None
     subtitle: typing.Optional[str] = None
     title: typing.Optional[str] = None
-    type: "StoreProductType" = None
+    type: "ProductType" = None
 
 
 StoreProductIcon = typing.Optional[typing.List["BaseImage"]]
@@ -7620,8 +7629,8 @@ class StoriesClickableStickerType(enum.Enum):
     SITUATIONAL_THEME = "situational_theme"
 
 
-class Subtype(enum.Enum):
-    """ Subtype enum """
+class StoriesClickableStickerSubtype(enum.Enum):
+    """ StoriesClickableStickerSubtype enum """
 
     MARKET_ITEM = "market_item"
     ALIEXPRESS_PRODUCT = "aliexpress_product"
@@ -7687,7 +7696,7 @@ class StoriesClickableSticker(BaseModel):
     sticker_pack_id: typing.Optional[int] = None
     story_id: typing.Optional[int] = None
     style: typing.Optional["StoriesClickableStickerStyle"] = None
-    subtype: typing.Optional["Subtype"] = None
+    subtype: typing.Optional["StoriesClickableStickerSubtype"] = None
     tooltip_text: typing.Optional[str] = None
     type: "StoriesClickableStickerType" = None
 
@@ -7700,7 +7709,7 @@ class StoriesClickableStickers(BaseModel):
     original_width: int = None
 
 
-class StoriesFeedItemType(enum.Enum):
+class FeedItemType(enum.Enum):
     """ Type of Feed Item """
 
     PROMO_STORIES = "promo_stories"
@@ -7736,7 +7745,7 @@ class StoriesFeedItem(BaseModel):
     promo_data: typing.Optional["StoriesPromoBlock"] = None
     stories: typing.Optional[typing.List["StoriesStory"]] = None
     track_code: typing.Optional[str] = None
-    type: "StoriesFeedItemType" = None
+    type: "FeedItemType" = None
 
 
 class StoriesPromoBlock(BaseModel):
@@ -8158,7 +8167,7 @@ class UsersPersonal(BaseModel):
     smoking: typing.Optional[int] = None
 
 
-class UsersRelativeType(enum.Enum):
+class RelativeType(enum.Enum):
     """ Relative type """
 
     PARENT = "parent"
@@ -8180,7 +8189,7 @@ class UsersRelative(BaseModel):
     birth_date: typing.Optional[str] = None
     id: typing.Optional[int] = None
     name: typing.Optional[str] = None
-    type: "UsersRelativeType" = None
+    type: "RelativeType" = None
 
 
 class UsersSchool(BaseModel):
@@ -8214,6 +8223,8 @@ class UsersSchool(BaseModel):
 
 class UsersSubscriptionsItem(UsersUserXtrType, GroupsGroupFull):
     """VK Object UsersSubscriptionsItem"""
+
+    pass
 
 
 class UsersUniversity(BaseModel):
@@ -8341,6 +8352,8 @@ class UsersUserType(enum.Enum):
 
 class UsersUserXtrCounters(UsersUserFull):
     """VK Object UsersUserXtrCounters"""
+
+    pass
 
 
 class UsersUsersArray(BaseModel):
@@ -8947,7 +8960,7 @@ class WallWallpostCommentsDonutPlaceholder(BaseModel):
     text: str = None
 
 
-class EditMode(enum.Enum):
+class WallWallpostDonutEditMode(enum.Enum):
     """ Says what user can edit in post about donut properties """
 
     ALL = "all"
@@ -8965,7 +8978,7 @@ class WallWallpostDonut(BaseModel):
     """
 
     can_publish_free_copy: typing.Optional[bool] = None
-    edit_mode: typing.Optional["EditMode"] = None
+    edit_mode: typing.Optional["WallWallpostDonutEditMode"] = None
     is_donut: bool = None
     paid_duration: typing.Optional[int] = None
     placeholder: typing.Optional["WallWallpostDonutPlaceholder"] = None
