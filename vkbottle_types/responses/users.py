@@ -1,15 +1,13 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     GroupsGroupsArray,
     UsersSubscriptionsItem,
     UsersUserFull,
-    UsersUsersArray,
     UsersUserXtrCounters,
+    UsersUsersArray
 )
-
-from .base_response import BaseResponse
 
 
 class GetFollowersFieldsResponse(BaseResponse):

@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, PollsVoters
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, PollsVoters
 
 
 class AddVoteResponse(BaseResponse):

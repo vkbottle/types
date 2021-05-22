@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
 
 
 class BoolResponse(BaseResponse):

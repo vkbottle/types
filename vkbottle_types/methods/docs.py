@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, docs
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import docs, base
 
 
 class DocsCategory(BaseCategory):
@@ -111,7 +109,9 @@ class DocsCategory(BaseCategory):
         model = base.GetUploadServerResponse
         return model(**response).response
 
-    async def get_types(self, owner_id: int, **kwargs) -> docs.GetTypesResponseModel:
+    async def get_types(
+        self, owner_id: int, **kwargs
+    ) -> docs.GetTypesResponseModel:
         """Returns documents types available for current user.
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.
         """

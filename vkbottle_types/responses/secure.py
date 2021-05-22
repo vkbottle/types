@@ -1,14 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import (
-    SecureLevel,
-    SecureSmsNotification,
-    SecureTokenChecked,
-    SecureTransaction,
-)
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import SecureLevel, SecureSmsNotification, SecureTokenChecked, SecureTransaction
 
 
 class CheckTokenResponse(BaseResponse):

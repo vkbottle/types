@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, friends
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import friends, base
 
 
 class FriendsCategory(BaseCategory):
@@ -71,7 +69,9 @@ class FriendsCategory(BaseCategory):
         model = friends.DeleteResponse
         return model(**response).response
 
-    async def delete_all_requests(self, **kwargs) -> base.OkResponseModel:
+    async def delete_all_requests(
+        self, **kwargs
+    ) -> base.OkResponseModel:
         """Marks all incoming friend requests as viewed."""
 
         params = self.get_set_params(locals())
@@ -79,7 +79,9 @@ class FriendsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
+    async def delete_list(
+        self, list_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Deletes a friend list of the current user.
         :param list_id: ID of the friend list to delete.
         """
@@ -90,7 +92,10 @@ class FriendsCategory(BaseCategory):
         return model(**response).response
 
     async def edit(
-        self, user_id: int, list_ids: typing.Optional[typing.List[int]] = None, **kwargs
+        self,
+        user_id: int,
+        list_ids: typing.Optional[typing.List[int]] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Edits the friend lists of the selected user.
         :param user_id: ID of the user whose friend list is to be edited.
@@ -152,7 +157,9 @@ class FriendsCategory(BaseCategory):
         model = friends.GetResponse
         return model(**response).response
 
-    async def get_app_users(self, **kwargs) -> friends.GetAppUsersResponseModel:
+    async def get_app_users(
+        self, **kwargs
+    ) -> friends.GetAppUsersResponseModel:
         """Returns a list of IDs of the current user's friends who installed the application."""
 
         params = self.get_set_params(locals())

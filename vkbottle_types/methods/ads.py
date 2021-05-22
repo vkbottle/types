@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import ads, base
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import ads, base
 
 
 class AdsCategory(BaseCategory):
@@ -159,7 +157,9 @@ class AdsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def get_accounts(self, **kwargs) -> ads.GetAccountsResponseModel:
+    async def get_accounts(
+        self, **kwargs
+    ) -> ads.GetAccountsResponseModel:
         """Returns a list of advertising accounts."""
 
         params = self.get_set_params(locals())
@@ -247,7 +247,9 @@ class AdsCategory(BaseCategory):
         model = ads.GetAdsTargetingResponse
         return model(**response).response
 
-    async def get_budget(self, account_id: int, **kwargs) -> ads.GetBudgetResponseModel:
+    async def get_budget(
+        self, account_id: int, **kwargs
+    ) -> ads.GetBudgetResponseModel:
         """Returns current budget of the advertising account.
         :param account_id: Advertising account ID.
         """

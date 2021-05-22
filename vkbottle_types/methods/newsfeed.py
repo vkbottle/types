@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, newsfeed
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, newsfeed
 
 
 class NewsfeedCategory(BaseCategory):
@@ -38,7 +36,9 @@ class NewsfeedCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def delete_list(self, list_id: int, **kwargs) -> base.OkResponseModel:
+    async def delete_list(
+        self, list_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """newsfeed.deleteList method
         :param list_id:
         """

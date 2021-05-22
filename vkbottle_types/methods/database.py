@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import database
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import database
 
 
 class DatabaseCategory(BaseCategory):

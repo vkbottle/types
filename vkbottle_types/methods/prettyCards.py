@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import prettyCards
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import prettyCards
 
 
 class PrettyCardsCategory(BaseCategory):
@@ -104,7 +102,9 @@ class PrettyCardsCategory(BaseCategory):
         model = prettyCards.GetByIdResponse
         return model(**response).response
 
-    async def get_upload_u_r_l(self, **kwargs) -> prettyCards.GetUploadURLResponseModel:
+    async def get_upload_u_r_l(
+        self, **kwargs
+    ) -> prettyCards.GetUploadURLResponseModel:
         """prettyCards.getUploadURL method"""
 
         params = self.get_set_params(locals())

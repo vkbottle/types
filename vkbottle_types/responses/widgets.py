@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
 
 
 class GetCommentsResponse(BaseResponse):

@@ -1,14 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import (
-    BaseBoolInt,
-    OrdersAmount,
-    OrdersOrder,
-    OrdersSubscription,
-)
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt, OrdersAmount, OrdersOrder, OrdersSubscription
 
 
 class CancelSubscriptionResponse(BaseResponse):

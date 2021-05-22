@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import notifications
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import notifications
 
 
 class NotificationsCategory(BaseCategory):
@@ -28,7 +26,9 @@ class NotificationsCategory(BaseCategory):
         model = notifications.GetResponse
         return model(**response).response
 
-    async def mark_as_viewed(self, **kwargs) -> notifications.MarkAsViewedResponseModel:
+    async def mark_as_viewed(
+        self, **kwargs
+    ) -> notifications.MarkAsViewedResponseModel:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
 
         params = self.get_set_params(locals())

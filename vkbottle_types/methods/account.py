@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import account, base
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, account
 
 
 class AccountCategory(BaseCategory):
@@ -83,10 +81,14 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_counters(
-        self, filter: typing.Optional[typing.List[str]] = None, **kwargs
+        self,
+        filter: typing.Optional[typing.List[str]] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs
     ) -> account.GetCountersResponseModel:
         """Returns non-null values of user counters.
         :param filter: Counters to be returned.
+        :param user_id: User ID
         """
 
         params = self.get_set_params(locals())
@@ -106,7 +108,9 @@ class AccountCategory(BaseCategory):
         model = account.GetInfoResponse
         return model(**response).response
 
-    async def get_profile_info(self, **kwargs) -> account.GetProfileInfoResponseModel:
+    async def get_profile_info(
+        self, **kwargs
+    ) -> account.GetProfileInfoResponseModel:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
@@ -221,7 +225,9 @@ class AccountCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def set_offline(self, **kwargs) -> base.OkResponseModel:
+    async def set_offline(
+        self, **kwargs
+    ) -> base.OkResponseModel:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())

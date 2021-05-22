@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, donut, groups
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import groups, donut, base
 
 
 class DonutCategory(BaseCategory):
@@ -23,7 +21,7 @@ class DonutCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.getFriends", params)
-        model = groups.GetMembersFieldsResponseModel
+        model = groups.GetMembersFieldsResponse
         return model(**response).response
 
     async def get_subscription(
@@ -56,7 +54,9 @@ class DonutCategory(BaseCategory):
         model = donut.GetSubscriptionsResponse
         return model(**response).response
 
-    async def is_don(self, owner_id: int, **kwargs) -> base.BoolResponseModel:
+    async def is_don(
+        self, owner_id: int, **kwargs
+    ) -> base.BoolResponseModel:
         """donut.isDon method
         :param owner_id:
         """

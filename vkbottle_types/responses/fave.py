@@ -1,15 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import (
-    FaveBookmark,
-    FavePage,
-    FaveTag,
-    GroupsGroup,
-    UsersUserFull,
-)
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import FaveBookmark, FavePage, FaveTag, GroupsGroup, UsersUserFull
 
 
 class AddTagResponse(BaseResponse):

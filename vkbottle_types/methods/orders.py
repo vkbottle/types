@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import orders
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import orders
 
 
 class OrdersCategory(BaseCategory):

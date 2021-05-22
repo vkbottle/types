@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, polls
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import polls, base
 
 
 class PollsCategory(BaseCategory):
@@ -108,7 +106,9 @@ class PollsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def get_backgrounds(self, **kwargs) -> polls.GetBackgroundsResponseModel:
+    async def get_backgrounds(
+        self, **kwargs
+    ) -> polls.GetBackgroundsResponseModel:
         """polls.getBackgrounds method"""
 
         params = self.get_set_params(locals())

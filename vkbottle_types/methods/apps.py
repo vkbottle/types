@@ -1,12 +1,12 @@
 import typing
-
-from vkbottle_types.responses import apps, base
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, apps
 
 
 class AppsCategory(BaseCategory):
-    async def delete_app_requests(self, **kwargs) -> base.OkResponseModel:
+    async def delete_app_requests(
+        self, **kwargs
+    ) -> base.OkResponseModel:
         """Deletes all request notifications from the current app."""
 
         params = self.get_set_params(locals())
@@ -142,7 +142,9 @@ class AppsCategory(BaseCategory):
         model = apps.GetScopesResponse
         return model(**response).response
 
-    async def get_score(self, user_id: int, **kwargs) -> apps.GetScoreResponseModel:
+    async def get_score(
+        self, user_id: int, **kwargs
+    ) -> apps.GetScoreResponseModel:
         """Returns user score in app
         :param user_id:
         """

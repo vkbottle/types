@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import BaseSticker, StoreProduct, StoreStickersKeyword
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseSticker, StoreProduct, StoreStickersKeyword
 
 
 class GetFavoriteStickersResponse(BaseResponse):

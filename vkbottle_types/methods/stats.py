@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, stats
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import stats, base
 
 
 class StatsCategory(BaseCategory):
@@ -49,7 +47,9 @@ class StatsCategory(BaseCategory):
         model = stats.GetPostReachResponse
         return model(**response).response
 
-    async def track_visitor(self, id: str, **kwargs) -> base.OkResponseModel:
+    async def track_visitor(
+        self, id: str, **kwargs
+    ) -> base.OkResponseModel:
         """stats.trackVisitor method
         :param id:
         """

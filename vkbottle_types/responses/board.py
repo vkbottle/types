@@ -1,6 +1,6 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseBoolInt,
     BoardDefaultOrder,
@@ -9,10 +9,8 @@ from vkbottle_types.objects import (
     BoardTopicPoll,
     GroupsGroup,
     UsersUser,
-    UsersUserMin,
+    UsersUserMin
 )
-
-from .base_response import BaseResponse
 
 
 class AddTopicResponse(BaseResponse):

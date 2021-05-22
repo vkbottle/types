@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, storage
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import storage, base
 
 
 class StorageCategory(BaseCategory):

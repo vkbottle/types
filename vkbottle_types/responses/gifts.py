@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import GiftsGift
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import GiftsGift
 
 
 class GetResponse(BaseResponse):

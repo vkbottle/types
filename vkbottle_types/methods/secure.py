@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, secure
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, secure
 
 
 class SecureCategory(BaseCategory):
@@ -40,7 +38,9 @@ class SecureCategory(BaseCategory):
         model = secure.CheckTokenResponse
         return model(**response).response
 
-    async def get_app_balance(self, **kwargs) -> secure.GetAppBalanceResponseModel:
+    async def get_app_balance(
+        self, **kwargs
+    ) -> secure.GetAppBalanceResponseModel:
         """Returns payment balance of the application in hundredth of a vote."""
 
         params = self.get_set_params(locals())

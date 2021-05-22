@@ -1,16 +1,14 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseUploadServer,
     DocsDoc,
     DocsDocAttachmentType,
     DocsDocTypes,
     MessagesAudioMessage,
-    MessagesGraffiti,
+    MessagesGraffiti
 )
-
-from .base_response import BaseResponse
 
 
 class AddResponse(BaseResponse):

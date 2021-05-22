@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, photos
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, photos
 
 
 class PhotosCategory(BaseCategory):
@@ -503,9 +501,7 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request(
-            "photos.getOwnerCoverPhotoUploadServer", params
-        )
+        response = await self.api.request("photos.getOwnerCoverPhotoUploadServer", params)
         model = base.GetUploadServerResponse
         return model(**response).response
 

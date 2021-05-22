@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import downloadedGames
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import downloadedGames
 
 
 class DownloadedGamesCategory(BaseCategory):

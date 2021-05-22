@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, market
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import market, base
 
 
 class MarketCategory(BaseCategory):
@@ -519,7 +517,11 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def report(
-        self, owner_id: int, item_id: int, reason: typing.Optional[int] = None, **kwargs
+        self,
+        owner_id: int,
+        item_id: int,
+        reason: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Sends a complaint to the item.
         :param owner_id: ID of an item owner community.

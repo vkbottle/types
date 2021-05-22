@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, messages
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, messages
 
 
 class MessagesCategory(BaseCategory):
@@ -61,6 +59,8 @@ class MessagesCategory(BaseCategory):
         spam: typing.Optional[bool] = None,
         group_id: typing.Optional[int] = None,
         delete_for_all: typing.Optional[bool] = None,
+        peer_id: typing.Optional[int] = None,
+        conversation_message_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> messages.DeleteResponseModel:
         """Deletes one or more messages.
@@ -68,6 +68,8 @@ class MessagesCategory(BaseCategory):
         :param spam: '1' — to mark message as spam.
         :param group_id: Group ID (for group messages with user access token)
         :param delete_for_all: '1' — delete message for for all.
+        :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
+        :param conversation_message_ids: Conversation message IDs.
         """
 
         params = self.get_set_params(locals())
@@ -580,9 +582,7 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request(
-            "messages.markAsImportantConversation", params
-        )
+        response = await self.api.request("messages.markAsImportantConversation", params)
         model = base.OkResponse
         return model(**response).response
 

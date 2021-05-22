@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, notes
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import notes, base
 
 
 class NotesCategory(BaseCategory):
@@ -48,7 +46,9 @@ class NotesCategory(BaseCategory):
         model = notes.CreateCommentResponse
         return model(**response).response
 
-    async def delete(self, note_id: int, **kwargs) -> base.OkResponseModel:
+    async def delete(
+        self, note_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """Deletes a note of the current user.
         :param note_id: Note ID.
         """

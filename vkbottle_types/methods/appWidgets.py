@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import appWidgets, base
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import appWidgets, base
 
 
 class AppWidgetsCategory(BaseCategory):
@@ -44,9 +42,7 @@ class AppWidgetsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request(
-            "appWidgets.getGroupImageUploadServer", params
-        )
+        response = await self.api.request("appWidgets.getGroupImageUploadServer", params)
         model = appWidgets.GetGroupImageUploadServerResponse
         return model(**response).response
 
@@ -106,7 +102,9 @@ class AppWidgetsCategory(BaseCategory):
         model = appWidgets.SaveGroupImageResponse
         return model(**response).response
 
-    async def update(self, code: str, type: str, **kwargs) -> base.OkResponseModel:
+    async def update(
+        self, code: str, type: str, **kwargs
+    ) -> base.OkResponseModel:
         """Allows to update community app widget
         :param code:
         :param type:

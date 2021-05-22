@@ -1,12 +1,12 @@
 import typing
-
-from vkbottle_types.responses import base, utils
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import utils, base
 
 
 class UtilsCategory(BaseCategory):
-    async def check_link(self, url: str, **kwargs) -> utils.CheckLinkResponseModel:
+    async def check_link(
+        self, url: str, **kwargs
+    ) -> utils.CheckLinkResponseModel:
         """Checks whether a link is blocked in VK.
         :param url: Link to check (e.g., 'http://google.com').
         """
@@ -72,7 +72,9 @@ class UtilsCategory(BaseCategory):
         )
         return model(**response).response
 
-    async def get_server_time(self, **kwargs) -> utils.GetServerTimeResponseModel:
+    async def get_server_time(
+        self, **kwargs
+    ) -> utils.GetServerTimeResponseModel:
         """Returns the current time of the VK server."""
 
         params = self.get_set_params(locals())

@@ -1,7 +1,6 @@
 import enum
 import inspect
 import typing
-
 from pydantic import BaseModel
 
 
@@ -1125,8 +1124,8 @@ class AdsTargetGroup(BaseModel):
     pixel: typing.Optional[str] = None
 
 
-class AdsUpdateofficeusersResult(BaseModel):
-    """VK Object AdsUpdateofficeusersResult"""
+class AdsUpdateOfficeUsersResult(BaseModel):
+    """VK Object AdsUpdateOfficeUsersResult"""
 
     error: typing.Optional["BaseError"] = None
     is_success: bool = None
@@ -1163,30 +1162,30 @@ class AdsUsers(BaseModel):
     user_id: int = None
 
 
-class AdswebGetadcategoriesResponseCategoriesCategory(BaseModel):
-    """VK Object AdswebGetadcategoriesResponseCategoriesCategory"""
+class AdswebGetAdCategoriesResponseCategoriesCategory(BaseModel):
+    """VK Object AdswebGetAdCategoriesResponseCategoriesCategory"""
 
     id: int = None
     name: str = None
 
 
-class AdswebGetadunitsResponseAdUnitsAdUnit(BaseModel):
-    """VK Object AdswebGetadunitsResponseAdUnitsAdUnit"""
+class AdswebGetAdUnitsResponseAdUnitsAdUnit(BaseModel):
+    """VK Object AdswebGetAdUnitsResponseAdUnitsAdUnit"""
 
     id: int = None
     name: typing.Optional[str] = None
     site_id: int = None
 
 
-class AdswebGetfraudhistoryResponseEntriesEntry(BaseModel):
-    """VK Object AdswebGetfraudhistoryResponseEntriesEntry"""
+class AdswebGetFraudHistoryResponseEntriesEntry(BaseModel):
+    """VK Object AdswebGetFraudHistoryResponseEntriesEntry"""
 
     day: str = None
     site_id: int = None
 
 
-class AdswebGetsitesResponseSitesSite(BaseModel):
-    """VK Object AdswebGetsitesResponseSitesSite"""
+class AdswebGetSitesResponseSitesSite(BaseModel):
+    """VK Object AdswebGetSitesResponseSitesSite"""
 
     domains: typing.Optional[str] = None
     id: int = None
@@ -1194,8 +1193,8 @@ class AdswebGetsitesResponseSitesSite(BaseModel):
     status_user: typing.Optional[str] = None
 
 
-class AdswebGetstatisticsResponseItemsItem(BaseModel):
-    """VK Object AdswebGetstatisticsResponseItemsItem"""
+class AdswebGetStatisticsResponseItemsItem(BaseModel):
+    """VK Object AdswebGetStatisticsResponseItemsItem"""
 
     ad_unit_id: typing.Optional[int] = None
     day_max: typing.Optional[str] = None
@@ -2491,9 +2490,6 @@ class ClientInfoForBots(BaseModel):
     lang_id: typing.Optional[int] = None
 
 
-MessagesClientInfo = ClientInfoForBots  # alias for vkbottle
-
-
 class CommentThread(BaseModel):
     """VK Object CommentThread
 
@@ -2956,6 +2952,7 @@ class UsersUserFull(UsersUser):
     books -
     can_be_invited_group - Information whether current user can be invited to the community
     can_call - Information whether current user can call
+    can_call_from_group - Information whether group can call user
     can_post - Information whether current user can post on the user's wall
     can_see_all_posts - Information whether current user can see other users' audio on the wall
     can_see_audio - Information whether current user can see the user's audio
@@ -3074,6 +3071,7 @@ class UsersUserFull(UsersUser):
     books: typing.Optional[str] = None
     can_be_invited_group: typing.Optional[bool] = None
     can_call: typing.Optional[bool] = None
+    can_call_from_group: typing.Optional[bool] = None
     can_post: typing.Optional["BaseBoolInt"] = None
     can_see_all_posts: typing.Optional["BaseBoolInt"] = None
     can_see_audio: typing.Optional["BaseBoolInt"] = None
@@ -3249,6 +3247,12 @@ class GiftsLayout(BaseModel):
     thumb_48: typing.Optional[str] = None
     thumb_512: typing.Optional[str] = None
     thumb_96: typing.Optional[str] = None
+
+
+class GroupCallInProgress(CallsCall):
+    """VK Object GroupCallInProgress"""
+
+    join_link: typing.Optional[str] = None
 
 
 class GroupsAddress(BaseModel):
@@ -4618,31 +4622,6 @@ class MarketServicesViewType(enum.IntEnum):
     rows = 2
 
 
-class MediaRestriction(BaseModel):
-    """VK Object MediaRestriction
-
-    blur - Need blur current video or not
-    button -
-    can_play - Can play video or not
-    can_preview - Can preview video or not
-    card_icon -
-    disclaimer_type - The type of disclaimer that describes, whether to remove other disclaimers
-    list_icon -
-    text -
-    title -
-    """
-
-    blur: typing.Optional["BaseBoolInt"] = None
-    button: typing.Optional["VideoRestrictionButton"] = None
-    can_play: typing.Optional["BaseBoolInt"] = None
-    can_preview: typing.Optional["BaseBoolInt"] = None
-    card_icon: typing.Optional[typing.List["BaseImage"]] = None
-    disclaimer_type: typing.Optional[int] = None
-    list_icon: typing.Optional[typing.List["BaseImage"]] = None
-    text: typing.Optional[str] = None
-    title: str = None
-
-
 class MessagesAudioMessage(BaseModel):
     """VK Object MessagesAudioMessage
 
@@ -5269,6 +5248,7 @@ class MessagesMessage(BaseModel):
     important - Is it an important message
     is_cropped - this message is cropped for bot
     is_hidden -
+    is_silent - Is silent message, push without sound
     keyboard -
     members_count - Members number
     out - Information whether the message is outcoming
@@ -5297,6 +5277,7 @@ class MessagesMessage(BaseModel):
     important: typing.Optional[bool] = None
     is_cropped: typing.Optional[bool] = None
     is_hidden: typing.Optional[bool] = None
+    is_silent: typing.Optional[bool] = None
     keyboard: typing.Optional["MessagesKeyboard"] = None
     members_count: typing.Optional[int] = None
     out: "BaseBoolInt" = None
@@ -5358,7 +5339,6 @@ class MessagesMessageActionStatus(enum.Enum):
     CHAT_PIN_MESSAGE = "chat_pin_message"
     CHAT_UNPIN_MESSAGE = "chat_unpin_message"
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
-    CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
 
 
@@ -5371,6 +5351,7 @@ class MessagesMessageAttachment(BaseModel):
     doc: typing.Optional["DocsDoc"] = None
     gift: typing.Optional["GiftsLayout"] = None
     graffiti: typing.Optional["MessagesGraffiti"] = None
+    group_call_in_progress: typing.Optional["GroupCallInProgress"] = None
     link: typing.Optional["BaseLink"] = None
     market: typing.Optional["MarketMarketItem"] = None
     market_market_album: typing.Optional["MarketMarketAlbum"] = None
@@ -5403,6 +5384,8 @@ class MessagesMessageAttachmentType(enum.Enum):
     CALL = "call"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
+    STORY = "story"
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
 
 
 class MessagesMessageRequestData(BaseModel):
@@ -6034,7 +6017,6 @@ class PhotosPhoto(BaseModel):
     photo_256 - URL of image with 2560 px width
     place -
     post_id - Post ID
-    restrictions -
     sizes -
     text - Photo caption
     user_id - ID of the user who have uploaded the photo
@@ -6055,7 +6037,6 @@ class PhotosPhoto(BaseModel):
     photo_256: typing.Optional[str] = None
     place: typing.Optional[str] = None
     post_id: typing.Optional[int] = None
-    restrictions: typing.Optional["MediaRestriction"] = None
     sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
     text: typing.Optional[str] = None
     user_id: typing.Optional[int] = None
@@ -6249,7 +6230,6 @@ class VideoVideo(BaseModel):
     processing - Returns if the video is processing
     repeat - Information whether the video is repeated
     reposts -
-    restriction -
     spectators - Number of spectators of the stream
     title - Video title
     track_code -
@@ -6298,7 +6278,6 @@ class VideoVideo(BaseModel):
     processing: typing.Optional["BasePropertyExists"] = None
     repeat: typing.Optional["BasePropertyExists"] = None
     reposts: typing.Optional["BaseRepostsInfo"] = None
-    restriction: typing.Optional["MediaRestriction"] = None
     spectators: typing.Optional[int] = None
     title: typing.Optional[str] = None
     track_code: typing.Optional[str] = None
@@ -6457,6 +6436,8 @@ class OrdersOrder(BaseModel):
 class OrdersSubscription(BaseModel):
     """VK Object OrdersSubscription
 
+    app_id - Subscription's application id
+    application_name - Subscription's application name
     cancel_reason - Cancel reason
     create_time - Date of creation in Unixtime
     id - Subscription ID
@@ -6465,13 +6446,17 @@ class OrdersSubscription(BaseModel):
     pending_cancel - Pending cancel state
     period - Subscription period
     period_start_time - Date of last period start in Unixtime
+    photo_url - Item photo image url
     price - Subscription price
     status - Subscription status
     test_mode - Is test subscription
+    title - Subscription name
     trial_expire_time - Date of trial expire in Unixtime
     update_time - Date of last change in Unixtime
     """
 
+    app_id: typing.Optional[int] = None
+    application_name: typing.Optional[str] = None
     cancel_reason: typing.Optional[str] = None
     create_time: int = None
     id: int = None
@@ -6480,9 +6465,11 @@ class OrdersSubscription(BaseModel):
     pending_cancel: typing.Optional[bool] = None
     period: int = None
     period_start_time: int = None
+    photo_url: typing.Optional[str] = None
     price: int = None
     status: str = None
     test_mode: typing.Optional[bool] = None
+    title: typing.Optional[str] = None
     trial_expire_time: typing.Optional[int] = None
     update_time: int = None
 
@@ -7202,8 +7189,8 @@ class PollsVotersUsers(BaseModel):
     items: typing.Optional[typing.List[int]] = None
 
 
-class PrettyCardsPrettycard(BaseModel):
-    """VK Object PrettyCardsPrettycard
+class PrettyCardsPrettyCard(BaseModel):
+    """VK Object PrettyCardsPrettyCard
 
     button - Button key
     button_text - Button text in current language
@@ -8547,19 +8534,6 @@ class VideoLiveSettings(BaseModel):
     can_rewind: typing.Optional["BaseBoolInt"] = None
     is_endless: typing.Optional["BaseBoolInt"] = None
     max_duration: typing.Optional[int] = None
-
-
-class VideoRestrictionButtonAction(enum.Enum):
-    """ VideoRestrictionButtonAction enum """
-
-    PLAY = "play"
-
-
-class VideoRestrictionButton(BaseModel):
-    """VK Object VideoRestrictionButton"""
-
-    action: typing.Optional["VideoRestrictionButtonAction"] = None
-    title: typing.Optional[str] = None
 
 
 class VideoSaveResult(BaseModel):

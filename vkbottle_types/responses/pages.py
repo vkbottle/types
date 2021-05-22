@@ -1,13 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import (
-    PagesWikipage,
-    PagesWikipageFull,
-    PagesWikipageHistory,
-)
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import PagesWikipage, PagesWikipageFull, PagesWikipageHistory
 
 
 class GetHistoryResponse(BaseResponse):

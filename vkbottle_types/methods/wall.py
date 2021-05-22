@@ -1,12 +1,12 @@
 import typing
-
-from vkbottle_types.responses import base, wall
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, wall
 
 
 class WallCategory(BaseCategory):
-    async def check_copyright_link(self, link: str, **kwargs) -> base.BoolResponseModel:
+    async def check_copyright_link(
+        self, link: str, **kwargs
+    ) -> base.BoolResponseModel:
         """wall.checkCopyrightLink method
         :param link:
         """
@@ -457,7 +457,11 @@ class WallCategory(BaseCategory):
         return model(**response).response
 
     async def report_post(
-        self, owner_id: int, post_id: int, reason: typing.Optional[int] = None, **kwargs
+        self,
+        owner_id: int,
+        post_id: int,
+        reason: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Reports (submits a complaint about) a post on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall.

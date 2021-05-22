@@ -1,6 +1,6 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseCountry,
     BaseObject,
@@ -9,10 +9,8 @@ from vkbottle_types.objects import (
     DatabaseRegion,
     DatabaseSchool,
     DatabaseStation,
-    DatabaseUniversity,
+    DatabaseUniversity
 )
-
-from .base_response import BaseResponse
 
 
 class GetChairsResponse(BaseResponse):

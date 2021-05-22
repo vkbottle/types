@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import adsweb
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import adsweb
 
 
 class AdswebCategory(BaseCategory):
@@ -18,7 +16,9 @@ class AdswebCategory(BaseCategory):
         model = adsweb.GetAdCategoriesResponse
         return model(**response).response
 
-    async def get_ad_unit_code(self, **kwargs) -> adsweb.GetAdUnitCodeResponseModel:
+    async def get_ad_unit_code(
+        self, **kwargs
+    ) -> adsweb.GetAdUnitCodeResponseModel:
         """adsweb.getAdUnitCode method"""
 
         params = self.get_set_params(locals())

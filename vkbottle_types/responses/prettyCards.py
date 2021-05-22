@@ -1,9 +1,7 @@
 import inspect
 import typing
-
-from vkbottle_types.objects import PrettyCardsPrettycard
-
 from .base_response import BaseResponse
+from vkbottle_types.objects import PrettyCardsPrettyCard
 
 
 class CreateResponse(BaseResponse):
@@ -46,7 +44,7 @@ class EditResponseModel(BaseResponse):
     card_id: typing.Optional[str] = None
 
 
-GetByIdResponseModel = typing.List[PrettyCardsPrettycard]
+GetByIdResponseModel = typing.List[PrettyCardsPrettyCard]
 
 
 GetUploadURLResponseModel = str
@@ -54,7 +52,7 @@ GetUploadURLResponseModel = str
 
 class GetResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PrettyCardsPrettycard"]] = None
+    items: typing.Optional[typing.List["PrettyCardsPrettyCard"]] = None
 
 
 for item in locals().copy().values():

@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, users
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import users, base
 
 
 class UsersCategory(BaseCategory):

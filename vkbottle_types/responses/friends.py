@@ -1,19 +1,17 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     FriendsFriendExtendedStatus,
-    FriendsFriendsList,
     FriendsFriendStatus,
+    FriendsFriendsList,
     FriendsMutualFriend,
     FriendsRequests,
     FriendsRequestsXtrMessage,
     FriendsUserXtrLists,
     FriendsUserXtrPhone,
-    UsersUserFull,
+    UsersUserFull
 )
-
-from .base_response import BaseResponse
 
 
 class AddListResponse(BaseResponse):

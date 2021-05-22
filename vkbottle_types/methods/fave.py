@@ -1,12 +1,12 @@
 import typing
-
-from vkbottle_types.responses import base, fave
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, fave
 
 
 class FaveCategory(BaseCategory):
-    async def add_article(self, url: str, **kwargs) -> base.OkResponseModel:
+    async def add_article(
+        self, url: str, **kwargs
+    ) -> base.OkResponseModel:
         """fave.addArticle method
         :param url:
         """
@@ -16,7 +16,9 @@ class FaveCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def add_link(self, link: str, **kwargs) -> base.OkResponseModel:
+    async def add_link(
+        self, link: str, **kwargs
+    ) -> base.OkResponseModel:
         """Adds a link to user faves.
         :param link: Link URL.
         """
@@ -100,7 +102,9 @@ class FaveCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def edit_tag(self, id: int, name: str, **kwargs) -> base.OkResponseModel:
+    async def edit_tag(
+        self, id: int, name: str, **kwargs
+    ) -> base.OkResponseModel:
         """fave.editTag method
         :param id:
         :param name:
@@ -163,7 +167,9 @@ class FaveCategory(BaseCategory):
         model = fave.GetPagesResponse
         return model(**response).response
 
-    async def get_tags(self, **kwargs) -> fave.GetTagsResponseModel:
+    async def get_tags(
+        self, **kwargs
+    ) -> fave.GetTagsResponseModel:
         """fave.getTags method"""
 
         params = self.get_set_params(locals())
@@ -171,7 +177,9 @@ class FaveCategory(BaseCategory):
         model = fave.GetTagsResponse
         return model(**response).response
 
-    async def mark_seen(self, **kwargs) -> base.BoolResponseModel:
+    async def mark_seen(
+        self, **kwargs
+    ) -> base.BoolResponseModel:
         """fave.markSeen method"""
 
         params = self.get_set_params(locals())
@@ -250,7 +258,9 @@ class FaveCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def remove_tag(self, id: int, **kwargs) -> base.OkResponseModel:
+    async def remove_tag(
+        self, id: int, **kwargs
+    ) -> base.OkResponseModel:
         """fave.removeTag method
         :param id:
         """

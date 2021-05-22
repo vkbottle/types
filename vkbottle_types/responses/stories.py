@@ -1,6 +1,6 @@
 import inspect
 import typing
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
     GroupsGroup,
     GroupsGroupFull,
@@ -10,10 +10,8 @@ from vkbottle_types.objects import (
     StoriesStoryStats,
     StoriesViewersItem,
     UsersUser,
-    UsersUserFull,
+    UsersUserFull
 )
-
-from .base_response import BaseResponse
 
 
 class GetBannedExtendedResponse(BaseResponse):

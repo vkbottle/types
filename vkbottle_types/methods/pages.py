@@ -1,12 +1,12 @@
 import typing
-
-from vkbottle_types.responses import base, pages
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, pages
 
 
 class PagesCategory(BaseCategory):
-    async def clear_cache(self, url: str, **kwargs) -> base.OkResponseModel:
+    async def clear_cache(
+        self, url: str, **kwargs
+    ) -> base.OkResponseModel:
         """Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
         :param url: Address of the page where you need to refesh the cached version
         """

@@ -1,8 +1,6 @@
 import typing
-
-from vkbottle_types.responses import base, groups
-
 from .base_category import BaseCategory
+from vkbottle_types.responses import groups, base
 
 
 class GroupsCategory(BaseCategory):
@@ -176,7 +174,9 @@ class GroupsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def disable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
+    async def disable_online(
+        self, group_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """groups.disableOnline method
         :param group_id:
         """
@@ -390,7 +390,9 @@ class GroupsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def enable_online(self, group_id: int, **kwargs) -> base.OkResponseModel:
+    async def enable_online(
+        self, group_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """groups.enableOnline method
         :param group_id:
         """
@@ -770,7 +772,9 @@ class GroupsCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def leave(self, group_id: int, **kwargs) -> base.OkResponseModel:
+    async def leave(
+        self, group_id: int, **kwargs
+    ) -> base.OkResponseModel:
         """With this method you can leave a group, public page, or event.
         :param group_id: ID or screen name of the community.
         """
