@@ -5,12 +5,12 @@ from vkbottle_types.objects import (
     AudioAudio,
     BoardTopicComment,
     CallbackGroupJoinType,
+    CallbackLikeAddRemoveObjectType,
     ClientInfoForBots,
     GroupsBanInfoReason,
     GroupsGroupAdminLevel,
     MarketOrder,
     MessagesMessage,
-    ObjectType,
     PhotosPhoto,
     VideoVideo,
     WallWallComment,
@@ -127,7 +127,7 @@ class WallReplyDeleteObject(BaseEventObject):
 
 class LikeObject(BaseEventObject):
     liker_id: Optional[int] = None
-    object_type: Optional[ObjectType] = None
+    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
     object_owner_id: Optional[int] = None
     object_id: Optional[int] = None
     thread_reply_id: Optional[int] = None
