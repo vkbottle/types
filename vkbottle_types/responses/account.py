@@ -1,95 +1,92 @@
-from typing import Optional, List
-
+import inspect
+import typing
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
+    AccountAccountCounters,
+    AccountInfo,
     AccountNameRequest,
     AccountOffer,
-    UsersUserMin,
     AccountPushSettings,
-    AccountInfo,
     AccountUserSettings,
-    GroupsGroup,
     BaseBoolInt,
-    AccountAccountCounters,
+    GroupsGroup,
+    UsersUserMin
 )
-from .base_response import BaseResponse
 
 
 class ChangePasswordResponse(BaseResponse):
-    response: Optional["ChangePasswordResponseModel"] = None
+    response: typing.Optional["ChangePasswordResponseModel"] = None
 
 
 class GetActiveOffersResponse(BaseResponse):
-    response: Optional["GetActiveOffersResponseModel"] = None
+    response: typing.Optional["GetActiveOffersResponseModel"] = None
 
 
 class GetAppPermissionsResponse(BaseResponse):
-    response: Optional["GetAppPermissionsResponseModel"] = None
+    response: typing.Optional["GetAppPermissionsResponseModel"] = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: Optional["GetBannedResponseModel"] = None
+    response: typing.Optional["GetBannedResponseModel"] = None
 
 
 class GetCountersResponse(BaseResponse):
-    response: Optional["GetCountersResponseModel"] = None
+    response: typing.Optional["GetCountersResponseModel"] = None
 
 
 class GetInfoResponse(BaseResponse):
-    response: Optional["GetInfoResponseModel"] = None
+    response: typing.Optional["GetInfoResponseModel"] = None
 
 
 class GetProfileInfoResponse(BaseResponse):
-    response: Optional["GetProfileInfoResponseModel"] = None
+    response: typing.Optional["GetProfileInfoResponseModel"] = None
 
 
 class GetPushSettingsResponse(BaseResponse):
-    response: Optional["GetPushSettingsResponseModel"] = None
+    response: typing.Optional["GetPushSettingsResponseModel"] = None
 
 
 class SaveProfileInfoResponse(BaseResponse):
-    response: Optional["SaveProfileInfoResponseModel"] = None
+    response: typing.Optional["SaveProfileInfoResponseModel"] = None
 
 
 class ChangePasswordResponseModel(BaseResponse):
-    token: Optional[str] = None
-    secret: Optional[str] = None
+    token: typing.Optional[str] = None
+    secret: typing.Optional[str] = None
 
 
 class GetActiveOffersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["AccountOffer"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AccountOffer"]] = None
 
 
 GetAppPermissionsResponseModel = int
 
 
 class GetBannedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
-    profiles: Optional[List["UsersUserMin"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
+    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
-GetCountersResponseModel = Optional[AccountAccountCounters]
+GetCountersResponseModel = AccountAccountCounters
 
-GetInfoResponseModel = Optional[AccountInfo]
 
-GetProfileInfoResponseModel = Optional[AccountUserSettings]
+GetInfoResponseModel = AccountInfo
 
-GetPushSettingsResponseModel = Optional[AccountPushSettings]
+
+GetProfileInfoResponseModel = AccountUserSettings
+
+
+GetPushSettingsResponseModel = AccountPushSettings
 
 
 class SaveProfileInfoResponseModel(BaseResponse):
-    changed: Optional["BaseBoolInt"] = None
-    name_request: Optional["AccountNameRequest"] = None
+    changed: typing.Optional["BaseBoolInt"] = None
+    name_request: typing.Optional["AccountNameRequest"] = None
 
 
-ChangePasswordResponse.update_forward_refs()
-GetActiveOffersResponse.update_forward_refs()
-GetAppPermissionsResponse.update_forward_refs()
-GetBannedResponse.update_forward_refs()
-GetCountersResponse.update_forward_refs()
-GetInfoResponse.update_forward_refs()
-GetProfileInfoResponse.update_forward_refs()
-GetPushSettingsResponse.update_forward_refs()
-SaveProfileInfoResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

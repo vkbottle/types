@@ -1,5 +1,7 @@
+from typing import Union
+
 from .user_events import *
-from typing import Any, Union
+
 
 class UserTypes:
     MessageNew = MessageNew

@@ -1,127 +1,118 @@
-from typing import Optional, List, Union
-
+import inspect
+import typing
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
-    DatabaseUniversity,
-    BaseObject,
-    DatabaseSchool,
     BaseCountry,
+    BaseObject,
     DatabaseCity,
     DatabaseFaculty,
-    DatabaseStation,
     DatabaseRegion,
+    DatabaseSchool,
+    DatabaseStation,
+    DatabaseUniversity
 )
-from .base_response import BaseResponse
 
 
 class GetChairsResponse(BaseResponse):
-    response: Optional["GetChairsResponseModel"] = None
+    response: typing.Optional["GetChairsResponseModel"] = None
 
 
 class GetCitiesByIdResponse(BaseResponse):
-    response: Optional["GetCitiesByIdResponseModel"] = None
+    response: typing.Optional["GetCitiesByIdResponseModel"] = None
 
 
 class GetCitiesResponse(BaseResponse):
-    response: Optional["GetCitiesResponseModel"] = None
+    response: typing.Optional["GetCitiesResponseModel"] = None
 
 
 class GetCountriesByIdResponse(BaseResponse):
-    response: Optional["GetCountriesByIdResponseModel"] = None
+    response: typing.Optional["GetCountriesByIdResponseModel"] = None
 
 
 class GetCountriesResponse(BaseResponse):
-    response: Optional["GetCountriesResponseModel"] = None
+    response: typing.Optional["GetCountriesResponseModel"] = None
 
 
 class GetFacultiesResponse(BaseResponse):
-    response: Optional["GetFacultiesResponseModel"] = None
+    response: typing.Optional["GetFacultiesResponseModel"] = None
 
 
 class GetMetroStationsByIdResponse(BaseResponse):
-    response: Optional["GetMetroStationsByIdResponseModel"] = None
+    response: typing.Optional["GetMetroStationsByIdResponseModel"] = None
 
 
 class GetMetroStationsResponse(BaseResponse):
-    response: Optional["GetMetroStationsResponseModel"] = None
+    response: typing.Optional["GetMetroStationsResponseModel"] = None
 
 
 class GetRegionsResponse(BaseResponse):
-    response: Optional["GetRegionsResponseModel"] = None
+    response: typing.Optional["GetRegionsResponseModel"] = None
 
 
 class GetSchoolClassesResponse(BaseResponse):
-    response: Optional["GetSchoolClassesResponseModel"] = None
+    response: typing.Optional["GetSchoolClassesResponseModel"] = None
 
 
 class GetSchoolsResponse(BaseResponse):
-    response: Optional["GetSchoolsResponseModel"] = None
+    response: typing.Optional["GetSchoolsResponseModel"] = None
 
 
 class GetUniversitiesResponse(BaseResponse):
-    response: Optional["GetUniversitiesResponseModel"] = None
+    response: typing.Optional["GetUniversitiesResponseModel"] = None
 
 
 class GetChairsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["BaseObject"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["BaseObject"]] = None
 
 
-GetCitiesByIdResponseModel = List[BaseObject]
+GetCitiesByIdResponseModel = typing.List[BaseObject]
 
 
 class GetCitiesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseCity"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseCity"]] = None
 
 
-GetCountriesByIdResponseModel = List[BaseCountry]
+GetCountriesByIdResponseModel = typing.List[BaseCountry]
 
 
 class GetCountriesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["BaseCountry"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["BaseCountry"]] = None
 
 
 class GetFacultiesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseFaculty"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseFaculty"]] = None
 
 
-GetMetroStationsByIdResponseModel = List[DatabaseStation]
+GetMetroStationsByIdResponseModel = typing.List[DatabaseStation]
 
 
 class GetMetroStationsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseStation"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseStation"]] = None
 
 
 class GetRegionsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseRegion"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseRegion"]] = None
 
 
-GetSchoolClassesResponseModel = List[List[Union[str, int]]]
+GetSchoolClassesResponseModel = typing.List["list"]
 
 
 class GetSchoolsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseSchool"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseSchool"]] = None
 
 
 class GetUniversitiesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DatabaseUniversity"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DatabaseUniversity"]] = None
 
 
-GetChairsResponse.update_forward_refs()
-GetCitiesByIdResponse.update_forward_refs()
-GetCitiesResponse.update_forward_refs()
-GetCountriesByIdResponse.update_forward_refs()
-GetCountriesResponse.update_forward_refs()
-GetFacultiesResponse.update_forward_refs()
-GetMetroStationsByIdResponse.update_forward_refs()
-GetMetroStationsResponse.update_forward_refs()
-GetRegionsResponse.update_forward_refs()
-GetSchoolClassesResponse.update_forward_refs()
-GetSchoolsResponse.update_forward_refs()
-GetUniversitiesResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

@@ -1,41 +1,58 @@
-from typing import Optional, List
-
-from vkbottle_types.objects import PollsVoters, PollsPoll, BaseBoolInt
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, PollsVoters
 
 
 class AddVoteResponse(BaseResponse):
-    response: Optional["AddVoteResponseModel"] = None
+    response: typing.Optional["AddVoteResponseModel"] = None
 
 
 class CreateResponse(BaseResponse):
-    response: Optional["CreateResponseModel"] = None
+    response: typing.Optional["CreateResponseModel"] = None
 
 
 class DeleteVoteResponse(BaseResponse):
-    response: Optional["DeleteVoteResponseModel"] = None
+    response: typing.Optional["DeleteVoteResponseModel"] = None
+
+
+class GetBackgroundsResponse(BaseResponse):
+    response: typing.Optional["GetBackgroundsResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetVotersResponse(BaseResponse):
-    response: Optional["GetVotersResponseModel"] = None
+    response: typing.Optional["GetVotersResponseModel"] = None
 
 
-AddVoteResponseModel = Optional[BaseBoolInt]
+class SavePhotoResponse(BaseResponse):
+    response: typing.Optional["SavePhotoResponseModel"] = None
 
-CreateResponseModel = Optional[PollsPoll]
 
-DeleteVoteResponseModel = Optional[BaseBoolInt]
+AddVoteResponseModel = BaseBoolInt
 
-GetByIdResponseModel = Optional[PollsPoll]
 
-GetVotersResponseModel = List[PollsVoters]
+CreateResponseModel = PollsPoll
 
-AddVoteResponse.update_forward_refs()
-CreateResponse.update_forward_refs()
-DeleteVoteResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetVotersResponse.update_forward_refs()
+
+DeleteVoteResponseModel = BaseBoolInt
+
+
+GetBackgroundsResponseModel = typing.List[PollsBackground]
+
+
+GetByIdResponseModel = PollsPoll
+
+
+GetVotersResponseModel = typing.List[PollsVoters]
+
+
+SavePhotoResponseModel = PollsBackground
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

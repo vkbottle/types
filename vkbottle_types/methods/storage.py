@@ -1,16 +1,16 @@
-from vkbottle_types.responses import storage, base
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import storage, base
 
 
 class StorageCategory(BaseCategory):
     async def get(
         self,
-        key: Optional[str] = None,
-        keys: Optional[List[str]] = None,
-        user_id: Optional[int] = None,
+        key: typing.Optional[str] = None,
+        keys: typing.Optional[typing.List[str]] = None,
+        user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> storage.GetV5110ResponseModel:
+    ) -> storage.GetResponseModel:
         """Returns a value of variable with the name set by key parameter.
         :param key:
         :param keys:
@@ -19,18 +19,14 @@ class StorageCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.get", params)
-        model = self.get_model(
-            {("keys",): storage.GetWithKeysResponse},
-            default=storage.GetV5110Response,
-            params=params,
-        )
+        model = storage.GetResponse
         return model(**response).response
 
     async def get_keys(
         self,
-        user_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        user_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> storage.GetKeysResponseModel:
         """Returns the names of all variables.
@@ -47,8 +43,8 @@ class StorageCategory(BaseCategory):
     async def set(
         self,
         key: str,
-        value: Optional[str] = None,
-        user_id: Optional[int] = None,
+        value: typing.Optional[str] = None,
+        user_id: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Saves a value of variable with the name set by 'key' parameter.

@@ -1,17 +1,19 @@
-from typing import Optional, List
-
-from vkbottle_types.objects import SearchHint
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import SearchHint
 
 
 class GetHintsResponse(BaseResponse):
-    response: Optional["GetHintsResponseModel"] = None
+    response: typing.Optional["GetHintsResponseModel"] = None
 
 
 class GetHintsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["SearchHint"]] = None
-    suggested_queries: Optional[List[str]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["SearchHint"]] = None
+    suggested_queries: typing.Optional[typing.List[str]] = None
 
 
-GetHintsResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

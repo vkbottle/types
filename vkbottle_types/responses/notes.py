@@ -1,48 +1,48 @@
-from typing import Optional, List
-
-from vkbottle_types.objects import NotesNoteComment, NotesNote
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import NotesNote, NotesNoteComment
 
 
 class AddResponse(BaseResponse):
-    response: Optional["AddResponseModel"] = None
+    response: typing.Optional["AddResponseModel"] = None
 
 
 class CreateCommentResponse(BaseResponse):
-    response: Optional["CreateCommentResponseModel"] = None
+    response: typing.Optional["CreateCommentResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: Optional["GetCommentsResponseModel"] = None
+    response: typing.Optional["GetCommentsResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 AddResponseModel = int
 
+
 CreateCommentResponseModel = int
 
-GetByIdResponseModel = Optional[NotesNote]
+
+GetByIdResponseModel = NotesNote
 
 
 class GetCommentsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["NotesNoteComment"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NotesNoteComment"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["NotesNote"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NotesNote"]] = None
 
 
-AddResponse.update_forward_refs()
-CreateCommentResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetCommentsResponse.update_forward_refs()
-GetResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

@@ -1,15 +1,18 @@
-from typing import Optional
-
+import inspect
+import typing
 from .base_response import BaseResponse
+import vkbottle_types.objects
 
 
 class RestoreResponse(BaseResponse):
-    response: Optional["RestoreResponseModel"] = None
+    response: typing.Optional["RestoreResponseModel"] = None
 
 
 class RestoreResponseModel(BaseResponse):
-    success: Optional[int] = None
-    sid: Optional[str] = None
+    success: typing.Optional[int] = None
+    sid: typing.Optional[str] = None
 
 
-RestoreResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

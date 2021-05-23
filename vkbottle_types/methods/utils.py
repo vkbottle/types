@@ -1,10 +1,12 @@
-from vkbottle_types.responses import utils, base
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import utils, base
 
 
 class UtilsCategory(BaseCategory):
-    async def check_link(self, url: str, **kwargs) -> utils.CheckLinkResponseModel:
+    async def check_link(
+        self, url: str, **kwargs
+    ) -> utils.CheckLinkResponseModel:
         """Checks whether a link is blocked in VK.
         :param url: Link to check (e.g., 'http://google.com').
         """
@@ -27,7 +29,10 @@ class UtilsCategory(BaseCategory):
         return model(**response).response
 
     async def get_last_shortened_links(
-        self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
+        self,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs
     ) -> utils.GetLastShortenedLinksResponseModel:
         """Returns a list of user's shortened links.
         :param count: Number of links to return.
@@ -42,11 +47,11 @@ class UtilsCategory(BaseCategory):
     async def get_link_stats(
         self,
         key: str,
-        source: Optional[str] = None,
-        access_key: Optional[str] = None,
-        interval: Optional[str] = None,
-        intervals_count: Optional[int] = None,
-        extended: Optional[bool] = None,
+        source: typing.Optional[str] = None,
+        access_key: typing.Optional[str] = None,
+        interval: typing.Optional[str] = None,
+        intervals_count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> utils.GetLinkStatsResponseModel:
         """Returns stats data for shortened link.
@@ -67,7 +72,9 @@ class UtilsCategory(BaseCategory):
         )
         return model(**response).response
 
-    async def get_server_time(self, **kwargs) -> utils.GetServerTimeResponseModel:
+    async def get_server_time(
+        self, **kwargs
+    ) -> utils.GetServerTimeResponseModel:
         """Returns the current time of the VK server."""
 
         params = self.get_set_params(locals())
@@ -76,7 +83,7 @@ class UtilsCategory(BaseCategory):
         return model(**response).response
 
     async def get_short_link(
-        self, url: str, private: Optional[bool] = None, **kwargs
+        self, url: str, private: typing.Optional[bool] = None, **kwargs
     ) -> utils.GetShortLinkResponseModel:
         """Allows to receive a link shortened via vk.cc.
         :param url: URL to be shortened.

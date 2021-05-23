@@ -1,26 +1,28 @@
-from .base_event_object import BaseEventObject
+import enum
+from typing import Any, Callable, Optional, Union
+
 from vkbottle_types.objects import (
+    AudioAudio,
+    BoardTopicComment,
+    CallbackGroupJoinType,
+    CallbackLikeAddRemoveObjectType,
+    ClientInfoForBots,
+    GroupsBanInfoReason,
+    GroupsGroupAdminLevel,
+    MarketOrder,
+    MessagesMessage,
+    PhotosPhoto,
+    VideoVideo,
     WallWallComment,
     WallWallpost,
-    BoardTopicComment,
-    PhotosPhoto,
-    CallbackGroupJoinType,
-    UsersBlockReason,
-    GroupsGroupAdminLevel,
-    MessagesMessage,
-    MessagesClientInfo,
-    AudioAudio,
-    ObjectType,
-    VideoVideo,
-    MarketOrder,
 )
-import enum
-from typing import Optional, Any, Union, Callable
+
+from .base_event_object import BaseEventObject
 
 
 class MessageNewObject(BaseEventObject):
     message: Optional[MessagesMessage] = None
-    client_info: Optional[MessagesClientInfo] = None
+    client_info: Optional[ClientInfoForBots] = None
 
 
 class MessageObject(MessagesMessage):
@@ -125,7 +127,7 @@ class WallReplyDeleteObject(BaseEventObject):
 
 class LikeObject(BaseEventObject):
     liker_id: Optional[int] = None
-    object_type: Optional[ObjectType] = None
+    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
     object_owner_id: Optional[int] = None
     object_id: Optional[int] = None
     thread_reply_id: Optional[int] = None
@@ -168,7 +170,7 @@ class UserBlockObject(BaseEventObject):
     admin_id: Optional[int] = None
     user_id: Optional[int] = None
     unblock_data: Optional[int] = None
-    reason: Optional[UsersBlockReason] = None
+    reason: Optional[GroupsBanInfoReason] = None
     comment: Optional[str] = None
 
 

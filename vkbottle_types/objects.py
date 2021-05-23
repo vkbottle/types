@@ -1,85 +1,100 @@
 import enum
+import inspect
 import typing
-from typing import Any, List, Optional, Union
-
 from pydantic import BaseModel
 
 
 class AccountAccountCounters(BaseModel):
-    """VK Object Account/AccountAccountCounters
+    """VK Object AccountAccountCounters
 
     app_requests - New app requests number
     events - New events number
     faves - New faves number
     friends - New friends requests number
-    friends_suggestions - New friends suggestions number
     friends_recommendations - New friends recommendations number
+    friends_suggestions - New friends suggestions number
     gifts - New gifts number
     groups - New groups number
+    memories - New memories number
+    menu_clips_badge -
     menu_discover_badge -
     messages - New messages number
-    memories - New memories number
     notes - New notes number
     notifications - New notifications number
     photos - New photo tags number
     sdk - New sdk number
     """
 
-    app_requests: Optional[int] = None
-    events: Optional[int] = None
-    faves: Optional[int] = None
-    friends: Optional[int] = None
-    friends_suggestions: Optional[int] = None
-    friends_recommendations: Optional[int] = None
-    gifts: Optional[int] = None
-    groups: Optional[int] = None
-    menu_discover_badge: Optional[int] = None
-    messages: Optional[int] = None
-    memories: Optional[int] = None
-    notes: Optional[int] = None
-    notifications: Optional[int] = None
-    photos: Optional[int] = None
-    sdk: Optional[int] = None
+    app_requests: typing.Optional[int] = None
+    events: typing.Optional[int] = None
+    faves: typing.Optional[int] = None
+    friends: typing.Optional[int] = None
+    friends_recommendations: typing.Optional[int] = None
+    friends_suggestions: typing.Optional[int] = None
+    gifts: typing.Optional[int] = None
+    groups: typing.Optional[int] = None
+    memories: typing.Optional[int] = None
+    menu_clips_badge: typing.Optional[int] = None
+    menu_discover_badge: typing.Optional[int] = None
+    messages: typing.Optional[int] = None
+    notes: typing.Optional[int] = None
+    notifications: typing.Optional[int] = None
+    photos: typing.Optional[int] = None
+    sdk: typing.Optional[int] = None
 
 
 class AccountInfo(BaseModel):
-    """VK Object Account/AccountInfo
+    """VK Object AccountInfo
 
-    2fa_required - Two factor authentication is enabled
+    _2fa_required - Two factor authentication is enabled
     country - Country code
     https_required - Information whether HTTPS-only is enabled
     intro - Information whether user has been processed intro
-    mini_apps_ads_slot_id - Ads slot id for MyTarget
     lang - Language ID
+    link_redirects -
+    mini_apps_ads_slot_id - Ads slot id for MyTarget
     no_wall_replies - Information whether wall comments should be hidden
     own_posts_default - Information whether only owners posts should be shown
+    qr_promotion -
+    show_vk_apps_intro -
+    subscriptions -
+    wishlists_ae_promo_banner_show -
     """
 
-    wishlists_ae_promo_banner_show: Optional["BaseBoolInt"] = None
-    _2fa_required: Optional["BaseBoolInt"] = None
-    country: Optional[str] = None
-    https_required: Optional["BaseBoolInt"] = None
-    intro: Optional["BaseBoolInt"] = None
-    show_vk_apps_intro: Optional[bool] = None
-    mini_apps_ads_slot_id: Optional[int] = None
-    qr_promotion: Optional[int] = None
-    link_redirects: Optional[typing.Dict[Any, Any]] = None
-    lang: Optional[int] = None
-    no_wall_replies: Optional["BaseBoolInt"] = None
-    own_posts_default: Optional["BaseBoolInt"] = None
-    subscriptions: Optional[List[int]] = None
+    _2fa_required: typing.Optional["BaseBoolInt"] = None
+    country: typing.Optional[str] = None
+    https_required: typing.Optional["BaseBoolInt"] = None
+    intro: typing.Optional["BaseBoolInt"] = None
+    lang: typing.Optional[int] = None
+    link_redirects: typing.Optional[typing.Any] = None
+    mini_apps_ads_slot_id: typing.Optional[int] = None
+    no_wall_replies: typing.Optional["BaseBoolInt"] = None
+    own_posts_default: typing.Optional["BaseBoolInt"] = None
+    qr_promotion: typing.Optional[int] = None
+    show_vk_apps_intro: typing.Optional[bool] = None
+    subscriptions: typing.Optional[typing.List[int]] = None
+    wishlists_ae_promo_banner_show: typing.Optional["BaseBoolInt"] = None
 
 
 class AccountNameRequest(BaseModel):
-    """VK Object Account/AccountNameRequest"""
+    """VK Object AccountNameRequest
 
-    first_name: Optional[str] = None
-    id: Optional[int] = None
-    last_name: Optional[str] = None
-    status: Optional["AccountNameRequestStatus"] = None
-    lang: Optional[str] = None
-    link_href: Optional[str] = None
-    link_label: Optional[str] = None
+    first_name - First name in request
+    id - Request ID needed to cancel the request
+    lang - Text to display to user
+    last_name - Last name in request
+    link_href - href for link in lang field
+    link_label - label to display for link in lang field
+    status -
+    """
+
+    first_name: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    lang: typing.Optional[str] = None
+    last_name: typing.Optional[str] = None
+    link_href: typing.Optional[str] = None
+    link_label: typing.Optional[str] = None
+    status: typing.Optional["AccountNameRequestStatus"] = None
 
 
 class AccountNameRequestStatus(enum.Enum):
@@ -95,82 +110,95 @@ class AccountNameRequestStatus(enum.Enum):
     RESPONSE_WITH_LINK = "response_with_link"
 
 
-class AccountOffer(BaseModel):
-    """VK Object Account/AccountOffer
+class LinkType(enum.Enum):
+    """ Link type """
 
+    PROFILE = "profile"
+    GROUP = "group"
+    APP = "app"
+
+
+class AccountOffer(BaseModel):
+    """VK Object AccountOffer
+
+    currency_amount - Currency amount
     description - Offer description
     id - Offer ID
     img - URL of the preview image
     instruction - Instruction how to process the offer
     instruction_html - Instruction how to process the offer (HTML format)
+    link_id - Link id
+    link_type - Link type
     price - Offer price
     short_description - Offer short description
     tag - Offer tag
     title - Offer title
-    currency_amount - Currency amount
-    link_id - Link id
-    link_type - Link type
     """
 
-    description: Optional[str] = None
-    id: Optional[int] = None
-    img: Optional[str] = None
-    instruction: Optional[str] = None
-    instruction_html: Optional[str] = None
-    price: Optional[int] = None
-    short_description: Optional[str] = None
-    tag: Optional[str] = None
-    title: Optional[str] = None
-    currency_amount: Optional[float] = None
-    link_id: Optional[int] = None
-    link_type: Optional[str] = None
+    currency_amount: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    img: typing.Optional[str] = None
+    instruction: typing.Optional[str] = None
+    instruction_html: typing.Optional[str] = None
+    link_id: typing.Optional[int] = None
+    link_type: typing.Optional["LinkType"] = None
+    price: typing.Optional[int] = None
+    short_description: typing.Optional[str] = None
+    tag: typing.Optional[str] = None
+    title: typing.Optional[str] = None
 
 
 class AccountPushConversations(BaseModel):
-    """VK Object Account/AccountPushConversations
+    """VK Object AccountPushConversations
 
     count - Items count
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["AccountPushConversationsItem"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AccountPushConversationsItem"]] = None
 
 
 class AccountPushConversationsItem(BaseModel):
-    """VK Object Account/AccountPushConversationsItem
+    """VK Object AccountPushConversationsItem
 
+    disabled_mass_mentions - Information whether the mass mentions (like '@all', '@online') are disabled. Can be affected by 'disabled_mentions'
+    disabled_mentions - Information whether the mentions are disabled
     disabled_until - Time until that notifications are disabled in seconds
     peer_id - Peer ID
     sound - Information whether the sound are enabled
     """
 
-    disabled_until: Optional[int] = None
-    peer_id: Optional[int] = None
-    sound: Optional["BaseBoolInt"] = None
+    disabled_mass_mentions: typing.Optional["BaseBoolInt"] = None
+    disabled_mentions: typing.Optional["BaseBoolInt"] = None
+    disabled_until: int = None
+    peer_id: int = None
+    sound: "BaseBoolInt" = None
 
 
 class AccountPushParams(BaseModel):
-    """VK Object Account/AccountPushParams"""
+    """VK Object AccountPushParams"""
 
-    msg: Optional[List["AccountPushParamsMode"]] = None
-    chat: Optional[List["AccountPushParamsMode"]] = None
-    like: Optional[List["AccountPushParamsSettings"]] = None
-    repost: Optional[List["AccountPushParamsSettings"]] = None
-    comment: Optional[List["AccountPushParamsSettings"]] = None
-    mention: Optional[List["AccountPushParamsSettings"]] = None
-    reply: Optional[List["AccountPushParamsOnoff"]] = None
-    new_post: Optional[List["AccountPushParamsOnoff"]] = None
-    wall_post: Optional[List["AccountPushParamsOnoff"]] = None
-    wall_publish: Optional[List["AccountPushParamsOnoff"]] = None
-    friend: Optional[List["AccountPushParamsOnoff"]] = None
-    friend_found: Optional[List["AccountPushParamsOnoff"]] = None
-    friend_accepted: Optional[List["AccountPushParamsOnoff"]] = None
-    group_invite: Optional[List["AccountPushParamsOnoff"]] = None
-    group_accepted: Optional[List["AccountPushParamsOnoff"]] = None
-    birthday: Optional[List["AccountPushParamsOnoff"]] = None
-    event_soon: Optional[List["AccountPushParamsOnoff"]] = None
-    app_request: Optional[List["AccountPushParamsOnoff"]] = None
-    sdk_open: Optional[List["AccountPushParamsOnoff"]] = None
+    app_request: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    birthday: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    chat: typing.Optional[typing.List["AccountPushParamsMode"]] = None
+    comment: typing.Optional[typing.List["AccountPushParamsSettings"]] = None
+    event_soon: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    friend: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    friend_accepted: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    friend_found: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    group_accepted: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    group_invite: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    like: typing.Optional[typing.List["AccountPushParamsSettings"]] = None
+    mention: typing.Optional[typing.List["AccountPushParamsSettings"]] = None
+    msg: typing.Optional[typing.List["AccountPushParamsMode"]] = None
+    new_post: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    reply: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    repost: typing.Optional[typing.List["AccountPushParamsSettings"]] = None
+    sdk_open: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    wall_post: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
+    wall_publish: typing.Optional[typing.List["AccountPushParamsOnoff"]] = None
 
 
 class AccountPushParamsMode(enum.Enum):
@@ -198,37 +226,122 @@ class AccountPushParamsSettings(enum.Enum):
 
 
 class AccountPushSettings(BaseModel):
-    """VK Object Account/AccountPushSettings
+    """VK Object AccountPushSettings
 
+    conversations -
     disabled - Information whether notifications are disabled
     disabled_until - Time until that notifications are disabled in Unixtime
+    settings -
     """
 
-    disabled: Optional["BaseBoolInt"] = None
-    disabled_until: Optional[int] = None
-    settings: Optional["AccountPushParams"] = None
-    conversations: Optional["AccountPushConversations"] = None
+    conversations: typing.Optional["AccountPushConversations"] = None
+    disabled: typing.Optional["BaseBoolInt"] = None
+    disabled_until: typing.Optional[int] = None
+    settings: typing.Optional["AccountPushParams"] = None
+
+
+class UsersUserMin(BaseModel):
+    """VK Object UsersUserMin
+
+    can_access_closed -
+    deactivated - Returns if a profile is deleted or blocked
+    first_name - User first name
+    hidden - Returns if a profile is hidden.
+    id - User ID
+    is_closed -
+    last_name - User last name
+    """
+
+    can_access_closed: typing.Optional[bool] = None
+    deactivated: typing.Optional[str] = None
+    first_name: str = None
+    hidden: typing.Optional[int] = None
+    id: int = None
+    is_closed: typing.Optional[bool] = None
+    last_name: str = None
+
+
+class UsersUserSettingsXtr(BaseModel):
+    """VK Object UsersUserSettingsXtr
+
+    bdate - User's date of birth
+    bdate_visibility - Information whether user's birthdate are hidden
+    city -
+    connections -
+    country -
+    first_name - User first name
+    home_town - User's hometown
+    interests -
+    languages -
+    last_name - User last name
+    maiden_name - User maiden name
+    name_request -
+    personal -
+    phone - User phone number with some hidden digits
+    relation - User relationship status
+    relation_partner -
+    relation_pending - Information whether relation status is pending
+    relation_requests -
+    screen_name - Domain name of the user's page
+    sex - User sex
+    status - User status
+    status_audio -
+    """
+
+    bdate: typing.Optional[str] = None
+    bdate_visibility: typing.Optional[int] = None
+    city: typing.Optional["BaseCity"] = None
+    connections: typing.Optional["UsersUserConnections"] = None
+    country: typing.Optional["BaseCountry"] = None
+    first_name: typing.Optional[str] = None
+    home_town: str = None
+    interests: typing.Optional["AccountUserSettingsInterests"] = None
+    languages: typing.Optional[typing.List[str]] = None
+    last_name: typing.Optional[str] = None
+    maiden_name: typing.Optional[str] = None
+    name_request: typing.Optional["AccountNameRequest"] = None
+    personal: typing.Optional["UsersPersonal"] = None
+    phone: typing.Optional[str] = None
+    relation: typing.Optional["UsersUserRelation"] = None
+    relation_partner: typing.Optional["UsersUserMin"] = None
+    relation_pending: typing.Optional["BaseBoolInt"] = None
+    relation_requests: typing.Optional[typing.List["UsersUserMin"]] = None
+    screen_name: typing.Optional[str] = None
+    sex: typing.Optional["BaseSex"] = None
+    status: str = None
+    status_audio: typing.Optional["AudioAudio"] = None
+
+
+class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
+    """VK Object AccountUserSettings
+
+    is_service_account - flag about service account
+    photo_200 - URL of square photo of the user with 200 pixels in width
+    """
+
+    is_service_account: typing.Optional[bool] = None
+    photo_200: typing.Optional[str] = None
 
 
 class AccountUserSettingsInterest(BaseModel):
-    """VK Object Account/AccountUserSettingsInterest"""
+    """VK Object AccountUserSettingsInterest"""
 
-    title: Optional[str] = None
-    value: Optional[str] = None
+    title: str = None
+    value: str = None
 
 
 class AccountUserSettingsInterests(BaseModel):
-    """VK Object Account/AccountUserSettingsInterests"""
+    """VK Object AccountUserSettingsInterests"""
 
-    activities: Optional["AccountUserSettingsInterest"] = None
-    interests: Optional["AccountUserSettingsInterest"] = None
-    music: Optional["AccountUserSettingsInterest"] = None
-    tv: Optional["AccountUserSettingsInterest"] = None
-    movies: Optional["AccountUserSettingsInterest"] = None
-    books: Optional["AccountUserSettingsInterest"] = None
-    games: Optional["AccountUserSettingsInterest"] = None
-    quotes: Optional["AccountUserSettingsInterest"] = None
-    about: Optional["AccountUserSettingsInterest"] = None
+    about: typing.Optional["AccountUserSettingsInterest"] = None
+    activities: typing.Optional["AccountUserSettingsInterest"] = None
+    books: typing.Optional["AccountUserSettingsInterest"] = None
+    games: typing.Optional["AccountUserSettingsInterest"] = None
+    interests: typing.Optional["AccountUserSettingsInterest"] = None
+    movies: typing.Optional["AccountUserSettingsInterest"] = None
+    music: typing.Optional["AccountUserSettingsInterest"] = None
+    quotes: typing.Optional["AccountUserSettingsInterest"] = None
+    tv: typing.Optional["AccountUserSettingsInterest"] = None
 
 
 class AddressesFields(enum.Enum):
@@ -258,24 +371,41 @@ class AdsAccessRole(enum.Enum):
     REPORTS = "reports"
 
 
+class AdsAccessRolePublic(enum.Enum):
+    """ Current user's role """
+
+    MANAGER = "manager"
+    REPORTS = "reports"
+
+
 class AdsAccesses(BaseModel):
-    """VK Object Ads/AdsAccesses
+    """VK Object AdsAccesses
 
     client_id - Client ID
+    role -
     """
 
-    client_id: Optional[str] = None
-    role: Optional["AdsAccessRole"] = None
+    client_id: typing.Optional[str] = None
+    role: typing.Optional["AdsAccessRole"] = None
 
 
 class AdsAccount(BaseModel):
-    """VK Object Ads/AdsAccount"""
+    """VK Object AdsAccount
 
-    access_role: Optional["AdsAccessRole"] = None
-    account_id: Optional[int] = None
-    account_status: Optional["BaseBoolInt"] = None
-    account_type: Optional["AdsAccountType"] = None
-    account_name: Optional[str] = None
+    access_role -
+    account_id - Account ID
+    account_name - Account name
+    account_status - Information whether account is active
+    account_type -
+    can_view_budget - Can user view account budget
+    """
+
+    access_role: "AdsAccessRole" = None
+    account_id: int = None
+    account_name: str = None
+    account_status: "BaseBoolInt" = None
+    account_type: "AdsAccountType" = None
+    can_view_budget: bool = None
 
 
 class AdsAccountType(enum.Enum):
@@ -286,30 +416,54 @@ class AdsAccountType(enum.Enum):
 
 
 class AdsAd(BaseModel):
-    """VK Object Ads/AdsAd"""
+    """VK Object AdsAd
 
-    ad_format: Optional[int] = None
-    ad_platform: Optional[Union[int, str]] = None
-    all_limit: Optional[int] = None
-    approved: Optional["AdsAdApproved"] = None
-    campaign_id: Optional[int] = None
-    category1_id: Optional[int] = None
-    category2_id: Optional[int] = None
-    cost_type: Optional["AdsAdCostType"] = None
-    cpc: Optional[int] = None
-    cpm: Optional[int] = None
-    cpa: Optional[int] = None
-    ocpm: Optional[int] = None
-    autobidding_max_cost: Optional[int] = None
-    disclaimer_medical: Optional["BaseBoolInt"] = None
-    disclaimer_specialist: Optional["BaseBoolInt"] = None
-    disclaimer_supplements: Optional["BaseBoolInt"] = None
-    id: Optional[int] = None
-    impressions_limit: Optional[int] = None
-    impressions_limited: Optional["BaseBoolInt"] = None
-    name: Optional[str] = None
-    status: Optional["AdsAdStatus"] = None
-    video: Optional["BaseBoolInt"] = None
+    ad_format - Ad format
+    ad_platform - Ad platform
+    all_limit - Total limit
+    approved -
+    autobidding_max_cost - Max cost of target actions for autobidding, kopecks
+    campaign_id - Campaign ID
+    category1_id - Category ID
+    category2_id - Additional category ID
+    cost_type -
+    cpa - Cost of an action, kopecks
+    cpc - Cost of a click, kopecks
+    cpm - Cost of 1000 impressions, kopecks
+    disclaimer_medical - Information whether disclaimer is enabled
+    disclaimer_specialist - Information whether disclaimer is enabled
+    disclaimer_supplements - Information whether disclaimer is enabled
+    id - Ad ID
+    impressions_limit - Impressions limit
+    impressions_limited - Information whether impressions are limited
+    name - Ad title
+    ocpm - Cost of 1000 impressions optimized, kopecks
+    status -
+    video - Information whether the ad is a video
+    """
+
+    ad_format: int = None
+    ad_platform: typing.Optional[typing.List[typing.Union[int, str]]] = None
+    all_limit: int = None
+    approved: "AdsAdApproved" = None
+    autobidding_max_cost: typing.Optional[int] = None
+    campaign_id: int = None
+    category1_id: typing.Optional[int] = None
+    category2_id: typing.Optional[int] = None
+    cost_type: "AdsAdCostType" = None
+    cpa: typing.Optional[int] = None
+    cpc: typing.Optional[int] = None
+    cpm: typing.Optional[int] = None
+    disclaimer_medical: typing.Optional["BaseBoolInt"] = None
+    disclaimer_specialist: typing.Optional["BaseBoolInt"] = None
+    disclaimer_supplements: typing.Optional["BaseBoolInt"] = None
+    id: int = None
+    impressions_limit: typing.Optional[int] = None
+    impressions_limited: typing.Optional["BaseBoolInt"] = None
+    name: str = None
+    ocpm: typing.Optional[int] = None
+    status: "AdsAdStatus" = None
+    video: typing.Optional["BaseBoolInt"] = None
 
 
 class AdsAdApproved(enum.IntEnum):
@@ -331,20 +485,34 @@ class AdsAdCostType(enum.IntEnum):
 
 
 class AdsAdLayout(BaseModel):
-    """VK Object Ads/AdsAdLayout"""
+    """VK Object AdsAdLayout
 
-    ad_format: Optional[int] = None
-    campaign_id: Optional[int] = None
-    cost_type: Optional["AdsAdCostType"] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    image_src: Optional[str] = None
-    image_src_2x: Optional[str] = None
-    link_domain: Optional[str] = None
-    link_url: Optional[str] = None
-    preview_link: Optional[Union[int, str]] = None
-    title: Optional[str] = None
-    video: Optional["BaseBoolInt"] = None
+    ad_format - Ad format
+    campaign_id - Campaign ID
+    cost_type -
+    description - Ad description
+    id - Ad ID
+    image_src - Image URL
+    image_src_2x - URL of the preview image in double size
+    link_domain - Domain of advertised object
+    link_url - URL of advertised object
+    preview_link - link to preview an ad as it is shown on the website
+    title - Ad title
+    video - Information whether the ad is a video
+    """
+
+    ad_format: int = None
+    campaign_id: int = None
+    cost_type: "AdsAdCostType" = None
+    description: str = None
+    id: str = None
+    image_src: str = None
+    image_src_2x: typing.Optional[str] = None
+    link_domain: typing.Optional[str] = None
+    link_url: str = None
+    preview_link: typing.Optional[typing.List[typing.Union[int, str]]] = None
+    title: str = None
+    video: typing.Optional["BaseBoolInt"] = None
 
 
 class AdsAdStatus(enum.IntEnum):
@@ -356,16 +524,34 @@ class AdsAdStatus(enum.IntEnum):
 
 
 class AdsCampaign(BaseModel):
-    """VK Object Ads/AdsCampaign"""
+    """VK Object AdsCampaign
 
-    all_limit: Optional[str] = None
-    day_limit: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    start_time: Optional[int] = None
-    status: Optional["AdsCampaignStatus"] = None
-    stop_time: Optional[int] = None
-    type: Optional["AdsCampaignType"] = None
+    ads_count - Amount of active ads in campaign
+    all_limit - Campaign's total limit, rubles
+    create_time - Campaign create time, as Unixtime
+    day_limit - Campaign's day limit, rubles
+    id - Campaign ID
+    name - Campaign title
+    start_time - Campaign start time, as Unixtime
+    status -
+    stop_time - Campaign stop time, as Unixtime
+    type -
+    update_time - Campaign update time, as Unixtime
+    views_limit - Limit of views per user per campaign
+    """
+
+    ads_count: typing.Optional[int] = None
+    all_limit: str = None
+    create_time: typing.Optional[int] = None
+    day_limit: str = None
+    id: int = None
+    name: str = None
+    start_time: int = None
+    status: "AdsCampaignStatus" = None
+    stop_time: int = None
+    type: "AdsCampaignType" = None
+    update_time: typing.Optional[int] = None
+    views_limit: typing.Optional[int] = None
 
 
 class AdsCampaignStatus(enum.IntEnum):
@@ -383,22 +569,25 @@ class AdsCampaignType(enum.Enum):
     VK_APPS_MANAGED = "vk_apps_managed"
     MOBILE_APPS = "mobile_apps"
     PROMOTED_POSTS = "promoted_posts"
+    ADAPTIVE_ADS = "adaptive_ads"
+    STORIES = "stories"
 
 
 class AdsCategory(BaseModel):
-    """VK Object Ads/AdsCategory
+    """VK Object AdsCategory
 
     id - Category ID
     name - Category name
+    subcategories -
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    subcategories: Optional[List["BaseObjectWithName"]] = None
+    id: int = None
+    name: str = None
+    subcategories: typing.Optional[typing.List["BaseObjectWithName"]] = None
 
 
 class AdsClient(BaseModel):
-    """VK Object Ads/AdsClient
+    """VK Object AdsClient
 
     all_limit - Client's total limit, rubles
     day_limit - Client's day limit, rubles
@@ -406,45 +595,77 @@ class AdsClient(BaseModel):
     name - Client name
     """
 
-    all_limit: Optional[str] = None
-    day_limit: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
+    all_limit: str = None
+    day_limit: str = None
+    id: int = None
+    name: str = None
 
 
 class AdsCriteria(BaseModel):
-    """VK Object Ads/AdsCriteria"""
+    """VK Object AdsCriteria
 
-    age_from: Optional[int] = None
-    age_to: Optional[int] = None
-    apps: Optional[str] = None
-    apps_not: Optional[str] = None
-    birthday: Optional[int] = None
-    cities: Optional[str] = None
-    cities_not: Optional[str] = None
-    country: Optional[int] = None
-    districts: Optional[str] = None
-    groups: Optional[str] = None
-    interest_categories: Optional[str] = None
-    interests: Optional[str] = None
-    paying: Optional["BaseBoolInt"] = None
-    positions: Optional[str] = None
-    religions: Optional[str] = None
-    retargeting_groups: Optional[str] = None
-    retargeting_groups_not: Optional[str] = None
-    school_from: Optional[int] = None
-    school_to: Optional[int] = None
-    schools: Optional[str] = None
-    sex: Optional["AdsCriteriaSex"] = None
-    stations: Optional[str] = None
-    statuses: Optional[str] = None
-    streets: Optional[str] = None
-    travellers: Optional["BasePropertyExists"] = None
-    uni_from: Optional[int] = None
-    uni_to: Optional[int] = None
-    user_browsers: Optional[str] = None
-    user_devices: Optional[str] = None
-    user_os: Optional[str] = None
+    age_from - Age from
+    age_to - Age to
+    apps - Apps IDs
+    apps_not - Apps IDs to except
+    birthday - Days to birthday
+    cities - Cities IDs
+    cities_not - Cities IDs to except
+    country - Country ID
+    districts - Districts IDs
+    groups - Communities IDs
+    interest_categories - Interests categories IDs
+    interests - Interests
+    paying - Information whether the user has proceeded VK payments before
+    positions - Positions IDs
+    religions - Religions IDs
+    retargeting_groups - Retargeting groups IDs
+    retargeting_groups_not - Retargeting groups IDs to except
+    school_from - School graduation year from
+    school_to - School graduation year to
+    schools - Schools IDs
+    sex -
+    stations - Stations IDs
+    statuses - Relationship statuses
+    streets - Streets IDs
+    travellers - Travellers only
+    uni_from - University graduation year from
+    uni_to - University graduation year to
+    user_browsers - Browsers
+    user_devices - Devices
+    user_os - Operating systems
+    """
+
+    age_from: typing.Optional[int] = None
+    age_to: typing.Optional[int] = None
+    apps: typing.Optional[str] = None
+    apps_not: typing.Optional[str] = None
+    birthday: typing.Optional[int] = None
+    cities: typing.Optional[str] = None
+    cities_not: typing.Optional[str] = None
+    country: typing.Optional[int] = None
+    districts: typing.Optional[str] = None
+    groups: typing.Optional[str] = None
+    interest_categories: typing.Optional[str] = None
+    interests: typing.Optional[str] = None
+    paying: typing.Optional["BaseBoolInt"] = None
+    positions: typing.Optional[str] = None
+    religions: typing.Optional[str] = None
+    retargeting_groups: typing.Optional[str] = None
+    retargeting_groups_not: typing.Optional[str] = None
+    school_from: typing.Optional[int] = None
+    school_to: typing.Optional[int] = None
+    schools: typing.Optional[str] = None
+    sex: typing.Optional["AdsCriteriaSex"] = None
+    stations: typing.Optional[str] = None
+    statuses: typing.Optional[str] = None
+    streets: typing.Optional[str] = None
+    travellers: typing.Optional["BasePropertyExists"] = None
+    uni_from: typing.Optional[int] = None
+    uni_to: typing.Optional[int] = None
+    user_browsers: typing.Optional[str] = None
+    user_devices: typing.Optional[str] = None
+    user_os: typing.Optional[str] = None
 
 
 class AdsCriteriaSex(enum.IntEnum):
@@ -456,99 +677,129 @@ class AdsCriteriaSex(enum.IntEnum):
 
 
 class AdsDemoStats(BaseModel):
-    """VK Object Ads/AdsDemoStats
+    """VK Object AdsDemoStats
 
     id - Object ID
+    stats -
+    type -
     """
 
-    id: Optional[int] = None
-    stats: Optional["AdsDemostatsFormat"] = None
-    type: Optional["AdsObjectType"] = None
+    id: typing.Optional[int] = None
+    stats: typing.Optional["AdsDemostatsFormat"] = None
+    type: typing.Optional["AdsObjectType"] = None
 
 
 class AdsDemostatsFormat(BaseModel):
-    """VK Object Ads/AdsDemostatsFormat
+    """VK Object AdsDemostatsFormat
 
+    age -
+    cities -
     day - Day as YYYY-MM-DD
     month - Month as YYYY-MM
     overall - 1 if period=overall
+    sex -
+    sex_age -
     """
 
-    age: Optional[List["AdsStatsAge"]] = None
-    cities: Optional[List["AdsStatsCities"]] = None
-    day: Optional[str] = None
-    month: Optional[str] = None
-    overall: Optional[int] = None
-    sex: Optional[List["AdsStatsSex"]] = None
-    sex_age: Optional[List["AdsStatsSexAge"]] = None
+    age: typing.Optional[typing.List["AdsStatsAge"]] = None
+    cities: typing.Optional[typing.List["AdsStatsCities"]] = None
+    day: typing.Optional[str] = None
+    month: typing.Optional[str] = None
+    overall: typing.Optional[int] = None
+    sex: typing.Optional[typing.List["AdsStatsSex"]] = None
+    sex_age: typing.Optional[typing.List["AdsStatsSexAge"]] = None
 
 
 class AdsFloodStats(BaseModel):
-    """VK Object Ads/AdsFloodStats
+    """VK Object AdsFloodStats
 
     left - Requests left
     refresh - Time to refresh in seconds
     """
 
-    left: Optional[int] = None
-    refresh: Optional[int] = None
+    left: int = None
+    refresh: int = None
 
 
 class AdsLinkStatus(BaseModel):
-    """VK Object Ads/AdsLinkStatus
+    """VK Object AdsLinkStatus
 
     description - Reject reason
     redirect_url - URL
     status - Link status
     """
 
-    description: Optional[str] = None
-    redirect_url: Optional[str] = None
-    status: Optional[str] = None
+    description: str = None
+    redirect_url: str = None
+    status: str = None
+
+
+class LookalikeRequestStatus(enum.Enum):
+    """ Lookalike request status """
+
+    SEARCH_IN_PROGRESS = "search_in_progress"
+    SEARCH_FAILED = "search_failed"
+    SEARCH_DONE = "search_done"
+    SAVE_IN_PROGRESS = "save_in_progress"
+    SAVE_FAILED = "save_failed"
+    SAVE_DONE = "save_done"
+
+
+class LookalikeRequestSourceType(enum.Enum):
+    """ Lookalike request source type """
+
+    RETARGETING_GROUP = "retargeting_group"
 
 
 class AdsLookalikeRequest(BaseModel):
-    """VK Object Ads/AdsLookalikeRequest
+    """VK Object AdsLookalikeRequest
 
-    id - Lookalike request ID
-    create_time - Lookalike request create time, as Unixtime
-    update_time - Lookalike request update time, as Unixtime
-    scheduled_delete_time - Time by which lookalike request would be deleted, as Unixtime
-    status - Lookalike request status
-    source_type - Lookalike request source type
-    source_retargeting_group_id - Retargeting group id, which was used as lookalike seed
-    source_name - Lookalike request seed name (retargeting group name)
     audience_count - Lookalike request seed audience size
+    create_time - Lookalike request create time, as Unixtime
+    id - Lookalike request ID
+    save_audience_levels -
+    scheduled_delete_time - Time by which lookalike request would be deleted, as Unixtime
+    source_name - Lookalike request seed name (retargeting group name)
+    source_retargeting_group_id - Retargeting group id, which was used as lookalike seed
+    source_type - Lookalike request source type
+    status - Lookalike request status
+    update_time - Lookalike request update time, as Unixtime
     """
 
-    id: Optional[int] = None
-    create_time: Optional[int] = None
-    update_time: Optional[int] = None
-    scheduled_delete_time: Optional[int] = None
-    status: Optional[str] = None
-    source_type: Optional[str] = None
-    source_retargeting_group_id: Optional[int] = None
-    source_name: Optional[str] = None
-    audience_count: Optional[int] = None
-    save_audience_levels: Optional[List["AdsLookalikeRequestSaveAudienceLevel"]] = None
+    audience_count: typing.Optional[int] = None
+    create_time: int = None
+    id: int = None
+    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = None
+    scheduled_delete_time: typing.Optional[int] = None
+    source_name: typing.Optional[str] = None
+    source_retargeting_group_id: typing.Optional[int] = None
+    source_type: "LookalikeRequestSourceType" = None
+    status: "LookalikeRequestStatus" = None
+    update_time: int = None
 
 
 class AdsLookalikeRequestSaveAudienceLevel(BaseModel):
-    """VK Object Ads/AdsLookalikeRequestSaveAudienceLevel
+    """VK Object AdsLookalikeRequestSaveAudienceLevel
 
-    level - Save audience level id, which is used in save audience queries
     audience_count - Saved audience audience size for according level
+    level - Save audience level id, which is used in save audience queries
     """
 
-    level: Optional[int] = None
-    audience_count: Optional[int] = None
+    audience_count: typing.Optional[int] = None
+    level: typing.Optional[int] = None
 
 
 class AdsMusician(BaseModel):
-    """VK Object Ads/AdsMusician"""
+    """VK Object AdsMusician
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    avatar - Music artist photo
+    id - Targeting music artist ID
+    name - Music artist name
+    """
+
+    avatar: typing.Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class AdsObjectType(enum.Enum):
@@ -561,16 +812,16 @@ class AdsObjectType(enum.Enum):
 
 
 class AdsParagraphs(BaseModel):
-    """VK Object Ads/AdsParagraphs
+    """VK Object AdsParagraphs
 
     paragraph - Rules paragraph
     """
 
-    paragraph: Optional[str] = None
+    paragraph: typing.Optional[str] = None
 
 
 class AdsPromotedPostReach(BaseModel):
-    """VK Object Ads/AdsPromotedPostReach
+    """VK Object AdsPromotedPostReach
 
     hide - Hides amount
     id - Object ID from 'ids' parameter
@@ -589,70 +840,75 @@ class AdsPromotedPostReach(BaseModel):
     video_views_start - Video starts
     """
 
-    hide: Optional[int] = None
-    id: Optional[int] = None
-    join_group: Optional[int] = None
-    links: Optional[int] = None
-    reach_subscribers: Optional[int] = None
-    reach_total: Optional[int] = None
-    report: Optional[int] = None
-    to_group: Optional[int] = None
-    unsubscribe: Optional[int] = None
-    video_views_100p: Optional[int] = None
-    video_views_25p: Optional[int] = None
-    video_views_3s: Optional[int] = None
-    video_views_50p: Optional[int] = None
-    video_views_75p: Optional[int] = None
-    video_views_start: Optional[int] = None
+    hide: int = None
+    id: int = None
+    join_group: int = None
+    links: int = None
+    reach_subscribers: int = None
+    reach_total: int = None
+    report: int = None
+    to_group: int = None
+    unsubscribe: int = None
+    video_views_100p: typing.Optional[int] = None
+    video_views_25p: typing.Optional[int] = None
+    video_views_3s: typing.Optional[int] = None
+    video_views_50p: typing.Optional[int] = None
+    video_views_75p: typing.Optional[int] = None
+    video_views_start: typing.Optional[int] = None
 
 
 class AdsRejectReason(BaseModel):
-    """VK Object Ads/AdsRejectReason
+    """VK Object AdsRejectReason
 
     comment - Comment text
+    rules -
     """
 
-    comment: Optional[str] = None
-    rules: Optional[List["AdsRules"]] = None
+    comment: typing.Optional[str] = None
+    rules: typing.Optional[typing.List["AdsRules"]] = None
 
 
 class AdsRules(BaseModel):
-    """VK Object Ads/AdsRules
+    """VK Object AdsRules
 
+    paragraphs -
     title - Comment
     """
 
-    paragraphs: Optional[List["AdsParagraphs"]] = None
-    title: Optional[str] = None
+    paragraphs: typing.Optional[typing.List["AdsParagraphs"]] = None
+    title: typing.Optional[str] = None
 
 
 class AdsStats(BaseModel):
-    """VK Object Ads/AdsStats
+    """VK Object AdsStats
 
     id - Object ID
+    stats -
+    type -
+    views_times -
     """
 
-    id: Optional[int] = None
-    stats: Optional["AdsStatsFormat"] = None
-    type: Optional["AdsObjectType"] = None
-    views_times: Optional["AdsStatsViewsTimes"] = None
+    id: typing.Optional[int] = None
+    stats: typing.Optional["AdsStatsFormat"] = None
+    type: typing.Optional["AdsObjectType"] = None
+    views_times: typing.Optional["AdsStatsViewsTimes"] = None
 
 
 class AdsStatsAge(BaseModel):
-    """VK Object Ads/AdsStatsAge
+    """VK Object AdsStatsAge
 
     clicks_rate - Clicks rate
     impressions_rate - Impressions rate
     value - Age interval
     """
 
-    clicks_rate: Optional[float] = None
-    impressions_rate: Optional[float] = None
-    value: Optional[str] = None
+    clicks_rate: typing.Optional[int] = None
+    impressions_rate: typing.Optional[int] = None
+    value: typing.Optional[str] = None
 
 
 class AdsStatsCities(BaseModel):
-    """VK Object Ads/AdsStatsCities
+    """VK Object AdsStatsCities
 
     clicks_rate - Clicks rate
     impressions_rate - Impressions rate
@@ -660,19 +916,21 @@ class AdsStatsCities(BaseModel):
     value - City ID
     """
 
-    clicks_rate: Optional[float] = None
-    impressions_rate: Optional[float] = None
-    name: Optional[str] = None
-    value: Optional[int] = None
+    clicks_rate: typing.Optional[int] = None
+    impressions_rate: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    value: typing.Optional[int] = None
 
 
 class AdsStatsFormat(BaseModel):
-    """VK Object Ads/AdsStatsFormat
+    """VK Object AdsStatsFormat
 
     clicks - Clicks number
     day - Day as YYYY-MM-DD
     impressions - Impressions number
     join_rate - Events number
+    link_external_clicks - External clicks number
+    link_owner_clicks - Group clicks number
     month - Month as YYYY-MM
     overall - 1 if period=overall
     reach - Reach
@@ -683,38 +941,46 @@ class AdsStatsFormat(BaseModel):
     video_views_half - Video views (half of video)
     """
 
-    clicks: Optional[int] = None
-    day: Optional[str] = None
-    impressions: Optional[int] = None
-    join_rate: Optional[int] = None
-    month: Optional[str] = None
-    overall: Optional[int] = None
-    reach: Optional[int] = None
-    spent: Optional[int] = None
-    video_clicks_site: Optional[int] = None
-    video_views: Optional[int] = None
-    video_views_full: Optional[int] = None
-    video_views_half: Optional[int] = None
+    clicks: typing.Optional[int] = None
+    day: typing.Optional[str] = None
+    impressions: typing.Optional[int] = None
+    join_rate: typing.Optional[int] = None
+    link_external_clicks: typing.Optional[int] = None
+    link_owner_clicks: typing.Optional[int] = None
+    month: typing.Optional[str] = None
+    overall: typing.Optional[int] = None
+    reach: typing.Optional[int] = None
+    spent: typing.Optional[int] = None
+    video_clicks_site: typing.Optional[int] = None
+    video_views: typing.Optional[int] = None
+    video_views_full: typing.Optional[int] = None
+    video_views_half: typing.Optional[int] = None
 
 
 class AdsStatsSex(BaseModel):
-    """VK Object Ads/AdsStatsSex
+    """VK Object AdsStatsSex
 
     clicks_rate - Clicks rate
     impressions_rate - Impressions rate
+    value -
     """
 
-    clicks_rate: Optional[float] = None
-    impressions_rate: Optional[float] = None
-    value: Optional["AdsStatsSexValue"] = None
+    clicks_rate: typing.Optional[int] = None
+    impressions_rate: typing.Optional[int] = None
+    value: typing.Optional["AdsStatsSexValue"] = None
 
 
 class AdsStatsSexAge(BaseModel):
-    """VK Object Ads/AdsStatsSexAge"""
+    """VK Object AdsStatsSexAge
 
-    clicks_rate: Optional[float] = None
-    impressions_rate: Optional[float] = None
-    value: Optional[str] = None
+    clicks_rate - Clicks rate
+    impressions_rate - Impressions rate
+    value - Sex and age interval
+    """
+
+    clicks_rate: typing.Optional[int] = None
+    impressions_rate: typing.Optional[int] = None
+    value: typing.Optional[str] = None
 
 
 class AdsStatsSexValue(enum.Enum):
@@ -725,102 +991,109 @@ class AdsStatsSexValue(enum.Enum):
 
 
 class AdsStatsViewsTimes(BaseModel):
-    """VK Object Ads/AdsStatsViewsTimes"""
+    """VK Object AdsStatsViewsTimes"""
 
-    views_ads_times_1: Optional[int] = None
-    views_ads_times_2: Optional[int] = None
-    views_ads_times_3: Optional[int] = None
-    views_ads_times_4: Optional[int] = None
-    views_ads_times_5: Optional[str] = None
-    views_ads_times_6: Optional[int] = None
-    views_ads_times_7: Optional[int] = None
-    views_ads_times_8: Optional[int] = None
-    views_ads_times_9: Optional[int] = None
-    views_ads_times_10: Optional[int] = None
-    views_ads_times_11_plus: Optional[int] = None
+    views_ads_times_1: typing.Optional[int] = None
+    views_ads_times_10: typing.Optional[int] = None
+    views_ads_times_11_plus: typing.Optional[int] = None
+    views_ads_times_2: typing.Optional[int] = None
+    views_ads_times_3: typing.Optional[int] = None
+    views_ads_times_4: typing.Optional[int] = None
+    views_ads_times_5: typing.Optional[str] = None
+    views_ads_times_6: typing.Optional[int] = None
+    views_ads_times_7: typing.Optional[int] = None
+    views_ads_times_8: typing.Optional[int] = None
+    views_ads_times_9: typing.Optional[int] = None
 
 
 class AdsTargSettings(AdsCriteria):
-    """VK Object Ads/AdsTargSettings
+    """VK Object AdsTargSettings
 
-    id - Ad ID
     campaign_id - Campaign ID
+    id - Ad ID
     """
 
-    id: Optional[int] = None
-    campaign_id: Optional[int] = None
+    campaign_id: typing.Optional[int] = None
+    id: typing.Optional[int] = None
 
 
 class AdsTargStats(BaseModel):
-    """VK Object Ads/AdsTargStats
+    """VK Object AdsTargStats
 
     audience_count - Audience
     recommended_cpc - Recommended CPC value for 50% reach (old format)
-    recommended_cpm - Recommended CPM value for 50% reach (old format)
     recommended_cpc_50 - Recommended CPC value for 50% reach
-    recommended_cpm_50 - Recommended CPM value for 50% reach
     recommended_cpc_70 - Recommended CPC value for 70% reach
-    recommended_cpm_70 - Recommended CPM value for 70% reach
     recommended_cpc_90 - Recommended CPC value for 90% reach
+    recommended_cpm - Recommended CPM value for 50% reach (old format)
+    recommended_cpm_50 - Recommended CPM value for 50% reach
+    recommended_cpm_70 - Recommended CPM value for 70% reach
     recommended_cpm_90 - Recommended CPM value for 90% reach
     """
 
-    audience_count: Optional[int] = None
-    recommended_cpc: Optional[float] = None
-    recommended_cpm: Optional[float] = None
-    recommended_cpc_50: Optional[float] = None
-    recommended_cpm_50: Optional[float] = None
-    recommended_cpc_70: Optional[float] = None
-    recommended_cpm_70: Optional[float] = None
-    recommended_cpc_90: Optional[float] = None
-    recommended_cpm_90: Optional[float] = None
+    audience_count: int = None
+    recommended_cpc: typing.Optional[int] = None
+    recommended_cpc_50: typing.Optional[int] = None
+    recommended_cpc_70: typing.Optional[int] = None
+    recommended_cpc_90: typing.Optional[int] = None
+    recommended_cpm: typing.Optional[int] = None
+    recommended_cpm_50: typing.Optional[int] = None
+    recommended_cpm_70: typing.Optional[int] = None
+    recommended_cpm_90: typing.Optional[int] = None
 
 
 class AdsTargSuggestions(BaseModel):
-    """VK Object Ads/AdsTargSuggestions
+    """VK Object AdsTargSuggestions
 
     id - Object ID
     name - Object name
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
 
 
 class AdsTargSuggestionsCities(BaseModel):
-    """VK Object Ads/AdsTargSuggestionsCities
+    """VK Object AdsTargSuggestionsCities
 
     id - Object ID
     name - Object name
     parent - Parent object
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    parent: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    parent: typing.Optional[str] = None
 
 
 class AdsTargSuggestionsRegions(BaseModel):
-    """VK Object Ads/AdsTargSuggestionsRegions
+    """VK Object AdsTargSuggestionsRegions
 
     id - Object ID
     name - Object name
     type - Object type
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    type: typing.Optional[str] = None
 
 
 class AdsTargSuggestionsSchools(BaseModel):
-    """VK Object Ads/AdsTargSuggestionsSchools"""
+    """VK Object AdsTargSuggestionsSchools
 
-    desc: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    parent: Optional[str] = None
-    type: Optional["AdsTargSuggestionsSchoolsType"] = None
+    desc - Full school title
+    id - School ID
+    name - School title
+    parent - City name
+    type -
+    """
+
+    desc: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    parent: typing.Optional[str] = None
+    type: typing.Optional["AdsTargSuggestionsSchoolsType"] = None
 
 
 class AdsTargSuggestionsSchoolsType(enum.Enum):
@@ -833,7 +1106,7 @@ class AdsTargSuggestionsSchoolsType(enum.Enum):
 
 
 class AdsTargetGroup(BaseModel):
-    """VK Object Ads/AdsTargetGroup
+    """VK Object AdsTargetGroup
 
     audience_count - Audience
     domain - Site domain
@@ -843,22 +1116,194 @@ class AdsTargetGroup(BaseModel):
     pixel - Pixel code
     """
 
-    audience_count: Optional[int] = None
-    domain: Optional[str] = None
-    id: Optional[int] = None
-    lifetime: Optional[int] = None
-    name: Optional[str] = None
-    pixel: Optional[str] = None
+    audience_count: typing.Optional[int] = None
+    domain: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    lifetime: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    pixel: typing.Optional[str] = None
+
+
+class AdsUpdateOfficeUsersResult(BaseModel):
+    """VK Object AdsUpdateOfficeUsersResult"""
+
+    error: typing.Optional["BaseError"] = None
+    is_success: bool = None
+    user_id: int = None
+
+
+class AdsUserSpecification(BaseModel):
+    """VK Object AdsUserSpecification"""
+
+    client_ids: typing.Optional[typing.List[int]] = None
+    grant_access_to_all_clients: typing.Optional[bool] = None
+    role: "AdsAccessRolePublic" = None
+    user_id: int = None
+    view_budget: typing.Optional[bool] = None
+
+
+class AdsUserSpecificationCutted(BaseModel):
+    """VK Object AdsUserSpecificationCutted"""
+
+    client_id: typing.Optional[int] = None
+    role: "AdsAccessRolePublic" = None
+    user_id: int = None
+    view_budget: typing.Optional[bool] = None
 
 
 class AdsUsers(BaseModel):
-    """VK Object Ads/AdsUsers
+    """VK Object AdsUsers
 
+    accesses -
     user_id - User ID
     """
 
-    accesses: Optional[List["AdsAccesses"]] = None
-    user_id: Optional[int] = None
+    accesses: typing.List["AdsAccesses"] = None
+    user_id: int = None
+
+
+class AdswebGetAdCategoriesResponseCategoriesCategory(BaseModel):
+    """VK Object AdswebGetAdCategoriesResponseCategoriesCategory"""
+
+    id: int = None
+    name: str = None
+
+
+class AdswebGetAdUnitsResponseAdUnitsAdUnit(BaseModel):
+    """VK Object AdswebGetAdUnitsResponseAdUnitsAdUnit"""
+
+    id: int = None
+    name: typing.Optional[str] = None
+    site_id: int = None
+
+
+class AdswebGetFraudHistoryResponseEntriesEntry(BaseModel):
+    """VK Object AdswebGetFraudHistoryResponseEntriesEntry"""
+
+    day: str = None
+    site_id: int = None
+
+
+class AdswebGetSitesResponseSitesSite(BaseModel):
+    """VK Object AdswebGetSitesResponseSitesSite"""
+
+    domains: typing.Optional[str] = None
+    id: int = None
+    status_moder: typing.Optional[str] = None
+    status_user: typing.Optional[str] = None
+
+
+class AdswebGetStatisticsResponseItemsItem(BaseModel):
+    """VK Object AdswebGetStatisticsResponseItemsItem"""
+
+    ad_unit_id: typing.Optional[int] = None
+    day_max: typing.Optional[str] = None
+    day_min: typing.Optional[str] = None
+    days_count: typing.Optional[int] = None
+    hour_max: typing.Optional[str] = None
+    hour_min: typing.Optional[str] = None
+    hours_count: typing.Optional[int] = None
+    month_max: typing.Optional[str] = None
+    month_min: typing.Optional[str] = None
+    months_count: typing.Optional[int] = None
+    overall_count: typing.Optional[int] = None
+    site_id: typing.Optional[int] = None
+
+
+class AppWidgetsPhoto(BaseModel):
+    """VK Object AppWidgetsPhoto
+
+    id - Image ID
+    images -
+    """
+
+    id: str = None
+    images: typing.List["BaseImage"] = None
+
+
+class AppWidgetsPhotos(BaseModel):
+    """VK Object AppWidgetsPhotos"""
+
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppWidgetsPhoto"]] = None
+
+
+class AppsAppMin(BaseModel):
+    """VK Object AppsAppMin
+
+    author_owner_id - Application author's ID
+    background_loader_color - Hex color code without hash sign
+    icon_139 - URL of the app icon with 139 px in width
+    icon_150 - URL of the app icon with 150 px in width
+    icon_278 - URL of the app icon with 278 px in width
+    icon_576 - URL of the app icon with 576 px in width
+    icon_75 - URL of the app icon with 75 px in width
+    id - Application ID
+    is_installed - Is application installed
+    loader_icon - SVG data
+    title - Application title
+    type -
+    """
+
+    author_owner_id: typing.Optional[int] = None
+    background_loader_color: typing.Optional[str] = None
+    icon_139: typing.Optional[str] = None
+    icon_150: typing.Optional[str] = None
+    icon_278: typing.Optional[str] = None
+    icon_576: typing.Optional[str] = None
+    icon_75: typing.Optional[str] = None
+    id: int = None
+    is_installed: typing.Optional[bool] = None
+    loader_icon: typing.Optional[str] = None
+    title: str = None
+    type: "AppsAppType" = None
+
+
+class AppsApp(AppsAppMin):
+    """VK Object AppsApp
+
+    author_url - Application author's URL
+    banner_1120 - URL of the app banner with 1120 px in width
+    banner_560 - URL of the app banner with 560 px in width
+    catalog_position - Catalog position
+    description - Application description
+    friends -
+    genre - Genre name
+    genre_id - Genre ID
+    icon_16 - URL of the app icon with 16 px in width
+    international - Information whether the application is multilanguage
+    is_in_catalog - Information whether application is in mobile catalog
+    is_new - Is new flag
+    leaderboard_type -
+    members_count - Members number
+    platform_id - Application ID in store
+    published_date - Date when the application has been published in Unixtime
+    push_enabled - Is push enabled
+    screen_name - Screen name
+    screen_orientation - Screen orientation
+    section - Application section name
+    """
+
+    author_url: typing.Optional[str] = None
+    banner_1120: typing.Optional[str] = None
+    banner_560: typing.Optional[str] = None
+    catalog_position: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    friends: typing.Optional[typing.List[int]] = None
+    genre: typing.Optional[str] = None
+    genre_id: typing.Optional[int] = None
+    icon_16: typing.Optional[str] = None
+    international: typing.Optional[bool] = None
+    is_in_catalog: typing.Optional[int] = None
+    is_new: typing.Optional["BaseBoolInt"] = None
+    leaderboard_type: typing.Optional["AppsAppLeaderboardType"] = None
+    members_count: typing.Optional[int] = None
+    platform_id: typing.Optional[str] = None
+    published_date: typing.Optional[int] = None
+    push_enabled: typing.Optional["BaseBoolInt"] = None
+    screen_name: typing.Optional[str] = None
+    screen_orientation: typing.Optional[int] = None
+    section: typing.Optional[str] = None
 
 
 class AppsAppLeaderboardType(enum.IntEnum):
@@ -867,48 +1312,6 @@ class AppsAppLeaderboardType(enum.IntEnum):
     not_supported = 0
     levels = 1
     points = 2
-
-
-class AppsAppMin(BaseModel):
-    """VK Object Apps/AppsAppMin"""
-
-    type: Optional["AppsAppType"] = None
-    id: Optional[int] = None
-    title: Optional[str] = None
-    author_owner_id: Optional[int] = None
-    is_installed: Optional[bool] = None
-    icon_139: Optional[str] = None
-    icon_150: Optional[str] = None
-    icon_278: Optional[str] = None
-    icon_576: Optional[str] = None
-    background_loader_color: Optional[str] = None
-    loader_icon: Optional[str] = None
-    icon_75: Optional[str] = None
-
-
-class AppsApp(AppsAppMin):
-    """VK Object Apps/AppsApp"""
-
-    author_url: Optional[str] = None
-    banner_1120: Optional[str] = None
-    banner_560: Optional[str] = None
-    icon_16: Optional[str] = None
-    is_new: Optional["BaseBoolInt"] = None
-    push_enabled: Optional["BaseBoolInt"] = None
-    screen_orientation: Optional[int] = None
-    friends: Optional[List[int]] = None
-    catalog_position: Optional[int] = None
-    description: Optional[str] = None
-    genre: Optional[str] = None
-    genre_id: Optional[int] = None
-    international: Optional[bool] = None
-    is_in_catalog: Optional[int] = None
-    leaderboard_type: Optional["AppsAppLeaderboardType"] = None
-    members_count: Optional[int] = None
-    platform_id: Optional[str] = None
-    published_date: Optional[int] = None
-    screen_name: Optional[str] = None
-    section: Optional[str] = None
 
 
 class AppsAppType(enum.Enum):
@@ -925,7 +1328,7 @@ class AppsAppType(enum.Enum):
 
 
 class AppsLeaderboard(BaseModel):
-    """VK Object Apps/AppsLeaderboard
+    """VK Object AppsLeaderboard
 
     level - Level
     points - Points number
@@ -933,35 +1336,66 @@ class AppsLeaderboard(BaseModel):
     user_id - User ID
     """
 
-    level: Optional[int] = None
-    points: Optional[int] = None
-    score: Optional[int] = None
-    user_id: Optional[int] = None
+    level: typing.Optional[int] = None
+    points: typing.Optional[int] = None
+    score: typing.Optional[int] = None
+    user_id: int = None
+
+
+class ScopeName(enum.Enum):
+    """ Scope name """
+
+    FRIENDS = "friends"
+    PHOTOS = "photos"
+    VIDEO = "video"
+    PAGES = "pages"
+    STATUS = "status"
+    NOTES = "notes"
+    WALL = "wall"
+    DOCS = "docs"
+    GROUPS = "groups"
+    STATS = "stats"
+    MARKET = "market"
 
 
 class AppsScope(BaseModel):
-    """VK Object Apps/AppsScope
+    """VK Object AppsScope
 
     name - Scope name
     title - Scope title
     """
 
-    name: Optional[str] = None
-    title: Optional[str] = None
+    name: "ScopeName" = None
+    title: typing.Optional[str] = None
 
 
 class AudioAudio(BaseModel):
-    """VK Object Audio/AudioAudio"""
+    """VK Object AudioAudio
 
-    artist: Optional[str] = None
-    id: Optional[int] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
-    duration: Optional[int] = None
-    date: Optional[int] = None
-    album_id: Optional[int] = None
-    genre_id: Optional[int] = None
-    performer: Optional[str] = None
+    access_key - Access key for the audio
+    album_id - Album ID
+    artist - Artist name
+    date - Date when uploaded
+    duration - Duration in seconds
+    genre_id - Genre ID
+    id - Audio ID
+    owner_id - Audio owner's ID
+    performer - Performer name
+    title - Title
+    url - URL of mp3 file
+    """
+
+    access_key: typing.Optional[str] = None
+    album_id: typing.Optional[int] = None
+    artist: str = None
+    date: typing.Optional[int] = None
+    duration: int = None
+    genre_id: typing.Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    performer: typing.Optional[str] = None
+    title: str = None
+    url: typing.Optional[str] = None
 
 
 class BaseBoolInt(enum.IntEnum):
@@ -972,150 +1406,158 @@ class BaseBoolInt(enum.IntEnum):
 
 
 class BaseCity(BaseModel):
-    """VK Object Base/BaseCity
+    """VK Object BaseCity
 
     id - City ID
     title - City title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: int = None
+    title: str = None
 
 
 class BaseCommentsInfo(BaseModel):
-    """VK Object Base/BaseCommentsInfo
+    """VK Object BaseCommentsInfo
 
     can_post - Information whether current user can comment the post
     count - Comments number
+    donut -
     groups_can_post - Information whether groups can comment the post
     """
 
-    can_post: Optional["BaseBoolInt"] = None
-    count: Optional[int] = None
-    groups_can_post: Optional[bool] = None
+    can_post: typing.Optional["BaseBoolInt"] = None
+    count: typing.Optional[int] = None
+    donut: typing.Optional["WallWallpostCommentsDonut"] = None
+    groups_can_post: typing.Optional[bool] = None
 
 
 class BaseCountry(BaseModel):
-    """VK Object Base/BaseCountry
+    """VK Object BaseCountry
 
     id - Country ID
     title - Country title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: int = None
+    title: str = None
 
 
 class BaseCropPhoto(BaseModel):
-    """VK Object Base/BaseCropPhoto"""
+    """VK Object BaseCropPhoto"""
 
-    photo: Optional["PhotosPhoto"] = None
-    crop: Optional["BaseCropPhotoCrop"] = None
-    rect: Optional["BaseCropPhotoRect"] = None
+    crop: "BaseCropPhotoCrop" = None
+    photo: "PhotosPhoto" = None
+    rect: "BaseCropPhotoRect" = None
 
 
 class BaseCropPhotoCrop(BaseModel):
-    """VK Object Base/BaseCropPhotoCrop
+    """VK Object BaseCropPhotoCrop
 
     x - Coordinate X of the left upper corner
-    y - Coordinate Y of the left upper corner
     x2 - Coordinate X of the right lower corner
+    y - Coordinate Y of the left upper corner
     y2 - Coordinate Y of the right lower corner
     """
 
-    x: Optional[float] = None
-    y: Optional[float] = None
-    x2: Optional[float] = None
-    y2: Optional[float] = None
+    x: int = None
+    x2: int = None
+    y: int = None
+    y2: int = None
 
 
 class BaseCropPhotoRect(BaseModel):
-    """VK Object Base/BaseCropPhotoRect
+    """VK Object BaseCropPhotoRect
 
     x - Coordinate X of the left upper corner
-    y - Coordinate Y of the left upper corner
     x2 - Coordinate X of the right lower corner
+    y - Coordinate Y of the left upper corner
     y2 - Coordinate Y of the right lower corner
     """
 
-    x: Optional[float] = None
-    y: Optional[float] = None
-    x2: Optional[float] = None
-    y2: Optional[float] = None
+    x: int = None
+    x2: int = None
+    y: int = None
+    y2: int = None
 
 
 class BaseError(BaseModel):
-    """VK Object Base/BaseError
+    """VK Object BaseError
 
     error_code - Error code
     error_msg - Error message
+    error_subcode - Error subcode
     error_text - Localized error message
+    request_params -
     """
 
-    error_code: Optional[int] = None
-    error_msg: Optional[str] = None
-    error_text: Optional[str] = None
-    request_params: Optional[List["BaseRequestParam"]] = None
+    error_code: typing.Optional[int] = None
+    error_msg: typing.Optional[str] = None
+    error_subcode: typing.Optional[int] = None
+    error_text: typing.Optional[str] = None
+    request_params: typing.Optional[typing.List["BaseRequestParam"]] = None
 
 
 class BaseGeo(BaseModel):
-    """VK Object Base/BaseGeo
+    """VK Object BaseGeo
 
+    coordinates -
+    place -
     showmap - Information whether a map is showed
     type - Place type
     """
 
-    coordinates: Optional["BaseGeoCoordinates"] = None
-    place: Optional["BasePlace"] = None
-    showmap: Optional[int] = None
-    type: Optional[str] = None
+    coordinates: typing.Optional["BaseGeoCoordinates"] = None
+    place: typing.Optional["BasePlace"] = None
+    showmap: typing.Optional[int] = None
+    type: typing.Optional[str] = None
 
 
 class BaseGeoCoordinates(BaseModel):
-    """VK Object Base/BaseGeoCoordinates"""
+    """VK Object BaseGeoCoordinates"""
 
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
+    latitude: int = None
+    longitude: int = None
 
 
 class BaseGradientPoint(BaseModel):
-    """VK Object Base/BaseGradientPoint
+    """VK Object BaseGradientPoint
 
     color - Hex color code without #
     position - Point position
     """
 
-    color: Optional[str] = None
-    position: Optional[float] = None
+    color: str = None
+    position: int = None
 
 
 class BaseImage(BaseModel):
-    """VK Object Base/BaseImage
+    """VK Object BaseImage
 
     height - Image height
+    id -
     url - Image url
     width - Image width
     """
 
-    id: Optional[str] = None
-    height: Optional[int] = None
-    url: Optional[str] = None
-    width: Optional[int] = None
+    height: int = None
+    id: typing.Optional[str] = None
+    url: str = None
+    width: int = None
 
 
 class BaseLikes(BaseModel):
-    """VK Object Base/BaseLikes
+    """VK Object BaseLikes
 
     count - Likes number
     user_likes - Information whether current user likes the photo
     """
 
-    count: Optional[int] = None
-    user_likes: Optional["BaseBoolInt"] = None
+    count: typing.Optional[int] = None
+    user_likes: typing.Optional["BaseBoolInt"] = None
 
 
 class BaseLikesInfo(BaseModel):
-    """VK Object Base/BaseLikesInfo
+    """VK Object BaseLikesInfo
 
     can_like - Information whether current user can like the post
     can_publish - Information whether current user can repost
@@ -1123,91 +1565,107 @@ class BaseLikesInfo(BaseModel):
     user_likes - Information whether current uer has liked the post
     """
 
-    can_like: Optional["BaseBoolInt"] = None
-    can_publish: Optional["BaseBoolInt"] = None
-    count: Optional[int] = None
-    user_likes: Optional[int] = None
+    can_like: "BaseBoolInt" = None
+    can_publish: typing.Optional["BaseBoolInt"] = None
+    count: int = None
+    user_likes: int = None
 
 
 class BaseLink(BaseModel):
-    """VK Object Base/BaseLink
+    """VK Object BaseLink
 
+    application -
+    button -
     caption - Link caption
     description - Link description
     id - Link ID
+    is_external - Information whether the current link is external
+    is_favorite -
+    photo -
     preview_page - String ID of the page with article preview
     preview_url - URL of the page with article preview
+    product -
+    rating -
+    target_object -
     title - Link title
     url - Link URL
-    is_external - Information whether the current link is external
     video - Video from link
     """
 
-    application: Optional["BaseLinkApplication"] = None
-    button: Optional["BaseLinkButton"] = None
-    caption: Optional[str] = None
-    description: Optional[str] = None
-    id: Optional[str] = None
-    is_favorite: Optional[bool] = None
-    photo: Optional["PhotosPhoto"] = None
-    preview_page: Optional[str] = None
-    preview_url: Optional[str] = None
-    product: Optional["BaseLinkProduct"] = None
-    rating: Optional["BaseLinkRating"] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
-    target_object: Optional["LinkTargetObject"] = None
-    is_external: Optional[bool] = None
-    video: Optional["VideoVideo"] = None
+    application: typing.Optional["BaseLinkApplication"] = None
+    button: typing.Optional["BaseLinkButton"] = None
+    caption: typing.Optional[str] = None
+    description: typing.Optional[str] = None
+    id: typing.Optional[str] = None
+    is_external: typing.Optional[bool] = None
+    is_favorite: typing.Optional[bool] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    preview_page: typing.Optional[str] = None
+    preview_url: typing.Optional[str] = None
+    product: typing.Optional["BaseLinkProduct"] = None
+    rating: typing.Optional["BaseLinkRating"] = None
+    target_object: typing.Optional["LinkTargetObject"] = None
+    title: typing.Optional[str] = None
+    url: str = None
+    video: typing.Optional["VideoVideo"] = None
 
 
 class BaseLinkApplication(BaseModel):
-    """VK Object Base/BaseLinkApplication
+    """VK Object BaseLinkApplication
 
     app_id - Application Id
+    store -
     """
 
-    app_id: Optional[float] = None
-    store: Optional["BaseLinkApplicationStore"] = None
+    app_id: typing.Optional[int] = None
+    store: typing.Optional["BaseLinkApplicationStore"] = None
 
 
 class BaseLinkApplicationStore(BaseModel):
-    """VK Object Base/BaseLinkApplicationStore
+    """VK Object BaseLinkApplicationStore
 
     id - Store Id
     name - Store name
     """
 
-    id: Optional[float] = None
-    name: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
 
 
 class BaseLinkButton(BaseModel):
-    """VK Object Base/BaseLinkButton
+    """VK Object BaseLinkButton
 
     action - Button action
-    title - Button title
     block_id - Target block id
-    section_id - Target section id
-    owner_id - Owner id
+    curator_id - curator id
     icon - Button icon name, e.g. 'phone' or 'gift'
+    owner_id - Owner id
+    section_id - Target section id
+    style -
+    title - Button title
     """
 
-    action: Optional["BaseLinkButtonAction"] = None
-    title: Optional[str] = None
-    block_id: Optional[str] = None
-    section_id: Optional[str] = None
-    owner_id: Optional[int] = None
-    icon: Optional[str] = None
-    style: Optional["BaseLinkButtonStyle"] = None
+    action: typing.Optional["BaseLinkButtonAction"] = None
+    block_id: typing.Optional[str] = None
+    curator_id: typing.Optional[int] = None
+    icon: typing.Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    section_id: typing.Optional[str] = None
+    style: typing.Optional["BaseLinkButtonStyle"] = None
+    title: typing.Optional[str] = None
 
 
 class BaseLinkButtonAction(BaseModel):
-    """VK Object Base/BaseLinkButtonAction"""
+    """VK Object BaseLinkButtonAction
 
-    type: Optional["BaseLinkButtonActionType"] = None
-    url: Optional[str] = None
-    consume_reason: Optional[str] = None
+    consume_reason -
+    type -
+    url - Action URL
+    """
+
+    consume_reason: typing.Optional[str] = None
+    type: "BaseLinkButtonActionType" = None
+    url: typing.Optional[str] = None
 
 
 class BaseLinkButtonActionType(enum.Enum):
@@ -1219,82 +1677,114 @@ class BaseLinkButtonActionType(enum.Enum):
 class BaseLinkButtonStyle(enum.Enum):
     """ Button style """
 
+    PRIMARY = "primary"
+    SECONDARY = "secondary"
+
 
 class BaseLinkProduct(BaseModel):
-    """VK Object Base/BaseLinkProduct"""
+    """VK Object BaseLinkProduct"""
 
-    price: Optional["MarketPrice"] = None
-    merchant: Optional[str] = None
-    orders_count: Optional[int] = None
+    merchant: typing.Optional[str] = None
+    orders_count: typing.Optional[int] = None
+    price: "MarketPrice" = None
+
+
+class BaseLinkProductCategory(BaseModel):
+    """VK Object BaseLinkProductCategory"""
+
+    pass
+
+
+class BaseLinkProductStatus(enum.Enum):
+    """ Status representation """
+
+    ACTIVE = "active"
+    BLOCKED = "blocked"
+    SOLD = "sold"
+    DELETED = "deleted"
+    ARCHIVED = "archived"
 
 
 class BaseLinkRating(BaseModel):
-    """VK Object Base/BaseLinkRating
+    """VK Object BaseLinkRating
 
     reviews_count - Count of reviews
     stars - Count of stars
     """
 
-    reviews_count: Optional[int] = None
-    stars: Optional[float] = None
+    reviews_count: typing.Optional[int] = None
+    stars: typing.Optional[int] = None
 
 
 class BaseMessageError(BaseModel):
-    """VK Object Base/BaseMessageError
+    """VK Object BaseMessageError
 
     code - Error code
     description - Error message
     """
 
-    code: Optional[int] = None
-    description: Optional[str] = None
+    code: typing.Optional[int] = None
+    description: typing.Optional[str] = None
 
 
 class BaseObject(BaseModel):
-    """VK Object Base/BaseObject
+    """VK Object BaseObject
 
     id - Object ID
     title - Object title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: int = None
+    title: str = None
 
 
 class BaseObjectCount(BaseModel):
-    """VK Object Base/BaseObjectCount
+    """VK Object BaseObjectCount
 
     count - Items count
     """
 
-    count: Optional[int] = None
+    count: typing.Optional[int] = None
 
 
 class BaseObjectWithName(BaseModel):
-    """VK Object Base/BaseObjectWithName
+    """VK Object BaseObjectWithName
 
     id - Object ID
     name - Object name
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class BasePlace(BaseModel):
-    """VK Object Base/BasePlace"""
+    """VK Object BasePlace
 
-    address: Optional[str] = None
-    checkins: Optional[int] = None
-    city: Optional[str] = None
-    country: Optional[str] = None
-    created: Optional[int] = None
-    icon: Optional[str] = None
-    id: Optional[int] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
+    address - Place address
+    checkins - Checkins number
+    city - City name
+    country - Country name
+    created - Date of the place creation in Unixtime
+    icon - URL of the place's icon
+    id - Place ID
+    latitude - Place latitude
+    longitude - Place longitude
+    title - Place title
+    type - Place type
+    """
+
+    address: typing.Optional[str] = None
+    checkins: typing.Optional[int] = None
+    city: typing.Optional[str] = None
+    country: typing.Optional[str] = None
+    created: typing.Optional[int] = None
+    icon: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    latitude: typing.Optional[int] = None
+    longitude: typing.Optional[int] = None
+    title: typing.Optional[str] = None
+    type: typing.Optional[str] = None
 
 
 class BasePropertyExists(enum.IntEnum):
@@ -1304,21 +1794,29 @@ class BasePropertyExists(enum.IntEnum):
 
 
 class BaseRepostsInfo(BaseModel):
-    """VK Object Base/BaseRepostsInfo
+    """VK Object BaseRepostsInfo
 
-    count - Reposts number
+    count - Total reposts counter. Sum of wall and mail reposts counters
+    mail_count - Mail reposts counter
     user_reposted - Information whether current user has reposted the post
+    wall_count - Wall reposts counter
     """
 
-    count: Optional[int] = None
-    user_reposted: Optional[int] = None
+    count: int = None
+    mail_count: typing.Optional[int] = None
+    user_reposted: typing.Optional[int] = None
+    wall_count: typing.Optional[int] = None
 
 
 class BaseRequestParam(BaseModel):
-    """VK Object Base/BaseRequestParam"""
+    """VK Object BaseRequestParam
 
-    key: Optional[str] = None
-    value: Optional[str] = None
+    key - Parameter name
+    value - Parameter value
+    """
+
+    key: typing.Optional[str] = None
+    value: typing.Optional[str] = None
 
 
 class BaseSex(enum.IntEnum):
@@ -1330,39 +1828,54 @@ class BaseSex(enum.IntEnum):
 
 
 class BaseSticker(BaseModel):
-    """VK Object Base/BaseSticker
+    """VK Object BaseSticker
 
-    sticker_id - Sticker ID
-    product_id - Pack ID
     animation_url - URL of sticker animation script
     animations - Array of sticker animation script objects
+    images -
+    images_with_background -
     is_allowed - Information whether the sticker is allowed
+    product_id - Pack ID
+    sticker_id - Sticker ID
     """
 
-    sticker_id: Optional[int] = None
-    product_id: Optional[int] = None
-    images: Optional[List["BaseImage"]] = None
-    images_with_background: Optional[List["BaseImage"]] = None
-    animation_url: Optional[str] = None
-    animations: Optional[List["BaseStickerAnimation"]] = None
-    is_allowed: Optional[bool] = None
+    animation_url: typing.Optional[str] = None
+    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = None
+    images: typing.Optional[typing.List["BaseImage"]] = None
+    images_with_background: typing.Optional[typing.List["BaseImage"]] = None
+    is_allowed: typing.Optional[bool] = None
+    product_id: typing.Optional[int] = None
+    sticker_id: typing.Optional[int] = None
+
+
+class AnimationScriptType(enum.Enum):
+    """ Type of animation script """
+
+    LIGHT = "light"
+    DARK = "dark"
 
 
 class BaseStickerAnimation(BaseModel):
-    """VK Object Base/BaseStickerAnimation
+    """VK Object BaseStickerAnimation
 
     type - Type of animation script
     url - URL of animation script
     """
 
-    type: Optional[str] = None
-    url: Optional[str] = None
+    type: typing.Optional["AnimationScriptType"] = None
+    url: typing.Optional[str] = None
+
+
+BaseStickersList = typing.Optional[typing.List["BaseSticker"]]
 
 
 class BaseUploadServer(BaseModel):
-    """VK Object Base/BaseUploadServer"""
+    """VK Object BaseUploadServer
 
-    upload_url: Optional[str] = None
+    upload_url - Upload URL
+    """
+
+    upload_url: str = None
 
 
 class BaseUserGroupFields(enum.Enum):
@@ -1471,9 +1984,12 @@ class BaseUserGroupFields(enum.Enum):
 
 
 class BaseUserId(BaseModel):
-    """VK Object Base/BaseUserId"""
+    """VK Object BaseUserId
 
-    user_id: Optional[int] = None
+    user_id - User ID
+    """
+
+    user_id: typing.Optional[int] = None
 
 
 class BoardDefaultOrder(enum.IntEnum):
@@ -1486,7 +2002,7 @@ class BoardDefaultOrder(enum.IntEnum):
 
 
 class BoardTopic(BaseModel):
-    """VK Object Board/BoardTopic
+    """VK Object BoardTopic
 
     comments - Comments number
     created - Date when the topic has been created in Unixtime
@@ -1499,42 +2015,45 @@ class BoardTopic(BaseModel):
     updated_by - ID of user who updated the topic
     """
 
-    comments: Optional[int] = None
-    created: Optional[int] = None
-    created_by: Optional[int] = None
-    id: Optional[int] = None
-    is_closed: Optional["BaseBoolInt"] = None
-    is_fixed: Optional["BaseBoolInt"] = None
-    title: Optional[str] = None
-    updated: Optional[int] = None
-    updated_by: Optional[int] = None
+    comments: typing.Optional[int] = None
+    created: typing.Optional[int] = None
+    created_by: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    is_closed: typing.Optional["BaseBoolInt"] = None
+    is_fixed: typing.Optional["BaseBoolInt"] = None
+    title: typing.Optional[str] = None
+    updated: typing.Optional[int] = None
+    updated_by: typing.Optional[int] = None
 
 
 class BoardTopicComment(BaseModel):
-    """VK Object Board/BoardTopicComment
+    """VK Object BoardTopicComment
 
+    attachments -
+    can_edit - Information whether current user can edit the comment
     date - Date when the comment has been added in Unixtime
     from_id - Author ID
     id - Comment ID
+    likes -
     real_offset - Real position of the comment
     text - Comment text
-    can_edit - Information whether current user can edit the comment
     """
 
-    attachments: Optional[List["WallCommentAttachment"]] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    id: Optional[int] = None
-    real_offset: Optional[int] = None
-    text: Optional[str] = None
-    can_edit: Optional["BaseBoolInt"] = None
-    likes: Optional["BaseLikesInfo"] = None
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = None
+    can_edit: typing.Optional["BaseBoolInt"] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    real_offset: typing.Optional[int] = None
+    text: str = None
 
 
 class BoardTopicPoll(BaseModel):
-    """VK Object Board/BoardTopicPoll
+    """VK Object BoardTopicPoll
 
     answer_id - Current user's answer ID
+    answers -
     created - Date when poll has been created in Unixtime
     is_closed - Information whether the poll is closed
     owner_id - Poll owner's ID
@@ -1543,51 +2062,102 @@ class BoardTopicPoll(BaseModel):
     votes - Votes number
     """
 
-    answer_id: Optional[int] = None
-    answers: Optional[List["PollsAnswer"]] = None
-    created: Optional[int] = None
-    is_closed: Optional["BaseBoolInt"] = None
-    owner_id: Optional[int] = None
-    poll_id: Optional[int] = None
-    question: Optional[str] = None
-    votes: Optional[str] = None
+    answer_id: int = None
+    answers: typing.List["PollsAnswer"] = None
+    created: int = None
+    is_closed: typing.Optional["BaseBoolInt"] = None
+    owner_id: int = None
+    poll_id: int = None
+    question: str = None
+    votes: int = None
 
 
 class CallbackBoardPostDelete(BaseModel):
-    """VK Object Callback/CallbackBoardPostDelete"""
+    """VK Object CallbackBoardPostDelete"""
 
-    topic_owner_id: Optional[int] = None
-    topic_id: Optional[int] = None
-    id: Optional[int] = None
+    id: int = None
+    topic_id: int = None
+    topic_owner_id: int = None
 
 
 class CallbackConfirmationMessage(BaseModel):
-    """VK Object Callback/CallbackConfirmationMessage"""
+    """VK Object CallbackConfirmationMessage"""
 
-    type: Optional["CallbackMessageType"] = None
-    group_id: Optional[int] = None
-    secret: Optional[str] = None
+    group_id: int = None
+    secret: typing.Optional[str] = None
+    type: "CallbackMessageType" = None
+
+
+class CallbackDonutMoneyWithdraw(BaseModel):
+    """VK Object CallbackDonutMoneyWithdraw"""
+
+    amount: int = None
+    amount_without_fee: int = None
+
+
+class CallbackDonutMoneyWithdrawError(BaseModel):
+    """VK Object CallbackDonutMoneyWithdrawError"""
+
+    reason: str = None
+
+
+class CallbackDonutSubscriptionCancelled(BaseModel):
+    """VK Object CallbackDonutSubscriptionCancelled"""
+
+    user_id: typing.Optional[int] = None
+
+
+class CallbackDonutSubscriptionCreate(BaseModel):
+    """VK Object CallbackDonutSubscriptionCreate"""
+
+    amount: int = None
+    amount_without_fee: int = None
+    user_id: typing.Optional[int] = None
+
+
+class CallbackDonutSubscriptionExpired(BaseModel):
+    """VK Object CallbackDonutSubscriptionExpired"""
+
+    user_id: typing.Optional[int] = None
+
+
+class CallbackDonutSubscriptionPriceChanged(BaseModel):
+    """VK Object CallbackDonutSubscriptionPriceChanged"""
+
+    amount_diff: typing.Optional[int] = None
+    amount_diff_without_fee: typing.Optional[int] = None
+    amount_new: int = None
+    amount_old: int = None
+    user_id: typing.Optional[int] = None
+
+
+class CallbackDonutSubscriptionProlonged(BaseModel):
+    """VK Object CallbackDonutSubscriptionProlonged"""
+
+    amount: int = None
+    amount_without_fee: int = None
+    user_id: typing.Optional[int] = None
 
 
 class CallbackGroupChangePhoto(BaseModel):
-    """VK Object Callback/CallbackGroupChangePhoto"""
+    """VK Object CallbackGroupChangePhoto"""
 
-    user_id: Optional[int] = None
-    photo: Optional["PhotosPhoto"] = None
+    photo: "PhotosPhoto" = None
+    user_id: int = None
 
 
 class CallbackGroupChangeSettings(BaseModel):
-    """VK Object Callback/CallbackGroupChangeSettings"""
+    """VK Object CallbackGroupChangeSettings"""
 
-    user_id: Optional[int] = None
-    self: Optional["BaseBoolInt"] = None
+    self: "BaseBoolInt" = None
+    user_id: int = None
 
 
 class CallbackGroupJoin(BaseModel):
-    """VK Object Callback/CallbackGroupJoin"""
+    """VK Object CallbackGroupJoin"""
 
-    user_id: Optional[int] = None
-    join_type: Optional["CallbackGroupJoinType"] = None
+    join_type: "CallbackGroupJoinType" = None
+    user_id: int = None
 
 
 class CallbackGroupJoinType(enum.Enum):
@@ -1601,10 +2171,10 @@ class CallbackGroupJoinType(enum.Enum):
 
 
 class CallbackGroupLeave(BaseModel):
-    """VK Object Callback/CallbackGroupLeave"""
+    """VK Object CallbackGroupLeave"""
 
-    user_id: Optional[int] = None
-    self: Optional["BaseBoolInt"] = None
+    self: typing.Optional["BaseBoolInt"] = None
+    user_id: typing.Optional[int] = None
 
 
 class CallbackGroupMarket(enum.IntEnum):
@@ -1624,263 +2194,370 @@ class CallbackGroupOfficerRole(enum.IntEnum):
 
 
 class CallbackGroupOfficersEdit(BaseModel):
-    """VK Object Callback/CallbackGroupOfficersEdit"""
+    """VK Object CallbackGroupOfficersEdit"""
 
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    level_old: Optional["CallbackGroupOfficerRole"] = None
-    level_new: Optional["CallbackGroupOfficerRole"] = None
+    admin_id: int = None
+    level_new: "CallbackGroupOfficerRole" = None
+    level_old: "CallbackGroupOfficerRole" = None
+    user_id: int = None
 
 
 class CallbackGroupSettingsChanges(BaseModel):
-    """VK Object Callback/CallbackGroupSettingsChanges"""
+    """VK Object CallbackGroupSettingsChanges"""
 
-    title: Optional[str] = None
-    description: Optional[str] = None
-    access: Optional["GroupsGroupIsClosed"] = None
-    screen_name: Optional[str] = None
-    public_category: Optional[int] = None
-    public_subcategory: Optional[int] = None
-    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
-    website: Optional[str] = None
-    enable_status_default: Optional["GroupsGroupWall"] = None
-    enable_audio: Optional["GroupsGroupAudio"] = None
-    enable_video: Optional["GroupsGroupVideo"] = None
-    enable_photo: Optional["GroupsGroupPhotos"] = None
-    enable_market: Optional["CallbackGroupMarket"] = None
+    access: typing.Optional["GroupsGroupIsClosed"] = None
+    age_limits: typing.Optional["GroupsGroupFullAgeLimits"] = None
+    description: typing.Optional[str] = None
+    enable_audio: typing.Optional["GroupsGroupAudio"] = None
+    enable_market: typing.Optional["CallbackGroupMarket"] = None
+    enable_photo: typing.Optional["GroupsGroupPhotos"] = None
+    enable_status_default: typing.Optional["GroupsGroupWall"] = None
+    enable_video: typing.Optional["GroupsGroupVideo"] = None
+    public_category: typing.Optional[int] = None
+    public_subcategory: typing.Optional[int] = None
+    screen_name: typing.Optional[str] = None
+    title: typing.Optional[str] = None
+    website: typing.Optional[str] = None
+
+
+class CallbackLikeAddRemoveObjectType(enum.Enum):
+    """ CallbackLikeAddRemoveObjectType enum """
+
+    VIDEO = "video"
+    PHOTO = "photo"
+    POST = "post"
+    COMMENT = "comment"
+    NOTE = "note"
+    TOPIC_COMMENT = "topic_comment"
+    PHOTO_COMMENT = "photo_comment"
+    VIDEO_COMMENT = "video_comment"
+    MARKET = "market"
+    MARKET_COMMENT = "market_comment"
 
 
 class CallbackLikeAddRemove(BaseModel):
-    """VK Object Callback/CallbackLikeAddRemove"""
+    """VK Object CallbackLikeAddRemove"""
 
-    liker_id: Optional[int] = None
-    object_type: Optional[str] = None
-    object_owner_id: Optional[int] = None
-    object_id: Optional[int] = None
-    post_id: Optional[int] = None
-    thread_reply_id: Optional[int] = None
+    liker_id: int = None
+    object_id: int = None
+    object_owner_id: int = None
+    object_type: "CallbackLikeAddRemoveObjectType" = None
+    post_id: int = None
+    thread_reply_id: typing.Optional[int] = None
 
 
 class CallbackMarketComment(BaseModel):
-    """VK Object Callback/CallbackMarketComment"""
+    """VK Object CallbackMarketComment"""
 
-    id: Optional[int] = None
-    from_id: Optional[int] = None
-    date: Optional[int] = None
-    text: Optional[str] = None
-    market_owner_od: Optional[int] = None
-    photo_id: Optional[int] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    market_owner_id: typing.Optional[int] = None
+    photo_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
 
 
 class CallbackMarketCommentDelete(BaseModel):
-    """VK Object Callback/CallbackMarketCommentDelete"""
+    """VK Object CallbackMarketCommentDelete"""
 
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    user_id: Optional[int] = None
-    item_id: Optional[int] = None
+    id: int = None
+    item_id: int = None
+    owner_id: int = None
+    user_id: int = None
 
 
 class CallbackMessageAllow(BaseModel):
-    """VK Object Callback/CallbackMessageAllow"""
+    """VK Object CallbackMessageAllow"""
 
-    user_id: Optional[int] = None
-    key: Optional[str] = None
+    key: str = None
+    user_id: int = None
 
 
 class CallbackMessageBase(BaseModel):
-    """VK Object Callback/CallbackMessageBase"""
+    """VK Object CallbackMessageBase
 
-    type: Optional["CallbackMessageType"] = None
-    object: Optional[typing.Dict[Any, Any]] = None
-    group_id: Optional[int] = None
+    event_id - Unique event id. If it passed twice or more - you should ignore it.
+    group_id -
+    object -
+    type -
+    """
+
+    event_id: typing.Optional[str] = None
+    group_id: int = None
+    object: "CallbackMessageData" = None
+    type: "CallbackMessageType" = None
+
+
+class CallbackMessageData(BaseModel):
+    """VK Object CallbackMessageData"""
+
+    client_info: typing.Optional["ClientInfoForBots"] = None
+    message: typing.Optional[typing.Any] = None
 
 
 class CallbackMessageDeny(BaseModel):
-    """VK Object Callback/CallbackMessageDeny"""
+    """VK Object CallbackMessageDeny"""
 
-    user_id: Optional[int] = None
+    user_id: int = None
 
 
 class CallbackMessageType(enum.Enum):
     """ CallbackMessageType enum """
 
+    AUDIO_NEW = "audio_new"
+    BOARD_POST_NEW = "board_post_new"
+    BOARD_POST_EDIT = "board_post_edit"
+    BOARD_POST_RESTORE = "board_post_restore"
+    BOARD_POST_DELETE = "board_post_delete"
     CONFIRMATION = "confirmation"
+    GROUP_LEAVE = "group_leave"
+    GROUP_JOIN = "group_join"
     GROUP_CHANGE_PHOTO = "group_change_photo"
     GROUP_CHANGE_SETTINGS = "group_change_settings"
     GROUP_OFFICERS_EDIT = "group_officers_edit"
     LEAD_FORMS_NEW = "lead_forms_new"
+    MARKET_COMMENT_NEW = "market_comment_new"
     MARKET_COMMENT_DELETE = "market_comment_delete"
     MARKET_COMMENT_EDIT = "market_comment_edit"
     MARKET_COMMENT_RESTORE = "market_comment_restore"
     MESSAGE_ALLOW = "message_allow"
+    MESSAGE_NEW = "message_new"
     MESSAGE_DENY = "message_deny"
     MESSAGE_READ = "message_read"
     MESSAGE_REPLY = "message_reply"
+    MESSAGE_EDIT = "message_edit"
     MESSAGE_TYPING_STATE = "message_typing_state"
     MESSAGES_EDIT = "messages_edit"
+    PHOTO_NEW = "photo_new"
+    PHOTO_COMMENT_NEW = "photo_comment_new"
     PHOTO_COMMENT_DELETE = "photo_comment_delete"
     PHOTO_COMMENT_EDIT = "photo_comment_edit"
     PHOTO_COMMENT_RESTORE = "photo_comment_restore"
     POLL_VOTE_NEW = "poll_vote_new"
     USER_BLOCK = "user_block"
     USER_UNBLOCK = "user_unblock"
+    VIDEO_NEW = "video_new"
+    VIDEO_COMMENT_NEW = "video_comment_new"
     VIDEO_COMMENT_DELETE = "video_comment_delete"
     VIDEO_COMMENT_EDIT = "video_comment_edit"
     VIDEO_COMMENT_RESTORE = "video_comment_restore"
+    WALL_POST_NEW = "wall_post_new"
+    WALL_REPLY_NEW = "wall_reply_new"
+    WALL_REPLY_EDIT = "wall_reply_edit"
     WALL_REPLY_DELETE = "wall_reply_delete"
     WALL_REPLY_RESTORE = "wall_reply_restore"
     WALL_REPOST = "wall_repost"
 
 
 class CallbackPhotoComment(BaseModel):
-    """VK Object Callback/CallbackPhotoComment"""
+    """VK Object CallbackPhotoComment"""
 
-    id: Optional[int] = None
-    from_id: Optional[int] = None
-    date: Optional[int] = None
-    text: Optional[str] = None
-    photo_owner_od: Optional[int] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    photo_owner_id: int = None
+    text: str = None
 
 
 class CallbackPhotoCommentDelete(BaseModel):
-    """VK Object Callback/CallbackPhotoCommentDelete"""
+    """VK Object CallbackPhotoCommentDelete"""
 
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    user_id: Optional[int] = None
-    photo_id: Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    photo_id: int = None
+    user_id: int = None
 
 
 class CallbackPollVoteNew(BaseModel):
-    """VK Object Callback/CallbackPollVoteNew"""
+    """VK Object CallbackPollVoteNew"""
 
-    owner_id: Optional[int] = None
-    poll_id: Optional[int] = None
-    option_id: Optional[int] = None
-    user_id: Optional[int] = None
+    option_id: int = None
+    owner_id: int = None
+    poll_id: int = None
+    user_id: int = None
 
 
 class CallbackQrScan(BaseModel):
-    """VK Object Callback/CallbackQrScan"""
+    """VK Object CallbackQrScan"""
 
-    user_id: Optional[int] = None
-    data: Optional[str] = None
-    type: Optional[str] = None
-    subtype: Optional[str] = None
-    reread: Optional[bool] = None
+    data: str = None
+    reread: bool = None
+    subtype: str = None
+    type: str = None
+    user_id: int = None
 
 
 class CallbackUserBlock(BaseModel):
-    """VK Object Callback/CallbackUserBlock"""
+    """VK Object CallbackUserBlock"""
 
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    unblock_date: Optional[int] = None
-    reason: Optional[int] = None
-    comment: Optional[str] = None
+    admin_id: int = None
+    comment: typing.Optional[str] = None
+    reason: int = None
+    unblock_date: int = None
+    user_id: int = None
 
 
 class CallbackUserUnblock(BaseModel):
-    """VK Object Callback/CallbackUserUnblock"""
+    """VK Object CallbackUserUnblock"""
 
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    by_end_date: Optional[int] = None
+    admin_id: int = None
+    by_end_date: int = None
+    user_id: int = None
 
 
 class CallbackVideoComment(BaseModel):
-    """VK Object Callback/CallbackVideoComment"""
+    """VK Object CallbackVideoComment"""
 
-    id: Optional[int] = None
-    from_id: Optional[int] = None
-    date: Optional[int] = None
-    text: Optional[str] = None
-    video_owner_od: Optional[int] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    text: str = None
+    video_owner_id: int = None
 
 
 class CallbackVideoCommentDelete(BaseModel):
-    """VK Object Callback/CallbackVideoCommentDelete"""
+    """VK Object CallbackVideoCommentDelete"""
 
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    user_id: Optional[int] = None
-    video_id: Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    user_id: int = None
+    video_id: int = None
 
 
 class CallbackWallCommentDelete(BaseModel):
-    """VK Object Callback/CallbackWallCommentDelete"""
+    """VK Object CallbackWallCommentDelete"""
 
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    user_id: Optional[int] = None
-    post_id: Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    post_id: int = None
+    user_id: int = None
+
+
+class CallsCall(BaseModel):
+    """VK Object CallsCall
+
+    duration - Call duration
+    initiator_id - Caller initiator
+    participants -
+    receiver_id - Caller receiver
+    state -
+    time - Timestamp for call
+    video - Was this call initiated as video call
+    """
+
+    duration: typing.Optional[int] = None
+    initiator_id: int = None
+    participants: typing.Optional["CallsParticipants"] = None
+    receiver_id: int = None
+    state: "CallsEndState" = None
+    time: int = None
+    video: typing.Optional[bool] = None
+
+
+class CallsEndState(enum.Enum):
+    """ State in which call ended up """
+
+    CANCELED_BY_INITIATOR = "canceled_by_initiator"
+    CANCELED_BY_RECEIVER = "canceled_by_receiver"
+    REACHED = "reached"
+
+
+class CallsParticipants(BaseModel):
+    """VK Object CallsParticipants
+
+    count - Participants count
+    list -
+    """
+
+    count: typing.Optional[int] = None
+    list: typing.Optional[typing.List[int]] = None
+
+
+class ClientInfoForBots(BaseModel):
+    """VK Object ClientInfoForBots
+
+    button_actions -
+    carousel - client has support carousel
+    inline_keyboard - client has support inline keyboard
+    keyboard - client has support keyboard
+    lang_id - client or user language id
+    """
+
+    button_actions: typing.Optional[typing.List["MessagesTemplateActionTypeNames"]] = None
+    carousel: typing.Optional[bool] = None
+    inline_keyboard: typing.Optional[bool] = None
+    keyboard: typing.Optional[bool] = None
+    lang_id: typing.Optional[int] = None
+
+
+MessagesClientInfo = ClientInfoForBots  # alias for vkbottle
 
 
 class CommentThread(BaseModel):
-    """VK Object Comment/CommentThread
+    """VK Object CommentThread
 
     can_post - Information whether current user can comment the post
     count - Comments number
     groups_can_post - Information whether groups can comment the post
+    items -
     show_reply_button - Information whether recommended to display reply button
     """
 
-    can_post: Optional[bool] = None
-    count: Optional[int] = None
-    groups_can_post: Optional[bool] = None
-    items: Optional[List["WallWallComment"]] = None
-    show_reply_button: Optional[bool] = None
+    can_post: typing.Optional[bool] = None
+    count: int = None
+    groups_can_post: typing.Optional[bool] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
+    show_reply_button: typing.Optional[bool] = None
 
 
-class DatabaseCity(BaseModel):
-    """VK Object Database/DatabaseCity
+class DatabaseCity(BaseObject):
+    """VK Object DatabaseCity
 
     area - Area title
-    region - Region title
     important - Information whether the city is included in important cities list
+    region - Region title
     """
 
-    area: Optional[str] = None
-    region: Optional[str] = None
-    important: Optional["BaseBoolInt"] = None
+    area: typing.Optional[str] = None
+    important: typing.Optional["BaseBoolInt"] = None
+    region: typing.Optional[str] = None
 
 
 class DatabaseFaculty(BaseModel):
-    """VK Object Database/DatabaseFaculty
+    """VK Object DatabaseFaculty
 
     id - Faculty ID
     title - Faculty title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: typing.Optional[int] = None
+    title: typing.Optional[str] = None
 
 
 class DatabaseRegion(BaseModel):
-    """VK Object Database/DatabaseRegion
+    """VK Object DatabaseRegion
 
     id - Region ID
     title - Region title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: typing.Optional[int] = None
+    title: typing.Optional[str] = None
 
 
 class DatabaseSchool(BaseModel):
-    """VK Object Database/DatabaseSchool
+    """VK Object DatabaseSchool
 
     id - School ID
     title - School title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: typing.Optional[int] = None
+    title: typing.Optional[str] = None
 
 
 class DatabaseStation(BaseModel):
-    """VK Object Database/DatabaseStation
+    """VK Object DatabaseStation
 
     city_id - City ID
     color - Hex color code without #
@@ -1888,38 +2565,52 @@ class DatabaseStation(BaseModel):
     name - Station name
     """
 
-    city_id: Optional[int] = None
-    color: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
+    city_id: typing.Optional[int] = None
+    color: typing.Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class DatabaseUniversity(BaseModel):
-    """VK Object Database/DatabaseUniversity
+    """VK Object DatabaseUniversity
 
     id - University ID
     title - University title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: typing.Optional[int] = None
+    title: typing.Optional[str] = None
 
 
 class DocsDoc(BaseModel):
-    """VK Object Docs/DocsDoc"""
+    """VK Object DocsDoc
 
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    title: Optional[str] = None
-    size: Optional[int] = None
-    ext: Optional[str] = None
-    url: Optional[str] = None
-    date: Optional[int] = None
-    type: Optional[int] = None
-    preview: Optional["DocsDocPreview"] = None
-    is_licensed: Optional["BaseBoolInt"] = None
-    access_key: Optional[str] = None
-    tags: Optional[List[str]] = None
+    access_key - Access key for the document
+    date - Date when file has been uploaded in Unixtime
+    ext - File extension
+    id - Document ID
+    is_licensed -
+    owner_id - Document owner ID
+    preview -
+    size - File size in bites
+    tags - Document tags
+    title - Document title
+    type - Document type
+    url - File URL
+    """
+
+    access_key: typing.Optional[str] = None
+    date: int = None
+    ext: str = None
+    id: int = None
+    is_licensed: typing.Optional["BaseBoolInt"] = None
+    owner_id: int = None
+    preview: typing.Optional["DocsDocPreview"] = None
+    size: int = None
+    tags: typing.Optional[typing.List[str]] = None
+    title: str = None
+    type: int = None
+    url: typing.Optional[str] = None
 
 
 class DocsDocAttachmentType(enum.Enum):
@@ -1931,100 +2622,109 @@ class DocsDocAttachmentType(enum.Enum):
 
 
 class DocsDocPreview(BaseModel):
-    """VK Object Docs/DocsDocPreview"""
+    """VK Object DocsDocPreview"""
 
-    audio_msg: Optional["DocsDocPreviewAudioMsg"] = None
-    graffiti: Optional["DocsDocPreviewGraffiti"] = None
-    photo: Optional["DocsDocPreviewPhoto"] = None
-    video: Optional["DocsDocPreviewVideo"] = None
+    audio_msg: typing.Optional["DocsDocPreviewAudioMsg"] = None
+    graffiti: typing.Optional["DocsDocPreviewGraffiti"] = None
+    photo: typing.Optional["DocsDocPreviewPhoto"] = None
+    video: typing.Optional["DocsDocPreviewVideo"] = None
 
 
 class DocsDocPreviewAudioMsg(BaseModel):
-    """VK Object Docs/DocsDocPreviewAudioMsg
+    """VK Object DocsDocPreviewAudioMsg
 
     duration - Audio message duration in seconds
     link_mp3 - MP3 file URL
     link_ogg - OGG file URL
+    waveform -
     """
 
-    duration: Optional[int] = None
-    link_mp3: Optional[str] = None
-    link_ogg: Optional[str] = None
-    waveform: Optional[List[int]] = None
+    duration: int = None
+    link_mp3: str = None
+    link_ogg: str = None
+    waveform: typing.List[int] = None
 
 
 class DocsDocPreviewGraffiti(BaseModel):
-    """VK Object Docs/DocsDocPreviewGraffiti
+    """VK Object DocsDocPreviewGraffiti
 
+    height - Graffiti height
     src - Graffiti file URL
     width - Graffiti width
-    height - Graffiti height
     """
 
-    src: Optional[str] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
+    height: int = None
+    src: str = None
+    width: int = None
 
 
 class DocsDocPreviewPhoto(BaseModel):
-    """VK Object Docs/DocsDocPreviewPhoto"""
+    """VK Object DocsDocPreviewPhoto"""
 
-    sizes: Optional[List["DocsDocPreviewPhotoSizes"]] = None
+    sizes: typing.Optional[typing.List["DocsDocPreviewPhotoSizes"]] = None
 
 
 class DocsDocPreviewPhotoSizes(BaseModel):
-    """VK Object Docs/DocsDocPreviewPhotoSizes
+    """VK Object DocsDocPreviewPhotoSizes
 
-    src - URL of the image
-    width - Width in px
     height - Height in px
+    src - URL of the image
+    type -
+    width - Width in px
     """
 
-    src: Optional[str] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    type: Optional["PhotosPhotoSizesType"] = None
+    height: int = None
+    src: str = None
+    type: "PhotosPhotoSizesType" = None
+    width: int = None
 
 
 class DocsDocPreviewVideo(BaseModel):
-    """VK Object Docs/DocsDocPreviewVideo
+    """VK Object DocsDocPreviewVideo
 
+    file_size - Video file size in bites
+    height - Video's height in pixels
     src - Video URL
     width - Video's width in pixels
-    height - Video's height in pixels
-    file_size - Video file size in bites
     """
 
-    src: Optional[str] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    file_size: Optional[int] = None
+    file_size: int = None
+    height: int = None
+    src: str = None
+    width: int = None
 
 
 class DocsDocTypes(BaseModel):
-    """VK Object Docs/DocsDocTypes
+    """VK Object DocsDocTypes
 
+    count - Number of docs
     id - Doc type ID
     name - Doc type title
-    count - Number of docs
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    count: Optional[int] = None
+    count: int = None
+    id: int = None
+    name: str = None
 
 
-class DocsDocUploadResponse(BaseModel):
-    """VK Object Docs/DocsDocUploadResponse
+class DonutDonatorSubscriptionInfoStatus(enum.Enum):
+    """ DonutDonatorSubscriptionInfoStatus enum """
 
-    file - Uploaded file data
-    """
+    ACTIVE = "active"
+    EXPIRING = "expiring"
 
-    file: Optional[str] = None
+
+class DonutDonatorSubscriptionInfo(BaseModel):
+    """VK Object DonutDonatorSubscriptionInfo"""
+
+    amount: int = None
+    next_payment_date: int = None
+    owner_id: int = None
+    status: "DonutDonatorSubscriptionInfoStatus" = None
 
 
 class EventsEventAttach(BaseModel):
-    """VK Object Events/EventsEventAttach
+    """VK Object EventsEventAttach
 
     address - address of event
     button_text - text of attach
@@ -2036,27 +2736,37 @@ class EventsEventAttach(BaseModel):
     time - event start time
     """
 
-    address: Optional[str] = None
-    button_text: Optional[str] = None
-    friends: Optional[List[int]] = None
-    id: Optional[int] = None
-    is_favorite: Optional[bool] = None
-    member_status: Optional["GroupsGroupFullMemberStatus"] = None
-    text: Optional[str] = None
-    time: Optional[int] = None
+    address: typing.Optional[str] = None
+    button_text: str = None
+    friends: typing.List[int] = None
+    id: int = None
+    is_favorite: bool = None
+    member_status: typing.Optional["GroupsGroupFullMemberStatus"] = None
+    text: str = None
+    time: typing.Optional[int] = None
 
 
 class FaveBookmark(BaseModel):
-    """VK Object Fave/FaveBookmark"""
+    """VK Object FaveBookmark
 
-    added_date: Optional[int] = None
-    link: Optional["BaseLink"] = None
-    post: Optional["WallWallpostFull"] = None
-    product: Optional["MarketMarketItem"] = None
-    seen: Optional[bool] = None
-    tags: Optional[List["FaveTag"]] = None
-    type: Optional["FaveBookmarkType"] = None
-    video: Optional["VideoVideo"] = None
+    added_date - Timestamp, when this item was bookmarked
+    link -
+    post -
+    product -
+    seen - Has user seen this item
+    tags -
+    type - Item type
+    video -
+    """
+
+    added_date: int = None
+    link: typing.Optional["BaseLink"] = None
+    post: typing.Optional["WallWallpostFull"] = None
+    product: typing.Optional["MarketMarketItem"] = None
+    seen: bool = None
+    tags: typing.List["FaveTag"] = None
+    type: "FaveBookmarkType" = None
+    video: typing.Optional["VideoVideo"] = None
 
 
 class FaveBookmarkType(enum.Enum):
@@ -2070,14 +2780,22 @@ class FaveBookmarkType(enum.Enum):
 
 
 class FavePage(BaseModel):
-    """VK Object Fave/FavePage"""
+    """VK Object FavePage
 
-    description: Optional[str] = None
-    group: Optional["GroupsGroupFull"] = None
-    tags: Optional[List["FaveTag"]] = None
-    type: Optional["FavePageType"] = None
-    updated_date: Optional[int] = None
-    user: Optional["UsersUserFull"] = None
+    description - Some info about user or group
+    group -
+    tags -
+    type - Item type
+    updated_date - Timestamp, when this page was bookmarked
+    user -
+    """
+
+    description: str = None
+    group: typing.Optional["GroupsGroupFull"] = None
+    tags: typing.List["FaveTag"] = None
+    type: "FavePageType" = None
+    updated_date: typing.Optional[int] = None
+    user: typing.Optional["UsersUserFull"] = None
 
 
 class FavePageType(enum.Enum):
@@ -2089,31 +2807,36 @@ class FavePageType(enum.Enum):
 
 
 class FaveTag(BaseModel):
-    """VK Object Fave/FaveTag
+    """VK Object FaveTag
 
     id - Tag id
     name - Tag name
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
 
 
 class FriendsFriendStatus(BaseModel):
-    """VK Object Friends/FriendsFriendStatus"""
+    """VK Object FriendsFriendStatus
 
-    friend_status: Optional["FriendsFriendStatusStatus"] = None
-    sign: Optional[str] = None
-    user_id: Optional[int] = None
+    friend_status -
+    sign - MD5 hash for the result validation
+    user_id - User ID
+    """
+
+    friend_status: "FriendsFriendStatusStatus" = None
+    sign: typing.Optional[str] = None
+    user_id: int = None
 
 
 class FriendsFriendExtendedStatus(FriendsFriendStatus):
-    """VK Object Friends/FriendsFriendExtendedStatus
+    """VK Object FriendsFriendExtendedStatus
 
     is_request_unread - Is friend request from other user unread
     """
 
-    is_request_unread: Optional[bool] = None
+    is_request_unread: typing.Optional[bool] = None
 
 
 class FriendsFriendStatusStatus(enum.IntEnum):
@@ -2126,74 +2849,374 @@ class FriendsFriendStatusStatus(enum.IntEnum):
 
 
 class FriendsFriendsList(BaseModel):
-    """VK Object Friends/FriendsFriendsList
+    """VK Object FriendsFriendsList
 
     id - List ID
     name - List title
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class FriendsMutualFriend(BaseModel):
-    """VK Object Friends/FriendsMutualFriend
+    """VK Object FriendsMutualFriend
 
     common_count - Total mutual friends number
+    common_friends -
     id - User ID
     """
 
-    common_count: Optional[int] = None
-    common_friends: Optional[List[int]] = None
-    id: Optional[int] = None
+    common_count: typing.Optional[int] = None
+    common_friends: typing.Optional[typing.List[int]] = None
+    id: typing.Optional[int] = None
 
 
 class FriendsRequests(BaseModel):
-    """VK Object Friends/FriendsRequests
+    """VK Object FriendsRequests
 
-    from - ID of the user by whom friend has been suggested
+    _from - ID of the user by whom friend has been suggested
+    mutual -
     user_id - User ID
     """
 
-    _from: Optional[str] = None
-    mutual: Optional["FriendsRequestsMutual"] = None
-    user_id: Optional[int] = None
+    _from: typing.Optional[str] = None
+    mutual: typing.Optional["FriendsRequestsMutual"] = None
+    user_id: typing.Optional[int] = None
 
 
 class FriendsRequestsMutual(BaseModel):
-    """VK Object Friends/FriendsRequestsMutual
+    """VK Object FriendsRequestsMutual
 
     count - Total mutual friends number
+    users -
     """
 
-    count: Optional[int] = None
-    users: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    users: typing.Optional[typing.List[int]] = None
 
 
 class FriendsRequestsXtrMessage(BaseModel):
-    """VK Object Friends/FriendsRequestsXtrMessage
+    """VK Object FriendsRequestsXtrMessage
 
-    from - ID of the user by whom friend has been suggested
+    _from - ID of the user by whom friend has been suggested
     message - Message sent with a request
+    mutual -
     user_id - User ID
     """
 
-    _from: Optional[str] = None
-    message: Optional[str] = None
-    mutual: Optional["FriendsRequestsMutual"] = None
-    user_id: Optional[int] = None
+    _from: typing.Optional[str] = None
+    message: typing.Optional[str] = None
+    mutual: typing.Optional["FriendsRequestsMutual"] = None
+    user_id: typing.Optional[int] = None
+
+
+class UsersUser(UsersUserMin):
+    """VK Object UsersUser
+
+    friend_status -
+    mutual -
+    online - Information whether the user is online
+    online_app - Application ID
+    online_info -
+    online_mobile - Information whether the user is online in mobile site or application
+    photo_100 - URL of square photo of the user with 100 pixels in width
+    photo_50 - URL of square photo of the user with 50 pixels in width
+    screen_name - Domain name of the user's page
+    sex - User sex
+    trending - Information whether the user has a "fire" pictogram.
+    verified - Information whether the user is verified
+    """
+
+    friend_status: typing.Optional["FriendsFriendStatusStatus"] = None
+    mutual: typing.Optional["FriendsRequestsMutual"] = None
+    online: typing.Optional["BaseBoolInt"] = None
+    online_app: typing.Optional[int] = None
+    online_info: typing.Optional["UsersOnlineInfo"] = None
+    online_mobile: typing.Optional["BaseBoolInt"] = None
+    photo_100: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+    screen_name: typing.Optional[str] = None
+    sex: typing.Optional["BaseSex"] = None
+    trending: typing.Optional["BaseBoolInt"] = None
+    verified: typing.Optional["BaseBoolInt"] = None
+
+
+class UsersUserFull(UsersUser):
+    """VK Object UsersUserFull
+
+    about -
+    access_key -
+    activities -
+    activity - User's status
+    bdate - User's date of birth
+    blacklisted - Information whether current user is in the requested user's blacklist.
+    blacklisted_by_me - Information whether the requested user is in current user's blacklist
+    books -
+    can_be_invited_group - Information whether current user can be invited to the community
+    can_call - Information whether current user can call
+    can_call_from_group - Information whether group can call user
+    can_post - Information whether current user can post on the user's wall
+    can_see_all_posts - Information whether current user can see other users' audio on the wall
+    can_see_audio - Information whether current user can see the user's audio
+    can_see_gifts - Information whether current user can see the user's gifts
+    can_see_wishes - Information whether current user can see the user's wishes
+    can_send_friend_request - Information whether current user can send a friend request
+    can_subscribe_podcasts - Owner in whitelist or not
+    can_subscribe_posts - Can subscribe to wall
+    can_upload_doc -
+    can_write_private_message - Information whether current user can write private message
+    career -
+    city -
+    clips_count - Number of user's clips
+    common_count - Number of common friends with current user
+    contact_name - User contact name
+    counters -
+    country -
+    crop_photo -
+    domain - Domain name of the user's page
+    education_form - Education form
+    education_status - User's education status
+    email -
+    exports -
+    facebook -
+    facebook_name -
+    faculty - Faculty ID
+    faculty_name - Faculty name
+    first_name_abl - User's first name in prepositional case
+    first_name_acc - User's first name in accusative case
+    first_name_dat - User's first name in dative case
+    first_name_gen - User's first name in genitive case
+    first_name_ins - User's first name in instrumental case
+    first_name_nom - User's first name in nominative case
+    followers_count - Number of user's followers
+    games -
+    graduation - Graduation year
+    has_email -
+    has_mobile - Information whether the user specified his phone number
+    has_photo - Information whether the user has main photo
+    hash -
+    home_phone - User's additional phone number
+    home_town - User hometown
+    instagram -
+    interests -
+    is_favorite - Information whether the requested user is in faves of current user
+    is_friend - Information whether the user is a friend of current user
+    is_hidden_from_feed - Information whether the requested user is hidden from current user's newsfeed
+    is_service -
+    is_subscribed_podcasts - Information whether current user is subscribed to podcasts
+    is_video_live_notifications_blocked -
+    language -
+    last_name_abl - User's last name in prepositional case
+    last_name_acc - User's last name in accusative case
+    last_name_dat - User's last name in dative case
+    last_name_gen - User's last name in genitive case
+    last_name_ins - User's last name in instrumental case
+    last_name_nom - User's last name in nominative case
+    last_seen -
+    livejournal -
+    maiden_name - User maiden name
+    military -
+    mobile_phone - User's mobile phone number
+    movies -
+    music -
+    nickname - User nickname
+    occupation -
+    owner_state -
+    personal -
+    photo -
+    photo_200 - URL of square photo of the user with 200 pixels in width
+    photo_200_orig - URL of user's photo with 200 pixels in width
+    photo_400 -
+    photo_400_orig - URL of user's photo with 400 pixels in width
+    photo_big -
+    photo_id - ID of the user's main photo
+    photo_max - URL of square photo of the user with maximum width
+    photo_max_orig - URL of user's photo of maximum size
+    photo_max_size -
+    photo_medium -
+    photo_medium_rec -
+    photo_rec -
+    quotes -
+    relation - User relationship status
+    relation_partner -
+    relatives -
+    schools -
+    service_description -
+    site - User's website
+    skype -
+    status - User's status
+    status_audio -
+    stories_archive_count -
+    test -
+    timezone - User's timezone
+    tv -
+    twitter -
+    type -
+    universities -
+    university - University ID
+    university_group_id -
+    university_name - University name
+    video_live -
+    video_live_count - Number of user's live streams
+    video_live_level - User level in live streams achievements
+    wall_comments - Information whether current user can comment wall posts
+    wall_default -
+    """
+
+    about: typing.Optional[str] = None
+    access_key: typing.Optional[str] = None
+    activities: typing.Optional[str] = None
+    activity: typing.Optional[str] = None
+    bdate: typing.Optional[str] = None
+    blacklisted: typing.Optional["BaseBoolInt"] = None
+    blacklisted_by_me: typing.Optional["BaseBoolInt"] = None
+    books: typing.Optional[str] = None
+    can_be_invited_group: typing.Optional[bool] = None
+    can_call: typing.Optional[bool] = None
+    can_call_from_group: typing.Optional[bool] = None
+    can_post: typing.Optional["BaseBoolInt"] = None
+    can_see_all_posts: typing.Optional["BaseBoolInt"] = None
+    can_see_audio: typing.Optional["BaseBoolInt"] = None
+    can_see_gifts: typing.Optional["BaseBoolInt"] = None
+    can_see_wishes: typing.Optional[bool] = None
+    can_send_friend_request: typing.Optional["BaseBoolInt"] = None
+    can_subscribe_podcasts: typing.Optional[bool] = None
+    can_subscribe_posts: typing.Optional[bool] = None
+    can_upload_doc: typing.Optional["BaseBoolInt"] = None
+    can_write_private_message: typing.Optional["BaseBoolInt"] = None
+    career: typing.Optional[typing.List["UsersCareer"]] = None
+    city: typing.Optional["BaseCity"] = None
+    clips_count: typing.Optional[int] = None
+    common_count: typing.Optional[int] = None
+    contact_name: typing.Optional[str] = None
+    counters: typing.Optional["UsersUserCounters"] = None
+    country: typing.Optional["BaseCountry"] = None
+    crop_photo: typing.Optional["BaseCropPhoto"] = None
+    domain: typing.Optional[str] = None
+    education_form: typing.Optional[str] = None
+    education_status: typing.Optional[str] = None
+    email: typing.Optional[str] = None
+    exports: typing.Optional["UsersExports"] = None
+    facebook: typing.Optional[str] = None
+    facebook_name: typing.Optional[str] = None
+    faculty: typing.Optional[int] = None
+    faculty_name: typing.Optional[str] = None
+    first_name_abl: typing.Optional[str] = None
+    first_name_acc: typing.Optional[str] = None
+    first_name_dat: typing.Optional[str] = None
+    first_name_gen: typing.Optional[str] = None
+    first_name_ins: typing.Optional[str] = None
+    first_name_nom: typing.Optional[str] = None
+    followers_count: typing.Optional[int] = None
+    games: typing.Optional[str] = None
+    graduation: typing.Optional[int] = None
+    has_email: typing.Optional[bool] = None
+    has_mobile: typing.Optional["BaseBoolInt"] = None
+    has_photo: typing.Optional["BaseBoolInt"] = None
+    hash: typing.Optional[str] = None
+    home_phone: typing.Optional[str] = None
+    home_town: typing.Optional[str] = None
+    instagram: typing.Optional[str] = None
+    interests: typing.Optional[str] = None
+    is_favorite: typing.Optional["BaseBoolInt"] = None
+    is_friend: typing.Optional["BaseBoolInt"] = None
+    is_hidden_from_feed: typing.Optional["BaseBoolInt"] = None
+    is_service: typing.Optional[bool] = None
+    is_subscribed_podcasts: typing.Optional[bool] = None
+    is_video_live_notifications_blocked: typing.Optional["BaseBoolInt"] = None
+    language: typing.Optional[str] = None
+    last_name_abl: typing.Optional[str] = None
+    last_name_acc: typing.Optional[str] = None
+    last_name_dat: typing.Optional[str] = None
+    last_name_gen: typing.Optional[str] = None
+    last_name_ins: typing.Optional[str] = None
+    last_name_nom: typing.Optional[str] = None
+    last_seen: typing.Optional["UsersLastSeen"] = None
+    livejournal: typing.Optional[str] = None
+    maiden_name: typing.Optional[str] = None
+    military: typing.Optional[typing.List["UsersMilitary"]] = None
+    mobile_phone: typing.Optional[str] = None
+    movies: typing.Optional[str] = None
+    music: typing.Optional[str] = None
+    nickname: typing.Optional[str] = None
+    occupation: typing.Optional["UsersOccupation"] = None
+    owner_state: typing.Optional["OwnerState"] = None
+    personal: typing.Optional["UsersPersonal"] = None
+    photo: typing.Optional[str] = None
+    photo_200: typing.Optional[str] = None
+    photo_200_orig: typing.Optional[str] = None
+    photo_400: typing.Optional[str] = None
+    photo_400_orig: typing.Optional[str] = None
+    photo_big: typing.Optional[str] = None
+    photo_id: typing.Optional[str] = None
+    photo_max: typing.Optional[str] = None
+    photo_max_orig: typing.Optional[str] = None
+    photo_max_size: typing.Optional["PhotosPhoto"] = None
+    photo_medium: typing.Optional["PhotosPhotoFalseable"] = None
+    photo_medium_rec: typing.Optional["PhotosPhotoFalseable"] = None
+    photo_rec: typing.Optional["PhotosPhotoFalseable"] = None
+    quotes: typing.Optional[str] = None
+    relation: typing.Optional["UsersUserRelation"] = None
+    relation_partner: typing.Optional["UsersUserMin"] = None
+    relatives: typing.Optional[typing.List["UsersRelative"]] = None
+    schools: typing.Optional[typing.List["UsersSchool"]] = None
+    service_description: typing.Optional[str] = None
+    site: typing.Optional[str] = None
+    skype: typing.Optional[str] = None
+    status: typing.Optional[str] = None
+    status_audio: typing.Optional["AudioAudio"] = None
+    stories_archive_count: typing.Optional[int] = None
+    test: typing.Optional["BaseBoolInt"] = None
+    timezone: typing.Optional[int] = None
+    tv: typing.Optional[str] = None
+    twitter: typing.Optional[str] = None
+    type: typing.Optional["UsersUserType"] = None
+    universities: typing.Optional[typing.List["UsersUniversity"]] = None
+    university: typing.Optional[int] = None
+    university_group_id: typing.Optional[int] = None
+    university_name: typing.Optional[str] = None
+    video_live: typing.Optional["VideoLiveInfo"] = None
+    video_live_count: typing.Optional[int] = None
+    video_live_level: typing.Optional[int] = None
+    wall_comments: typing.Optional["BaseBoolInt"] = None
+    wall_default: typing.Optional[str] = None
+
+
+class FriendsUserXtrLists(UsersUserFull):
+    """VK Object FriendsUserXtrLists"""
+
+    lists: typing.Optional[typing.List[int]] = None
+
+
+class FriendsUserXtrPhone(UsersUserFull):
+    """VK Object FriendsUserXtrPhone
+
+    phone - User phone
+    """
+
+    phone: typing.Optional[str] = None
 
 
 class GiftsGift(BaseModel):
-    """VK Object Gifts/GiftsGift"""
+    """VK Object GiftsGift
 
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    gift: Optional["GiftsLayout"] = None
-    gift_hash: Optional[str] = None
-    id: Optional[int] = None
-    message: Optional[str] = None
-    privacy: Optional["GiftsGiftPrivacy"] = None
+    date - Date when gist has been sent in Unixtime
+    from_id - Gift sender ID
+    gift -
+    gift_hash - Hash
+    id - Gift ID
+    message - Comment text
+    privacy -
+    """
+
+    date: typing.Optional[int] = None
+    from_id: typing.Optional[int] = None
+    gift: typing.Optional["GiftsLayout"] = None
+    gift_hash: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    message: typing.Optional[str] = None
+    privacy: typing.Optional["GiftsGiftPrivacy"] = None
 
 
 class GiftsGiftPrivacy(enum.IntEnum):
@@ -2205,30 +3228,38 @@ class GiftsGiftPrivacy(enum.IntEnum):
 
 
 class GiftsLayout(BaseModel):
-    """VK Object Gifts/GiftsLayout
+    """VK Object GiftsLayout
 
+    build_id - ID of the build of constructor gift
     id - Gift ID
-    thumb_512 - URL of the preview image with 512 px in width
+    is_stickers_style - Information whether gift represents a stickers style
+    keywords - Keywords used for search
+    stickers_product_id - ID of the sticker pack, if the gift is representing one
     thumb_256 - URL of the preview image with 256 px in width
     thumb_48 - URL of the preview image with 48 px in width
+    thumb_512 - URL of the preview image with 512 px in width
     thumb_96 - URL of the preview image with 96 px in width
-    stickers_product_id - ID of the sticker pack, if the gift is representing one
-    build_id - ID of the build of constructor gift
-    keywords - Keywords used for search
     """
 
-    id: Optional[int] = None
-    thumb_512: Optional[str] = None
-    thumb_256: Optional[str] = None
-    thumb_48: Optional[str] = None
-    thumb_96: Optional[str] = None
-    stickers_product_id: Optional[int] = None
-    build_id: Optional[str] = None
-    keywords: Optional[str] = None
+    build_id: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    is_stickers_style: typing.Optional[bool] = None
+    keywords: typing.Optional[str] = None
+    stickers_product_id: typing.Optional[int] = None
+    thumb_256: typing.Optional[str] = None
+    thumb_48: typing.Optional[str] = None
+    thumb_512: typing.Optional[str] = None
+    thumb_96: typing.Optional[str] = None
+
+
+class GroupCallInProgress(CallsCall):
+    """VK Object GroupCallInProgress"""
+
+    join_link: typing.Optional[str] = None
 
 
 class GroupsAddress(BaseModel):
-    """VK Object Groups/GroupsAddress
+    """VK Object GroupsAddress
 
     additional_address - Additional address to the place (6 floor, left door)
     address - String address to the place (Nevsky, 28)
@@ -2240,30 +3271,32 @@ class GroupsAddress(BaseModel):
     longitude - Address longitude
     metro_station_id - Metro id of address
     phone - Address phone
+    place_id -
     time_offset - Time offset int minutes from utc time
     timetable - Week timetable for the address
     title - Title of the place (Zinger, etc)
     work_info_status - Status of information about timetable
     """
 
-    additional_address: Optional[str] = None
-    address: Optional[str] = None
-    city_id: Optional[int] = None
-    country_id: Optional[int] = None
-    distance: Optional[int] = None
-    id: Optional[int] = None
-    latitude: Optional[float] = None
-    longitude: Optional[float] = None
-    metro_station_id: Optional[int] = None
-    phone: Optional[str] = None
-    time_offset: Optional[int] = None
-    timetable: Optional["GroupsAddressTimetable"] = None
-    title: Optional[str] = None
-    work_info_status: Optional["GroupsAddressWorkInfoStatus"] = None
+    additional_address: typing.Optional[str] = None
+    address: typing.Optional[str] = None
+    city_id: typing.Optional[int] = None
+    country_id: typing.Optional[int] = None
+    distance: typing.Optional[int] = None
+    id: int = None
+    latitude: typing.Optional[int] = None
+    longitude: typing.Optional[int] = None
+    metro_station_id: typing.Optional[int] = None
+    phone: typing.Optional[str] = None
+    place_id: typing.Optional[int] = None
+    time_offset: typing.Optional[int] = None
+    timetable: typing.Optional["GroupsAddressTimetable"] = None
+    title: typing.Optional[str] = None
+    work_info_status: typing.Optional["GroupsAddressWorkInfoStatus"] = None
 
 
 class GroupsAddressTimetable(BaseModel):
-    """VK Object Groups/GroupsAddressTimetable
+    """VK Object GroupsAddressTimetable
 
     fri - Timetable for friday
     mon - Timetable for monday
@@ -2274,22 +3307,28 @@ class GroupsAddressTimetable(BaseModel):
     wed - Timetable for wednesday
     """
 
-    fri: Optional["GroupsAddressTimetableDay"] = None
-    mon: Optional["GroupsAddressTimetableDay"] = None
-    sat: Optional["GroupsAddressTimetableDay"] = None
-    sun: Optional["GroupsAddressTimetableDay"] = None
-    thu: Optional["GroupsAddressTimetableDay"] = None
-    tue: Optional["GroupsAddressTimetableDay"] = None
-    wed: Optional["GroupsAddressTimetableDay"] = None
+    fri: typing.Optional["GroupsAddressTimetableDay"] = None
+    mon: typing.Optional["GroupsAddressTimetableDay"] = None
+    sat: typing.Optional["GroupsAddressTimetableDay"] = None
+    sun: typing.Optional["GroupsAddressTimetableDay"] = None
+    thu: typing.Optional["GroupsAddressTimetableDay"] = None
+    tue: typing.Optional["GroupsAddressTimetableDay"] = None
+    wed: typing.Optional["GroupsAddressTimetableDay"] = None
 
 
 class GroupsAddressTimetableDay(BaseModel):
-    """VK Object Groups/GroupsAddressTimetableDay"""
+    """VK Object GroupsAddressTimetableDay
 
-    break_close_time: Optional[int] = None
-    break_open_time: Optional[int] = None
-    close_time: Optional[int] = None
-    open_time: Optional[int] = None
+    break_close_time - Close time of the break in minutes
+    break_open_time - Start time of the break in minutes
+    close_time - Close time in minutes
+    open_time - Open time in minutes
+    """
+
+    break_close_time: typing.Optional[int] = None
+    break_open_time: typing.Optional[int] = None
+    close_time: int = None
+    open_time: int = None
 
 
 class GroupsAddressWorkInfoStatus(enum.Enum):
@@ -2303,26 +3342,35 @@ class GroupsAddressWorkInfoStatus(enum.Enum):
 
 
 class GroupsAddressesInfo(BaseModel):
-    """VK Object Groups/GroupsAddressesInfo
+    """VK Object GroupsAddressesInfo
 
     is_enabled - Information whether addresses is enabled
     main_address_id - Main address id for group
     """
 
-    is_enabled: Optional[bool] = None
-    main_address_id: Optional[int] = None
+    is_enabled: bool = None
+    main_address_id: typing.Optional[int] = None
 
 
 class GroupsBanInfo(BaseModel):
-    """VK Object Groups/GroupsBanInfo"""
+    """VK Object GroupsBanInfo
 
-    admin_id: Optional[int] = None
-    comment: Optional[str] = None
-    comment_visible: Optional[bool] = None
-    is_closed: Optional[bool] = None
-    date: Optional[int] = None
-    end_date: Optional[int] = None
-    reason: Optional["GroupsBanInfoReason"] = None
+    admin_id - Administrator ID
+    comment - Comment for a ban
+    comment_visible - Show comment for user
+    date - Date when user has been added to blacklist in Unixtime
+    end_date - Date when user will be removed from blacklist in Unixtime
+    is_closed -
+    reason -
+    """
+
+    admin_id: typing.Optional[int] = None
+    comment: typing.Optional[str] = None
+    comment_visible: typing.Optional[bool] = None
+    date: typing.Optional[int] = None
+    end_date: typing.Optional[int] = None
+    is_closed: typing.Optional[bool] = None
+    reason: typing.Optional["GroupsBanInfoReason"] = None
 
 
 class GroupsBanInfoReason(enum.IntEnum):
@@ -2335,29 +3383,60 @@ class GroupsBanInfoReason(enum.IntEnum):
     flood = 4
 
 
-class GroupsCallbackServer(BaseModel):
-    """VK Object Groups/GroupsCallbackServer"""
+class GroupsOwnerXtrBanInfo(BaseModel):
+    """VK Object GroupsOwnerXtrBanInfo
 
-    id: Optional[int] = None
-    title: Optional[str] = None
-    creator_id: Optional[int] = None
-    url: Optional[str] = None
-    secret_key: Optional[str] = None
-    status: Optional[str] = None
+    ban_info -
+    group - Information about group if type = group
+    profile - Information about group if type = profile
+    type -
+    """
+
+    ban_info: typing.Optional["GroupsBanInfo"] = None
+    group: typing.Optional["GroupsGroup"] = None
+    profile: typing.Optional["UsersUser"] = None
+    type: typing.Optional["GroupsOwnerXtrBanInfoType"] = None
+
+
+class GroupsBannedItem(GroupsOwnerXtrBanInfo):
+    """VK Object GroupsBannedItem"""
+
+    pass
+
+
+class GroupsCallbackServerStatus(enum.Enum):
+    """ GroupsCallbackServerStatus enum """
+
+    UNCONFIGURED = "unconfigured"
+    FAILED = "failed"
+    WAIT = "wait"
+    OK = "ok"
+
+
+class GroupsCallbackServer(BaseModel):
+    """VK Object GroupsCallbackServer"""
+
+    creator_id: int = None
+    id: int = None
+    secret_key: str = None
+    status: "GroupsCallbackServerStatus" = None
+    title: str = None
+    url: str = None
 
 
 class GroupsCallbackSettings(BaseModel):
-    """VK Object Groups/GroupsCallbackSettings
+    """VK Object GroupsCallbackSettings
 
     api_version - API version used for the events
+    events -
     """
 
-    api_version: Optional[str] = None
-    events: Optional["GroupsLongPollEvents"] = None
+    api_version: typing.Optional[str] = None
+    events: typing.Optional["GroupsLongPollEvents"] = None
 
 
 class GroupsContactsItem(BaseModel):
-    """VK Object Groups/GroupsContactsItem
+    """VK Object GroupsContactsItem
 
     desc - Contact description
     email - Contact email
@@ -2365,19 +3444,19 @@ class GroupsContactsItem(BaseModel):
     user_id - User ID
     """
 
-    desc: Optional[str] = None
-    email: Optional[str] = None
-    phone: Optional[str] = None
-    user_id: Optional[int] = None
+    desc: typing.Optional[str] = None
+    email: typing.Optional[str] = None
+    phone: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
 
 
 class GroupsCountersGroup(BaseModel):
-    """VK Object Groups/GroupsCountersGroup
+    """VK Object GroupsCountersGroup
 
     addresses - Addresses number
     albums - Photo albums number
-    audios - Audios number
     audio_playlists - Audio playlists number
+    audios - Audios number
     docs - Docs number
     market - Market items number
     photos - Photos number
@@ -2385,22 +3464,26 @@ class GroupsCountersGroup(BaseModel):
     videos - Videos number
     """
 
-    addresses: Optional[int] = None
-    albums: Optional[int] = None
-    audios: Optional[int] = None
-    audio_playlists: Optional[int] = None
-    docs: Optional[int] = None
-    market: Optional[int] = None
-    photos: Optional[int] = None
-    topics: Optional[int] = None
-    videos: Optional[int] = None
+    addresses: typing.Optional[int] = None
+    albums: typing.Optional[int] = None
+    audio_playlists: typing.Optional[int] = None
+    audios: typing.Optional[int] = None
+    docs: typing.Optional[int] = None
+    market: typing.Optional[int] = None
+    photos: typing.Optional[int] = None
+    topics: typing.Optional[int] = None
+    videos: typing.Optional[int] = None
 
 
 class GroupsCover(BaseModel):
-    """VK Object Groups/GroupsCover"""
+    """VK Object GroupsCover
 
-    enabled: Optional["BaseBoolInt"] = None
-    images: Optional[List["BaseImage"]] = None
+    enabled - Information whether cover is enabled
+    images -
+    """
+
+    enabled: "BaseBoolInt" = None
+    images: typing.Optional[typing.List["BaseImage"]] = None
 
 
 class GroupsFields(enum.Enum):
@@ -2410,20 +3493,28 @@ class GroupsFields(enum.Enum):
     MEMBER_STATUS = "member_status"
     IS_FAVORITE = "is_favorite"
     IS_SUBSCRIBED = "is_subscribed"
+    IS_SUBSCRIBED_PODCASTS = "is_subscribed_podcasts"
+    CAN_SUBSCRIBE_PODCASTS = "can_subscribe_podcasts"
     CITY = "city"
     COUNTRY = "country"
     VERIFIED = "verified"
     DESCRIPTION = "description"
     WIKI_PAGE = "wiki_page"
     MEMBERS_COUNT = "members_count"
+    REQUESTS_COUNT = "requests_count"
     COUNTERS = "counters"
     COVER = "cover"
     CAN_POST = "can_post"
+    CAN_SUGGEST = "can_suggest"
+    CAN_UPLOAD_STORY = "can_upload_story"
+    CAN_UPLOAD_DOC = "can_upload_doc"
+    CAN_UPLOAD_VIDEO = "can_upload_video"
+    CAN_UPLOAD_CLIP = "can_upload_clip"
     CAN_SEE_ALL_POSTS = "can_see_all_posts"
+    CAN_CREATE_TOPIC = "can_create_topic"
+    CROP_PHOTO = "crop_photo"
     ACTIVITY = "activity"
     FIXED_POST = "fixed_post"
-    CAN_CREATE_TOPIC = "can_create_topic"
-    CAN_UPLOAD_VIDEO = "can_upload_video"
     HAS_PHOTO = "has_photo"
     STATUS = "status"
     MAIN_ALBUM_ID = "main_album_id"
@@ -2431,11 +3522,15 @@ class GroupsFields(enum.Enum):
     CONTACTS = "contacts"
     SITE = "site"
     MAIN_SECTION = "main_section"
+    SECONDARY_SECTION = "secondary_section"
+    WALL = "wall"
     TRENDING = "trending"
     CAN_MESSAGE = "can_message"
     IS_MARKET_CART_ENABLED = "is_market_cart_enabled"
     IS_MESSAGES_BLOCKED = "is_messages_blocked"
     CAN_SEND_NOTIFY = "can_send_notify"
+    HAS_GROUP_CHANNEL = "has_group_channel"
+    GROUP_CHANNEL = "group_channel"
     ONLINE_STATUS = "online_status"
     START_DATE = "start_date"
     FINISH_DATE = "finish_date"
@@ -2448,6 +3543,7 @@ class GroupsFields(enum.Enum):
     ADDRESSES = "addresses"
     LIVE_COVERS = "live_covers"
     IS_ADULT = "is_adult"
+    IS_HIDDEN_FROM_FEED = "is_hidden_from_feed"
     CAN_SUBSCRIBE_POSTS = "can_subscribe_posts"
     WARNING_NOTIFICATION = "warning_notification"
     MSG_PUSH_ALLOWED = "msg_push_allowed"
@@ -2455,6 +3551,8 @@ class GroupsFields(enum.Enum):
     VIDEO_LIVE_LEVEL = "video_live_level"
     VIDEO_LIVE_COUNT = "video_live_count"
     CLIPS_COUNT = "clips_count"
+    IS_BUSINESS = "is_business"
+    TEXTLIVES_COUNT = "textlives_count"
 
 
 class GroupsFilter(enum.Enum):
@@ -2471,23 +3569,40 @@ class GroupsFilter(enum.Enum):
 
 
 class GroupsGroup(BaseModel):
-    """VK Object Groups/GroupsGroup"""
+    """VK Object GroupsGroup
 
-    admin_level: Optional["GroupsGroupAdminLevel"] = None
-    deactivated: Optional[str] = None
-    finish_date: Optional[int] = None
-    id: Optional[int] = None
-    is_admin: Optional["BaseBoolInt"] = None
-    is_advertiser: Optional["BaseBoolInt"] = None
-    is_closed: Optional["GroupsGroupIsClosed"] = None
-    is_member: Optional["BaseBoolInt"] = None
-    name: Optional[str] = None
-    photo_100: Optional[str] = None
-    photo_200: Optional[str] = None
-    photo_50: Optional[str] = None
-    screen_name: Optional[str] = None
-    start_date: Optional[int] = None
-    type: Optional["GroupsGroupType"] = None
+    admin_level -
+    deactivated - Information whether community is banned
+    finish_date - Finish date in Unixtime format
+    id - Community ID
+    is_admin - Information whether current user is administrator
+    is_advertiser - Information whether current user is advertiser
+    is_closed -
+    is_member - Information whether current user is member
+    name - Community name
+    photo_100 - URL of square photo of the community with 100 pixels in width
+    photo_200 - URL of square photo of the community with 200 pixels in width
+    photo_50 - URL of square photo of the community with 50 pixels in width
+    screen_name - Domain of the community page
+    start_date - Start date in Unixtime format
+    type -
+    """
+
+    admin_level: typing.Optional["GroupsGroupAdminLevel"] = None
+    deactivated: typing.Optional[str] = None
+    finish_date: typing.Optional[int] = None
+    id: int = None
+    is_admin: typing.Optional["BaseBoolInt"] = None
+    is_advertiser: typing.Optional["BaseBoolInt"] = None
+    is_closed: "GroupsGroupIsClosed" = None
+    is_member: typing.Optional["BaseBoolInt"] = None
+    name: str = None
+    photo_100: typing.Optional[str] = None
+    photo_200: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+    screen_name: str = None
+    start_date: typing.Optional[int] = None
+    type: typing.Optional["GroupsGroupType"] = None
 
 
 class GroupsGroupAccess(enum.IntEnum):
@@ -2510,18 +3625,25 @@ class GroupsGroupAgeLimits(enum.IntEnum):
     """ GroupsGroupAgeLimits enum """
 
     unlimited = 1
-    plus_16 = 2
-    plus_18 = 3
+    _16_plus = 2
+    _18_plus = 3
 
 
 class GroupsGroupAttach(BaseModel):
-    """VK Object Groups/GroupsGroupAttach"""
+    """VK Object GroupsGroupAttach
 
-    id: Optional[int] = None
-    text: Optional[str] = None
-    status: Optional[str] = None
-    size: Optional[int] = None
-    is_favorite: Optional[bool] = None
+    id - group ID
+    is_favorite - is favorite
+    size - size of group
+    status - activity or category of group
+    text - text of attach
+    """
+
+    id: int = None
+    is_favorite: bool = None
+    size: int = None
+    status: str = None
+    text: str = None
 
 
 class GroupsGroupAudio(enum.IntEnum):
@@ -2533,49 +3655,53 @@ class GroupsGroupAudio(enum.IntEnum):
 
 
 class GroupsGroupBanInfo(BaseModel):
-    """VK Object Groups/GroupsGroupBanInfo
+    """VK Object GroupsGroupBanInfo
 
     comment - Ban comment
     end_date - End date of ban in Unixtime
+    reason -
     """
 
-    comment: Optional[str] = None
-    end_date: Optional[int] = None
-    reason: Optional["GroupsBanInfoReason"] = None
+    comment: typing.Optional[str] = None
+    end_date: typing.Optional[int] = None
+    reason: typing.Optional["GroupsBanInfoReason"] = None
 
 
 class GroupsGroupCategory(BaseModel):
-    """VK Object Groups/GroupsGroupCategory
+    """VK Object GroupsGroupCategory
 
     id - Category ID
     name - Category name
+    subcategories -
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    subcategories: Optional[List["BaseObjectWithName"]] = None
+    id: int = None
+    name: str = None
+    subcategories: typing.Optional[typing.List["BaseObjectWithName"]] = None
 
 
 class GroupsGroupCategoryFull(BaseModel):
-    """VK Object Groups/GroupsGroupCategoryFull
+    """VK Object GroupsGroupCategoryFull
 
     id - Category ID
     name - Category name
     page_count - Pages number
+    page_previews -
+    subcategories -
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    page_count: Optional[int] = None
-    page_previews: Optional[List["GroupsGroup"]] = None
-    subcategories: Optional[List["GroupsGroupCategory"]] = None
+    id: int = None
+    name: str = None
+    page_count: int = None
+    page_previews: typing.List["GroupsGroup"] = None
+    subcategories: typing.Optional[typing.List["GroupsGroupCategory"]] = None
 
 
 class GroupsGroupCategoryType(BaseModel):
-    """VK Object Groups/GroupsGroupCategoryType"""
+    """VK Object GroupsGroupCategoryType"""
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class GroupsGroupDocs(enum.IntEnum):
@@ -2587,54 +3713,120 @@ class GroupsGroupDocs(enum.IntEnum):
 
 
 class GroupsGroupFull(GroupsGroup):
-    """VK Object Groups/GroupsGroupFull"""
+    """VK Object GroupsGroupFull
 
-    market: Optional["GroupsMarketInfo"] = None
-    member_status: Optional["GroupsGroupFullMemberStatus"] = None
-    is_adult: Optional["BaseBoolInt"] = None
-    is_hidden_from_feed: Optional["BaseBoolInt"] = None
-    is_favorite: Optional["BaseBoolInt"] = None
-    is_subscribed: Optional["BaseBoolInt"] = None
-    city: Optional["BaseObject"] = None
-    country: Optional["BaseCountry"] = None
-    verified: Optional["BaseBoolInt"] = None
-    description: Optional[str] = None
-    wiki_page: Optional[str] = None
-    members_count: Optional[int] = None
-    video_live_level: Optional[int] = None
-    video_live_count: Optional[int] = None
-    counters: Optional["GroupsCountersGroup"] = None
-    cover: Optional["GroupsCover"] = None
-    can_post: Optional["BaseBoolInt"] = None
-    can_see_all_posts: Optional["BaseBoolInt"] = None
-    activity: Optional[str] = None
-    fixed_post: Optional[int] = None
-    can_create_topic: Optional["BaseBoolInt"] = None
-    can_upload_doc: Optional["BaseBoolInt"] = None
-    can_upload_story: Optional["BaseBoolInt"] = None
-    can_upload_video: Optional["BaseBoolInt"] = None
-    has_photo: Optional["BaseBoolInt"] = None
-    crop_photo: Optional["BaseCropPhoto"] = None
-    status: Optional[str] = None
-    main_album_id: Optional[int] = None
-    links: Optional[List["GroupsLinksItem"]] = None
-    contacts: Optional[List["GroupsContactsItem"]] = None
-    wall: Optional[int] = None
-    site: Optional[str] = None
-    main_section: Optional["GroupsGroupFullMainSection"] = None
-    trending: Optional["BaseBoolInt"] = None
-    can_message: Optional["BaseBoolInt"] = None
-    is_messages_blocked: Optional["BaseBoolInt"] = None
-    can_send_notify: Optional["BaseBoolInt"] = None
-    online_status: Optional["GroupsOnlineStatus"] = None
-    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
-    ban_info: Optional["GroupsGroupBanInfo"] = None
-    has_market_app: Optional[bool] = None
-    addresses: Optional["GroupsAddressesInfo"] = None
-    is_subscribed_podcasts: Optional[bool] = None
-    can_subscribe_podcasts: Optional[bool] = None
-    can_subscribe_posts: Optional[bool] = None
-    live_covers: Optional["GroupsLiveCovers"] = None
+    activity - Type of group, start date of event or category of public page
+    addresses - Info about addresses in groups
+    age_limits - Information whether age limit
+    ban_info - User ban info
+    can_create_topic - Information whether current user can create topic
+    can_message - Information whether current user can send a message to community
+    can_post - Information whether current user can post on community's wall
+    can_see_all_posts - Information whether current user can see all posts on community's wall
+    can_send_notify - Information whether community can send notifications by phone number to current user
+    can_subscribe_podcasts - Owner in whitelist or not
+    can_subscribe_posts - Can subscribe to wall
+    can_suggest -
+    can_upload_doc - Information whether current user can upload doc
+    can_upload_story - Information whether current user can upload story
+    can_upload_video - Information whether current user can upload video
+    city -
+    clips_count - Number of community's clips
+    contacts -
+    counters -
+    country -
+    cover -
+    crop_photo - Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества
+    description - Community description
+    fixed_post - Fixed post ID
+    has_group_channel -
+    has_market_app - Information whether community has installed market app
+    has_photo - Information whether community has photo
+    invited_by - Inviter ID
+    is_adult - Information whether community is adult
+    is_favorite - Information whether community is in faves
+    is_hidden_from_feed - Information whether community is hidden from current user's newsfeed
+    is_messages_blocked - Information whether community can send a message to current user
+    is_subscribed - Information whether current user is subscribed
+    is_subscribed_podcasts - Information whether current user is subscribed to podcasts
+    links -
+    live_covers - Live covers state
+    main_album_id - Community's main photo album ID
+    main_section -
+    market -
+    member_status - Current user's member status
+    members_count - Community members number
+    online_status - Status of replies in community messages
+    requests_count - The number of incoming requests to the community
+    secondary_section -
+    site - Community's website
+    status - Community status
+    status_audio -
+    stories_archive_count -
+    trending - Information whether the community has a "fire" pictogram.
+    using_vkpay_market_app -
+    verified - Information whether community is verified
+    video_live_count - Number of community's live streams
+    video_live_level - Community level live streams achievements
+    wall - Information about wall status in community
+    wiki_page - Community's main wiki page title
+    """
+
+    activity: typing.Optional[str] = None
+    addresses: typing.Optional["GroupsAddressesInfo"] = None
+    age_limits: typing.Optional["GroupsGroupFullAgeLimits"] = None
+    ban_info: typing.Optional["GroupsGroupBanInfo"] = None
+    can_create_topic: typing.Optional["BaseBoolInt"] = None
+    can_message: typing.Optional["BaseBoolInt"] = None
+    can_post: typing.Optional["BaseBoolInt"] = None
+    can_see_all_posts: typing.Optional["BaseBoolInt"] = None
+    can_send_notify: typing.Optional["BaseBoolInt"] = None
+    can_subscribe_podcasts: typing.Optional[bool] = None
+    can_subscribe_posts: typing.Optional[bool] = None
+    can_suggest: typing.Optional["BaseBoolInt"] = None
+    can_upload_doc: typing.Optional["BaseBoolInt"] = None
+    can_upload_story: typing.Optional["BaseBoolInt"] = None
+    can_upload_video: typing.Optional["BaseBoolInt"] = None
+    city: typing.Optional["BaseObject"] = None
+    clips_count: typing.Optional[int] = None
+    contacts: typing.Optional[typing.List["GroupsContactsItem"]] = None
+    counters: typing.Optional["GroupsCountersGroup"] = None
+    country: typing.Optional["BaseCountry"] = None
+    cover: typing.Optional["GroupsCover"] = None
+    crop_photo: typing.Optional["BaseCropPhoto"] = None
+    description: typing.Optional[str] = None
+    fixed_post: typing.Optional[int] = None
+    has_group_channel: typing.Optional[bool] = None
+    has_market_app: typing.Optional[bool] = None
+    has_photo: typing.Optional["BaseBoolInt"] = None
+    invited_by: typing.Optional[int] = None
+    is_adult: typing.Optional["BaseBoolInt"] = None
+    is_favorite: typing.Optional["BaseBoolInt"] = None
+    is_hidden_from_feed: typing.Optional["BaseBoolInt"] = None
+    is_messages_blocked: typing.Optional["BaseBoolInt"] = None
+    is_subscribed: typing.Optional["BaseBoolInt"] = None
+    is_subscribed_podcasts: typing.Optional[bool] = None
+    links: typing.Optional[typing.List["GroupsLinksItem"]] = None
+    live_covers: typing.Optional["GroupsLiveCovers"] = None
+    main_album_id: typing.Optional[int] = None
+    main_section: typing.Optional["GroupsGroupFullMainSection"] = None
+    market: typing.Optional["GroupsMarketInfo"] = None
+    member_status: typing.Optional["GroupsGroupFullMemberStatus"] = None
+    members_count: typing.Optional[int] = None
+    online_status: typing.Optional["GroupsOnlineStatus"] = None
+    requests_count: typing.Optional[int] = None
+    secondary_section: typing.Optional[int] = None
+    site: typing.Optional[str] = None
+    status: typing.Optional[str] = None
+    status_audio: typing.Optional["AudioAudio"] = None
+    stories_archive_count: typing.Optional[int] = None
+    trending: typing.Optional["BaseBoolInt"] = None
+    using_vkpay_market_app: typing.Optional[bool] = None
+    verified: typing.Optional["BaseBoolInt"] = None
+    video_live_count: typing.Optional[int] = None
+    video_live_level: typing.Optional[int] = None
+    wall: typing.Optional[int] = None
+    wiki_page: typing.Optional[str] = None
 
 
 class GroupsGroupFullAgeLimits(enum.IntEnum):
@@ -2676,14 +3868,22 @@ class GroupsGroupIsClosed(enum.IntEnum):
 
 
 class GroupsGroupLink(BaseModel):
-    """VK Object Groups/GroupsGroupLink"""
+    """VK Object GroupsGroupLink
 
-    name: Optional[str] = None
-    desc: Optional[str] = None
-    edit_title: Optional["BaseBoolInt"] = None
-    id: Optional[int] = None
-    image_processing: Optional["BaseBoolInt"] = None
-    url: Optional[str] = None
+    desc - Link description
+    edit_title - Information whether the title can be edited
+    id - Link ID
+    image_processing - Information whether the image on processing
+    name - Link label
+    url - Link URL
+    """
+
+    desc: typing.Optional[str] = None
+    edit_title: typing.Optional["BaseBoolInt"] = None
+    id: typing.Optional[int] = None
+    image_processing: typing.Optional["BaseBoolInt"] = None
+    name: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 class GroupsGroupMarketCurrency(enum.IntEnum):
@@ -2705,11 +3905,11 @@ class GroupsGroupPhotos(enum.IntEnum):
 
 
 class GroupsGroupPublicCategoryList(BaseModel):
-    """VK Object Groups/GroupsGroupPublicCategoryList"""
+    """VK Object GroupsGroupPublicCategoryList"""
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    subcategories: Optional[List["GroupsGroupCategoryType"]] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    subcategories: typing.Optional[typing.List["GroupsGroupCategoryType"]] = None
 
 
 class GroupsGroupRole(enum.Enum):
@@ -2768,6 +3968,48 @@ class GroupsGroupSubject(enum.IntEnum):
     design_and_graphics = 42
 
 
+class GroupsGroupSuggestedPrivacy(enum.IntEnum):
+    """ GroupsGroupSuggestedPrivacy enum """
+
+    none = 0
+    all = 1
+    subscribers = 2
+
+
+class GroupsGroupTagColor(enum.Enum):
+    """ GroupsGroupTagColor enum """
+
+    _454647 = "454647"
+    _45678F = "45678f"
+    _4BB34B = "4bb34b"
+    _5181B8 = "5181b8"
+    _539B9C = "539b9c"
+    _5C9CE6 = "5c9ce6"
+    _63B9BA = "63b9ba"
+    _6BC76B = "6bc76b"
+    _76787A = "76787a"
+    _792EC0 = "792ec0"
+    _7A6C4F = "7a6c4f"
+    _7ECECF = "7ececf"
+    _9E8D6B = "9e8d6b"
+    A162DE = "a162de"
+    AAAEB3 = "aaaeb3"
+    BBAA84 = "bbaa84"
+    E64646 = "e64646"
+    FF5C5C = "ff5c5c"
+    FFA000 = "ffa000"
+    FFC107 = "ffc107"
+
+
+class GroupsGroupTag(BaseModel):
+    """VK Object GroupsGroupTag"""
+
+    color: "GroupsGroupTagColor" = None
+    id: int = None
+    name: str = None
+    uses: typing.Optional[int] = None
+
+
 class GroupsGroupTopics(enum.IntEnum):
     """ GroupsGroupTopics enum """
 
@@ -2809,52 +4051,19 @@ class GroupsGroupWiki(enum.IntEnum):
     limited = 2
 
 
-class GroupsGroupXtrInvitedBy(BaseModel):
-    """VK Object Groups/GroupsGroupXtrInvitedBy"""
-
-    admin_level: Optional["GroupsGroupXtrInvitedByAdminLevel"] = None
-    id: Optional[int] = None
-    invited_by: Optional[int] = None
-    is_admin: Optional["BaseBoolInt"] = None
-    is_advertiser: Optional["BaseBoolInt"] = None
-    is_closed: Optional["BaseBoolInt"] = None
-    is_member: Optional["BaseBoolInt"] = None
-    name: Optional[str] = None
-    photo_100: Optional[str] = None
-    photo_200: Optional[str] = None
-    photo_50: Optional[str] = None
-    screen_name: Optional[str] = None
-    type: Optional["GroupsGroupXtrInvitedByType"] = None
-
-
-class GroupsGroupXtrInvitedByAdminLevel(enum.IntEnum):
-    """ Level of current user's credentials as manager """
-
-    moderator = 1
-    editor = 2
-    administrator = 3
-
-
-class GroupsGroupXtrInvitedByType(enum.Enum):
-    """ Community type """
-
-    GROUP = "group"
-    PAGE = "page"
-    EVENT = "event"
-
-
 class GroupsGroupsArray(BaseModel):
-    """VK Object Groups/GroupsGroupsArray
+    """VK Object GroupsGroupsArray
 
     count - Communities number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: int = None
+    items: typing.List[int] = None
 
 
 class GroupsLinksItem(BaseModel):
-    """VK Object Groups/GroupsLinksItem
+    """VK Object GroupsLinksItem
 
     desc - Link description
     edit_title - Information whether the link title can be edited
@@ -2865,102 +4074,114 @@ class GroupsLinksItem(BaseModel):
     url - Link URL
     """
 
-    desc: Optional[str] = None
-    edit_title: Optional["BaseBoolInt"] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    photo_100: Optional[str] = None
-    photo_50: Optional[str] = None
-    url: Optional[str] = None
+    desc: typing.Optional[str] = None
+    edit_title: typing.Optional["BaseBoolInt"] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    photo_100: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 class GroupsLiveCovers(BaseModel):
-    """VK Object Groups/GroupsLiveCovers
+    """VK Object GroupsLiveCovers
 
     is_enabled - Information whether live covers is enabled
     is_scalable - Information whether live covers photo scaling is enabled
+    story_ids -
     """
 
-    is_enabled: Optional[bool] = None
-    is_scalable: Optional[bool] = None
-    story_ids: Optional[List[str]] = None
+    is_enabled: bool = None
+    is_scalable: typing.Optional[bool] = None
+    story_ids: typing.Optional[typing.List[str]] = None
 
 
 class GroupsLongPollEvents(BaseModel):
-    """VK Object Groups/GroupsLongPollEvents"""
+    """VK Object GroupsLongPollEvents"""
 
-    audio_new: Optional["BaseBoolInt"] = None
-    board_post_delete: Optional["BaseBoolInt"] = None
-    board_post_edit: Optional["BaseBoolInt"] = None
-    board_post_new: Optional["BaseBoolInt"] = None
-    board_post_restore: Optional["BaseBoolInt"] = None
-    group_change_photo: Optional["BaseBoolInt"] = None
-    group_change_settings: Optional["BaseBoolInt"] = None
-    group_join: Optional["BaseBoolInt"] = None
-    group_leave: Optional["BaseBoolInt"] = None
-    group_officers_edit: Optional["BaseBoolInt"] = None
-    lead_forms_new: Optional["BaseBoolInt"] = None
-    market_comment_delete: Optional["BaseBoolInt"] = None
-    market_comment_edit: Optional["BaseBoolInt"] = None
-    market_comment_new: Optional["BaseBoolInt"] = None
-    market_comment_restore: Optional["BaseBoolInt"] = None
-    message_allow: Optional["BaseBoolInt"] = None
-    message_deny: Optional["BaseBoolInt"] = None
-    message_new: Optional["BaseBoolInt"] = None
-    message_read: Optional["BaseBoolInt"] = None
-    message_reply: Optional["BaseBoolInt"] = None
-    message_typing_state: Optional["BaseBoolInt"] = None
-    message_edit: Optional["BaseBoolInt"] = None
-    photo_comment_delete: Optional["BaseBoolInt"] = None
-    photo_comment_edit: Optional["BaseBoolInt"] = None
-    photo_comment_new: Optional["BaseBoolInt"] = None
-    photo_comment_restore: Optional["BaseBoolInt"] = None
-    photo_new: Optional["BaseBoolInt"] = None
-    poll_vote_new: Optional["BaseBoolInt"] = None
-    user_block: Optional["BaseBoolInt"] = None
-    user_unblock: Optional["BaseBoolInt"] = None
-    video_comment_delete: Optional["BaseBoolInt"] = None
-    video_comment_edit: Optional["BaseBoolInt"] = None
-    video_comment_new: Optional["BaseBoolInt"] = None
-    video_comment_restore: Optional["BaseBoolInt"] = None
-    video_new: Optional["BaseBoolInt"] = None
-    wall_post_new: Optional["BaseBoolInt"] = None
-    wall_reply_delete: Optional["BaseBoolInt"] = None
-    wall_reply_edit: Optional["BaseBoolInt"] = None
-    wall_reply_new: Optional["BaseBoolInt"] = None
-    wall_reply_restore: Optional["BaseBoolInt"] = None
-    wall_repost: Optional["BaseBoolInt"] = None
+    audio_new: "BaseBoolInt" = None
+    board_post_delete: "BaseBoolInt" = None
+    board_post_edit: "BaseBoolInt" = None
+    board_post_new: "BaseBoolInt" = None
+    board_post_restore: "BaseBoolInt" = None
+    donut_money_withdraw: typing.Optional["BaseBoolInt"] = None
+    donut_money_withdraw_error: typing.Optional["BaseBoolInt"] = None
+    donut_subscription_cancelled: typing.Optional["BaseBoolInt"] = None
+    donut_subscription_create: typing.Optional["BaseBoolInt"] = None
+    donut_subscription_expired: typing.Optional["BaseBoolInt"] = None
+    donut_subscription_price_changed: typing.Optional["BaseBoolInt"] = None
+    donut_subscription_prolonged: typing.Optional["BaseBoolInt"] = None
+    group_change_photo: "BaseBoolInt" = None
+    group_change_settings: "BaseBoolInt" = None
+    group_join: "BaseBoolInt" = None
+    group_leave: "BaseBoolInt" = None
+    group_officers_edit: "BaseBoolInt" = None
+    lead_forms_new: typing.Optional["BaseBoolInt"] = None
+    market_comment_delete: "BaseBoolInt" = None
+    market_comment_edit: "BaseBoolInt" = None
+    market_comment_new: "BaseBoolInt" = None
+    market_comment_restore: "BaseBoolInt" = None
+    market_order_edit: typing.Optional["BaseBoolInt"] = None
+    market_order_new: typing.Optional["BaseBoolInt"] = None
+    message_allow: "BaseBoolInt" = None
+    message_deny: "BaseBoolInt" = None
+    message_edit: "BaseBoolInt" = None
+    message_new: "BaseBoolInt" = None
+    message_read: "BaseBoolInt" = None
+    message_reply: "BaseBoolInt" = None
+    message_typing_state: "BaseBoolInt" = None
+    photo_comment_delete: "BaseBoolInt" = None
+    photo_comment_edit: "BaseBoolInt" = None
+    photo_comment_new: "BaseBoolInt" = None
+    photo_comment_restore: "BaseBoolInt" = None
+    photo_new: "BaseBoolInt" = None
+    poll_vote_new: "BaseBoolInt" = None
+    user_block: "BaseBoolInt" = None
+    user_unblock: "BaseBoolInt" = None
+    video_comment_delete: "BaseBoolInt" = None
+    video_comment_edit: "BaseBoolInt" = None
+    video_comment_new: "BaseBoolInt" = None
+    video_comment_restore: "BaseBoolInt" = None
+    video_new: "BaseBoolInt" = None
+    wall_post_new: "BaseBoolInt" = None
+    wall_reply_delete: "BaseBoolInt" = None
+    wall_reply_edit: "BaseBoolInt" = None
+    wall_reply_new: "BaseBoolInt" = None
+    wall_reply_restore: "BaseBoolInt" = None
+    wall_repost: "BaseBoolInt" = None
 
 
 class GroupsLongPollServer(BaseModel):
-    """VK Object Groups/GroupsLongPollServer
+    """VK Object GroupsLongPollServer
 
     key - Long Poll key
     server - Long Poll server address
     ts - Number of the last event
     """
 
-    key: Optional[str] = None
-    server: Optional[str] = None
-    ts: Optional[str] = None
+    key: str = None
+    server: str = None
+    ts: str = None
 
 
 class GroupsLongPollSettings(BaseModel):
-    """VK Object Groups/GroupsLongPollSettings
+    """VK Object GroupsLongPollSettings
 
     api_version - API version used for the events
+    events -
     is_enabled - Shows whether Long Poll is enabled
     """
 
-    api_version: Optional[str] = None
-    events: Optional["GroupsLongPollEvents"] = None
-    is_enabled: Optional[bool] = None
+    api_version: typing.Optional[str] = None
+    events: "GroupsLongPollEvents" = None
+    is_enabled: bool = None
 
 
 class GroupsMarketInfo(BaseModel):
-    """VK Object Groups/GroupsMarketInfo
+    """VK Object GroupsMarketInfo
 
     contact_id - Contact person ID
+    currency -
     currency_text - Currency name
     enabled - Information whether the market is enabled
     main_album_id - Main market album ID
@@ -2968,21 +4189,34 @@ class GroupsMarketInfo(BaseModel):
     price_min - Minimum price
     """
 
-    contact_id: Optional[int] = None
-    currency: Optional["MarketCurrency"] = None
-    currency_text: Optional[str] = None
-    enabled: Optional["BaseBoolInt"] = None
-    main_album_id: Optional[int] = None
-    price_max: Optional[str] = None
-    price_min: Optional[str] = None
+    contact_id: typing.Optional[int] = None
+    currency: typing.Optional["MarketCurrency"] = None
+    currency_text: typing.Optional[str] = None
+    enabled: typing.Optional["BaseBoolInt"] = None
+    main_album_id: typing.Optional[int] = None
+    price_max: typing.Optional[str] = None
+    price_min: typing.Optional[str] = None
+
+
+class GroupsMarketState(enum.Enum):
+    """ Declares state if market is enabled in group. """
+
+    NONE = "none"
+    BASIC = "basic"
+    ADVANCED = "advanced"
 
 
 class GroupsMemberRole(BaseModel):
-    """VK Object Groups/GroupsMemberRole"""
+    """VK Object GroupsMemberRole
 
-    id: Optional[int] = None
-    permissions: Optional[List["GroupsMemberRolePermission"]] = None
-    role: Optional["GroupsMemberRoleStatus"] = None
+    id - User ID
+    permissions -
+    role -
+    """
+
+    id: int = None
+    permissions: typing.Optional[typing.List["GroupsMemberRolePermission"]] = None
+    role: typing.Optional["GroupsMemberRoleStatus"] = None
 
 
 class GroupsMemberRolePermission(enum.Enum):
@@ -3001,18 +4235,18 @@ class GroupsMemberRoleStatus(enum.Enum):
 
 
 class GroupsMemberStatus(BaseModel):
-    """VK Object Groups/GroupsMemberStatus
+    """VK Object GroupsMemberStatus
 
     member - Information whether user is a member of the group
     user_id - User ID
     """
 
-    member: Optional["BaseBoolInt"] = None
-    user_id: Optional[int] = None
+    member: "BaseBoolInt" = None
+    user_id: int = None
 
 
 class GroupsMemberStatusFull(BaseModel):
-    """VK Object Groups/GroupsMemberStatusFull
+    """VK Object GroupsMemberStatusFull
 
     can_invite - Information whether user can be invited
     can_recall - Information whether user's invite to the group can be recalled
@@ -3022,19 +4256,23 @@ class GroupsMemberStatusFull(BaseModel):
     user_id - User ID
     """
 
-    can_invite: Optional["BaseBoolInt"] = None
-    can_recall: Optional["BaseBoolInt"] = None
-    invitation: Optional["BaseBoolInt"] = None
-    member: Optional["BaseBoolInt"] = None
-    request: Optional["BaseBoolInt"] = None
-    user_id: Optional[int] = None
+    can_invite: typing.Optional["BaseBoolInt"] = None
+    can_recall: typing.Optional["BaseBoolInt"] = None
+    invitation: typing.Optional["BaseBoolInt"] = None
+    member: "BaseBoolInt" = None
+    request: typing.Optional["BaseBoolInt"] = None
+    user_id: int = None
 
 
 class GroupsOnlineStatus(BaseModel):
-    """VK Object Groups/GroupsOnlineStatus"""
+    """VK Object GroupsOnlineStatus
 
-    minutes: Optional[int] = None
-    status: Optional["GroupsOnlineStatusType"] = None
+    minutes - Estimated time of answer (for status = answer_mark)
+    status -
+    """
+
+    minutes: typing.Optional[int] = None
+    status: "GroupsOnlineStatusType" = None
 
 
 class GroupsOnlineStatusType(enum.Enum):
@@ -3045,20 +4283,26 @@ class GroupsOnlineStatusType(enum.Enum):
     ANSWER_MARK = "answer_mark"
 
 
-class GroupsOwnerXtrBanInfo(BaseModel):
-    """VK Object Groups/GroupsOwnerXtrBanInfo"""
-
-    ban_info: Optional["GroupsBanInfo"] = None
-    group: Optional["GroupsGroup"] = None
-    profile: Optional["UsersUser"] = None
-    type: Optional["GroupsOwnerXtrBanInfoType"] = None
-
-
 class GroupsOwnerXtrBanInfoType(enum.Enum):
     """ Owner type """
 
     GROUP = "group"
     PROFILE = "profile"
+
+
+class GroupsProfileItem(BaseModel):
+    """VK Object GroupsProfileItem
+
+    first_name - User first name
+    id - User id
+    photo_100 - Url for user photo
+    photo_50 - Url for user photo
+    """
+
+    first_name: str = None
+    id: int = None
+    photo_100: str = None
+    photo_50: str = None
 
 
 class GroupsRoleOptions(enum.Enum):
@@ -3070,126 +4314,45 @@ class GroupsRoleOptions(enum.Enum):
     CREATOR = "creator"
 
 
-class GroupsSettingsTwitter(BaseModel):
-    """VK Object Groups/GroupsSettingsTwitter"""
+GroupsSectionsListItem = typing.Optional[typing.List[typing.Union[int, str]]]  # (index, title) tuples
 
-    status: Optional[str] = None
-    name: Optional[str] = None
+
+class GroupsSettingsTwitterStatus(enum.Enum):
+    """ GroupsSettingsTwitterStatus enum """
+
+    LOADING = "loading"
+    SYNC = "sync"
+
+
+class GroupsSettingsTwitter(BaseModel):
+    """VK Object GroupsSettingsTwitter"""
+
+    name: typing.Optional[str] = None
+    status: "GroupsSettingsTwitterStatus" = None
 
 
 class GroupsSubjectItem(BaseModel):
-    """VK Object Groups/GroupsSubjectItem
+    """VK Object GroupsSubjectItem
 
     id - Subject ID
     name - Subject title
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
 
 
 class GroupsTokenPermissionSetting(BaseModel):
-    """VK Object Groups/GroupsTokenPermissionSetting"""
+    """VK Object GroupsTokenPermissionSetting"""
 
-    name: Optional[str] = None
-    setting: Optional[int] = None
-
-
-class LeadsChecked(BaseModel):
-    """VK Object Leads/LeadsChecked"""
-
-    reason: Optional[str] = None
-    result: Optional["LeadsCheckedResult"] = None
-    sid: Optional[str] = None
-    start_link: Optional[str] = None
+    name: str = None
+    setting: int = None
 
 
-class LeadsCheckedResult(enum.Enum):
-    """ Information whether user can start the lead """
+class GroupsUserXtrRole(UsersUserFull):
+    """VK Object GroupsUserXtrRole"""
 
-    TRUE = "true"
-    FALSE = "false"
-
-
-class LeadsComplete(BaseModel):
-    """VK Object Leads/LeadsComplete
-
-    cost - Offer cost
-    limit - Offer limit
-    spent - Amount of spent votes
-    test_mode - Information whether test mode is enabled
-    """
-
-    cost: Optional[int] = None
-    limit: Optional[int] = None
-    spent: Optional[int] = None
-    success: Optional[int] = None
-    test_mode: Optional["BaseBoolInt"] = None
-
-
-class LeadsEntry(BaseModel):
-    """VK Object Leads/LeadsEntry
-
-    aid - Application ID
-    comment - Comment text
-    date - Date when the action has been started in Unixtime
-    sid - Session string ID
-    start_date - Start date in Unixtime (for status=2)
-    status - Action type
-    test_mode - Information whether test mode is enabled
-    uid - User ID
-    """
-
-    aid: Optional[int] = None
-    comment: Optional[str] = None
-    date: Optional[int] = None
-    sid: Optional[str] = None
-    start_date: Optional[int] = None
-    status: Optional[int] = None
-    test_mode: Optional["BaseBoolInt"] = None
-    uid: Optional[int] = None
-
-
-class LeadsLead(BaseModel):
-    """VK Object Leads/LeadsLead
-
-    completed - Completed offers number
-    cost - Offer cost
-    impressions - Impressions number
-    limit - Lead limit
-    spent - Amount of spent votes
-    started - Started offers number
-    """
-
-    completed: Optional[int] = None
-    cost: Optional[int] = None
-    days: Optional["LeadsLeadDays"] = None
-    impressions: Optional[int] = None
-    limit: Optional[int] = None
-    spent: Optional[int] = None
-    started: Optional[int] = None
-
-
-class LeadsLeadDays(BaseModel):
-    """VK Object Leads/LeadsLeadDays
-
-    completed - Completed offers number
-    impressions - Impressions number
-    spent - Amount of spent votes
-    started - Started offers number
-    """
-
-    completed: Optional[int] = None
-    impressions: Optional[int] = None
-    spent: Optional[int] = None
-    started: Optional[int] = None
-
-
-class LeadsStart(BaseModel):
-    """VK Object Leads/LeadsStart"""
-
-    test_mode: Optional["BaseBoolInt"] = None
-    vk_sid: Optional[str] = None
+    role: typing.Optional["GroupsRoleOptions"] = None
 
 
 class LikesType(enum.Enum):
@@ -3210,78 +4373,132 @@ class LikesType(enum.Enum):
 
 
 class LinkTargetObject(BaseModel):
-    """VK Object Link/LinkTargetObject
+    """VK Object LinkTargetObject
 
-    type - Object type
-    owner_id - Owner ID
     item_id - Item ID
+    owner_id - Owner ID
+    type - Object type
     """
 
-    type: Optional[str] = None
-    owner_id: Optional[int] = None
-    item_id: Optional[int] = None
+    item_id: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    type: typing.Optional[str] = None
 
 
 class MarketCurrency(BaseModel):
-    """VK Object Market/MarketCurrency
+    """VK Object MarketCurrency
 
     id - Currency ID
     name - Currency sign
+    title - Currency title
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
+    title: str = None
 
 
 class MarketMarketAlbum(BaseModel):
-    """VK Object Market/MarketMarketAlbum
+    """VK Object MarketMarketAlbum
 
     count - Items number
     id - Market album ID
     owner_id - Market album owner's ID
+    photo -
     title - Market album title
     updated_time - Date when album has been updated last time in Unixtime
     """
 
-    count: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    photo: Optional["PhotosPhoto"] = None
-    title: Optional[str] = None
-    updated_time: Optional[int] = None
+    count: int = None
+    id: int = None
+    owner_id: int = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    title: str = None
+    updated_time: int = None
 
 
-class MarketMarketCategory(BaseModel):
-    """VK Object Market/MarketMarketCategory
+class MarketMarketCategoryOld(BaseModel):
+    """VK Object MarketMarketCategoryOld
 
+    id - Category ID
+    name - Category name
+    section -
+    """
+
+    id: int = None
+    name: str = None
+    section: "MarketSection" = None
+
+
+class MarketMarketCategory(MarketMarketCategoryOld):
+    """VK Object MarketMarketCategory"""
+
+    pass
+
+
+class MarketMarketCategoryNested(BaseModel):
+    """VK Object MarketMarketCategoryNested
+
+    id - Category ID
+    name - Category name
+    parent -
+    """
+
+    id: int = None
+    name: str = None
+    parent: typing.Optional["MarketMarketCategoryNested"] = None
+
+
+class MarketMarketCategoryTree(BaseModel):
+    """VK Object MarketMarketCategoryTree
+
+    children -
     id - Category ID
     name - Category name
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    section: Optional["MarketSection"] = None
+    children: typing.Optional[typing.List["MarketMarketCategoryTree"]] = None
+    id: int = None
+    name: str = None
 
 
 class MarketMarketItem(BaseModel):
-    """VK Object Market/MarketMarketItem"""
+    """VK Object MarketMarketItem
 
-    access_key: Optional[str] = None
-    availability: Optional["MarketMarketItemAvailability"] = None
-    button_title: Optional[str] = None
-    category: Optional["MarketMarketCategory"] = None
-    date: Optional[int] = None
-    description: Optional[str] = None
-    external_id: Optional[str] = None
-    id: Optional[int] = None
-    is_favorite: Optional[bool] = None
-    owner_id: Optional[int] = None
-    price: Optional["MarketPrice"] = None
-    thumb_photo: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
-    variants_grouping_id: Optional[int] = None
-    is_main_variant: Optional[bool] = None
+    access_key - Access key for the market item
+    availability -
+    button_title - Title for button for url
+    category -
+    date - Date when the item has been created in Unixtime
+    description - Item description
+    external_id -
+    id - Item ID
+    is_favorite -
+    is_main_variant -
+    owner_id - Item owner's ID
+    price -
+    thumb_photo - URL of the preview image
+    title - Item title
+    url - URL to item
+    variants_grouping_id -
+    """
+
+    access_key: typing.Optional[str] = None
+    availability: "MarketMarketItemAvailability" = None
+    button_title: typing.Optional[str] = None
+    category: "MarketMarketCategory" = None
+    date: typing.Optional[int] = None
+    description: str = None
+    external_id: typing.Optional[str] = None
+    id: int = None
+    is_favorite: typing.Optional[bool] = None
+    is_main_variant: typing.Optional[bool] = None
+    owner_id: int = None
+    price: "MarketPrice" = None
+    thumb_photo: typing.Optional[str] = None
+    title: str = None
+    url: typing.Optional[str] = None
+    variants_grouping_id: typing.Optional[int] = None
 
 
 class MarketMarketItemAvailability(enum.IntEnum):
@@ -3293,129 +4510,123 @@ class MarketMarketItemAvailability(enum.IntEnum):
 
 
 class MarketMarketItemFull(MarketMarketItem):
-    """VK Object Market/MarketMarketItemFull
+    """VK Object MarketMarketItemFull
 
+    albums_ids -
     can_comment - Information whether current use can comment the item
     can_repost - Information whether current use can repost the item
+    cancel_info - Information for cancel and revert order
+    likes -
+    photos -
+    reposts -
+    user_agreement_info - User agreement info
     views_count - Views number
+    wishlist_item_id - Object identifier in wishlist of viewer
     """
 
-    albums_ids: Optional[List[int]] = None
-    photos: Optional[List["PhotosPhoto"]] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    can_repost: Optional["BaseBoolInt"] = None
-    likes: Optional["BaseLikes"] = None
-    reposts: Optional["BaseRepostsInfo"] = None
-    views_count: Optional[int] = None
-
-
-class MarketPrice(BaseModel):
-    """VK Object Market/MarketPrice
-
-    amount - Amount
-    text - Text
-    """
-
-    amount: Optional[str] = None
-    currency: Optional["MarketCurrency"] = None
-    discount_rate: Optional[int] = None
-    old_amount: Optional[str] = None
-    text: Optional[str] = None
-
-
-class PropertyValue(BaseModel):
-    variant_id: Optional[int] = None
-    variant_name: Optional[str] = None
-    property_name: Optional[str] = None
-
-
-class MarketStatus(enum.IntEnum):
-    NEW = 0
-    AGREE = 1
-    PATCH = 2
-    DELIVER = 3
-    DONE = 4
-    CANCELLED = 5
-    RETURNED = 6
-
-
-class MarketDelivery(BaseModel):
-    address: Optional[str] = None
-    type: Optional[str] = None
-    track_number: Optional[str] = None
-    track_link: Optional[str] = None
-    delivery_point: Optional[dict] = None
-
-
-class MarketRecipient(BaseModel):
-    name: Optional[str] = None
-    phone: Optional[str] = None
-    display_text: Optional[str] = None
+    albums_ids: typing.Optional[typing.List[int]] = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    can_repost: typing.Optional["BaseBoolInt"] = None
+    cancel_info: typing.Optional["BaseLink"] = None
+    likes: typing.Optional["BaseLikes"] = None
+    photos: typing.Optional[typing.List["PhotosPhoto"]] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    user_agreement_info: typing.Optional[str] = None
+    views_count: typing.Optional[int] = None
+    wishlist_item_id: typing.Optional[int] = None
 
 
 class MarketOrder(BaseModel):
-    id: Optional[int] = None
-    group_id: Optional[int] = None
-    user_id: Optional[int] = None
-    date: Optional[int] = None
-    variants_grouping_id: Optional[int] = None
-    is_main_variant: Optional[int] = None
-    property_values: Optional[List[PropertyValue]] = None
-    cart_quantity: Optional[int] = None
-    status: Optional[MarketStatus] = None
-    items_count: Optional[int] = None
-    total_price: Optional[MarketPrice] = None
-    display_order_id: Optional[str] = None
-    comment: Optional[str] = None
-    preview_order_items: Optional[List[MarketMarketItemFull]] = None
-    delivery: Optional[MarketDelivery] = None
-    recipient: Optional[MarketRecipient] = None
+    """VK Object MarketOrder
+
+    address -
+    cancel_info - Information for cancel and revert order
+    comment -
+    date -
+    display_order_id -
+    group_id -
+    id -
+    items_count -
+    merchant_comment -
+    preview_order_items - Several order items for preview
+    status -
+    total_price -
+    track_link -
+    track_number -
+    user_id -
+    weight -
+    """
+
+    address: typing.Optional[str] = None
+    cancel_info: typing.Optional["BaseLink"] = None
+    comment: typing.Optional[str] = None
+    date: int = None
+    display_order_id: typing.Optional[str] = None
+    group_id: int = None
+    id: int = None
+    items_count: int = None
+    merchant_comment: typing.Optional[str] = None
+    preview_order_items: typing.Optional[typing.List["MarketOrderItem"]] = None
+    status: int = None
+    total_price: "MarketPrice" = None
+    track_link: typing.Optional[str] = None
+    track_number: typing.Optional[str] = None
+    user_id: int = None
+    weight: typing.Optional[int] = None
+
+
+class MarketOrderItem(BaseModel):
+    """VK Object MarketOrderItem"""
+
+    item: "MarketMarketItem" = None
+    item_id: int = None
+    owner_id: int = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    price: "MarketPrice" = None
+    quantity: int = None
+    title: typing.Optional[str] = None
+    variants: typing.Optional[typing.List[str]] = None
+
+
+class MarketPrice(BaseModel):
+    """VK Object MarketPrice
+
+    amount - Amount
+    currency -
+    discount_rate -
+    old_amount -
+    old_amount_text - Textual representation of old price
+    text - Text
+    """
+
+    amount: str = None
+    currency: "MarketCurrency" = None
+    discount_rate: typing.Optional[int] = None
+    old_amount: typing.Optional[str] = None
+    old_amount_text: typing.Optional[str] = None
+    text: str = None
 
 
 class MarketSection(BaseModel):
-    """VK Object Market/MarketSection
+    """VK Object MarketSection
 
     id - Section ID
     name - Section name
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
+    id: int = None
+    name: str = None
 
 
-class MediaRestriction(BaseModel):
-    """VK Object Media/MediaRestriction
+class MarketServicesViewType(enum.IntEnum):
+    """ Type of view. 1 - cards, 2 - rows """
 
-    always_shown - Need show restriction always or not
-    blur - Need blur current video or not
-    can_play - Can play video or not
-    can_preview - Can preview video or not
-    """
-
-    text: Optional[str] = None
-    title: Optional[str] = None
-    button: Optional["VideoRestrictionButton"] = None
-    always_shown: Optional["BaseBoolInt"] = None
-    blur: Optional["BaseBoolInt"] = None
-    can_play: Optional["BaseBoolInt"] = None
-    can_preview: Optional["BaseBoolInt"] = None
-    card_icon: Optional[List["BaseImage"]] = None
-    list_icon: Optional[List["BaseImage"]] = None
-
-
-class MessageChatPreview(BaseModel):
-    """VK Object Message/MessageChatPreview"""
-
-    admin_id: Optional[int] = None
-    joined: Optional[bool] = None
-    local_id: Optional[int] = None
-    members: Optional[List[int]] = None
-    members_count: Optional[int] = None
-    title: Optional[str] = None
+    cards = 1
+    rows = 2
 
 
 class MessagesAudioMessage(BaseModel):
-    """VK Object Messages/MessagesAudioMessage
+    """VK Object MessagesAudioMessage
 
     access_key - Access key for audio message
     duration - Audio message duration in seconds
@@ -3423,48 +4634,53 @@ class MessagesAudioMessage(BaseModel):
     link_mp3 - MP3 file URL
     link_ogg - OGG file URL
     owner_id - Audio message owner ID
+    transcript_error -
+    waveform -
     """
 
-    access_key: Optional[str] = None
-    duration: Optional[int] = None
-    id: Optional[int] = None
-    link_mp3: Optional[str] = None
-    link_ogg: Optional[str] = None
-    owner_id: Optional[int] = None
-    waveform: Optional[List[int]] = None
+    access_key: typing.Optional[str] = None
+    duration: int = None
+    id: int = None
+    link_mp3: str = None
+    link_ogg: str = None
+    owner_id: int = None
+    transcript_error: typing.Optional[int] = None
+    waveform: typing.List[int] = None
 
 
 class MessagesChat(BaseModel):
-    """VK Object Messages/MessagesChat
+    """VK Object MessagesChat
 
     admin_id - Chat creator ID
     id - Chat ID
+    is_default_photo - If provided photo is default
     kicked - Shows that user has been kicked from the chat
     left - Shows that user has been left the chat
     photo_100 - URL of the preview image with 100 px in width
     photo_200 - URL of the preview image with 200 px in width
     photo_50 - URL of the preview image with 50 px in width
+    push_settings -
     title - Chat title
     type - Chat type
-    is_default_photo - If provided photo is default
+    users -
     """
 
-    admin_id: Optional[int] = None
-    id: Optional[int] = None
-    kicked: Optional["BaseBoolInt"] = None
-    left: Optional["BaseBoolInt"] = None
-    photo_100: Optional[str] = None
-    photo_200: Optional[str] = None
-    photo_50: Optional[str] = None
-    push_settings: Optional["MessagesChatPushSettings"] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
-    users: Optional[List[int]] = None
-    is_default_photo: Optional[bool] = None
+    admin_id: int = None
+    id: int = None
+    is_default_photo: typing.Optional[bool] = None
+    kicked: typing.Optional["BaseBoolInt"] = None
+    left: typing.Optional["BaseBoolInt"] = None
+    photo_100: typing.Optional[str] = None
+    photo_200: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+    push_settings: typing.Optional["MessagesChatPushSettings"] = None
+    title: typing.Optional[str] = None
+    type: str = None
+    users: typing.List[int] = None
 
 
 class MessagesChatFull(BaseModel):
-    """VK Object Messages/MessagesChatFull
+    """VK Object MessagesChatFull
 
     admin_id - Chat creator ID
     id - Chat ID
@@ -3473,36 +4689,50 @@ class MessagesChatFull(BaseModel):
     photo_100 - URL of the preview image with 100 px in width
     photo_200 - URL of the preview image with 200 px in width
     photo_50 - URL of the preview image with 50 px in width
+    push_settings -
     title - Chat title
     type - Chat type
+    users -
     """
 
-    admin_id: Optional[int] = None
-    id: Optional[int] = None
-    kicked: Optional["BaseBoolInt"] = None
-    left: Optional["BaseBoolInt"] = None
-    photo_100: Optional[str] = None
-    photo_200: Optional[str] = None
-    photo_50: Optional[str] = None
-    push_settings: Optional["MessagesChatPushSettings"] = None
-    title: Optional[str] = None
-    type: Optional[str] = None
-    users: Optional[List["MessagesUserXtrInvitedBy"]] = None
+    admin_id: int = None
+    id: int = None
+    kicked: typing.Optional["BaseBoolInt"] = None
+    left: typing.Optional["BaseBoolInt"] = None
+    photo_100: typing.Optional[str] = None
+    photo_200: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+    push_settings: typing.Optional["MessagesChatPushSettings"] = None
+    title: typing.Optional[str] = None
+    type: str = None
+    users: typing.List["MessagesUserXtrInvitedBy"] = None
+
+
+class MessagesChatPreview(BaseModel):
+    """VK Object MessagesChatPreview"""
+
+    admin_id: typing.Optional[int] = None
+    is_member: typing.Optional[bool] = None
+    joined: typing.Optional[bool] = None
+    local_id: typing.Optional[int] = None
+    members: typing.Optional[typing.List[int]] = None
+    members_count: typing.Optional[int] = None
+    title: typing.Optional[str] = None
 
 
 class MessagesChatPushSettings(BaseModel):
-    """VK Object Messages/MessagesChatPushSettings
+    """VK Object MessagesChatPushSettings
 
     disabled_until - Time until that notifications are disabled
     sound - Information whether the sound is on
     """
 
-    disabled_until: Optional[int] = None
-    sound: Optional["BaseBoolInt"] = None
+    disabled_until: typing.Optional[int] = None
+    sound: typing.Optional["BaseBoolInt"] = None
 
 
 class MessagesChatRestrictions(BaseModel):
-    """VK Object Messages/MessagesChatRestrictions
+    """VK Object MessagesChatRestrictions
 
     admins_promote_users - Only admins can promote users to admins
     only_admins_edit_info - Only admins can change chat info
@@ -3511,65 +4741,263 @@ class MessagesChatRestrictions(BaseModel):
     only_admins_kick - Only admins can kick users from this chat
     """
 
-    admins_promote_users: Optional[bool] = None
-    only_admins_edit_info: Optional[bool] = None
-    only_admins_edit_pin: Optional[bool] = None
-    only_admins_invite: Optional[bool] = None
-    only_admins_kick: Optional[bool] = None
+    admins_promote_users: typing.Optional[bool] = None
+    only_admins_edit_info: typing.Optional[bool] = None
+    only_admins_edit_pin: typing.Optional[bool] = None
+    only_admins_invite: typing.Optional[bool] = None
+    only_admins_kick: typing.Optional[bool] = None
+
+
+class MessagesChatSettings(BaseModel):
+    """VK Object MessagesChatSettings
+
+    acl -
+    active_ids -
+    admin_ids - Ids of chat admins
+    disappearing_chat_link -
+    friends_count -
+    is_disappearing -
+    is_group_channel -
+    is_service -
+    members_count -
+    owner_id -
+    permissions -
+    photo -
+    pinned_message -
+    state -
+    theme -
+    title - Chat title
+    """
+
+    acl: "MessagesChatSettingsAcl" = None
+    active_ids: typing.List[int] = None
+    admin_ids: typing.Optional[typing.List[int]] = None
+    disappearing_chat_link: typing.Optional[str] = None
+    friends_count: typing.Optional[int] = None
+    is_disappearing: typing.Optional[bool] = None
+    is_group_channel: typing.Optional[bool] = None
+    is_service: typing.Optional[bool] = None
+    members_count: typing.Optional[int] = None
+    owner_id: int = None
+    permissions: typing.Optional["MessagesChatSettingsPermissions"] = None
+    photo: typing.Optional["MessagesChatSettingsPhoto"] = None
+    pinned_message: typing.Optional["MessagesPinnedMessage"] = None
+    state: "MessagesChatSettingsState" = None
+    theme: typing.Optional[str] = None
+    title: str = None
+
+
+class MessagesChatSettingsAcl(BaseModel):
+    """VK Object MessagesChatSettingsAcl
+
+    can_call - Can you init group call in the chat
+    can_change_info - Can you change photo, description and name
+    can_change_invite_link - Can you change invite link for this chat
+    can_change_pin - Can you pin/unpin message for this chat
+    can_change_service_type - Can you change chat service type
+    can_copy_chat - Can you copy chat
+    can_invite - Can you invite other peers in chat
+    can_moderate - Can you moderate (delete) other users' messages
+    can_promote_users - Can you promote simple users to chat admins
+    can_see_invite_link - Can you see invite link for this chat
+    can_use_mass_mentions - Can you use mass mentions
+    """
+
+    can_call: bool = None
+    can_change_info: bool = None
+    can_change_invite_link: bool = None
+    can_change_pin: bool = None
+    can_change_service_type: typing.Optional[bool] = None
+    can_copy_chat: bool = None
+    can_invite: bool = None
+    can_moderate: bool = None
+    can_promote_users: bool = None
+    can_see_invite_link: bool = None
+    can_use_mass_mentions: bool = None
+
+
+class MessagesChatSettingsPermissionsInvite(enum.Enum):
+    """ Who can invite users to chat """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsChangeInfo(enum.Enum):
+    """ Who can change chat info """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsChangePin(enum.Enum):
+    """ Who can change pinned message """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsUseMassMentions(enum.Enum):
+    """ Who can use mass mentions """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsSeeInviteLink(enum.Enum):
+    """ Who can see invite link """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class WhoCanMakeCalls(enum.Enum):
+    """ Who can make calls """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class WhoCanChangeAdmins(enum.Enum):
+    """ Who can change admins """
+
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+
+
+class MessagesChatSettingsPermissions(BaseModel):
+    """VK Object MessagesChatSettingsPermissions
+
+    call - Who can make calls
+    change_admins - Who can change admins
+    change_info - Who can change chat info
+    change_pin - Who can change pinned message
+    invite - Who can invite users to chat
+    see_invite_link - Who can see invite link
+    use_mass_mentions - Who can use mass mentions
+    """
+
+    call: typing.Optional["WhoCanMakeCalls"] = None
+    change_admins: typing.Optional["WhoCanChangeAdmins"] = None
+    change_info: typing.Optional["MessagesChatSettingsPermissionsChangeInfo"] = None
+    change_pin: typing.Optional["MessagesChatSettingsPermissionsChangePin"] = None
+    invite: typing.Optional["MessagesChatSettingsPermissionsInvite"] = None
+    see_invite_link: typing.Optional["MessagesChatSettingsPermissionsSeeInviteLink"] = None
+    use_mass_mentions: typing.Optional["MessagesChatSettingsPermissionsUseMassMentions"] = None
+
+
+class MessagesChatSettingsPhoto(BaseModel):
+    """VK Object MessagesChatSettingsPhoto
+
+    is_default_photo - If provided photo is default
+    photo_100 - URL of the preview image with 100px in width
+    photo_200 - URL of the preview image with 200px in width
+    photo_50 - URL of the preview image with 50px in width
+    """
+
+    is_default_photo: typing.Optional[bool] = None
+    photo_100: typing.Optional[str] = None
+    photo_200: typing.Optional[str] = None
+    photo_50: typing.Optional[str] = None
+
+
+class MessagesChatSettingsState(enum.Enum):
+    """ MessagesChatSettingsState enum """
+
+    IN = "in"
+    KICKED = "kicked"
+    LEFT = "left"
+
+
+class MessagesConversationSpecialServiceType(enum.Enum):
+    """ MessagesConversationSpecialServiceType enum """
+
+    BUSINESS_NOTIFY = "business_notify"
 
 
 class MessagesConversation(BaseModel):
-    """VK Object Messages/MessagesConversation
+    """VK Object MessagesConversation
 
-    last_message_id - ID of the last message in conversation
+    can_write -
+    chat_settings -
+    current_keyboard -
+    important -
     in_read - Last message user have read
-    out_read - Last outcoming message have been read by the opponent
-    unread_count - Unread messages number
     is_marked_unread - Is this conversation uread
-    can_write - Information about whether you can write to the dialog
-    chat_settings - Chat settings
+    last_message_id - ID of the last message in conversation
     mentions - Ids of messages with mentions
+    message_request_data -
+    out_read - Last outcoming message have been read by the opponent
+    out_read_by -
+    peer -
+    push_settings -
+    sort_id -
+    special_service_type -
+    unanswered -
+    unread_count - Unread messages number
     """
 
-    peer: Optional["MessagesConversationPeer"] = None
-    last_message_id: Optional[int] = None
-    in_read: Optional[int] = None
-    out_read: Optional[int] = None
-    unread_count: Optional[int] = None
-    is_marked_unread: Optional[bool] = None
-    important: Optional[bool] = None
-    unanswered: Optional[bool] = None
-    can_write: Optional["MessagesConversationCanWrite"] = None
-    chat_settings: Optional["MessagesConversationChatSettings"] = None
-    special_service_type: Optional[str] = None
-    message_request_data: Optional["MessagesMessageRequestData"] = None
-    mentions: Optional[List[int]] = None
-    current_keyboard: Optional["MessagesKeyboard"] = None
+    can_write: typing.Optional["MessagesConversationCanWrite"] = None
+    chat_settings: typing.Optional["MessagesChatSettings"] = None
+    current_keyboard: typing.Optional["MessagesKeyboard"] = None
+    important: typing.Optional[bool] = None
+    in_read: int = None
+    is_marked_unread: typing.Optional[bool] = None
+    last_message_id: int = None
+    mentions: typing.Optional[typing.List[int]] = None
+    message_request_data: typing.Optional["MessagesMessageRequestData"] = None
+    out_read: int = None
+    out_read_by: typing.Optional["MessagesOutReadBy"] = None
+    peer: "MessagesConversationPeer" = None
+    push_settings: typing.Optional["MessagesPushSettings"] = None
+    sort_id: typing.Optional["MessagesConversationSortId"] = None
+    special_service_type: typing.Optional["MessagesConversationSpecialServiceType"] = None
+    unanswered: typing.Optional[bool] = None
+    unread_count: typing.Optional[int] = None
+
+
+class MessagesConversationCanWrite(BaseModel):
+    """VK Object MessagesConversationCanWrite"""
+
+    allowed: bool = None
+    reason: typing.Optional[int] = None
 
 
 class MessagesConversationMember(BaseModel):
-    """VK Object Messages/MessagesConversationMember
+    """VK Object MessagesConversationMember
 
     can_kick - Is it possible for user to kick this member
+    invited_by -
+    is_admin -
+    is_message_request -
+    is_owner -
+    join_date -
+    member_id -
     request_date - Message request date
     """
 
-    can_kick: Optional[bool] = None
-    invited_by: Optional[int] = None
-    is_admin: Optional[bool] = None
-    is_owner: Optional[bool] = None
-    is_message_request: Optional[bool] = None
-    join_date: Optional[int] = None
-    request_date: Optional[int] = None
-    member_id: Optional[int] = None
+    can_kick: typing.Optional[bool] = None
+    invited_by: typing.Optional[int] = None
+    is_admin: typing.Optional[bool] = None
+    is_message_request: typing.Optional[bool] = None
+    is_owner: typing.Optional[bool] = None
+    join_date: typing.Optional[int] = None
+    member_id: int = None
+    request_date: typing.Optional[int] = None
 
 
 class MessagesConversationPeer(BaseModel):
-    """VK Object Messages/MessagesConversationPeer"""
+    """VK Object MessagesConversationPeer"""
 
-    id: Optional[int] = None
-    local_id: Optional[int] = None
-    type: Optional["MessagesConversationPeerType"] = None
+    id: int = None
+    local_id: typing.Optional[int] = None
+    type: "MessagesConversationPeerType" = None
 
 
 class MessagesConversationPeerType(enum.Enum):
@@ -3581,82 +5009,76 @@ class MessagesConversationPeerType(enum.Enum):
     GROUP = "group"
 
 
+class MessagesConversationSortId(BaseModel):
+    """VK Object MessagesConversationSortId
+
+    major_id - Major id for sorting conversations
+    minor_id - Minor id for sorting conversations
+    """
+
+    major_id: int = None
+    minor_id: int = None
+
+
 class MessagesConversationWithMessage(BaseModel):
-    """VK Object Messages/MessagesConversationWithMessage"""
+    """VK Object MessagesConversationWithMessage"""
 
-    conversation: Optional["MessagesConversation"] = None
-    last_message: Optional["MessagesMessage"] = None
-
-
-class MessagesConversationCanWrite(BaseModel):
-    """VK Object Messages/MessagesConversationCanWrite
-
-    allowed - Can the user write to the dialog
-    reason - Reason code why the user can't write to the dialog
-    """
-
-    allowed: Optional[bool] = None
-    reason: Optional[int] = None
-
-
-class MessagesConversationChatSettings(BaseModel):
-    """VK Object Messages/MessagesConversationChatSettings
-
-    members_count - Number of chat members
-    friends_count - Number of friends in chat
-    owner_id - Id of chat owner
-    title - Chat title
-    pinned_message - Pinned message object
-    state - Status of the current user in the chat
-    photo - The cover image of the chat
-    admin_ids - IDs of admins
-    active_ids - IDs of the last users who wrote to the chat
-    is_group_channel - information about whether the conversation is a community channel
-    """
-
-    members_count: Optional[int] = None
-    friends_count: Optional[int] = None
-    owner_id: Optional[int] = None
-    title: Optional[str] = None
-    pinned_message: Optional["MessagesPinnedMessage"] = None
-    state: Optional[str] = None
-    photo: Optional["MessagesMessageActionPhoto"] = None
-    admin_ids: Optional[List[int]] = None
-    active_ids: Optional[List[int]] = None
-    is_group_channel: Optional[bool] = None
+    conversation: "MessagesConversation" = None
+    last_message: typing.Optional["MessagesMessage"] = None
 
 
 class MessagesForeignMessage(BaseModel):
-    """VK Object Messages/MessagesForeignMessage
+    """VK Object MessagesForeignMessage
 
+    attachments -
     conversation_message_id - Conversation message ID
     date - Date when the message was created
     from_id - Message author's ID
+    fwd_messages -
+    geo -
     id - Message ID
+    payload - Additional data sent along with message for developer convenience
     peer_id - Peer ID
+    reply_message -
     text - Message text
     update_time - Date when the message has been updated in Unixtime
     was_listened - Was the audio message inside already listened by you
-    payload - Additional data sent along with message for developer convenience
     """
 
-    attachments: Optional[List["MessagesMessageAttachment"]] = None
-    conversation_message_id: Optional[int] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
-    geo: Optional["BaseGeo"] = None
-    id: Optional[int] = None
-    peer_id: Optional[int] = None
-    reply_message: Optional["MessagesForeignMessage"] = None
-    text: Optional[str] = None
-    update_time: Optional[int] = None
-    was_listened: Optional[bool] = None
-    payload: Optional[str] = None
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = None
+    conversation_message_id: typing.Optional[int] = None
+    date: int = None
+    from_id: int = None
+    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = None
+    geo: typing.Optional["BaseGeo"] = None
+    id: typing.Optional[int] = None
+    payload: typing.Optional[str] = None
+    peer_id: typing.Optional[int] = None
+    reply_message: typing.Optional["MessagesForeignMessage"] = None
+    text: str = None
+    update_time: typing.Optional[int] = None
+    was_listened: typing.Optional[bool] = None
+
+
+class MessagesForward(BaseModel):
+    """VK Object MessagesForward
+
+    conversation_message_ids -
+    is_reply - If you need to reply to a message
+    message_ids -
+    owner_id - Messages owner_id
+    peer_id - Messages peer_id
+    """
+
+    conversation_message_ids: typing.Optional[typing.List[int]] = None
+    is_reply: typing.Optional[bool] = None
+    message_ids: typing.Optional[typing.List[int]] = None
+    owner_id: typing.Optional[int] = None
+    peer_id: typing.Optional[int] = None
 
 
 class MessagesGraffiti(BaseModel):
-    """VK Object Messages/MessagesGraffiti
+    """VK Object MessagesGraffiti
 
     access_key - Access key for graffiti
     height - Graffiti height
@@ -3666,40 +5088,43 @@ class MessagesGraffiti(BaseModel):
     width - Graffiti width
     """
 
-    access_key: Optional[str] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    url: Optional[str] = None
-    width: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    height: int = None
+    id: int = None
+    owner_id: int = None
+    url: str = None
+    width: int = None
 
 
 class MessagesHistoryAttachment(BaseModel):
-    """VK Object Messages/MessagesHistoryAttachment
+    """VK Object MessagesHistoryAttachment
 
-    message_id - Message ID
+    attachment -
+    forward_level - Forward level (optional)
     from_id - Message author's ID
+    message_id - Message ID
     """
 
-    attachment: Optional["MessagesHistoryMessageAttachment"] = None
-    message_id: Optional[int] = None
-    from_id: Optional[int] = None
+    attachment: "MessagesHistoryMessageAttachment" = None
+    forward_level: typing.Optional[int] = None
+    from_id: int = None
+    message_id: int = None
 
 
 class MessagesHistoryMessageAttachment(BaseModel):
-    """VK Object Messages/MessagesHistoryMessageAttachment"""
+    """VK Object MessagesHistoryMessageAttachment"""
 
-    audio: Optional["AudioAudio"] = None
-    audio_message: Optional["MessagesAudioMessage"] = None
-    doc: Optional["DocsDoc"] = None
-    graffiti: Optional["MessagesGraffiti"] = None
-    link: Optional["BaseLink"] = None
-    market: Optional["BaseLink"] = None
-    photo: Optional["PhotosPhoto"] = None
-    share: Optional["BaseLink"] = None
-    type: Optional["MessagesHistoryMessageAttachmentType"] = None
-    video: Optional["VideoVideo"] = None
-    wall: Optional["BaseLink"] = None
+    audio: typing.Optional["AudioAudio"] = None
+    audio_message: typing.Optional["MessagesAudioMessage"] = None
+    doc: typing.Optional["DocsDoc"] = None
+    graffiti: typing.Optional["MessagesGraffiti"] = None
+    link: typing.Optional["BaseLink"] = None
+    market: typing.Optional["BaseLink"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    share: typing.Optional["BaseLink"] = None
+    type: "MessagesHistoryMessageAttachmentType" = None
+    video: typing.Optional["VideoVideo"] = None
+    wall: typing.Optional["BaseLink"] = None
 
 
 class MessagesHistoryMessageAttachmentType(enum.Enum):
@@ -3718,30 +5143,42 @@ class MessagesHistoryMessageAttachmentType(enum.Enum):
 
 
 class MessagesKeyboard(BaseModel):
-    """VK Object Messages/MessagesKeyboard
+    """VK Object MessagesKeyboard
 
     author_id - Community or bot, which set this keyboard
+    buttons -
+    inline -
     one_time - Should this keyboard disappear on first use
     """
 
-    author_id: Optional[int] = None
-    buttons: Optional[List[dict]] = None
-    one_time: Optional[bool] = None
-    inline: Optional[bool] = None
+    author_id: typing.Optional[int] = None
+    buttons: typing.List["list"] = None
+    inline: typing.Optional[bool] = None
+    one_time: bool = None
+
+
+class ButtonColor(enum.Enum):
+    """ Button color """
+
+    DEFAULT = "default"
+    POSITIVE = "positive"
+    NEGATIVE = "negative"
+    PRIMARY = "primary"
 
 
 class MessagesKeyboardButton(BaseModel):
-    """VK Object Messages/MessagesKeyboardButton
+    """VK Object MessagesKeyboardButton
 
+    action -
     color - Button color
     """
 
-    action: Optional["MessagesKeyboardButtonAction"] = None
-    color: Optional[str] = None
+    action: "MessagesKeyboardButtonAction" = None
+    color: typing.Optional["ButtonColor"] = None
 
 
 class MessagesKeyboardButtonAction(BaseModel):
-    """VK Object Messages/MessagesKeyboardButtonAction
+    """VK Object MessagesKeyboardButtonAction
 
     app_id - Fragment value in app link like vk.com/app{app_id}_-654321#hash
     hash - Fragment value in app link like vk.com/app123456_-654321#{hash}
@@ -3752,38 +5189,39 @@ class MessagesKeyboardButtonAction(BaseModel):
     type - Button type
     """
 
-    app_id: Optional[int] = None
-    hash: Optional[str] = None
-    label: Optional[str] = None
-    link: Optional[str] = None
-    owner_id: Optional[int] = None
-    payload: Optional[str] = None
-    type: Optional["MessagesTemplateActionTypeNames"] = None
+    app_id: typing.Optional[int] = None
+    hash: typing.Optional[str] = None
+    label: typing.Optional[str] = None
+    link: typing.Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    payload: typing.Optional[str] = None
+    type: "MessagesTemplateActionTypeNames" = None
 
 
 class MessagesLastActivity(BaseModel):
-    """VK Object Messages/MessagesLastActivity
+    """VK Object MessagesLastActivity
 
     online - Information whether user is online
     time - Time when user was online in Unixtime
     """
 
-    online: Optional["BaseBoolInt"] = None
-    time: Optional[int] = None
+    online: "BaseBoolInt" = None
+    time: int = None
 
 
 class MessagesLongpollMessages(BaseModel):
-    """VK Object Messages/MessagesLongpollMessages
+    """VK Object MessagesLongpollMessages
 
     count - Total number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["MessagesMessage"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
 
 
 class MessagesLongpollParams(BaseModel):
-    """VK Object Messages/MessagesLongpollParams
+    """VK Object MessagesLongpollParams
 
     key - Key
     pts - Persistent timestamp
@@ -3791,135 +5229,105 @@ class MessagesLongpollParams(BaseModel):
     ts - Timestamp
     """
 
-    key: Optional[str] = None
-    pts: Optional[int] = None
-    server: Optional[str] = None
-    ts: Optional[str] = None
+    key: str = None
+    pts: typing.Optional[int] = None
+    server: str = None
+    ts: int = None
 
 
 class MessagesMessage(BaseModel):
-    """VK Object Messages/MessagesMessage
+    """VK Object MessagesMessage
 
+    action -
     admin_author_id - Only for messages from community. Contains user ID of community admin, who sent this message.
+    attachments -
     conversation_message_id - Unique auto-incremented number for all messages with this peer
     date - Date when the message has been sent in Unixtime
     deleted - Is it an deleted message
     from_id - Message author's ID
     fwd_messages - Forwarded messages
+    geo -
     id - Message ID
     important - Is it an important message
     is_cropped - this message is cropped for bot
+    is_hidden -
+    is_silent - Is silent message, push without sound
+    keyboard -
     members_count - Members number
     out - Information whether the message is outcoming
+    payload -
     peer_id - Peer ID
+    pinned_at - Date when the message has been pinned in Unixtime
     random_id - ID used for sending messages. It returned only for outgoing messages
+    ref -
+    ref_source -
+    reply_message -
     text - Message text
     update_time - Date when the message has been updated in Unixtime
     was_listened - Was the audio message inside already listened by you
-    pinned_at - Date when the message has been pinned in Unixtime
     """
 
-    action: Optional["MessagesMessageAction"] = None
-    admin_author_id: Optional[int] = None
-    attachments: Optional[List["MessagesMessageAttachment"]] = None
-    conversation_message_id: Optional[int] = None
-    date: Optional[int] = None
-    deleted: Optional["BaseBoolInt"] = None
-    from_id: Optional[int] = None
-    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
-    geo: Optional["BaseGeo"] = None
-    id: Optional[int] = None
-    important: Optional[bool] = None
-    is_hidden: Optional[bool] = None
-    is_cropped: Optional[bool] = None
-    keyboard: Optional["MessagesKeyboard"] = None
-    members_count: Optional[int] = None
-    out: Optional["BaseBoolInt"] = None
-    payload: Optional[str] = None
-    peer_id: Optional[int] = None
-    random_id: Optional[int] = None
-    ref: Optional[str] = None
-    ref_source: Optional[str] = None
-    reply_message: Optional["MessagesForeignMessage"] = None
-    text: Optional[str] = None
-    update_time: Optional[int] = None
-    was_listened: Optional[bool] = None
-    pinned_at: Optional[int] = None
-
-    @property
-    def chat_id(self) -> int:
-        return self.peer_id - 2_000_000_000
-
-    @property
-    def message_id(self) -> int:
-        return self.conversation_message_id or self.id
-
-    def get_wall_attachment(self) -> typing.List["WallWallpostFull"]:
-        result = [attachment.wall for attachment in self.attachments if attachment.wall]
-        return result if result else None
-
-    def get_wall_reply_attachment(self) -> typing.List["WallWallComment"]:
-        result = [
-            attachment.wall_reply
-            for attachment in self.attachments
-            if attachment.wall_reply
-        ]
-        return result if result else None
-
-    def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:
-        return [attachment.photo for attachment in self.attachments if attachment.photo]
-
-    def get_video_attachments(self) -> typing.List["VideoVideo"]:
-        return [attachment.video for attachment in self.attachments if attachment.video]
-
-    def get_doc_attachments(self) -> typing.List["DocsDoc"]:
-        return [attachment.doc for attachment in self.attachments if attachment.doc]
-
-    def get_audio_attachments(self) -> typing.List["AudioAudio"]:
-        return [attachment.audio for attachment in self.attachments if attachment.audio]
-
-    def get_message_id(self) -> int:
-        return self.id or self.conversation_message_id
-
-    def get_payload_json(
-        self,
-        throw_error: bool = False,
-        unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
-        json: Any = __import__("json"),
-    ) -> typing.Union[dict, None]:
-        try:
-            return json.loads(self.payload)
-        except (json.decoder.JSONDecodeError, TypeError) as e:
-            if throw_error:
-                raise e
-        return unpack_failure(self.payload)
+    action: typing.Optional["MessagesMessageAction"] = None
+    admin_author_id: typing.Optional[int] = None
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = None
+    conversation_message_id: typing.Optional[int] = None
+    date: int = None
+    deleted: typing.Optional["BaseBoolInt"] = None
+    from_id: int = None
+    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = None
+    geo: typing.Optional["BaseGeo"] = None
+    id: int = None
+    important: typing.Optional[bool] = None
+    is_cropped: typing.Optional[bool] = None
+    is_hidden: typing.Optional[bool] = None
+    is_silent: typing.Optional[bool] = None
+    keyboard: typing.Optional["MessagesKeyboard"] = None
+    members_count: typing.Optional[int] = None
+    out: "BaseBoolInt" = None
+    payload: typing.Optional[str] = None
+    peer_id: int = None
+    pinned_at: typing.Optional[int] = None
+    random_id: typing.Optional[int] = None
+    ref: typing.Optional[str] = None
+    ref_source: typing.Optional[str] = None
+    reply_message: typing.Optional["MessagesForeignMessage"] = None
+    text: str = None
+    update_time: typing.Optional[int] = None
+    was_listened: typing.Optional[bool] = None
 
 
 class MessagesMessageAction(BaseModel):
-    """VK Object Messages/MessagesMessageAction
+    """VK Object MessagesMessageAction
 
     conversation_message_id - Message ID
     email - Email address for chat_invite_user or chat_kick_user actions
     member_id - User or email peer ID
     message - Message body of related message
+    photo -
     text - New chat title for chat_create and chat_title_update actions
+    type -
     """
 
-    conversation_message_id: Optional[int] = None
-    email: Optional[str] = None
-    member_id: Optional[int] = None
-    message: Optional[str] = None
-    photo: Optional["MessagesMessageActionPhoto"] = None
-    text: Optional[str] = None
-    type: Optional["MessagesMessageActionStatus"] = None
+    conversation_message_id: typing.Optional[int] = None
+    email: typing.Optional[str] = None
+    member_id: typing.Optional[int] = None
+    message: typing.Optional[str] = None
+    photo: typing.Optional["MessagesMessageActionPhoto"] = None
+    text: typing.Optional[str] = None
+    type: "MessagesMessageActionStatus" = None
 
 
 class MessagesMessageActionPhoto(BaseModel):
-    """VK Object Messages/MessagesMessageActionPhoto"""
+    """VK Object MessagesMessageActionPhoto
 
-    photo_100: Optional[str] = None
-    photo_200: Optional[str] = None
-    photo_50: Optional[str] = None
+    photo_100 - URL of the preview image with 100px in width
+    photo_200 - URL of the preview image with 200px in width
+    photo_50 - URL of the preview image with 50px in width
+    """
+
+    photo_100: str = None
+    photo_200: str = None
+    photo_50: str = None
 
 
 class MessagesMessageActionStatus(enum.Enum):
@@ -3934,27 +5342,30 @@ class MessagesMessageActionStatus(enum.Enum):
     CHAT_PIN_MESSAGE = "chat_pin_message"
     CHAT_UNPIN_MESSAGE = "chat_unpin_message"
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
+    CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
 
 
 class MessagesMessageAttachment(BaseModel):
-    """VK Object Messages/MessagesMessageAttachment"""
+    """VK Object MessagesMessageAttachment"""
 
-    audio: Optional["AudioAudio"] = None
-    poll: Optional["PollsPoll"] = None
-    audio_message: Optional["MessagesAudioMessage"] = None
-    doc: Optional["DocsDoc"] = None
-    gift: Optional["GiftsLayout"] = None
-    graffiti: Optional["MessagesGraffiti"] = None
-    link: Optional["BaseLink"] = None
-    market: Optional["MarketMarketItem"] = None
-    market_album: Optional["MarketMarketAlbum"] = None
-    photo: Optional["PhotosPhoto"] = None
-    sticker: Optional["BaseSticker"] = None
-    story: Optional["StoriesStory"] = None
-    type: Optional["MessagesMessageAttachmentType"] = None
-    video: Optional["VideoVideo"] = None
-    wall: Optional["WallWallpostFull"] = None
-    wall_reply: Optional["WallWallComment"] = None
+    audio: typing.Optional["AudioAudio"] = None
+    audio_message: typing.Optional["MessagesAudioMessage"] = None
+    call: typing.Optional["CallsCall"] = None
+    doc: typing.Optional["DocsDoc"] = None
+    gift: typing.Optional["GiftsLayout"] = None
+    graffiti: typing.Optional["MessagesGraffiti"] = None
+    group_call_in_progress: typing.Optional["GroupCallInProgress"] = None
+    link: typing.Optional["BaseLink"] = None
+    market: typing.Optional["MarketMarketItem"] = None
+    market_market_album: typing.Optional["MarketMarketAlbum"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    poll: typing.Optional["PollsPoll"] = None
+    sticker: typing.Optional["BaseSticker"] = None
+    story: typing.Optional["StoriesStory"] = None
+    type: "MessagesMessageAttachmentType" = None
+    video: typing.Optional["VideoVideo"] = None
+    wall: typing.Optional["WallWallpostFull"] = None
+    wall_reply: typing.Optional["WallWallComment"] = None
 
 
 class MessagesMessageAttachmentType(enum.Enum):
@@ -3964,7 +5375,6 @@ class MessagesMessageAttachmentType(enum.Enum):
     AUDIO = "audio"
     VIDEO = "video"
     DOC = "doc"
-    POLL = "poll"
     LINK = "link"
     MARKET = "market"
     MARKET_ALBUM = "market_album"
@@ -3973,38 +5383,85 @@ class MessagesMessageAttachmentType(enum.Enum):
     WALL = "wall"
     WALL_REPLY = "wall_reply"
     ARTICLE = "article"
+    POLL = "poll"
+    CALL = "call"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
 
 
 class MessagesMessageRequestData(BaseModel):
-    """VK Object Messages/MessagesMessageRequestData
+    """VK Object MessagesMessageRequestData
 
-    status - Status of message request
     inviter_id - Message request sender id
     request_date - Message request date
+    status - Status of message request
     """
 
-    status: Optional[str] = None
-    inviter_id: Optional[int] = None
-    request_date: Optional[int] = None
+    inviter_id: typing.Optional[int] = None
+    request_date: typing.Optional[int] = None
+    status: typing.Optional[str] = None
+
+
+class MessagesMessagesArray(BaseModel):
+    """VK Object MessagesMessagesArray"""
+
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+
+
+class MessagesOutReadBy(BaseModel):
+    """VK Object MessagesOutReadBy"""
+
+    count: typing.Optional[int] = None
+    member_ids: typing.Optional[typing.List[int]] = None
 
 
 class MessagesPinnedMessage(BaseModel):
-    """VK Object Messages/MessagesPinnedMessage"""
+    """VK Object MessagesPinnedMessage
 
-    attachments: Optional[List["MessagesMessageAttachment"]] = None
-    conversation_message_id: Optional[int] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
-    geo: Optional["BaseGeo"] = None
-    id: Optional[int] = None
-    peer_id: Optional[int] = None
-    reply_message: Optional["MessagesForeignMessage"] = None
-    text: Optional[str] = None
-    keyboard: Optional["MessagesKeyboard"] = None
+    attachments -
+    conversation_message_id - Unique auto-incremented number for all messages with this peer
+    date - Date when the message has been sent in Unixtime
+    from_id - Message author's ID
+    fwd_messages - Forwarded messages
+    geo -
+    id - Message ID
+    keyboard -
+    peer_id - Peer ID
+    reply_message -
+    text - Message text
+    """
+
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = None
+    conversation_message_id: typing.Optional[int] = None
+    date: int = None
+    from_id: int = None
+    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = None
+    geo: typing.Optional["BaseGeo"] = None
+    id: int = None
+    keyboard: typing.Optional["MessagesKeyboard"] = None
+    peer_id: int = None
+    reply_message: typing.Optional["MessagesForeignMessage"] = None
+    text: str = None
+
+
+class MessagesPushSettings(BaseModel):
+    """VK Object MessagesPushSettings
+
+    disabled_forever - Information whether push notifications are disabled forever
+    disabled_mass_mentions - Information whether the mass mentions (like '@all', '@online') are disabled
+    disabled_mentions - Information whether the mentions are disabled
+    disabled_until - Time until what notifications are disabled
+    no_sound - Information whether the sound is on
+    """
+
+    disabled_forever: bool = None
+    disabled_mass_mentions: typing.Optional[bool] = None
+    disabled_mentions: typing.Optional[bool] = None
+    disabled_until: typing.Optional[int] = None
+    no_sound: bool = None
 
 
 class MessagesTemplateActionTypeNames(enum.Enum):
@@ -4017,6 +5474,24 @@ class MessagesTemplateActionTypeNames(enum.Enum):
     OPEN_APP = "open_app"
     OPEN_PHOTO = "open_photo"
     OPEN_LINK = "open_link"
+    CALLBACK = "callback"
+    INTENT_SUBSCRIBE = "intent_subscribe"
+    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
+
+
+class UsersUserXtrType(UsersUser):
+    """VK Object UsersUserXtrType"""
+
+    type: typing.Optional["UsersUserType"] = None
+
+
+class MessagesUserXtrInvitedBy(UsersUserXtrType):
+    """VK Object MessagesUserXtrInvitedBy
+
+    invited_by - ID of the inviter
+    """
+
+    invited_by: typing.Optional[int] = None
 
 
 class NewsfeedCommentsFilters(enum.Enum):
@@ -4030,14 +5505,22 @@ class NewsfeedCommentsFilters(enum.Enum):
 
 
 class NewsfeedEventActivity(BaseModel):
-    """VK Object Newsfeed/NewsfeedEventActivity"""
+    """VK Object NewsfeedEventActivity
 
-    address: Optional[str] = None
-    button_text: Optional[str] = None
-    friends: Optional[List[int]] = None
-    member_status: Optional["GroupsGroupFullMemberStatus"] = None
-    text: Optional[str] = None
-    time: Optional[int] = None
+    address - address of event
+    button_text - text of attach
+    friends - array of friends ids
+    member_status - Current user's member status
+    text - text of attach
+    time - event start time
+    """
+
+    address: typing.Optional[str] = None
+    button_text: str = None
+    friends: typing.List[int] = None
+    member_status: "GroupsGroupFullMemberStatus" = None
+    text: str = None
+    time: typing.Optional[int] = None
 
 
 class NewsfeedFilters(enum.Enum):
@@ -4048,7 +5531,6 @@ class NewsfeedFilters(enum.Enum):
     PHOTO_TAG = "photo_tag"
     WALL_PHOTO = "wall_photo"
     FRIEND = "friend"
-    RECOMMENDED_GROUPS = "recommended_groups"
     NOTE = "note"
     AUDIO = "audio"
     VIDEO = "video"
@@ -4067,173 +5549,390 @@ class NewsfeedIgnoreItemType(enum.Enum):
     AUDIO = "audio"
 
 
+class NewsfeedItemBase(BaseModel):
+    """VK Object NewsfeedItemBase
+
+    date - Date when item has been added in Unixtime
+    source_id - Item source ID
+    type -
+    """
+
+    date: int = None
+    source_id: int = None
+    type: "NewsfeedNewsfeedItemType" = None
+
+
+class NewsfeedItemAudio(NewsfeedItemBase):
+    """VK Object NewsfeedItemAudio
+
+    audio -
+    post_id - Post ID
+    """
+
+    audio: typing.Optional["NewsfeedItemAudioAudio"] = None
+    post_id: typing.Optional[int] = None
+
+
 class NewsfeedItemAudioAudio(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemAudioAudio
+    """VK Object NewsfeedItemAudioAudio
 
     count - Audios number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["AudioAudio"]] = None
-
-
-class NewsfeedItemBase(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemBase
-
-    source_id - Item source ID
-    date - Date when item has been added in Unixtime
-    """
-
-    type: Optional["NewsfeedNewsfeedItemType"] = None
-    source_id: Optional[int] = None
-    date: Optional[int] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AudioAudio"]] = None
 
 
 class NewsfeedItemDigest(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemDigest
+    """VK Object NewsfeedItemDigest
 
     feed_id - id of feed in digest
+    footer -
+    header -
+    items -
+    main_post_ids -
     template - type of digest
+    track_code -
     """
 
-    button_text: Optional[str] = None
-    feed_id: Optional[str] = None
-    items: Optional[List["WallWallpost"]] = None
-    main_post_ids: Optional[List[str]] = None
-    template: Optional[str] = None
-    title: Optional[str] = None
-    track_code: Optional[str] = None
+    feed_id: typing.Optional[str] = None
+    footer: typing.Optional["NewsfeedItemDigestFooter"] = None
+    header: typing.Optional["NewsfeedItemDigestHeader"] = None
+    items: typing.Optional[typing.List["NewsfeedItemDigestItem"]] = None
+    main_post_ids: typing.Optional[typing.List[str]] = None
+    template: typing.Optional[str] = None
+    track_code: typing.Optional[str] = None
+
+
+class NewsfeedItemDigestButtonStyle(enum.Enum):
+    """ NewsfeedItemDigestButtonStyle enum """
+
+    PRIMARY = "primary"
+
+
+class NewsfeedItemDigestButton(BaseModel):
+    """VK Object NewsfeedItemDigestButton"""
+
+    style: typing.Optional["NewsfeedItemDigestButtonStyle"] = None
+    title: str = None
+
+
+class NewsfeedItemDigestFooterStyle(enum.Enum):
+    """ NewsfeedItemDigestFooterStyle enum """
+
+    TEXT = "text"
+    BUTTON = "button"
+
+
+class NewsfeedItemDigestFooter(BaseModel):
+    """VK Object NewsfeedItemDigestFooter
+
+    button -
+    style -
+    text - text for invite to enable smart feed
+    """
+
+    button: typing.Optional["NewsfeedItemDigestButton"] = None
+    style: "NewsfeedItemDigestFooterStyle" = None
+    text: str = None
+
+
+class NewsfeedItemDigestFullItemStyle(enum.Enum):
+    """ NewsfeedItemDigestFullItemStyle enum """
+
+    DEFAULT = "default"
+    INVERSED = "inversed"
+    SPOTLIGHT = "spotlight"
+
+
+class NewsfeedItemDigestFullItem(BaseModel):
+    """VK Object NewsfeedItemDigestFullItem"""
+
+    attachment: typing.Optional["WallWallpostAttachment"] = None
+    attachment_index: typing.Optional[int] = None
+    post: "WallWallpost" = None
+    source_name: typing.Optional[str] = None
+    style: typing.Optional["NewsfeedItemDigestFullItemStyle"] = None
+    text: typing.Optional[str] = None
+
+
+class NewsfeedItemDigestHeaderStyle(enum.Enum):
+    """ NewsfeedItemDigestHeaderStyle enum """
+
+    SINGLELINE = "singleline"
+    MULTILINE = "multiline"
+
+
+class NewsfeedItemDigestHeader(BaseModel):
+    """VK Object NewsfeedItemDigestHeader
+
+    button -
+    style -
+    subtitle - Subtitle of the header, when title have two strings
+    title - Title of the header
+    """
+
+    button: typing.Optional["NewsfeedItemDigestButton"] = None
+    style: "NewsfeedItemDigestHeaderStyle" = None
+    subtitle: typing.Optional[str] = None
+    title: str = None
+
+
+class WallWallpost(BaseModel):
+    """VK Object WallWallpost
+
+    access_key - Access key to private object
+    attachments -
+    copyright - Information about the source of the post
+    date - Date of publishing in Unixtime
+    edited - Date of editing in Unixtime
+    from_id - Post author ID
+    geo -
+    id - Post ID
+    is_archived - Is post archived, only for post owners
+    is_favorite - Information whether the post in favorites list
+    likes - Count of likes
+    owner_id - Wall owner's ID
+    parents_stack - If post type 'reply', contains original parent IDs stack
+    post_id - If post type 'reply', contains original post ID
+    post_source -
+    post_type -
+    poster -
+    reposts -
+    signer_id - Post signer ID
+    text - Post text
+    views - Count of views
+    """
+
+    access_key: typing.Optional[str] = None
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = None
+    copyright: typing.Optional["WallPostCopyright"] = None
+    date: typing.Optional[int] = None
+    edited: typing.Optional[int] = None
+    from_id: typing.Optional[int] = None
+    geo: typing.Optional["WallGeo"] = None
+    id: typing.Optional[int] = None
+    is_archived: typing.Optional[bool] = None
+    is_favorite: typing.Optional[bool] = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    owner_id: typing.Optional[int] = None
+    parents_stack: typing.Optional[typing.List[int]] = None
+    post_id: typing.Optional[int] = None
+    post_source: typing.Optional["WallPostSource"] = None
+    post_type: typing.Optional["WallPostType"] = None
+    poster: typing.Optional[typing.Any] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    signer_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+    views: typing.Optional["WallViews"] = None
+
+
+class NewsfeedItemDigestItem(WallWallpost):
+    """VK Object NewsfeedItemDigestItem"""
+
+    pass
 
 
 class NewsfeedItemFriend(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemFriend"""
+    """VK Object NewsfeedItemFriend"""
 
-    friends: Optional["NewsfeedItemFriendFriends"] = None
+    friends: typing.Optional["NewsfeedItemFriendFriends"] = None
 
 
 class NewsfeedItemFriendFriends(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemFriendFriends
+    """VK Object NewsfeedItemFriendFriends
 
     count - Number of friends has been added
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["BaseUserId"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["BaseUserId"]] = None
 
 
 class NewsfeedItemHolidayRecommendationsBlockHeader(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemHolidayRecommendationsBlockHeader
+    """VK Object NewsfeedItemHolidayRecommendationsBlockHeader
 
-    title - Title of the header
+    action -
+    image -
     subtitle - Subtitle of the header
+    title - Title of the header
     """
 
-    title: Optional[str] = None
-    subtitle: Optional[str] = None
-    image: Optional[List["BaseImage"]] = None
-    action: Optional["BaseLinkButtonAction"] = None
+    action: typing.Optional["BaseLinkButtonAction"] = None
+    image: typing.Optional[typing.List["BaseImage"]] = None
+    subtitle: typing.Optional[str] = None
+    title: typing.Optional[str] = None
 
 
-class NewsfeedItemNote(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemNote"""
+class WallCarouselBase(BaseModel):
+    """VK Object WallCarouselBase
 
-    notes: Optional["NewsfeedItemNoteNotes"] = None
-
-
-class NewsfeedItemNoteNotes(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemNoteNotes
-
-    count - Notes number
+    carousel_offset - Index of current carousel element
     """
 
-    count: Optional[int] = None
-    items: Optional[List["NewsfeedNewsfeedNote"]] = None
+    carousel_offset: typing.Optional[int] = None
+
+
+class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
+    """VK Object NewsfeedItemPhoto
+
+    photos -
+    post_id - Post ID
+    """
+
+    photos: typing.Optional["NewsfeedItemPhotoPhotos"] = None
+    post_id: typing.Optional[int] = None
 
 
 class NewsfeedItemPhotoPhotos(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemPhotoPhotos
+    """VK Object NewsfeedItemPhotoPhotos
 
     count - Photos number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["NewsfeedNewsfeedPhoto"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NewsfeedNewsfeedPhoto"]] = None
+
+
+class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
+    """VK Object NewsfeedItemPhotoTag
+
+    photo_tags -
+    post_id - Post ID
+    """
+
+    photo_tags: typing.Optional["NewsfeedItemPhotoTagPhotoTags"] = None
+    post_id: typing.Optional[int] = None
 
 
 class NewsfeedItemPhotoTagPhotoTags(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemPhotoTagPhotoTags
+    """VK Object NewsfeedItemPhotoTagPhotoTags
 
     count - Tags number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["NewsfeedNewsfeedPhoto"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["NewsfeedNewsfeedPhoto"]] = None
 
 
 class NewsfeedItemPromoButton(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemPromoButton"""
+    """VK Object NewsfeedItemPromoButton"""
 
-    text: Optional[str] = None
-    title: Optional[str] = None
-    action: Optional["NewsfeedItemPromoButtonAction"] = None
-    images: Optional[List["NewsfeedItemPromoButtonImage"]] = None
-    track_code: Optional[str] = None
+    action: typing.Optional["NewsfeedItemPromoButtonAction"] = None
+    images: typing.Optional[typing.List["NewsfeedItemPromoButtonImage"]] = None
+    text: typing.Optional[str] = None
+    title: typing.Optional[str] = None
+    track_code: typing.Optional[str] = None
 
 
 class NewsfeedItemPromoButtonAction(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemPromoButtonAction"""
+    """VK Object NewsfeedItemPromoButtonAction"""
 
-    url: Optional[str] = None
-    type: Optional[str] = None
-    target: Optional[str] = None
+    target: typing.Optional[str] = None
+    type: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 class NewsfeedItemPromoButtonImage(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemPromoButtonImage"""
+    """VK Object NewsfeedItemPromoButtonImage"""
 
-    width: Optional[int] = None
-    height: Optional[int] = None
-    url: Optional[str] = None
+    height: typing.Optional[int] = None
+    url: typing.Optional[str] = None
+    width: typing.Optional[int] = None
 
 
 class NewsfeedItemTopic(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemTopic
+    """VK Object NewsfeedItemTopic
 
+    comments -
+    likes -
     post_id - Topic post ID
     text - Post text
     """
 
-    comments: Optional["BaseCommentsInfo"] = None
-    likes: Optional["BaseLikesInfo"] = None
-    post_id: Optional[int] = None
-    text: Optional[str] = None
+    comments: typing.Optional["BaseCommentsInfo"] = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    post_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+
+
+class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
+    """VK Object NewsfeedItemVideo"""
+
+    video: typing.Optional["NewsfeedItemVideoVideo"] = None
 
 
 class NewsfeedItemVideoVideo(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemVideoVideo
+    """VK Object NewsfeedItemVideoVideo
 
     count - Tags number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List["VideoVideo"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["VideoVideo"]] = None
+
+
+class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase):
+    """VK Object NewsfeedItemWallpost
+
+    activity -
+    attachments -
+    comments -
+    copy_history -
+    feedback -
+    geo -
+    is_favorite - Information whether the post in favorites list
+    likes -
+    marked_as_ads - Information whether the post is marked as ads
+    post_id - Post ID
+    post_source -
+    post_type -
+    reposts -
+    short_text_rate - Preview length control parameter
+    signer_id - Post signer ID
+    text - Post text
+    views - Count of views
+    """
+
+    activity: typing.Optional["NewsfeedEventActivity"] = None
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = None
+    comments: typing.Optional["BaseCommentsInfo"] = None
+    copy_history: typing.Optional[typing.List["WallWallpost"]] = None
+    feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None
+    geo: typing.Optional["BaseGeo"] = None
+    is_favorite: typing.Optional[bool] = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    marked_as_ads: typing.Optional["BaseBoolInt"] = None
+    post_id: typing.Optional[int] = None
+    post_source: typing.Optional["WallPostSource"] = None
+    post_type: typing.Optional["NewsfeedItemWallpostType"] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    short_text_rate: typing.Optional[int] = None
+    signer_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+    views: typing.Optional["WallViews"] = None
 
 
 class NewsfeedItemWallpostFeedback(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemWallpostFeedback"""
+    """VK Object NewsfeedItemWallpostFeedback"""
 
-    type: Optional["NewsfeedItemWallpostFeedbackType"] = None
-    question: Optional[str] = None
-    answers: Optional[List["NewsfeedItemWallpostFeedbackAnswer"]] = None
-    stars_count: Optional[int] = None
-    gratitude: Optional[str] = None
+    answers: typing.Optional[typing.List["NewsfeedItemWallpostFeedbackAnswer"]] = None
+    gratitude: typing.Optional[str] = None
+    question: str = None
+    stars_count: typing.Optional[int] = None
+    type: "NewsfeedItemWallpostFeedbackType" = None
 
 
 class NewsfeedItemWallpostFeedbackAnswer(BaseModel):
-    """VK Object Newsfeed/NewsfeedItemWallpostFeedbackAnswer"""
+    """VK Object NewsfeedItemWallpostFeedbackAnswer"""
 
-    title: Optional[str] = None
-    id: Optional[str] = None
+    id: str = None
+    title: str = None
 
 
 class NewsfeedItemWallpostFeedbackType(enum.Enum):
@@ -4252,28 +5951,41 @@ class NewsfeedItemWallpostType(enum.Enum):
 
 
 class NewsfeedList(BaseModel):
-    """VK Object Newsfeed/NewsfeedList
+    """VK Object NewsfeedList
 
     id - List ID
     title - List title
     """
 
-    id: Optional[int] = None
-    title: Optional[str] = None
+    id: int = None
+    title: str = None
 
 
 class NewsfeedListFull(NewsfeedList):
-    """VK Object Newsfeed/NewsfeedListFull
+    """VK Object NewsfeedListFull
 
     no_reposts - Information whether reposts hiding is enabled
+    source_ids -
     """
 
-    no_reposts: Optional["BaseBoolInt"] = None
-    source_ids: Optional[List[int]] = None
+    no_reposts: typing.Optional["BaseBoolInt"] = None
+    source_ids: typing.Optional[typing.List[int]] = None
 
 
-class NewsfeedNewsfeedItem(BaseModel):
-    """VK Object Newsfeed/NewsfeedNewsfeedItem"""
+class NewsfeedNewsfeedItem(
+    NewsfeedItemWallpost,
+    NewsfeedItemPhoto,
+    NewsfeedItemPhotoTag,
+    NewsfeedItemFriend,
+    NewsfeedItemAudio,
+    NewsfeedItemVideo,
+    NewsfeedItemTopic,
+    NewsfeedItemDigest,
+    NewsfeedItemPromoButton
+):
+    """VK Object NewsfeedNewsfeedItem"""
+
+    pass
 
 
 class NewsfeedNewsfeedItemType(enum.Enum):
@@ -4284,58 +5996,98 @@ class NewsfeedNewsfeedItemType(enum.Enum):
     PHOTO_TAG = "photo_tag"
     WALL_PHOTO = "wall_photo"
     FRIEND = "friend"
-    NOTE = "note"
     AUDIO = "audio"
     VIDEO = "video"
     TOPIC = "topic"
     DIGEST = "digest"
     STORIES = "stories"
-    TAGS_SUGGESTIONS = "tags_suggestions"
 
 
-class NewsfeedNewsfeedNote(BaseModel):
-    """VK Object Newsfeed/NewsfeedNewsfeedNote
+class PhotosPhoto(BaseModel):
+    """VK Object PhotosPhoto
 
-    comments - Comments Number
-    id - Note ID
-    owner_id - integer
-    title - Note title
+    access_key - Access key for the photo
+    album_id - Album ID
+    can_comment - Information whether current user can comment the photo
+    date - Date when uploaded
+    has_tags - Whether photo has attached tag links
+    height - Original photo height
+    id - Photo ID
+    images -
+    lat - Latitude
+    long - Longitude
+    owner_id - Photo owner's ID
+    photo_256 - URL of image with 2560 px width
+    place -
+    post_id - Post ID
+    sizes -
+    text - Photo caption
+    user_id - ID of the user who have uploaded the photo
+    width - Original photo width
     """
 
-    comments: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    title: Optional[str] = None
+    access_key: typing.Optional[str] = None
+    album_id: int = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    date: int = None
+    has_tags: bool = None
+    height: typing.Optional[int] = None
+    id: int = None
+    images: typing.Optional[typing.List["PhotosImage"]] = None
+    lat: typing.Optional[int] = None
+    long: typing.Optional[int] = None
+    owner_id: int = None
+    photo_256: typing.Optional[str] = None
+    place: typing.Optional[str] = None
+    post_id: typing.Optional[int] = None
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    text: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
+
+
+class NewsfeedNewsfeedPhoto(PhotosPhoto):
+    """VK Object NewsfeedNewsfeedPhoto
+
+    can_repost - Information whether current user can repost the photo
+    comments -
+    likes -
+    """
+
+    can_repost: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["BaseObjectCount"] = None
+    likes: typing.Optional["BaseLikes"] = None
 
 
 class NotesNote(BaseModel):
-    """VK Object Notes/NotesNote
+    """VK Object NotesNote
 
     can_comment - Information whether current user can comment the note
     comments - Comments number
     date - Date when the note has been created in Unixtime
     id - Note ID
     owner_id - Note owner's ID
+    read_comments -
     text - Note text
     text_wiki - Note text in wiki format
     title - Note title
     view_url - URL of the page with note preview
     """
 
-    read_comments: Optional[int] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    comments: Optional[int] = None
-    date: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    text: Optional[str] = None
-    text_wiki: Optional[str] = None
-    title: Optional[str] = None
-    view_url: Optional[str] = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    comments: int = None
+    date: int = None
+    id: int = None
+    owner_id: int = None
+    read_comments: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+    text_wiki: typing.Optional[str] = None
+    title: str = None
+    view_url: str = None
 
 
 class NotesNoteComment(BaseModel):
-    """VK Object Notes/NotesNoteComment
+    """VK Object NotesNoteComment
 
     date - Date when the comment has beed added in Unixtime
     id - Comment ID
@@ -4346,144 +6098,319 @@ class NotesNoteComment(BaseModel):
     uid - Comment author's ID
     """
 
-    date: Optional[int] = None
-    id: Optional[int] = None
-    message: Optional[str] = None
-    nid: Optional[int] = None
-    oid: Optional[int] = None
-    reply_to: Optional[int] = None
-    uid: Optional[int] = None
+    date: int = None
+    id: int = None
+    message: str = None
+    nid: int = None
+    oid: int = None
+    reply_to: typing.Optional[int] = None
+    uid: int = None
 
 
 class NotificationsFeedback(BaseModel):
-    """VK Object Notifications/NotificationsFeedback
+    """VK Object NotificationsFeedback
 
+    attachments -
     from_id - Reply author's ID
+    geo -
     id - Item ID
+    likes -
     text - Reply text
     to_id - Wall owner's ID
     """
 
-    attachments: Optional[List["WallWallpostAttachment"]] = None
-    from_id: Optional[int] = None
-    geo: Optional["BaseGeo"] = None
-    id: Optional[int] = None
-    likes: Optional["BaseLikesInfo"] = None
-    text: Optional[str] = None
-    to_id: Optional[int] = None
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = None
+    from_id: typing.Optional[int] = None
+    geo: typing.Optional["BaseGeo"] = None
+    id: typing.Optional[int] = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    text: typing.Optional[str] = None
+    to_id: typing.Optional[int] = None
 
 
 class NotificationsNotification(BaseModel):
-    """VK Object Notifications/NotificationsNotification
+    """VK Object NotificationsNotification
 
     date - Date when the event has been occurred
+    feedback -
+    parent -
+    reply -
     type - Notification type
     """
 
-    date: Optional[int] = None
-    feedback: Optional["NotificationsFeedback"] = None
-    parent: Optional["NotificationsNotificationParent"] = None
-    reply: Optional["NotificationsReply"] = None
-    type: Optional[str] = None
+    date: typing.Optional[int] = None
+    feedback: typing.Optional["NotificationsFeedback"] = None
+    parent: typing.Optional["NotificationsNotificationParent"] = None
+    reply: typing.Optional["NotificationsReply"] = None
+    type: typing.Optional[str] = None
 
 
-class NotificationsNotificationItem(BaseModel):
-    """VK Object Notifications/NotificationsNotificationItem"""
+class NotificationsNotificationItem(NotificationsNotification):
+    """VK Object NotificationsNotificationItem"""
+
+    pass
+
+
+class WallWallpostToId(BaseModel):
+    """VK Object WallWallpostToId
+
+    attachments -
+    comments -
+    copy_owner_id - ID of the source post owner
+    copy_post_id - ID of the source post
+    date - Date of publishing in Unixtime
+    from_id - Post author ID
+    geo -
+    id - Post ID
+    is_favorite - Information whether the post in favorites list
+    likes -
+    post_id - wall post ID (if comment)
+    post_source -
+    post_type -
+    reposts -
+    signer_id - Post signer ID
+    text - Post text
+    to_id - Wall owner's ID
+    """
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = None
+    comments: typing.Optional["BaseCommentsInfo"] = None
+    copy_owner_id: typing.Optional[int] = None
+    copy_post_id: typing.Optional[int] = None
+    date: typing.Optional[int] = None
+    from_id: typing.Optional[int] = None
+    geo: typing.Optional["WallGeo"] = None
+    id: typing.Optional[int] = None
+    is_favorite: typing.Optional[bool] = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    post_id: typing.Optional[int] = None
+    post_source: typing.Optional["WallPostSource"] = None
+    post_type: typing.Optional["WallPostType"] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    signer_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+    to_id: typing.Optional[int] = None
+
+
+class VideoVideo(BaseModel):
+    """VK Object VideoVideo
+
+    access_key - Video access key
+    added - 1 if video is added to user's albums
+    adding_date - Date when the video has been added in Unixtime
+    balance - Live donations balance
+    can_add - Information whether current user can add the video
+    can_add_to_faves - Information whether current user can add the video to favourites
+    can_attach_link - Information whether current user can attach action button to the video
+    can_comment - Information whether current user can comment the video
+    can_edit - Information whether current user can edit the video
+    can_like - Information whether current user can like the video
+    can_repost - Information whether current user can repost the video
+    can_subscribe - Information whether current user can subscribe to author of the video
+    comments - Number of comments
+    content_restricted - Restriction code
+    content_restricted_message - Restriction text
+    converting - 1 if  video is being converted
+    date - Date when video has been uploaded in Unixtime
+    description - Video description
+    duration - Video duration in seconds
+    first_frame -
+    height - Video height
+    id - Video ID
+    image -
+    is_favorite - Whether video is added to bookmarks
+    is_private - 1 if video is private
+    is_subscribed - 1 if user is subscribed to author of the video
+    likes -
+    live - 1 if the video is a live stream
+    live_notify - Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)
+    live_start_time - Date in Unixtime when the live stream is scheduled to start by the author
+    live_status - Live stream status
+    local_views - If video is external, number of views on vk
+    owner_id - Video owner ID
+    platform - External platform
+    player - Video embed URL
+    processing - Returns if the video is processing
+    repeat - Information whether the video is repeated
+    reposts -
+    spectators - Number of spectators of the stream
+    title - Video title
+    track_code -
+    type -
+    upcoming - 1 if the video is an upcoming stream
+    user_id - Id of the user who uploaded the video if it was uploaded to a group by member
+    views - Number of views
+    width - Video width
+    """
+
+    access_key: typing.Optional[str] = None
+    added: typing.Optional["BaseBoolInt"] = None
+    adding_date: typing.Optional[int] = None
+    balance: typing.Optional[int] = None
+    can_add: typing.Optional["BaseBoolInt"] = None
+    can_add_to_faves: typing.Optional["BaseBoolInt"] = None
+    can_attach_link: typing.Optional["BaseBoolInt"] = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    can_edit: typing.Optional["BaseBoolInt"] = None
+    can_like: typing.Optional["BaseBoolInt"] = None
+    can_repost: typing.Optional["BaseBoolInt"] = None
+    can_subscribe: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional[int] = None
+    content_restricted: typing.Optional[int] = None
+    content_restricted_message: typing.Optional[str] = None
+    converting: typing.Optional["BaseBoolInt"] = None
+    date: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    duration: typing.Optional[int] = None
+    first_frame: typing.Optional[typing.List["VideoVideoImage"]] = None
+    height: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    image: typing.Optional[typing.List["VideoVideoImage"]] = None
+    is_favorite: typing.Optional[bool] = None
+    is_private: typing.Optional["BaseBoolInt"] = None
+    is_subscribed: typing.Optional["BaseBoolInt"] = None
+    likes: typing.Optional["BaseLikes"] = None
+    live: typing.Optional["BasePropertyExists"] = None
+    live_notify: typing.Optional["BaseBoolInt"] = None
+    live_start_time: typing.Optional[int] = None
+    live_status: typing.Optional[str] = None
+    local_views: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    platform: typing.Optional[str] = None
+    player: typing.Optional[str] = None
+    processing: typing.Optional["BasePropertyExists"] = None
+    repeat: typing.Optional["BasePropertyExists"] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    spectators: typing.Optional[int] = None
+    title: typing.Optional[str] = None
+    track_code: typing.Optional[str] = None
+    type: typing.Optional[str] = None
+    upcoming: typing.Optional["BasePropertyExists"] = None
+    user_id: typing.Optional[int] = None
+    views: typing.Optional[int] = None
+    width: typing.Optional[int] = None
 
 
 class NotificationsNotificationsComment(BaseModel):
-    """VK Object Notifications/NotificationsNotificationsComment
+    """VK Object NotificationsNotificationsComment
 
     date - Date when the comment has been added in Unixtime
     id - Comment ID
     owner_id - Author ID
+    photo -
+    post -
     text - Comment text
+    topic -
+    video -
     """
 
-    date: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    photo: Optional["PhotosPhoto"] = None
-    post: Optional["WallWallpost"] = None
-    text: Optional[str] = None
-    topic: Optional["BoardTopic"] = None
-    video: Optional["VideoVideo"] = None
+    date: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    post: typing.Optional["WallWallpost"] = None
+    text: typing.Optional[str] = None
+    topic: typing.Optional["BoardTopic"] = None
+    video: typing.Optional["VideoVideo"] = None
+
+
+class NotificationsNotificationParent(
+    WallWallpostToId,
+    PhotosPhoto,
+    BoardTopic,
+    VideoVideo,
+    NotificationsNotificationsComment
+):
+    """VK Object NotificationsNotificationParent"""
+
+    pass
 
 
 class NotificationsReply(BaseModel):
-    """VK Object Notifications/NotificationsReply
+    """VK Object NotificationsReply
 
     date - Date when the reply has been created in Unixtime
     id - Reply ID
     text - Reply text
     """
 
-    date: Optional[int] = None
-    id: Optional[int] = None
-    text: Optional[int] = None
+    date: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    text: typing.Optional[int] = None
+
+
+class ErrorCode(enum.IntEnum):
+    """ Error code """
+
+    notifications_disabled = 1
+    flood_control_per_hour = 2
+    flood_control_per_day = 3
+    app_is_not_installed = 4
 
 
 class NotificationsSendMessageError(BaseModel):
-    """VK Object Notifications/NotificationsSendMessageError
+    """VK Object NotificationsSendMessageError
 
     code - Error code
     description - Error description
     """
 
-    code: Optional[int] = None
-    description: Optional[str] = None
+    code: typing.Optional["ErrorCode"] = None
+    description: typing.Optional[str] = None
 
 
 class NotificationsSendMessageItem(BaseModel):
-    """VK Object Notifications/NotificationsSendMessageItem
+    """VK Object NotificationsSendMessageItem
 
-    user_id - User ID
+    error -
     status - Notification status
+    user_id - User ID
     """
 
-    user_id: Optional[int] = None
-    status: Optional[bool] = None
-    error: Optional["NotificationsSendMessageError"] = None
+    error: typing.Optional["NotificationsSendMessageError"] = None
+    status: typing.Optional[bool] = None
+    user_id: typing.Optional[int] = None
 
 
 class OauthError(BaseModel):
-    """VK Object Oauth/OauthError
+    """VK Object OauthError
 
     error - Error type
     error_description - Error description
     redirect_uri - URI for validation
     """
 
-    error: Optional[str] = None
-    error_description: Optional[str] = None
-    redirect_uri: Optional[str] = None
+    error: str = None
+    error_description: str = None
+    redirect_uri: typing.Optional[str] = None
 
 
 class OrdersAmount(BaseModel):
-    """VK Object Orders/OrdersAmount
+    """VK Object OrdersAmount
 
+    amounts -
     currency - Currency name
     """
 
-    amounts: Optional[List["OrdersAmountItem"]] = None
-    currency: Optional[str] = None
+    amounts: typing.Optional[typing.List["OrdersAmountItem"]] = None
+    currency: typing.Optional[str] = None
 
 
 class OrdersAmountItem(BaseModel):
-    """VK Object Orders/OrdersAmountItem
+    """VK Object OrdersAmountItem
 
     amount - Votes amount in user's currency
     description - Amount description
     votes - Votes number
     """
 
-    amount: Optional[int] = None
-    description: Optional[str] = None
-    votes: Optional[str] = None
+    amount: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    votes: typing.Optional[str] = None
 
 
 class OrdersOrder(BaseModel):
-    """VK Object Orders/OrdersOrder
+    """VK Object OrdersOrder
 
     amount - Amount
     app_order_id - App order ID
@@ -4497,21 +6424,23 @@ class OrdersOrder(BaseModel):
     user_id - User ID
     """
 
-    amount: Optional[int] = None
-    app_order_id: Optional[int] = None
-    cancel_transaction_id: Optional[int] = None
-    date: Optional[int] = None
-    id: Optional[int] = None
-    item: Optional[str] = None
-    receiver_id: Optional[int] = None
-    status: Optional[str] = None
-    transaction_id: Optional[int] = None
-    user_id: Optional[int] = None
+    amount: typing.Optional[int] = None
+    app_order_id: typing.Optional[int] = None
+    cancel_transaction_id: typing.Optional[int] = None
+    date: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    item: typing.Optional[str] = None
+    receiver_id: typing.Optional[int] = None
+    status: typing.Optional[str] = None
+    transaction_id: typing.Optional[int] = None
+    user_id: typing.Optional[int] = None
 
 
 class OrdersSubscription(BaseModel):
-    """VK Object Orders/OrdersSubscription
+    """VK Object OrdersSubscription
 
+    app_id - Subscription's application id
+    application_name - Subscription's application name
     cancel_reason - Cancel reason
     create_time - Date of creation in Unixtime
     id - Subscription ID
@@ -4520,33 +6449,53 @@ class OrdersSubscription(BaseModel):
     pending_cancel - Pending cancel state
     period - Subscription period
     period_start_time - Date of last period start in Unixtime
+    photo_url - Item photo image url
     price - Subscription price
     status - Subscription status
     test_mode - Is test subscription
+    title - Subscription name
     trial_expire_time - Date of trial expire in Unixtime
     update_time - Date of last change in Unixtime
     """
 
-    cancel_reason: Optional[str] = None
-    create_time: Optional[int] = None
-    id: Optional[int] = None
-    item_id: Optional[str] = None
-    next_bill_time: Optional[int] = None
-    pending_cancel: Optional[bool] = None
-    period: Optional[int] = None
-    period_start_time: Optional[int] = None
-    price: Optional[int] = None
-    status: Optional[str] = None
-    test_mode: Optional[bool] = None
-    trial_expire_time: Optional[int] = None
-    update_time: Optional[int] = None
+    app_id: typing.Optional[int] = None
+    application_name: typing.Optional[str] = None
+    cancel_reason: typing.Optional[str] = None
+    create_time: int = None
+    id: int = None
+    item_id: str = None
+    next_bill_time: typing.Optional[int] = None
+    pending_cancel: typing.Optional[bool] = None
+    period: int = None
+    period_start_time: int = None
+    photo_url: typing.Optional[str] = None
+    price: int = None
+    status: str = None
+    test_mode: typing.Optional[bool] = None
+    title: typing.Optional[str] = None
+    trial_expire_time: typing.Optional[int] = None
+    update_time: int = None
+
+
+class OwnerStateState(enum.IntEnum):
+    """ OwnerStateState enum """
+
+    banned = 1
+    adult = 2
+    hidden = 3
+    deleted = 4
+    blacklisted = 5
 
 
 class OwnerState(BaseModel):
-    """VK Object Owner/OwnerState"""
+    """VK Object OwnerState
 
-    state: Optional[int] = None
-    description: Optional[str] = None
+    description - wiki text to describe user state
+    state -
+    """
+
+    description: typing.Optional[str] = None
+    state: typing.Optional["OwnerStateState"] = None
 
 
 class PagesPrivacySettings(enum.IntEnum):
@@ -4558,7 +6507,7 @@ class PagesPrivacySettings(enum.IntEnum):
 
 
 class PagesWikipage(BaseModel):
-    """VK Object Pages/PagesWikipage
+    """VK Object PagesWikipage
 
     creator_id - Page creator ID
     creator_name - Page creator name
@@ -4572,20 +6521,20 @@ class PagesWikipage(BaseModel):
     who_can_view - View settings of the page
     """
 
-    creator_id: Optional[int] = None
-    creator_name: Optional[int] = None
-    editor_id: Optional[int] = None
-    editor_name: Optional[str] = None
-    group_id: Optional[int] = None
-    id: Optional[int] = None
-    title: Optional[str] = None
-    views: Optional[int] = None
-    who_can_edit: Optional["PagesPrivacySettings"] = None
-    who_can_view: Optional["PagesPrivacySettings"] = None
+    creator_id: typing.Optional[int] = None
+    creator_name: typing.Optional[int] = None
+    editor_id: typing.Optional[int] = None
+    editor_name: typing.Optional[str] = None
+    group_id: int = None
+    id: int = None
+    title: str = None
+    views: int = None
+    who_can_edit: "PagesPrivacySettings" = None
+    who_can_view: "PagesPrivacySettings" = None
 
 
 class PagesWikipageFull(BaseModel):
-    """VK Object Pages/PagesWikipageFull
+    """VK Object PagesWikipageFull
 
     created - Date when the page has been created in Unixtime
     creator_id - Page creator ID
@@ -4604,72 +6553,82 @@ class PagesWikipageFull(BaseModel):
     who_can_view - View settings of the page
     """
 
-    created: Optional[int] = None
-    creator_id: Optional[int] = None
-    current_user_can_edit: Optional["BaseBoolInt"] = None
-    current_user_can_edit_access: Optional["BaseBoolInt"] = None
-    edited: Optional[int] = None
-    editor_id: Optional[int] = None
-    group_id: Optional[int] = None
-    html: Optional[str] = None
-    id: Optional[int] = None
-    source: Optional[str] = None
-    title: Optional[str] = None
-    view_url: Optional[str] = None
-    views: Optional[int] = None
-    who_can_edit: Optional["PagesPrivacySettings"] = None
-    who_can_view: Optional["PagesPrivacySettings"] = None
+    created: int = None
+    creator_id: typing.Optional[int] = None
+    current_user_can_edit: typing.Optional["BaseBoolInt"] = None
+    current_user_can_edit_access: typing.Optional["BaseBoolInt"] = None
+    edited: int = None
+    editor_id: typing.Optional[int] = None
+    group_id: int = None
+    html: typing.Optional[str] = None
+    id: int = None
+    source: typing.Optional[str] = None
+    title: str = None
+    view_url: str = None
+    views: int = None
+    who_can_edit: "PagesPrivacySettings" = None
+    who_can_view: "PagesPrivacySettings" = None
 
 
 class PagesWikipageHistory(BaseModel):
-    """VK Object Pages/PagesWikipageHistory
+    """VK Object PagesWikipageHistory
 
-    id - Version ID
-    length - Page size in bytes
     date - Date when the page has been edited in Unixtime
     editor_id - Last editor ID
     editor_name - Last editor name
+    id - Version ID
+    length - Page size in bytes
     """
 
-    id: Optional[int] = None
-    length: Optional[int] = None
-    date: Optional[int] = None
-    editor_id: Optional[int] = None
-    editor_name: Optional[str] = None
+    date: int = None
+    editor_id: int = None
+    editor_name: str = None
+    id: int = None
+    length: int = None
 
 
 class PhotosCommentXtrPid(BaseModel):
-    """VK Object Photos/PhotosCommentXtrPid
+    """VK Object PhotosCommentXtrPid
 
+    attachments -
     date - Date when the comment has been added in Unixtime
     from_id - Author ID
     id - Comment ID
+    likes -
+    parents_stack -
     pid - Photo ID
     reply_to_comment - Replied comment ID
     reply_to_user - Replied user ID
     text - Comment text
+    thread -
     """
 
-    attachments: Optional[List["WallCommentAttachment"]] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    id: Optional[int] = None
-    likes: Optional["BaseLikesInfo"] = None
-    pid: Optional[int] = None
-    reply_to_comment: Optional[int] = None
-    reply_to_user: Optional[int] = None
-    text: Optional[str] = None
-    parents_stack: Optional[List[int]] = None
-    thread: Optional["CommentThread"] = None
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    parents_stack: typing.Optional[typing.List[int]] = None
+    pid: int = None
+    reply_to_comment: typing.Optional[int] = None
+    reply_to_user: typing.Optional[int] = None
+    text: str = None
+    thread: typing.Optional["CommentThread"] = None
 
 
 class PhotosImage(BaseModel):
-    """VK Object Photos/PhotosImage"""
+    """VK Object PhotosImage
 
-    height: Optional[int] = None
-    type: Optional["PhotosImageType"] = None
-    url: Optional[str] = None
-    width: Optional[int] = None
+    height - Height of the photo in px.
+    type -
+    url - Photo URL.
+    width - Width of the photo in px.
+    """
+
+    height: typing.Optional[int] = None
+    type: typing.Optional["PhotosImageType"] = None
+    url: typing.Optional[str] = None
+    width: typing.Optional[int] = None
 
 
 class PhotosImageType(enum.Enum):
@@ -4688,131 +6647,31 @@ class PhotosImageType(enum.Enum):
     W = "w"
 
 
-class PhotosMarketAlbumUploadResponse(BaseModel):
-    """VK Object Photos/PhotosMarketAlbumUploadResponse
-
-    gid - Community ID
-    hash - Uploading hash
-    photo - Uploaded photo data
-    server - Upload server number
-    """
-
-    gid: Optional[int] = None
-    hash: Optional[str] = None
-    photo: Optional[str] = None
-    server: Optional[int] = None
-
-
-class PhotosMarketUploadResponse(BaseModel):
-    """VK Object Photos/PhotosMarketUploadResponse
-
-    crop_data - Crop data
-    crop_hash - Crop hash
-    group_id - Community ID
-    hash - Uploading hash
-    photo - Uploaded photo data
-    server - Upload server number
-    """
-
-    crop_data: Optional[str] = None
-    crop_hash: Optional[str] = None
-    group_id: Optional[int] = None
-    hash: Optional[str] = None
-    photo: Optional[str] = None
-    server: Optional[int] = None
-
-
-class PhotosMessageUploadResponse(BaseModel):
-    """VK Object Photos/PhotosMessageUploadResponse
-
-    hash - Uploading hash
-    photo - Uploaded photo data
-    server - Upload server number
-    """
-
-    hash: Optional[str] = None
-    photo: Optional[str] = None
-    server: Optional[int] = None
-
-
-class PhotosOwnerUploadResponse(BaseModel):
-    """VK Object Photos/PhotosOwnerUploadResponse
-
-    hash - Uploading hash
-    photo - Uploaded photo data
-    server - Upload server number
-    """
-
-    hash: Optional[str] = None
-    photo: Optional[str] = None
-    server: Optional[int] = None
-
-
-class PhotosPhoto(BaseModel):
-    """VK Object Photos/PhotosPhoto
-
-    access_key - Access key for the photo
-    album_id - Album ID
-    date - Date when uploaded
-    height - Original photo height
-    id - Photo ID
-    lat - Latitude
-    long - Longitude
-    owner_id - Photo owner's ID
-    photo_256 - URL of image with 2560 px width
-    can_comment - Information whether current user can comment the photo
-    post_id - Post ID
-    text - Photo caption
-    user_id - ID of the user who have uploaded the photo
-    width - Original photo width
-    has_tags - Whether photo has attached tag links
-    """
-
-    access_key: Optional[str] = None
-    album_id: Optional[int] = None
-    date: Optional[int] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    images: Optional[List["PhotosImage"]] = None
-    lat: Optional[float] = None
-    long: Optional[float] = None
-    owner_id: Optional[int] = None
-    photo_256: Optional[str] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    place: Optional[str] = None
-    post_id: Optional[int] = None
-    sizes: Optional[List["PhotosPhotoSizes"]] = None
-    text: Optional[str] = None
-    user_id: Optional[int] = None
-    width: Optional[int] = None
-    has_tags: Optional[bool] = None
-    restrictions: Optional["MediaRestriction"] = None
-
-
 class PhotosPhotoAlbum(BaseModel):
-    """VK Object Photos/PhotosPhotoAlbum
+    """VK Object PhotosPhotoAlbum
 
     created - Date when the album has been created in Unixtime
     description - Photo album description
     id - Photo album ID
     owner_id - Album owner's ID
     size - Photos number
+    thumb -
     title - Photo album title
     updated - Date when the album has been updated last time in Unixtime
     """
 
-    created: Optional[int] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    size: Optional[int] = None
-    thumb: Optional["PhotosPhoto"] = None
-    title: Optional[str] = None
-    updated: Optional[int] = None
+    created: int = None
+    description: typing.Optional[str] = None
+    id: int = None
+    owner_id: int = None
+    size: int = None
+    thumb: typing.Optional["PhotosPhoto"] = None
+    title: str = None
+    updated: int = None
 
 
 class PhotosPhotoAlbumFull(BaseModel):
-    """VK Object Photos/PhotosPhotoAlbumFull
+    """VK Object PhotosPhotoAlbumFull
 
     can_upload - Information whether current user can upload photo to the album
     comments_disabled - Information whether album comments are disabled
@@ -4821,6 +6680,7 @@ class PhotosPhotoAlbumFull(BaseModel):
     id - Photo album ID
     owner_id - Album owner's ID
     size - Photos number
+    sizes -
     thumb_id - Thumb photo ID
     thumb_is_last - Information whether the album thumb is last photo
     thumb_src - URL of the thumb image
@@ -4829,70 +6689,81 @@ class PhotosPhotoAlbumFull(BaseModel):
     upload_by_admins_only - Information whether only community administrators can upload photos
     """
 
-    can_upload: Optional["BaseBoolInt"] = None
-    comments_disabled: Optional["BaseBoolInt"] = None
-    created: Optional[int] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    size: Optional[int] = None
-    sizes: Optional[List["PhotosPhotoSizes"]] = None
-    thumb_id: Optional[int] = None
-    thumb_is_last: Optional["BaseBoolInt"] = None
-    thumb_src: Optional[str] = None
-    title: Optional[str] = None
-    updated: Optional[int] = None
-    upload_by_admins_only: Optional["BaseBoolInt"] = None
+    can_upload: typing.Optional["BaseBoolInt"] = None
+    comments_disabled: typing.Optional["BaseBoolInt"] = None
+    created: int = None
+    description: typing.Optional[str] = None
+    id: int = None
+    owner_id: int = None
+    size: int = None
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    thumb_id: typing.Optional[int] = None
+    thumb_is_last: typing.Optional["BaseBoolInt"] = None
+    thumb_src: typing.Optional[str] = None
+    title: str = None
+    updated: int = None
+    upload_by_admins_only: typing.Optional["BaseBoolInt"] = None
+
+
+PhotosPhotoFalseable = typing.Union[bool, str]
 
 
 class PhotosPhotoFull(BaseModel):
-    """VK Object Photos/PhotosPhotoFull
+    """VK Object PhotosPhotoFull
 
     access_key - Access key for the photo
     album_id - Album ID
     can_comment - Information whether current user can comment the photo
+    comments -
     date - Date when uploaded
     height - Original photo height
     id - Photo ID
+    images -
     lat - Latitude
+    likes -
     long - Longitude
     owner_id - Photo owner's ID
     post_id - Post ID
+    reposts -
+    tags -
     text - Photo caption
     user_id - ID of the user who have uploaded the photo
     width - Original photo width
     """
 
-    access_key: Optional[str] = None
-    album_id: Optional[int] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    comments: Optional["BaseObjectCount"] = None
-    date: Optional[int] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    images: Optional[List["PhotosImage"]] = None
-    lat: Optional[float] = None
-    likes: Optional["BaseLikes"] = None
-    long: Optional[float] = None
-    owner_id: Optional[int] = None
-    post_id: Optional[int] = None
-    reposts: Optional["BaseObjectCount"] = None
-    tags: Optional["BaseObjectCount"] = None
-    text: Optional[str] = None
-    user_id: Optional[int] = None
-    width: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    album_id: int = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["BaseObjectCount"] = None
+    date: int = None
+    height: typing.Optional[int] = None
+    id: int = None
+    images: typing.Optional[typing.List["PhotosImage"]] = None
+    lat: typing.Optional[int] = None
+    likes: typing.Optional["BaseLikes"] = None
+    long: typing.Optional[int] = None
+    owner_id: int = None
+    post_id: typing.Optional[int] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    tags: typing.Optional["BaseObjectCount"] = None
+    text: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
 
 
 class PhotosPhotoFullXtrRealOffset(BaseModel):
-    """VK Object Photos/PhotosPhotoFullXtrRealOffset
+    """VK Object PhotosPhotoFullXtrRealOffset
 
     access_key - Access key for the photo
     album_id - Album ID
+    can_comment -
+    comments -
     date - Date when uploaded
     height - Original photo height
     hidden - Returns if the photo is hidden above the wall
     id - Photo ID
     lat - Latitude
+    likes -
     long - Longitude
     owner_id - Photo owner's ID
     photo_1280 - URL of image with 1280 px width
@@ -4903,47 +6774,57 @@ class PhotosPhotoFullXtrRealOffset(BaseModel):
     photo_807 - URL of image with 807 px width
     post_id - Post ID
     real_offset - Real position of the photo
+    reposts -
+    sizes -
+    tags -
     text - Photo caption
     user_id - ID of the user who have uploaded the photo
     width - Original photo width
     """
 
-    access_key: Optional[str] = None
-    album_id: Optional[int] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    comments: Optional["BaseObjectCount"] = None
-    date: Optional[int] = None
-    height: Optional[int] = None
-    hidden: Optional["BasePropertyExists"] = None
-    id: Optional[int] = None
-    lat: Optional[float] = None
-    likes: Optional["BaseLikes"] = None
-    long: Optional[float] = None
-    owner_id: Optional[int] = None
-    photo_1280: Optional[str] = None
-    photo_130: Optional[str] = None
-    photo_2560: Optional[str] = None
-    photo_604: Optional[str] = None
-    photo_75: Optional[str] = None
-    photo_807: Optional[str] = None
-    post_id: Optional[int] = None
-    real_offset: Optional[int] = None
-    reposts: Optional["BaseObjectCount"] = None
-    sizes: Optional[List["PhotosPhotoSizes"]] = None
-    tags: Optional["BaseObjectCount"] = None
-    text: Optional[str] = None
-    user_id: Optional[int] = None
-    width: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    album_id: int = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["BaseObjectCount"] = None
+    date: int = None
+    height: typing.Optional[int] = None
+    hidden: typing.Optional["BasePropertyExists"] = None
+    id: int = None
+    lat: typing.Optional[int] = None
+    likes: typing.Optional["BaseLikes"] = None
+    long: typing.Optional[int] = None
+    owner_id: int = None
+    photo_1280: typing.Optional[str] = None
+    photo_130: typing.Optional[str] = None
+    photo_2560: typing.Optional[str] = None
+    photo_604: typing.Optional[str] = None
+    photo_75: typing.Optional[str] = None
+    photo_807: typing.Optional[str] = None
+    post_id: typing.Optional[int] = None
+    real_offset: typing.Optional[int] = None
+    reposts: typing.Optional["BaseObjectCount"] = None
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    tags: typing.Optional["BaseObjectCount"] = None
+    text: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
 
 
 class PhotosPhotoSizes(BaseModel):
-    """VK Object Photos/PhotosPhotoSizes"""
+    """VK Object PhotosPhotoSizes
 
-    height: Optional[int] = None
-    url: Optional[str] = None
-    src: Optional[str] = None
-    type: Optional["PhotosPhotoSizesType"] = None
-    width: Optional[int] = None
+    height - Height in px
+    src - URL of the image
+    type -
+    url - URL of the image
+    width - Width in px
+    """
+
+    height: int = None
+    src: typing.Optional[str] = None
+    type: "PhotosPhotoSizesType" = None
+    url: str = None
+    width: int = None
 
 
 class PhotosPhotoSizesType(enum.Enum):
@@ -4962,27 +6843,25 @@ class PhotosPhotoSizesType(enum.Enum):
     Z = "z"
     C = "c"
     W = "w"
-    I = "i"
-    D = "d"
-
-    # undocumented sizes
     A = "a"
     B = "b"
     E = "e"
-    F = "f"
-    G = "g"
-    H = "h"
+    I = "i"
+    D = "d"
     J = "j"
+    TEMP = "temp"
+    H = "h"
+    G = "g"
     N = "n"
-    T = "t"
-    U = "u"
-    V = "v"
+    F = "f"
+    MAX = "max"
 
 
 class PhotosPhotoTag(BaseModel):
-    """VK Object Photos/PhotosPhotoTag
+    """VK Object PhotosPhotoTag
 
     date - Date when tag has been added in Unixtime
+    description - Tagged description.
     id - Tag ID
     placer_id - ID of the tag creator
     tagged_name - Tag description
@@ -4994,52 +6873,38 @@ class PhotosPhotoTag(BaseModel):
     y2 - Coordinate Y of the right lower corner
     """
 
-    date: Optional[int] = None
-    id: Optional[int] = None
-    placer_id: Optional[int] = None
-    tagged_name: Optional[str] = None
-    user_id: Optional[int] = None
-    viewed: Optional["BaseBoolInt"] = None
-    x: Optional[float] = None
-    x2: Optional[float] = None
-    y: Optional[float] = None
-    y2: Optional[float] = None
+    date: int = None
+    description: typing.Optional[str] = None
+    id: int = None
+    placer_id: int = None
+    tagged_name: str = None
+    user_id: int = None
+    viewed: "BaseBoolInt" = None
+    x: int = None
+    x2: int = None
+    y: int = None
+    y2: int = None
 
 
 class PhotosPhotoUpload(BaseModel):
-    """VK Object Photos/PhotosPhotoUpload
+    """VK Object PhotosPhotoUpload
 
     album_id - Album ID
-    upload_url - URL to upload photo
     fallback_upload_url - Fallback URL if upload_url returned error
-    user_id - User ID
     group_id - Group ID
+    upload_url - URL to upload photo
+    user_id - User ID
     """
 
-    album_id: Optional[int] = None
-    upload_url: Optional[str] = None
-    fallback_upload_url: Optional[str] = None
-    user_id: Optional[int] = None
-    group_id: Optional[int] = None
-
-
-class PhotosPhotoUploadResponse(BaseModel):
-    """VK Object Photos/PhotosPhotoUploadResponse
-
-    aid - Album ID
-    hash - Uploading hash
-    photos_list - Uploaded photos data
-    server - Upload server number
-    """
-
-    aid: Optional[int] = None
-    hash: Optional[str] = None
-    photos_list: Optional[str] = None
-    server: Optional[int] = None
+    album_id: int = None
+    fallback_upload_url: typing.Optional[str] = None
+    group_id: typing.Optional[int] = None
+    upload_url: str = None
+    user_id: int = None
 
 
 class PhotosPhotoXtrRealOffset(BaseModel):
-    """VK Object Photos/PhotosPhotoXtrRealOffset
+    """VK Object PhotosPhotoXtrRealOffset
 
     access_key - Access key for the photo
     album_id - Album ID
@@ -5058,36 +6923,37 @@ class PhotosPhotoXtrRealOffset(BaseModel):
     photo_807 - URL of image with 807 px width
     post_id - Post ID
     real_offset - Real position of the photo
+    sizes -
     text - Photo caption
     user_id - ID of the user who have uploaded the photo
     width - Original photo width
     """
 
-    access_key: Optional[str] = None
-    album_id: Optional[int] = None
-    date: Optional[int] = None
-    height: Optional[int] = None
-    hidden: Optional["BasePropertyExists"] = None
-    id: Optional[int] = None
-    lat: Optional[float] = None
-    long: Optional[float] = None
-    owner_id: Optional[int] = None
-    photo_1280: Optional[str] = None
-    photo_130: Optional[str] = None
-    photo_2560: Optional[str] = None
-    photo_604: Optional[str] = None
-    photo_75: Optional[str] = None
-    photo_807: Optional[str] = None
-    post_id: Optional[int] = None
-    real_offset: Optional[int] = None
-    sizes: Optional[List["PhotosPhotoSizes"]] = None
-    text: Optional[str] = None
-    user_id: Optional[int] = None
-    width: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    album_id: int = None
+    date: int = None
+    height: typing.Optional[int] = None
+    hidden: typing.Optional["BasePropertyExists"] = None
+    id: int = None
+    lat: typing.Optional[int] = None
+    long: typing.Optional[int] = None
+    owner_id: int = None
+    photo_1280: typing.Optional[str] = None
+    photo_130: typing.Optional[str] = None
+    photo_2560: typing.Optional[str] = None
+    photo_604: typing.Optional[str] = None
+    photo_75: typing.Optional[str] = None
+    photo_807: typing.Optional[str] = None
+    post_id: typing.Optional[int] = None
+    real_offset: typing.Optional[int] = None
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    text: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
 
 
 class PhotosPhotoXtrTagInfo(BaseModel):
-    """VK Object Photos/PhotosPhotoXtrTagInfo
+    """VK Object PhotosPhotoXtrTagInfo
 
     access_key - Access key for the photo
     album_id - Album ID
@@ -5105,6 +6971,7 @@ class PhotosPhotoXtrTagInfo(BaseModel):
     photo_807 - URL of image with 807 px width
     placer_id - ID of the tag creator
     post_id - Post ID
+    sizes -
     tag_created - Date when tag has been added in Unixtime
     tag_id - Tag ID
     text - Photo caption
@@ -5112,63 +6979,90 @@ class PhotosPhotoXtrTagInfo(BaseModel):
     width - Original photo width
     """
 
-    access_key: Optional[str] = None
-    album_id: Optional[int] = None
-    date: Optional[int] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    lat: Optional[float] = None
-    long: Optional[float] = None
-    owner_id: Optional[int] = None
-    photo_1280: Optional[str] = None
-    photo_130: Optional[str] = None
-    photo_2560: Optional[str] = None
-    photo_604: Optional[str] = None
-    photo_75: Optional[str] = None
-    photo_807: Optional[str] = None
-    placer_id: Optional[int] = None
-    post_id: Optional[int] = None
-    sizes: Optional[List["PhotosPhotoSizes"]] = None
-    tag_created: Optional[int] = None
-    tag_id: Optional[int] = None
-    text: Optional[str] = None
-    user_id: Optional[int] = None
-    width: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    album_id: int = None
+    date: int = None
+    height: typing.Optional[int] = None
+    id: int = None
+    lat: typing.Optional[int] = None
+    long: typing.Optional[int] = None
+    owner_id: int = None
+    photo_1280: typing.Optional[str] = None
+    photo_130: typing.Optional[str] = None
+    photo_2560: typing.Optional[str] = None
+    photo_604: typing.Optional[str] = None
+    photo_75: typing.Optional[str] = None
+    photo_807: typing.Optional[str] = None
+    placer_id: typing.Optional[int] = None
+    post_id: typing.Optional[int] = None
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    tag_created: typing.Optional[int] = None
+    tag_id: typing.Optional[int] = None
+    text: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
 
 
 class PhotosTagsSuggestionItem(BaseModel):
-    """VK Object Photos/PhotosTagsSuggestionItem"""
+    """VK Object PhotosTagsSuggestionItem"""
 
-    title: Optional[str] = None
-    type: Optional[str] = None
-    buttons: Optional[List["PhotosTagsSuggestionItemButton"]] = None
-    photo: Optional["PhotosPhoto"] = None
-    tags: Optional[List["PhotosPhotoTag"]] = None
+    buttons: typing.Optional[typing.List["PhotosTagsSuggestionItemButton"]] = None
+    caption: typing.Optional[str] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    tags: typing.Optional[typing.List["PhotosPhotoTag"]] = None
+    title: typing.Optional[str] = None
+    track_code: typing.Optional[str] = None
+    type: typing.Optional[str] = None
+
+
+class PhotosTagsSuggestionItemButtonAction(enum.Enum):
+    """ PhotosTagsSuggestionItemButtonAction enum """
+
+    CONFIRM = "confirm"
+    DECLINE = "decline"
+    SHOW_TAGS = "show_tags"
+
+
+class PhotosTagsSuggestionItemButtonStyle(enum.Enum):
+    """ PhotosTagsSuggestionItemButtonStyle enum """
+
+    PRIMARY = "primary"
+    SECONDARY = "secondary"
 
 
 class PhotosTagsSuggestionItemButton(BaseModel):
-    """VK Object Photos/PhotosTagsSuggestionItemButton"""
+    """VK Object PhotosTagsSuggestionItemButton"""
 
-    title: Optional[str] = None
-    action: Optional[str] = None
-    style: Optional[str] = None
+    action: typing.Optional["PhotosTagsSuggestionItemButtonAction"] = None
+    style: typing.Optional["PhotosTagsSuggestionItemButtonStyle"] = None
+    title: typing.Optional[str] = None
 
 
-class PhotosWallUploadResponse(BaseModel):
-    """VK Object Photos/PhotosWallUploadResponse
+class PodcastCover(BaseModel):
+    """VK Object PodcastCover"""
 
-    hash - Uploading hash
-    photo - Uploaded photo data
-    server - Upload server number
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+
+
+class PodcastExternalData(BaseModel):
+    """VK Object PodcastExternalData
+
+    cover - Podcast cover
+    owner_name - Name of the podcasts owner community
+    owner_url - Url of the podcasts owner community
+    title - Podcast title
+    url - Url of the podcast page
     """
 
-    hash: Optional[str] = None
-    photo: Optional[str] = None
-    server: Optional[int] = None
+    cover: typing.Optional["PodcastCover"] = None
+    owner_name: typing.Optional[str] = None
+    owner_url: typing.Optional[str] = None
+    title: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 class PollsAnswer(BaseModel):
-    """VK Object Polls/PollsAnswer
+    """VK Object PollsAnswer
 
     id - Answer ID
     rate - Answer rate in percents
@@ -5176,96 +7070,135 @@ class PollsAnswer(BaseModel):
     votes - Votes number
     """
 
-    id: Optional[int] = None
-    rate: Optional[float] = None
-    text: Optional[str] = None
-    votes: Optional[int] = None
+    id: int = None
+    rate: int = None
+    text: str = None
+    votes: int = None
+
+
+class PollsBackgroundType(enum.Enum):
+    """ PollsBackgroundType enum """
+
+    GRADIENT = "gradient"
+    TILE = "tile"
 
 
 class PollsBackground(BaseModel):
-    """VK Object Polls/PollsBackground
+    """VK Object PollsBackground
 
     angle - Gradient angle with 0 on positive X axis
     color - Hex color code without #
     height - Original height of pattern tile
+    id -
     images - Pattern tiles
+    name -
     points - Gradient points
+    type -
     width - Original with of pattern tile
     """
 
-    angle: Optional[int] = None
-    color: Optional[str] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    images: Optional[List["BaseImage"]] = None
-    points: Optional[List["BaseGradientPoint"]] = None
-    type: Optional[str] = None
-    width: Optional[int] = None
+    angle: typing.Optional[int] = None
+    color: typing.Optional[str] = None
+    height: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    images: typing.Optional[typing.List["BaseImage"]] = None
+    name: typing.Optional[str] = None
+    points: typing.Optional[typing.List["BaseGradientPoint"]] = None
+    type: typing.Optional["PollsBackgroundType"] = None
+    width: typing.Optional[int] = None
 
 
 class PollsFriend(BaseModel):
-    """VK Object Polls/PollsFriend"""
+    """VK Object PollsFriend"""
 
-    id: Optional[int] = None
+    id: int = None
 
 
 class PollsPoll(BaseModel):
-    """VK Object Polls/PollsPoll"""
+    """VK Object PollsPoll
 
-    anonymous: Optional["PollsPollAnonymous"] = None
-    friends: Optional[List["PollsFriend"]] = None
-    multiple: Optional[bool] = None
-    answer_id: Optional[int] = None
-    end_date: Optional[int] = None
-    answer_ids: Optional[List[int]] = None
-    closed: Optional[bool] = None
-    is_board: Optional[bool] = None
-    can_edit: Optional[bool] = None
-    can_vote: Optional[bool] = None
-    can_report: Optional[bool] = None
-    can_share: Optional[bool] = None
-    photo: Optional["PollsBackground"] = None
-    answers: Optional[List["PollsAnswer"]] = None
-    created: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    author_id: Optional[int] = None
-    question: Optional[str] = None
-    background: Optional["PollsBackground"] = None
-    votes: Optional[int] = None
-    disable_unvote: Optional[bool] = None
+    anonymous -
+    answer_id - Current user's answer ID
+    answer_ids - Current user's answer IDs
+    answers -
+    author_id - Poll author's ID
+    background -
+    can_edit -
+    can_report -
+    can_share -
+    can_vote -
+    closed -
+    created - Date when poll has been created in Unixtime
+    disable_unvote -
+    embed_hash -
+    end_date -
+    friends -
+    id - Poll ID
+    is_board -
+    multiple - Information whether the poll with multiple choices
+    owner_id - Poll owner's ID
+    photo -
+    question - Poll question
+    votes - Votes number
+    """
+
+    anonymous: "PollsPollAnonymous" = None
+    answer_id: typing.Optional[int] = None
+    answer_ids: typing.Optional[typing.List[int]] = None
+    answers: typing.List["PollsAnswer"] = None
+    author_id: typing.Optional[int] = None
+    background: typing.Optional["PollsBackground"] = None
+    can_edit: bool = None
+    can_report: bool = None
+    can_share: bool = None
+    can_vote: bool = None
+    closed: bool = None
+    created: int = None
+    disable_unvote: bool = None
+    embed_hash: typing.Optional[str] = None
+    end_date: int = None
+    friends: typing.Optional[typing.List["PollsFriend"]] = None
+    id: int = None
+    is_board: bool = None
+    multiple: bool = None
+    owner_id: int = None
+    photo: typing.Optional["PollsBackground"] = None
+    question: str = None
+    votes: int = None
 
 
-PollsPollAnonymous = Optional[bool]  # Information whether the field is anonymous
+PollsPollAnonymous = typing.Optional[bool]  # Information whether the field is anonymous
 
 
 class PollsVoters(BaseModel):
-    """VK Object Polls/PollsVoters
+    """VK Object PollsVoters
 
     answer_id - Answer ID
+    users -
     """
 
-    answer_id: Optional[int] = None
-    users: Optional["PollsVotersUsers"] = None
+    answer_id: typing.Optional[int] = None
+    users: typing.Optional["PollsVotersUsers"] = None
 
 
 class PollsVotersUsers(BaseModel):
-    """VK Object Polls/PollsVotersUsers
+    """VK Object PollsVotersUsers
 
     count - Votes number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class PrettyCardsPrettyCard(BaseModel):
-    """VK Object PrettyCards/PrettyCardsPrettyCard
+    """VK Object PrettyCardsPrettyCard
 
     button - Button key
     button_text - Button text in current language
     card_id - Card ID (long int returned as string)
+    images -
     link_url - Link URL
     photo - Photo ID (format "<owner_id>_<media_id>")
     price - Price if set (decimal number returned as string)
@@ -5273,27 +7206,36 @@ class PrettyCardsPrettyCard(BaseModel):
     title - Title
     """
 
-    button: Optional[str] = None
-    button_text: Optional[str] = None
-    card_id: Optional[str] = None
-    images: Optional[List["BaseImage"]] = None
-    link_url: Optional[str] = None
-    photo: Optional[str] = None
-    price: Optional[str] = None
-    price_old: Optional[str] = None
-    title: Optional[str] = None
+    button: typing.Optional[str] = None
+    button_text: typing.Optional[str] = None
+    card_id: str = None
+    images: typing.Optional[typing.List["BaseImage"]] = None
+    link_url: str = None
+    photo: str = None
+    price: typing.Optional[str] = None
+    price_old: typing.Optional[str] = None
+    title: str = None
 
 
 class SearchHint(BaseModel):
-    """VK Object Search/SearchHint"""
+    """VK Object SearchHint
 
-    app: Optional["AppsApp"] = None
-    description: Optional[str] = None
-    _global: Optional["BaseBoolInt"] = None
-    group: Optional["GroupsGroup"] = None
-    profile: Optional["UsersUserMin"] = None
-    section: Optional["SearchHintSection"] = None
-    type: Optional["SearchHintType"] = None
+    app -
+    description - Object description
+    _global - Information whether the object has been found globally
+    group -
+    profile -
+    section -
+    type -
+    """
+
+    app: typing.Optional["AppsApp"] = None
+    description: str = None
+    _global: typing.Optional["BaseBoolInt"] = None
+    group: typing.Optional["GroupsGroup"] = None
+    profile: typing.Optional["UsersUserMin"] = None
+    section: "SearchHintSection" = None
+    type: "SearchHintType" = None
 
 
 class SearchHintSection(enum.Enum):
@@ -5319,18 +7261,18 @@ class SearchHintType(enum.Enum):
 
 
 class SecureLevel(BaseModel):
-    """VK Object Secure/SecureLevel
+    """VK Object SecureLevel
 
     level - Level
     uid - User ID
     """
 
-    level: Optional[int] = None
-    uid: Optional[int] = None
+    level: typing.Optional[int] = None
+    uid: typing.Optional[int] = None
 
 
 class SecureSmsNotification(BaseModel):
-    """VK Object Secure/SecureSmsNotification
+    """VK Object SecureSmsNotification
 
     app_id - Application ID
     date - Date when message has been sent in Unixtime
@@ -5339,15 +7281,15 @@ class SecureSmsNotification(BaseModel):
     user_id - User ID
     """
 
-    app_id: Optional[str] = None
-    date: Optional[str] = None
-    id: Optional[str] = None
-    message: Optional[str] = None
-    user_id: Optional[str] = None
+    app_id: typing.Optional[str] = None
+    date: typing.Optional[str] = None
+    id: typing.Optional[str] = None
+    message: typing.Optional[str] = None
+    user_id: typing.Optional[str] = None
 
 
 class SecureTokenChecked(BaseModel):
-    """VK Object Secure/SecureTokenChecked
+    """VK Object SecureTokenChecked
 
     date - Date when access_token has been generated in Unixtime
     expire - Date when access_token will expire in Unixtime
@@ -5355,14 +7297,14 @@ class SecureTokenChecked(BaseModel):
     user_id - User ID
     """
 
-    date: Optional[int] = None
-    expire: Optional[int] = None
-    success: Optional[int] = None
-    user_id: Optional[int] = None
+    date: typing.Optional[int] = None
+    expire: typing.Optional[int] = None
+    success: typing.Optional[int] = None
+    user_id: typing.Optional[int] = None
 
 
 class SecureTransaction(BaseModel):
-    """VK Object Secure/SecureTransaction
+    """VK Object SecureTransaction
 
     date - Transaction date in Unixtime
     id - Transaction ID
@@ -5371,15 +7313,15 @@ class SecureTransaction(BaseModel):
     votes - Votes number
     """
 
-    date: Optional[int] = None
-    id: Optional[int] = None
-    uid_from: Optional[int] = None
-    uid_to: Optional[int] = None
-    votes: Optional[int] = None
+    date: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    uid_from: typing.Optional[int] = None
+    uid_to: typing.Optional[int] = None
+    votes: typing.Optional[int] = None
 
 
 class StatsActivity(BaseModel):
-    """VK Object Stats/StatsActivity
+    """VK Object StatsActivity
 
     comments - Comments number
     copies - Reposts number
@@ -5389,29 +7331,29 @@ class StatsActivity(BaseModel):
     unsubscribed - Unsubscribed count
     """
 
-    comments: Optional[int] = None
-    copies: Optional[int] = None
-    hidden: Optional[int] = None
-    likes: Optional[int] = None
-    subscribed: Optional[int] = None
-    unsubscribed: Optional[int] = None
+    comments: typing.Optional[int] = None
+    copies: typing.Optional[int] = None
+    hidden: typing.Optional[int] = None
+    likes: typing.Optional[int] = None
+    subscribed: typing.Optional[int] = None
+    unsubscribed: typing.Optional[int] = None
 
 
 class StatsCity(BaseModel):
-    """VK Object Stats/StatsCity
+    """VK Object StatsCity
 
     count - Visitors number
     name - City name
     value - City ID
     """
 
-    count: Optional[int] = None
-    name: Optional[str] = None
-    value: Optional[int] = None
+    count: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    value: typing.Optional[int] = None
 
 
 class StatsCountry(BaseModel):
-    """VK Object Stats/StatsCountry
+    """VK Object StatsCountry
 
     code - Country code
     count - Visitors number
@@ -5419,316 +7361,519 @@ class StatsCountry(BaseModel):
     value - Country ID
     """
 
-    code: Optional[str] = None
-    count: Optional[int] = None
-    name: Optional[str] = None
-    value: Optional[int] = None
+    code: typing.Optional[str] = None
+    count: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    value: typing.Optional[int] = None
 
 
 class StatsPeriod(BaseModel):
-    """VK Object Stats/StatsPeriod
+    """VK Object StatsPeriod
 
+    activity -
     period_from - Unix timestamp
     period_to - Unix timestamp
+    reach -
+    visitors -
     """
 
-    activity: Optional["StatsActivity"] = None
-    period_from: Optional[int] = None
-    period_to: Optional[int] = None
-    reach: Optional["StatsReach"] = None
-    visitors: Optional["StatsViews"] = None
+    activity: typing.Optional["StatsActivity"] = None
+    period_from: typing.Optional[int] = None
+    period_to: typing.Optional[int] = None
+    reach: typing.Optional["StatsReach"] = None
+    visitors: typing.Optional["StatsViews"] = None
 
 
 class StatsReach(BaseModel):
-    """VK Object Stats/StatsReach
+    """VK Object StatsReach
 
+    age -
+    cities -
+    countries -
     mobile_reach - Reach count from mobile devices
     reach - Reach count
     reach_subscribers - Subscribers reach count
+    sex -
+    sex_age -
     """
 
-    age: Optional[List["StatsSexAge"]] = None
-    cities: Optional[List["StatsCity"]] = None
-    countries: Optional[List["StatsCountry"]] = None
-    mobile_reach: Optional[int] = None
-    reach: Optional[int] = None
-    reach_subscribers: Optional[int] = None
-    sex: Optional[List["StatsSexAge"]] = None
-    sex_age: Optional[List["StatsSexAge"]] = None
+    age: typing.Optional[typing.List["StatsSexAge"]] = None
+    cities: typing.Optional[typing.List["StatsCity"]] = None
+    countries: typing.Optional[typing.List["StatsCountry"]] = None
+    mobile_reach: typing.Optional[int] = None
+    reach: typing.Optional[int] = None
+    reach_subscribers: typing.Optional[int] = None
+    sex: typing.Optional[typing.List["StatsSexAge"]] = None
+    sex_age: typing.Optional[typing.List["StatsSexAge"]] = None
 
 
 class StatsSexAge(BaseModel):
-    """VK Object Stats/StatsSexAge
+    """VK Object StatsSexAge
 
     count - Visitors number
+    count_subscribers -
+    reach -
+    reach_subscribers -
     value - Sex/age value
     """
 
-    count: Optional[int] = None
-    value: Optional[str] = None
-    reach: Optional[int] = None
-    reach_subscribers: Optional[int] = None
-    count_subscribers: Optional[int] = None
+    count: typing.Optional[int] = None
+    count_subscribers: typing.Optional[int] = None
+    reach: typing.Optional[int] = None
+    reach_subscribers: typing.Optional[int] = None
+    value: str = None
 
 
 class StatsViews(BaseModel):
-    """VK Object Stats/StatsViews
+    """VK Object StatsViews
 
+    age -
+    cities -
+    countries -
     mobile_views - Number of views from mobile devices
+    sex -
+    sex_age -
     views - Views number
     visitors - Visitors number
     """
 
-    age: Optional[List["StatsSexAge"]] = None
-    cities: Optional[List["StatsCity"]] = None
-    countries: Optional[List["StatsCountry"]] = None
-    mobile_views: Optional[int] = None
-    sex: Optional[List["StatsSexAge"]] = None
-    sex_age: Optional[List["StatsSexAge"]] = None
-    views: Optional[int] = None
-    visitors: Optional[int] = None
+    age: typing.Optional[typing.List["StatsSexAge"]] = None
+    cities: typing.Optional[typing.List["StatsCity"]] = None
+    countries: typing.Optional[typing.List["StatsCountry"]] = None
+    mobile_views: typing.Optional[int] = None
+    sex: typing.Optional[typing.List["StatsSexAge"]] = None
+    sex_age: typing.Optional[typing.List["StatsSexAge"]] = None
+    views: typing.Optional[int] = None
+    visitors: typing.Optional[int] = None
 
 
 class StatsWallpostStat(BaseModel):
-    """VK Object Stats/StatsWallpostStat
+    """VK Object StatsWallpostStat
 
     hide - Hidings number
     join_group - People have joined the group
     links - Link clickthrough
+    post_id -
+    reach_ads -
     reach_subscribers - Subscribers reach
+    reach_subscribers_count -
     reach_total - Total reach
+    reach_total_count -
+    reach_viral -
     report - Reports number
+    sex_age -
     to_group - Clickthrough to community
     unsubscribe - Unsubscribed members
     """
 
-    post_id: Optional[int] = None
-    hide: Optional[int] = None
-    join_group: Optional[int] = None
-    links: Optional[int] = None
-    reach_subscribers: Optional[int] = None
-    reach_subscribers_count: Optional[int] = None
-    reach_total: Optional[int] = None
-    reach_total_count: Optional[int] = None
-    reach_viral: Optional[int] = None
-    reach_ads: Optional[int] = None
-    report: Optional[int] = None
-    to_group: Optional[int] = None
-    unsubscribe: Optional[int] = None
-    sex_age: Optional[List["StatsSexAge"]] = None
+    hide: typing.Optional[int] = None
+    join_group: typing.Optional[int] = None
+    links: typing.Optional[int] = None
+    post_id: typing.Optional[int] = None
+    reach_ads: typing.Optional[int] = None
+    reach_subscribers: typing.Optional[int] = None
+    reach_subscribers_count: typing.Optional[int] = None
+    reach_total: typing.Optional[int] = None
+    reach_total_count: typing.Optional[int] = None
+    reach_viral: typing.Optional[int] = None
+    report: typing.Optional[int] = None
+    sex_age: typing.Optional[typing.List["StatsSexAge"]] = None
+    to_group: typing.Optional[int] = None
+    unsubscribe: typing.Optional[int] = None
 
 
 class StatusStatus(BaseModel):
-    """VK Object Status/StatusStatus
+    """VK Object StatusStatus
 
+    audio -
     text - Status text
     """
 
-    text: Optional[str] = None
-    audio: Optional["AudioAudio"] = None
+    audio: typing.Optional["AudioAudio"] = None
+    text: str = None
+
+
+class StickersImageSet(BaseModel):
+    """VK Object StickersImageSet
+
+    base_url - Base URL for images in set
+    version - Version number to be appended to the image URL
+    """
+
+    base_url: str = None
+    version: typing.Optional[int] = None
 
 
 class StorageValue(BaseModel):
-    """VK Object Storage/StorageValue"""
+    """VK Object StorageValue"""
 
-    key: Optional[str] = None
-    value: Optional[str] = None
+    key: str = None
+    value: str = None
+
+
+class ProductType(enum.Enum):
+    """ Product type """
+
+    STICKERS = "stickers"
+
+
+class StoreProduct(BaseModel):
+    """VK Object StoreProduct
+
+    active - Information whether the product is active (1 - yes, 0 - no)
+    has_animation - Information whether the product is an animated sticker pack (for stickers product type)
+    icon - Array of icon images or icon set object of the product (for stickers product type)
+    id - Id of the product
+    is_new - Information whether sticker product wasn't used after being purchased
+    previews - Array of preview images of the product (for stickers product type)
+    promoted - Information whether the product is promoted (1 - yes, 0 - no)
+    purchase_date - Date (Unix time) when the product was purchased
+    purchased - Information whether the product is purchased (1 - yes, 0 - no)
+    stickers -
+    style_sticker_ids - Array of style sticker ids (for sticker pack styles)
+    subtitle - Subtitle of the product
+    title - Title of the product
+    type - Product type
+    """
+
+    active: typing.Optional["BaseBoolInt"] = None
+    has_animation: typing.Optional[bool] = None
+    icon: typing.Optional["StoreProductIcon"] = None
+    id: int = None
+    is_new: typing.Optional[bool] = None
+    previews: typing.Optional[typing.List["BaseImage"]] = None
+    promoted: typing.Optional["BaseBoolInt"] = None
+    purchase_date: typing.Optional[int] = None
+    purchased: typing.Optional["BaseBoolInt"] = None
+    stickers: typing.Optional["BaseStickersList"] = None
+    style_sticker_ids: typing.Optional[typing.List[int]] = None
+    subtitle: typing.Optional[str] = None
+    title: typing.Optional[str] = None
+    type: "ProductType" = None
+
+
+StoreProductIcon = typing.Optional[typing.List["BaseImage"]]
+
+
+class StoreStickersKeyword(BaseModel):
+    """VK Object StoreStickersKeyword"""
+
+    promoted_stickers: typing.Optional["StoreStickersKeywordStickers"] = None
+    stickers: typing.Optional[typing.List["StoreStickersKeywordSticker"]] = None
+    user_stickers: typing.Optional["StoreStickersKeywordStickers"] = None
+    words: typing.List[str] = None
+
+
+class StoreStickersKeywordSticker(BaseModel):
+    """VK Object StoreStickersKeywordSticker
+
+    pack_id - Pack id
+    sticker_id - Sticker id
+    """
+
+    pack_id: int = None
+    sticker_id: int = None
+
+
+StoreStickersKeywordStickers = BaseStickersList
 
 
 class StoriesClickableArea(BaseModel):
-    """VK Object Stories/StoriesClickableArea"""
+    """VK Object StoriesClickableArea"""
 
-    x: Optional[int] = None
-    y: Optional[int] = None
+    x: typing.Optional[int] = None
+    y: typing.Optional[int] = None
+
+
+class StoriesClickableStickerStyle(enum.Enum):
+    """ StoriesClickableStickerStyle enum """
+
+    TRANSPARENT = "transparent"
+    BLUE_GRADIENT = "blue_gradient"
+    RED_GRADIENT = "red_gradient"
+    UNDERLINE = "underline"
+    BLUE = "blue"
+    GREEN = "green"
+    WHITE = "white"
+    QUESTION_REPLY = "question_reply"
+    LIGHT = "light"
+    IMPRESSIVE = "impressive"
+
+
+class StoriesClickableStickerType(enum.Enum):
+    """ StoriesClickableStickerType enum """
+
+    HASHTAG = "hashtag"
+    MENTION = "mention"
+    LINK = "link"
+    QUESTION = "question"
+    PLACE = "place"
+    MARKET_ITEM = "market_item"
+    MUSIC = "music"
+    STORY_REPLY = "story_reply"
+    OWNER = "owner"
+    POST = "post"
+    POLL = "poll"
+    STICKER = "sticker"
+    APP = "app"
+    SITUATIONAL_THEME = "situational_theme"
+
+
+class StoriesClickableStickerSubtype(enum.Enum):
+    """ StoriesClickableStickerSubtype enum """
+
+    MARKET_ITEM = "market_item"
+    ALIEXPRESS_PRODUCT = "aliexpress_product"
 
 
 class StoriesClickableSticker(BaseModel):
-    """VK Object Stories/StoriesClickableSticker
+    """VK Object StoriesClickableSticker
 
-    id - Clickable sticker ID
+    app -
+    app_context - Additional context for app sticker
+    audio -
+    audio_start_time -
+    clickable_area -
     color - Color, hex format
+    has_new_interactions - Whether current user has unread interaction with this app
+    hashtag -
+    id - Clickable sticker ID
+    is_broadcast_notify_allowed - Whether current user allowed broadcast notify from this app
+    link_object -
+    market_item -
+    mention -
+    owner_id -
+    place_id -
+    poll -
+    post_id -
+    post_owner_id -
+    question -
+    question_button -
+    situational_app_url -
+    situational_theme_id -
     sticker_id - Sticker ID
     sticker_pack_id - Sticker pack ID
-    app_context - Additional context for app sticker
-    has_new_interactions - Whether current user has unread interaction with this app
-    is_broadcast_notify_allowed - Whether current user allowed broadcast notify from this app
+    story_id -
+    style -
+    subtype -
+    tooltip_text -
+    type -
     """
 
-    clickable_area: Optional[List["StoriesClickableArea"]] = None
-    id: Optional[int] = None
-    hashtag: Optional[str] = None
-    link_object: Optional["BaseLink"] = None
-    mention: Optional[str] = None
-    tooltip_text: Optional[str] = None
-    owner_id: Optional[int] = None
-    story_id: Optional[int] = None
-    question: Optional[str] = None
-    question_button: Optional[str] = None
-    place_id: Optional[int] = None
-    market_item: Optional["MarketMarketItem"] = None
-    audio: Optional["AudioAudio"] = None
-    audio_start_time: Optional[int] = None
-    style: Optional[str] = None
-    type: Optional[str] = None
-    subtype: Optional[str] = None
-    post_owner_id: Optional[int] = None
-    post_id: Optional[int] = None
-    poll: Optional["PollsPoll"] = None
-    color: Optional[str] = None
-    sticker_id: Optional[int] = None
-    sticker_pack_id: Optional[int] = None
-    app: Optional["AppsAppMin"] = None
-    app_context: Optional[str] = None
-    has_new_interactions: Optional[bool] = None
-    is_broadcast_notify_allowed: Optional[bool] = None
+    app: typing.Optional["AppsAppMin"] = None
+    app_context: typing.Optional[str] = None
+    audio: typing.Optional["AudioAudio"] = None
+    audio_start_time: typing.Optional[int] = None
+    clickable_area: typing.List["StoriesClickableArea"] = None
+    color: typing.Optional[str] = None
+    has_new_interactions: typing.Optional[bool] = None
+    hashtag: typing.Optional[str] = None
+    id: int = None
+    is_broadcast_notify_allowed: typing.Optional[bool] = None
+    link_object: typing.Optional["BaseLink"] = None
+    market_item: typing.Optional["MarketMarketItem"] = None
+    mention: typing.Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    place_id: typing.Optional[int] = None
+    poll: typing.Optional["PollsPoll"] = None
+    post_id: typing.Optional[int] = None
+    post_owner_id: typing.Optional[int] = None
+    question: typing.Optional[str] = None
+    question_button: typing.Optional[str] = None
+    situational_app_url: typing.Optional[str] = None
+    situational_theme_id: typing.Optional[int] = None
+    sticker_id: typing.Optional[int] = None
+    sticker_pack_id: typing.Optional[int] = None
+    story_id: typing.Optional[int] = None
+    style: typing.Optional["StoriesClickableStickerStyle"] = None
+    subtype: typing.Optional["StoriesClickableStickerSubtype"] = None
+    tooltip_text: typing.Optional[str] = None
+    type: "StoriesClickableStickerType" = None
 
 
 class StoriesClickableStickers(BaseModel):
-    """VK Object Stories/StoriesClickableStickers"""
+    """VK Object StoriesClickableStickers"""
 
-    clickable_stickers: Optional[List["StoriesClickableSticker"]] = None
-    original_height: Optional[int] = None
-    original_width: Optional[int] = None
+    clickable_stickers: typing.List["StoriesClickableSticker"] = None
+    original_height: int = None
+    original_width: int = None
+
+
+class FeedItemType(enum.Enum):
+    """ Type of Feed Item """
+
+    PROMO_STORIES = "promo_stories"
+    STORIES = "stories"
+    LIVE_ACTIVE = "live_active"
+    LIVE_FINISHED = "live_finished"
+    COMMUNITY_GROUPED_STORIES = "community_grouped_stories"
+    APP_GROUPED_STORIES = "app_grouped_stories"
+    BIRTHDAY = "birthday"
 
 
 class StoriesFeedItem(BaseModel):
-    """VK Object Stories/StoriesFeedItem
+    """VK Object StoriesFeedItem
 
-    type - Type of Feed Item
-    stories - Author stories
-    grouped - Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)
     app - App, which stories has been grouped (for type app_grouped_stories)
+    birthday_user_id -
+    grouped - Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)
+    has_unseen -
+    id -
+    name -
     promo_data - Additional data for promo stories (for type promo_stories)
+    stories - Author stories
+    track_code -
+    type - Type of Feed Item
     """
 
-    type: Optional[str] = None
-    stories: Optional[List["StoriesStory"]] = None
-    grouped: Optional[List["StoriesFeedItem"]] = None
-    app: Optional["AppsAppMin"] = None
-    promo_data: Optional["StoriesPromoBlock"] = None
+    app: typing.Optional["AppsAppMin"] = None
+    birthday_user_id: typing.Optional[int] = None
+    grouped: typing.Optional[typing.List["StoriesFeedItem"]] = None
+    has_unseen: typing.Optional[bool] = None
+    id: typing.Optional[str] = None
+    name: typing.Optional[str] = None
+    promo_data: typing.Optional["StoriesPromoBlock"] = None
+    stories: typing.Optional[typing.List["StoriesStory"]] = None
+    track_code: typing.Optional[str] = None
+    type: "FeedItemType" = None
 
 
 class StoriesPromoBlock(BaseModel):
-    """VK Object Stories/StoriesPromoBlock
+    """VK Object StoriesPromoBlock
 
     name - Promo story title
-    photo_50 - RL of square photo of the story with 50 pixels in width
-    photo_100 - RL of square photo of the story with 100 pixels in width
     not_animated - Hide animation for promo story
+    photo_100 - RL of square photo of the story with 100 pixels in width
+    photo_50 - RL of square photo of the story with 50 pixels in width
     """
 
-    name: Optional[str] = None
-    photo_50: Optional[str] = None
-    photo_100: Optional[str] = None
-    not_animated: Optional[bool] = None
+    name: str = None
+    not_animated: bool = None
+    photo_100: str = None
+    photo_50: str = None
 
 
 class StoriesReplies(BaseModel):
-    """VK Object Stories/StoriesReplies
+    """VK Object StoriesReplies
 
     count - Replies number.
     new - New replies number.
     """
 
-    count: Optional[int] = None
-    new: Optional[int] = None
+    count: int = None
+    new: typing.Optional[int] = None
 
 
 class StoriesStatLine(BaseModel):
-    """VK Object Stories/StoriesStatLine"""
+    """VK Object StoriesStatLine"""
 
-    name: Optional[str] = None
-    counter: Optional[int] = None
-    is_unavailable: Optional[bool] = None
+    counter: typing.Optional[int] = None
+    is_unavailable: typing.Optional[bool] = None
+    name: str = None
 
 
 class StoriesStory(BaseModel):
-    """VK Object Stories/StoriesStory
+    """VK Object StoriesStory
 
     access_key - Access key for private object.
+    birthday_wish_user_id -
+    can_ask - Information whether story has question sticker and current user can send question to the author
+    can_ask_anonymous - Information whether story has question sticker and current user can send anonymous question to the author
     can_comment - Information whether current user can comment the story (0 - no, 1 - yes).
+    can_hide - Information whether current user can hide the story (0 - no, 1 - yes).
+    can_like - Information whether current user can like the story.
     can_reply - Information whether current user can reply to the story (0 - no, 1 - yes).
     can_see - Information whether current user can see the story (0 - no, 1 - yes).
-    can_like - Information whether current user can like the story.
     can_share - Information whether current user can share the story (0 - no, 1 - yes).
-    can_hide - Information whether current user can hide the story (0 - no, 1 - yes).
+    can_use_in_narrative -
+    clickable_stickers -
     date - Date when story has been added in Unixtime.
     expires_at - Story expiration time. Unixtime.
+    first_narrative_title -
     id - Story ID.
     is_deleted - Information whether the story is deleted (false - no, true - yes).
     is_expired - Information whether the story is expired (false - no, true - yes).
+    link -
+    narratives_count -
     owner_id - Story owner's ID.
+    parent_story -
     parent_story_access_key - Access key for private object.
     parent_story_id - Parent story ID.
     parent_story_owner_id - Parent story owner's ID.
+    photo -
     replies - Replies counters to current story.
     seen - Information whether current user has seen the story or not (0 - no, 1 - yes).
+    type -
+    video -
     views - Views number.
-    can_ask - Information whether story has question sticker and current user can send question to the author
-    can_ask_anonymous - Information whether story has question sticker and current user can send anonymous question to the author
     """
 
-    access_key: Optional[str] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    can_reply: Optional["BaseBoolInt"] = None
-    can_see: Optional["BaseBoolInt"] = None
-    can_like: Optional[bool] = None
-    can_share: Optional["BaseBoolInt"] = None
-    can_hide: Optional["BaseBoolInt"] = None
-    date: Optional[int] = None
-    expires_at: Optional[int] = None
-    id: Optional[int] = None
-    is_deleted: Optional[bool] = None
-    is_expired: Optional[bool] = None
-    link: Optional["StoriesStoryLink"] = None
-    owner_id: Optional[int] = None
-    parent_story: Optional["StoriesStory"] = None
-    parent_story_access_key: Optional[str] = None
-    parent_story_id: Optional[int] = None
-    parent_story_owner_id: Optional[int] = None
-    photo: Optional["PhotosPhoto"] = None
-    replies: Optional["StoriesReplies"] = None
-    seen: Optional["BaseBoolInt"] = None
-    type: Optional["StoriesStoryType"] = None
-    clickable_stickers: Optional["StoriesClickableStickers"] = None
-    video: Optional["VideoVideo"] = None
-    views: Optional[int] = None
-    can_ask: Optional["BaseBoolInt"] = None
-    can_ask_anonymous: Optional["BaseBoolInt"] = None
-    narratives_count: Optional[int] = None
-    first_narrative_title: Optional[str] = None
-    birthday_wish_user_id: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    birthday_wish_user_id: typing.Optional[int] = None
+    can_ask: typing.Optional["BaseBoolInt"] = None
+    can_ask_anonymous: typing.Optional["BaseBoolInt"] = None
+    can_comment: typing.Optional["BaseBoolInt"] = None
+    can_hide: typing.Optional["BaseBoolInt"] = None
+    can_like: typing.Optional[bool] = None
+    can_reply: typing.Optional["BaseBoolInt"] = None
+    can_see: typing.Optional["BaseBoolInt"] = None
+    can_share: typing.Optional["BaseBoolInt"] = None
+    can_use_in_narrative: typing.Optional[bool] = None
+    clickable_stickers: typing.Optional["StoriesClickableStickers"] = None
+    date: typing.Optional[int] = None
+    expires_at: typing.Optional[int] = None
+    first_narrative_title: typing.Optional[str] = None
+    id: int = None
+    is_deleted: typing.Optional[bool] = None
+    is_expired: typing.Optional[bool] = None
+    link: typing.Optional["StoriesStoryLink"] = None
+    narratives_count: typing.Optional[int] = None
+    owner_id: int = None
+    parent_story: typing.Optional["StoriesStory"] = None
+    parent_story_access_key: typing.Optional[str] = None
+    parent_story_id: typing.Optional[int] = None
+    parent_story_owner_id: typing.Optional[int] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    replies: typing.Optional["StoriesReplies"] = None
+    seen: typing.Optional["BaseBoolInt"] = None
+    type: typing.Optional["StoriesStoryType"] = None
+    video: typing.Optional["VideoVideo"] = None
+    views: typing.Optional[int] = None
 
 
 class StoriesStoryLink(BaseModel):
-    """VK Object Stories/StoriesStoryLink
+    """VK Object StoriesStoryLink
 
     text - Link text
     url - Link URL
     """
 
-    text: Optional[str] = None
-    url: Optional[str] = None
+    text: str = None
+    url: str = None
 
 
 class StoriesStoryStats(BaseModel):
-    """VK Object Stories/StoriesStoryStats"""
+    """VK Object StoriesStoryStats"""
 
-    answer: Optional["StoriesStoryStatsStat"] = None
-    bans: Optional["StoriesStoryStatsStat"] = None
-    open_link: Optional["StoriesStoryStatsStat"] = None
-    replies: Optional["StoriesStoryStatsStat"] = None
-    shares: Optional["StoriesStoryStatsStat"] = None
-    subscribers: Optional["StoriesStoryStatsStat"] = None
-    views: Optional["StoriesStoryStatsStat"] = None
-    likes: Optional["StoriesStoryStatsStat"] = None
+    answer: "StoriesStoryStatsStat" = None
+    bans: "StoriesStoryStatsStat" = None
+    likes: "StoriesStoryStatsStat" = None
+    open_link: "StoriesStoryStatsStat" = None
+    replies: "StoriesStoryStatsStat" = None
+    shares: "StoriesStoryStatsStat" = None
+    subscribers: "StoriesStoryStatsStat" = None
+    views: "StoriesStoryStatsStat" = None
 
 
 class StoriesStoryStatsStat(BaseModel):
-    """VK Object Stories/StoriesStoryStatsStat"""
+    """VK Object StoriesStoryStatsStat
 
-    count: Optional[int] = None
-    state: Optional["StoriesStoryStatsState"] = None
+    count - Stat value
+    state -
+    """
+
+    count: typing.Optional[int] = None
+    state: "StoriesStoryStatsState" = None
 
 
 class StoriesStoryStatsState(enum.Enum):
@@ -5746,6 +7891,7 @@ class StoriesStoryType(enum.Enum):
     VIDEO = "video"
     LIVE_ACTIVE = "live_active"
     LIVE_FINISHED = "live_finished"
+    BIRTHDAY_INVITE = "birthday_invite"
 
 
 class StoriesUploadLinkText(enum.Enum):
@@ -5775,51 +7921,66 @@ class StoriesUploadLinkText(enum.Enum):
 
 
 class StoriesViewersItem(BaseModel):
-    """VK Object Stories/StoriesViewersItem
+    """VK Object StoriesViewersItem
 
     is_liked - user has like for this object
+    user -
     user_id - user id
     """
 
-    is_liked: Optional[bool] = None
-    user_id: Optional[int] = None
-    user: Optional["UsersUserFull"] = None
+    is_liked: bool = None
+    user: typing.Optional["UsersUserFull"] = None
+    user_id: int = None
 
 
 class UsersCareer(BaseModel):
-    """VK Object Users/UsersCareer
+    """VK Object UsersCareer
 
     city_id - City ID
+    city_name - City name
     company - Company name
     country_id - Country ID
-    from - From year
+    _from - From year
     group_id - Community ID
     id - Career ID
     position - Position
     until - Till year
     """
 
-    city_id: Optional[int] = None
-    company: Optional[str] = None
-    country_id: Optional[int] = None
-    _from: Optional[int] = None
-    group_id: Optional[int] = None
-    id: Optional[int] = None
-    position: Optional[str] = None
-    until: Optional[int] = None
+    city_id: typing.Optional[int] = None
+    city_name: typing.Optional[str] = None
+    company: typing.Optional[str] = None
+    country_id: typing.Optional[int] = None
+    _from: typing.Optional[int] = None
+    group_id: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    position: typing.Optional[str] = None
+    until: typing.Optional[int] = None
 
 
 class UsersExports(BaseModel):
-    """VK Object Users/UsersExports"""
+    """VK Object UsersExports"""
 
-    facebook: Optional[int] = None
-    livejournal: Optional[int] = None
-    twitter: Optional[int] = None
+    facebook: typing.Optional[int] = None
+    livejournal: typing.Optional[int] = None
+    twitter: typing.Optional[int] = None
 
 
 class UsersFields(enum.Enum):
     """ UsersFields enum """
 
+    FIRST_NAME_NOM = "first_name_nom"
+    FIRST_NAME_GEN = "first_name_gen"
+    FIRST_NAME_DAT = "first_name_dat"
+    FIRST_NAME_ACC = "first_name_acc"
+    FIRST_NAME_INS = "first_name_ins"
+    FIRST_NAME_ABL = "first_name_abl"
+    LAST_NAME_NOM = "last_name_nom"
+    LAST_NAME_GEN = "last_name_gen"
+    LAST_NAME_DAT = "last_name_dat"
+    LAST_NAME_ACC = "last_name_acc"
+    LAST_NAME_INS = "last_name_ins"
+    LAST_NAME_ABL = "last_name_abl"
     PHOTO_ID = "photo_id"
     VERIFIED = "verified"
     SEX = "sex"
@@ -5832,9 +7993,11 @@ class UsersFields(enum.Enum):
     PHOTO_100 = "photo_100"
     PHOTO_200_ORIG = "photo_200_orig"
     PHOTO_200 = "photo_200"
+    PHOTO_400 = "photo_400"
     PHOTO_400_ORIG = "photo_400_orig"
     PHOTO_MAX = "photo_max"
     PHOTO_MAX_ORIG = "photo_max_orig"
+    PHOTO_MAX_SIZE = "photo_max_size"
     ONLINE = "online"
     LISTS = "lists"
     DOMAIN = "domain"
@@ -5893,75 +8056,88 @@ class UsersFields(enum.Enum):
     VIDEO_LIVE_LEVEL = "video_live_level"
     VIDEO_LIVE_COUNT = "video_live_count"
     CLIPS_COUNT = "clips_count"
+    SERVICE_DESCRIPTION = "service_description"
+    IS_DEAD = "is_dead"
 
 
 class UsersLastSeen(BaseModel):
-    """VK Object Users/UsersLastSeen
+    """VK Object UsersLastSeen
 
     platform - Type of the platform that used for the last authorization
     time - Last visit date (in Unix time)
     """
 
-    platform: Optional[int] = None
-    time: Optional[int] = None
+    platform: typing.Optional[int] = None
+    time: typing.Optional[int] = None
 
 
 class UsersMilitary(BaseModel):
-    """VK Object Users/UsersMilitary
+    """VK Object UsersMilitary
 
     country_id - Country ID
-    from - From year
+    _from - From year
     id - Military ID
     unit - Unit name
     unit_id - Unit ID
     until - Till year
     """
 
-    country_id: Optional[int] = None
-    _from: Optional[int] = None
-    id: Optional[int] = None
-    unit: Optional[str] = None
-    unit_id: Optional[int] = None
-    until: Optional[int] = None
+    country_id: int = None
+    _from: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    unit: str = None
+    unit_id: int = None
+    until: typing.Optional[int] = None
 
 
 class UsersOccupation(BaseModel):
-    """VK Object Users/UsersOccupation
+    """VK Object UsersOccupation
 
     id - ID of school, university, company group
     name - Name of occupation
     type - Type of occupation
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    type: typing.Optional[str] = None
+
+
+class UsersOnlineInfoStatus(enum.Enum):
+    """ In case user online is not visible, it indicates approximate timeframe of user online """
+
+    RECENTLY = "recently"
+    LAST_WEEK = "last_week"
+    LAST_MONTH = "last_month"
+    LONG_AGO = "long_ago"
+    NOT_SHOW = "not_show"
 
 
 class UsersOnlineInfo(BaseModel):
-    """VK Object Users/UsersOnlineInfo
+    """VK Object UsersOnlineInfo
 
-    visible - Whether you can see real online status of user or not
-    last_seen - Last time we saw user being active
-    is_online - Whether user is currently online or not
     app_id - Application id from which user is currently online or was last seen online
     is_mobile - Is user online from desktop app or mobile app
+    is_online - Whether user is currently online or not
+    last_seen - Last time we saw user being active
     status - In case user online is not visible, it indicates approximate timeframe of user online
+    visible - Whether you can see real online status of user or not
     """
 
-    visible: Optional[bool] = None
-    last_seen: Optional[int] = None
-    is_online: Optional[bool] = None
-    app_id: Optional[int] = None
-    is_mobile: Optional[bool] = None
-    status: Optional[str] = None
+    app_id: typing.Optional[int] = None
+    is_mobile: typing.Optional[bool] = None
+    is_online: typing.Optional[bool] = None
+    last_seen: typing.Optional[int] = None
+    status: typing.Optional["UsersOnlineInfoStatus"] = None
+    visible: bool = None
 
 
 class UsersPersonal(BaseModel):
-    """VK Object Users/UsersPersonal
+    """VK Object UsersPersonal
 
     alcohol - User's views on alcohol
     inspired_by - User's inspired by
+    langs -
     life_main - User's personal priority in life
     people_main - User's personal priority in people
     political - User's political views
@@ -5970,19 +8146,29 @@ class UsersPersonal(BaseModel):
     smoking - User's views on smoking
     """
 
-    alcohol: Optional[int] = None
-    inspired_by: Optional[str] = None
-    langs: Optional[List[str]] = None
-    life_main: Optional[int] = None
-    people_main: Optional[int] = None
-    political: Optional[int] = None
-    religion: Optional[str] = None
-    religion_id: Optional[int] = None
-    smoking: Optional[int] = None
+    alcohol: typing.Optional[int] = None
+    inspired_by: typing.Optional[str] = None
+    langs: typing.Optional[typing.List[str]] = None
+    life_main: typing.Optional[int] = None
+    people_main: typing.Optional[int] = None
+    political: typing.Optional[int] = None
+    religion: typing.Optional[str] = None
+    religion_id: typing.Optional[int] = None
+    smoking: typing.Optional[int] = None
+
+
+class RelativeType(enum.Enum):
+    """ Relative type """
+
+    PARENT = "parent"
+    CHILD = "child"
+    GRANDPARENT = "grandparent"
+    GRANDCHILD = "grandchild"
+    SIBLING = "sibling"
 
 
 class UsersRelative(BaseModel):
-    """VK Object Users/UsersRelative
+    """VK Object UsersRelative
 
     birth_date - Date of child birthday (format dd.mm.yyyy)
     id - Relative ID
@@ -5990,20 +8176,21 @@ class UsersRelative(BaseModel):
     type - Relative type
     """
 
-    birth_date: Optional[str] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+    birth_date: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    type: "RelativeType" = None
 
 
 class UsersSchool(BaseModel):
-    """VK Object Users/UsersSchool
+    """VK Object UsersSchool
 
     city - City ID
-    class - School class letter
+    _class - School class letter
     country - Country ID
     id - School ID
     name - School name
+    speciality -
     type - School type ID
     type_str - School type name
     year_from - Year the user started to study
@@ -6011,24 +8198,27 @@ class UsersSchool(BaseModel):
     year_to - Year the user finished to study
     """
 
-    city: Optional[int] = None
-    _class: Optional[str] = None
-    country: Optional[int] = None
-    id: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[int] = None
-    type_str: Optional[str] = None
-    year_from: Optional[int] = None
-    year_graduated: Optional[int] = None
-    year_to: Optional[int] = None
+    city: typing.Optional[int] = None
+    _class: typing.Optional[str] = None
+    country: typing.Optional[int] = None
+    id: typing.Optional[str] = None
+    name: typing.Optional[str] = None
+    speciality: typing.Optional[str] = None
+    type: typing.Optional[int] = None
+    type_str: typing.Optional[str] = None
+    year_from: typing.Optional[int] = None
+    year_graduated: typing.Optional[int] = None
+    year_to: typing.Optional[int] = None
 
 
-class UsersSubscriptionsItem(BaseModel):
-    """VK Object Users/UsersSubscriptionsItem"""
+class UsersSubscriptionsItem(UsersUserXtrType, GroupsGroupFull):
+    """VK Object UsersSubscriptionsItem"""
+
+    pass
 
 
 class UsersUniversity(BaseModel):
-    """VK Object Users/UsersUniversity
+    """VK Object UsersUniversity
 
     chair - Chair ID
     chair_name - Chair name
@@ -6041,251 +8231,93 @@ class UsersUniversity(BaseModel):
     graduation - Graduation year
     id - University ID
     name - University name
+    university_group_id -
     """
 
-    chair: Optional[int] = None
-    chair_name: Optional[str] = None
-    city: Optional[int] = None
-    country: Optional[int] = None
-    education_form: Optional[str] = None
-    education_status: Optional[str] = None
-    faculty: Optional[int] = None
-    faculty_name: Optional[str] = None
-    graduation: Optional[int] = None
-    id: Optional[int] = None
-    name: Optional[str] = None
+    chair: typing.Optional[int] = None
+    chair_name: typing.Optional[str] = None
+    city: typing.Optional[int] = None
+    country: typing.Optional[int] = None
+    education_form: typing.Optional[str] = None
+    education_status: typing.Optional[str] = None
+    faculty: typing.Optional[int] = None
+    faculty_name: typing.Optional[str] = None
+    graduation: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    university_group_id: typing.Optional[int] = None
 
 
 class UsersUserConnections(BaseModel):
-    """VK Object Users/UsersUserConnections
+    """VK Object UsersUserConnections
 
-    skype - User's Skype nickname
     facebook - User's Facebook account
     facebook_name - User's Facebook name
-    twitter - User's Twitter account
-    livejournal - User's Livejournal account
     instagram - User's Instagram account
+    livejournal - User's Livejournal account
+    skype - User's Skype nickname
+    twitter - User's Twitter account
     """
 
-    skype: Optional[str] = None
-    facebook: Optional[str] = None
-    facebook_name: Optional[str] = None
-    twitter: Optional[str] = None
-    livejournal: Optional[str] = None
-    instagram: Optional[str] = None
+    facebook: str = None
+    facebook_name: typing.Optional[str] = None
+    instagram: str = None
+    livejournal: typing.Optional[str] = None
+    skype: str = None
+    twitter: str = None
 
 
 class UsersUserCounters(BaseModel):
-    """VK Object Users/UsersUserCounters
+    """VK Object UsersUserCounters
 
     albums - Albums number
+    articles -
     audios - Audios number
+    clips -
+    clips_followers -
     followers - Followers number
     friends - Friends number
     gifts - Gifts number
     groups - Communities number
+    mutual_friends -
+    new_photo_tags -
+    new_recognition_tags -
     notes - Notes number
     online_friends - Online friends number
     pages - Public pages number
     photos - Photos number
+    podcasts -
+    posts -
     subscriptions - Subscriptions number
     user_photos - Number of photos with user
     user_videos - Number of videos with user
     videos - Videos number
+    wishes -
     """
 
-    albums: Optional[int] = None
-    audios: Optional[int] = None
-    followers: Optional[int] = None
-    friends: Optional[int] = None
-    gifts: Optional[int] = None
-    groups: Optional[int] = None
-    notes: Optional[int] = None
-    online_friends: Optional[int] = None
-    pages: Optional[int] = None
-    photos: Optional[int] = None
-    subscriptions: Optional[int] = None
-    user_photos: Optional[int] = None
-    user_videos: Optional[int] = None
-    videos: Optional[int] = None
-
-
-class UsersUserMin(BaseModel):
-    """VK Object Users/UsersUserMin"""
-
-    deactivated: Optional[str] = None
-    first_name: Optional[str] = None
-    hidden: Optional[int] = None
-    id: Optional[int] = None
-    last_name: Optional[str] = None
-    can_access_closed: Optional[bool] = None
-    is_closed: Optional[bool] = None
-
-
-class UsersUser(UsersUserMin):
-    """VK Object Users/UsersUser
-
-    sex - User sex
-    screen_name - Domain name of the user's page
-    photo_50 - URL of square photo of the user with 50 pixels in width
-    photo_100 - URL of square photo of the user with 100 pixels in width
-    online - Information whether the user is online
-    online_mobile - Information whether the user is online in mobile site or application
-    online_app - Application ID
-    verified - Information whether the user is verified
-    trending - Information whether the user has a "fire" pictogram.
-    """
-
-    sex: Optional["BaseSex"] = None
-    screen_name: Optional[str] = None
-    photo_50: Optional[str] = None
-    photo_100: Optional[str] = None
-    online_info: Optional["UsersOnlineInfo"] = None
-    online: Optional["BaseBoolInt"] = None
-    online_mobile: Optional["BaseBoolInt"] = None
-    online_app: Optional[int] = None
-    verified: Optional["BaseBoolInt"] = None
-    trending: Optional["BaseBoolInt"] = None
-    friend_status: Optional["FriendsFriendStatusStatus"] = None
-    mutual: Optional["FriendsRequestsMutual"] = None
-
-
-class UsersUserFull(UsersUser):
-    """VK Object Users/UsersUserFull
-
-    first_name_nom - User's first name in nominative case
-    first_name_gen - User's first name in genitive case
-    first_name_dat - User's first name in dative case
-    first_name_acc - User's first name in accusative case
-    first_name_ins - User's first name in instrumental case
-    first_name_abl - User's first name in prepositional case
-    last_name_nom - User's last name in nominative case
-    last_name_gen - User's last name in genitive case
-    last_name_dat - User's last name in dative case
-    last_name_acc - User's last name in accusative case
-    last_name_ins - User's last name in instrumental case
-    last_name_abl - User's last name in prepositional case
-    nickname - User nickname
-    maiden_name - User maiden name
-    domain - Domain name of the user's page
-    bdate - User's date of birth
-    timezone - User's timezone
-    photo_200 - URL of square photo of the user with 200 pixels in width
-    photo_max - URL of square photo of the user with maximum width
-    photo_200_orig - URL of user's photo with 200 pixels in width
-    photo_400_orig - URL of user's photo with 400 pixels in width
-    photo_max_orig - URL of user's photo of maximum size
-    photo_id - ID of the user's main photo
-    has_photo - Information whether the user has main photo
-    has_mobile - Information whether the user specified his phone number
-    is_friend - Information whether the user is a friend of current user
-    wall_comments - Information whether current user can comment wall posts
-    can_post - Information whether current user can post on the user's wall
-    can_see_all_posts - Information whether current user can see other users' audio on the wall
-    can_see_audio - Information whether current user can see the user's audio
-    can_write_private_message - Information whether current user can write private message
-    can_send_friend_request - Information whether current user can send a friend request
-    can_be_invited_group - Information whether current user can be invited to the community
-    mobile_phone - User's mobile phone number
-    home_phone - User's additional phone number
-    site - User's website
-    status - User's status
-    activity - User's status
-    followers_count - Number of user's followers
-    video_live_level - User level in live streams achievements
-    video_live_count - Number of user's live streams
-    blacklisted - Information whether current user is in the requested user's blacklist.
-    blacklisted_by_me - Information whether the requested user is in current user's blacklist
-    is_favorite - Information whether the requested user is in faves of current user
-    is_hidden_from_feed - Information whether the requested user is hidden from current user's newsfeed
-    common_count - Number of common friends with current user
-    university - University ID
-    university_name - University name
-    faculty - Faculty ID
-    faculty_name - Faculty name
-    graduation - Graduation year
-    education_form - Education form
-    education_status - User's education status
-    home_town - User hometown
-    relation - User relationship status
-    is_subscribed_podcasts - Information whether current user is subscribed to podcasts
-    can_subscribe_podcasts - Owner in whitelist or not
-    can_subscribe_posts - Can subscribe to wall
-    """
-
-    first_name_nom: Optional[str] = None
-    first_name_gen: Optional[str] = None
-    first_name_dat: Optional[str] = None
-    first_name_acc: Optional[str] = None
-    first_name_ins: Optional[str] = None
-    first_name_abl: Optional[str] = None
-    last_name_nom: Optional[str] = None
-    last_name_gen: Optional[str] = None
-    last_name_dat: Optional[str] = None
-    last_name_acc: Optional[str] = None
-    last_name_ins: Optional[str] = None
-    last_name_abl: Optional[str] = None
-    nickname: Optional[str] = None
-    maiden_name: Optional[str] = None
-    domain: Optional[str] = None
-    bdate: Optional[str] = None
-    city: Optional["BaseObject"] = None
-    country: Optional["BaseCountry"] = None
-    timezone: Optional[int] = None
-    owner_state: Optional["OwnerState"] = None
-    photo_200: Optional[str] = None
-    photo_max: Optional[str] = None
-    photo_200_orig: Optional[str] = None
-    photo_400_orig: Optional[str] = None
-    photo_max_orig: Optional[str] = None
-    photo_id: Optional[str] = None
-    has_photo: Optional["BaseBoolInt"] = None
-    has_mobile: Optional["BaseBoolInt"] = None
-    is_friend: Optional["BaseBoolInt"] = None
-    wall_comments: Optional["BaseBoolInt"] = None
-    can_post: Optional["BaseBoolInt"] = None
-    can_see_all_posts: Optional["BaseBoolInt"] = None
-    can_see_audio: Optional["BaseBoolInt"] = None
-    can_write_private_message: Optional["BaseBoolInt"] = None
-    can_send_friend_request: Optional["BaseBoolInt"] = None
-    can_be_invited_group: Optional[bool] = None
-    mobile_phone: Optional[str] = None
-    home_phone: Optional[str] = None
-    site: Optional[str] = None
-    status_audio: Optional["AudioAudio"] = None
-    status: Optional[str] = None
-    activity: Optional[str] = None
-    last_seen: Optional["UsersLastSeen"] = None
-    exports: Optional["UsersExports"] = None
-    crop_photo: Optional["BaseCropPhoto"] = None
-    followers_count: Optional[int] = None
-    video_live_level: Optional[int] = None
-    video_live_count: Optional[int] = None
-    blacklisted: Optional["BaseBoolInt"] = None
-    blacklisted_by_me: Optional["BaseBoolInt"] = None
-    is_favorite: Optional["BaseBoolInt"] = None
-    is_hidden_from_feed: Optional["BaseBoolInt"] = None
-    common_count: Optional[int] = None
-    occupation: Optional["UsersOccupation"] = None
-    career: Optional[List["UsersCareer"]] = None
-    military: Optional[List["UsersMilitary"]] = None
-    university: Optional[int] = None
-    university_name: Optional[str] = None
-    faculty: Optional[int] = None
-    faculty_name: Optional[str] = None
-    graduation: Optional[int] = None
-    education_form: Optional[str] = None
-    education_status: Optional[str] = None
-    home_town: Optional[str] = None
-    relation: Optional["UsersUserRelation"] = None
-    relation_partner: Optional["UsersUserMin"] = None
-    personal: Optional["UsersPersonal"] = None
-    universities: Optional[List["UsersUniversity"]] = None
-    schools: Optional[List["UsersSchool"]] = None
-    relatives: Optional[List["UsersRelative"]] = None
-    is_subscribed_podcasts: Optional[bool] = None
-    can_subscribe_podcasts: Optional[bool] = None
-    can_subscribe_posts: Optional[bool] = None
+    albums: typing.Optional[int] = None
+    articles: typing.Optional[int] = None
+    audios: typing.Optional[int] = None
+    clips: typing.Optional[int] = None
+    clips_followers: typing.Optional[int] = None
+    followers: typing.Optional[int] = None
+    friends: typing.Optional[int] = None
+    gifts: typing.Optional[int] = None
+    groups: typing.Optional[int] = None
+    mutual_friends: typing.Optional[int] = None
+    new_photo_tags: typing.Optional[int] = None
+    new_recognition_tags: typing.Optional[int] = None
+    notes: typing.Optional[int] = None
+    online_friends: typing.Optional[int] = None
+    pages: typing.Optional[int] = None
+    photos: typing.Optional[int] = None
+    podcasts: typing.Optional[int] = None
+    posts: typing.Optional[int] = None
+    subscriptions: typing.Optional[int] = None
+    user_photos: typing.Optional[int] = None
+    user_videos: typing.Optional[int] = None
+    videos: typing.Optional[int] = None
+    wishes: typing.Optional[int] = None
 
 
 class UsersUserRelation(enum.IntEnum):
@@ -6302,33 +8334,6 @@ class UsersUserRelation(enum.IntEnum):
     in_a_civil_union = 8
 
 
-class UsersUserSettingsXtr(BaseModel):
-    """VK Object Users/UsersUserSettingsXtr"""
-
-    connections: Optional["UsersUserConnections"] = None
-    bdate: Optional[str] = None
-    bdate_visibility: Optional[int] = None
-    city: Optional["BaseCity"] = None
-    country: Optional["BaseCountry"] = None
-    first_name: Optional[str] = None
-    home_town: Optional[str] = None
-    last_name: Optional[str] = None
-    maiden_name: Optional[str] = None
-    name_request: Optional["AccountNameRequest"] = None
-    personal: Optional["UsersPersonal"] = None
-    phone: Optional[str] = None
-    relation: Optional["UsersUserRelation"] = None
-    relation_partner: Optional["UsersUserMin"] = None
-    relation_pending: Optional["BaseBoolInt"] = None
-    relation_requests: Optional[List["UsersUserMin"]] = None
-    screen_name: Optional[str] = None
-    sex: Optional["BaseSex"] = None
-    status: Optional[str] = None
-    status_audio: Optional["AudioAudio"] = None
-    interests: Optional["AccountUserSettingsInterests"] = None
-    languages: Optional[List[str]] = None
-
-
 class UsersUserType(enum.Enum):
     """ Object type """
 
@@ -6336,33 +8341,33 @@ class UsersUserType(enum.Enum):
 
 
 class UsersUserXtrCounters(UsersUserFull):
-    """VK Object Users/UsersUserXtrCounters"""
+    """VK Object UsersUserXtrCounters"""
 
-    counters: Optional["UsersUserCounters"] = None
-
-
-class UsersUserXtrType(UsersUser):
-    """VK Object Users/UsersUserXtrType"""
-
-    type: Optional["UsersUserType"] = None
+    pass
 
 
 class UsersUsersArray(BaseModel):
-    """VK Object Users/UsersUsersArray
+    """VK Object UsersUsersArray
 
     count - Users number
+    items -
     """
 
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: int = None
+    items: typing.List[int] = None
 
 
 class UtilsDomainResolved(BaseModel):
-    """VK Object Utils/UtilsDomainResolved"""
+    """VK Object UtilsDomainResolved
 
-    object_id: Optional[int] = None
-    group_id: Optional[int] = None
-    type: Optional["UtilsDomainResolvedType"] = None
+    group_id - Group ID
+    object_id - Object ID
+    type -
+    """
+
+    group_id: typing.Optional[int] = None
+    object_id: typing.Optional[int] = None
+    type: typing.Optional["UtilsDomainResolvedType"] = None
 
 
 class UtilsDomainResolvedType(enum.Enum):
@@ -6372,10 +8377,12 @@ class UtilsDomainResolvedType(enum.Enum):
     GROUP = "group"
     APPLICATION = "application"
     PAGE = "page"
+    VK_APP = "vk_app"
+    COMMUNITY_APPLICATION = "community_application"
 
 
 class UtilsLastShortenedLink(BaseModel):
-    """VK Object Utils/UtilsLastShortenedLink
+    """VK Object UtilsLastShortenedLink
 
     access_key - Access key for private stats
     key - Link key (characters after vk.cc/)
@@ -6385,19 +8392,23 @@ class UtilsLastShortenedLink(BaseModel):
     views - Total views number
     """
 
-    access_key: Optional[str] = None
-    key: Optional[str] = None
-    short_url: Optional[str] = None
-    timestamp: Optional[int] = None
-    url: Optional[str] = None
-    views: Optional[int] = None
+    access_key: typing.Optional[str] = None
+    key: typing.Optional[str] = None
+    short_url: typing.Optional[str] = None
+    timestamp: typing.Optional[int] = None
+    url: typing.Optional[str] = None
+    views: typing.Optional[int] = None
 
 
 class UtilsLinkChecked(BaseModel):
-    """VK Object Utils/UtilsLinkChecked"""
+    """VK Object UtilsLinkChecked
 
-    link: Optional[str] = None
-    status: Optional["UtilsLinkCheckedStatus"] = None
+    link - Link URL
+    status -
+    """
+
+    link: typing.Optional[str] = None
+    status: typing.Optional["UtilsLinkCheckedStatus"] = None
 
 
 class UtilsLinkCheckedStatus(enum.Enum):
@@ -6408,36 +8419,30 @@ class UtilsLinkCheckedStatus(enum.Enum):
     PROCESSING = "processing"
 
 
-class UsersBlockReason(enum.IntEnum):
-    OTHER = 0
-    SPAM = 1
-    VERBAL_ABUSE = 2
-    STRONG_LANGUAGE = 3
-    IRRELEVANT_MESSAGES = 4
-
-
 class UtilsLinkStats(BaseModel):
-    """VK Object Utils/UtilsLinkStats
+    """VK Object UtilsLinkStats
 
     key - Link key (characters after vk.cc/)
+    stats -
     """
 
-    key: Optional[str] = None
-    stats: Optional[List["UtilsStats"]] = None
+    key: typing.Optional[str] = None
+    stats: typing.Optional[typing.List["UtilsStats"]] = None
 
 
 class UtilsLinkStatsExtended(BaseModel):
-    """VK Object Utils/UtilsLinkStatsExtended
+    """VK Object UtilsLinkStatsExtended
 
     key - Link key (characters after vk.cc/)
+    stats -
     """
 
-    key: Optional[str] = None
-    stats: Optional[List["UtilsStatsExtended"]] = None
+    key: typing.Optional[str] = None
+    stats: typing.Optional[typing.List["UtilsStatsExtended"]] = None
 
 
 class UtilsShortLink(BaseModel):
-    """VK Object Utils/UtilsShortLink
+    """VK Object UtilsShortLink
 
     access_key - Access key for private stats
     key - Link key (characters after vk.cc/)
@@ -6445,94 +8450,97 @@ class UtilsShortLink(BaseModel):
     url - Full URL
     """
 
-    access_key: Optional[str] = None
-    key: Optional[str] = None
-    short_url: Optional[str] = None
-    url: Optional[str] = None
+    access_key: typing.Optional[str] = None
+    key: typing.Optional[str] = None
+    short_url: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
 class UtilsStats(BaseModel):
-    """VK Object Utils/UtilsStats
+    """VK Object UtilsStats
 
     timestamp - Start time
     views - Total views number
     """
 
-    timestamp: Optional[int] = None
-    views: Optional[int] = None
+    timestamp: typing.Optional[int] = None
+    views: typing.Optional[int] = None
 
 
 class UtilsStatsCity(BaseModel):
-    """VK Object Utils/UtilsStatsCity
+    """VK Object UtilsStatsCity
 
     city_id - City ID
     views - Views number
     """
 
-    city_id: Optional[int] = None
-    views: Optional[int] = None
+    city_id: typing.Optional[int] = None
+    views: typing.Optional[int] = None
 
 
 class UtilsStatsCountry(BaseModel):
-    """VK Object Utils/UtilsStatsCountry
+    """VK Object UtilsStatsCountry
 
     country_id - Country ID
     views - Views number
     """
 
-    country_id: Optional[int] = None
-    views: Optional[int] = None
+    country_id: typing.Optional[int] = None
+    views: typing.Optional[int] = None
 
 
 class UtilsStatsExtended(BaseModel):
-    """VK Object Utils/UtilsStatsExtended
+    """VK Object UtilsStatsExtended
 
+    cities -
+    countries -
+    sex_age -
     timestamp - Start time
     views - Total views number
     """
 
-    cities: Optional[List["UtilsStatsCity"]] = None
-    countries: Optional[List["UtilsStatsCountry"]] = None
-    sex_age: Optional[List["UtilsStatsSexAge"]] = None
-    timestamp: Optional[int] = None
-    views: Optional[int] = None
+    cities: typing.Optional[typing.List["UtilsStatsCity"]] = None
+    countries: typing.Optional[typing.List["UtilsStatsCountry"]] = None
+    sex_age: typing.Optional[typing.List["UtilsStatsSexAge"]] = None
+    timestamp: typing.Optional[int] = None
+    views: typing.Optional[int] = None
 
 
 class UtilsStatsSexAge(BaseModel):
-    """VK Object Utils/UtilsStatsSexAge
+    """VK Object UtilsStatsSexAge
 
     age_range - Age denotation
-    female -  Views by female users
-    male -  Views by male users
+    female - Views by female users
+    male - Views by male users
     """
 
-    age_range: Optional[str] = None
-    female: Optional[int] = None
-    male: Optional[int] = None
+    age_range: typing.Optional[str] = None
+    female: typing.Optional[int] = None
+    male: typing.Optional[int] = None
+
+
+class VideoLiveInfo(BaseModel):
+    """VK Object VideoLiveInfo"""
+
+    enabled: typing.Optional["BaseBoolInt"] = None
+    is_notifications_blocked: typing.Optional["BaseBoolInt"] = None
 
 
 class VideoLiveSettings(BaseModel):
-    """VK Object Video/VideoLiveSettings
+    """VK Object VideoLiveSettings
 
     can_rewind - If user car rewind live or not
     is_endless - If live is endless or not
     max_duration - Max possible time for rewind
     """
 
-    can_rewind: Optional["BaseBoolInt"] = None
-    is_endless: Optional["BaseBoolInt"] = None
-    max_duration: Optional[int] = None
-
-
-class VideoRestrictionButton(BaseModel):
-    """VK Object Video/VideoRestrictionButton"""
-
-    action: Optional[str] = None
-    title: Optional[str] = None
+    can_rewind: typing.Optional["BaseBoolInt"] = None
+    is_endless: typing.Optional["BaseBoolInt"] = None
+    max_duration: typing.Optional[int] = None
 
 
 class VideoSaveResult(BaseModel):
-    """VK Object Video/VideoSaveResult
+    """VK Object VideoSaveResult
 
     access_key - Video access key
     description - Video description
@@ -6542,106 +8550,16 @@ class VideoSaveResult(BaseModel):
     video_id - Video ID
     """
 
-    access_key: Optional[str] = None
-    description: Optional[str] = None
-    owner_id: Optional[int] = None
-    title: Optional[str] = None
-    upload_url: Optional[str] = None
-    video_id: Optional[int] = None
-
-
-class VideoVideo(BaseModel):
-    """VK Object Video/VideoVideo
-
-    access_key - Video access key
-    adding_date - Date when the video has been added in Unixtime
-    can_comment - Information whether current user can comment the video
-    can_edit - Information whether current user can edit the video
-    can_like - Information whether current user can like the video
-    can_repost - Information whether current user can repost the video
-    can_subscribe - Information whether current user can subscribe to author of the video
-    can_add_to_faves - Information whether current user can add the video to favourites
-    can_add - Information whether current user can add the video
-    can_attach_link - Information whether current user can attach action button to the video
-    is_private - 1 if video is private
-    comments - Number of comments
-    date - Date when video has been uploaded in Unixtime
-    description - Video description
-    duration - Video duration in seconds
-    width - Video width
-    height - Video height
-    id - Video ID
-    owner_id - Video owner ID
-    user_id - Id of the user who uploaded the video if it was uploaded to a group by member
-    title - Video title
-    is_favorite - Whether video is added to bookmarks
-    player - Video embed URL
-    processing - Returns if the video is processing
-    converting - 1 if  video is being converted
-    added - 1 if video is added to user's albums
-    is_subscribed - 1 if user is subscribed to author of the video
-    repeat - Information whether the video is repeated
-    views - Number of views
-    local_views - If video is external, number of views on vk
-    content_restricted - Restriction code
-    content_restricted_message - Restriction text
-    balance - Live donations balance
-    live_status - Live stream status
-    live - 1 if the video is a live stream
-    upcoming - 1 if the video is an upcoming stream
-    spectators - Number of spectators of the stream
-    platform - External platform
-    """
-
-    access_key: Optional[str] = None
-    adding_date: Optional[int] = None
-    can_comment: Optional["BaseBoolInt"] = None
-    can_edit: Optional["BaseBoolInt"] = None
-    can_like: Optional["BaseBoolInt"] = None
-    can_repost: Optional["BaseBoolInt"] = None
-    can_subscribe: Optional["BaseBoolInt"] = None
-    can_add_to_faves: Optional["BaseBoolInt"] = None
-    can_add: Optional["BaseBoolInt"] = None
-    can_attach_link: Optional["BaseBoolInt"] = None
-    is_private: Optional["BaseBoolInt"] = None
-    comments: Optional[int] = None
-    date: Optional[int] = None
-    description: Optional[str] = None
-    duration: Optional[int] = None
-    image: Optional[List["VideoVideoImage"]] = None
-    first_frame: Optional[List["VideoVideoImage"]] = None
-    width: Optional[int] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    user_id: Optional[int] = None
-    title: Optional[str] = None
-    is_favorite: Optional[bool] = None
-    player: Optional[str] = None
-    processing: Optional["BasePropertyExists"] = None
-    converting: Optional["BaseBoolInt"] = None
-    restriction: Optional["MediaRestriction"] = None
-    added: Optional["BaseBoolInt"] = None
-    is_subscribed: Optional["BaseBoolInt"] = None
-    track_code: Optional[str] = None
-    repeat: Optional["BasePropertyExists"] = None
-    type: Optional[str] = None
-    views: Optional[int] = None
-    local_views: Optional[int] = None
-    content_restricted: Optional[int] = None
-    content_restricted_message: Optional[str] = None
-    balance: Optional[int] = None
-    live_status: Optional[str] = None
-    live: Optional["BasePropertyExists"] = None
-    upcoming: Optional["BasePropertyExists"] = None
-    spectators: Optional[int] = None
-    platform: Optional[str] = None
-    likes: Optional["BaseLikes"] = None
-    reposts: Optional["BaseRepostsInfo"] = None
+    access_key: typing.Optional[str] = None
+    description: typing.Optional[str] = None
+    owner_id: typing.Optional[int] = None
+    title: typing.Optional[str] = None
+    upload_url: typing.Optional[str] = None
+    video_id: typing.Optional[int] = None
 
 
 class VideoVideoAlbumFull(BaseModel):
-    """VK Object Video/VideoVideoAlbumFull
+    """VK Object VideoVideoAlbumFull
 
     count - Total number of videos in album
     id - Album ID
@@ -6653,55 +8571,60 @@ class VideoVideoAlbumFull(BaseModel):
     updated_time - Date when the album has been updated last time in Unixtime
     """
 
-    count: Optional[int] = None
-    id: Optional[int] = None
-    image: Optional[List["VideoVideoImage"]] = None
-    image_blur: Optional["BasePropertyExists"] = None
-    is_system: Optional["BasePropertyExists"] = None
-    owner_id: Optional[int] = None
-    title: Optional[str] = None
-    updated_time: Optional[int] = None
+    count: int = None
+    id: typing.Optional[int] = None
+    image: typing.Optional[typing.List["VideoVideoImage"]] = None
+    image_blur: typing.Optional["BasePropertyExists"] = None
+    is_system: typing.Optional["BasePropertyExists"] = None
+    owner_id: int = None
+    title: str = None
+    updated_time: int = None
 
 
 class VideoVideoFiles(BaseModel):
-    """VK Object Video/VideoVideoFiles
+    """VK Object VideoVideoFiles
 
     external - URL of the external player
+    flv_320 - URL of the flv file with 320p quality
+    mp4_1080 - URL of the mpeg4 file with 1080p quality
+    mp4_1440 - URL of the mpeg4 file with 2K quality
+    mp4_2160 - URL of the mpeg4 file with 4K quality
     mp4_240 - URL of the mpeg4 file with 240p quality
     mp4_360 - URL of the mpeg4 file with 360p quality
     mp4_480 - URL of the mpeg4 file with 480p quality
     mp4_720 - URL of the mpeg4 file with 720p quality
-    mp4_1080 - URL of the mpeg4 file with 1080p quality
-    flv_320 - URL of the flv file with 320p quality
     """
 
-    external: Optional[str] = None
-    mp4_240: Optional[str] = None
-    mp4_360: Optional[str] = None
-    mp4_480: Optional[str] = None
-    mp4_720: Optional[str] = None
-    mp4_1080: Optional[str] = None
-    flv_320: Optional[str] = None
+    external: typing.Optional[str] = None
+    flv_320: typing.Optional[str] = None
+    mp4_1080: typing.Optional[str] = None
+    mp4_1440: typing.Optional[str] = None
+    mp4_2160: typing.Optional[str] = None
+    mp4_240: typing.Optional[str] = None
+    mp4_360: typing.Optional[str] = None
+    mp4_480: typing.Optional[str] = None
+    mp4_720: typing.Optional[str] = None
 
 
 class VideoVideoFull(VideoVideo):
-    """VK Object Video/VideoVideoFull
+    """VK Object VideoVideoFull
 
+    files -
     live_settings - Settings for live stream
     """
 
-    files: Optional["VideoVideoFiles"] = None
-    live_settings: Optional["VideoLiveSettings"] = None
+    files: typing.Optional["VideoVideoFiles"] = None
+    live_settings: typing.Optional["VideoLiveSettings"] = None
 
 
 class VideoVideoImage(BaseImage):
-    """VK Object Video/VideoVideoImage"""
+    """VK Object VideoVideoImage"""
 
-    with_padding: Optional["BasePropertyExists"] = None
+    with_padding: typing.Optional["BasePropertyExists"] = None
 
 
 class WallAppPost(BaseModel):
-    """VK Object Wall/WallAppPost
+    """VK Object WallAppPost
 
     id - Application ID
     name - Application name
@@ -6709,14 +8632,14 @@ class WallAppPost(BaseModel):
     photo_604 - URL of the preview image with 604 px in width
     """
 
-    id: Optional[int] = None
-    name: Optional[str] = None
-    photo_130: Optional[str] = None
-    photo_604: Optional[str] = None
+    id: typing.Optional[int] = None
+    name: typing.Optional[str] = None
+    photo_130: typing.Optional[str] = None
+    photo_604: typing.Optional[str] = None
 
 
 class WallAttachedNote(BaseModel):
-    """VK Object Wall/WallAttachedNote
+    """VK Object WallAttachedNote
 
     comments - Comments number
     date - Date when the note has been created in Unixtime
@@ -6727,38 +8650,29 @@ class WallAttachedNote(BaseModel):
     view_url - URL of the page with note preview
     """
 
-    comments: Optional[int] = None
-    date: Optional[int] = None
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    read_comments: Optional[int] = None
-    title: Optional[str] = None
-    view_url: Optional[str] = None
-
-
-class WallCarouselBase(BaseModel):
-    """VK Object Wall/WallCarouselBase
-
-    carousel_offset - Index of current carousel element
-    """
-
-    carousel_offset: Optional[int] = None
+    comments: int = None
+    date: int = None
+    id: int = None
+    owner_id: int = None
+    read_comments: int = None
+    title: str = None
+    view_url: str = None
 
 
 class WallCommentAttachment(BaseModel):
-    """VK Object Wall/WallCommentAttachment"""
+    """VK Object WallCommentAttachment"""
 
-    audio: Optional["AudioAudio"] = None
-    doc: Optional["DocsDoc"] = None
-    link: Optional["BaseLink"] = None
-    market: Optional["MarketMarketItem"] = None
-    market_market_album: Optional["MarketMarketAlbum"] = None
-    note: Optional["WallAttachedNote"] = None
-    page: Optional["PagesWikipageFull"] = None
-    photo: Optional["PhotosPhoto"] = None
-    sticker: Optional["BaseSticker"] = None
-    type: Optional["WallCommentAttachmentType"] = None
-    video: Optional["VideoVideo"] = None
+    audio: typing.Optional["AudioAudio"] = None
+    doc: typing.Optional["DocsDoc"] = None
+    link: typing.Optional["BaseLink"] = None
+    market: typing.Optional["MarketMarketItem"] = None
+    market_market_album: typing.Optional["MarketMarketAlbum"] = None
+    note: typing.Optional["WallAttachedNote"] = None
+    page: typing.Optional["PagesWikipageFull"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    sticker: typing.Optional["BaseSticker"] = None
+    type: "WallCommentAttachmentType" = None
+    video: typing.Optional["VideoVideo"] = None
 
 
 class WallCommentAttachmentType(enum.Enum):
@@ -6777,21 +8691,34 @@ class WallCommentAttachmentType(enum.Enum):
 
 
 class WallGeo(BaseModel):
-    """VK Object Wall/WallGeo
+    """VK Object WallGeo
 
     coordinates - Coordinates as string. <latitude> <longtitude>
+    place -
     showmap - Information whether a map is showed
     type - Place type
     """
 
-    coordinates: Optional[str] = None
-    place: Optional["BasePlace"] = None
-    showmap: Optional[int] = None
-    type: Optional[str] = None
+    coordinates: typing.Optional[str] = None
+    place: typing.Optional["BasePlace"] = None
+    showmap: typing.Optional[int] = None
+    type: typing.Optional[str] = None
+
+
+class WallGetFilter(enum.Enum):
+    """ Filter to apply: 'owner' — posts by the wall owner, 'others' — posts by someone else, 'all' — posts by the wall owner and others (default), 'postponed' — timed posts (only available for calls with an 'access_token'), 'suggests' — suggested posts on a community wall """
+
+    OWNER = "owner"
+    OTHERS = "others"
+    ALL = "all"
+    POSTPONED = "postponed"
+    SUGGESTS = "suggests"
+    ARCHIVED = "archived"
+    DONUT = "donut"
 
 
 class WallGraffiti(BaseModel):
-    """VK Object Wall/WallGraffiti
+    """VK Object WallGraffiti
 
     id - Graffiti ID
     owner_id - Graffiti owner's ID
@@ -6799,28 +8726,34 @@ class WallGraffiti(BaseModel):
     photo_586 - URL of the preview image with 586 px in width
     """
 
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    photo_200: Optional[str] = None
-    photo_586: Optional[str] = None
+    id: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    photo_200: typing.Optional[str] = None
+    photo_586: typing.Optional[str] = None
 
 
 class WallPostCopyright(BaseModel):
-    """VK Object Wall/WallPostCopyright"""
+    """VK Object WallPostCopyright"""
 
-    id: Optional[int] = None
-    link: Optional[str] = None
-    name: Optional[str] = None
-    type: Optional[str] = None
+    id: typing.Optional[int] = None
+    link: str = None
+    name: str = None
+    type: str = None
 
 
 class WallPostSource(BaseModel):
-    """VK Object Wall/WallPostSource"""
+    """VK Object WallPostSource
 
-    data: Optional[str] = None
-    platform: Optional[str] = None
-    type: Optional["WallPostSourceType"] = None
-    url: Optional[str] = None
+    data - Additional data
+    platform - Platform name
+    type -
+    url - URL to an external site used to publish the post
+    """
+
+    data: typing.Optional[str] = None
+    platform: typing.Optional[str] = None
+    type: typing.Optional["WallPostSourceType"] = None
+    url: typing.Optional[str] = None
 
 
 class WallPostSourceType(enum.Enum):
@@ -6838,16 +8771,14 @@ class WallPostType(enum.Enum):
     """ Post type """
 
     POST = "post"
-    PHOTO = "photo"
     COPY = "copy"
     REPLY = "reply"
     POSTPONE = "postpone"
     SUGGEST = "suggest"
-    POST_ADS = "post_ads"
 
 
 class WallPostedPhoto(BaseModel):
-    """VK Object Wall/WallPostedPhoto
+    """VK Object WallPostedPhoto
 
     id - Photo ID
     owner_id - Photo owner's ID
@@ -6855,110 +8786,118 @@ class WallPostedPhoto(BaseModel):
     photo_604 - URL of the preview image with 604 px in width
     """
 
-    id: Optional[int] = None
-    owner_id: Optional[int] = None
-    photo_130: Optional[str] = None
-    photo_604: Optional[str] = None
+    id: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    photo_130: typing.Optional[str] = None
+    photo_604: typing.Optional[str] = None
 
 
 class WallViews(BaseModel):
-    """VK Object Wall/WallViews
+    """VK Object WallViews
 
     count - Count
     """
 
-    count: Optional[int] = None
+    count: typing.Optional[int] = None
 
 
 class WallWallComment(BaseModel):
-    """VK Object Wall/WallWallComment
+    """VK Object WallWallComment
 
+    attachments -
     date - Date when the comment has been added in Unixtime
+    deleted -
+    donut -
     from_id - Author ID
     id - Comment ID
+    likes -
+    owner_id -
+    parents_stack -
+    post_id -
     real_offset - Real position of the comment
     reply_to_comment - Replied comment ID
     reply_to_user - Replied user ID
     text - Comment text
+    thread -
     """
 
-    attachments: Optional[List["WallCommentAttachment"]] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    id: Optional[int] = None
-    likes: Optional["BaseLikesInfo"] = None
-    real_offset: Optional[int] = None
-    reply_to_comment: Optional[int] = None
-    reply_to_user: Optional[int] = None
-    text: Optional[str] = None
-    thread: Optional["CommentThread"] = None
-    post_id: Optional[int] = None
-    owner_id: Optional[int] = None
-    parents_stack: Optional[List[int]] = None
-    deleted: Optional[bool] = None
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = None
+    date: int = None
+    deleted: typing.Optional[bool] = None
+    donut: typing.Optional["WallWallCommentDonut"] = None
+    from_id: int = None
+    id: int = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    owner_id: typing.Optional[int] = None
+    parents_stack: typing.Optional[typing.List[int]] = None
+    post_id: typing.Optional[int] = None
+    real_offset: typing.Optional[int] = None
+    reply_to_comment: typing.Optional[int] = None
+    reply_to_user: typing.Optional[int] = None
+    text: str = None
+    thread: typing.Optional["CommentThread"] = None
 
 
-class WallWallpost(BaseModel):
-    """VK Object Wall/WallWallpost
+class WallWallCommentDonut(BaseModel):
+    """VK Object WallWallCommentDonut
 
-    access_key - Access key to private object
-    copyright - Information about the source of the post
-    date - Date of publishing in Unixtime
-    edited - Date of editing in Unixtime
-    from_id - Post author ID
-    id - Post ID
-    is_archived - Is post archived, only for post owners
-    is_favorite - Information whether the post in favorites list
-    likes - Count of likes
-    owner_id - Wall owner's ID
-    reposts - Count of views
-    signer_id - Post signer ID
-    text - Post text
-    views - Count of views
+    is_don - Means commentator is donator
+    placeholder -
     """
 
-    access_key: Optional[str] = None
-    attachments: Optional[List["WallWallpostAttachment"]] = None
-    copyright: Optional["WallPostCopyright"] = None
-    date: Optional[int] = None
-    edited: Optional[int] = None
-    from_id: Optional[int] = None
-    geo: Optional["WallGeo"] = None
-    id: Optional[int] = None
-    is_archived: Optional[bool] = None
-    is_favorite: Optional[bool] = None
-    likes: Optional["BaseLikesInfo"] = None
-    owner_id: Optional[int] = None
-    post_source: Optional["WallPostSource"] = None
-    post_type: Optional["WallPostType"] = None
-    reposts: Optional["BaseRepostsInfo"] = None
-    signer_id: Optional[int] = None
-    text: Optional[str] = None
-    views: Optional["WallViews"] = None
+    is_don: typing.Optional[bool] = None
+    placeholder: typing.Optional["WallWallCommentDonutPlaceholder"] = None
+
+
+class WallWallCommentDonutPlaceholder(BaseModel):
+    """VK Object WallWallCommentDonutPlaceholder"""
+
+    text: str = None
 
 
 class WallWallpostAttachment(BaseModel):
-    """VK Object Wall/WallWallpostAttachment"""
+    """VK Object WallWallpostAttachment
 
-    access_key: Optional[str] = None
-    album: Optional["PhotosPhotoAlbum"] = None
-    app: Optional["WallAppPost"] = None
-    audio: Optional["AudioAudio"] = None
-    doc: Optional["DocsDoc"] = None
-    event: Optional["EventsEventAttach"] = None
-    group: Optional["GroupsGroupAttach"] = None
-    graffiti: Optional["WallGraffiti"] = None
-    link: Optional["BaseLink"] = None
-    market: Optional["MarketMarketItem"] = None
-    market_album: Optional["MarketMarketAlbum"] = None
-    note: Optional["WallAttachedNote"] = None
-    page: Optional["PagesWikipageFull"] = None
-    photo: Optional["PhotosPhoto"] = None
-    photos_list: Optional[List[str]] = None
-    poll: Optional["PollsPoll"] = None
-    posted_photo: Optional["WallPostedPhoto"] = None
-    type: Optional["WallWallpostAttachmentType"] = None
-    video: Optional["VideoVideo"] = None
+    access_key - Access key for the audio
+    album -
+    app -
+    audio -
+    doc -
+    event -
+    graffiti -
+    group -
+    link -
+    market -
+    market_album -
+    note -
+    page -
+    photo -
+    photos_list -
+    poll -
+    posted_photo -
+    type -
+    video -
+    """
+
+    access_key: typing.Optional[str] = None
+    album: typing.Optional["PhotosPhotoAlbum"] = None
+    app: typing.Optional["WallAppPost"] = None
+    audio: typing.Optional["AudioAudio"] = None
+    doc: typing.Optional["DocsDoc"] = None
+    event: typing.Optional["EventsEventAttach"] = None
+    graffiti: typing.Optional["WallGraffiti"] = None
+    group: typing.Optional["GroupsGroupAttach"] = None
+    link: typing.Optional["BaseLink"] = None
+    market: typing.Optional["MarketMarketItem"] = None
+    market_album: typing.Optional["MarketMarketAlbum"] = None
+    note: typing.Optional["WallAttachedNote"] = None
+    page: typing.Optional["PagesWikipageFull"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    photos_list: typing.Optional[typing.List[str]] = None
+    poll: typing.Optional["PollsPoll"] = None
+    posted_photo: typing.Optional["WallPostedPhoto"] = None
+    type: "WallWallpostAttachmentType" = None
+    video: typing.Optional["VideoVideo"] = None
 
 
 class WallWallpostAttachmentType(enum.Enum):
@@ -6980,72 +8919,94 @@ class WallWallpostAttachmentType(enum.Enum):
     MARKET_MARKET_ALBUM = "market_market_album"
     MARKET = "market"
     EVENT = "event"
+    DONUT_LINK = "donut_link"
+    ARTICLE = "article"
+    TEXTLIVE = "textlive"
+    TEXTPOST = "textpost"
+
+
+class WallWallpostCommentsDonut(BaseModel):
+    """VK Object WallWallpostCommentsDonut"""
+
+    placeholder: typing.Optional["WallWallpostCommentsDonutPlaceholder"] = None
+
+
+class WallWallpostCommentsDonutPlaceholder(BaseModel):
+    """VK Object WallWallpostCommentsDonutPlaceholder"""
+
+    text: str = None
+
+
+class WallWallpostDonutEditMode(enum.Enum):
+    """ Says what user can edit in post about donut properties """
+
+    ALL = "all"
+    DURATION = "duration"
+
+
+class WallWallpostDonut(BaseModel):
+    """VK Object WallWallpostDonut
+
+    can_publish_free_copy - Says whether group admin can post free copy of this donut post
+    edit_mode - Says what user can edit in post about donut properties
+    is_donut - Post only for dons
+    paid_duration - Value of this field need to pass in wall.post/edit in donut_paid_duration
+    placeholder - If placeholder was respond, text and all attachments will be hidden
+    """
+
+    can_publish_free_copy: typing.Optional[bool] = None
+    edit_mode: typing.Optional["WallWallpostDonutEditMode"] = None
+    is_donut: bool = None
+    paid_duration: typing.Optional[int] = None
+    placeholder: typing.Optional["WallWallpostDonutPlaceholder"] = None
+
+
+class WallWallpostDonutPlaceholder(BaseModel):
+    """VK Object WallWallpostDonutPlaceholder"""
+
+    text: str = None
 
 
 class WallWallpostFull(WallCarouselBase, WallWallpost):
-    """VK Object Wall/WallWallpostFull
+    """VK Object WallWallpostFull
 
-    can_edit - Information whether current user can edit the post
-    created_by - Post creator ID (if post still can be edited)
     can_delete - Information whether current user can delete the post
+    can_edit - Information whether current user can edit the post
     can_pin - Information whether current user can pin the post
+    comments -
+    copy_history -
+    created_by - Post creator ID (if post still can be edited)
+    donut -
     is_pinned - Information whether the post is pinned
     marked_as_ads - Information whether the post is marked as ads
     short_text_rate - Preview length control parameter
     """
 
-    copy_history: Optional[List["WallWallpost"]] = None
-    can_edit: Optional["BaseBoolInt"] = None
-    created_by: Optional[int] = None
-    can_delete: Optional["BaseBoolInt"] = None
-    can_pin: Optional["BaseBoolInt"] = None
-    is_pinned: Optional[int] = None
-    comments: Optional["BaseCommentsInfo"] = None
-    marked_as_ads: Optional["BaseBoolInt"] = None
-    short_text_rate: Optional[float] = None
-
-
-class WallWallpostToId(BaseModel):
-    """VK Object Wall/WallWallpostToId
-
-    copy_owner_id - ID of the source post owner
-    copy_post_id - ID of the source post
-    date - Date of publishing in Unixtime
-    from_id - Post author ID
-    id - Post ID
-    is_favorite - Information whether the post in favorites list
-    post_id - wall post ID (if comment)
-    signer_id - Post signer ID
-    text - Post text
-    to_id - Wall owner's ID
-    """
-
-    attachments: Optional[List["WallWallpostAttachment"]] = None
-    comments: Optional["BaseCommentsInfo"] = None
-    copy_owner_id: Optional[int] = None
-    copy_post_id: Optional[int] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    geo: Optional["WallGeo"] = None
-    id: Optional[int] = None
-    is_favorite: Optional[bool] = None
-    likes: Optional["BaseLikesInfo"] = None
-    post_id: Optional[int] = None
-    post_source: Optional["WallPostSource"] = None
-    post_type: Optional["WallPostType"] = None
-    reposts: Optional["BaseRepostsInfo"] = None
-    signer_id: Optional[int] = None
-    text: Optional[str] = None
-    to_id: Optional[int] = None
+    can_delete: typing.Optional["BaseBoolInt"] = None
+    can_edit: typing.Optional["BaseBoolInt"] = None
+    can_pin: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["BaseCommentsInfo"] = None
+    copy_history: typing.Optional[typing.List["WallWallpost"]] = None
+    created_by: typing.Optional[int] = None
+    donut: typing.Optional["WallWallpostDonut"] = None
+    is_pinned: typing.Optional[int] = None
+    marked_as_ads: typing.Optional["BaseBoolInt"] = None
+    short_text_rate: typing.Optional[int] = None
 
 
 class WidgetsCommentMedia(BaseModel):
-    """VK Object Widgets/WidgetsCommentMedia"""
+    """VK Object WidgetsCommentMedia
 
-    item_id: Optional[int] = None
-    owner_id: Optional[int] = None
-    thumb_src: Optional[str] = None
-    type: Optional["WidgetsCommentMediaType"] = None
+    item_id - Media item ID
+    owner_id - Media owner's ID
+    thumb_src - URL of the preview image (type=photo only)
+    type -
+    """
+
+    item_id: typing.Optional[int] = None
+    owner_id: typing.Optional[int] = None
+    thumb_src: typing.Optional[str] = None
+    type: typing.Optional["WidgetsCommentMediaType"] = None
 
 
 class WidgetsCommentMediaType(enum.Enum):
@@ -7057,640 +9018,106 @@ class WidgetsCommentMediaType(enum.Enum):
 
 
 class WidgetsCommentReplies(BaseModel):
-    """VK Object Widgets/WidgetsCommentReplies
+    """VK Object WidgetsCommentReplies
 
     can_post - Information whether current user can comment the post
     count - Comments number
+    replies -
     """
 
-    can_post: Optional["BaseBoolInt"] = None
-    count: Optional[int] = None
-    replies: Optional[List["WidgetsCommentRepliesItem"]] = None
+    can_post: typing.Optional["BaseBoolInt"] = None
+    count: typing.Optional[int] = None
+    replies: typing.Optional[typing.List["WidgetsCommentRepliesItem"]] = None
 
 
 class WidgetsCommentRepliesItem(BaseModel):
-    """VK Object Widgets/WidgetsCommentRepliesItem
+    """VK Object WidgetsCommentRepliesItem
 
     cid - Comment ID
     date - Date when the comment has been added in Unixtime
+    likes -
     text - Comment text
     uid - User ID
+    user -
     """
 
-    cid: Optional[int] = None
-    date: Optional[int] = None
-    likes: Optional["WidgetsWidgetLikes"] = None
-    text: Optional[str] = None
-    uid: Optional[int] = None
-    user: Optional["UsersUserFull"] = None
+    cid: typing.Optional[int] = None
+    date: typing.Optional[int] = None
+    likes: typing.Optional["WidgetsWidgetLikes"] = None
+    text: typing.Optional[str] = None
+    uid: typing.Optional[int] = None
+    user: typing.Optional["UsersUserFull"] = None
 
 
 class WidgetsWidgetComment(BaseModel):
-    """VK Object Widgets/WidgetsWidgetComment
+    """VK Object WidgetsWidgetComment
 
+    attachments -
     can_delete - Information whether current user can delete the comment
+    comments -
     date - Date when the comment has been added in Unixtime
     from_id - Comment author ID
     id - Comment ID
+    likes -
+    media -
+    post_source -
     post_type - Post type
+    reposts -
     text - Comment text
     to_id - Wall owner
+    user -
     """
 
-    attachments: Optional[List["WallCommentAttachment"]] = None
-    can_delete: Optional["BaseBoolInt"] = None
-    comments: Optional["WidgetsCommentReplies"] = None
-    date: Optional[int] = None
-    from_id: Optional[int] = None
-    id: Optional[int] = None
-    likes: Optional["BaseLikesInfo"] = None
-    media: Optional["WidgetsCommentMedia"] = None
-    post_source: Optional["WallPostSource"] = None
-    post_type: Optional[int] = None
-    reposts: Optional["BaseRepostsInfo"] = None
-    text: Optional[str] = None
-    to_id: Optional[int] = None
-    user: Optional["UsersUserFull"] = None
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = None
+    can_delete: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["WidgetsCommentReplies"] = None
+    date: int = None
+    from_id: int = None
+    id: int = None
+    likes: typing.Optional["BaseLikesInfo"] = None
+    media: typing.Optional["WidgetsCommentMedia"] = None
+    post_source: typing.Optional["WallPostSource"] = None
+    post_type: int = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
+    text: str = None
+    to_id: int = None
+    user: typing.Optional["UsersUserFull"] = None
 
 
 class WidgetsWidgetLikes(BaseModel):
-    """VK Object Widgets/WidgetsWidgetLikes
+    """VK Object WidgetsWidgetLikes
 
     count - Likes number
     """
 
-    count: Optional[int] = None
+    count: typing.Optional[int] = None
 
 
 class WidgetsWidgetPage(BaseModel):
-    """VK Object Widgets/WidgetsWidgetPage
+    """VK Object WidgetsWidgetPage
 
+    comments -
     date - Date when widgets on the page has been initialized firstly in Unixtime
     description - Page description
     id - Page ID
+    likes -
     page_id - page_id parameter value
     photo - URL of the preview image
     title - Page title
     url - Page absolute URL
     """
 
-    comments: Optional["BaseObjectCount"] = None
-    date: Optional[int] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    likes: Optional["BaseObjectCount"] = None
-    page_id: Optional[str] = None
-    photo: Optional[str] = None
-    title: Optional[str] = None
-    url: Optional[str] = None
+    comments: typing.Optional["BaseObjectCount"] = None
+    date: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    id: typing.Optional[int] = None
+    likes: typing.Optional["BaseObjectCount"] = None
+    page_id: typing.Optional[str] = None
+    photo: typing.Optional[str] = None
+    title: typing.Optional[str] = None
+    url: typing.Optional[str] = None
 
 
-class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
-    """VK Object Account/AccountUserSettings
-
-    photo_200 - URL of square photo of the user with 200 pixels in width
-    is_service_account - flag about service account
-    """
-
-    photo_200: Optional[str] = None
-    is_service_account: Optional[bool] = None
-
-
-class FriendsUserXtrPhone(UsersUserFull):
-    """VK Object Friends/FriendsUserXtrPhone
-
-    phone - User phone
-    """
-
-    phone: Optional[str] = None
-
-
-class MessagesUserXtrInvitedBy(UsersUserXtrType):
-    """VK Object Messages/MessagesUserXtrInvitedBy"""
-
-    invited_by: Optional[int] = None
-
-
-class FriendsUserXtrLists(UsersUserFull):
-    """VK Object Friends/FriendsUserXtrLists"""
-
-    lists: Optional[List[int]] = None
-
-
-class GroupsUserXtrRole(UsersUserFull):
-    """VK Object Groups/GroupsUserXtrRole"""
-
-    role: Optional["GroupsRoleOptions"] = None
-
-
-class NotificationsNotificationParent(
-    WallWallpostToId,
-    PhotosPhoto,
-    BoardTopic,
-    VideoVideo,
-    NotificationsNotificationsComment,
-):
-    """VK Object Notifications/NotificationsNotificationParent"""
-
-
-class NewsfeedNewsfeedPhoto(PhotosPhoto):
-    """VK Object Newsfeed/NewsfeedNewsfeedPhoto
-
-    can_repost - Information whether current user can repost the photo
-    """
-
-    likes: Optional["BaseLikes"] = None
-    comments: Optional["BaseObjectCount"] = None
-    can_repost: Optional["BaseBoolInt"] = None
-
-
-class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemWallpost
-
-    is_favorite - Information whether the post in favorites list
-    marked_as_ads - Information whether the post is marked as ads
-    post_id - Post ID
-    signer_id - Post signer ID
-    text - Post text
-    views - Count of views
-    short_text_rate - Preview length control parameter
-    """
-
-    activity: Optional["NewsfeedEventActivity"] = None
-    attachments: Optional[List["WallWallpostAttachment"]] = None
-    comments: Optional["BaseCommentsInfo"] = None
-    copy_history: Optional[List["WallWallpost"]] = None
-    feedback: Optional["NewsfeedItemWallpostFeedback"] = None
-    geo: Optional["BaseGeo"] = None
-    is_favorite: Optional[bool] = None
-    likes: Optional["BaseLikesInfo"] = None
-    marked_as_ads: Optional["BaseBoolInt"] = None
-    post_id: Optional[int] = None
-    post_source: Optional["WallPostSource"] = None
-    post_type: Optional["NewsfeedItemWallpostType"] = None
-    reposts: Optional["BaseRepostsInfo"] = None
-    signer_id: Optional[int] = None
-    text: Optional[str] = None
-    views: Optional["WallViews"] = None
-    short_text_rate: Optional[float] = None
-
-
-class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemVideo"""
-
-    video: Optional["NewsfeedItemVideoVideo"] = None
-
-
-class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemPhotoTag
-
-    post_id - Post ID
-    """
-
-    photo_tags: Optional["NewsfeedItemPhotoTagPhotoTags"] = None
-    post_id: Optional[int] = None
-
-
-class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemPhoto
-
-    post_id - Post ID
-    """
-
-    photos: Optional["NewsfeedItemPhotoPhotos"] = None
-    post_id: Optional[int] = None
-
-
-class NewsfeedItemAudio(NewsfeedItemBase):
-    """VK Object Newsfeed/NewsfeedItemAudio
-
-    post_id - Post ID
-    """
-
-    audio: Optional["NewsfeedItemAudioAudio"] = None
-    post_id: Optional[int] = None
-
-
-class GroupsBannedItem(GroupsOwnerXtrBanInfo):
-    """VK Object Groups/GroupsBannedItem
-    #FIXME Comment is undefined
-    """
-
-
-class ClientInfoButtonActions(enum.Enum):
-    TEXT = "text"
-    VKPAY = "vkpay"
-    OPEN_APP = "open_app"
-    LOCATION = "location"
-    OPEN_LINK = "open_link"
-    OPEN_PHOTO = "open_photo"
-    CALLBACK = "callback"
-    INTENT_SUBSCRIBE = "intent_subscribe"
-    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
-
-
-class MessagesClientInfo(BaseModel):
-    button_actions: Optional[List[ClientInfoButtonActions]] = None
-    keyboard: Optional[bool] = None
-    inline_keyboard: Optional[bool] = None
-    carousel: Optional[bool] = None
-    lang_id: Optional[int] = None
-
-
-class ObjectType(enum.Enum):
-    VIDEO = "video"
-    PHOTO = "photo"
-    COMMENT = "comment"
-    NOTE = "note"
-    TOPIC_COMMENT = "topic_comment"
-    PHOTO_COMMENT = "photo_comment"
-    VIDEO_COMMENT = "video_comment"
-    MARKET = "market"
-    MARKET_COMMENT = "market_comment"
-    POST = "post"
-
-
-AccountAccountCounters.update_forward_refs()
-AccountInfo.update_forward_refs()
-AccountNameRequest.update_forward_refs()
-AccountOffer.update_forward_refs()
-AccountPushConversations.update_forward_refs()
-AccountPushConversationsItem.update_forward_refs()
-AccountPushParams.update_forward_refs()
-AccountPushSettings.update_forward_refs()
-AccountUserSettingsInterest.update_forward_refs()
-AccountUserSettingsInterests.update_forward_refs()
-AdsAccesses.update_forward_refs()
-AdsAccount.update_forward_refs()
-AdsAd.update_forward_refs()
-AdsAdLayout.update_forward_refs()
-AdsCampaign.update_forward_refs()
-AdsCategory.update_forward_refs()
-AdsClient.update_forward_refs()
-AdsCriteria.update_forward_refs()
-AdsDemoStats.update_forward_refs()
-AdsDemostatsFormat.update_forward_refs()
-AdsFloodStats.update_forward_refs()
-AdsLinkStatus.update_forward_refs()
-AdsLookalikeRequest.update_forward_refs()
-AdsLookalikeRequestSaveAudienceLevel.update_forward_refs()
-AdsMusician.update_forward_refs()
-AdsParagraphs.update_forward_refs()
-AdsPromotedPostReach.update_forward_refs()
-AdsRejectReason.update_forward_refs()
-AdsRules.update_forward_refs()
-AdsStats.update_forward_refs()
-AdsStatsAge.update_forward_refs()
-AdsStatsCities.update_forward_refs()
-AdsStatsFormat.update_forward_refs()
-AdsStatsSex.update_forward_refs()
-AdsStatsSexAge.update_forward_refs()
-AdsStatsViewsTimes.update_forward_refs()
-AdsTargSettings.update_forward_refs()
-AdsTargStats.update_forward_refs()
-AdsTargSuggestions.update_forward_refs()
-AdsTargSuggestionsCities.update_forward_refs()
-AdsTargSuggestionsRegions.update_forward_refs()
-AdsTargSuggestionsSchools.update_forward_refs()
-AdsTargetGroup.update_forward_refs()
-AdsUsers.update_forward_refs()
-AppsAppMin.update_forward_refs()
-AppsApp.update_forward_refs()
-AppsLeaderboard.update_forward_refs()
-AppsScope.update_forward_refs()
-AudioAudio.update_forward_refs()
-BaseCity.update_forward_refs()
-BaseCommentsInfo.update_forward_refs()
-BaseCountry.update_forward_refs()
-BaseCropPhoto.update_forward_refs()
-BaseCropPhotoCrop.update_forward_refs()
-BaseCropPhotoRect.update_forward_refs()
-BaseError.update_forward_refs()
-BaseGeo.update_forward_refs()
-BaseGeoCoordinates.update_forward_refs()
-BaseGradientPoint.update_forward_refs()
-BaseImage.update_forward_refs()
-BaseLikes.update_forward_refs()
-BaseLikesInfo.update_forward_refs()
-BaseLink.update_forward_refs()
-BaseLinkApplication.update_forward_refs()
-BaseLinkApplicationStore.update_forward_refs()
-BaseLinkButton.update_forward_refs()
-BaseLinkButtonAction.update_forward_refs()
-BaseLinkProduct.update_forward_refs()
-BaseLinkRating.update_forward_refs()
-BaseMessageError.update_forward_refs()
-BaseObject.update_forward_refs()
-BaseObjectCount.update_forward_refs()
-BaseObjectWithName.update_forward_refs()
-BasePlace.update_forward_refs()
-BaseRepostsInfo.update_forward_refs()
-BaseRequestParam.update_forward_refs()
-BaseSticker.update_forward_refs()
-BaseStickerAnimation.update_forward_refs()
-BaseUploadServer.update_forward_refs()
-BaseUserId.update_forward_refs()
-BoardTopic.update_forward_refs()
-BoardTopicComment.update_forward_refs()
-BoardTopicPoll.update_forward_refs()
-CallbackBoardPostDelete.update_forward_refs()
-CallbackConfirmationMessage.update_forward_refs()
-CallbackGroupChangePhoto.update_forward_refs()
-CallbackGroupChangeSettings.update_forward_refs()
-CallbackGroupJoin.update_forward_refs()
-CallbackGroupLeave.update_forward_refs()
-CallbackGroupOfficersEdit.update_forward_refs()
-CallbackGroupSettingsChanges.update_forward_refs()
-CallbackLikeAddRemove.update_forward_refs()
-CallbackMarketComment.update_forward_refs()
-CallbackMarketCommentDelete.update_forward_refs()
-CallbackMessageAllow.update_forward_refs()
-CallbackMessageBase.update_forward_refs()
-CallbackMessageDeny.update_forward_refs()
-CallbackPhotoComment.update_forward_refs()
-CallbackPhotoCommentDelete.update_forward_refs()
-CallbackPollVoteNew.update_forward_refs()
-CallbackQrScan.update_forward_refs()
-CallbackUserBlock.update_forward_refs()
-CallbackUserUnblock.update_forward_refs()
-CallbackVideoComment.update_forward_refs()
-CallbackVideoCommentDelete.update_forward_refs()
-CallbackWallCommentDelete.update_forward_refs()
-CommentThread.update_forward_refs()
-DatabaseCity.update_forward_refs()
-DatabaseFaculty.update_forward_refs()
-DatabaseRegion.update_forward_refs()
-DatabaseSchool.update_forward_refs()
-DatabaseStation.update_forward_refs()
-DatabaseUniversity.update_forward_refs()
-DocsDoc.update_forward_refs()
-DocsDocPreview.update_forward_refs()
-DocsDocPreviewAudioMsg.update_forward_refs()
-DocsDocPreviewGraffiti.update_forward_refs()
-DocsDocPreviewPhoto.update_forward_refs()
-DocsDocPreviewPhotoSizes.update_forward_refs()
-DocsDocPreviewVideo.update_forward_refs()
-DocsDocTypes.update_forward_refs()
-DocsDocUploadResponse.update_forward_refs()
-EventsEventAttach.update_forward_refs()
-FaveBookmark.update_forward_refs()
-FavePage.update_forward_refs()
-FaveTag.update_forward_refs()
-FriendsFriendStatus.update_forward_refs()
-FriendsFriendExtendedStatus.update_forward_refs()
-FriendsFriendsList.update_forward_refs()
-FriendsMutualFriend.update_forward_refs()
-FriendsRequests.update_forward_refs()
-FriendsRequestsMutual.update_forward_refs()
-FriendsRequestsXtrMessage.update_forward_refs()
-GiftsGift.update_forward_refs()
-GiftsLayout.update_forward_refs()
-GroupsAddress.update_forward_refs()
-GroupsAddressTimetable.update_forward_refs()
-GroupsAddressTimetableDay.update_forward_refs()
-GroupsAddressesInfo.update_forward_refs()
-GroupsBanInfo.update_forward_refs()
-GroupsCallbackServer.update_forward_refs()
-GroupsCallbackSettings.update_forward_refs()
-GroupsContactsItem.update_forward_refs()
-GroupsCountersGroup.update_forward_refs()
-GroupsCover.update_forward_refs()
-GroupsGroup.update_forward_refs()
-GroupsGroupAttach.update_forward_refs()
-GroupsGroupBanInfo.update_forward_refs()
-GroupsGroupCategory.update_forward_refs()
-GroupsGroupCategoryFull.update_forward_refs()
-GroupsGroupCategoryType.update_forward_refs()
-GroupsGroupFull.update_forward_refs()
-GroupsGroupLink.update_forward_refs()
-GroupsGroupPublicCategoryList.update_forward_refs()
-GroupsGroupXtrInvitedBy.update_forward_refs()
-GroupsGroupsArray.update_forward_refs()
-GroupsLinksItem.update_forward_refs()
-GroupsLiveCovers.update_forward_refs()
-GroupsLongPollEvents.update_forward_refs()
-GroupsLongPollServer.update_forward_refs()
-GroupsLongPollSettings.update_forward_refs()
-GroupsMarketInfo.update_forward_refs()
-GroupsMemberRole.update_forward_refs()
-GroupsMemberStatus.update_forward_refs()
-GroupsMemberStatusFull.update_forward_refs()
-GroupsOnlineStatus.update_forward_refs()
-GroupsOwnerXtrBanInfo.update_forward_refs()
-GroupsSettingsTwitter.update_forward_refs()
-GroupsSubjectItem.update_forward_refs()
-GroupsTokenPermissionSetting.update_forward_refs()
-LeadsChecked.update_forward_refs()
-LeadsComplete.update_forward_refs()
-LeadsEntry.update_forward_refs()
-LeadsLead.update_forward_refs()
-LeadsLeadDays.update_forward_refs()
-LeadsStart.update_forward_refs()
-LinkTargetObject.update_forward_refs()
-MarketCurrency.update_forward_refs()
-MarketMarketAlbum.update_forward_refs()
-MarketMarketCategory.update_forward_refs()
-MarketMarketItem.update_forward_refs()
-MarketMarketItemFull.update_forward_refs()
-MarketPrice.update_forward_refs()
-PropertyValue.update_forward_refs()
-MarketDelivery.update_forward_refs()
-MarketRecipient.update_forward_refs()
-MarketOrder.update_forward_refs()
-MarketSection.update_forward_refs()
-MediaRestriction.update_forward_refs()
-MessageChatPreview.update_forward_refs()
-MessagesAudioMessage.update_forward_refs()
-MessagesChat.update_forward_refs()
-MessagesChatFull.update_forward_refs()
-MessagesChatPushSettings.update_forward_refs()
-MessagesChatRestrictions.update_forward_refs()
-MessagesConversation.update_forward_refs()
-MessagesConversationMember.update_forward_refs()
-MessagesConversationPeer.update_forward_refs()
-MessagesConversationWithMessage.update_forward_refs()
-MessagesConversationCanWrite.update_forward_refs()
-MessagesConversationChatSettings.update_forward_refs()
-MessagesForeignMessage.update_forward_refs()
-MessagesGraffiti.update_forward_refs()
-MessagesHistoryAttachment.update_forward_refs()
-MessagesHistoryMessageAttachment.update_forward_refs()
-MessagesKeyboard.update_forward_refs()
-MessagesKeyboardButton.update_forward_refs()
-MessagesKeyboardButtonAction.update_forward_refs()
-MessagesLastActivity.update_forward_refs()
-MessagesLongpollMessages.update_forward_refs()
-MessagesLongpollParams.update_forward_refs()
-MessagesMessage.update_forward_refs()
-MessagesMessageAction.update_forward_refs()
-MessagesMessageActionPhoto.update_forward_refs()
-MessagesMessageAttachment.update_forward_refs()
-MessagesMessageRequestData.update_forward_refs()
-MessagesPinnedMessage.update_forward_refs()
-NewsfeedEventActivity.update_forward_refs()
-NewsfeedItemAudioAudio.update_forward_refs()
-NewsfeedItemBase.update_forward_refs()
-NewsfeedItemDigest.update_forward_refs()
-NewsfeedItemFriend.update_forward_refs()
-NewsfeedItemFriendFriends.update_forward_refs()
-NewsfeedItemHolidayRecommendationsBlockHeader.update_forward_refs()
-NewsfeedItemNote.update_forward_refs()
-NewsfeedItemNoteNotes.update_forward_refs()
-NewsfeedItemPhotoPhotos.update_forward_refs()
-NewsfeedItemPhotoTagPhotoTags.update_forward_refs()
-NewsfeedItemPromoButton.update_forward_refs()
-NewsfeedItemPromoButtonAction.update_forward_refs()
-NewsfeedItemPromoButtonImage.update_forward_refs()
-NewsfeedItemTopic.update_forward_refs()
-NewsfeedItemVideoVideo.update_forward_refs()
-NewsfeedItemWallpostFeedback.update_forward_refs()
-NewsfeedItemWallpostFeedbackAnswer.update_forward_refs()
-NewsfeedList.update_forward_refs()
-NewsfeedListFull.update_forward_refs()
-NewsfeedNewsfeedItem.update_forward_refs()
-NewsfeedNewsfeedNote.update_forward_refs()
-NotesNote.update_forward_refs()
-NotesNoteComment.update_forward_refs()
-NotificationsFeedback.update_forward_refs()
-NotificationsNotification.update_forward_refs()
-NotificationsNotificationItem.update_forward_refs()
-NotificationsNotificationsComment.update_forward_refs()
-NotificationsReply.update_forward_refs()
-NotificationsSendMessageError.update_forward_refs()
-NotificationsSendMessageItem.update_forward_refs()
-OauthError.update_forward_refs()
-OrdersAmount.update_forward_refs()
-OrdersAmountItem.update_forward_refs()
-OrdersOrder.update_forward_refs()
-OrdersSubscription.update_forward_refs()
-OwnerState.update_forward_refs()
-PagesWikipage.update_forward_refs()
-PagesWikipageFull.update_forward_refs()
-PagesWikipageHistory.update_forward_refs()
-PhotosCommentXtrPid.update_forward_refs()
-PhotosImage.update_forward_refs()
-PhotosMarketAlbumUploadResponse.update_forward_refs()
-PhotosMarketUploadResponse.update_forward_refs()
-PhotosMessageUploadResponse.update_forward_refs()
-PhotosOwnerUploadResponse.update_forward_refs()
-PhotosPhoto.update_forward_refs()
-PhotosPhotoAlbum.update_forward_refs()
-PhotosPhotoAlbumFull.update_forward_refs()
-PhotosPhotoFull.update_forward_refs()
-PhotosPhotoFullXtrRealOffset.update_forward_refs()
-PhotosPhotoSizes.update_forward_refs()
-PhotosPhotoTag.update_forward_refs()
-PhotosPhotoUpload.update_forward_refs()
-PhotosPhotoUploadResponse.update_forward_refs()
-PhotosPhotoXtrRealOffset.update_forward_refs()
-PhotosPhotoXtrTagInfo.update_forward_refs()
-PhotosTagsSuggestionItem.update_forward_refs()
-PhotosTagsSuggestionItemButton.update_forward_refs()
-PhotosWallUploadResponse.update_forward_refs()
-PollsAnswer.update_forward_refs()
-PollsBackground.update_forward_refs()
-PollsFriend.update_forward_refs()
-PollsPoll.update_forward_refs()
-PollsVoters.update_forward_refs()
-PollsVotersUsers.update_forward_refs()
-PrettyCardsPrettyCard.update_forward_refs()
-SearchHint.update_forward_refs()
-SecureLevel.update_forward_refs()
-SecureSmsNotification.update_forward_refs()
-SecureTokenChecked.update_forward_refs()
-SecureTransaction.update_forward_refs()
-StatsActivity.update_forward_refs()
-StatsCity.update_forward_refs()
-StatsCountry.update_forward_refs()
-StatsPeriod.update_forward_refs()
-StatsReach.update_forward_refs()
-StatsSexAge.update_forward_refs()
-StatsViews.update_forward_refs()
-StatsWallpostStat.update_forward_refs()
-StatusStatus.update_forward_refs()
-StorageValue.update_forward_refs()
-StoriesClickableArea.update_forward_refs()
-StoriesClickableSticker.update_forward_refs()
-StoriesClickableStickers.update_forward_refs()
-StoriesFeedItem.update_forward_refs()
-StoriesPromoBlock.update_forward_refs()
-StoriesReplies.update_forward_refs()
-StoriesStatLine.update_forward_refs()
-StoriesStory.update_forward_refs()
-StoriesStoryLink.update_forward_refs()
-StoriesStoryStats.update_forward_refs()
-StoriesStoryStatsStat.update_forward_refs()
-StoriesViewersItem.update_forward_refs()
-UsersCareer.update_forward_refs()
-UsersExports.update_forward_refs()
-UsersLastSeen.update_forward_refs()
-UsersMilitary.update_forward_refs()
-UsersOccupation.update_forward_refs()
-UsersOnlineInfo.update_forward_refs()
-UsersPersonal.update_forward_refs()
-UsersRelative.update_forward_refs()
-UsersSchool.update_forward_refs()
-UsersSubscriptionsItem.update_forward_refs()
-UsersUniversity.update_forward_refs()
-UsersUserConnections.update_forward_refs()
-UsersUserCounters.update_forward_refs()
-UsersUserMin.update_forward_refs()
-UsersUser.update_forward_refs()
-UsersUserFull.update_forward_refs()
-UsersUserSettingsXtr.update_forward_refs()
-UsersUserXtrCounters.update_forward_refs()
-UsersUserXtrType.update_forward_refs()
-UsersUsersArray.update_forward_refs()
-UtilsDomainResolved.update_forward_refs()
-UtilsLastShortenedLink.update_forward_refs()
-UtilsLinkChecked.update_forward_refs()
-UtilsLinkStats.update_forward_refs()
-UtilsLinkStatsExtended.update_forward_refs()
-UtilsShortLink.update_forward_refs()
-UtilsStats.update_forward_refs()
-UtilsStatsCity.update_forward_refs()
-UtilsStatsCountry.update_forward_refs()
-UtilsStatsExtended.update_forward_refs()
-UtilsStatsSexAge.update_forward_refs()
-VideoLiveSettings.update_forward_refs()
-VideoRestrictionButton.update_forward_refs()
-VideoSaveResult.update_forward_refs()
-VideoVideo.update_forward_refs()
-VideoVideoAlbumFull.update_forward_refs()
-VideoVideoFiles.update_forward_refs()
-VideoVideoFull.update_forward_refs()
-VideoVideoImage.update_forward_refs()
-WallAppPost.update_forward_refs()
-WallAttachedNote.update_forward_refs()
-WallCarouselBase.update_forward_refs()
-WallCommentAttachment.update_forward_refs()
-WallGeo.update_forward_refs()
-WallGraffiti.update_forward_refs()
-WallPostCopyright.update_forward_refs()
-WallPostSource.update_forward_refs()
-WallPostedPhoto.update_forward_refs()
-WallViews.update_forward_refs()
-WallWallComment.update_forward_refs()
-WallWallpost.update_forward_refs()
-WallWallpostAttachment.update_forward_refs()
-WallWallpostFull.update_forward_refs()
-WallWallpostToId.update_forward_refs()
-WidgetsCommentMedia.update_forward_refs()
-WidgetsCommentReplies.update_forward_refs()
-WidgetsCommentRepliesItem.update_forward_refs()
-WidgetsWidgetComment.update_forward_refs()
-WidgetsWidgetLikes.update_forward_refs()
-WidgetsWidgetPage.update_forward_refs()
-AccountUserSettings.update_forward_refs()
-FriendsUserXtrPhone.update_forward_refs()
-MessagesUserXtrInvitedBy.update_forward_refs()
-FriendsUserXtrLists.update_forward_refs()
-GroupsUserXtrRole.update_forward_refs()
-NewsfeedNewsfeedPhoto.update_forward_refs()
-NewsfeedItemWallpost.update_forward_refs()
-NewsfeedItemVideo.update_forward_refs()
-NewsfeedItemPhotoTag.update_forward_refs()
-NewsfeedItemPhoto.update_forward_refs()
-NewsfeedItemAudio.update_forward_refs()
-GroupsBannedItem.update_forward_refs()
-MessagesClientInfo.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseModel):
+        item.update_forward_refs()

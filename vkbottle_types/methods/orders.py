@@ -1,6 +1,6 @@
-from vkbottle_types.responses import orders
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import orders
 
 
 class OrdersCategory(BaseCategory):
@@ -8,7 +8,7 @@ class OrdersCategory(BaseCategory):
         self,
         user_id: int,
         subscription_id: int,
-        pending_cancel: Optional[bool] = None,
+        pending_cancel: typing.Optional[bool] = None,
         **kwargs
     ) -> orders.CancelSubscriptionResponseModel:
         """orders.cancelSubscription method
@@ -26,8 +26,8 @@ class OrdersCategory(BaseCategory):
         self,
         order_id: int,
         action: str,
-        app_order_id: Optional[int] = None,
-        test_mode: Optional[bool] = None,
+        app_order_id: typing.Optional[int] = None,
+        test_mode: typing.Optional[bool] = None,
         **kwargs
     ) -> orders.ChangeStateResponseModel:
         """Changes order status.
@@ -44,9 +44,9 @@ class OrdersCategory(BaseCategory):
 
     async def get(
         self,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        test_mode: Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        test_mode: typing.Optional[bool] = None,
         **kwargs
     ) -> orders.GetResponseModel:
         """Returns a list of orders.
@@ -61,7 +61,7 @@ class OrdersCategory(BaseCategory):
         return model(**response).response
 
     async def get_amount(
-        self, user_id: int, votes: List[str], **kwargs
+        self, user_id: int, votes: typing.List[str], **kwargs
     ) -> orders.GetAmountResponseModel:
         """orders.getAmount method
         :param user_id:
@@ -75,9 +75,9 @@ class OrdersCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        order_id: Optional[int] = None,
-        order_ids: Optional[List[int]] = None,
-        test_mode: Optional[bool] = None,
+        order_id: typing.Optional[int] = None,
+        order_ids: typing.Optional[typing.List[int]] = None,
+        test_mode: typing.Optional[bool] = None,
         **kwargs
     ) -> orders.GetByIdResponseModel:
         """Returns information about orders by their IDs.

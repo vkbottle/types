@@ -1,20 +1,23 @@
-from typing import Optional, List
-
-from vkbottle_types.objects import StatsWallpostStat, StatsPeriod
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import StatsPeriod, StatsWallpostStat
 
 
 class GetPostReachResponse(BaseResponse):
-    response: Optional["GetPostReachResponseModel"] = None
+    response: typing.Optional["GetPostReachResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
-GetPostReachResponseModel = List[StatsWallpostStat]
+GetPostReachResponseModel = typing.List[StatsWallpostStat]
 
-GetResponseModel = List[StatsPeriod]
 
-GetPostReachResponse.update_forward_refs()
-GetResponse.update_forward_refs()
+GetResponseModel = typing.List[StatsPeriod]
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

@@ -1,17 +1,17 @@
-from vkbottle_types.responses import search
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import search
 
 
 class SearchCategory(BaseCategory):
     async def get_hints(
         self,
-        q: Optional[str] = None,
-        offset: Optional[int] = None,
-        limit: Optional[int] = None,
-        filters: Optional[List[str]] = None,
-        fields: Optional[List[str]] = None,
-        search_global: Optional[bool] = None,
+        q: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        limit: typing.Optional[int] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        search_global: typing.Optional[bool] = None,
         **kwargs
     ) -> search.GetHintsResponseModel:
         """Allows the programmer to do a quick search for any substring.

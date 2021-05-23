@@ -1,20 +1,20 @@
-from vkbottle_types.responses import base, stats
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import stats, base
 
 
 class StatsCategory(BaseCategory):
     async def get(
         self,
-        group_id: Optional[int] = None,
-        app_id: Optional[int] = None,
-        timestamp_from: Optional[int] = None,
-        timestamp_to: Optional[int] = None,
-        interval: Optional[str] = None,
-        intervals_count: Optional[int] = None,
-        filters: Optional[List[str]] = None,
-        stats_groups: Optional[List[str]] = None,
-        extended: Optional[bool] = None,
+        group_id: typing.Optional[int] = None,
+        app_id: typing.Optional[int] = None,
+        timestamp_from: typing.Optional[int] = None,
+        timestamp_to: typing.Optional[int] = None,
+        interval: typing.Optional[str] = None,
+        intervals_count: typing.Optional[int] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        stats_groups: typing.Optional[typing.List[str]] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> stats.GetResponseModel:
         """Returns statistics of a community or an application.
@@ -35,7 +35,7 @@ class StatsCategory(BaseCategory):
         return model(**response).response
 
     async def get_post_reach(
-        self, owner_id: str, post_ids: List[int], **kwargs
+        self, owner_id: str, post_ids: typing.List[int], **kwargs
     ) -> stats.GetPostReachResponseModel:
         """Returns stats for a wall post.
         :param owner_id: post owner community id. Specify with "-" sign.
@@ -47,7 +47,9 @@ class StatsCategory(BaseCategory):
         model = stats.GetPostReachResponse
         return model(**response).response
 
-    async def track_visitor(self, id: str, **kwargs) -> base.OkResponseModel:
+    async def track_visitor(
+        self, id: str, **kwargs
+    ) -> base.OkResponseModel:
         """stats.trackVisitor method
         :param id:
         """

@@ -1,16 +1,16 @@
-from vkbottle_types.responses import notifications
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import notifications
 
 
 class NotificationsCategory(BaseCategory):
     async def get(
         self,
-        count: Optional[int] = None,
-        start_from: Optional[str] = None,
-        filters: Optional[List[str]] = None,
-        start_time: Optional[int] = None,
-        end_time: Optional[int] = None,
+        count: typing.Optional[int] = None,
+        start_from: typing.Optional[str] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
         **kwargs
     ) -> notifications.GetResponseModel:
         """Returns a list of notifications about other users' feedback to the current user's wall posts.
@@ -26,7 +26,9 @@ class NotificationsCategory(BaseCategory):
         model = notifications.GetResponse
         return model(**response).response
 
-    async def mark_as_viewed(self, **kwargs) -> notifications.MarkAsViewedResponseModel:
+    async def mark_as_viewed(
+        self, **kwargs
+    ) -> notifications.MarkAsViewedResponseModel:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
 
         params = self.get_set_params(locals())
@@ -36,11 +38,12 @@ class NotificationsCategory(BaseCategory):
 
     async def send_message(
         self,
-        user_ids: List[int],
+        user_ids: typing.List[int],
         message: str,
-        fragment: Optional[str] = None,
-        group_id: Optional[int] = None,
-        random_id: Optional[int] = None,
+        fragment: typing.Optional[str] = None,
+        group_id: typing.Optional[int] = None,
+        random_id: typing.Optional[int] = None,
+        sending_mode: typing.Optional[str] = None,
         **kwargs
     ) -> notifications.SendMessageResponseModel:
         """notifications.sendMessage method
@@ -49,6 +52,7 @@ class NotificationsCategory(BaseCategory):
         :param fragment:
         :param group_id:
         :param random_id:
+        :param sending_mode: Type of sending (delivering) notifications: 'immediately' — push and bell notifications will be delivered as soon as possible, 'delayed' — push and bell notifications will be delivered in the most comfortable time for the user, 'delayed_push' — only push notifications will be delivered in the most comfortable time, while the bell notifications will be delivered as soon as possible
         """
 
         params = self.get_set_params(locals())

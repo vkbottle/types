@@ -1,5 +1,6 @@
+from typing import Union
+
 from .bot_events import *
-from typing import Any, Union
 
 
 class GroupTypes:

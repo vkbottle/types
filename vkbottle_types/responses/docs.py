@@ -1,80 +1,83 @@
-from typing import Optional, List
-
+import inspect
+import typing
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
+    BaseUploadServer,
+    DocsDoc,
+    DocsDocAttachmentType,
     DocsDocTypes,
     MessagesAudioMessage,
-    MessagesGraffiti,
-    DocsDocAttachmentType,
-    DocsDoc,
-    BaseUploadServer,
+    MessagesGraffiti
 )
-from .base_response import BaseResponse
 
 
 class AddResponse(BaseResponse):
-    response: Optional["AddResponseModel"] = None
+    response: typing.Optional["AddResponseModel"] = None
+
+
+class DocUploadResponse(BaseResponse):
+    response: typing.Optional["DocUploadResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetTypesResponse(BaseResponse):
-    response: Optional["GetTypesResponseModel"] = None
+    response: typing.Optional["GetTypesResponseModel"] = None
 
 
 class GetUploadServer(BaseResponse):
-    response: Optional["GetUploadServerModel"] = None
+    response: typing.Optional["GetUploadServerModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class SaveResponse(BaseResponse):
-    response: Optional["SaveResponseModel"] = None
+    response: typing.Optional["SaveResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
-class AddResponseModel(BaseResponse):
-    id: Optional[int] = None
+AddResponseModel = int
 
 
-GetByIdResponseModel = List[DocsDoc]
+class DocUploadResponseModel(BaseResponse):
+    file: typing.Optional[str] = None
+
+
+GetByIdResponseModel = typing.List[DocsDoc]
 
 
 class GetTypesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DocsDocTypes"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DocsDocTypes"]] = None
 
 
-GetUploadServerModel = Optional[BaseUploadServer]
+GetUploadServerModel = BaseUploadServer
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DocsDoc"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DocsDoc"]] = None
 
 
 class SaveResponseModel(BaseResponse):
-    type: Optional["DocsDocAttachmentType"] = None
-    audio_message: Optional["MessagesAudioMessage"] = None
-    doc: Optional["DocsDoc"] = None
-    graffiti: Optional["MessagesGraffiti"] = None
+    type: typing.Optional["DocsDocAttachmentType"] = None
+    audio_message: typing.Optional["MessagesAudioMessage"] = None
+    doc: typing.Optional["DocsDoc"] = None
+    graffiti: typing.Optional["MessagesGraffiti"] = None
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["DocsDoc"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["DocsDoc"]] = None
 
 
-AddResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetTypesResponse.update_forward_refs()
-GetUploadServer.update_forward_refs()
-GetResponse.update_forward_refs()
-SaveResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

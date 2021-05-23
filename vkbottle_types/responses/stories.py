@@ -1,145 +1,147 @@
-from typing import Optional, List
-
+import inspect
+import typing
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
-    GroupsGroupFull,
-    StoriesViewersItem,
-    StoriesStoryStats,
-    UsersUser,
-    UsersUserFull,
     GroupsGroup,
-    StoriesStory,
+    GroupsGroupFull,
     StoriesFeedItem,
     StoriesPromoBlock,
+    StoriesStory,
+    StoriesStoryStats,
+    StoriesViewersItem,
+    UsersUser,
+    UsersUserFull
 )
-from .base_response import BaseResponse
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: Optional["GetBannedExtendedResponseModel"] = None
+    response: typing.Optional["GetBannedExtendedResponseModel"] = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: Optional["GetBannedResponseModel"] = None
+    response: typing.Optional["GetBannedResponseModel"] = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: Optional["GetByIdExtendedResponseModel"] = None
+    response: typing.Optional["GetByIdExtendedResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetPhotoUploadServerResponse(BaseResponse):
-    response: Optional["GetPhotoUploadServerResponseModel"] = None
+    response: typing.Optional["GetPhotoUploadServerResponseModel"] = None
 
 
 class GetStatsResponse(BaseResponse):
-    response: Optional["GetStatsResponseModel"] = None
+    response: typing.Optional["GetStatsResponseModel"] = None
 
 
 class GetVideoUploadServerResponse(BaseResponse):
-    response: Optional["GetVideoUploadServerResponseModel"] = None
+    response: typing.Optional["GetVideoUploadServerResponseModel"] = None
 
 
 class GetViewersExtendedV5115Response(BaseResponse):
-    response: Optional["GetViewersExtendedV5115ResponseModel"] = None
+    response: typing.Optional["GetViewersExtendedV5115ResponseModel"] = None
 
 
 class GetViewersExtendedResponse(BaseResponse):
-    response: Optional["GetViewersExtendedResponseModel"] = None
+    response: typing.Optional["GetViewersExtendedResponseModel"] = None
 
 
 class GetV5113Response(BaseResponse):
-    response: Optional["GetV5113ResponseModel"] = None
+    response: typing.Optional["GetV5113ResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
+
+
+class SaveResponse(BaseResponse):
+    response: typing.Optional["SaveResponseModel"] = None
 
 
 class UploadResponse(BaseResponse):
-    response: Optional["UploadResponseModel"] = None
+    response: typing.Optional["UploadResponseModel"] = None
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class GetByIdExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["StoriesStory"]] = None
-    profiles: Optional[List["UsersUserFull"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["StoriesStory"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetByIdResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["StoriesStory"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["StoriesStory"]] = None
 
 
 class GetPhotoUploadServerResponseModel(BaseResponse):
-    upload_url: Optional[str] = None
-    user_ids: Optional[List[int]] = None
+    upload_url: typing.Optional[str] = None
+    user_ids: typing.Optional[typing.List[int]] = None
 
 
-GetStatsResponseModel = Optional[StoriesStoryStats]
+GetStatsResponseModel = StoriesStoryStats
 
 
 class GetVideoUploadServerResponseModel(BaseResponse):
-    upload_url: Optional[str] = None
-    user_ids: Optional[List[int]] = None
+    upload_url: typing.Optional[str] = None
+    user_ids: typing.Optional[typing.List[int]] = None
 
 
 class GetViewersExtendedV5115ResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["StoriesViewersItem"]] = None
-    hidden_reason: Optional[str] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["StoriesViewersItem"]] = None
+    hidden_reason: typing.Optional[str] = None
 
 
 class GetViewersExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetV5113ResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["StoriesFeedItem"]] = None
-    profiles: Optional[List["UsersUser"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
-    need_upload_screen: Optional[bool] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["StoriesFeedItem"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    need_upload_screen: typing.Optional[bool] = None
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[List["StoriesStory"]]] = None
-    promo_data: Optional["StoriesPromoBlock"] = None
-    profiles: Optional[List["UsersUser"]] = None
-    groups: Optional[List["GroupsGroup"]] = None
-    need_upload_screen: Optional[bool] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["list"]] = None
+    promo_data: typing.Optional["StoriesPromoBlock"] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    need_upload_screen: typing.Optional[bool] = None
+
+
+class SaveResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["StoriesStory"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
 class UploadResponseModel(BaseResponse):
-    upload_result: Optional[str] = None
+    upload_result: typing.Optional[str] = None
 
 
-GetBannedExtendedResponse.update_forward_refs()
-GetBannedResponse.update_forward_refs()
-GetByIdExtendedResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetPhotoUploadServerResponse.update_forward_refs()
-GetStatsResponse.update_forward_refs()
-GetVideoUploadServerResponse.update_forward_refs()
-GetViewersExtendedV5115Response.update_forward_refs()
-GetViewersExtendedResponse.update_forward_refs()
-GetV5113Response.update_forward_refs()
-GetResponse.update_forward_refs()
-UploadResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

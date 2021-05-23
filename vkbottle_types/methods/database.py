@@ -1,14 +1,14 @@
-from vkbottle_types.responses import database
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import database
 
 
 class DatabaseCategory(BaseCategory):
     async def get_chairs(
         self,
         faculty_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetChairsResponseModel:
         """Returns list of chairs on a specified faculty.
@@ -25,11 +25,11 @@ class DatabaseCategory(BaseCategory):
     async def get_cities(
         self,
         country_id: int,
-        region_id: Optional[int] = None,
-        q: Optional[str] = None,
-        need_all: Optional[bool] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        region_id: typing.Optional[int] = None,
+        q: typing.Optional[str] = None,
+        need_all: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetCitiesResponseModel:
         """Returns a list of cities.
@@ -47,7 +47,7 @@ class DatabaseCategory(BaseCategory):
         return model(**response).response
 
     async def get_cities_by_id(
-        self, city_ids: Optional[List[int]] = None, **kwargs
+        self, city_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> database.GetCitiesByIdResponseModel:
         """Returns information about cities by their IDs.
         :param city_ids: City IDs.
@@ -60,10 +60,10 @@ class DatabaseCategory(BaseCategory):
 
     async def get_countries(
         self,
-        need_all: Optional[bool] = None,
-        code: Optional[str] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        need_all: typing.Optional[bool] = None,
+        code: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetCountriesResponseModel:
         """Returns a list of countries.
@@ -79,7 +79,7 @@ class DatabaseCategory(BaseCategory):
         return model(**response).response
 
     async def get_countries_by_id(
-        self, country_ids: Optional[List[int]] = None, **kwargs
+        self, country_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> database.GetCountriesByIdResponseModel:
         """Returns information about countries by their IDs.
         :param country_ids: Country IDs.
@@ -93,8 +93,8 @@ class DatabaseCategory(BaseCategory):
     async def get_faculties(
         self,
         university_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetFacultiesResponseModel:
         """Returns a list of faculties (i.e., university departments).
@@ -111,9 +111,9 @@ class DatabaseCategory(BaseCategory):
     async def get_metro_stations(
         self,
         city_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> database.GetMetroStationsResponseModel:
         """Get metro stations by city
@@ -129,7 +129,7 @@ class DatabaseCategory(BaseCategory):
         return model(**response).response
 
     async def get_metro_stations_by_id(
-        self, station_ids: Optional[List[int]] = None, **kwargs
+        self, station_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> database.GetMetroStationsByIdResponseModel:
         """Get metro station by his id
         :param station_ids:
@@ -143,9 +143,9 @@ class DatabaseCategory(BaseCategory):
     async def get_regions(
         self,
         country_id: int,
-        q: Optional[str] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        q: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetRegionsResponseModel:
         """Returns a list of regions.
@@ -161,7 +161,7 @@ class DatabaseCategory(BaseCategory):
         return model(**response).response
 
     async def get_school_classes(
-        self, country_id: Optional[int] = None, **kwargs
+        self, country_id: typing.Optional[int] = None, **kwargs
     ) -> database.GetSchoolClassesResponseModel:
         """Returns a list of school classes specified for the country.
         :param country_id: Country ID.
@@ -175,9 +175,9 @@ class DatabaseCategory(BaseCategory):
     async def get_schools(
         self,
         city_id: int,
-        q: Optional[str] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        q: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetSchoolsResponseModel:
         """Returns a list of schools.
@@ -194,11 +194,11 @@ class DatabaseCategory(BaseCategory):
 
     async def get_universities(
         self,
-        q: Optional[str] = None,
-        country_id: Optional[int] = None,
-        city_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        q: typing.Optional[str] = None,
+        country_id: typing.Optional[int] = None,
+        city_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> database.GetUniversitiesResponseModel:
         """Returns a list of higher education institutions.

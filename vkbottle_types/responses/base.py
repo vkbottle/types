@@ -1,27 +1,30 @@
-from typing import Optional
-
-from vkbottle_types.objects import BaseUploadServer, BaseBoolInt
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
 
 
 class BoolResponse(BaseResponse):
-    response: Optional["BoolResponseModel"] = None
+    response: typing.Optional["BoolResponseModel"] = None
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: Optional["GetUploadServerResponseModel"] = None
+    response: typing.Optional["GetUploadServerResponseModel"] = None
 
 
 class OkResponse(BaseResponse):
-    response: Optional["OkResponseModel"] = None
+    response: typing.Optional["OkResponseModel"] = None
 
 
-BoolResponseModel = Optional[BaseBoolInt]
+BoolResponseModel = BaseBoolInt
 
-GetUploadServerResponseModel = Optional[BaseUploadServer]
+
+GetUploadServerResponseModel = BaseUploadServer
+
 
 OkResponseModel = int
 
-BoolResponse.update_forward_refs()
-GetUploadServerResponse.update_forward_refs()
-OkResponse.update_forward_refs()
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

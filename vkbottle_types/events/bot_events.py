@@ -1,8 +1,10 @@
-from .enums import GroupEventType
-from .objects import BaseEventObject, group_event_objects
-from .events_base import EventsBase
+from typing import TYPE_CHECKING, Any, Optional, Union
+
 from pydantic import BaseModel
-from typing import Optional, Any, Union, TYPE_CHECKING
+
+from .enums import GroupEventType
+from .events_base import EventsBase
+from .objects import BaseEventObject, group_event_objects
 
 if TYPE_CHECKING:
     from vkbottle import ABCAPI, API

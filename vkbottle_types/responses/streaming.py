@@ -1,15 +1,18 @@
-from typing import Optional
-
+import inspect
+import typing
 from .base_response import BaseResponse
+import vkbottle_types.objects
 
 
 class GetServerUrlResponse(BaseResponse):
-    response: Optional["GetServerUrlResponseModel"] = None
+    response: typing.Optional["GetServerUrlResponseModel"] = None
 
 
 class GetServerUrlResponseModel(BaseResponse):
-    endpoint: Optional[str] = None
-    key: Optional[str] = None
+    endpoint: typing.Optional[str] = None
+    key: typing.Optional[str] = None
 
 
-GetServerUrlResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

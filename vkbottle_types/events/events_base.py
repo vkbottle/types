@@ -1,6 +1,6 @@
-from typing import Union, Dict, Type, Callable, Any, TYPE_CHECKING
-from .enums import GroupEventType, UserEventType
+from typing import TYPE_CHECKING, Any, Callable, Dict, Type, Union
 
+from .enums import GroupEventType, UserEventType
 
 if TYPE_CHECKING:
     from . import GroupTypes, UserTypes

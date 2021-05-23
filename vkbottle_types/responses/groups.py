@@ -1,383 +1,379 @@
+import inspect
 import typing
-from typing import Optional, Any, List, Union
-
+from .base_response import BaseResponse
 from vkbottle_types.objects import (
-    GroupsCallbackSettings,
-    GroupsGroupFull,
-    GroupsGroupDocs,
-    GroupsGroupAudio,
-    GroupsSettingsTwitter,
-    GroupsMemberStatus,
-    GroupsGroupPublicCategoryList,
-    GroupsGroupLink,
-    GroupsGroup,
-    GroupsMemberRole,
-    GroupsGroupVideo,
-    GroupsLongPollServer,
-    GroupsLongPollSettings,
-    GroupsGroupAccess,
-    GroupsGroupTopics,
-    GroupsMemberStatusFull,
-    GroupsGroupFullMainSection,
-    GroupsGroupCategoryFull,
-    GroupsSubjectItem,
+    BaseBoolInt,
+    GroupsAddress,
     GroupsBannedItem,
     GroupsCallbackServer,
-    BaseBoolInt,
+    GroupsCallbackSettings,
+    GroupsGroup,
+    GroupsGroupAccess,
+    GroupsGroupAgeLimits,
+    GroupsGroupAudio,
     GroupsGroupCategory,
-    GroupsAddress,
-    UsersUserMin,
-    GroupsTokenPermissionSetting,
+    GroupsGroupCategoryFull,
+    GroupsGroupDocs,
+    GroupsGroupFull,
+    GroupsGroupFullMainSection,
+    GroupsGroupLink,
+    GroupsGroupPhotos,
+    GroupsGroupPublicCategoryList,
+    GroupsGroupSuggestedPrivacy,
+    GroupsGroupTag,
+    GroupsGroupTopics,
+    GroupsGroupVideo,
     GroupsGroupWall,
-    UsersUserFull,
-    GroupsGroupXtrInvitedBy,
     GroupsGroupWiki,
+    GroupsLongPollServer,
+    GroupsLongPollSettings,
+    GroupsMemberRole,
+    GroupsMemberStatus,
+    GroupsMemberStatusFull,
+    GroupsProfileItem,
+    GroupsSectionsListItem,
+    GroupsSettingsTwitter,
+    GroupsSubjectItem,
+    GroupsTokenPermissionSetting,
     GroupsUserXtrRole,
+    UsersUserFull,
+    UsersUserMin
 )
-from .base_response import BaseResponse
 
 
 class AddAddressResponse(BaseResponse):
-    response: Optional["AddAddressResponseModel"] = None
+    response: typing.Optional["AddAddressResponseModel"] = None
 
 
 class AddCallbackServerResponse(BaseResponse):
-    response: Optional["AddCallbackServerResponseModel"] = None
+    response: typing.Optional["AddCallbackServerResponseModel"] = None
 
 
 class AddLinkResponse(BaseResponse):
-    response: Optional["AddLinkResponseModel"] = None
+    response: typing.Optional["AddLinkResponseModel"] = None
 
 
 class CreateResponse(BaseResponse):
-    response: Optional["CreateResponseModel"] = None
+    response: typing.Optional["CreateResponseModel"] = None
 
 
 class EditAddressResponse(BaseResponse):
-    response: Optional["EditAddressResponseModel"] = None
+    response: typing.Optional["EditAddressResponseModel"] = None
 
 
 class GetAddressesResponse(BaseResponse):
-    response: Optional["GetAddressesResponseModel"] = None
+    response: typing.Optional["GetAddressesResponseModel"] = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: Optional["GetBannedResponseModel"] = None
+    response: typing.Optional["GetBannedResponseModel"] = None
+
+
+class GetByIdLegacyResponse(BaseResponse):
+    response: typing.Optional["GetByIdLegacyResponseModel"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: Optional["GetByIdResponseModel"] = None
+    response: typing.Optional["GetByIdResponseModel"] = None
 
 
 class GetCallbackConfirmationCodeResponse(BaseResponse):
-    response: Optional["GetCallbackConfirmationCodeResponseModel"] = None
+    response: typing.Optional["GetCallbackConfirmationCodeResponseModel"] = None
 
 
 class GetCallbackServersResponse(BaseResponse):
-    response: Optional["GetCallbackServersResponseModel"] = None
+    response: typing.Optional["GetCallbackServersResponseModel"] = None
 
 
 class GetCallbackSettingsResponse(BaseResponse):
-    response: Optional["GetCallbackSettingsResponseModel"] = None
+    response: typing.Optional["GetCallbackSettingsResponseModel"] = None
 
 
 class GetCatalogInfoExtendedResponse(BaseResponse):
-    response: Optional["GetCatalogInfoExtendedResponseModel"] = None
+    response: typing.Optional["GetCatalogInfoExtendedResponseModel"] = None
 
 
 class GetCatalogInfoResponse(BaseResponse):
-    response: Optional["GetCatalogInfoResponseModel"] = None
+    response: typing.Optional["GetCatalogInfoResponseModel"] = None
 
 
 class GetCatalogResponse(BaseResponse):
-    response: Optional["GetCatalogResponseModel"] = None
+    response: typing.Optional["GetCatalogResponseModel"] = None
 
 
 class GetInvitedUsersResponse(BaseResponse):
-    response: Optional["GetInvitedUsersResponseModel"] = None
+    response: typing.Optional["GetInvitedUsersResponseModel"] = None
 
 
 class GetInvitesExtendedResponse(BaseResponse):
-    response: Optional["GetInvitesExtendedResponseModel"] = None
+    response: typing.Optional["GetInvitesExtendedResponseModel"] = None
 
 
 class GetInvitesResponse(BaseResponse):
-    response: Optional["GetInvitesResponseModel"] = None
+    response: typing.Optional["GetInvitesResponseModel"] = None
 
 
 class GetLongPollServerResponse(BaseResponse):
-    response: Optional["GetLongPollServerResponseModel"] = None
+    response: typing.Optional["GetLongPollServerResponseModel"] = None
 
 
 class GetLongPollSettingsResponse(BaseResponse):
-    response: Optional["GetLongPollSettingsResponseModel"] = None
+    response: typing.Optional["GetLongPollSettingsResponseModel"] = None
 
 
 class GetMembersFieldsResponse(BaseResponse):
-    response: Optional["GetMembersFieldsResponseModel"] = None
+    response: typing.Optional["GetMembersFieldsResponseModel"] = None
 
 
 class GetMembersFilterResponse(BaseResponse):
-    response: Optional["GetMembersFilterResponseModel"] = None
+    response: typing.Optional["GetMembersFilterResponseModel"] = None
 
 
 class GetMembersResponse(BaseResponse):
-    response: Optional["GetMembersResponseModel"] = None
+    response: typing.Optional["GetMembersResponseModel"] = None
 
 
 class GetRequestsFieldsResponse(BaseResponse):
-    response: Optional["GetRequestsFieldsResponseModel"] = None
+    response: typing.Optional["GetRequestsFieldsResponseModel"] = None
 
 
 class GetRequestsResponse(BaseResponse):
-    response: Optional["GetRequestsResponseModel"] = None
+    response: typing.Optional["GetRequestsResponseModel"] = None
 
 
 class GetSettingsResponse(BaseResponse):
-    response: Optional["GetSettingsResponseModel"] = None
+    response: typing.Optional["GetSettingsResponseModel"] = None
+
+
+class GetTagListResponse(BaseResponse):
+    response: typing.Optional["GetTagListResponseModel"] = None
 
 
 class GetTokenPermissionsResponse(BaseResponse):
-    response: Optional["GetTokenPermissionsResponseModel"] = None
+    response: typing.Optional["GetTokenPermissionsResponseModel"] = None
 
 
 class GetExtendedResponse(BaseResponse):
-    response: Optional["GetExtendedResponseModel"] = None
+    response: typing.Optional["GetExtendedResponseModel"] = None
 
 
 class GetResponse(BaseResponse):
-    response: Optional["GetResponseModel"] = None
+    response: typing.Optional["GetResponseModel"] = None
 
 
 class IsMemberExtendedResponse(BaseResponse):
-    response: Optional["IsMemberExtendedResponseModel"] = None
+    response: typing.Optional["IsMemberExtendedResponseModel"] = None
 
 
 class IsMemberResponse(BaseResponse):
-    response: Optional["IsMemberResponseModel"] = None
+    response: typing.Optional["IsMemberResponseModel"] = None
 
 
 class IsMemberUserIdsExtendedResponse(BaseResponse):
-    response: Optional["IsMemberUserIdsExtendedResponseModel"] = None
+    response: typing.Optional["IsMemberUserIdsExtendedResponseModel"] = None
 
 
 class IsMemberUserIdsResponse(BaseResponse):
-    response: Optional["IsMemberUserIdsResponseModel"] = None
+    response: typing.Optional["IsMemberUserIdsResponseModel"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: Optional["SearchResponseModel"] = None
+    response: typing.Optional["SearchResponseModel"] = None
 
 
-AddAddressResponseModel = Optional[GroupsAddress]
+AddAddressResponseModel = GroupsAddress
 
 
 class AddCallbackServerResponseModel(BaseResponse):
-    server_id: Optional[int] = None
+    server_id: typing.Optional[int] = None
 
 
-AddLinkResponseModel = Optional[GroupsGroupLink]
+AddLinkResponseModel = GroupsGroupLink
 
-CreateResponseModel = Optional[GroupsGroup]
 
-EditAddressResponseModel = Optional[GroupsAddress]
+CreateResponseModel = GroupsGroup
+
+
+EditAddressResponseModel = GroupsAddress
 
 
 class GetAddressesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsAddress"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsAddress"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsBannedItem"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsBannedItem"]] = None
 
 
-GetByIdResponseModel = List[GroupsGroupFull]
+GetByIdLegacyResponseModel = typing.List[GroupsGroupFull]
+
+
+class GetByIdResponseModel(BaseResponse):
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    profiles: typing.Optional[typing.List["GroupsProfileItem"]] = None
 
 
 class GetCallbackConfirmationCodeResponseModel(BaseResponse):
-    code: Optional[str] = None
+    code: typing.Optional[str] = None
 
 
 class GetCallbackServersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsCallbackServer"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsCallbackServer"]] = None
 
 
-GetCallbackSettingsResponseModel = Optional[GroupsCallbackSettings]
+GetCallbackSettingsResponseModel = GroupsCallbackSettings
 
 
 class GetCatalogInfoExtendedResponseModel(BaseResponse):
-    enabled: Optional[int] = None
-    categories: Optional[List["GroupsGroupCategoryFull"]] = None
+    enabled: typing.Optional["BaseBoolInt"] = None
+    categories: typing.Optional[typing.List["GroupsGroupCategoryFull"]] = None
 
 
 class GetCatalogInfoResponseModel(BaseResponse):
-    enabled: Optional[int] = None
-    categories: Optional[List["GroupsGroupCategory"]] = None
+    enabled: typing.Optional["BaseBoolInt"] = None
+    categories: typing.Optional[typing.List["GroupsGroupCategory"]] = None
 
 
 class GetCatalogResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsGroup"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
 class GetInvitedUsersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetInvitesExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsGroupXtrInvitedBy"]] = None
-    profiles: Optional[List["UsersUserMin"]] = None
-    groups: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetInvitesResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsGroupXtrInvitedBy"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
-GetLongPollServerResponseModel = Optional[GroupsLongPollServer]
+GetLongPollServerResponseModel = GroupsLongPollServer
 
-GetLongPollSettingsResponseModel = Optional[GroupsLongPollSettings]
+
+GetLongPollSettingsResponseModel = GroupsLongPollSettings
 
 
 class GetMembersFieldsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsUserXtrRole"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsUserXtrRole"]] = None
 
 
 class GetMembersFilterResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[Union["GroupsMemberRole", int]]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsMemberRole"]] = None
 
 
 class GetMembersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class GetRequestsFieldsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["UsersUserFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetRequestsResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class GetSettingsResponseModel(BaseResponse):
-    access: Optional["GroupsGroupAccess"] = None
-    address: Optional[str] = None
-    audio: Optional["GroupsGroupAudio"] = None
-    articles: Optional[int] = None
-    city_id: Optional[int] = None
-    contacts: Optional["BaseBoolInt"] = None
-    links: Optional["BaseBoolInt"] = None
-    sections_list: Optional[typing.Dict[Any, Any]] = None
-    main_section: Optional["GroupsGroupFullMainSection"] = None
-    secondary_section: Optional[int] = None
-    age_limits: Optional[int] = None
-    country_id: Optional[int] = None
-    description: Optional[str] = None
-    docs: Optional["GroupsGroupDocs"] = None
-    events: Optional["BaseBoolInt"] = None
-    obscene_filter: Optional["BaseBoolInt"] = None
-    obscene_stopwords: Optional["BaseBoolInt"] = None
-    obscene_words: Optional[List[str]] = None
-    event_group_id: Optional[int] = None
-    photos: Optional[int] = None
-    public_category: Optional[int] = None
-    public_category_list: Optional[List["GroupsGroupPublicCategoryList"]] = None
-    public_date: Optional[str] = None
-    public_date_label: Optional[str] = None
-    public_subcategory: Optional[int] = None
-    rss: Optional[str] = None
-    start_date: Optional[int] = None
-    finish_date: Optional[int] = None
-    subject: Optional[int] = None
-    subject_list: Optional[List["GroupsSubjectItem"]] = None
-    suggested_privacy: Optional[int] = None
-    title: Optional[str] = None
-    topics: Optional["GroupsGroupTopics"] = None
-    twitter: Optional["GroupsSettingsTwitter"] = None
-    video: Optional["GroupsGroupVideo"] = None
-    wall: Optional["GroupsGroupWall"] = None
-    website: Optional[str] = None
-    phone: Optional[str] = None
-    email: Optional[str] = None
-    wiki: Optional["GroupsGroupWiki"] = None
+    access: typing.Optional["GroupsGroupAccess"] = None
+    address: typing.Optional[str] = None
+    audio: typing.Optional["GroupsGroupAudio"] = None
+    articles: typing.Optional[int] = None
+    recognize_photo: typing.Optional[int] = None
+    city_id: typing.Optional[int] = None
+    contacts: typing.Optional["BaseBoolInt"] = None
+    links: typing.Optional["BaseBoolInt"] = None
+    sections_list: typing.Optional[typing.List["GroupsSectionsListItem"]] = None
+    main_section: typing.Optional["GroupsGroupFullMainSection"] = None
+    secondary_section: typing.Optional[int] = None
+    age_limits: typing.Optional["GroupsGroupAgeLimits"] = None
+    country_id: typing.Optional[int] = None
+    description: typing.Optional[str] = None
+    docs: typing.Optional["GroupsGroupDocs"] = None
+    events: typing.Optional["BaseBoolInt"] = None
+    obscene_filter: typing.Optional["BaseBoolInt"] = None
+    obscene_stopwords: typing.Optional["BaseBoolInt"] = None
+    obscene_words: typing.Optional[typing.List[str]] = None
+    event_group_id: typing.Optional[int] = None
+    photos: typing.Optional["GroupsGroupPhotos"] = None
+    public_category: typing.Optional[int] = None
+    public_category_list: typing.Optional[typing.List["GroupsGroupPublicCategoryList"]] = None
+    public_date: typing.Optional[str] = None
+    public_date_label: typing.Optional[str] = None
+    public_subcategory: typing.Optional[int] = None
+    rss: typing.Optional[str] = None
+    start_date: typing.Optional[int] = None
+    finish_date: typing.Optional[int] = None
+    subject: typing.Optional[int] = None
+    subject_list: typing.Optional[typing.List["GroupsSubjectItem"]] = None
+    suggested_privacy: typing.Optional["GroupsGroupSuggestedPrivacy"] = None
+    title: typing.Optional[str] = None
+    topics: typing.Optional["GroupsGroupTopics"] = None
+    twitter: typing.Optional["GroupsSettingsTwitter"] = None
+    video: typing.Optional["GroupsGroupVideo"] = None
+    wall: typing.Optional["GroupsGroupWall"] = None
+    website: typing.Optional[str] = None
+    phone: typing.Optional[str] = None
+    email: typing.Optional[str] = None
+    wiki: typing.Optional["GroupsGroupWiki"] = None
+
+
+GetTagListResponseModel = typing.List[GroupsGroupTag]
 
 
 class GetTokenPermissionsResponseModel(BaseResponse):
-    mask: Optional[int] = None
-    permissions: Optional[List["GroupsTokenPermissionSetting"]] = None
+    mask: typing.Optional[int] = None
+    permissions: typing.Optional[typing.List["GroupsTokenPermissionSetting"]] = None
 
 
 class GetExtendedResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsGroupFull"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List[int]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class IsMemberExtendedResponseModel(BaseResponse):
-    member: Optional["BaseBoolInt"] = None
-    invitation: Optional["BaseBoolInt"] = None
-    can_invite: Optional["BaseBoolInt"] = None
-    can_recall: Optional["BaseBoolInt"] = None
-    request: Optional["BaseBoolInt"] = None
+    member: typing.Optional["BaseBoolInt"] = None
+    invitation: typing.Optional["BaseBoolInt"] = None
+    can_invite: typing.Optional["BaseBoolInt"] = None
+    can_recall: typing.Optional["BaseBoolInt"] = None
+    request: typing.Optional["BaseBoolInt"] = None
 
 
-IsMemberResponseModel = Optional[BaseBoolInt]
+IsMemberResponseModel = BaseBoolInt
 
-IsMemberUserIdsExtendedResponseModel = List[GroupsMemberStatusFull]
 
-IsMemberUserIdsResponseModel = List[GroupsMemberStatus]
+IsMemberUserIdsExtendedResponseModel = typing.List[GroupsMemberStatusFull]
+
+
+IsMemberUserIdsResponseModel = typing.List[GroupsMemberStatus]
 
 
 class SearchResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsGroup"]] = None
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsGroup"]] = None
 
 
-AddAddressResponse.update_forward_refs()
-AddCallbackServerResponse.update_forward_refs()
-AddLinkResponse.update_forward_refs()
-CreateResponse.update_forward_refs()
-EditAddressResponse.update_forward_refs()
-GetAddressesResponse.update_forward_refs()
-GetBannedResponse.update_forward_refs()
-GetByIdResponse.update_forward_refs()
-GetCallbackConfirmationCodeResponse.update_forward_refs()
-GetCallbackServersResponse.update_forward_refs()
-GetCallbackSettingsResponse.update_forward_refs()
-GetCatalogInfoExtendedResponse.update_forward_refs()
-GetCatalogInfoResponse.update_forward_refs()
-GetCatalogResponse.update_forward_refs()
-GetInvitedUsersResponse.update_forward_refs()
-GetInvitesExtendedResponse.update_forward_refs()
-GetInvitesResponse.update_forward_refs()
-GetLongPollServerResponse.update_forward_refs()
-GetLongPollSettingsResponse.update_forward_refs()
-GetMembersFieldsResponse.update_forward_refs()
-GetMembersFilterResponse.update_forward_refs()
-GetMembersResponse.update_forward_refs()
-GetRequestsFieldsResponse.update_forward_refs()
-GetRequestsResponse.update_forward_refs()
-GetSettingsResponse.update_forward_refs()
-GetTokenPermissionsResponse.update_forward_refs()
-GetExtendedResponse.update_forward_refs()
-GetResponse.update_forward_refs()
-IsMemberExtendedResponse.update_forward_refs()
-IsMemberResponse.update_forward_refs()
-IsMemberUserIdsExtendedResponse.update_forward_refs()
-IsMemberUserIdsResponse.update_forward_refs()
-SearchResponse.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()

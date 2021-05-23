@@ -1,11 +1,11 @@
-from vkbottle_types.responses import account, base
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import base, account
 
 
 class AccountCategory(BaseCategory):
     async def ban(
-        self, owner_id: Optional[int] = None, **kwargs
+        self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """account.ban method
         :param owner_id:
@@ -19,9 +19,9 @@ class AccountCategory(BaseCategory):
     async def change_password(
         self,
         new_password: str,
-        restore_sid: Optional[str] = None,
-        change_password_hash: Optional[str] = None,
-        old_password: Optional[str] = None,
+        restore_sid: typing.Optional[str] = None,
+        change_password_hash: typing.Optional[str] = None,
+        old_password: typing.Optional[str] = None,
         **kwargs
     ) -> account.ChangePasswordResponseModel:
         """Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
@@ -37,7 +37,10 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_active_offers(
-        self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
     ) -> account.GetActiveOffersResponseModel:
         """Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
         :param offset:
@@ -62,7 +65,10 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_banned(
-        self, offset: Optional[int] = None, count: Optional[int] = None, **kwargs
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
     ) -> account.GetBannedResponseModel:
         """Returns a user's blacklist.
         :param offset: Offset needed to return a specific subset of results.
@@ -75,10 +81,14 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_counters(
-        self, filter: Optional[List[str]] = None, **kwargs
+        self,
+        filter: typing.Optional[typing.List[str]] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs
     ) -> account.GetCountersResponseModel:
         """Returns non-null values of user counters.
         :param filter: Counters to be returned.
+        :param user_id: User ID
         """
 
         params = self.get_set_params(locals())
@@ -87,7 +97,7 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_info(
-        self, fields: Optional[List[str]] = None, **kwargs
+        self, fields: typing.Optional[typing.List[str]] = None, **kwargs
     ) -> account.GetInfoResponseModel:
         """Returns current account info.
         :param fields: Fields to return. Possible values: *'country' — user country,, *'https_required' — is "HTTPS only" option enabled,, *'own_posts_default' — is "Show my posts only" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.
@@ -98,7 +108,9 @@ class AccountCategory(BaseCategory):
         model = account.GetInfoResponse
         return model(**response).response
 
-    async def get_profile_info(self, **kwargs) -> account.GetProfileInfoResponseModel:
+    async def get_profile_info(
+        self, **kwargs
+    ) -> account.GetProfileInfoResponseModel:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
@@ -107,7 +119,7 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def get_push_settings(
-        self, device_id: Optional[str] = None, **kwargs
+        self, device_id: typing.Optional[str] = None, **kwargs
     ) -> account.GetPushSettingsResponseModel:
         """Gets settings of push notifications.
         :param device_id: Unique device ID.
@@ -122,11 +134,11 @@ class AccountCategory(BaseCategory):
         self,
         token: str,
         device_id: str,
-        device_model: Optional[str] = None,
-        device_year: Optional[int] = None,
-        system_version: Optional[str] = None,
-        settings: Optional[str] = None,
-        sandbox: Optional[bool] = None,
+        device_model: typing.Optional[str] = None,
+        device_year: typing.Optional[int] = None,
+        system_version: typing.Optional[str] = None,
+        settings: typing.Optional[str] = None,
+        sandbox: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
@@ -146,20 +158,20 @@ class AccountCategory(BaseCategory):
 
     async def save_profile_info(
         self,
-        first_name: Optional[str] = None,
-        last_name: Optional[str] = None,
-        maiden_name: Optional[str] = None,
-        screen_name: Optional[str] = None,
-        cancel_request_id: Optional[int] = None,
-        sex: Optional[int] = None,
-        relation: Optional[int] = None,
-        relation_partner_id: Optional[int] = None,
-        bdate: Optional[str] = None,
-        bdate_visibility: Optional[int] = None,
-        home_town: Optional[str] = None,
-        country_id: Optional[int] = None,
-        city_id: Optional[int] = None,
-        status: Optional[str] = None,
+        first_name: typing.Optional[str] = None,
+        last_name: typing.Optional[str] = None,
+        maiden_name: typing.Optional[str] = None,
+        screen_name: typing.Optional[str] = None,
+        cancel_request_id: typing.Optional[int] = None,
+        sex: typing.Optional[int] = None,
+        relation: typing.Optional[int] = None,
+        relation_partner_id: typing.Optional[int] = None,
+        bdate: typing.Optional[str] = None,
+        bdate_visibility: typing.Optional[int] = None,
+        home_town: typing.Optional[str] = None,
+        country_id: typing.Optional[int] = None,
+        city_id: typing.Optional[int] = None,
+        status: typing.Optional[str] = None,
         **kwargs
     ) -> account.SaveProfileInfoResponseModel:
         """Edits current profile info.
@@ -168,11 +180,11 @@ class AccountCategory(BaseCategory):
         :param maiden_name: User maiden name (female only)
         :param screen_name: User screen name.
         :param cancel_request_id: ID of the name change request to be canceled. If this parameter is sent, all the others are ignored.
-        :param sex: User sex. Possible values: , * '1' – female,, * '2' – male.
-        :param relation: User relationship status. Possible values: , * '1' – single,, * '2' – in a relationship,, * '3' – engaged,, * '4' – married,, * '5' – it's complicated,, * '6' – actively searching,, * '7' – in love,, * '0' – not specified.
+        :param sex: User sex. Possible values: , * '1' - female,, * '2' - male.
+        :param relation: User relationship status. Possible values: , * '1' - single,, * '2' - in a relationship,, * '3' - engaged,, * '4' - married,, * '5' - it's complicated,, * '6' - actively searching,, * '7' - in love,, * '0' - not specified.
         :param relation_partner_id: ID of the relationship partner.
         :param bdate: User birth date, format: DD.MM.YYYY.
-        :param bdate_visibility: Birth date visibility. Returned values: , * '1' – show birth date,, * '2' – show only month and day,, * '0' – hide birth date.
+        :param bdate_visibility: Birth date visibility. Returned values: , * '1' - show birth date,, * '2' - show only month and day,, * '0' - hide birth date.
         :param home_town: User home town.
         :param country_id: User country.
         :param city_id: User city.
@@ -185,7 +197,10 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def set_info(
-        self, name: Optional[str] = None, value: Optional[str] = None, **kwargs
+        self,
+        name: typing.Optional[str] = None,
+        value: typing.Optional[str] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Allows to edit the current account info.
         :param name: Setting name.
@@ -198,7 +213,7 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def set_name_in_menu(
-        self, user_id: int, name: Optional[str] = None, **kwargs
+        self, user_id: int, name: typing.Optional[str] = None, **kwargs
     ) -> base.OkResponseModel:
         """Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.
         :param user_id: User ID.
@@ -210,7 +225,9 @@ class AccountCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
-    async def set_offline(self, **kwargs) -> base.OkResponseModel:
+    async def set_offline(
+        self, **kwargs
+    ) -> base.OkResponseModel:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
@@ -219,7 +236,7 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def set_online(
-        self, voip: Optional[bool] = None, **kwargs
+        self, voip: typing.Optional[bool] = None, **kwargs
     ) -> base.OkResponseModel:
         """Marks the current user as online for 15 minutes.
         :param voip: '1' if videocalls are available for current device.
@@ -233,9 +250,9 @@ class AccountCategory(BaseCategory):
     async def set_push_settings(
         self,
         device_id: str,
-        settings: Optional[str] = None,
-        key: Optional[str] = None,
-        value: Optional[List[str]] = None,
+        settings: typing.Optional[str] = None,
+        key: typing.Optional[str] = None,
+        value: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Change push settings.
@@ -252,10 +269,10 @@ class AccountCategory(BaseCategory):
 
     async def set_silence_mode(
         self,
-        device_id: Optional[str] = None,
-        time: Optional[int] = None,
-        peer_id: Optional[int] = None,
-        sound: Optional[int] = None,
+        device_id: typing.Optional[str] = None,
+        time: typing.Optional[int] = None,
+        peer_id: typing.Optional[int] = None,
+        sound: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Mutes push notifications for the set period of time.
@@ -271,7 +288,7 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def unban(
-        self, owner_id: Optional[int] = None, **kwargs
+        self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> base.OkResponseModel:
         """account.unban method
         :param owner_id:
@@ -283,7 +300,10 @@ class AccountCategory(BaseCategory):
         return model(**response).response
 
     async def unregister_device(
-        self, device_id: Optional[str] = None, sandbox: Optional[bool] = None, **kwargs
+        self,
+        device_id: typing.Optional[str] = None,
+        sandbox: typing.Optional[bool] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Unsubscribes a device from push notifications.
         :param device_id: Unique device ID.

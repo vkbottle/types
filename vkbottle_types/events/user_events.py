@@ -1,8 +1,10 @@
-from .enums import UserEventType
-from .objects import BaseEventObject, user_event_objects
-from .events_base import EventsBase
+from typing import TYPE_CHECKING, Any, Optional, Union
+
 from pydantic import BaseModel
-from typing import Optional, Any, Union, TYPE_CHECKING
+
+from .enums import UserEventType
+from .events_base import EventsBase
+from .objects import user_event_objects
 
 if TYPE_CHECKING:
     from vkbottle import ABCAPI, API
@@ -17,99 +19,99 @@ class BaseUserEvent(BaseModel):
 
 
 class Message(BaseUserEvent):
-	object: "user_event_objects.MessageObject"
+    object: "user_event_objects.MessageObject"
 
 
 class MessageNew(BaseUserEvent):
-	object: "user_event_objects.MessageNewObject"
+    object: "user_event_objects.MessageNewObject"
 
 
 class MessagesDelete(BaseUserEvent):
-	object: "user_event_objects.DeleteMessagesObject"
+    object: "user_event_objects.DeleteMessagesObject"
 
 
 class ChatRestore(BaseUserEvent):
-	object: "user_event_objects.RestoreDeletedObject"
+    object: "user_event_objects.RestoreDeletedObject"
 
 
 class EditMessage(BaseUserEvent):
-	object: "user_event_objects.EditMessageObject"
+    object: "user_event_objects.EditMessageObject"
 
 
 class ReplaceMessageFlags(BaseUserEvent):
-	object: "user_event_objects.ReplaceMessageFlagsObject"
+    object: "user_event_objects.ReplaceMessageFlagsObject"
 
 
 class InstallMessageFlags(BaseUserEvent):
-	object: "user_event_objects.InstallMessageFlagsObject"
+    object: "user_event_objects.InstallMessageFlagsObject"
 
 
 class ResetMessageFlags(BaseUserEvent):
-	object: "user_event_objects.ResetMessageFlagsObject"
+    object: "user_event_objects.ResetMessageFlagsObject"
 
 
 class ChatVoiceMessageStates(BaseUserEvent):
-	object: "user_event_objects.ChatVoiceMessageStatesObject"
+    object: "user_event_objects.ChatVoiceMessageStatesObject"
 
 
 class ChatEdit(BaseUserEvent):
-	object: "user_event_objects.ChatEditObject"
+    object: "user_event_objects.ChatEditObject"
 
 
 class ChatInfoEdit(BaseUserEvent):
-	object: "user_event_objects.ChatInfoEditObject"
+    object: "user_event_objects.ChatInfoEditObject"
 
 
 class ChatTypingState(BaseUserEvent):
-	object: "user_event_objects.ConversationTypingStateObject"
+    object: "user_event_objects.ConversationTypingStateObject"
 
 
 class ChangeConversationParams(BaseUserEvent):
-	object: "user_event_objects.ChangeConversationParamsObject"
+    object: "user_event_objects.ChangeConversationParamsObject"
 
 
 class DialogTypingState(BaseUserEvent):
-	object: "user_event_objects.DialogTypingStateObject"
+    object: "user_event_objects.DialogTypingStateObject"
 
 
 class ResetDialogFlags(BaseUserEvent):
-	object: "user_event_objects.ResetDialogFlagsObject"
+    object: "user_event_objects.ResetDialogFlagsObject"
 
 
 class ReplaceDialogFlags(BaseUserEvent):
-	object: "user_event_objects.ReplaceDialogFlagsObject"
+    object: "user_event_objects.ReplaceDialogFlagsObject"
 
 
 class InstallDialogFlags(BaseUserEvent):
-	object: "user_event_objects.InstallDialogFlagsObject"
+    object: "user_event_objects.InstallDialogFlagsObject"
 
 
 class FriendOnline(BaseUserEvent):
-	object: "user_event_objects.FriendOnlineObject"
+    object: "user_event_objects.FriendOnlineObject"
 
 
 class FriendOffline(BaseUserEvent):
-	object: "user_event_objects.FriendOfflineObject"
+    object: "user_event_objects.FriendOfflineObject"
 
 
 class Counter(BaseUserEvent):
-	object: "user_event_objects.CounterObject"
+    object: "user_event_objects.CounterObject"
 
 
 class Call(BaseUserEvent):
-	object: "user_event_objects.CallObject"
+    object: "user_event_objects.CallObject"
 
 
 class ChangedNotificationsSettings(BaseUserEvent):
-	object: "user_event_objects.ChangedNotificationsSettingsObject"
+    object: "user_event_objects.ChangedNotificationsSettingsObject"
 
 
 class InRead(BaseUserEvent):
-	object: "user_event_objects.InReadObject"
+    object: "user_event_objects.InReadObject"
 
 
 class OutRead(BaseUserEvent):
-	object: "user_event_objects.OutReadObject"
+    object: "user_event_objects.OutReadObject"
 
 
 MessageNew.update_forward_refs()
@@ -141,20 +143,32 @@ DEFAULT_EVENTS_BASE_USER.register(UserEventType.NEW_MESSAGE, MessageNew)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.DELETE_MESSAGES, MessagesDelete)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.EDIT_MESSAGE, EditMessage)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.CHAT_RESTORE, ChatRestore)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.INSTALL_MESSAGE_FLAGS, InstallMessageFlags)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.REPLACE_MESSAGE_FLAGS, ReplaceMessageFlags)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.INSTALL_MESSAGE_FLAGS, InstallMessageFlags
+)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.REPLACE_MESSAGE_FLAGS, ReplaceMessageFlags
+)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.RESET_MESSAGE_FLAGS, ResetMessageFlags)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.IN_READ, InRead)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.OUT_READ, OutRead)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.CHAT_INFO_EDIT, ChatInfoEdit)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.CALL, Call)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.COUNTER, Counter)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.NOTIFICATIONS_SETTINGS_CHANGED, ChangedNotificationsSettings)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.NOTIFICATIONS_SETTINGS_CHANGED, ChangedNotificationsSettings
+)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.FRIEND_ONLINE, FriendOnline)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.FRIEND_OFFLINE, FriendOffline)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.USER_TYPING_STATE, DialogTypingState)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.USERS_TYPING_STATE, ChatTypingState)
 DEFAULT_EVENTS_BASE_USER.register(UserEventType.RESET_DIALOG_FLAGS, ResetDialogFlags)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.REPLACE_DIALOG_FLAGS, ReplaceDialogFlags)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.INSTALL_DIALOG_FLAGS, InstallDialogFlags)
-DEFAULT_EVENTS_BASE_USER.register(UserEventType.NOTIFICATIONS_SETTINGS_CHANGED, ChatVoiceMessageStates)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.REPLACE_DIALOG_FLAGS, ReplaceDialogFlags
+)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.INSTALL_DIALOG_FLAGS, InstallDialogFlags
+)
+DEFAULT_EVENTS_BASE_USER.register(
+    UserEventType.NOTIFICATIONS_SETTINGS_CHANGED, ChatVoiceMessageStates
+)

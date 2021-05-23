@@ -1,11 +1,11 @@
-from vkbottle_types.responses import downloadedGames
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import downloadedGames
 
 
 class DownloadedGamesCategory(BaseCategory):
     async def get_paid_status(
-        self, user_id: Optional[int] = None, **kwargs
+        self, user_id: typing.Optional[int] = None, **kwargs
     ) -> downloadedGames.PaidStatusResponseModel:
         """downloadedGames.getPaidStatus method
         :param user_id:

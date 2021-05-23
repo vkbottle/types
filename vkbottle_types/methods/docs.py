@@ -1,11 +1,15 @@
-from vkbottle_types.responses import docs, base
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import docs, base
 
 
 class DocsCategory(BaseCategory):
     async def add(
-        self, owner_id: int, doc_id: int, access_key: Optional[str] = None, **kwargs
+        self,
+        owner_id: int,
+        doc_id: int,
+        access_key: typing.Optional[str] = None,
+        **kwargs
     ) -> docs.AddResponseModel:
         """Copies a document to a user's or community's document list.
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
@@ -35,8 +39,8 @@ class DocsCategory(BaseCategory):
         self,
         owner_id: int,
         doc_id: int,
-        title: Optional[str] = None,
-        tags: Optional[List[str]] = None,
+        title: typing.Optional[str] = None,
+        tags: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a document.
@@ -53,11 +57,11 @@ class DocsCategory(BaseCategory):
 
     async def get(
         self,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
-        type: Optional[int] = None,
-        owner_id: Optional[int] = None,
-        return_tags: Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        type: typing.Optional[int] = None,
+        owner_id: typing.Optional[int] = None,
+        return_tags: typing.Optional[bool] = None,
         **kwargs
     ) -> docs.GetResponseModel:
         """Returns detailed information about user or community documents.
@@ -74,10 +78,13 @@ class DocsCategory(BaseCategory):
         return model(**response).response
 
     async def get_by_id(
-        self, docs_: List[str], return_tags: Optional[bool] = None, **kwargs
+        self,
+        docs: typing.List[str],
+        return_tags: typing.Optional[bool] = None,
+        **kwargs
     ) -> docs.GetByIdResponseModel:
         """Returns information about documents by their IDs.
-        :param docs_: Document IDs. Example: , "66748_91488,66748_91455",
+        :param docs: Document IDs. Example: , "66748_91488,66748_91455",
         :param return_tags:
         """
 
@@ -87,7 +94,10 @@ class DocsCategory(BaseCategory):
         return model(**response).response
 
     async def get_messages_upload_server(
-        self, type: Optional[str] = None, peer_id: Optional[int] = None, **kwargs
+        self,
+        type: typing.Optional[str] = None,
+        peer_id: typing.Optional[int] = None,
+        **kwargs
     ) -> base.GetUploadServerResponseModel:
         """Returns the server address for document upload.
         :param type: Document type.
@@ -99,7 +109,9 @@ class DocsCategory(BaseCategory):
         model = base.GetUploadServerResponse
         return model(**response).response
 
-    async def get_types(self, owner_id: int, **kwargs) -> docs.GetTypesResponseModel:
+    async def get_types(
+        self, owner_id: int, **kwargs
+    ) -> docs.GetTypesResponseModel:
         """Returns documents types available for current user.
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.
         """
@@ -110,7 +122,7 @@ class DocsCategory(BaseCategory):
         return model(**response).response
 
     async def get_upload_server(
-        self, group_id: Optional[int] = None, **kwargs
+        self, group_id: typing.Optional[int] = None, **kwargs
     ) -> docs.GetUploadServerModel:
         """Returns the server address for document upload.
         :param group_id: Community ID (if the document will be uploaded to the community).
@@ -122,7 +134,7 @@ class DocsCategory(BaseCategory):
         return model(**response).response
 
     async def get_wall_upload_server(
-        self, group_id: Optional[int] = None, **kwargs
+        self, group_id: typing.Optional[int] = None, **kwargs
     ) -> base.GetUploadServerResponseModel:
         """Returns the server address for document upload onto a user's or community's wall.
         :param group_id: Community ID (if the document will be uploaded to the community).
@@ -136,9 +148,9 @@ class DocsCategory(BaseCategory):
     async def save(
         self,
         file: str,
-        title: Optional[str] = None,
-        tags: Optional[str] = None,
-        return_tags: Optional[bool] = None,
+        title: typing.Optional[str] = None,
+        tags: typing.Optional[str] = None,
+        return_tags: typing.Optional[bool] = None,
         **kwargs
     ) -> docs.SaveResponseModel:
         """Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
@@ -156,10 +168,10 @@ class DocsCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        search_own: Optional[bool] = None,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
-        return_tags: Optional[bool] = None,
+        search_own: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        return_tags: typing.Optional[bool] = None,
         **kwargs
     ) -> docs.SearchResponseModel:
         """Returns a list of documents matching the search criteria.

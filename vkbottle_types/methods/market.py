@@ -1,6 +1,6 @@
-from vkbottle_types.responses import market, base
-from typing import Optional, Any, List
+import typing
 from .base_category import BaseCategory
+from vkbottle_types.responses import market, base
 
 
 class MarketCategory(BaseCategory):
@@ -10,16 +10,16 @@ class MarketCategory(BaseCategory):
         name: str,
         description: str,
         category_id: int,
-        main_photo_id: int,
-        price: Optional[float] = None,
-        old_price: Optional[float] = None,
-        deleted: Optional[bool] = None,
-        photo_ids: Optional[List[int]] = None,
-        url: Optional[str] = None,
-        dimension_width: Optional[int] = None,
-        dimension_height: Optional[int] = None,
-        dimension_length: Optional[int] = None,
-        weight: Optional[int] = None,
+        price: typing.Optional[int] = None,
+        old_price: typing.Optional[int] = None,
+        deleted: typing.Optional[bool] = None,
+        main_photo_id: typing.Optional[int] = None,
+        photo_ids: typing.Optional[typing.List[int]] = None,
+        url: typing.Optional[str] = None,
+        dimension_width: typing.Optional[int] = None,
+        dimension_height: typing.Optional[int] = None,
+        dimension_length: typing.Optional[int] = None,
+        weight: typing.Optional[int] = None,
         **kwargs
     ) -> market.AddResponseModel:
         """Ads a new item to the market.
@@ -27,10 +27,10 @@ class MarketCategory(BaseCategory):
         :param name: Item name.
         :param description: Item description.
         :param category_id: Item category ID.
-        :param main_photo_id: Cover photo ID.
         :param price: Item price.
         :param old_price:
         :param deleted: Item status ('1' — deleted, '0' — not deleted).
+        :param main_photo_id: Cover photo ID.
         :param photo_ids: IDs of additional photos.
         :param url: Url for button in market item.
         :param dimension_width:
@@ -48,15 +48,15 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         title: str,
-        photo_id: Optional[int] = None,
-        main_album: Optional[bool] = None,
+        photo_id: typing.Optional[int] = None,
+        main_album: typing.Optional[bool] = None,
         **kwargs
     ) -> market.AddAlbumResponseModel:
         """Creates new collection of items
         :param owner_id: ID of an item owner community.
         :param title: Collection title.
         :param photo_id: Cover photo ID.
-        :param main_album: Set as main ('1' – set, '0' – no).
+        :param main_album: Set as main ('1' - set, '0' - no).
         """
 
         params = self.get_set_params(locals())
@@ -65,7 +65,7 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def add_to_album(
-        self, owner_id: int, item_id: int, album_ids: List[int], **kwargs
+        self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
     ) -> base.OkResponseModel:
         """Adds an item to one or multiple collections.
         :param owner_id: ID of an item owner community.
@@ -82,12 +82,12 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
-        from_group: Optional[bool] = None,
-        reply_to_comment: Optional[int] = None,
-        sticker_id: Optional[int] = None,
-        guid: Optional[str] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
+        from_group: typing.Optional[bool] = None,
+        reply_to_comment: typing.Optional[int] = None,
+        sticker_id: typing.Optional[int] = None,
+        guid: typing.Optional[str] = None,
         **kwargs
     ) -> market.CreateCommentResponseModel:
         """Creates a new comment for an item.
@@ -152,11 +152,11 @@ class MarketCategory(BaseCategory):
         name: str,
         description: str,
         category_id: int,
-        price: float,
-        main_photo_id: int,
-        deleted: Optional[bool] = None,
-        photo_ids: Optional[List[int]] = None,
-        url: Optional[str] = None,
+        price: typing.Optional[int] = None,
+        deleted: typing.Optional[bool] = None,
+        main_photo_id: typing.Optional[int] = None,
+        photo_ids: typing.Optional[typing.List[int]] = None,
+        url: typing.Optional[str] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits an item.
@@ -166,8 +166,8 @@ class MarketCategory(BaseCategory):
         :param description: Item description.
         :param category_id: Item category ID.
         :param price: Item price.
-        :param main_photo_id: Cover photo ID.
         :param deleted: Item status ('1' — deleted, '0' — not deleted).
+        :param main_photo_id: Cover photo ID.
         :param photo_ids: IDs of additional photos.
         :param url: Url for button in market item.
         """
@@ -182,8 +182,8 @@ class MarketCategory(BaseCategory):
         owner_id: int,
         album_id: int,
         title: str,
-        photo_id: Optional[int] = None,
-        main_album: Optional[bool] = None,
+        photo_id: typing.Optional[int] = None,
+        main_album: typing.Optional[bool] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Edits a collection of items
@@ -191,7 +191,7 @@ class MarketCategory(BaseCategory):
         :param album_id: Collection ID.
         :param title: Collection title.
         :param photo_id: Cover photo id
-        :param main_album: Set as main ('1' – set, '0' – no).
+        :param main_album: Set as main ('1' - set, '0' - no).
         """
 
         params = self.get_set_params(locals())
@@ -203,8 +203,8 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        message: Optional[str] = None,
-        attachments: Optional[List[str]] = None,
+        message: typing.Optional[str] = None,
+        attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Chages item comment's text
@@ -219,13 +219,49 @@ class MarketCategory(BaseCategory):
         model = base.OkResponse
         return model(**response).response
 
+    async def edit_order(
+        self,
+        user_id: int,
+        order_id: int,
+        merchant_comment: typing.Optional[str] = None,
+        status: typing.Optional[int] = None,
+        track_number: typing.Optional[str] = None,
+        payment_status: typing.Optional[str] = None,
+        delivery_price: typing.Optional[int] = None,
+        width: typing.Optional[int] = None,
+        length: typing.Optional[int] = None,
+        height: typing.Optional[int] = None,
+        weight: typing.Optional[int] = None,
+        **kwargs
+    ) -> base.OkResponseModel:
+        """Edit order
+        :param user_id:
+        :param order_id:
+        :param merchant_comment:
+        :param status:
+        :param track_number:
+        :param payment_status:
+        :param delivery_price:
+        :param width:
+        :param length:
+        :param height:
+        :param weight:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.editOrder", params)
+        model = base.OkResponse
+        return model(**response).response
+
     async def get(
         self,
         owner_id: int,
-        album_id: Optional[int] = None,
-        count: Optional[int] = None,
-        offset: Optional[int] = None,
-        extended: Optional[bool] = None,
+        album_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        date_from: typing.Optional[str] = None,
+        date_to: typing.Optional[str] = None,
         **kwargs
     ) -> market.GetResponseModel:
         """Returns items list for a community.
@@ -233,7 +269,9 @@ class MarketCategory(BaseCategory):
         :param album_id:
         :param count: Number of items to return.
         :param offset: Offset needed to return a specific subset of results.
-        :param extended: '1' – method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
+        :param extended: '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
+        :param date_from: Items update date from (format: yyyy-mm-dd)
+        :param date_to: Items update date to (format: yyyy-mm-dd)
         """
 
         params = self.get_set_params(locals())
@@ -246,7 +284,7 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def get_album_by_id(
-        self, owner_id: int, album_ids: List[int], **kwargs
+        self, owner_id: int, album_ids: typing.List[int], **kwargs
     ) -> market.GetAlbumByIdResponseModel:
         """Returns items album's data
         :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
@@ -261,11 +299,11 @@ class MarketCategory(BaseCategory):
     async def get_albums(
         self,
         owner_id: int,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
         **kwargs
     ) -> market.GetAlbumsResponseModel:
-        """Returns community's collections list.
+        """Returns community's market collections list.
         :param owner_id: ID of an items owner community.
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of items to return.
@@ -277,11 +315,14 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def get_by_id(
-        self, item_ids: List[str], extended: Optional[bool] = None, **kwargs
+        self,
+        item_ids: typing.List[str],
+        extended: typing.Optional[bool] = None,
+        **kwargs
     ) -> market.GetByIdResponseModel:
         """Returns information about market items by their ids.
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
-        :param extended: '1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
+        :param extended: '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
         """
 
         params = self.get_set_params(locals())
@@ -294,7 +335,10 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def get_categories(
-        self, count: Optional[int] = None, offset: Optional[int] = None, **kwargs
+        self,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs
     ) -> market.GetCategoriesResponseModel:
         """Returns a list of market categories.
         :param count: Number of results to return.
@@ -310,13 +354,13 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        need_likes: Optional[bool] = None,
-        start_comment_id: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        sort: Optional[str] = None,
-        extended: Optional[bool] = None,
-        fields: Optional[List[str]] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: typing.Optional[str] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> market.GetCommentsResponseModel:
         """Returns comments list for an item.
@@ -336,8 +380,88 @@ class MarketCategory(BaseCategory):
         model = market.GetCommentsResponse
         return model(**response).response
 
+    async def get_group_orders(
+        self,
+        group_id: int,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
+    ) -> market.GetGroupOrdersResponseModel:
+        """Get market orders
+        :param group_id:
+        :param offset:
+        :param count:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.getGroupOrders", params)
+        model = market.GetGroupOrdersResponse
+        return model(**response).response
+
+    async def get_order_by_id(
+        self,
+        order_id: int,
+        user_id: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        **kwargs
+    ) -> market.GetOrderByIdResponseModel:
+        """Get order
+        :param order_id:
+        :param user_id:
+        :param extended:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.getOrderById", params)
+        model = market.GetOrderByIdResponse
+        return model(**response).response
+
+    async def get_order_items(
+        self,
+        order_id: int,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
+    ) -> market.GetOrderItemsResponseModel:
+        """Get market items in the order
+        :param order_id:
+        :param offset:
+        :param count:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.getOrderItems", params)
+        model = market.GetOrderItemsResponse
+        return model(**response).response
+
+    async def get_orders(
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        date_from: typing.Optional[str] = None,
+        date_to: typing.Optional[str] = None,
+        **kwargs
+    ) -> market.GetOrdersResponseModel:
+        """market.getOrders method
+        :param offset:
+        :param count:
+        :param extended:
+        :param date_from: Orders status updated date from (format: yyyy-mm-dd)
+        :param date_to: Orders status updated date to (format: yyyy-mm-dd)
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.getOrders", params)
+        model = self.get_model(
+            {("extended",): market.GetOrdersExtendedResponse},
+            default=market.GetOrdersResponse,
+            params=params,
+        )
+        return model(**response).response
+
     async def remove_from_album(
-        self, owner_id: int, item_id: int, album_ids: List[int], **kwargs
+        self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
     ) -> base.OkResponseModel:
         """Removes an item from one or multiple collections.
         :param owner_id: ID of an item owner community.
@@ -354,8 +478,8 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         album_id: int,
-        before: Optional[int] = None,
-        after: Optional[int] = None,
+        before: typing.Optional[int] = None,
+        after: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Reorders the collections list.
@@ -374,9 +498,9 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        album_id: Optional[int] = None,
-        before: Optional[int] = None,
-        after: Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        before: typing.Optional[int] = None,
+        after: typing.Optional[int] = None,
         **kwargs
     ) -> base.OkResponseModel:
         """Changes item place in a collection.
@@ -393,7 +517,11 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def report(
-        self, owner_id: int, item_id: int, reason: Optional[int] = None, **kwargs
+        self,
+        owner_id: int,
+        item_id: int,
+        reason: typing.Optional[int] = None,
+        **kwargs
     ) -> base.OkResponseModel:
         """Sends a complaint to the item.
         :param owner_id: ID of an item owner community.
@@ -449,16 +577,16 @@ class MarketCategory(BaseCategory):
     async def search(
         self,
         owner_id: int,
-        album_id: Optional[int] = None,
-        q: Optional[str] = None,
-        price_from: Optional[int] = None,
-        price_to: Optional[int] = None,
-        sort: Optional[int] = None,
-        rev: Optional[int] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        extended: Optional[bool] = None,
-        status: Optional[int] = None,
+        album_id: typing.Optional[int] = None,
+        q: typing.Optional[str] = None,
+        price_from: typing.Optional[int] = None,
+        price_to: typing.Optional[int] = None,
+        sort: typing.Optional[int] = None,
+        rev: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        status: typing.Optional[int] = None,
         **kwargs
     ) -> market.SearchResponseModel:
         """Searches market items in a community's catalog
@@ -471,7 +599,7 @@ class MarketCategory(BaseCategory):
         :param rev: '0' — do not use reverse order, '1' — use reverse order
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of items to return.
-        :param extended: '1' – to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
+        :param extended: '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
         :param status:
         """
 

@@ -1,65 +1,58 @@
-from typing import Optional, List
-
-from vkbottle_types.objects import (
-    SecureTokenChecked,
-    SecureTransaction,
-    SecureLevel,
-    SecureSmsNotification,
-)
+import inspect
+import typing
 from .base_response import BaseResponse
+from vkbottle_types.objects import SecureLevel, SecureSmsNotification, SecureTokenChecked, SecureTransaction
 
 
 class CheckTokenResponse(BaseResponse):
-    response: Optional["CheckTokenResponseModel"] = None
+    response: typing.Optional["CheckTokenResponseModel"] = None
 
 
 class GetAppBalanceResponse(BaseResponse):
-    response: Optional["GetAppBalanceResponseModel"] = None
+    response: typing.Optional["GetAppBalanceResponseModel"] = None
 
 
 class GetSMSHistoryResponse(BaseResponse):
-    response: Optional["GetSMSHistoryResponseModel"] = None
+    response: typing.Optional["GetSMSHistoryResponseModel"] = None
 
 
 class GetTransactionsHistoryResponse(BaseResponse):
-    response: Optional["GetTransactionsHistoryResponseModel"] = None
+    response: typing.Optional["GetTransactionsHistoryResponseModel"] = None
 
 
 class GetUserLevelResponse(BaseResponse):
-    response: Optional["GetUserLevelResponseModel"] = None
+    response: typing.Optional["GetUserLevelResponseModel"] = None
 
 
 class GiveEventStickerResponse(BaseResponse):
-    response: Optional["GiveEventStickerResponseModel"] = None
+    response: typing.Optional["GiveEventStickerResponseModel"] = None
 
 
 class SendNotificationResponse(BaseResponse):
-    response: Optional["SendNotificationResponseModel"] = None
+    response: typing.Optional["SendNotificationResponseModel"] = None
 
 
-CheckTokenResponseModel = Optional[SecureTokenChecked]
+CheckTokenResponseModel = SecureTokenChecked
+
 
 GetAppBalanceResponseModel = int
 
-GetSMSHistoryResponseModel = List[SecureSmsNotification]
 
-GetTransactionsHistoryResponseModel = List[SecureTransaction]
-
-GetUserLevelResponseModel = List[SecureLevel]
+GetSMSHistoryResponseModel = typing.List[SecureSmsNotification]
 
 
-class GiveEventStickerResponseModel(BaseResponse):
-    user_id: Optional[int] = None
-    status: Optional[str] = None
+GetTransactionsHistoryResponseModel = typing.List[SecureTransaction]
 
 
-SendNotificationResponseModel = List[int]
+GetUserLevelResponseModel = typing.List[SecureLevel]
 
 
-CheckTokenResponse.update_forward_refs()
-GetAppBalanceResponse.update_forward_refs()
-GetSMSHistoryResponse.update_forward_refs()
-GetTransactionsHistoryResponse.update_forward_refs()
-GetUserLevelResponse.update_forward_refs()
-GiveEventStickerResponse.update_forward_refs()
-SendNotificationResponse.update_forward_refs()
+GiveEventStickerResponseModel = typing.List["typing.Any"]
+
+
+SendNotificationResponseModel = typing.List[int]
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()
