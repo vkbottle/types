@@ -8775,6 +8775,7 @@ class WallPostType(enum.Enum):
     REPLY = "reply"
     POSTPONE = "postpone"
     SUGGEST = "suggest"
+    POST_ADS = "post_ads"
 
 
 class WallPostedPhoto(BaseModel):
