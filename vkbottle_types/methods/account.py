@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, account
+from vkbottle_types.responses import account, base
 
 
 class AccountCategory(BaseCategory):

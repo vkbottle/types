@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, apps
+from vkbottle_types.responses import apps, base
 
 
 class AppsCategory(BaseCategory):

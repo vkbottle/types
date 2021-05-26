@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import groups, donut, base
+from vkbottle_types.responses import base, donut, groups
 
 
 class DonutCategory(BaseCategory):

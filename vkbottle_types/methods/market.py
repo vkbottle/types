@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import market, base
+from vkbottle_types.responses import base, market
 
 
 class MarketCategory(BaseCategory):

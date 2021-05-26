@@ -47,7 +47,12 @@ GetTransactionsHistoryResponseModel = typing.List[SecureTransaction]
 GetUserLevelResponseModel = typing.List[SecureLevel]
 
 
-GiveEventStickerResponseModel = typing.List["typing.Any"]
+class GiveEventStickerResponseModelObject(BaseResponse):
+    user_id: typing.Optional[int] = None
+    status: typing.Optional[str] = None
+
+
+GiveEventStickerResponseModel = typing.List["GiveEventStickerResponseModelObject"]
 
 
 SendNotificationResponseModel = typing.List[int]
