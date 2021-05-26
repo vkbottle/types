@@ -20,6 +20,7 @@ class MarketCategory(BaseCategory):
         dimension_height: typing.Optional[int] = None,
         dimension_length: typing.Optional[int] = None,
         weight: typing.Optional[int] = None,
+        sku: typing.Optional[str] = None,
         **kwargs
     ) -> market.AddResponseModel:
         """Ads a new item to the market.
@@ -37,6 +38,7 @@ class MarketCategory(BaseCategory):
         :param dimension_height:
         :param dimension_length:
         :param weight:
+        :param sku:
         """
 
         params = self.get_set_params(locals())
@@ -419,12 +421,14 @@ class MarketCategory(BaseCategory):
     async def get_order_items(
         self,
         order_id: int,
+        user_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
     ) -> market.GetOrderItemsResponseModel:
         """Get market items in the order
         :param order_id:
+        :param user_id:
         :param offset:
         :param count:
         """
