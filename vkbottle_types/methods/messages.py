@@ -774,7 +774,11 @@ class MessagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("messages.send", params)
-        model = messages.SendResponse
+        model = self.get_model(
+            {("user_ids",): messages.SendUserIdsResponse},
+            default=messages.SendResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def send_message_event_answer(

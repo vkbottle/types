@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import friends, base
+from vkbottle_types.responses import base, friends
 
 
 class FriendsCategory(BaseCategory):
@@ -154,7 +154,11 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.get", params)
-        model = friends.GetResponse
+        model = self.get_model(
+            {("fields",): friends.GetFieldsResponse},
+            default=friends.GetResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_app_users(
@@ -220,7 +224,11 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getMutual", params)
-        model = friends.GetMutualResponse
+        model = self.get_model(
+            {("target_uids",): friends.GetMutualTargetUidsResponse},
+            default=friends.GetMutualResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_online(
@@ -244,7 +252,11 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getOnline", params)
-        model = friends.GetOnlineResponse
+        model = self.get_model(
+            {("online_mobile",): friends.GetOnlineOnlineMobileResponse},
+            default=friends.GetOnlineResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_recent(
@@ -289,7 +301,10 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getRequests", params)
         model = self.get_model(
-            {("extended",): friends.GetRequestsExtendedResponse},
+            {
+                ("need_mutual",): friends.GetRequestsNeedMutualResponse,
+                ("extended",): friends.GetRequestsExtendedResponse
+            },
             default=friends.GetRequestsResponse,
             params=params,
         )

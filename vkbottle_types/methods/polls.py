@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import polls, base
+from vkbottle_types.responses import base, polls
 
 
 class PollsCategory(BaseCategory):

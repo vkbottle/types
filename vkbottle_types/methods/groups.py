@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import groups, base
+from vkbottle_types.responses import base, groups
 
 
 class GroupsCategory(BaseCategory):
@@ -662,7 +662,14 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getMembers", params)
-        model = groups.GetMembersResponse
+        model = self.get_model(
+            {
+                ("fields",): groups.GetMembersFieldsResponse,
+                ("filter",): groups.GetMembersFilterResponse
+            },
+            default=groups.GetMembersResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_requests(
@@ -682,7 +689,11 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getRequests", params)
-        model = groups.GetRequestsResponse
+        model = self.get_model(
+            {("fields",): groups.GetRequestsFieldsResponse},
+            default=groups.GetRequestsResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_settings(
@@ -750,7 +761,11 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
-            {("extended",): groups.IsMemberExtendedResponse},
+            {
+                ("user_ids",): groups.IsMemberUserIdsResponse,
+                ("extended",): groups.IsMemberExtendedResponse,
+                ("user_ids", "extended",): groups.IsMemberUserIdsExtendedResponse
+            },
             default=groups.IsMemberResponse,
             params=params,
         )

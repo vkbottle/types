@@ -3,6 +3,7 @@ import typing
 from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseBoolInt,
+    BaseMessageError,
     GroupsGroup,
     GroupsGroupFull,
     MessagesChat,
@@ -359,7 +360,14 @@ class SearchResponseModel(BaseResponse):
 SendResponseModel = int
 
 
-SendUserIdsResponseModel = typing.List["typing.Any"]
+class SendUserIdsResponseModelObject(BaseResponse):
+    peer_id: typing.Optional[int] = None
+    message_id: typing.Optional[int] = None
+    conversation_message_id: typing.Optional[int] = None
+    error: typing.Optional["BaseMessageError"] = None
+
+
+SendUserIdsResponseModel = typing.List["SendUserIdsResponseModelObject"]
 
 
 class SetChatPhotoResponseModel(BaseResponse):

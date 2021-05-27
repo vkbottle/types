@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import docs, base
+from vkbottle_types.responses import base, docs
 
 
 class DocsCategory(BaseCategory):

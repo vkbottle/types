@@ -4477,6 +4477,7 @@ class MarketMarketItem(BaseModel):
     is_main_variant -
     owner_id - Item owner's ID
     price -
+    sku -
     thumb_photo - URL of the preview image
     title - Item title
     url - URL to item
@@ -4495,6 +4496,7 @@ class MarketMarketItem(BaseModel):
     is_main_variant: typing.Optional[bool] = None
     owner_id: int = None
     price: "MarketPrice" = None
+    sku: typing.Optional[str] = None
     thumb_photo: typing.Optional[str] = None
     title: str = None
     url: typing.Optional[str] = None

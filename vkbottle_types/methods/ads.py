@@ -475,7 +475,15 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getSuggestions", params)
-        model = ads.GetSuggestionsResponse
+        model = self.get_model(
+            {
+                ("regions",): ads.GetSuggestionsRegionsResponse,
+                ("cities",): ads.GetSuggestionsCitiesResponse,
+                ("schools",): ads.GetSuggestionsSchoolsResponse
+            },
+            default=ads.GetSuggestionsResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_target_groups(

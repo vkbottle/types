@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import users, base
+from vkbottle_types.responses import base, users
 
 
 class UsersCategory(BaseCategory):
@@ -41,7 +41,11 @@ class UsersCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("users.getFollowers", params)
-        model = users.GetFollowersResponse
+        model = self.get_model(
+            {("fields",): users.GetFollowersFieldsResponse},
+            default=users.GetFollowersResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def get_subscriptions(
