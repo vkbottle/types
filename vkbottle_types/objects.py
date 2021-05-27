@@ -5295,6 +5295,54 @@ class MessagesMessage(BaseModel):
     update_time: typing.Optional[int] = None
     was_listened: typing.Optional[bool] = None
 
+    @property
+    def chat_id(self) -> int:
+        return self.peer_id - 2_000_000_000
+
+    @property
+    def message_id(self) -> int:
+        return self.conversation_message_id or self.id
+
+    def get_wall_attachment(self) -> typing.List["WallWallpostFull"]:
+        result = [attachment.wall for attachment in self.attachments if attachment.wall]
+        return result if result else None
+
+    def get_wall_reply_attachment(self) -> typing.List["WallWallComment"]:
+        result = [
+            attachment.wall_reply
+            for attachment in self.attachments
+            if attachment.wall_reply
+        ]
+        return result if result else None
+
+    def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:
+        return [attachment.photo for attachment in self.attachments if attachment.photo]
+
+    def get_video_attachments(self) -> typing.List["VideoVideo"]:
+        return [attachment.video for attachment in self.attachments if attachment.video]
+
+    def get_doc_attachments(self) -> typing.List["DocsDoc"]:
+        return [attachment.doc for attachment in self.attachments if attachment.doc]
+
+    def get_audio_attachments(self) -> typing.List["AudioAudio"]:
+        return [attachment.audio for attachment in self.attachments if attachment.audio]
+
+    def get_message_id(self) -> int:
+        return self.id or self.conversation_message_id
+
+    def get_payload_json(
+            self,
+            throw_error: bool = False,
+            unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
+            json: typing.Any = __import__("json"),
+    ) -> typing.Union[dict, None]:
+        try:
+            return json.loads(self.payload)
+        except (json.decoder.JSONDecodeError, TypeError) as e:
+            if throw_error:
+                raise e
+        return unpack_failure(self.payload)
+
 
 class MessagesMessageAction(BaseModel):
     """VK Object MessagesMessageAction
