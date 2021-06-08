@@ -6,7 +6,7 @@ from vkbottle_types.responses import base, store
 class StoreCategory(BaseCategory):
     async def add_stickers_to_favorite(
         self, sticker_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Adds given sticker IDs to the list of user's favorite stickers
         :param sticker_ids: Sticker IDs to be added
         """
@@ -18,7 +18,7 @@ class StoreCategory(BaseCategory):
 
     async def get_favorite_stickers(
         self, **kwargs
-    ) -> store.GetFavoriteStickersResponseModel:
+    ) -> typing.List[store.BaseSticker]:
         """store.getFavoriteStickers method"""
 
         params = self.get_set_params(locals())
@@ -35,7 +35,7 @@ class StoreCategory(BaseCategory):
         filters: typing.Optional[typing.List[str]] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> store.GetProductsResponseModel:
+    ) -> typing.List[store.StoreProduct]:
         """store.getProducts method
         :param type:
         :param merchant:
@@ -74,7 +74,7 @@ class StoreCategory(BaseCategory):
 
     async def remove_stickers_from_favorite(
         self, sticker_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Removes given sticker IDs from the list of user's favorite stickers
         :param sticker_ids: Sticker IDs to be removed
         """

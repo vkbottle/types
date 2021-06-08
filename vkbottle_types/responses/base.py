@@ -5,24 +5,15 @@ from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
 
 
 class BoolResponse(BaseResponse):
-    response: typing.Optional["BoolResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: typing.Optional["GetUploadServerResponseModel"] = None
+    response: BaseUploadServer = None
 
 
 class OkResponse(BaseResponse):
-    response: typing.Optional["OkResponseModel"] = None
-
-
-BoolResponseModel = BaseBoolInt
-
-
-GetUploadServerResponseModel = BaseUploadServer
-
-
-OkResponseModel = int
+    response: int = None
 
 
 for item in locals().copy().values():

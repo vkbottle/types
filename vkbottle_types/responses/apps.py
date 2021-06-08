@@ -5,43 +5,43 @@ from vkbottle_types.objects import AppsApp, AppsLeaderboard, AppsScope, UsersUse
 
 
 class GetCatalogResponse(BaseResponse):
-    response: typing.Optional["GetCatalogResponseModel"] = None
+    response: "GetCatalogResponseModel" = None
 
 
 class GetFriendsListResponse(BaseResponse):
-    response: typing.Optional["GetFriendsListResponseModel"] = None
+    response: "GetFriendsListResponseModel" = None
 
 
 class GetLeaderboardExtendedResponse(BaseResponse):
-    response: typing.Optional["GetLeaderboardExtendedResponseModel"] = None
+    response: "GetLeaderboardExtendedResponseModel" = None
 
 
 class GetLeaderboardResponse(BaseResponse):
-    response: typing.Optional["GetLeaderboardResponseModel"] = None
+    response: "GetLeaderboardResponseModel" = None
 
 
 class GetMiniAppPoliciesResponse(BaseResponse):
-    response: typing.Optional["GetMiniAppPoliciesResponseModel"] = None
+    response: "GetMiniAppPoliciesResponseModel" = None
 
 
 class GetScopesResponse(BaseResponse):
-    response: typing.Optional["GetScopesResponseModel"] = None
+    response: "GetScopesResponseModel" = None
 
 
 class GetScoreResponse(BaseResponse):
-    response: typing.Optional["GetScoreResponseModel"] = None
+    response: int = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class ImageUploadResponse(BaseResponse):
-    response: typing.Optional["ImageUploadResponseModel"] = None
+    response: "ImageUploadResponseModel" = None
 
 
 class SendRequestResponse(BaseResponse):
-    response: typing.Optional["SendRequestResponseModel"] = None
+    response: int = None
 
 
 class GetCatalogResponseModel(BaseResponse):
@@ -76,9 +76,6 @@ class GetScopesResponseModel(BaseResponse):
     items: typing.Optional[typing.List["AppsScope"]] = None
 
 
-GetScoreResponseModel = int
-
-
 class GetResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["AppsApp"]] = None
@@ -87,9 +84,6 @@ class GetResponseModel(BaseResponse):
 class ImageUploadResponseModel(BaseResponse):
     hash: typing.Optional[str] = None
     image: typing.Optional[str] = None
-
-
-SendRequestResponseModel = int
 
 
 for item in locals().copy().values():

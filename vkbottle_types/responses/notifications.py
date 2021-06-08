@@ -14,15 +14,15 @@ from vkbottle_types.objects import (
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class MarkAsViewedResponse(BaseResponse):
-    response: typing.Optional["MarkAsViewedResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class SendMessageResponse(BaseResponse):
-    response: typing.Optional["SendMessageResponseModel"] = None
+    response: typing.List["NotificationsSendMessageItem"] = None
 
 
 class GetResponseModel(BaseResponse):
@@ -36,12 +36,6 @@ class GetResponseModel(BaseResponse):
     apps: typing.Optional[typing.List["AppsApp"]] = None
     next_from: typing.Optional[str] = None
     ttl: typing.Optional[int] = None
-
-
-MarkAsViewedResponseModel = BaseBoolInt
-
-
-SendMessageResponseModel = typing.List[NotificationsSendMessageItem]
 
 
 for item in locals().copy().values():

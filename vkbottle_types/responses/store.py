@@ -5,21 +5,15 @@ from vkbottle_types.objects import BaseSticker, StoreProduct, StoreStickersKeywo
 
 
 class GetFavoriteStickersResponse(BaseResponse):
-    response: typing.Optional["GetFavoriteStickersResponseModel"] = None
+    response: typing.List["BaseSticker"] = None
 
 
 class GetProductsResponse(BaseResponse):
-    response: typing.Optional["GetProductsResponseModel"] = None
+    response: typing.List["StoreProduct"] = None
 
 
 class GetStickersKeywordsResponse(BaseResponse):
-    response: typing.Optional["GetStickersKeywordsResponseModel"] = None
-
-
-GetFavoriteStickersResponseModel = typing.List[BaseSticker]
-
-
-GetProductsResponseModel = typing.List[StoreProduct]
+    response: "GetStickersKeywordsResponseModel" = None
 
 
 class GetStickersKeywordsResponseModel(BaseResponse):

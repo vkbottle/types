@@ -12,54 +12,36 @@ from vkbottle_types.objects import (
 
 
 class CheckLinkResponse(BaseResponse):
-    response: typing.Optional["CheckLinkResponseModel"] = None
+    response: UtilsLinkChecked = None
 
 
 class GetLastShortenedLinksResponse(BaseResponse):
-    response: typing.Optional["GetLastShortenedLinksResponseModel"] = None
+    response: "GetLastShortenedLinksResponseModel" = None
 
 
 class GetLinkStatsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetLinkStatsExtendedResponseModel"] = None
+    response: UtilsLinkStatsExtended = None
 
 
 class GetLinkStatsResponse(BaseResponse):
-    response: typing.Optional["GetLinkStatsResponseModel"] = None
+    response: UtilsLinkStats = None
 
 
 class GetServerTimeResponse(BaseResponse):
-    response: typing.Optional["GetServerTimeResponseModel"] = None
+    response: int = None
 
 
 class GetShortLinkResponse(BaseResponse):
-    response: typing.Optional["GetShortLinkResponseModel"] = None
+    response: UtilsShortLink = None
 
 
 class ResolveScreenNameResponse(BaseResponse):
-    response: typing.Optional["ResolveScreenNameResponseModel"] = None
-
-
-CheckLinkResponseModel = UtilsLinkChecked
+    response: UtilsDomainResolved = None
 
 
 class GetLastShortenedLinksResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["UtilsLastShortenedLink"]] = None
-
-
-GetLinkStatsExtendedResponseModel = UtilsLinkStatsExtended
-
-
-GetLinkStatsResponseModel = UtilsLinkStats
-
-
-GetServerTimeResponseModel = int
-
-
-GetShortLinkResponseModel = UtilsShortLink
-
-
-ResolveScreenNameResponseModel = UtilsDomainResolved
 
 
 for item in locals().copy().values():

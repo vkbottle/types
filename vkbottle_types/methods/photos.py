@@ -10,7 +10,7 @@ class PhotosCategory(BaseCategory):
         tag_id: int,
         owner_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Confirms a tag on a photo.
         :param photo_id: Photo ID.
         :param tag_id: Tag ID.
@@ -28,7 +28,7 @@ class PhotosCategory(BaseCategory):
         photo_id: int,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.CopyResponseModel:
+    ) -> int:
         """Allows to copy a photo to the "Saved photos" album
         :param owner_id: photo's owner ID
         :param photo_id: photo ID
@@ -50,7 +50,7 @@ class PhotosCategory(BaseCategory):
         upload_by_admins_only: typing.Optional[bool] = None,
         comments_disabled: typing.Optional[bool] = None,
         **kwargs
-    ) -> photos.CreateAlbumResponseModel:
+    ) -> photos.PhotosPhotoAlbumFull:
         """Creates an empty photo album.
         :param title: Album title.
         :param group_id: ID of the community in which the album will be created.
@@ -78,7 +78,7 @@ class PhotosCategory(BaseCategory):
         access_key: typing.Optional[str] = None,
         guid: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.CreateCommentResponseModel:
+    ) -> int:
         """Adds a new comment on the photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -98,7 +98,7 @@ class PhotosCategory(BaseCategory):
 
     async def delete(
         self, photo_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -111,7 +111,7 @@ class PhotosCategory(BaseCategory):
 
     async def delete_album(
         self, album_id: int, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a photo album belonging to the current user.
         :param album_id: Album ID.
         :param group_id: ID of the community that owns the album.
@@ -124,7 +124,7 @@ class PhotosCategory(BaseCategory):
 
     async def delete_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.DeleteCommentResponseModel:
+    ) -> photos.BaseBoolInt:
         """Deletes a comment on the photo.
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -146,7 +146,7 @@ class PhotosCategory(BaseCategory):
         foursquare_id: typing.Optional[str] = None,
         delete_place: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits the caption of a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -174,7 +174,7 @@ class PhotosCategory(BaseCategory):
         upload_by_admins_only: typing.Optional[bool] = None,
         comments_disabled: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits information about a photo album.
         :param album_id: ID of the photo album to be edited.
         :param title: New album title.
@@ -198,7 +198,7 @@ class PhotosCategory(BaseCategory):
         message: typing.Optional[str] = None,
         attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a comment on a photo.
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -278,7 +278,7 @@ class PhotosCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetAlbumsCountResponseModel:
+    ) -> int:
         """Returns the number of photo albums belonging to a user or community.
         :param user_id: User ID.
         :param group_id: Community ID.
@@ -349,7 +349,7 @@ class PhotosCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         photo_sizes: typing.Optional[bool] = None,
         **kwargs
-    ) -> photos.GetByIdLegacyResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Returns information about photos by their IDs.
         :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
         :param extended: '1' — to return additional fields, '0' — (default)
@@ -372,7 +372,7 @@ class PhotosCategory(BaseCategory):
         crop_y: typing.Optional[int] = None,
         crop_width: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns an upload link for chat cover pictures.
         :param chat_id: ID of the chat for which you want to upload a cover photo.
         :param crop_x:
@@ -423,7 +423,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_market_album_upload_server(
         self, group_id: int, **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns the server address for market album photo upload.
         :param group_id: Community ID.
         """
@@ -441,7 +441,7 @@ class PhotosCategory(BaseCategory):
         crop_y: typing.Optional[int] = None,
         crop_width: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetMarketUploadServerResponseModel:
+    ) -> photos.BaseUploadServer:
         """Returns the server address for market photo upload.
         :param group_id: Community ID.
         :param main_photo: '1' if you want to upload the main item photo.
@@ -457,7 +457,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_messages_upload_server(
         self, peer_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.GetMessagesUploadServerResponseModel:
+    ) -> photos.PhotosPhotoUpload:
         """Returns the server address for photo upload in a private message for a user.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         """
@@ -491,7 +491,7 @@ class PhotosCategory(BaseCategory):
         crop_x2: typing.Optional[int] = None,
         crop_y2: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns the server address for owner cover upload.
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param crop_x: X coordinate of the left-upper corner
@@ -507,7 +507,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_owner_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns an upload server address for a profile or community photo.
         :param owner_id: identifier of a community or current user. "Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, "
         """
@@ -523,7 +523,7 @@ class PhotosCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.GetTagsResponseModel:
+    ) -> typing.List[photos.PhotosPhotoTag]:
         """Returns a list of tags on a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -540,7 +540,7 @@ class PhotosCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetUploadServerResponseModel:
+    ) -> photos.PhotosPhotoUpload:
         """Returns the server address for photo upload.
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param album_id:
@@ -579,7 +579,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_wall_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.GetWallUploadServerResponseModel:
+    ) -> photos.PhotosPhotoUpload:
         """Returns the server address for photo upload onto a user's wall.
         :param group_id: ID of community to whose wall the photo will be uploaded.
         """
@@ -595,7 +595,7 @@ class PhotosCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Makes a photo into an album cover.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -613,7 +613,7 @@ class PhotosCategory(BaseCategory):
         photo_id: int,
         owner_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Moves a photo from one album to another.
         :param target_album_id: ID of the album to which the photo will be moved.
         :param photo_id: Photo ID.
@@ -635,7 +635,7 @@ class PhotosCategory(BaseCategory):
         x2: typing.Optional[int] = None,
         y2: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.PutTagResponseModel:
+    ) -> int:
         """Adds a tag on the photo.
         :param photo_id: Photo ID.
         :param user_id: ID of the user to be tagged.
@@ -657,7 +657,7 @@ class PhotosCategory(BaseCategory):
         tag_id: int,
         owner_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Removes a tag from a photo.
         :param photo_id: Photo ID.
         :param tag_id: Tag ID.
@@ -676,7 +676,7 @@ class PhotosCategory(BaseCategory):
         before: typing.Optional[int] = None,
         after: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reorders the album in the list of user albums.
         :param album_id: Album ID.
         :param owner_id: ID of the user or community that owns the album.
@@ -696,7 +696,7 @@ class PhotosCategory(BaseCategory):
         before: typing.Optional[int] = None,
         after: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reorders the photo in the list of photos of the user album.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -715,7 +715,7 @@ class PhotosCategory(BaseCategory):
         photo_id: int,
         reason: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reports (submits a complaint about) a photo.
         :param owner_id: ID of the user or community that owns the photo.
         :param photo_id: Photo ID.
@@ -733,7 +733,7 @@ class PhotosCategory(BaseCategory):
         comment_id: int,
         reason: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reports (submits a complaint about) a comment on a photo.
         :param owner_id: ID of the user or community that owns the photo.
         :param comment_id: ID of the comment being reported.
@@ -747,7 +747,7 @@ class PhotosCategory(BaseCategory):
 
     async def restore(
         self, photo_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores a deleted photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -760,7 +760,7 @@ class PhotosCategory(BaseCategory):
 
     async def restore_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.RestoreCommentResponseModel:
+    ) -> photos.BaseBoolInt:
         """Restores a deleted comment on a photo.
         :param comment_id: ID of the deleted comment.
         :param owner_id: ID of the user or community that owns the photo.
@@ -782,7 +782,7 @@ class PhotosCategory(BaseCategory):
         longitude: typing.Optional[int] = None,
         caption: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.SaveResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Saves photos after successful uploading.
         :param album_id: ID of the album to save photos to.
         :param group_id: ID of the community to save photos to.
@@ -801,7 +801,7 @@ class PhotosCategory(BaseCategory):
 
     async def save_market_album_photo(
         self, group_id: int, photo: str, server: int, hash: str, **kwargs
-    ) -> photos.SaveMarketAlbumPhotoResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Saves market album photos after successful uploading.
         :param group_id: Community ID.
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -823,7 +823,7 @@ class PhotosCategory(BaseCategory):
         crop_data: typing.Optional[str] = None,
         crop_hash: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.SaveMarketPhotoResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Saves market photos after successful uploading.
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -844,7 +844,7 @@ class PhotosCategory(BaseCategory):
         server: typing.Optional[int] = None,
         hash: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.SaveMessagesPhotoResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
         :param photo: Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param server:
@@ -858,7 +858,7 @@ class PhotosCategory(BaseCategory):
 
     async def save_owner_cover_photo(
         self, hash: str, photo: str, **kwargs
-    ) -> photos.SaveOwnerCoverPhotoResponseModel:
+    ) -> typing.List[photos.BaseImage]:
         """Saves cover photo after successful uploading.
         :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -898,7 +898,7 @@ class PhotosCategory(BaseCategory):
         longitude: typing.Optional[int] = None,
         caption: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.SaveWallPhotoResponseModel:
+    ) -> typing.List[photos.PhotosPhoto]:
         """Saves a photo to a user's or community's wall after being uploaded.
         :param photo: Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param user_id: ID of the user on whose wall the photo will be saved.

@@ -11,27 +11,27 @@ from vkbottle_types.objects import (
 
 
 class GetAdCategoriesResponse(BaseResponse):
-    response: typing.Optional["GetAdCategoriesResponseModel"] = None
+    response: "GetAdCategoriesResponseModel" = None
 
 
 class GetAdUnitCodeResponse(BaseResponse):
-    response: typing.Optional["GetAdUnitCodeResponseModel"] = None
+    response: "GetAdUnitCodeResponseModel" = None
 
 
 class GetAdUnitsResponse(BaseResponse):
-    response: typing.Optional["GetAdUnitsResponseModel"] = None
+    response: "GetAdUnitsResponseModel" = None
 
 
 class GetFraudHistoryResponse(BaseResponse):
-    response: typing.Optional["GetFraudHistoryResponseModel"] = None
+    response: "GetFraudHistoryResponseModel" = None
 
 
 class GetSitesResponse(BaseResponse):
-    response: typing.Optional["GetSitesResponseModel"] = None
+    response: "GetSitesResponseModel" = None
 
 
 class GetStatisticsResponse(BaseResponse):
-    response: typing.Optional["GetStatisticsResponseModel"] = None
+    response: "GetStatisticsResponseModel" = None
 
 
 class GetAdCategoriesResponseModel(BaseResponse):

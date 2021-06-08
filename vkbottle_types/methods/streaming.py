@@ -16,7 +16,7 @@ class StreamingCategory(BaseCategory):
 
     async def set_settings(
         self, monthly_tier: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """streaming.setSettings method
         :param monthly_tier:
         """

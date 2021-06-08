@@ -5,7 +5,7 @@ import vkbottle_types.objects
 
 
 class RestoreResponse(BaseResponse):
-    response: typing.Optional["RestoreResponseModel"] = None
+    response: "RestoreResponseModel" = None
 
 
 class RestoreResponseModel(BaseResponse):

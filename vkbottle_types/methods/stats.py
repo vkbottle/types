@@ -16,7 +16,7 @@ class StatsCategory(BaseCategory):
         stats_groups: typing.Optional[typing.List[str]] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> stats.GetResponseModel:
+    ) -> typing.List[stats.StatsPeriod]:
         """Returns statistics of a community or an application.
         :param group_id: Community ID.
         :param app_id: Application ID.
@@ -36,7 +36,7 @@ class StatsCategory(BaseCategory):
 
     async def get_post_reach(
         self, owner_id: str, post_ids: typing.List[int], **kwargs
-    ) -> stats.GetPostReachResponseModel:
+    ) -> typing.List[stats.StatsWallpostStat]:
         """Returns stats for a wall post.
         :param owner_id: post owner community id. Specify with "-" sign.
         :param post_ids: wall posts id
@@ -49,7 +49,7 @@ class StatsCategory(BaseCategory):
 
     async def track_visitor(
         self, id: str, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """stats.trackVisitor method
         :param id:
         """

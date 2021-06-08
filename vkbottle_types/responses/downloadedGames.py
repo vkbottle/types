@@ -5,7 +5,7 @@ import vkbottle_types.objects
 
 
 class PaidStatusResponse(BaseResponse):
-    response: typing.Optional["PaidStatusResponseModel"] = None
+    response: "PaidStatusResponseModel" = None
 
 
 class PaidStatusResponseModel(BaseResponse):

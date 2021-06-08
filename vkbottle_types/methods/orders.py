@@ -10,7 +10,7 @@ class OrdersCategory(BaseCategory):
         subscription_id: int,
         pending_cancel: typing.Optional[bool] = None,
         **kwargs
-    ) -> orders.CancelSubscriptionResponseModel:
+    ) -> orders.BaseBoolInt:
         """orders.cancelSubscription method
         :param user_id:
         :param subscription_id:
@@ -29,7 +29,7 @@ class OrdersCategory(BaseCategory):
         app_order_id: typing.Optional[int] = None,
         test_mode: typing.Optional[bool] = None,
         **kwargs
-    ) -> orders.ChangeStateResponseModel:
+    ) -> str:
         """Changes order status.
         :param order_id: order ID.
         :param action: action to be done with the order. Available actions: *cancel — to cancel unconfirmed order. *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund — to cancel confirmed order.
@@ -48,7 +48,7 @@ class OrdersCategory(BaseCategory):
         count: typing.Optional[int] = None,
         test_mode: typing.Optional[bool] = None,
         **kwargs
-    ) -> orders.GetResponseModel:
+    ) -> typing.List[orders.OrdersOrder]:
         """Returns a list of orders.
         :param offset:
         :param count: number of returned orders.
@@ -62,7 +62,7 @@ class OrdersCategory(BaseCategory):
 
     async def get_amount(
         self, user_id: int, votes: typing.List[str], **kwargs
-    ) -> orders.GetAmountResponseModel:
+    ) -> orders.OrdersAmount:
         """orders.getAmount method
         :param user_id:
         :param votes:
@@ -79,7 +79,7 @@ class OrdersCategory(BaseCategory):
         order_ids: typing.Optional[typing.List[int]] = None,
         test_mode: typing.Optional[bool] = None,
         **kwargs
-    ) -> orders.GetByIdResponseModel:
+    ) -> typing.List[orders.OrdersOrder]:
         """Returns information about orders by their IDs.
         :param order_id: order ID.
         :param order_ids: order IDs (when information about several orders is requested).
@@ -93,7 +93,7 @@ class OrdersCategory(BaseCategory):
 
     async def get_user_subscription_by_id(
         self, user_id: int, subscription_id: int, **kwargs
-    ) -> orders.GetUserSubscriptionByIdResponseModel:
+    ) -> orders.OrdersSubscription:
         """orders.getUserSubscriptionById method
         :param user_id:
         :param subscription_id:
@@ -118,7 +118,7 @@ class OrdersCategory(BaseCategory):
 
     async def update_subscription(
         self, user_id: int, subscription_id: int, price: int, **kwargs
-    ) -> orders.UpdateSubscriptionResponseModel:
+    ) -> orders.BaseBoolInt:
         """orders.updateSubscription method
         :param user_id:
         :param subscription_id:

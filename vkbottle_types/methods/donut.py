@@ -11,7 +11,7 @@ class DonutCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> groups.GetMembersFieldsResponseModel:
+    ) -> groups.GetMembersFieldsResponse:
         """donut.getFriends method
         :param owner_id:
         :param offset:
@@ -26,7 +26,7 @@ class DonutCategory(BaseCategory):
 
     async def get_subscription(
         self, owner_id: int, **kwargs
-    ) -> donut.GetSubscriptionResponseModel:
+    ) -> donut.DonutDonatorSubscriptionInfo:
         """donut.getSubscription method
         :param owner_id:
         """
@@ -56,7 +56,7 @@ class DonutCategory(BaseCategory):
 
     async def is_don(
         self, owner_id: int, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """donut.isDon method
         :param owner_id:
         """

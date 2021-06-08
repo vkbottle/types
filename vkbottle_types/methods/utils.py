@@ -6,7 +6,7 @@ from vkbottle_types.responses import base, utils
 class UtilsCategory(BaseCategory):
     async def check_link(
         self, url: str, **kwargs
-    ) -> utils.CheckLinkResponseModel:
+    ) -> utils.UtilsLinkChecked:
         """Checks whether a link is blocked in VK.
         :param url: Link to check (e.g., 'http://google.com').
         """
@@ -18,7 +18,7 @@ class UtilsCategory(BaseCategory):
 
     async def delete_from_last_shortened(
         self, key: str, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes shortened link from user's list.
         :param key: Link key (characters after vk.cc/).
         """
@@ -53,7 +53,7 @@ class UtilsCategory(BaseCategory):
         intervals_count: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> utils.GetLinkStatsResponseModel:
+    ) -> utils.UtilsLinkStats:
         """Returns stats data for shortened link.
         :param key: Link key (characters after vk.cc/).
         :param source: Source of scope
@@ -74,7 +74,7 @@ class UtilsCategory(BaseCategory):
 
     async def get_server_time(
         self, **kwargs
-    ) -> utils.GetServerTimeResponseModel:
+    ) -> int:
         """Returns the current time of the VK server."""
 
         params = self.get_set_params(locals())
@@ -84,7 +84,7 @@ class UtilsCategory(BaseCategory):
 
     async def get_short_link(
         self, url: str, private: typing.Optional[bool] = None, **kwargs
-    ) -> utils.GetShortLinkResponseModel:
+    ) -> utils.UtilsShortLink:
         """Allows to receive a link shortened via vk.cc.
         :param url: URL to be shortened.
         :param private: 1 — private stats, 0 — public stats.
@@ -97,7 +97,7 @@ class UtilsCategory(BaseCategory):
 
     async def resolve_screen_name(
         self, screen_name: str, **kwargs
-    ) -> utils.ResolveScreenNameResponseModel:
+    ) -> utils.UtilsDomainResolved:
         """Detects a type of object (e.g., user, community, application) and its ID by screen name.
         :param screen_name: Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
         """

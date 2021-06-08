@@ -10,7 +10,7 @@ class MessagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         visible_messages_count: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Adds a new user to a chat.
         :param chat_id: Chat ID.
         :param user_id: ID of the user to be added to the chat.
@@ -24,7 +24,7 @@ class MessagesCategory(BaseCategory):
 
     async def allow_messages_from_group(
         self, group_id: int, key: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows sending messages from community to the current user.
         :param group_id: Group ID.
         :param key:
@@ -41,7 +41,7 @@ class MessagesCategory(BaseCategory):
         title: typing.Optional[str] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.CreateChatResponseModel:
+    ) -> int:
         """Creates a chat with several participants.
         :param user_ids: IDs of the users to be added to the chat.
         :param title: Chat title.
@@ -62,7 +62,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         conversation_message_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> messages.DeleteResponseModel:
+    ) -> typing.Dict[str, int]:
         """Deletes one or more messages.
         :param message_ids: Message IDs.
         :param spam: '1' — to mark message as spam.
@@ -110,7 +110,7 @@ class MessagesCategory(BaseCategory):
 
     async def deny_messages_from_group(
         self, group_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Denies sending message from community to the current user.
         :param group_id: Group ID.
         """
@@ -136,7 +136,7 @@ class MessagesCategory(BaseCategory):
         template: typing.Optional[str] = None,
         keyboard: typing.Optional[str] = None,
         **kwargs
-    ) -> messages.EditResponseModel:
+    ) -> messages.BaseBoolInt:
         """Edits the message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param message: (Required if 'attachments' is not set.) Text of the message.
@@ -160,7 +160,7 @@ class MessagesCategory(BaseCategory):
 
     async def edit_chat(
         self, chat_id: int, title: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits the title of a chat.
         :param chat_id: Chat ID.
         :param title: New title of the chat.
@@ -445,7 +445,7 @@ class MessagesCategory(BaseCategory):
 
     async def get_last_activity(
         self, user_id: int, **kwargs
-    ) -> messages.GetLastActivityResponseModel:
+    ) -> messages.MessagesLastActivity:
         """Returns a user's current status and date of last activity.
         :param user_id: User ID.
         """
@@ -497,7 +497,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         lp_version: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.GetLongPollServerResponseModel:
+    ) -> messages.MessagesLongpollParams:
         """Returns data required for connection to a Long Poll server.
         :param need_pts: '1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         :param group_id: Group ID (for group messages with user access token)
@@ -540,7 +540,7 @@ class MessagesCategory(BaseCategory):
         answered: typing.Optional[bool] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks and unmarks conversations as unanswered.
         :param peer_id: ID of conversation to mark as important.
         :param answered: '1' — to mark as answered, '0' — to remove the mark
@@ -557,7 +557,7 @@ class MessagesCategory(BaseCategory):
         message_ids: typing.Optional[typing.List[int]] = None,
         important: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.MarkAsImportantResponseModel:
+    ) -> typing.List[int]:
         """Marks and unmarks messages as important (starred).
         :param message_ids: IDs of messages to mark as important.
         :param important: '1' — to add a star (mark as important), '0' — to remove the star
@@ -574,7 +574,7 @@ class MessagesCategory(BaseCategory):
         important: typing.Optional[bool] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks and unmarks conversations as important.
         :param peer_id: ID of conversation to mark as important.
         :param important: '1' — to add a star (mark as important), '0' — to remove the star
@@ -594,7 +594,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         mark_conversation_as_read: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks messages as read.
         :param message_ids: IDs of messages to mark as read.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -614,7 +614,7 @@ class MessagesCategory(BaseCategory):
         message_id: typing.Optional[int] = None,
         conversation_message_id: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.PinResponseModel:
+    ) -> messages.MessagesPinnedMessage:
         """Pin a message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         :param message_id: Message ID
@@ -632,7 +632,7 @@ class MessagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         member_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
         :param chat_id: Chat ID.
         :param user_id: ID of the user to be removed from the chat.
@@ -646,7 +646,7 @@ class MessagesCategory(BaseCategory):
 
     async def restore(
         self, message_id: int, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores a deleted message.
         :param message_id: ID of a previously-deleted message to restore.
         :param group_id: Group ID (for group messages with user access token)
@@ -744,7 +744,7 @@ class MessagesCategory(BaseCategory):
         intent: typing.Optional[str] = None,
         subscribe_id: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.SendResponseModel:
+    ) -> int:
         """Sends a message.
         :param user_id: User ID (by default — current user).
         :param random_id: Unique identifier to avoid resending the message.
@@ -788,7 +788,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         event_data: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """messages.sendMessageEventAnswer method
         :param event_id:
         :param user_id:
@@ -808,7 +808,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Changes the status of a user as typing in a conversation.
         :param user_id: User ID.
         :param type: 'typing' — user has started to type.
@@ -835,7 +835,7 @@ class MessagesCategory(BaseCategory):
 
     async def unpin(
         self, peer_id: int, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """messages.unpin method
         :param peer_id:
         :param group_id:

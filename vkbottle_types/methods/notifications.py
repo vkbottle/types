@@ -28,7 +28,7 @@ class NotificationsCategory(BaseCategory):
 
     async def mark_as_viewed(
         self, **kwargs
-    ) -> notifications.MarkAsViewedResponseModel:
+    ) -> notifications.BaseBoolInt:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
 
         params = self.get_set_params(locals())
@@ -45,7 +45,7 @@ class NotificationsCategory(BaseCategory):
         random_id: typing.Optional[int] = None,
         sending_mode: typing.Optional[str] = None,
         **kwargs
-    ) -> notifications.SendMessageResponseModel:
+    ) -> typing.List[notifications.NotificationsSendMessageItem]:
         """notifications.sendMessage method
         :param user_ids:
         :param message:

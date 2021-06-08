@@ -6,7 +6,7 @@ from vkbottle_types.responses import base, wall
 class WallCategory(BaseCategory):
     async def check_copyright_link(
         self, link: str, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """wall.checkCopyrightLink method
         :param link:
         """
@@ -18,7 +18,7 @@ class WallCategory(BaseCategory):
 
     async def close_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """wall.closeComments method
         :param owner_id:
         :param post_id:
@@ -62,7 +62,7 @@ class WallCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         post_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a post from a user wall or community wall.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param post_id: ID of the post to be deleted.
@@ -75,7 +75,7 @@ class WallCategory(BaseCategory):
 
     async def delete_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a comment on a post on a user wall or community wall.
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -149,7 +149,7 @@ class WallCategory(BaseCategory):
         link_image: typing.Optional[str] = None,
         link_video: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to edit hidden post.
         :param post_id: Post ID. Used for publishing of scheduled and suggested posts.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -177,7 +177,7 @@ class WallCategory(BaseCategory):
         message: typing.Optional[str] = None,
         attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a comment on a user wall or community wall.
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -227,7 +227,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> wall.GetByIdLegacyResponseModel:
+    ) -> typing.List[wall.WallWallpostFull]:
         """Returns a list of posts from user or community walls by their IDs.
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
         :param extended: '1' — to return user and community objects needed to display posts, '0' — no additional fields are returned (default)
@@ -330,7 +330,7 @@ class WallCategory(BaseCategory):
 
     async def open_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """wall.openComments method
         :param owner_id:
         :param post_id:
@@ -343,7 +343,7 @@ class WallCategory(BaseCategory):
 
     async def pin(
         self, post_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Pins the post on wall.
         :param post_id: Post ID.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
@@ -444,7 +444,7 @@ class WallCategory(BaseCategory):
         comment_id: int,
         reason: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reports (submits a complaint about) a comment on a post on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall.
         :param comment_id: Comment ID.
@@ -462,7 +462,7 @@ class WallCategory(BaseCategory):
         post_id: int,
         reason: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reports (submits a complaint about) a post on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall.
         :param post_id: Post ID.
@@ -501,7 +501,7 @@ class WallCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         post_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores a post deleted from a user wall or community wall.
         :param owner_id: User ID or community ID from whose wall the post was deleted. Use a negative value to designate a community ID.
         :param post_id: ID of the post to be restored.
@@ -514,7 +514,7 @@ class WallCategory(BaseCategory):
 
     async def restore_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores a comment deleted from a user wall or community wall.
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -559,7 +559,7 @@ class WallCategory(BaseCategory):
 
     async def unpin(
         self, post_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Unpins the post on wall.
         :param post_id: Post ID.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.

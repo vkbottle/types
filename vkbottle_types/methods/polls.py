@@ -11,7 +11,7 @@ class PollsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.AddVoteResponseModel:
+    ) -> polls.BaseBoolInt:
         """Adds the current user's vote to the selected answer in the poll.
         :param poll_id: Poll ID.
         :param answer_ids:
@@ -37,7 +37,7 @@ class PollsCategory(BaseCategory):
         background_id: typing.Optional[str] = None,
         disable_unvote: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.CreateResponseModel:
+    ) -> polls.PollsPoll:
         """Creates polls that can be attached to the users' or communities' posts.
         :param question: question text
         :param is_anonymous: '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
@@ -63,7 +63,7 @@ class PollsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.DeleteVoteResponseModel:
+    ) -> polls.BaseBoolInt:
         """Deletes the current user's vote from the selected answer in the poll.
         :param poll_id: Poll ID.
         :param answer_id: Answer ID.
@@ -88,7 +88,7 @@ class PollsCategory(BaseCategory):
         photo_id: typing.Optional[int] = None,
         background_id: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits created polls
         :param poll_id: edited poll's id
         :param owner_id: poll owner id
@@ -108,7 +108,7 @@ class PollsCategory(BaseCategory):
 
     async def get_backgrounds(
         self, **kwargs
-    ) -> polls.GetBackgroundsResponseModel:
+    ) -> typing.List[polls.PollsBackground]:
         """polls.getBackgrounds method"""
 
         params = self.get_set_params(locals())
@@ -126,7 +126,7 @@ class PollsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> polls.GetByIdResponseModel:
+    ) -> polls.PollsPoll:
         """Returns detailed information about a poll by its ID.
         :param poll_id: Poll ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -144,7 +144,7 @@ class PollsCategory(BaseCategory):
 
     async def get_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """polls.getPhotoUploadServer method
         :param owner_id:
         """
@@ -166,7 +166,7 @@ class PollsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> polls.GetVotersResponseModel:
+    ) -> typing.List[polls.PollsVoters]:
         """Returns a list of IDs of users who selected specific answers in the poll.
         :param poll_id: Poll ID.
         :param answer_ids: Answer IDs.
@@ -186,7 +186,7 @@ class PollsCategory(BaseCategory):
 
     async def save_photo(
         self, photo: str, hash: str, **kwargs
-    ) -> polls.SavePhotoResponseModel:
+    ) -> polls.PollsBackground:
         """polls.savePhoto method
         :param photo:
         :param hash:

@@ -17,87 +17,87 @@ from vkbottle_types.objects import (
 
 
 class AddAlbumResponse(BaseResponse):
-    response: typing.Optional["AddAlbumResponseModel"] = None
+    response: "AddAlbumResponseModel" = None
 
 
 class AddResponse(BaseResponse):
-    response: typing.Optional["AddResponseModel"] = None
+    response: "AddResponseModel" = None
 
 
 class CreateCommentResponse(BaseResponse):
-    response: typing.Optional["CreateCommentResponseModel"] = None
+    response: int = None
 
 
 class DeleteCommentResponse(BaseResponse):
-    response: typing.Optional["DeleteCommentResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class GetAlbumByIdResponse(BaseResponse):
-    response: typing.Optional["GetAlbumByIdResponseModel"] = None
+    response: "GetAlbumByIdResponseModel" = None
 
 
 class GetAlbumsResponse(BaseResponse):
-    response: typing.Optional["GetAlbumsResponseModel"] = None
+    response: "GetAlbumsResponseModel" = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: typing.Optional["GetByIdExtendedResponseModel"] = None
+    response: "GetByIdExtendedResponseModel" = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.Optional["GetByIdResponseModel"] = None
+    response: "GetByIdResponseModel" = None
 
 
 class GetCategoriesNewResponse(BaseResponse):
-    response: typing.Optional["GetCategoriesNewResponseModel"] = None
+    response: "GetCategoriesNewResponseModel" = None
 
 
 class GetCategoriesResponse(BaseResponse):
-    response: typing.Optional["GetCategoriesResponseModel"] = None
+    response: "GetCategoriesResponseModel" = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: typing.Optional["GetCommentsResponseModel"] = None
+    response: "GetCommentsResponseModel" = None
 
 
 class GetGroupOrdersResponse(BaseResponse):
-    response: typing.Optional["GetGroupOrdersResponseModel"] = None
+    response: "GetGroupOrdersResponseModel" = None
 
 
 class GetOrderByIdResponse(BaseResponse):
-    response: typing.Optional["GetOrderByIdResponseModel"] = None
+    response: "GetOrderByIdResponseModel" = None
 
 
 class GetOrderItemsResponse(BaseResponse):
-    response: typing.Optional["GetOrderItemsResponseModel"] = None
+    response: "GetOrderItemsResponseModel" = None
 
 
 class GetOrdersExtendedResponse(BaseResponse):
-    response: typing.Optional["GetOrdersExtendedResponseModel"] = None
+    response: "GetOrdersExtendedResponseModel" = None
 
 
 class GetOrdersResponse(BaseResponse):
-    response: typing.Optional["GetOrdersResponseModel"] = None
+    response: "GetOrdersResponseModel" = None
 
 
 class GetExtendedResponse(BaseResponse):
-    response: typing.Optional["GetExtendedResponseModel"] = None
+    response: "GetExtendedResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: typing.Optional["RestoreCommentResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: typing.Optional["SearchExtendedResponseModel"] = None
+    response: "SearchExtendedResponseModel" = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class AddAlbumResponseModel(BaseResponse):
@@ -106,12 +106,6 @@ class AddAlbumResponseModel(BaseResponse):
 
 class AddResponseModel(BaseResponse):
     market_item_id: typing.Optional[int] = None
-
-
-CreateCommentResponseModel = int
-
-
-DeleteCommentResponseModel = BaseBoolInt
 
 
 class GetAlbumByIdResponseModel(BaseResponse):
@@ -181,9 +175,6 @@ class GetExtendedResponseModel(BaseResponse):
 class GetResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["MarketMarketItem"]] = None
-
-
-RestoreCommentResponseModel = BaseBoolInt
 
 
 class SearchExtendedResponseModel(BaseResponse):

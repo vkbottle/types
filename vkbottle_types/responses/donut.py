@@ -5,14 +5,11 @@ from vkbottle_types.objects import DonutDonatorSubscriptionInfo, GroupsGroupFull
 
 
 class GetSubscriptionResponse(BaseResponse):
-    response: typing.Optional["GetSubscriptionResponseModel"] = None
+    response: DonutDonatorSubscriptionInfo = None
 
 
 class GetSubscriptionsResponse(BaseResponse):
-    response: typing.Optional["GetSubscriptionsResponseModel"] = None
-
-
-GetSubscriptionResponseModel = DonutDonatorSubscriptionInfo
+    response: "GetSubscriptionsResponseModel" = None
 
 
 class GetSubscriptionsResponseModel(BaseResponse):

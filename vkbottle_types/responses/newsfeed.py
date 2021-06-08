@@ -14,55 +14,55 @@ from vkbottle_types.objects import (
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: typing.Optional["GetBannedExtendedResponseModel"] = None
+    response: "GetBannedExtendedResponseModel" = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: typing.Optional["GetBannedResponseModel"] = None
+    response: "GetBannedResponseModel" = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: typing.Optional["GetCommentsResponseModel"] = None
+    response: "GetCommentsResponseModel" = None
 
 
 class GetListsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetListsExtendedResponseModel"] = None
+    response: "GetListsExtendedResponseModel" = None
 
 
 class GetListsResponse(BaseResponse):
-    response: typing.Optional["GetListsResponseModel"] = None
+    response: "GetListsResponseModel" = None
 
 
 class GetMentionsResponse(BaseResponse):
-    response: typing.Optional["GetMentionsResponseModel"] = None
+    response: "GetMentionsResponseModel" = None
 
 
 class GetRecommendedResponse(BaseResponse):
-    response: typing.Optional["GetRecommendedResponseModel"] = None
+    response: "GetRecommendedResponseModel" = None
 
 
 class GetSuggestedSourcesResponse(BaseResponse):
-    response: typing.Optional["GetSuggestedSourcesResponseModel"] = None
+    response: "GetSuggestedSourcesResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class IgnoreItemResponse(BaseResponse):
-    response: typing.Optional["IgnoreItemResponseModel"] = None
+    response: "IgnoreItemResponseModel" = None
 
 
 class SaveListResponse(BaseResponse):
-    response: typing.Optional["SaveListResponseModel"] = None
+    response: int = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: typing.Optional["SearchExtendedResponseModel"] = None
+    response: "SearchExtendedResponseModel" = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
@@ -118,9 +118,6 @@ class GetResponseModel(BaseResponse):
 
 class IgnoreItemResponseModel(BaseResponse):
     status: typing.Optional[bool] = None
-
-
-SaveListResponseModel = int
 
 
 class SearchExtendedResponseModel(BaseResponse):

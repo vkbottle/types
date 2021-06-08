@@ -68,7 +68,7 @@ class MarketCategory(BaseCategory):
 
     async def add_to_album(
         self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Adds an item to one or multiple collections.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -91,7 +91,7 @@ class MarketCategory(BaseCategory):
         sticker_id: typing.Optional[int] = None,
         guid: typing.Optional[str] = None,
         **kwargs
-    ) -> market.CreateCommentResponseModel:
+    ) -> int:
         """Creates a new comment for an item.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -110,7 +110,7 @@ class MarketCategory(BaseCategory):
 
     async def delete(
         self, owner_id: int, item_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes an item.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -123,7 +123,7 @@ class MarketCategory(BaseCategory):
 
     async def delete_album(
         self, owner_id: int, album_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a collection of items.
         :param owner_id: ID of an collection owner community.
         :param album_id: Collection ID.
@@ -136,7 +136,7 @@ class MarketCategory(BaseCategory):
 
     async def delete_comment(
         self, owner_id: int, comment_id: int, **kwargs
-    ) -> market.DeleteCommentResponseModel:
+    ) -> market.BaseBoolInt:
         """Deletes an item's comment
         :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param comment_id: comment id
@@ -160,7 +160,7 @@ class MarketCategory(BaseCategory):
         photo_ids: typing.Optional[typing.List[int]] = None,
         url: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits an item.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -187,7 +187,7 @@ class MarketCategory(BaseCategory):
         photo_id: typing.Optional[int] = None,
         main_album: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a collection of items
         :param owner_id: ID of an collection owner community.
         :param album_id: Collection ID.
@@ -208,7 +208,7 @@ class MarketCategory(BaseCategory):
         message: typing.Optional[str] = None,
         attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Chages item comment's text
         :param owner_id: ID of an item owner community.
         :param comment_id: Comment ID.
@@ -235,7 +235,7 @@ class MarketCategory(BaseCategory):
         height: typing.Optional[int] = None,
         weight: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edit order
         :param user_id:
         :param order_id:
@@ -466,7 +466,7 @@ class MarketCategory(BaseCategory):
 
     async def remove_from_album(
         self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Removes an item from one or multiple collections.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -485,7 +485,7 @@ class MarketCategory(BaseCategory):
         before: typing.Optional[int] = None,
         after: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reorders the collections list.
         :param owner_id: ID of an item owner community.
         :param album_id: Collection ID.
@@ -506,7 +506,7 @@ class MarketCategory(BaseCategory):
         before: typing.Optional[int] = None,
         after: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Changes item place in a collection.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -526,7 +526,7 @@ class MarketCategory(BaseCategory):
         item_id: int,
         reason: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sends a complaint to the item.
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
@@ -540,7 +540,7 @@ class MarketCategory(BaseCategory):
 
     async def report_comment(
         self, owner_id: int, comment_id: int, reason: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sends a complaint to the item's comment.
         :param owner_id: ID of an item owner community.
         :param comment_id: Comment ID.
@@ -554,7 +554,7 @@ class MarketCategory(BaseCategory):
 
     async def restore(
         self, owner_id: int, item_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores recently deleted item
         :param owner_id: ID of an item owner community.
         :param item_id: Deleted item ID.
@@ -567,7 +567,7 @@ class MarketCategory(BaseCategory):
 
     async def restore_comment(
         self, owner_id: int, comment_id: int, **kwargs
-    ) -> market.RestoreCommentResponseModel:
+    ) -> market.BaseBoolInt:
         """Restores a recently deleted comment
         :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param comment_id: deleted comment id

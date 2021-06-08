@@ -14,81 +14,72 @@ from vkbottle_types.objects import (
 
 
 class AddAlbumResponse(BaseResponse):
-    response: typing.Optional["AddAlbumResponseModel"] = None
+    response: "AddAlbumResponseModel" = None
 
 
 class CreateCommentResponse(BaseResponse):
-    response: typing.Optional["CreateCommentResponseModel"] = None
+    response: int = None
 
 
 class GetAlbumByIdResponse(BaseResponse):
-    response: typing.Optional["GetAlbumByIdResponseModel"] = None
+    response: VideoVideoAlbumFull = None
 
 
 class GetAlbumsByVideoExtendedResponse(BaseResponse):
-    response: typing.Optional["GetAlbumsByVideoExtendedResponseModel"] = None
+    response: "GetAlbumsByVideoExtendedResponseModel" = None
 
 
 class GetAlbumsByVideoResponse(BaseResponse):
-    response: typing.Optional["GetAlbumsByVideoResponseModel"] = None
+    response: typing.List[int] = None
 
 
 class GetAlbumsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetAlbumsExtendedResponseModel"] = None
+    response: "GetAlbumsExtendedResponseModel" = None
 
 
 class GetAlbumsResponse(BaseResponse):
-    response: typing.Optional["GetAlbumsResponseModel"] = None
+    response: "GetAlbumsResponseModel" = None
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetCommentsExtendedResponseModel"] = None
+    response: "GetCommentsExtendedResponseModel" = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: typing.Optional["GetCommentsResponseModel"] = None
+    response: "GetCommentsResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: typing.Optional["RestoreCommentResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class SaveResponse(BaseResponse):
-    response: typing.Optional["SaveResponseModel"] = None
+    response: VideoSaveResult = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: typing.Optional["SearchExtendedResponseModel"] = None
+    response: "SearchExtendedResponseModel" = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class UploadResponse(BaseResponse):
-    response: typing.Optional["UploadResponseModel"] = None
+    response: "UploadResponseModel" = None
 
 
 class AddAlbumResponseModel(BaseResponse):
     album_id: typing.Optional[int] = None
 
 
-CreateCommentResponseModel = int
-
-
-GetAlbumByIdResponseModel = VideoVideoAlbumFull
-
-
 class GetAlbumsByVideoExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["VideoVideoAlbumFull"]] = None
-
-
-GetAlbumsByVideoResponseModel = typing.List[int]
 
 
 class GetAlbumsExtendedResponseModel(BaseResponse):
@@ -118,12 +109,6 @@ class GetResponseModel(BaseResponse):
     items: typing.Optional[typing.List["VideoVideoFull"]] = None
     profiles: typing.Optional[typing.List["UsersUserMin"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-RestoreCommentResponseModel = BaseBoolInt
-
-
-SaveResponseModel = VideoSaveResult
 
 
 class SearchExtendedResponseModel(BaseResponse):
