@@ -5,23 +5,23 @@ from vkbottle_types.objects import BaseBoolInt, UsersUserMin
 
 
 class AddResponse(BaseResponse):
-    response: typing.Optional["AddResponseModel"] = None
+    response: "AddResponseModel" = None
 
 
 class DeleteResponse(BaseResponse):
-    response: typing.Optional["DeleteResponseModel"] = None
+    response: "DeleteResponseModel" = None
 
 
 class GetListExtendedResponse(BaseResponse):
-    response: typing.Optional["GetListExtendedResponseModel"] = None
+    response: "GetListExtendedResponseModel" = None
 
 
 class GetListResponse(BaseResponse):
-    response: typing.Optional["GetListResponseModel"] = None
+    response: "GetListResponseModel" = None
 
 
 class IsLikedResponse(BaseResponse):
-    response: typing.Optional["IsLikedResponseModel"] = None
+    response: "IsLikedResponseModel" = None
 
 
 class AddResponseModel(BaseResponse):

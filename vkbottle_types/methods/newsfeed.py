@@ -9,7 +9,7 @@ class NewsfeedCategory(BaseCategory):
         user_ids: typing.Optional[typing.List[int]] = None,
         group_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Prevents news from specified users and communities from appearing in the current user's newsfeed.
         :param user_ids:
         :param group_ids:
@@ -25,7 +25,7 @@ class NewsfeedCategory(BaseCategory):
         user_ids: typing.Optional[typing.List[int]] = None,
         group_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows news from previously banned users and communities to be shown in the current user's newsfeed.
         :param user_ids:
         :param group_ids:
@@ -38,7 +38,7 @@ class NewsfeedCategory(BaseCategory):
 
     async def delete_list(
         self, list_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """newsfeed.deleteList method
         :param list_id:
         """
@@ -222,7 +222,7 @@ class NewsfeedCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         item_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Hides an item from the newsfeed.
         :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
         :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
@@ -241,7 +241,7 @@ class NewsfeedCategory(BaseCategory):
         source_ids: typing.Optional[typing.List[int]] = None,
         no_reposts: typing.Optional[bool] = None,
         **kwargs
-    ) -> newsfeed.SaveListResponseModel:
+    ) -> int:
         """Creates and edits user newsfeed lists
         :param title: list name.
         :param list_id: numeric list identifier (if not sent, will be set automatically).
@@ -295,7 +295,7 @@ class NewsfeedCategory(BaseCategory):
         item_id: int,
         track_code: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Returns a hidden item to the newsfeed.
         :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
         :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
@@ -310,7 +310,7 @@ class NewsfeedCategory(BaseCategory):
 
     async def unsubscribe(
         self, type: str, item_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Unsubscribes the current user from specified newsfeeds.
         :param type: Type of object from which to unsubscribe: 'note' — note, 'photo' — photo, 'post' — post on user wall or community wall, 'topic' — topic, 'video' — video
         :param item_id: Object ID.

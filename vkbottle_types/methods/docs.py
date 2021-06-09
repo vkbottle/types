@@ -10,7 +10,7 @@ class DocsCategory(BaseCategory):
         doc_id: int,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> docs.AddResponseModel:
+    ) -> int:
         """Copies a document to a user's or community's document list.
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
@@ -24,7 +24,7 @@ class DocsCategory(BaseCategory):
 
     async def delete(
         self, owner_id: int, doc_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a user or community document.
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
@@ -42,7 +42,7 @@ class DocsCategory(BaseCategory):
         title: typing.Optional[str] = None,
         tags: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a document.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
@@ -82,7 +82,7 @@ class DocsCategory(BaseCategory):
         docs: typing.List[str],
         return_tags: typing.Optional[bool] = None,
         **kwargs
-    ) -> docs.GetByIdResponseModel:
+    ) -> typing.List[docs.DocsDoc]:
         """Returns information about documents by their IDs.
         :param docs: Document IDs. Example: , "66748_91488,66748_91455",
         :param return_tags:
@@ -98,7 +98,7 @@ class DocsCategory(BaseCategory):
         type: typing.Optional[str] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns the server address for document upload.
         :param type: Document type.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
@@ -123,7 +123,7 @@ class DocsCategory(BaseCategory):
 
     async def get_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> docs.GetUploadServerModel:
+    ) -> docs.BaseUploadServer:
         """Returns the server address for document upload.
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
@@ -135,7 +135,7 @@ class DocsCategory(BaseCategory):
 
     async def get_wall_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.GetUploadServerResponseModel:
+    ) -> base.BaseUploadServer:
         """Returns the server address for document upload onto a user's or community's wall.
         :param group_id: Community ID (if the document will be uploaded to the community).
         """

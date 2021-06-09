@@ -22,7 +22,7 @@ class AppWidgetsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         image_type: typing.Optional[str] = None,
         **kwargs
-    ) -> appWidgets.GetAppImagesResponseModel:
+    ) -> appWidgets.AppWidgetsPhotos:
         """Returns an app collection of images for community app widgets
         :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
@@ -52,7 +52,7 @@ class AppWidgetsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         image_type: typing.Optional[str] = None,
         **kwargs
-    ) -> appWidgets.GetGroupImagesResponseModel:
+    ) -> appWidgets.AppWidgetsPhotos:
         """Returns a community collection of images for community app widgets
         :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
@@ -66,7 +66,7 @@ class AppWidgetsCategory(BaseCategory):
 
     async def get_images_by_id(
         self, images: typing.List[str], **kwargs
-    ) -> appWidgets.GetImagesByIdResponseModel:
+    ) -> typing.List[appWidgets.AppWidgetsPhoto]:
         """Returns an image for community app widgets by its ID
         :param images: List of images IDs
         """
@@ -78,7 +78,7 @@ class AppWidgetsCategory(BaseCategory):
 
     async def save_app_image(
         self, hash: str, image: str, **kwargs
-    ) -> appWidgets.SaveAppImageResponseModel:
+    ) -> appWidgets.AppWidgetsPhoto:
         """Allows to save image into app collection for community app widgets
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
@@ -91,7 +91,7 @@ class AppWidgetsCategory(BaseCategory):
 
     async def save_group_image(
         self, hash: str, image: str, **kwargs
-    ) -> appWidgets.SaveGroupImageResponseModel:
+    ) -> appWidgets.AppWidgetsPhoto:
         """Allows to save image into community collection for community app widgets
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
@@ -104,7 +104,7 @@ class AppWidgetsCategory(BaseCategory):
 
     async def update(
         self, code: str, type: str, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to update community app widget
         :param code:
         :param type:

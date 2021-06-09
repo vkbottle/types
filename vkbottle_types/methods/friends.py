@@ -10,7 +10,7 @@ class FriendsCategory(BaseCategory):
         text: typing.Optional[str] = None,
         follow: typing.Optional[bool] = None,
         **kwargs
-    ) -> friends.AddResponseModel:
+    ) -> int:
         """Approves or creates a friend request.
         :param user_id: ID of the user whose friend request will be approved or to whom a friend request will be sent.
         :param text: Text of the message (up to 500 characters) for the friend request, if any.
@@ -41,7 +41,7 @@ class FriendsCategory(BaseCategory):
         need_sign: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> friends.AreFriendsResponseModel:
+    ) -> typing.List[friends.FriendsFriendStatus]:
         """Checks the current user's friendship status with other specified users.
         :param user_ids: IDs of the users whose friendship status to check.
         :param need_sign: '1' — to return 'sign' field. 'sign' is md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.
@@ -71,7 +71,7 @@ class FriendsCategory(BaseCategory):
 
     async def delete_all_requests(
         self, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks all incoming friend requests as viewed."""
 
         params = self.get_set_params(locals())
@@ -81,7 +81,7 @@ class FriendsCategory(BaseCategory):
 
     async def delete_list(
         self, list_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a friend list of the current user.
         :param list_id: ID of the friend list to delete.
         """
@@ -96,7 +96,7 @@ class FriendsCategory(BaseCategory):
         user_id: int,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits the friend lists of the selected user.
         :param user_id: ID of the user whose friend list is to be edited.
         :param list_ids: IDs of the friend lists to which to add the user.
@@ -115,7 +115,7 @@ class FriendsCategory(BaseCategory):
         add_user_ids: typing.Optional[typing.List[int]] = None,
         delete_user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a friend list of the current user.
         :param list_id: Friend list ID.
         :param name: Name of the friend list.
@@ -163,7 +163,7 @@ class FriendsCategory(BaseCategory):
 
     async def get_app_users(
         self, **kwargs
-    ) -> friends.GetAppUsersResponseModel:
+    ) -> typing.List[int]:
         """Returns a list of IDs of the current user's friends who installed the application."""
 
         params = self.get_set_params(locals())
@@ -176,7 +176,7 @@ class FriendsCategory(BaseCategory):
         phones: typing.Optional[typing.List[str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> friends.GetByPhonesResponseModel:
+    ) -> typing.List[friends.FriendsUserXtrPhone]:
         """Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.
         :param phones: List of phone numbers in MSISDN format (maximum 1000). Example: "+79219876543,+79111234567"
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online, counters'.
@@ -212,7 +212,7 @@ class FriendsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> friends.GetMutualResponseModel:
+    ) -> typing.List[int]:
         """Returns a list of user IDs of the mutual friends of two users.
         :param source_uid: ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.
         :param target_uid: ID of the user whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -240,7 +240,7 @@ class FriendsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> friends.GetOnlineResponseModel:
+    ) -> typing.List[int]:
         """Returns a list of user IDs of a user's friends who are online.
         :param user_id: User ID.
         :param list_id: Friend list ID. If this parameter is not set, information about all online friends is returned.
@@ -261,7 +261,7 @@ class FriendsCategory(BaseCategory):
 
     async def get_recent(
         self, count: typing.Optional[int] = None, **kwargs
-    ) -> friends.GetRecentResponseModel:
+    ) -> typing.List[int]:
         """Returns a list of user IDs of the current user's recently added friends.
         :param count: Number of recently added friends to return.
         """
@@ -303,7 +303,7 @@ class FriendsCategory(BaseCategory):
         model = self.get_model(
             {
                 ("need_mutual",): friends.GetRequestsNeedMutualResponse,
-                ("extended",): friends.GetRequestsExtendedResponse
+                ("extended",): friends.GetRequestsExtendedResponse,
             },
             default=friends.GetRequestsResponse,
             params=params,

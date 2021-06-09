@@ -10,7 +10,7 @@ class SecureCategory(BaseCategory):
         activity_id: int,
         value: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Adds user activity information to an application
         :param user_id: ID of a user to save the data
         :param activity_id: there are 2 default activities: , * 1 - level. Works similar to ,, * 2 - points, saves points amount, Any other value is for saving completed missions
@@ -27,7 +27,7 @@ class SecureCategory(BaseCategory):
         token: typing.Optional[str] = None,
         ip: typing.Optional[str] = None,
         **kwargs
-    ) -> secure.CheckTokenResponseModel:
+    ) -> secure.SecureTokenChecked:
         """Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
         :param token: client 'access_token'
         :param ip: user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. If not transmitted, the address will not be checked.
@@ -40,7 +40,7 @@ class SecureCategory(BaseCategory):
 
     async def get_app_balance(
         self, **kwargs
-    ) -> secure.GetAppBalanceResponseModel:
+    ) -> int:
         """Returns payment balance of the application in hundredth of a vote."""
 
         params = self.get_set_params(locals())
@@ -55,7 +55,7 @@ class SecureCategory(BaseCategory):
         date_to: typing.Optional[int] = None,
         limit: typing.Optional[int] = None,
         **kwargs
-    ) -> secure.GetSMSHistoryResponseModel:
+    ) -> typing.List[secure.SecureSmsNotification]:
         """Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
         :param user_id:
         :param date_from: filter by start date. It is set as UNIX-time.
@@ -77,7 +77,7 @@ class SecureCategory(BaseCategory):
         date_to: typing.Optional[int] = None,
         limit: typing.Optional[int] = None,
         **kwargs
-    ) -> secure.GetTransactionsHistoryResponseModel:
+    ) -> typing.List[secure.SecureTransaction]:
         """Shows history of votes transaction between users and the application.
         :param type:
         :param uid_from:
@@ -94,7 +94,7 @@ class SecureCategory(BaseCategory):
 
     async def get_user_level(
         self, user_ids: typing.List[int], **kwargs
-    ) -> secure.GetUserLevelResponseModel:
+    ) -> typing.List[secure.SecureLevel]:
         """Returns one of the previously set game levels of one or more users in the application.
         :param user_ids:
         """
@@ -106,7 +106,7 @@ class SecureCategory(BaseCategory):
 
     async def give_event_sticker(
         self, user_ids: typing.List[int], achievement_id: int, **kwargs
-    ) -> secure.GiveEventStickerResponseModel:
+    ) -> typing.List[secure.GiveEventStickerResponseModel]:
         """Opens the game achievement and gives the user a sticker
         :param user_ids:
         :param achievement_id:
@@ -123,7 +123,7 @@ class SecureCategory(BaseCategory):
         user_ids: typing.Optional[typing.List[int]] = None,
         user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> secure.SendNotificationResponseModel:
+    ) -> typing.List[int]:
         """Sends notification to the user.
         :param message: notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).
         :param user_ids:
@@ -137,7 +137,7 @@ class SecureCategory(BaseCategory):
 
     async def send_s_m_s_notification(
         self, user_id: int, message: str, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sends 'SMS' notification to a user's mobile device.
         :param user_id: ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).
         :param message: 'SMS' text to be sent in 'UTF-8' encoding. Only Latin letters and numbers are allowed. Maximum size is '160' characters.
@@ -155,7 +155,7 @@ class SecureCategory(BaseCategory):
         counter: typing.Optional[int] = None,
         increment: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sets a counter which is shown to the user in bold in the left menu.
         :param counters:
         :param user_id:

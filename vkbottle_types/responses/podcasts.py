@@ -5,7 +5,7 @@ from vkbottle_types.objects import PodcastExternalData
 
 
 class SearchPodcastResponse(BaseResponse):
-    response: typing.Optional["SearchPodcastResponseModel"] = None
+    response: "SearchPodcastResponseModel" = None
 
 
 class SearchPodcastResponseModel(BaseResponse):

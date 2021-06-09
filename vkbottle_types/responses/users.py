@@ -11,27 +11,27 @@ from vkbottle_types.objects import (
 
 
 class GetFollowersFieldsResponse(BaseResponse):
-    response: typing.Optional["GetFollowersFieldsResponseModel"] = None
+    response: "GetFollowersFieldsResponseModel" = None
 
 
 class GetFollowersResponse(BaseResponse):
-    response: typing.Optional["GetFollowersResponseModel"] = None
+    response: "GetFollowersResponseModel" = None
 
 
 class GetSubscriptionsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetSubscriptionsExtendedResponseModel"] = None
+    response: "GetSubscriptionsExtendedResponseModel" = None
 
 
 class GetSubscriptionsResponse(BaseResponse):
-    response: typing.Optional["GetSubscriptionsResponseModel"] = None
+    response: "GetSubscriptionsResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: typing.List["UsersUserXtrCounters"] = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class GetFollowersFieldsResponseModel(BaseResponse):
@@ -52,9 +52,6 @@ class GetSubscriptionsExtendedResponseModel(BaseResponse):
 class GetSubscriptionsResponseModel(BaseResponse):
     users: typing.Optional["UsersUsersArray"] = None
     groups: typing.Optional["GroupsGroupsArray"] = None
-
-
-GetResponseModel = typing.List[UsersUserXtrCounters]
 
 
 class SearchResponseModel(BaseResponse):

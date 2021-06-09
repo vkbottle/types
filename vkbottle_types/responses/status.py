@@ -5,10 +5,7 @@ from vkbottle_types.objects import StatusStatus
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
-
-
-GetResponseModel = StatusStatus
+    response: StatusStatus = None
 
 
 for item in locals().copy().values():

@@ -5,7 +5,7 @@ import vkbottle_types.objects
 
 
 class GetServerUrlResponse(BaseResponse):
-    response: typing.Optional["GetServerUrlResponseModel"] = None
+    response: "GetServerUrlResponseModel" = None
 
 
 class GetServerUrlResponseModel(BaseResponse):

@@ -15,39 +15,39 @@ from vkbottle_types.objects import (
 
 
 class ChangePasswordResponse(BaseResponse):
-    response: typing.Optional["ChangePasswordResponseModel"] = None
+    response: "ChangePasswordResponseModel" = None
 
 
 class GetActiveOffersResponse(BaseResponse):
-    response: typing.Optional["GetActiveOffersResponseModel"] = None
+    response: "GetActiveOffersResponseModel" = None
 
 
 class GetAppPermissionsResponse(BaseResponse):
-    response: typing.Optional["GetAppPermissionsResponseModel"] = None
+    response: int = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: typing.Optional["GetBannedResponseModel"] = None
+    response: "GetBannedResponseModel" = None
 
 
 class GetCountersResponse(BaseResponse):
-    response: typing.Optional["GetCountersResponseModel"] = None
+    response: AccountAccountCounters = None
 
 
 class GetInfoResponse(BaseResponse):
-    response: typing.Optional["GetInfoResponseModel"] = None
+    response: AccountInfo = None
 
 
 class GetProfileInfoResponse(BaseResponse):
-    response: typing.Optional["GetProfileInfoResponseModel"] = None
+    response: AccountUserSettings = None
 
 
 class GetPushSettingsResponse(BaseResponse):
-    response: typing.Optional["GetPushSettingsResponseModel"] = None
+    response: AccountPushSettings = None
 
 
 class SaveProfileInfoResponse(BaseResponse):
-    response: typing.Optional["SaveProfileInfoResponseModel"] = None
+    response: "SaveProfileInfoResponseModel" = None
 
 
 class ChangePasswordResponseModel(BaseResponse):
@@ -60,26 +60,11 @@ class GetActiveOffersResponseModel(BaseResponse):
     items: typing.Optional[typing.List["AccountOffer"]] = None
 
 
-GetAppPermissionsResponseModel = int
-
-
 class GetBannedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List[int]] = None
     profiles: typing.Optional[typing.List["UsersUserMin"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
-
-
-GetCountersResponseModel = AccountAccountCounters
-
-
-GetInfoResponseModel = AccountInfo
-
-
-GetProfileInfoResponseModel = AccountUserSettings
-
-
-GetPushSettingsResponseModel = AccountPushSettings
 
 
 class SaveProfileInfoResponseModel(BaseResponse):

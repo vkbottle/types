@@ -5,7 +5,7 @@ from vkbottle_types.objects import GiftsGift
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class GetResponseModel(BaseResponse):

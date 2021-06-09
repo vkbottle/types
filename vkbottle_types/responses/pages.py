@@ -5,52 +5,31 @@ from vkbottle_types.objects import PagesWikipage, PagesWikipageFull, PagesWikipa
 
 
 class GetHistoryResponse(BaseResponse):
-    response: typing.Optional["GetHistoryResponseModel"] = None
+    response: typing.List["PagesWikipageHistory"] = None
 
 
 class GetTitlesResponse(BaseResponse):
-    response: typing.Optional["GetTitlesResponseModel"] = None
+    response: typing.List["PagesWikipage"] = None
 
 
 class GetVersionResponse(BaseResponse):
-    response: typing.Optional["GetVersionResponseModel"] = None
+    response: PagesWikipageFull = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: PagesWikipageFull = None
 
 
 class ParseWikiResponse(BaseResponse):
-    response: typing.Optional["ParseWikiResponseModel"] = None
+    response: str = None
 
 
 class SaveAccessResponse(BaseResponse):
-    response: typing.Optional["SaveAccessResponseModel"] = None
+    response: int = None
 
 
 class SaveResponse(BaseResponse):
-    response: typing.Optional["SaveResponseModel"] = None
-
-
-GetHistoryResponseModel = typing.List[PagesWikipageHistory]
-
-
-GetTitlesResponseModel = typing.List[PagesWikipage]
-
-
-GetVersionResponseModel = PagesWikipageFull
-
-
-GetResponseModel = PagesWikipageFull
-
-
-ParseWikiResponseModel = str
-
-
-SaveAccessResponseModel = int
-
-
-SaveResponseModel = int
+    response: int = None
 
 
 for item in locals().copy().values():

@@ -12,7 +12,7 @@ class BoardCategory(BaseCategory):
         from_group: typing.Optional[bool] = None,
         attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> board.AddTopicResponseModel:
+    ) -> int:
         """Creates a new topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param title: Topic title.
@@ -28,7 +28,7 @@ class BoardCategory(BaseCategory):
 
     async def close_topic(
         self, group_id: int, topic_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Closes a topic on a community's discussion board so that comments cannot be posted.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -49,7 +49,7 @@ class BoardCategory(BaseCategory):
         sticker_id: typing.Optional[int] = None,
         guid: typing.Optional[str] = None,
         **kwargs
-    ) -> board.CreateCommentResponseModel:
+    ) -> int:
         """Adds a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: ID of the topic to be commented on.
@@ -67,7 +67,7 @@ class BoardCategory(BaseCategory):
 
     async def delete_comment(
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -81,7 +81,7 @@ class BoardCategory(BaseCategory):
 
     async def delete_topic(
         self, group_id: int, topic_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes a topic from a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -100,7 +100,7 @@ class BoardCategory(BaseCategory):
         message: typing.Optional[str] = None,
         attachments: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a comment on a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -116,7 +116,7 @@ class BoardCategory(BaseCategory):
 
     async def edit_topic(
         self, group_id: int, topic_id: int, title: str, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits the title of a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -130,7 +130,7 @@ class BoardCategory(BaseCategory):
 
     async def fix_topic(
         self, group_id: int, topic_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Pins a topic (fixes its place) to the top of a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -207,7 +207,7 @@ class BoardCategory(BaseCategory):
 
     async def open_topic(
         self, group_id: int, topic_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Re-opens a previously closed topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -220,7 +220,7 @@ class BoardCategory(BaseCategory):
 
     async def restore_comment(
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Restores a comment deleted from a topic on a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
@@ -234,7 +234,7 @@ class BoardCategory(BaseCategory):
 
     async def unfix_topic(
         self, group_id: int, topic_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Unpins a pinned topic from the top of a community's discussion board.
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.

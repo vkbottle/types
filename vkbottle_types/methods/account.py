@@ -6,7 +6,7 @@ from vkbottle_types.responses import account, base
 class AccountCategory(BaseCategory):
     async def ban(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """account.ban method
         :param owner_id:
         """
@@ -54,7 +54,7 @@ class AccountCategory(BaseCategory):
 
     async def get_app_permissions(
         self, user_id: int, **kwargs
-    ) -> account.GetAppPermissionsResponseModel:
+    ) -> int:
         """Gets settings of the user in this application.
         :param user_id: User ID whose settings information shall be got. By default: current user.
         """
@@ -85,7 +85,7 @@ class AccountCategory(BaseCategory):
         filter: typing.Optional[typing.List[str]] = None,
         user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> account.GetCountersResponseModel:
+    ) -> account.AccountAccountCounters:
         """Returns non-null values of user counters.
         :param filter: Counters to be returned.
         :param user_id: User ID
@@ -98,7 +98,7 @@ class AccountCategory(BaseCategory):
 
     async def get_info(
         self, fields: typing.Optional[typing.List[str]] = None, **kwargs
-    ) -> account.GetInfoResponseModel:
+    ) -> account.AccountInfo:
         """Returns current account info.
         :param fields: Fields to return. Possible values: *'country' — user country,, *'https_required' — is "HTTPS only" option enabled,, *'own_posts_default' — is "Show my posts only" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.
         """
@@ -110,7 +110,7 @@ class AccountCategory(BaseCategory):
 
     async def get_profile_info(
         self, **kwargs
-    ) -> account.GetProfileInfoResponseModel:
+    ) -> account.AccountUserSettings:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
@@ -120,7 +120,7 @@ class AccountCategory(BaseCategory):
 
     async def get_push_settings(
         self, device_id: typing.Optional[str] = None, **kwargs
-    ) -> account.GetPushSettingsResponseModel:
+    ) -> account.AccountPushSettings:
         """Gets settings of push notifications.
         :param device_id: Unique device ID.
         """
@@ -140,7 +140,7 @@ class AccountCategory(BaseCategory):
         settings: typing.Optional[str] = None,
         sandbox: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
         :param token: Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)
         :param device_id: Unique device ID.
@@ -201,7 +201,7 @@ class AccountCategory(BaseCategory):
         name: typing.Optional[str] = None,
         value: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to edit the current account info.
         :param name: Setting name.
         :param value: Setting value.
@@ -214,7 +214,7 @@ class AccountCategory(BaseCategory):
 
     async def set_name_in_menu(
         self, user_id: int, name: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.
         :param user_id: User ID.
         :param name: Application screen name.
@@ -227,7 +227,7 @@ class AccountCategory(BaseCategory):
 
     async def set_offline(
         self, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
@@ -237,7 +237,7 @@ class AccountCategory(BaseCategory):
 
     async def set_online(
         self, voip: typing.Optional[bool] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Marks the current user as online for 15 minutes.
         :param voip: '1' if videocalls are available for current device.
         """
@@ -254,7 +254,7 @@ class AccountCategory(BaseCategory):
         key: typing.Optional[str] = None,
         value: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Change push settings.
         :param device_id: Unique device ID.
         :param settings: Push settings in a [vk.com/dev/push_settings|special format].
@@ -274,7 +274,7 @@ class AccountCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         sound: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Mutes push notifications for the set period of time.
         :param device_id: Unique device ID.
         :param time: Time in seconds for what notifications should be disabled. '-1' to disable forever.
@@ -289,7 +289,7 @@ class AccountCategory(BaseCategory):
 
     async def unban(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """account.unban method
         :param owner_id:
         """
@@ -304,7 +304,7 @@ class AccountCategory(BaseCategory):
         device_id: typing.Optional[str] = None,
         sandbox: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Unsubscribes a device from push notifications.
         :param device_id: Unique device ID.
         :param sandbox:

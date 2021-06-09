@@ -6,7 +6,7 @@ from vkbottle_types.responses import base, stories
 class StoriesCategory(BaseCategory):
     async def ban_owner(
         self, owners_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to hide stories from chosen sources from current user's feed.
         :param owners_ids: List of sources IDs
         """
@@ -22,7 +22,7 @@ class StoriesCategory(BaseCategory):
         story_id: typing.Optional[int] = None,
         stories: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to delete story.
         :param owner_id: Story owner's ID. Current user id is used by default.
         :param story_id: Story ID.
@@ -144,7 +144,7 @@ class StoriesCategory(BaseCategory):
 
     async def get_stats(
         self, owner_id: int, story_id: int, **kwargs
-    ) -> stories.GetStatsResponseModel:
+    ) -> stories.StoriesStoryStats:
         """Returns stories available for current user.
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
@@ -209,7 +209,7 @@ class StoriesCategory(BaseCategory):
 
     async def hide_all_replies(
         self, owner_id: int, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Hides all replies in the last 24 hours from the user to current user's stories.
         :param owner_id: ID of the user whose replies should be hidden.
         :param group_id:
@@ -222,7 +222,7 @@ class StoriesCategory(BaseCategory):
 
     async def hide_reply(
         self, owner_id: int, story_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Hides the reply to the current user's story.
         :param owner_id: ID of the user whose replies should be hidden.
         :param story_id: Story ID.
@@ -289,7 +289,7 @@ class StoriesCategory(BaseCategory):
         is_anonymous: typing.Optional[bool] = None,
         unseen_marker: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """stories.sendInteraction method
         :param access_key:
         :param message:
@@ -305,7 +305,7 @@ class StoriesCategory(BaseCategory):
 
     async def unban_owner(
         self, owners_ids: typing.List[int], **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to show stories from hidden sources in current user's feed.
         :param owners_ids: List of hidden sources to show stories from.
         """

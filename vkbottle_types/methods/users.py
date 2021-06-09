@@ -10,7 +10,7 @@ class UsersCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> users.GetResponseModel:
+    ) -> typing.List[users.UsersUserXtrCounters]:
         """Returns detailed information on users.
         :param user_ids: User IDs or screen names ('screen_name'). By default, current user ID.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'
@@ -76,7 +76,7 @@ class UsersCategory(BaseCategory):
 
     async def report(
         self, user_id: int, type: str, comment: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Reports (submits a complain about) a user.
         :param user_id: ID of the user about whom a complaint is being made.
         :param type: Type of complaint: 'porn' - pornography, 'spam' - spamming, 'insult' - abusive behavior, 'advertisement' - disruptive advertisements

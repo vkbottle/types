@@ -48,7 +48,7 @@ class DatabaseCategory(BaseCategory):
 
     async def get_cities_by_id(
         self, city_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> database.GetCitiesByIdResponseModel:
+    ) -> typing.List[database.BaseObject]:
         """Returns information about cities by their IDs.
         :param city_ids: City IDs.
         """
@@ -80,7 +80,7 @@ class DatabaseCategory(BaseCategory):
 
     async def get_countries_by_id(
         self, country_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> database.GetCountriesByIdResponseModel:
+    ) -> typing.List[database.BaseCountry]:
         """Returns information about countries by their IDs.
         :param country_ids: Country IDs.
         """
@@ -130,7 +130,7 @@ class DatabaseCategory(BaseCategory):
 
     async def get_metro_stations_by_id(
         self, station_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> database.GetMetroStationsByIdResponseModel:
+    ) -> typing.List[database.DatabaseStation]:
         """Get metro station by his id
         :param station_ids:
         """
@@ -162,7 +162,7 @@ class DatabaseCategory(BaseCategory):
 
     async def get_school_classes(
         self, country_id: typing.Optional[int] = None, **kwargs
-    ) -> database.GetSchoolClassesResponseModel:
+    ) -> typing.List[list]:
         """Returns a list of school classes specified for the country.
         :param country_id: Country ID.
         """

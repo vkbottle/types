@@ -20,7 +20,7 @@ class GroupsCategory(BaseCategory):
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
         **kwargs
-    ) -> groups.AddAddressResponseModel:
+    ) -> groups.GroupsAddress:
         """groups.addAddress method
         :param group_id:
         :param title:
@@ -64,7 +64,7 @@ class GroupsCategory(BaseCategory):
 
     async def add_link(
         self, group_id: int, link: str, text: typing.Optional[str] = None, **kwargs
-    ) -> groups.AddLinkResponseModel:
+    ) -> groups.GroupsGroupLink:
         """Allows to add a link to the community.
         :param group_id: Community ID.
         :param link: Link URL.
@@ -78,7 +78,7 @@ class GroupsCategory(BaseCategory):
 
     async def approve_request(
         self, group_id: int, user_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to approve join request to the community.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -98,7 +98,7 @@ class GroupsCategory(BaseCategory):
         comment: typing.Optional[str] = None,
         comment_visible: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.ban method
         :param group_id:
         :param owner_id:
@@ -121,7 +121,7 @@ class GroupsCategory(BaseCategory):
         public_category: typing.Optional[int] = None,
         subtype: typing.Optional[int] = None,
         **kwargs
-    ) -> groups.CreateResponseModel:
+    ) -> groups.GroupsGroup:
         """Creates a new community.
         :param title: Community title.
         :param description: Community description (ignored for 'type' = 'public').
@@ -137,7 +137,7 @@ class GroupsCategory(BaseCategory):
 
     async def delete_address(
         self, group_id: int, address_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.deleteAddress method
         :param group_id:
         :param address_id:
@@ -150,7 +150,7 @@ class GroupsCategory(BaseCategory):
 
     async def delete_callback_server(
         self, group_id: int, server_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.deleteCallbackServer method
         :param group_id:
         :param server_id:
@@ -163,7 +163,7 @@ class GroupsCategory(BaseCategory):
 
     async def delete_link(
         self, group_id: int, link_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to delete a link from the community.
         :param group_id: Community ID.
         :param link_id: Link ID.
@@ -176,7 +176,7 @@ class GroupsCategory(BaseCategory):
 
     async def disable_online(
         self, group_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.disableOnline method
         :param group_id:
         """
@@ -234,7 +234,7 @@ class GroupsCategory(BaseCategory):
         country: typing.Optional[int] = None,
         city: typing.Optional[int] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Edits a community.
         :param group_id: Community ID.
         :param title: Community title.
@@ -305,7 +305,7 @@ class GroupsCategory(BaseCategory):
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
         **kwargs
-    ) -> groups.EditAddressResponseModel:
+    ) -> groups.GroupsAddress:
         """groups.editAddress method
         :param group_id:
         :param address_id:
@@ -336,7 +336,7 @@ class GroupsCategory(BaseCategory):
         title: str,
         secret_key: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.editCallbackServer method
         :param group_id:
         :param server_id:
@@ -352,7 +352,7 @@ class GroupsCategory(BaseCategory):
 
     async def edit_link(
         self, group_id: int, link_id: int, text: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to edit a link in the community.
         :param group_id: Community ID.
         :param link_id: Link ID.
@@ -374,7 +374,7 @@ class GroupsCategory(BaseCategory):
         contact_phone: typing.Optional[str] = None,
         contact_email: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to add, remove or edit the community manager.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -392,7 +392,7 @@ class GroupsCategory(BaseCategory):
 
     async def enable_online(
         self, group_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.enableOnline method
         :param group_id:
         """
@@ -484,7 +484,7 @@ class GroupsCategory(BaseCategory):
         group_id: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> groups.GetByIdLegacyResponseModel:
+    ) -> typing.List[groups.GroupsGroupFull]:
         """Returns information about communities by their IDs.
         :param group_ids: IDs or screen names of communities.
         :param group_id: ID or screen name of the community.
@@ -526,7 +526,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_callback_settings(
         self, group_id: int, server_id: typing.Optional[int] = None, **kwargs
-    ) -> groups.GetCallbackSettingsResponseModel:
+    ) -> groups.GroupsCallbackSettings:
         """Returns [vk.com/dev/callback_api|Callback API] notifications settings.
         :param group_id: Community ID.
         :param server_id: Server ID.
@@ -619,7 +619,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_long_poll_server(
         self, group_id: int, **kwargs
-    ) -> groups.GetLongPollServerResponseModel:
+    ) -> groups.GroupsLongPollServer:
         """Returns the data needed to query a Long Poll server for events
         :param group_id: Community ID
         """
@@ -631,7 +631,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_long_poll_settings(
         self, group_id: int, **kwargs
-    ) -> groups.GetLongPollSettingsResponseModel:
+    ) -> groups.GroupsLongPollSettings:
         """Returns Long Poll notification settings
         :param group_id: Community ID.
         """
@@ -665,7 +665,7 @@ class GroupsCategory(BaseCategory):
         model = self.get_model(
             {
                 ("fields",): groups.GetMembersFieldsResponse,
-                ("filter",): groups.GetMembersFilterResponse
+                ("filter",): groups.GetMembersFilterResponse,
             },
             default=groups.GetMembersResponse,
             params=params,
@@ -710,7 +710,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_tag_list(
         self, group_id: int, **kwargs
-    ) -> groups.GetTagListResponseModel:
+    ) -> typing.List[groups.GroupsGroupTag]:
         """List of group's tags
         :param group_id:
         """
@@ -732,7 +732,7 @@ class GroupsCategory(BaseCategory):
 
     async def invite(
         self, group_id: int, user_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to invite friends to the community.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -750,7 +750,7 @@ class GroupsCategory(BaseCategory):
         user_ids: typing.Optional[typing.List[int]] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> groups.IsMemberResponseModel:
+    ) -> groups.BaseBoolInt:
         """Returns information specifying whether a user is a member of a community.
         :param group_id: ID or screen name of the community.
         :param user_id: User ID.
@@ -764,7 +764,7 @@ class GroupsCategory(BaseCategory):
             {
                 ("user_ids",): groups.IsMemberUserIdsResponse,
                 ("extended",): groups.IsMemberExtendedResponse,
-                ("user_ids", "extended",): groups.IsMemberUserIdsExtendedResponse
+                ("user_ids", "extended",): groups.IsMemberUserIdsExtendedResponse,
             },
             default=groups.IsMemberResponse,
             params=params,
@@ -776,7 +776,7 @@ class GroupsCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         not_sure: typing.Optional[str] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """With this method you can join the group or public page, and also confirm your participation in an event.
         :param group_id: ID or screen name of the community.
         :param not_sure: Optional parameter which is taken into account when 'gid' belongs to the event: '1' — Perhaps I will attend, '0' — I will be there for sure (default), ,
@@ -789,7 +789,7 @@ class GroupsCategory(BaseCategory):
 
     async def leave(
         self, group_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """With this method you can leave a group, public page, or event.
         :param group_id: ID or screen name of the community.
         """
@@ -801,7 +801,7 @@ class GroupsCategory(BaseCategory):
 
     async def remove_user(
         self, group_id: int, user_id: int, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Removes a user from the community.
         :param group_id: Community ID.
         :param user_id: User ID.
@@ -814,7 +814,7 @@ class GroupsCategory(BaseCategory):
 
     async def reorder_link(
         self, group_id: int, link_id: int, after: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allows to reorder links in the community.
         :param group_id: Community ID.
         :param link_id: Link ID.
@@ -914,7 +914,7 @@ class GroupsCategory(BaseCategory):
         donut_money_withdraw: typing.Optional[bool] = None,
         donut_money_withdraw_error: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Allow to set notifications settings for group.
         :param group_id: Community ID.
         :param server_id: Server ID.
@@ -1033,7 +1033,7 @@ class GroupsCategory(BaseCategory):
         donut_money_withdraw: typing.Optional[bool] = None,
         donut_money_withdraw_error: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Sets Long Poll notification settings
         :param group_id: Community ID.
         :param enabled: Sets whether Long Poll is enabled ('0' — disabled, '1' — enabled).
@@ -1102,7 +1102,7 @@ class GroupsCategory(BaseCategory):
         bots_start_button: typing.Optional[bool] = None,
         bots_add_to_chat: typing.Optional[bool] = None,
         **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.setSettings method
         :param group_id:
         :param messages:
@@ -1118,7 +1118,7 @@ class GroupsCategory(BaseCategory):
 
     async def set_user_note(
         self, group_id: int, user_id: int, note: typing.Optional[str] = None, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """In order to save note about group participant
         :param group_id:
         :param user_id:
@@ -1136,7 +1136,7 @@ class GroupsCategory(BaseCategory):
         tag_name: str,
         tag_color: typing.Optional[str] = None,
         **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """Add new group's tag
         :param group_id:
         :param tag_name:
@@ -1150,7 +1150,7 @@ class GroupsCategory(BaseCategory):
 
     async def tag_bind(
         self, group_id: int, tag_id: int, user_id: int, act: str, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """Bind or unbind group's tag to user
         :param group_id:
         :param tag_id:
@@ -1165,7 +1165,7 @@ class GroupsCategory(BaseCategory):
 
     async def tag_delete(
         self, group_id: int, tag_id: int, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """Delete group's tag
         :param group_id:
         :param tag_id:
@@ -1178,7 +1178,7 @@ class GroupsCategory(BaseCategory):
 
     async def tag_update(
         self, group_id: int, tag_id: int, tag_name: str, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """Update group's tag
         :param group_id:
         :param tag_id:
@@ -1192,7 +1192,7 @@ class GroupsCategory(BaseCategory):
 
     async def toggle_market(
         self, group_id: int, state: str, ref: typing.Optional[str] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.toggleMarket method
         :param group_id:
         :param state:
@@ -1206,7 +1206,7 @@ class GroupsCategory(BaseCategory):
 
     async def unban(
         self, group_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """groups.unban method
         :param group_id:
         :param owner_id:

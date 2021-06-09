@@ -5,57 +5,36 @@ from vkbottle_types.objects import SecureLevel, SecureSmsNotification, SecureTok
 
 
 class CheckTokenResponse(BaseResponse):
-    response: typing.Optional["CheckTokenResponseModel"] = None
+    response: SecureTokenChecked = None
 
 
 class GetAppBalanceResponse(BaseResponse):
-    response: typing.Optional["GetAppBalanceResponseModel"] = None
+    response: int = None
 
 
 class GetSMSHistoryResponse(BaseResponse):
-    response: typing.Optional["GetSMSHistoryResponseModel"] = None
+    response: typing.List["SecureSmsNotification"] = None
 
 
 class GetTransactionsHistoryResponse(BaseResponse):
-    response: typing.Optional["GetTransactionsHistoryResponseModel"] = None
+    response: typing.List["SecureTransaction"] = None
 
 
 class GetUserLevelResponse(BaseResponse):
-    response: typing.Optional["GetUserLevelResponseModel"] = None
+    response: typing.List["SecureLevel"] = None
 
 
 class GiveEventStickerResponse(BaseResponse):
-    response: typing.Optional["GiveEventStickerResponseModel"] = None
+    response: typing.List["GiveEventStickerResponseModel"] = None
 
 
 class SendNotificationResponse(BaseResponse):
-    response: typing.Optional["SendNotificationResponseModel"] = None
+    response: typing.List[int] = None
 
 
-CheckTokenResponseModel = SecureTokenChecked
-
-
-GetAppBalanceResponseModel = int
-
-
-GetSMSHistoryResponseModel = typing.List[SecureSmsNotification]
-
-
-GetTransactionsHistoryResponseModel = typing.List[SecureTransaction]
-
-
-GetUserLevelResponseModel = typing.List[SecureLevel]
-
-
-class GiveEventStickerResponseModelObject(BaseResponse):
+class GiveEventStickerResponseModel(BaseResponse):
     user_id: typing.Optional[int] = None
     status: typing.Optional[str] = None
-
-
-GiveEventStickerResponseModel = typing.List["GiveEventStickerResponseModelObject"]
-
-
-SendNotificationResponseModel = typing.List[int]
 
 
 for item in locals().copy().values():

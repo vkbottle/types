@@ -14,51 +14,51 @@ from vkbottle_types.objects import (
 
 
 class GetChairsResponse(BaseResponse):
-    response: typing.Optional["GetChairsResponseModel"] = None
+    response: "GetChairsResponseModel" = None
 
 
 class GetCitiesByIdResponse(BaseResponse):
-    response: typing.Optional["GetCitiesByIdResponseModel"] = None
+    response: typing.List["BaseObject"] = None
 
 
 class GetCitiesResponse(BaseResponse):
-    response: typing.Optional["GetCitiesResponseModel"] = None
+    response: "GetCitiesResponseModel" = None
 
 
 class GetCountriesByIdResponse(BaseResponse):
-    response: typing.Optional["GetCountriesByIdResponseModel"] = None
+    response: typing.List["BaseCountry"] = None
 
 
 class GetCountriesResponse(BaseResponse):
-    response: typing.Optional["GetCountriesResponseModel"] = None
+    response: "GetCountriesResponseModel" = None
 
 
 class GetFacultiesResponse(BaseResponse):
-    response: typing.Optional["GetFacultiesResponseModel"] = None
+    response: "GetFacultiesResponseModel" = None
 
 
 class GetMetroStationsByIdResponse(BaseResponse):
-    response: typing.Optional["GetMetroStationsByIdResponseModel"] = None
+    response: typing.List["DatabaseStation"] = None
 
 
 class GetMetroStationsResponse(BaseResponse):
-    response: typing.Optional["GetMetroStationsResponseModel"] = None
+    response: "GetMetroStationsResponseModel" = None
 
 
 class GetRegionsResponse(BaseResponse):
-    response: typing.Optional["GetRegionsResponseModel"] = None
+    response: "GetRegionsResponseModel" = None
 
 
 class GetSchoolClassesResponse(BaseResponse):
-    response: typing.Optional["GetSchoolClassesResponseModel"] = None
+    response: typing.List[list] = None
 
 
 class GetSchoolsResponse(BaseResponse):
-    response: typing.Optional["GetSchoolsResponseModel"] = None
+    response: "GetSchoolsResponseModel" = None
 
 
 class GetUniversitiesResponse(BaseResponse):
-    response: typing.Optional["GetUniversitiesResponseModel"] = None
+    response: "GetUniversitiesResponseModel" = None
 
 
 class GetChairsResponseModel(BaseResponse):
@@ -66,15 +66,9 @@ class GetChairsResponseModel(BaseResponse):
     items: typing.Optional[typing.List["BaseObject"]] = None
 
 
-GetCitiesByIdResponseModel = typing.List[BaseObject]
-
-
 class GetCitiesResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["DatabaseCity"]] = None
-
-
-GetCountriesByIdResponseModel = typing.List[BaseCountry]
 
 
 class GetCountriesResponseModel(BaseResponse):
@@ -87,9 +81,6 @@ class GetFacultiesResponseModel(BaseResponse):
     items: typing.Optional[typing.List["DatabaseFaculty"]] = None
 
 
-GetMetroStationsByIdResponseModel = typing.List[DatabaseStation]
-
-
 class GetMetroStationsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["DatabaseStation"]] = None
@@ -98,9 +89,6 @@ class GetMetroStationsResponseModel(BaseResponse):
 class GetRegionsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["DatabaseRegion"]] = None
-
-
-GetSchoolClassesResponseModel = typing.List["list"]
 
 
 class GetSchoolsResponseModel(BaseResponse):

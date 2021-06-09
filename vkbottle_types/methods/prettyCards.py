@@ -91,7 +91,7 @@ class PrettyCardsCategory(BaseCategory):
 
     async def get_by_id(
         self, owner_id: int, card_ids: typing.List[int], **kwargs
-    ) -> prettyCards.GetByIdResponseModel:
+    ) -> typing.List[prettyCards.PrettyCardsPrettyCard]:
         """prettyCards.getById method
         :param owner_id:
         :param card_ids:
@@ -104,7 +104,7 @@ class PrettyCardsCategory(BaseCategory):
 
     async def get_upload_u_r_l(
         self, **kwargs
-    ) -> prettyCards.GetUploadURLResponseModel:
+    ) -> str:
         """prettyCards.getUploadURL method"""
 
         params = self.get_set_params(locals())

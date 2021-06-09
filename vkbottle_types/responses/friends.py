@@ -15,96 +15,87 @@ from vkbottle_types.objects import (
 
 
 class AddListResponse(BaseResponse):
-    response: typing.Optional["AddListResponseModel"] = None
+    response: "AddListResponseModel" = None
 
 
 class AddResponse(BaseResponse):
-    response: typing.Optional["AddResponseModel"] = None
+    response: int = None
 
 
 class AreFriendsExtendedResponse(BaseResponse):
-    response: typing.Optional["AreFriendsExtendedResponseModel"] = None
+    response: typing.List["FriendsFriendExtendedStatus"] = None
 
 
 class AreFriendsResponse(BaseResponse):
-    response: typing.Optional["AreFriendsResponseModel"] = None
+    response: typing.List["FriendsFriendStatus"] = None
 
 
 class DeleteResponse(BaseResponse):
-    response: typing.Optional["DeleteResponseModel"] = None
+    response: "DeleteResponseModel" = None
 
 
 class GetAppUsersResponse(BaseResponse):
-    response: typing.Optional["GetAppUsersResponseModel"] = None
+    response: typing.List[int] = None
 
 
 class GetByPhonesResponse(BaseResponse):
-    response: typing.Optional["GetByPhonesResponseModel"] = None
+    response: typing.List["FriendsUserXtrPhone"] = None
 
 
 class GetListsResponse(BaseResponse):
-    response: typing.Optional["GetListsResponseModel"] = None
+    response: "GetListsResponseModel" = None
 
 
 class GetMutualResponse(BaseResponse):
-    response: typing.Optional["GetMutualResponseModel"] = None
+    response: typing.List[int] = None
 
 
 class GetMutualTargetUidsResponse(BaseResponse):
-    response: typing.Optional["GetMutualTargetUidsResponseModel"] = None
+    response: typing.List["FriendsMutualFriend"] = None
 
 
 class GetOnlineOnlineMobileResponse(BaseResponse):
-    response: typing.Optional["GetOnlineOnlineMobileResponseModel"] = None
+    response: "GetOnlineOnlineMobileResponseModel" = None
 
 
 class GetOnlineResponse(BaseResponse):
-    response: typing.Optional["GetOnlineResponseModel"] = None
+    response: typing.List[int] = None
 
 
 class GetRecentResponse(BaseResponse):
-    response: typing.Optional["GetRecentResponseModel"] = None
+    response: typing.List[int] = None
 
 
 class GetRequestsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetRequestsExtendedResponseModel"] = None
+    response: "GetRequestsExtendedResponseModel" = None
 
 
 class GetRequestsNeedMutualResponse(BaseResponse):
-    response: typing.Optional["GetRequestsNeedMutualResponseModel"] = None
+    response: "GetRequestsNeedMutualResponseModel" = None
 
 
 class GetRequestsResponse(BaseResponse):
-    response: typing.Optional["GetRequestsResponseModel"] = None
+    response: "GetRequestsResponseModel" = None
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: typing.Optional["GetSuggestionsResponseModel"] = None
+    response: "GetSuggestionsResponseModel" = None
 
 
 class GetFieldsResponse(BaseResponse):
-    response: typing.Optional["GetFieldsResponseModel"] = None
+    response: "GetFieldsResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class AddListResponseModel(BaseResponse):
     list_id: typing.Optional[int] = None
-
-
-AddResponseModel = int
-
-
-AreFriendsExtendedResponseModel = typing.List[FriendsFriendExtendedStatus]
-
-
-AreFriendsResponseModel = typing.List[FriendsFriendStatus]
 
 
 class DeleteResponseModel(BaseResponse):
@@ -115,32 +106,14 @@ class DeleteResponseModel(BaseResponse):
     suggestion_deleted: typing.Optional[int] = None
 
 
-GetAppUsersResponseModel = typing.List[int]
-
-
-GetByPhonesResponseModel = typing.List[FriendsUserXtrPhone]
-
-
 class GetListsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["FriendsFriendsList"]] = None
 
 
-GetMutualResponseModel = typing.List[int]
-
-
-GetMutualTargetUidsResponseModel = typing.List[FriendsMutualFriend]
-
-
 class GetOnlineOnlineMobileResponseModel(BaseResponse):
     online: typing.Optional[typing.List[int]] = None
     online_mobile: typing.Optional[typing.List[int]] = None
-
-
-GetOnlineResponseModel = typing.List[int]
-
-
-GetRecentResponseModel = typing.List[int]
 
 
 class GetRequestsExtendedResponseModel(BaseResponse):

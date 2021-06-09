@@ -6,7 +6,7 @@ from vkbottle_types.responses import apps, base
 class AppsCategory(BaseCategory):
     async def delete_app_requests(
         self, **kwargs
-    ) -> base.OkResponseModel:
+    ) -> int:
         """Deletes all request notifications from the current app."""
 
         params = self.get_set_params(locals())
@@ -144,7 +144,7 @@ class AppsCategory(BaseCategory):
 
     async def get_score(
         self, user_id: int, **kwargs
-    ) -> apps.GetScoreResponseModel:
+    ) -> int:
         """Returns user score in app
         :param user_id:
         """
@@ -156,7 +156,7 @@ class AppsCategory(BaseCategory):
 
     async def promo_has_active_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """apps.promoHasActiveGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -169,7 +169,7 @@ class AppsCategory(BaseCategory):
 
     async def promo_use_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BoolResponseModel:
+    ) -> base.BaseBoolInt:
         """apps.promoUseGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -189,7 +189,7 @@ class AppsCategory(BaseCategory):
         key: typing.Optional[str] = None,
         separate: typing.Optional[bool] = None,
         **kwargs
-    ) -> apps.SendRequestResponseModel:
+    ) -> int:
         """Sends a request to another user in an app that uses VK authorization.
         :param user_id: id of the user to send a request
         :param text: request text

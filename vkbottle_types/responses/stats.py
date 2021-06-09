@@ -5,17 +5,11 @@ from vkbottle_types.objects import StatsPeriod, StatsWallpostStat
 
 
 class GetPostReachResponse(BaseResponse):
-    response: typing.Optional["GetPostReachResponseModel"] = None
+    response: typing.List["StatsWallpostStat"] = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
-
-
-GetPostReachResponseModel = typing.List[StatsWallpostStat]
-
-
-GetResponseModel = typing.List[StatsPeriod]
+    response: typing.List["StatsPeriod"] = None
 
 
 for item in locals().copy().values():

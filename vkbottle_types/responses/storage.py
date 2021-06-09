@@ -5,17 +5,11 @@ from vkbottle_types.objects import StorageValue
 
 
 class GetKeysResponse(BaseResponse):
-    response: typing.Optional["GetKeysResponseModel"] = None
+    response: typing.List[str] = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
-
-
-GetKeysResponseModel = typing.List[str]
-
-
-GetResponseModel = typing.List[StorageValue]
+    response: typing.List["StorageValue"] = None
 
 
 for item in locals().copy().values():

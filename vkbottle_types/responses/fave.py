@@ -5,26 +5,23 @@ from vkbottle_types.objects import FaveBookmark, FavePage, FaveTag, GroupsGroup,
 
 
 class AddTagResponse(BaseResponse):
-    response: typing.Optional["AddTagResponseModel"] = None
+    response: FaveTag = None
 
 
 class GetPagesResponse(BaseResponse):
-    response: typing.Optional["GetPagesResponseModel"] = None
+    response: "GetPagesResponseModel" = None
 
 
 class GetTagsResponse(BaseResponse):
-    response: typing.Optional["GetTagsResponseModel"] = None
+    response: "GetTagsResponseModel" = None
 
 
 class GetExtendedResponse(BaseResponse):
-    response: typing.Optional["GetExtendedResponseModel"] = None
+    response: "GetExtendedResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
-
-
-AddTagResponseModel = FaveTag
+    response: "GetResponseModel" = None
 
 
 class GetPagesResponseModel(BaseResponse):

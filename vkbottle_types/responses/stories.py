@@ -15,55 +15,55 @@ from vkbottle_types.objects import (
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: typing.Optional["GetBannedExtendedResponseModel"] = None
+    response: "GetBannedExtendedResponseModel" = None
 
 
 class GetBannedResponse(BaseResponse):
-    response: typing.Optional["GetBannedResponseModel"] = None
+    response: "GetBannedResponseModel" = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: typing.Optional["GetByIdExtendedResponseModel"] = None
+    response: "GetByIdExtendedResponseModel" = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.Optional["GetByIdResponseModel"] = None
+    response: "GetByIdResponseModel" = None
 
 
 class GetPhotoUploadServerResponse(BaseResponse):
-    response: typing.Optional["GetPhotoUploadServerResponseModel"] = None
+    response: "GetPhotoUploadServerResponseModel" = None
 
 
 class GetStatsResponse(BaseResponse):
-    response: typing.Optional["GetStatsResponseModel"] = None
+    response: StoriesStoryStats = None
 
 
 class GetVideoUploadServerResponse(BaseResponse):
-    response: typing.Optional["GetVideoUploadServerResponseModel"] = None
+    response: "GetVideoUploadServerResponseModel" = None
 
 
 class GetViewersExtendedV5115Response(BaseResponse):
-    response: typing.Optional["GetViewersExtendedV5115ResponseModel"] = None
+    response: "GetViewersExtendedV5115ResponseModel" = None
 
 
 class GetViewersExtendedResponse(BaseResponse):
-    response: typing.Optional["GetViewersExtendedResponseModel"] = None
+    response: "GetViewersExtendedResponseModel" = None
 
 
 class GetV5113Response(BaseResponse):
-    response: typing.Optional["GetV5113ResponseModel"] = None
+    response: "GetV5113ResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class SaveResponse(BaseResponse):
-    response: typing.Optional["SaveResponseModel"] = None
+    response: "SaveResponseModel" = None
 
 
 class UploadResponse(BaseResponse):
-    response: typing.Optional["UploadResponseModel"] = None
+    response: "UploadResponseModel" = None
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
@@ -93,9 +93,6 @@ class GetByIdResponseModel(BaseResponse):
 class GetPhotoUploadServerResponseModel(BaseResponse):
     upload_url: typing.Optional[str] = None
     user_ids: typing.Optional[typing.List[int]] = None
-
-
-GetStatsResponseModel = StoriesStoryStats
 
 
 class GetVideoUploadServerResponseModel(BaseResponse):

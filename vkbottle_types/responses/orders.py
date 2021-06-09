@@ -5,61 +5,40 @@ from vkbottle_types.objects import BaseBoolInt, OrdersAmount, OrdersOrder, Order
 
 
 class CancelSubscriptionResponse(BaseResponse):
-    response: typing.Optional["CancelSubscriptionResponseModel"] = None
+    response: BaseBoolInt = None
 
 
 class ChangeStateResponse(BaseResponse):
-    response: typing.Optional["ChangeStateResponseModel"] = None
+    response: str = None
 
 
 class GetAmountResponse(BaseResponse):
-    response: typing.Optional["GetAmountResponseModel"] = None
+    response: OrdersAmount = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.Optional["GetByIdResponseModel"] = None
+    response: typing.List["OrdersOrder"] = None
 
 
 class GetUserSubscriptionByIdResponse(BaseResponse):
-    response: typing.Optional["GetUserSubscriptionByIdResponseModel"] = None
+    response: OrdersSubscription = None
 
 
 class GetUserSubscriptionsResponse(BaseResponse):
-    response: typing.Optional["GetUserSubscriptionsResponseModel"] = None
+    response: "GetUserSubscriptionsResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: typing.List["OrdersOrder"] = None
 
 
 class UpdateSubscriptionResponse(BaseResponse):
-    response: typing.Optional["UpdateSubscriptionResponseModel"] = None
-
-
-CancelSubscriptionResponseModel = BaseBoolInt
-
-
-ChangeStateResponseModel = str
-
-
-GetAmountResponseModel = OrdersAmount
-
-
-GetByIdResponseModel = typing.List[OrdersOrder]
-
-
-GetUserSubscriptionByIdResponseModel = OrdersSubscription
+    response: BaseBoolInt = None
 
 
 class GetUserSubscriptionsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["OrdersSubscription"]] = None
-
-
-GetResponseModel = typing.List[OrdersOrder]
-
-
-UpdateSubscriptionResponseModel = BaseBoolInt
 
 
 for item in locals().copy().values():

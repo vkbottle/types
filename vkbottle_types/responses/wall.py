@@ -12,71 +12,71 @@ from vkbottle_types.objects import (
 
 
 class CreateCommentResponse(BaseResponse):
-    response: typing.Optional["CreateCommentResponseModel"] = None
+    response: "CreateCommentResponseModel" = None
 
 
 class EditResponse(BaseResponse):
-    response: typing.Optional["EditResponseModel"] = None
+    response: "EditResponseModel" = None
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: typing.Optional["GetByIdExtendedResponseModel"] = None
+    response: "GetByIdExtendedResponseModel" = None
 
 
 class GetByIdLegacyResponse(BaseResponse):
-    response: typing.Optional["GetByIdLegacyResponseModel"] = None
+    response: typing.List["WallWallpostFull"] = None
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.Optional["GetByIdResponseModel"] = None
+    response: "GetByIdResponseModel" = None
 
 
 class GetCommentExtendedResponse(BaseResponse):
-    response: typing.Optional["GetCommentExtendedResponseModel"] = None
+    response: "GetCommentExtendedResponseModel" = None
 
 
 class GetCommentResponse(BaseResponse):
-    response: typing.Optional["GetCommentResponseModel"] = None
+    response: "GetCommentResponseModel" = None
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: typing.Optional["GetCommentsExtendedResponseModel"] = None
+    response: "GetCommentsExtendedResponseModel" = None
 
 
 class GetCommentsResponse(BaseResponse):
-    response: typing.Optional["GetCommentsResponseModel"] = None
+    response: "GetCommentsResponseModel" = None
 
 
 class GetRepostsResponse(BaseResponse):
-    response: typing.Optional["GetRepostsResponseModel"] = None
+    response: "GetRepostsResponseModel" = None
 
 
 class GetExtendedResponse(BaseResponse):
-    response: typing.Optional["GetExtendedResponseModel"] = None
+    response: "GetExtendedResponseModel" = None
 
 
 class GetResponse(BaseResponse):
-    response: typing.Optional["GetResponseModel"] = None
+    response: "GetResponseModel" = None
 
 
 class PostAdsStealthResponse(BaseResponse):
-    response: typing.Optional["PostAdsStealthResponseModel"] = None
+    response: "PostAdsStealthResponseModel" = None
 
 
 class PostResponse(BaseResponse):
-    response: typing.Optional["PostResponseModel"] = None
+    response: "PostResponseModel" = None
 
 
 class RepostResponse(BaseResponse):
-    response: typing.Optional["RepostResponseModel"] = None
+    response: "RepostResponseModel" = None
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: typing.Optional["SearchExtendedResponseModel"] = None
+    response: "SearchExtendedResponseModel" = None
 
 
 class SearchResponse(BaseResponse):
-    response: typing.Optional["SearchResponseModel"] = None
+    response: "SearchResponseModel" = None
 
 
 class CreateCommentResponseModel(BaseResponse):
@@ -91,9 +91,6 @@ class GetByIdExtendedResponseModel(BaseResponse):
     items: typing.Optional[typing.List["WallWallpostFull"]] = None
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-GetByIdLegacyResponseModel = typing.List[WallWallpostFull]
 
 
 class GetByIdResponseModel(BaseResponse):

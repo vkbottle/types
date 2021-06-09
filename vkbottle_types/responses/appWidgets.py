@@ -5,54 +5,39 @@ from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
 
 
 class GetAppImageUploadServerResponse(BaseResponse):
-    response: typing.Optional["GetAppImageUploadServerResponseModel"] = None
+    response: "GetAppImageUploadServerResponseModel" = None
 
 
 class GetAppImagesResponse(BaseResponse):
-    response: typing.Optional["GetAppImagesResponseModel"] = None
+    response: AppWidgetsPhotos = None
 
 
 class GetGroupImageUploadServerResponse(BaseResponse):
-    response: typing.Optional["GetGroupImageUploadServerResponseModel"] = None
+    response: "GetGroupImageUploadServerResponseModel" = None
 
 
 class GetGroupImagesResponse(BaseResponse):
-    response: typing.Optional["GetGroupImagesResponseModel"] = None
+    response: AppWidgetsPhotos = None
 
 
 class GetImagesByIdResponse(BaseResponse):
-    response: typing.Optional["GetImagesByIdResponseModel"] = None
+    response: typing.List["AppWidgetsPhoto"] = None
 
 
 class SaveAppImageResponse(BaseResponse):
-    response: typing.Optional["SaveAppImageResponseModel"] = None
+    response: AppWidgetsPhoto = None
 
 
 class SaveGroupImageResponse(BaseResponse):
-    response: typing.Optional["SaveGroupImageResponseModel"] = None
+    response: AppWidgetsPhoto = None
 
 
 class GetAppImageUploadServerResponseModel(BaseResponse):
     upload_url: typing.Optional[str] = None
 
 
-GetAppImagesResponseModel = AppWidgetsPhotos
-
-
 class GetGroupImageUploadServerResponseModel(BaseResponse):
     upload_url: typing.Optional[str] = None
-
-
-GetGroupImagesResponseModel = AppWidgetsPhotos
-
-
-GetImagesByIdResponseModel = typing.List[AppWidgetsPhoto]
-
-
-SaveAppImageResponseModel = AppWidgetsPhoto
-
-
-SaveGroupImageResponseModel = AppWidgetsPhoto
 
 
 for item in locals().copy().values():
