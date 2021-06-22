@@ -1327,6 +1327,19 @@ class AppsAppType(enum.Enum):
     MINI_APP = "mini_app"
 
 
+class AppsCatalogList(BaseModel):
+    """VK Object AppsCatalogList
+
+    count - Total number
+    items -
+    profiles -
+    """
+
+    count: int = None
+    items: typing.List["AppsApp"] = None
+    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+
+
 class AppsLeaderboard(BaseModel):
     """VK Object AppsLeaderboard
 
@@ -2992,6 +3005,7 @@ class UsersUserFull(UsersUser):
     has_email -
     has_mobile - Information whether the user specified his phone number
     has_photo - Information whether the user has main photo
+    has_unseen_stories -
     hash -
     home_phone - User's additional phone number
     home_town - User hometown
@@ -3111,6 +3125,7 @@ class UsersUserFull(UsersUser):
     has_email: typing.Optional[bool] = None
     has_mobile: typing.Optional["BaseBoolInt"] = None
     has_photo: typing.Optional["BaseBoolInt"] = None
+    has_unseen_stories: typing.Optional[bool] = None
     hash: typing.Optional[str] = None
     home_phone: typing.Optional[str] = None
     home_town: typing.Optional[str] = None
@@ -3548,6 +3563,7 @@ class GroupsFields(enum.Enum):
     VIDEO_LIVE_LEVEL = "video_live_level"
     VIDEO_LIVE_COUNT = "video_live_count"
     CLIPS_COUNT = "clips_count"
+    HAS_UNSEEN_STORIES = "has_unseen_stories"
     IS_BUSINESS = "is_business"
     TEXTLIVES_COUNT = "textlives_count"
 
@@ -3739,6 +3755,7 @@ class GroupsGroupFull(GroupsGroup):
     has_group_channel -
     has_market_app - Information whether community has installed market app
     has_photo - Information whether community has photo
+    has_unseen_stories -
     invited_by - Inviter ID
     is_adult - Information whether community is adult
     is_favorite - Information whether community is in faves
@@ -3796,6 +3813,7 @@ class GroupsGroupFull(GroupsGroup):
     has_group_channel: typing.Optional[bool] = None
     has_market_app: typing.Optional[bool] = None
     has_photo: typing.Optional["BaseBoolInt"] = None
+    has_unseen_stories: typing.Optional[bool] = None
     invited_by: typing.Optional[int] = None
     is_adult: typing.Optional["BaseBoolInt"] = None
     is_favorite: typing.Optional["BaseBoolInt"] = None
@@ -6491,6 +6509,7 @@ class OrdersSubscription(BaseModel):
     application_name - Subscription's application name
     cancel_reason - Cancel reason
     create_time - Date of creation in Unixtime
+    expire_time - Subscription expiration time in Unixtime
     id - Subscription ID
     item_id - Subscription order item
     next_bill_time - Date of next bill in Unixtime
@@ -6510,6 +6529,7 @@ class OrdersSubscription(BaseModel):
     application_name: typing.Optional[str] = None
     cancel_reason: typing.Optional[str] = None
     create_time: int = None
+    expire_time: typing.Optional[int] = None
     id: int = None
     item_id: str = None
     next_bill_time: typing.Optional[int] = None
@@ -7272,6 +7292,7 @@ class SearchHint(BaseModel):
     description - Object description
     _global - Information whether the object has been found globally
     group -
+    link -
     profile -
     section -
     type -
@@ -7281,8 +7302,9 @@ class SearchHint(BaseModel):
     description: str = None
     _global: typing.Optional["BaseBoolInt"] = None
     group: typing.Optional["GroupsGroup"] = None
+    link: typing.Optional["BaseLink"] = None
     profile: typing.Optional["UsersUserMin"] = None
-    section: "SearchHintSection" = None
+    section: typing.Optional["SearchHintSection"] = None
     type: "SearchHintType" = None
 
 
@@ -7296,6 +7318,7 @@ class SearchHintSection(enum.Enum):
     PEOPLE = "people"
     FRIENDS = "friends"
     MUTUAL_FRIENDS = "mutual_friends"
+    PROMO = "promo"
 
 
 class SearchHintType(enum.Enum):
@@ -7306,6 +7329,7 @@ class SearchHintType(enum.Enum):
     VK_APP = "vk_app"
     APP = "app"
     HTML5_GAME = "html5_game"
+    LINK = "link"
 
 
 class SecureLevel(BaseModel):
@@ -8101,6 +8125,7 @@ class UsersFields(enum.Enum):
     FRIENDSHIP_WEEKS = "friendship_weeks"
     CAN_INVITE_TO_CHATS = "can_invite_to_chats"
     STORIES_ARCHIVE_COUNT = "stories_archive_count"
+    HAS_UNSEEN_STORIES = "has_unseen_stories"
     VIDEO_LIVE_LEVEL = "video_live_level"
     VIDEO_LIVE_COUNT = "video_live_count"
     CLIPS_COUNT = "clips_count"
@@ -8689,20 +8714,30 @@ class WallAppPost(BaseModel):
 class WallAttachedNote(BaseModel):
     """VK Object WallAttachedNote
 
+    can_comment -
     comments - Comments number
     date - Date when the note has been created in Unixtime
     id - Note ID
     owner_id - Note owner's ID
+    privacy_comment -
+    privacy_view -
     read_comments - Read comments number
+    text - Note text
+    text_wiki - Note wiki text
     title - Note title
     view_url - URL of the page with note preview
     """
 
+    can_comment: typing.Optional[int] = None
     comments: int = None
     date: int = None
     id: int = None
     owner_id: int = None
+    privacy_comment: typing.Optional[typing.List[str]] = None
+    privacy_view: typing.Optional[typing.List[str]] = None
     read_comments: int = None
+    text: typing.Optional[str] = None
+    text_wiki: typing.Optional[str] = None
     title: str = None
     view_url: str = None
 

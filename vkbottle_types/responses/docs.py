@@ -27,7 +27,7 @@ class GetTypesResponse(BaseResponse):
     response: "GetTypesResponseModel" = None
 
 
-class GetUploadServer(BaseResponse):
+class GetUploadServerResponse(BaseResponse):
     response: BaseUploadServer = None
 
 
