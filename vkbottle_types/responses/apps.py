@@ -1,11 +1,18 @@
 import inspect
 import typing
 from .base_response import BaseResponse
-from vkbottle_types.objects import AppsApp, AppsLeaderboard, AppsScope, UsersUserFull, UsersUserMin
+from vkbottle_types.objects import (
+    AppsApp,
+    AppsCatalogList,
+    AppsLeaderboard,
+    AppsScope,
+    UsersUserFull,
+    UsersUserMin
+)
 
 
 class GetCatalogResponse(BaseResponse):
-    response: "GetCatalogResponseModel" = None
+    response: AppsCatalogList = None
 
 
 class GetFriendsListResponse(BaseResponse):
@@ -42,12 +49,6 @@ class ImageUploadResponse(BaseResponse):
 
 class SendRequestResponse(BaseResponse):
     response: int = None
-
-
-class GetCatalogResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppsApp"]] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
 
 
 class GetFriendsListResponseModel(BaseResponse):

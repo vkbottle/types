@@ -106,6 +106,7 @@ class WallCategory(BaseCategory):
         poster_bkg_owner_id: typing.Optional[int] = None,
         poster_bkg_access_hash: typing.Optional[str] = None,
         copyright: typing.Optional[str] = None,
+        topic_id: typing.Optional[int] = None,
         **kwargs
     ) -> wall.EditResponseModel:
         """Edits a post on a user wall or community wall.
@@ -127,6 +128,7 @@ class WallCategory(BaseCategory):
         :param poster_bkg_owner_id:
         :param poster_bkg_access_hash:
         :param copyright:
+        :param topic_id: Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method
         """
 
         params = self.get_set_params(locals())
@@ -374,6 +376,7 @@ class WallCategory(BaseCategory):
         donut_paid_duration: typing.Optional[int] = None,
         mute_notifications: typing.Optional[bool] = None,
         copyright: typing.Optional[str] = None,
+        topic_id: typing.Optional[int] = None,
         **kwargs
     ) -> wall.PostResponseModel:
         """Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
@@ -395,6 +398,7 @@ class WallCategory(BaseCategory):
         :param donut_paid_duration:
         :param mute_notifications:
         :param copyright:
+        :param topic_id: Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method
         """
 
         params = self.get_set_params(locals())

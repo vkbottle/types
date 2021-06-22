@@ -54,7 +54,7 @@ class AppsCategory(BaseCategory):
         genre_id: typing.Optional[int] = None,
         filter: typing.Optional[str] = None,
         **kwargs
-    ) -> apps.GetCatalogResponseModel:
+    ) -> apps.AppsCatalogList:
         """Returns a list of applications (apps) available to users in the App Catalog.
         :param count: Number of apps to return.
         :param sort: Sort order: 'popular_today' — popular for one day (default), 'visitors' — by visitors number , 'create_date' — by creation date, 'growth_rate' — by growth rate, 'popular_week' — popular for one week

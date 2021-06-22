@@ -39,7 +39,7 @@ class DocsCategory(BaseCategory):
         self,
         owner_id: int,
         doc_id: int,
-        title: typing.Optional[str] = None,
+        title: str,
         tags: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> int:
@@ -130,7 +130,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getUploadServer", params)
-        model = docs.GetUploadServer
+        model = docs.GetUploadServerResponse
         return model(**response).response
 
     async def get_wall_upload_server(
