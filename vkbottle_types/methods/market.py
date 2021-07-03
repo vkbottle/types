@@ -52,6 +52,7 @@ class MarketCategory(BaseCategory):
         title: str,
         photo_id: typing.Optional[int] = None,
         main_album: typing.Optional[bool] = None,
+        is_hidden: typing.Optional[bool] = None,
         **kwargs
     ) -> market.AddAlbumResponseModel:
         """Creates new collection of items
@@ -59,6 +60,7 @@ class MarketCategory(BaseCategory):
         :param title: Collection title.
         :param photo_id: Cover photo ID.
         :param main_album: Set as main ('1' - set, '0' - no).
+        :param is_hidden: Set as hidden
         """
 
         params = self.get_set_params(locals())
@@ -67,11 +69,15 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def add_to_album(
-        self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
+        self,
+        owner_id: int,
+        item_ids: typing.List[int],
+        album_ids: typing.List[int],
+        **kwargs
     ) -> int:
         """Adds an item to one or multiple collections.
         :param owner_id: ID of an item owner community.
-        :param item_id: Item ID.
+        :param item_ids:
         :param album_ids: Collections IDs to add item to.
         """
 
@@ -186,6 +192,7 @@ class MarketCategory(BaseCategory):
         title: str,
         photo_id: typing.Optional[int] = None,
         main_album: typing.Optional[bool] = None,
+        is_hidden: typing.Optional[bool] = None,
         **kwargs
     ) -> int:
         """Edits a collection of items
@@ -194,6 +201,7 @@ class MarketCategory(BaseCategory):
         :param title: Collection title.
         :param photo_id: Cover photo id
         :param main_album: Set as main ('1' - set, '0' - no).
+        :param is_hidden: Set as hidden
         """
 
         params = self.get_set_params(locals())
