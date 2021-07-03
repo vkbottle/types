@@ -128,7 +128,7 @@ class WallCategory(BaseCategory):
         :param poster_bkg_owner_id:
         :param poster_bkg_access_hash:
         :param copyright:
-        :param topic_id: Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method
+        :param topic_id: Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
         """
 
         params = self.get_set_params(locals())
@@ -398,7 +398,7 @@ class WallCategory(BaseCategory):
         :param donut_paid_duration:
         :param mute_notifications:
         :param copyright:
-        :param topic_id: Topic ID. Allowed values can be achieved from newsfeed.getPostTopics method
+        :param topic_id: Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
         """
 
         params = self.get_set_params(locals())

@@ -443,7 +443,7 @@ class AdsAd(BaseModel):
     """
 
     ad_format: int = None
-    ad_platform: typing.Optional[typing.List[typing.Union[int, str]]] = None
+    ad_platform: typing.Optional[typing.Union[int, str]] = None
     all_limit: int = None
     approved: "AdsAdApproved" = None
     autobidding_max_cost: typing.Optional[int] = None
@@ -510,7 +510,7 @@ class AdsAdLayout(BaseModel):
     image_src_2x: typing.Optional[str] = None
     link_domain: typing.Optional[str] = None
     link_url: str = None
-    preview_link: typing.Optional[typing.List[typing.Union[int, str]]] = None
+    preview_link: typing.Optional[typing.Union[int, str]] = None
     title: str = None
     video: typing.Optional["BaseBoolInt"] = None
 
@@ -530,13 +530,16 @@ class AdsCampaign(BaseModel):
     all_limit - Campaign's total limit, rubles
     create_time - Campaign create time, as Unixtime
     day_limit - Campaign's day limit, rubles
+    goal_type - Campaign goal type
     id - Campaign ID
+    is_cbo_enabled - Shows if Campaign Budget Optimization is on
     name - Campaign title
     start_time - Campaign start time, as Unixtime
     status -
     stop_time - Campaign stop time, as Unixtime
     type -
     update_time - Campaign update time, as Unixtime
+    user_goal_type - Campaign user goal type
     views_limit - Limit of views per user per campaign
     """
 
@@ -544,13 +547,16 @@ class AdsCampaign(BaseModel):
     all_limit: str = None
     create_time: typing.Optional[int] = None
     day_limit: str = None
+    goal_type: typing.Optional[int] = None
     id: int = None
+    is_cbo_enabled: typing.Optional[bool] = None
     name: str = None
     start_time: int = None
     status: "AdsCampaignStatus" = None
     stop_time: int = None
     type: "AdsCampaignType" = None
     update_time: typing.Optional[int] = None
+    user_goal_type: typing.Optional[int] = None
     views_limit: typing.Optional[int] = None
 
 
@@ -930,7 +936,6 @@ class AdsStatsFormat(BaseModel):
     impressions - Impressions number
     join_rate - Events number
     link_external_clicks - External clicks number
-    link_owner_clicks - Group clicks number
     month - Month as YYYY-MM
     overall - 1 if period=overall
     reach - Reach
@@ -946,7 +951,6 @@ class AdsStatsFormat(BaseModel):
     impressions: typing.Optional[int] = None
     join_rate: typing.Optional[int] = None
     link_external_clicks: typing.Optional[int] = None
-    link_owner_clicks: typing.Optional[int] = None
     month: typing.Optional[str] = None
     overall: typing.Optional[int] = None
     reach: typing.Optional[int] = None
@@ -1840,8 +1844,35 @@ class BaseSex(enum.IntEnum):
     male = 2
 
 
-class BaseSticker(BaseModel):
-    """VK Object BaseSticker
+class BaseStickerOld(BaseModel):
+    """VK Object BaseStickerOld
+
+    height - Height in px
+    id - Sticker ID
+    is_allowed - Information whether the sticker is allowed
+    photo_128 - URL of the preview image with 128 px in height
+    photo_256 - URL of the preview image with 256 px in height
+    photo_352 - URL of the preview image with 352 px in height
+    photo_512 - URL of the preview image with 512 px in height
+    photo_64 - URL of the preview image with 64 px in height
+    product_id - Pack ID
+    width - Width in px
+    """
+
+    height: typing.Optional[int] = None
+    id: typing.Optional[int] = None
+    is_allowed: typing.Optional[bool] = None
+    photo_128: typing.Optional[str] = None
+    photo_256: typing.Optional[str] = None
+    photo_352: typing.Optional[str] = None
+    photo_512: typing.Optional[str] = None
+    photo_64: typing.Optional[str] = None
+    product_id: typing.Optional[int] = None
+    width: typing.Optional[int] = None
+
+
+class BaseStickerNew(BaseModel):
+    """VK Object BaseStickerNew
 
     animation_url - URL of sticker animation script
     animations - Array of sticker animation script objects
@@ -1859,6 +1890,12 @@ class BaseSticker(BaseModel):
     is_allowed: typing.Optional[bool] = None
     product_id: typing.Optional[int] = None
     sticker_id: typing.Optional[int] = None
+
+
+class BaseSticker(BaseStickerOld, BaseStickerNew):
+    """VK Object BaseSticker"""
+
+    pass
 
 
 class AnimationScriptType(enum.Enum):
@@ -1879,7 +1916,7 @@ class BaseStickerAnimation(BaseModel):
     url: typing.Optional[str] = None
 
 
-BaseStickersList = typing.Optional[typing.List["BaseSticker"]]
+BaseStickersList = typing.Optional[typing.List["BaseStickerNew"]]
 
 
 class BaseUploadServer(BaseModel):
@@ -2085,6 +2122,21 @@ class BoardTopicPoll(BaseModel):
     votes: int = None
 
 
+class CallbackBase(BaseModel):
+    """VK Object CallbackBase
+
+    event_id - Unique event id. If it passed twice or more - you should ignore it.
+    group_id -
+    secret -
+    type -
+    """
+
+    event_id: str = None
+    group_id: int = None
+    secret: typing.Optional[str] = None
+    type: str = None
+
+
 class CallbackBoardPostDelete(BaseModel):
     """VK Object CallbackBoardPostDelete"""
 
@@ -2093,12 +2145,10 @@ class CallbackBoardPostDelete(BaseModel):
     topic_owner_id: int = None
 
 
-class CallbackConfirmationMessage(BaseModel):
-    """VK Object CallbackConfirmationMessage"""
+class CallbackConfirmation(CallbackBase):
+    """VK Object CallbackConfirmation"""
 
-    group_id: int = None
-    secret: typing.Optional[str] = None
-    type: "CallbackMessageType" = None
+    type: typing.Optional[str] = None
 
 
 class CallbackDonutMoneyWithdraw(BaseModel):
@@ -2279,33 +2329,18 @@ class CallbackMarketCommentDelete(BaseModel):
     user_id: int = None
 
 
-class CallbackMessageAllow(BaseModel):
+class CallbackMessageAllow(CallbackBase):
     """VK Object CallbackMessageAllow"""
+
+    object: typing.Optional["CallbackMessageAllowObject"] = None
+    type: typing.Optional[str] = None
+
+
+class CallbackMessageAllowObject(BaseModel):
+    """VK Object CallbackMessageAllowObject"""
 
     key: str = None
     user_id: int = None
-
-
-class CallbackMessageBase(BaseModel):
-    """VK Object CallbackMessageBase
-
-    event_id - Unique event id. If it passed twice or more - you should ignore it.
-    group_id -
-    object -
-    type -
-    """
-
-    event_id: typing.Optional[str] = None
-    group_id: int = None
-    object: "CallbackMessageData" = None
-    type: "CallbackMessageType" = None
-
-
-class CallbackMessageData(BaseModel):
-    """VK Object CallbackMessageData"""
-
-    client_info: typing.Optional["ClientInfoForBots"] = None
-    message: typing.Optional[typing.Any] = None
 
 
 class CallbackMessageDeny(BaseModel):
@@ -2314,52 +2349,32 @@ class CallbackMessageDeny(BaseModel):
     user_id: int = None
 
 
-class CallbackMessageType(enum.Enum):
-    """ CallbackMessageType enum """
+class CallbackMessageEdit(CallbackBase):
+    """VK Object CallbackMessageEdit"""
 
-    AUDIO_NEW = "audio_new"
-    BOARD_POST_NEW = "board_post_new"
-    BOARD_POST_EDIT = "board_post_edit"
-    BOARD_POST_RESTORE = "board_post_restore"
-    BOARD_POST_DELETE = "board_post_delete"
-    CONFIRMATION = "confirmation"
-    GROUP_LEAVE = "group_leave"
-    GROUP_JOIN = "group_join"
-    GROUP_CHANGE_PHOTO = "group_change_photo"
-    GROUP_CHANGE_SETTINGS = "group_change_settings"
-    GROUP_OFFICERS_EDIT = "group_officers_edit"
-    LEAD_FORMS_NEW = "lead_forms_new"
-    MARKET_COMMENT_NEW = "market_comment_new"
-    MARKET_COMMENT_DELETE = "market_comment_delete"
-    MARKET_COMMENT_EDIT = "market_comment_edit"
-    MARKET_COMMENT_RESTORE = "market_comment_restore"
-    MESSAGE_ALLOW = "message_allow"
-    MESSAGE_NEW = "message_new"
-    MESSAGE_DENY = "message_deny"
-    MESSAGE_READ = "message_read"
-    MESSAGE_REPLY = "message_reply"
-    MESSAGE_EDIT = "message_edit"
-    MESSAGE_TYPING_STATE = "message_typing_state"
-    MESSAGES_EDIT = "messages_edit"
-    PHOTO_NEW = "photo_new"
-    PHOTO_COMMENT_NEW = "photo_comment_new"
-    PHOTO_COMMENT_DELETE = "photo_comment_delete"
-    PHOTO_COMMENT_EDIT = "photo_comment_edit"
-    PHOTO_COMMENT_RESTORE = "photo_comment_restore"
-    POLL_VOTE_NEW = "poll_vote_new"
-    USER_BLOCK = "user_block"
-    USER_UNBLOCK = "user_unblock"
-    VIDEO_NEW = "video_new"
-    VIDEO_COMMENT_NEW = "video_comment_new"
-    VIDEO_COMMENT_DELETE = "video_comment_delete"
-    VIDEO_COMMENT_EDIT = "video_comment_edit"
-    VIDEO_COMMENT_RESTORE = "video_comment_restore"
-    WALL_POST_NEW = "wall_post_new"
-    WALL_REPLY_NEW = "wall_reply_new"
-    WALL_REPLY_EDIT = "wall_reply_edit"
-    WALL_REPLY_DELETE = "wall_reply_delete"
-    WALL_REPLY_RESTORE = "wall_reply_restore"
-    WALL_REPOST = "wall_repost"
+    object: typing.Optional["MessagesMessage"] = None
+    type: typing.Optional[str] = None
+
+
+class CallbackMessageNew(CallbackBase):
+    """VK Object CallbackMessageNew"""
+
+    object: typing.Optional[typing.Any] = None
+    type: typing.Optional[str] = None
+
+
+class CallbackMessageObject(BaseModel):
+    """VK Object CallbackMessageObject"""
+
+    client_info: typing.Optional["ClientInfoForBots"] = None
+    message: typing.Optional["MessagesMessage"] = None
+
+
+class CallbackMessageReply(CallbackBase):
+    """VK Object CallbackMessageReply"""
+
+    object: typing.Optional["MessagesMessage"] = None
+    type: typing.Optional[str] = None
 
 
 class CallbackPhotoComment(BaseModel):
@@ -2398,6 +2413,54 @@ class CallbackQrScan(BaseModel):
     subtype: str = None
     type: str = None
     user_id: int = None
+
+
+class CallbackType(enum.Enum):
+    """ CallbackType enum """
+
+    AUDIO_NEW = "audio_new"
+    BOARD_POST_NEW = "board_post_new"
+    BOARD_POST_EDIT = "board_post_edit"
+    BOARD_POST_RESTORE = "board_post_restore"
+    BOARD_POST_DELETE = "board_post_delete"
+    CONFIRMATION = "confirmation"
+    GROUP_LEAVE = "group_leave"
+    GROUP_JOIN = "group_join"
+    GROUP_CHANGE_PHOTO = "group_change_photo"
+    GROUP_CHANGE_SETTINGS = "group_change_settings"
+    GROUP_OFFICERS_EDIT = "group_officers_edit"
+    LEAD_FORMS_NEW = "lead_forms_new"
+    MARKET_COMMENT_NEW = "market_comment_new"
+    MARKET_COMMENT_DELETE = "market_comment_delete"
+    MARKET_COMMENT_EDIT = "market_comment_edit"
+    MARKET_COMMENT_RESTORE = "market_comment_restore"
+    MESSAGE_NEW = "message_new"
+    MESSAGE_REPLY = "message_reply"
+    MESSAGE_EDIT = "message_edit"
+    MESSAGE_ALLOW = "message_allow"
+    MESSAGE_DENY = "message_deny"
+    MESSAGE_READ = "message_read"
+    MESSAGE_TYPING_STATE = "message_typing_state"
+    MESSAGES_EDIT = "messages_edit"
+    PHOTO_NEW = "photo_new"
+    PHOTO_COMMENT_NEW = "photo_comment_new"
+    PHOTO_COMMENT_DELETE = "photo_comment_delete"
+    PHOTO_COMMENT_EDIT = "photo_comment_edit"
+    PHOTO_COMMENT_RESTORE = "photo_comment_restore"
+    POLL_VOTE_NEW = "poll_vote_new"
+    USER_BLOCK = "user_block"
+    USER_UNBLOCK = "user_unblock"
+    VIDEO_NEW = "video_new"
+    VIDEO_COMMENT_NEW = "video_comment_new"
+    VIDEO_COMMENT_DELETE = "video_comment_delete"
+    VIDEO_COMMENT_EDIT = "video_comment_edit"
+    VIDEO_COMMENT_RESTORE = "video_comment_restore"
+    WALL_POST_NEW = "wall_post_new"
+    WALL_REPLY_NEW = "wall_reply_new"
+    WALL_REPLY_EDIT = "wall_reply_edit"
+    WALL_REPLY_DELETE = "wall_reply_delete"
+    WALL_REPLY_RESTORE = "wall_reply_restore"
+    WALL_REPOST = "wall_repost"
 
 
 class CallbackUserBlock(BaseModel):
@@ -3002,7 +3065,6 @@ class UsersUserFull(UsersUser):
     followers_count - Number of user's followers
     games -
     graduation - Graduation year
-    has_email -
     has_mobile - Information whether the user specified his phone number
     has_photo - Information whether the user has main photo
     has_unseen_stories -
@@ -3014,6 +3076,7 @@ class UsersUserFull(UsersUser):
     is_favorite - Information whether the requested user is in faves of current user
     is_friend - Information whether the user is a friend of current user
     is_hidden_from_feed - Information whether the requested user is hidden from current user's newsfeed
+    is_no_index - Access to user profile is restricted for search engines
     is_service -
     is_subscribed_podcasts - Information whether current user is subscribed to podcasts
     is_video_live_notifications_blocked -
@@ -3122,7 +3185,6 @@ class UsersUserFull(UsersUser):
     followers_count: typing.Optional[int] = None
     games: typing.Optional[str] = None
     graduation: typing.Optional[int] = None
-    has_email: typing.Optional[bool] = None
     has_mobile: typing.Optional["BaseBoolInt"] = None
     has_photo: typing.Optional["BaseBoolInt"] = None
     has_unseen_stories: typing.Optional[bool] = None
@@ -3134,6 +3196,7 @@ class UsersUserFull(UsersUser):
     is_favorite: typing.Optional["BaseBoolInt"] = None
     is_friend: typing.Optional["BaseBoolInt"] = None
     is_hidden_from_feed: typing.Optional["BaseBoolInt"] = None
+    is_no_index: typing.Optional[bool] = None
     is_service: typing.Optional[bool] = None
     is_subscribed_podcasts: typing.Optional[bool] = None
     is_video_live_notifications_blocked: typing.Optional["BaseBoolInt"] = None
@@ -5348,10 +5411,10 @@ class MessagesMessage(BaseModel):
         return self.id or self.conversation_message_id
 
     def get_payload_json(
-            self,
-            throw_error: bool = False,
-            unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
-            json: typing.Any = __import__("json"),
+        self,
+        throw_error: bool = False,
+        unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
+        json: typing.Any = __import__("json"),
     ) -> typing.Union[dict, None]:
         try:
             return json.loads(self.payload)
@@ -9064,6 +9127,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     is_pinned - Information whether the post is pinned
     marked_as_ads - Information whether the post is marked as ads
     short_text_rate - Preview length control parameter
+    topic_id - Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method
     """
 
     can_delete: typing.Optional["BaseBoolInt"] = None
@@ -9076,6 +9140,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     is_pinned: typing.Optional[int] = None
     marked_as_ads: typing.Optional["BaseBoolInt"] = None
     short_text_rate: typing.Optional[int] = None
+    topic_id: typing.Optional[int] = None
 
 
 class WidgetsCommentMedia(BaseModel):
