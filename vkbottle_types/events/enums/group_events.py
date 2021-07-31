@@ -1,7 +1,9 @@
 import enum
 
+from .str_enum import StrEnum
 
-class GroupEventType(enum.Enum):
+
+class GroupEventType(StrEnum):
     MESSAGE_NEW = "message_new"
     MESSAGE_REPLY = "message_reply"
     MESSAGE_EDIT = "message_edit"
