@@ -5443,6 +5443,7 @@ class MessagesMessageAction(BaseModel):
     photo: typing.Optional["MessagesMessageActionPhoto"] = None
     text: typing.Optional[str] = None
     type: "MessagesMessageActionStatus" = None
+    style: typing.Optional[str] = None
 
 
 class MessagesMessageActionPhoto(BaseModel):
@@ -5472,6 +5473,7 @@ class MessagesMessageActionStatus(enum.Enum):
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
     CHAT_SCREENSHOT = "chat_screenshot"
+    CONVERSATION_STYLE_UPDATE = "conversation_style_update"
 
 
 class MessagesMessageAttachment(BaseModel):

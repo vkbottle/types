@@ -6,7 +6,7 @@ from vkbottle_types.responses import base, users
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        user_ids: typing.Optional[typing.List[str]] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
