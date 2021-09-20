@@ -140,8 +140,8 @@ class PhotosCategory(BaseCategory):
         photo_id: int,
         owner_id: typing.Optional[int] = None,
         caption: typing.Optional[str] = None,
-        latitude: typing.Optional[int] = None,
-        longitude: typing.Optional[int] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
         place_str: typing.Optional[str] = None,
         foursquare_id: typing.Optional[str] = None,
         delete_place: typing.Optional[bool] = None,
@@ -630,10 +630,10 @@ class PhotosCategory(BaseCategory):
         photo_id: int,
         user_id: int,
         owner_id: typing.Optional[int] = None,
-        x: typing.Optional[int] = None,
-        y: typing.Optional[int] = None,
-        x2: typing.Optional[int] = None,
-        y2: typing.Optional[int] = None,
+        x: typing.Optional[float] = None,
+        y: typing.Optional[float] = None,
+        x2: typing.Optional[float] = None,
+        y2: typing.Optional[float] = None,
         **kwargs
     ) -> int:
         """Adds a tag on the photo.
@@ -778,8 +778,8 @@ class PhotosCategory(BaseCategory):
         server: typing.Optional[int] = None,
         photos_list: typing.Optional[str] = None,
         hash: typing.Optional[str] = None,
-        latitude: typing.Optional[int] = None,
-        longitude: typing.Optional[int] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
         caption: typing.Optional[str] = None,
         **kwargs
     ) -> typing.List[photos.PhotosPhoto]:
@@ -894,8 +894,8 @@ class PhotosCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         server: typing.Optional[int] = None,
         hash: typing.Optional[str] = None,
-        latitude: typing.Optional[int] = None,
-        longitude: typing.Optional[int] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
         caption: typing.Optional[str] = None,
         **kwargs
     ) -> typing.List[photos.PhotosPhoto]:
@@ -918,8 +918,8 @@ class PhotosCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        lat: typing.Optional[int] = None,
-        long: typing.Optional[int] = None,
+        lat: typing.Optional[float] = None,
+        long: typing.Optional[float] = None,
         start_time: typing.Optional[int] = None,
         end_time: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,

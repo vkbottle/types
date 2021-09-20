@@ -106,7 +106,7 @@ class SecureCategory(BaseCategory):
 
     async def give_event_sticker(
         self, user_ids: typing.List[int], achievement_id: int, **kwargs
-    ) -> typing.List[secure.GiveEventStickerResponseModel]:
+    ) -> typing.List[secure.SecureGiveEventStickerItem]:
         """Opens the game achievement and gives the user a sticker
         :param user_ids:
         :param achievement_id:

@@ -15,7 +15,7 @@ from vkbottle_types.objects import (
     GroupsGroupCategoryFull,
     GroupsGroupDocs,
     GroupsGroupFull,
-    GroupsGroupFullMainSection,
+    GroupsGroupFullSection,
     GroupsGroupLink,
     GroupsGroupPhotos,
     GroupsGroupPublicCategoryList,
@@ -276,8 +276,8 @@ class GetSettingsResponseModel(BaseResponse):
     contacts: typing.Optional["BaseBoolInt"] = None
     links: typing.Optional["BaseBoolInt"] = None
     sections_list: typing.Optional[typing.List["GroupsSectionsListItem"]] = None
-    main_section: typing.Optional["GroupsGroupFullMainSection"] = None
-    secondary_section: typing.Optional[int] = None
+    main_section: typing.Optional["GroupsGroupFullSection"] = None
+    secondary_section: typing.Optional["GroupsGroupFullSection"] = None
     age_limits: typing.Optional["GroupsGroupAgeLimits"] = None
     country_id: typing.Optional[int] = None
     description: typing.Optional[str] = None

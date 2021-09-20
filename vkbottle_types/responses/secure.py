@@ -1,7 +1,13 @@
 import inspect
 import typing
 from .base_response import BaseResponse
-from vkbottle_types.objects import SecureLevel, SecureSmsNotification, SecureTokenChecked, SecureTransaction
+from vkbottle_types.objects import (
+    SecureGiveEventStickerItem,
+    SecureLevel,
+    SecureSmsNotification,
+    SecureTokenChecked,
+    SecureTransaction
+)
 
 
 class CheckTokenResponse(BaseResponse):
@@ -25,16 +31,11 @@ class GetUserLevelResponse(BaseResponse):
 
 
 class GiveEventStickerResponse(BaseResponse):
-    response: typing.List["GiveEventStickerResponseModel"] = None
+    response: typing.List["SecureGiveEventStickerItem"] = None
 
 
 class SendNotificationResponse(BaseResponse):
     response: typing.List[int] = None
-
-
-class GiveEventStickerResponseModel(BaseResponse):
-    user_id: typing.Optional[int] = None
-    status: typing.Optional[str] = None
 
 
 for item in locals().copy().values():

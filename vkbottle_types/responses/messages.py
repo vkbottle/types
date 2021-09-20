@@ -3,7 +3,6 @@ import typing
 from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseBoolInt,
-    BaseMessageError,
     GroupsGroup,
     GroupsGroupFull,
     MessagesChat,
@@ -13,6 +12,7 @@ from vkbottle_types.objects import (
     MessagesConversation,
     MessagesConversationMember,
     MessagesConversationWithMessage,
+    MessagesGetConversationById,
     MessagesHistoryAttachment,
     MessagesLastActivity,
     MessagesLongpollMessages,
@@ -20,8 +20,9 @@ from vkbottle_types.objects import (
     MessagesMessage,
     MessagesMessagesArray,
     MessagesPinnedMessage,
+    MessagesSendUserIdsResponseItem,
     UsersUser,
-    UsersUserFull
+    UsersUserFull,
 )
 
 
@@ -86,7 +87,7 @@ class GetConversationsByIdExtendedResponse(BaseResponse):
 
 
 class GetConversationsByIdResponse(BaseResponse):
-    response: "GetConversationsByIdResponseModel" = None
+    response: MessagesGetConversationById = None
 
 
 class GetConversationsResponse(BaseResponse):
@@ -170,11 +171,11 @@ class SendResponse(BaseResponse):
 
 
 class SendUserIdsResponse(BaseResponse):
-    response: typing.List["SendUserIdsResponseModel"] = None
+    response: typing.List["MessagesSendUserIdsResponseItem"] = None
 
 
 class SendPeerIdsResponse(BaseResponse):
-    response: typing.List["SendUserIdsResponseModel"] = None
+    response: typing.List["MessagesSendUserIdsResponseItem"] = None
 
 
 class SetChatPhotoResponse(BaseResponse):
@@ -220,16 +221,9 @@ class GetConversationMembersResponseModel(BaseResponse):
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
-class GetConversationsByIdExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MessagesConversation"]] = None
+class GetConversationsByIdExtendedResponseModel(MessagesGetConversationById):
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-class GetConversationsByIdResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
 class GetConversationsResponseModel(BaseResponse):
@@ -326,13 +320,6 @@ class SearchExtendedResponseModel(BaseResponse):
 class SearchResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["MessagesMessage"]] = None
-
-
-class SendUserIdsResponseModel(BaseResponse):
-    peer_id: typing.Optional[int] = None
-    message_id: typing.Optional[int] = None
-    conversation_message_id: typing.Optional[int] = None
-    error: typing.Optional["BaseMessageError"] = None
 
 
 class SetChatPhotoResponseModel(BaseResponse):

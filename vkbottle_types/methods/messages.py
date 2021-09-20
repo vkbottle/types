@@ -124,8 +124,8 @@ class MessagesCategory(BaseCategory):
         self,
         peer_id: int,
         message: typing.Optional[str] = None,
-        lat: typing.Optional[int] = None,
-        long: typing.Optional[int] = None,
+        lat: typing.Optional[float] = None,
+        long: typing.Optional[float] = None,
         attachment: typing.Optional[str] = None,
         keep_forward_messages: typing.Optional[bool] = None,
         keep_snippets: typing.Optional[bool] = None,
@@ -288,7 +288,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> messages.GetConversationsByIdResponseModel:
+    ) -> messages.MessagesGetConversationById:
         """Returns conversations by their IDs
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param extended: Return extended properties
@@ -727,8 +727,8 @@ class MessagesCategory(BaseCategory):
         chat_id: typing.Optional[int] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
         message: typing.Optional[str] = None,
-        lat: typing.Optional[int] = None,
-        long: typing.Optional[int] = None,
+        lat: typing.Optional[float] = None,
+        long: typing.Optional[float] = None,
         attachment: typing.Optional[str] = None,
         reply_to: typing.Optional[int] = None,
         forward_messages: typing.Optional[typing.List[int]] = None,
@@ -775,10 +775,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.send", params)
         model = self.get_model(
-            {
-                ("user_ids",): messages.SendUserIdsResponse,
-                ("peer_ids",): messages.SendPeerIdsResponse,
-            },
+            {("user_ids",): messages.SendUserIdsResponse},
             default=messages.SendResponse,
             params=params,
         )

@@ -135,7 +135,7 @@ class AccountOffer(BaseModel):
     title - Offer title
     """
 
-    currency_amount: typing.Optional[int] = None
+    currency_amount: typing.Optional[float] = None
     description: typing.Optional[str] = None
     id: typing.Optional[int] = None
     img: typing.Optional[str] = None
@@ -908,8 +908,8 @@ class AdsStatsAge(BaseModel):
     value - Age interval
     """
 
-    clicks_rate: typing.Optional[int] = None
-    impressions_rate: typing.Optional[int] = None
+    clicks_rate: typing.Optional[float] = None
+    impressions_rate: typing.Optional[float] = None
     value: typing.Optional[str] = None
 
 
@@ -922,8 +922,8 @@ class AdsStatsCities(BaseModel):
     value - City ID
     """
 
-    clicks_rate: typing.Optional[int] = None
-    impressions_rate: typing.Optional[int] = None
+    clicks_rate: typing.Optional[float] = None
+    impressions_rate: typing.Optional[float] = None
     name: typing.Optional[str] = None
     value: typing.Optional[int] = None
 
@@ -969,8 +969,8 @@ class AdsStatsSex(BaseModel):
     value -
     """
 
-    clicks_rate: typing.Optional[int] = None
-    impressions_rate: typing.Optional[int] = None
+    clicks_rate: typing.Optional[float] = None
+    impressions_rate: typing.Optional[float] = None
     value: typing.Optional["AdsStatsSexValue"] = None
 
 
@@ -982,8 +982,8 @@ class AdsStatsSexAge(BaseModel):
     value - Sex and age interval
     """
 
-    clicks_rate: typing.Optional[int] = None
-    impressions_rate: typing.Optional[int] = None
+    clicks_rate: typing.Optional[float] = None
+    impressions_rate: typing.Optional[float] = None
     value: typing.Optional[str] = None
 
 
@@ -1036,14 +1036,14 @@ class AdsTargStats(BaseModel):
     """
 
     audience_count: int = None
-    recommended_cpc: typing.Optional[int] = None
-    recommended_cpc_50: typing.Optional[int] = None
-    recommended_cpc_70: typing.Optional[int] = None
-    recommended_cpc_90: typing.Optional[int] = None
-    recommended_cpm: typing.Optional[int] = None
-    recommended_cpm_50: typing.Optional[int] = None
-    recommended_cpm_70: typing.Optional[int] = None
-    recommended_cpm_90: typing.Optional[int] = None
+    recommended_cpc: typing.Optional[float] = None
+    recommended_cpc_50: typing.Optional[float] = None
+    recommended_cpc_70: typing.Optional[float] = None
+    recommended_cpc_90: typing.Optional[float] = None
+    recommended_cpm: typing.Optional[float] = None
+    recommended_cpm_50: typing.Optional[float] = None
+    recommended_cpm_70: typing.Optional[float] = None
+    recommended_cpm_90: typing.Optional[float] = None
 
 
 class AdsTargSuggestions(BaseModel):
@@ -1476,10 +1476,10 @@ class BaseCropPhotoCrop(BaseModel):
     y2 - Coordinate Y of the right lower corner
     """
 
-    x: int = None
-    x2: int = None
-    y: int = None
-    y2: int = None
+    x: float = None
+    x2: float = None
+    y: float = None
+    y2: float = None
 
 
 class BaseCropPhotoRect(BaseModel):
@@ -1491,10 +1491,10 @@ class BaseCropPhotoRect(BaseModel):
     y2 - Coordinate Y of the right lower corner
     """
 
-    x: int = None
-    x2: int = None
-    y: int = None
-    y2: int = None
+    x: float = None
+    x2: float = None
+    y: float = None
+    y2: float = None
 
 
 class BaseError(BaseModel):
@@ -1532,8 +1532,8 @@ class BaseGeo(BaseModel):
 class BaseGeoCoordinates(BaseModel):
     """VK Object BaseGeoCoordinates"""
 
-    latitude: int = None
-    longitude: int = None
+    latitude: float = None
+    longitude: float = None
 
 
 class BaseGradientPoint(BaseModel):
@@ -1544,7 +1544,7 @@ class BaseGradientPoint(BaseModel):
     """
 
     color: str = None
-    position: int = None
+    position: float = None
 
 
 class BaseImage(BaseModel):
@@ -1634,7 +1634,7 @@ class BaseLinkApplication(BaseModel):
     store -
     """
 
-    app_id: typing.Optional[int] = None
+    app_id: typing.Optional[float] = None
     store: typing.Optional["BaseLinkApplicationStore"] = None
 
 
@@ -1645,7 +1645,7 @@ class BaseLinkApplicationStore(BaseModel):
     name - Store name
     """
 
-    id: typing.Optional[int] = None
+    id: typing.Optional[float] = None
     name: typing.Optional[str] = None
 
 
@@ -1730,7 +1730,7 @@ class BaseLinkRating(BaseModel):
     """
 
     reviews_count: typing.Optional[int] = None
-    stars: typing.Optional[int] = None
+    stars: typing.Optional[float] = None
 
 
 class BaseMessageError(BaseModel):
@@ -1798,8 +1798,8 @@ class BasePlace(BaseModel):
     created: typing.Optional[int] = None
     icon: typing.Optional[str] = None
     id: typing.Optional[int] = None
-    latitude: typing.Optional[int] = None
-    longitude: typing.Optional[int] = None
+    latitude: typing.Optional[float] = None
+    longitude: typing.Optional[float] = None
     title: typing.Optional[str] = None
     type: typing.Optional[str] = None
 
@@ -2154,8 +2154,8 @@ class CallbackConfirmation(CallbackBase):
 class CallbackDonutMoneyWithdraw(BaseModel):
     """VK Object CallbackDonutMoneyWithdraw"""
 
-    amount: int = None
-    amount_without_fee: int = None
+    amount: float = None
+    amount_without_fee: float = None
 
 
 class CallbackDonutMoneyWithdrawError(BaseModel):
@@ -2174,7 +2174,7 @@ class CallbackDonutSubscriptionCreate(BaseModel):
     """VK Object CallbackDonutSubscriptionCreate"""
 
     amount: int = None
-    amount_without_fee: int = None
+    amount_without_fee: float = None
     user_id: typing.Optional[int] = None
 
 
@@ -2187,8 +2187,8 @@ class CallbackDonutSubscriptionExpired(BaseModel):
 class CallbackDonutSubscriptionPriceChanged(BaseModel):
     """VK Object CallbackDonutSubscriptionPriceChanged"""
 
-    amount_diff: typing.Optional[int] = None
-    amount_diff_without_fee: typing.Optional[int] = None
+    amount_diff: typing.Optional[float] = None
+    amount_diff_without_fee: typing.Optional[float] = None
     amount_new: int = None
     amount_old: int = None
     user_id: typing.Optional[int] = None
@@ -2198,7 +2198,7 @@ class CallbackDonutSubscriptionProlonged(BaseModel):
     """VK Object CallbackDonutSubscriptionProlonged"""
 
     amount: int = None
-    amount_without_fee: int = None
+    amount_without_fee: float = None
     user_id: typing.Optional[int] = None
 
 
@@ -3243,7 +3243,7 @@ class UsersUserFull(UsersUser):
     status_audio: typing.Optional["AudioAudio"] = None
     stories_archive_count: typing.Optional[int] = None
     test: typing.Optional["BaseBoolInt"] = None
-    timezone: typing.Optional[int] = None
+    timezone: typing.Optional[float] = None
     tv: typing.Optional[str] = None
     twitter: typing.Optional[str] = None
     type: typing.Optional["UsersUserType"] = None
@@ -3359,8 +3359,8 @@ class GroupsAddress(BaseModel):
     country_id: typing.Optional[int] = None
     distance: typing.Optional[int] = None
     id: int = None
-    latitude: typing.Optional[int] = None
-    longitude: typing.Optional[int] = None
+    latitude: typing.Optional[float] = None
+    longitude: typing.Optional[float] = None
     metro_station_id: typing.Optional[int] = None
     phone: typing.Optional[str] = None
     place_id: typing.Optional[int] = None
@@ -3887,13 +3887,13 @@ class GroupsGroupFull(GroupsGroup):
     links: typing.Optional[typing.List["GroupsLinksItem"]] = None
     live_covers: typing.Optional["GroupsLiveCovers"] = None
     main_album_id: typing.Optional[int] = None
-    main_section: typing.Optional["GroupsGroupFullMainSection"] = None
+    main_section: typing.Optional["GroupsGroupFullSection"] = None
     market: typing.Optional["GroupsMarketInfo"] = None
     member_status: typing.Optional["GroupsGroupFullMemberStatus"] = None
     members_count: typing.Optional[int] = None
     online_status: typing.Optional["GroupsOnlineStatus"] = None
     requests_count: typing.Optional[int] = None
-    secondary_section: typing.Optional[int] = None
+    secondary_section: typing.Optional["GroupsGroupFullSection"] = None
     site: typing.Optional[str] = None
     status: typing.Optional[str] = None
     status_audio: typing.Optional["AudioAudio"] = None
@@ -3915,17 +3915,6 @@ class GroupsGroupFullAgeLimits(enum.IntEnum):
     over_18 = 3
 
 
-class GroupsGroupFullMainSection(enum.IntEnum):
-    """ Main section of community """
-
-    absent = 0
-    photos = 1
-    topics = 2
-    audio = 3
-    video = 4
-    market = 5
-
-
 class GroupsGroupFullMemberStatus(enum.IntEnum):
     """ GroupsGroupFullMemberStatus enum """
 
@@ -3935,6 +3924,22 @@ class GroupsGroupFullMemberStatus(enum.IntEnum):
     declined = 3
     has_sent_a_request = 4
     invited = 5
+
+
+class GroupsGroupFullSection(enum.IntEnum):
+    """ Main section of community """
+
+    absent = 0
+    photos = 1
+    topics = 2
+    audio = 3
+    video = 4
+    market = 5
+    events = 10
+    addresses = 35
+    articles = 39
+    chats = 43
+    market_services = 51
 
 
 class GroupsGroupIsClosed(enum.IntEnum):
@@ -4182,13 +4187,13 @@ class GroupsLongPollEvents(BaseModel):
     board_post_edit: "BaseBoolInt" = None
     board_post_new: "BaseBoolInt" = None
     board_post_restore: "BaseBoolInt" = None
-    donut_money_withdraw: typing.Optional["BaseBoolInt"] = None
-    donut_money_withdraw_error: typing.Optional["BaseBoolInt"] = None
-    donut_subscription_cancelled: typing.Optional["BaseBoolInt"] = None
-    donut_subscription_create: typing.Optional["BaseBoolInt"] = None
-    donut_subscription_expired: typing.Optional["BaseBoolInt"] = None
-    donut_subscription_price_changed: typing.Optional["BaseBoolInt"] = None
-    donut_subscription_prolonged: typing.Optional["BaseBoolInt"] = None
+    donut_money_withdraw: "BaseBoolInt" = None
+    donut_money_withdraw_error: "BaseBoolInt" = None
+    donut_subscription_cancelled: "BaseBoolInt" = None
+    donut_subscription_create: "BaseBoolInt" = None
+    donut_subscription_expired: "BaseBoolInt" = None
+    donut_subscription_price_changed: "BaseBoolInt" = None
+    donut_subscription_prolonged: "BaseBoolInt" = None
     group_change_photo: "BaseBoolInt" = None
     group_change_settings: "BaseBoolInt" = None
     group_join: "BaseBoolInt" = None
@@ -5010,6 +5015,7 @@ class MessagesConversation(BaseModel):
     important -
     in_read - Last message user have read
     is_marked_unread - Is this conversation uread
+    last_conversation_message_id - Conversation message ID of the last message in conversation
     last_message_id - ID of the last message in conversation
     mentions - Ids of messages with mentions
     message_request_data -
@@ -5029,6 +5035,7 @@ class MessagesConversation(BaseModel):
     important: typing.Optional[bool] = None
     in_read: int = None
     is_marked_unread: typing.Optional[bool] = None
+    last_conversation_message_id: typing.Optional[int] = None
     last_message_id: int = None
     mentions: typing.Optional[typing.List[int]] = None
     message_request_data: typing.Optional["MessagesMessageRequestData"] = None
@@ -5155,6 +5162,17 @@ class MessagesForward(BaseModel):
     message_ids: typing.Optional[typing.List[int]] = None
     owner_id: typing.Optional[int] = None
     peer_id: typing.Optional[int] = None
+
+
+class MessagesGetConversationById(BaseModel):
+    """VK Object MessagesGetConversationById
+
+    count - Total number
+    items -
+    """
+
+    count: int = None
+    items: typing.List["MessagesConversation"] = None
 
 
 class MessagesGraffiti(BaseModel):
@@ -5595,6 +5613,15 @@ class MessagesPushSettings(BaseModel):
     no_sound: bool = None
 
 
+class MessagesSendUserIdsResponseItem(BaseModel):
+    """VK Object MessagesSendUserIdsResponseItem"""
+
+    conversation_message_id: typing.Optional[int] = None
+    error: typing.Optional["BaseMessageError"] = None
+    message_id: int = None
+    peer_id: int = None
+
+
 class MessagesTemplateActionTypeNames(enum.Enum):
     """ Template action type names """
 
@@ -5822,6 +5849,7 @@ class WallWallpost(BaseModel):
     geo -
     id - Post ID
     is_archived - Is post archived, only for post owners
+    is_deleted -
     is_favorite - Information whether the post in favorites list
     likes - Count of likes
     owner_id - Wall owner's ID
@@ -5845,6 +5873,7 @@ class WallWallpost(BaseModel):
     geo: typing.Optional["WallGeo"] = None
     id: typing.Optional[int] = None
     is_archived: typing.Optional[bool] = None
+    is_deleted: typing.Optional[bool] = None
     is_favorite: typing.Optional[bool] = None
     likes: typing.Optional["BaseLikesInfo"] = None
     owner_id: typing.Optional[int] = None
@@ -6043,7 +6072,7 @@ class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase):
     post_source: typing.Optional["WallPostSource"] = None
     post_type: typing.Optional["NewsfeedItemWallpostType"] = None
     reposts: typing.Optional["BaseRepostsInfo"] = None
-    short_text_rate: typing.Optional[int] = None
+    short_text_rate: typing.Optional[float] = None
     signer_id: typing.Optional[int] = None
     text: typing.Optional[str] = None
     views: typing.Optional["WallViews"] = None
@@ -6165,8 +6194,8 @@ class PhotosPhoto(BaseModel):
     height: typing.Optional[int] = None
     id: int = None
     images: typing.Optional[typing.List["PhotosImage"]] = None
-    lat: typing.Optional[int] = None
-    long: typing.Optional[int] = None
+    lat: typing.Optional[float] = None
+    long: typing.Optional[float] = None
     owner_id: int = None
     photo_256: typing.Optional[str] = None
     place: typing.Optional[str] = None
@@ -6872,9 +6901,9 @@ class PhotosPhotoFull(BaseModel):
     height: typing.Optional[int] = None
     id: int = None
     images: typing.Optional[typing.List["PhotosImage"]] = None
-    lat: typing.Optional[int] = None
+    lat: typing.Optional[float] = None
     likes: typing.Optional["BaseLikes"] = None
-    long: typing.Optional[int] = None
+    long: typing.Optional[float] = None
     owner_id: int = None
     post_id: typing.Optional[int] = None
     reposts: typing.Optional["BaseRepostsInfo"] = None
@@ -6923,9 +6952,9 @@ class PhotosPhotoFullXtrRealOffset(BaseModel):
     height: typing.Optional[int] = None
     hidden: typing.Optional["BasePropertyExists"] = None
     id: int = None
-    lat: typing.Optional[int] = None
+    lat: typing.Optional[float] = None
     likes: typing.Optional["BaseLikes"] = None
-    long: typing.Optional[int] = None
+    long: typing.Optional[float] = None
     owner_id: int = None
     photo_1280: typing.Optional[str] = None
     photo_130: typing.Optional[str] = None
@@ -7013,10 +7042,10 @@ class PhotosPhotoTag(BaseModel):
     tagged_name: str = None
     user_id: int = None
     viewed: "BaseBoolInt" = None
-    x: int = None
-    x2: int = None
-    y: int = None
-    y2: int = None
+    x: float = None
+    x2: float = None
+    y: float = None
+    y2: float = None
 
 
 class PhotosPhotoUpload(BaseModel):
@@ -7068,8 +7097,8 @@ class PhotosPhotoXtrRealOffset(BaseModel):
     height: typing.Optional[int] = None
     hidden: typing.Optional["BasePropertyExists"] = None
     id: int = None
-    lat: typing.Optional[int] = None
-    long: typing.Optional[int] = None
+    lat: typing.Optional[float] = None
+    long: typing.Optional[float] = None
     owner_id: int = None
     photo_1280: typing.Optional[str] = None
     photo_130: typing.Optional[str] = None
@@ -7117,8 +7146,8 @@ class PhotosPhotoXtrTagInfo(BaseModel):
     date: int = None
     height: typing.Optional[int] = None
     id: int = None
-    lat: typing.Optional[int] = None
-    long: typing.Optional[int] = None
+    lat: typing.Optional[float] = None
+    long: typing.Optional[float] = None
     owner_id: int = None
     photo_1280: typing.Optional[str] = None
     photo_130: typing.Optional[str] = None
@@ -7204,7 +7233,7 @@ class PollsAnswer(BaseModel):
     """
 
     id: int = None
-    rate: int = None
+    rate: float = None
     text: str = None
     votes: int = None
 
@@ -7275,7 +7304,7 @@ class PollsPoll(BaseModel):
     votes - Votes number
     """
 
-    anonymous: "PollsPollAnonymous" = None
+    anonymous: typing.Optional["PollsPollAnonymous"] = None
     answer_id: typing.Optional[int] = None
     answer_ids: typing.Optional[typing.List[int]] = None
     answers: typing.List["PollsAnswer"] = None
@@ -7395,6 +7424,13 @@ class SearchHintType(enum.Enum):
     APP = "app"
     HTML5_GAME = "html5_game"
     LINK = "link"
+
+
+class SecureGiveEventStickerItem(BaseModel):
+    """VK Object SecureGiveEventStickerItem"""
+
+    status: typing.Optional[str] = None
+    user_id: typing.Optional[int] = None
 
 
 class SecureLevel(BaseModel):
@@ -9141,7 +9177,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     donut: typing.Optional["WallWallpostDonut"] = None
     is_pinned: typing.Optional[int] = None
     marked_as_ads: typing.Optional["BaseBoolInt"] = None
-    short_text_rate: typing.Optional[int] = None
+    short_text_rate: typing.Optional[float] = None
     topic_id: typing.Optional[int] = None
 
 
