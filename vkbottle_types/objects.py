@@ -4315,6 +4315,7 @@ class GroupsMemberRoleStatus(enum.Enum):
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
     CREATOR = "creator"
+    ADVERTISER = "advertiser"
 
 
 class GroupsMemberStatus(BaseModel):
