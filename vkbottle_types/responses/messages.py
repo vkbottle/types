@@ -21,6 +21,7 @@ from vkbottle_types.objects import (
     MessagesMessagesArray,
     MessagesPinnedMessage,
     MessagesSendUserIdsResponseItem,
+    MessagesSendPeerIdsResponseItem,
     UsersUser,
     UsersUserFull,
 )
@@ -175,7 +176,7 @@ class SendUserIdsResponse(BaseResponse):
 
 
 class SendPeerIdsResponse(BaseResponse):
-    response: typing.List["MessagesSendUserIdsResponseItem"] = None
+    response: typing.List["MessagesSendPeerIdsResponseItem"] = None
 
 
 class SetChatPhotoResponse(BaseResponse):

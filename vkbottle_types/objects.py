@@ -5623,6 +5623,15 @@ class MessagesSendUserIdsResponseItem(BaseModel):
     peer_id: int = None
 
 
+class MessagesSendPeerIdsResponseItem(BaseModel):
+    """VK Object MessagesSendPeerIdsResponseItem"""
+
+    conversation_message_id: typing.Optional[int] = None
+    error: typing.Optional["BaseMessageError"] = None
+    message_id: int = None
+    peer_id: int = None
+
+
 class MessagesTemplateActionTypeNames(enum.Enum):
     """ Template action type names """
 
