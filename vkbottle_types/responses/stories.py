@@ -104,6 +104,7 @@ class GetViewersExtendedV5115ResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["StoriesViewersItem"]] = None
     hidden_reason: typing.Optional[str] = None
+    next_from: typing.Optional[str] = None
 
 
 class GetViewersExtendedResponseModel(BaseResponse):
@@ -114,7 +115,7 @@ class GetViewersExtendedResponseModel(BaseResponse):
 class GetV5113ResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["StoriesFeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
     need_upload_screen: typing.Optional[bool] = None
 
@@ -123,7 +124,7 @@ class GetResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["list"]] = None
     promo_data: typing.Optional["StoriesPromoBlock"] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
     need_upload_screen: typing.Optional[bool] = None
 

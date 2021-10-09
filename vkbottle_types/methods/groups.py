@@ -64,7 +64,7 @@ class GroupsCategory(BaseCategory):
 
     async def add_link(
         self, group_id: int, link: str, text: typing.Optional[str] = None, **kwargs
-    ) -> groups.GroupsGroupLink:
+    ) -> groups.GroupsLinksItem:
         """Allows to add a link to the community.
         :param group_id: Community ID.
         :param link: Link URL.
@@ -119,6 +119,7 @@ class GroupsCategory(BaseCategory):
         description: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         public_category: typing.Optional[int] = None,
+        public_subcategory: typing.Optional[int] = None,
         subtype: typing.Optional[int] = None,
         **kwargs
     ) -> groups.GroupsGroup:
@@ -127,6 +128,7 @@ class GroupsCategory(BaseCategory):
         :param description: Community description (ignored for 'type' = 'public').
         :param type: Community type. Possible values: *'group' - group,, *'event' - event,, *'public' - public page
         :param public_category: Category ID (for 'type' = 'public' only).
+        :param public_subcategory: Public page subcategory ID.
         :param subtype: Public page subtype. Possible values: *'1' - place or small business,, *'2' - company, organization or website,, *'3' - famous person or group of people,, *'4' - product or work of art.
         """
 
@@ -424,7 +426,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.get", params)
         model = self.get_model(
-            {("extended",): groups.GetExtendedResponse},
+            {("extended",): groups.GetObjectExtendedResponse},
             default=groups.GetResponse,
             params=params,
         )
@@ -493,7 +495,7 @@ class GroupsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getById", params)
-        model = groups.GetByIdLegacyResponse
+        model = groups.GetByIdObjectLegacyResponse
         return model(**response).response
 
     async def get_callback_confirmation_code(

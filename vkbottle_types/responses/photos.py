@@ -6,7 +6,6 @@ from vkbottle_types.objects import (
     BaseImage,
     BaseUploadServer,
     GroupsGroupFull,
-    PhotosCommentXtrPid,
     PhotosPhoto,
     PhotosPhotoAlbumFull,
     PhotosPhotoFull,
@@ -165,7 +164,7 @@ class SaveMessagesPhotoResponse(BaseResponse):
 
 
 class SaveOwnerCoverPhotoResponse(BaseResponse):
-    response: typing.List["BaseImage"] = None
+    response: "SaveOwnerCoverPhotoResponseModel" = None
 
 
 class SaveOwnerPhotoResponse(BaseResponse):
@@ -195,7 +194,7 @@ class GetAlbumsResponseModel(BaseResponse):
 
 class GetAllCommentsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosCommentXtrPid"]] = None
+    items: typing.Optional[typing.List["WallWallComment"]] = None
 
 
 class GetAllExtendedResponseModel(BaseResponse):
@@ -296,6 +295,10 @@ class PhotoUploadResponseModel(BaseResponse):
     photo: typing.Optional[str] = None
     photos_list: typing.Optional[str] = None
     server: typing.Optional[int] = None
+
+
+class SaveOwnerCoverPhotoResponseModel(BaseResponse):
+    images: typing.Optional[typing.List["BaseImage"]] = None
 
 
 class SaveOwnerPhotoResponseModel(BaseResponse):

@@ -10,7 +10,7 @@ class UsersCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[users.UsersUserXtrCounters]:
+    ) -> typing.List[users.UsersUserFull]:
         """Returns detailed information on users.
         :param user_ids: User IDs or screen names ('screen_name'). By default, current user ID.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'

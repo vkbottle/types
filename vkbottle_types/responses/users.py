@@ -1,13 +1,7 @@
 import inspect
 import typing
 from .base_response import BaseResponse
-from vkbottle_types.objects import (
-    GroupsGroupsArray,
-    UsersSubscriptionsItem,
-    UsersUserFull,
-    UsersUserXtrCounters,
-    UsersUsersArray
-)
+from vkbottle_types.objects import GroupsGroupsArray, UsersSubscriptionsItem, UsersUserFull, UsersUsersArray
 
 
 class GetFollowersFieldsResponse(BaseResponse):
@@ -27,7 +21,7 @@ class GetSubscriptionsResponse(BaseResponse):
 
 
 class GetResponse(BaseResponse):
-    response: typing.List["UsersUserXtrCounters"] = None
+    response: typing.List["UsersUserFull"] = None
 
 
 class SearchResponse(BaseResponse):

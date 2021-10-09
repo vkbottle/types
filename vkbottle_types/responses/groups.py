@@ -16,7 +16,6 @@ from vkbottle_types.objects import (
     GroupsGroupDocs,
     GroupsGroupFull,
     GroupsGroupFullSection,
-    GroupsGroupLink,
     GroupsGroupPhotos,
     GroupsGroupPublicCategoryList,
     GroupsGroupSuggestedPrivacy,
@@ -25,12 +24,12 @@ from vkbottle_types.objects import (
     GroupsGroupVideo,
     GroupsGroupWall,
     GroupsGroupWiki,
+    GroupsLinksItem,
     GroupsLongPollServer,
     GroupsLongPollSettings,
     GroupsMemberRole,
     GroupsMemberStatus,
     GroupsMemberStatusFull,
-    GroupsProfileItem,
     GroupsSectionsListItem,
     GroupsSettingsTwitter,
     GroupsSubjectItem,
@@ -50,7 +49,7 @@ class AddCallbackServerResponse(BaseResponse):
 
 
 class AddLinkResponse(BaseResponse):
-    response: GroupsGroupLink = None
+    response: GroupsLinksItem = None
 
 
 class CreateResponse(BaseResponse):
@@ -69,12 +68,8 @@ class GetBannedResponse(BaseResponse):
     response: "GetBannedResponseModel" = None
 
 
-class GetByIdLegacyResponse(BaseResponse):
+class GetByIdObjectLegacyResponse(BaseResponse):
     response: typing.List["GroupsGroupFull"] = None
-
-
-class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
 
 
 class GetCallbackConfirmationCodeResponse(BaseResponse):
@@ -153,8 +148,8 @@ class GetTokenPermissionsResponse(BaseResponse):
     response: "GetTokenPermissionsResponseModel" = None
 
 
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel" = None
+class GetObjectExtendedResponse(BaseResponse):
+    response: "GetObjectExtendedResponseModel" = None
 
 
 class GetResponse(BaseResponse):
@@ -193,11 +188,6 @@ class GetAddressesResponseModel(BaseResponse):
 class GetBannedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsBannedItem"]] = None
-
-
-class GetByIdResponseModel(BaseResponse):
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    profiles: typing.Optional[typing.List["GroupsProfileItem"]] = None
 
 
 class GetCallbackConfirmationCodeResponseModel(BaseResponse):
@@ -315,7 +305,7 @@ class GetTokenPermissionsResponseModel(BaseResponse):
     permissions: typing.Optional[typing.List["GroupsTokenPermissionSetting"]] = None
 
 
-class GetExtendedResponseModel(BaseResponse):
+class GetObjectExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsGroupFull"]] = None
 

@@ -4,6 +4,7 @@ from .base_response import BaseResponse
 from vkbottle_types.objects import (
     BaseBoolInt,
     GroupsGroupFull,
+    UsersUser,
     UsersUserMin,
     VideoSaveResult,
     VideoVideo,
@@ -114,7 +115,7 @@ class GetResponseModel(BaseResponse):
 class SearchExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["VideoVideoFull"]] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 

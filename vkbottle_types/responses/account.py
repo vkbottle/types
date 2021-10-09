@@ -10,7 +10,7 @@ from vkbottle_types.objects import (
     AccountUserSettings,
     BaseBoolInt,
     GroupsGroup,
-    UsersUserMin
+    UsersUserFull
 )
 
 
@@ -63,7 +63,7 @@ class GetActiveOffersResponseModel(BaseResponse):
 class GetBannedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List[int]] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
 
 

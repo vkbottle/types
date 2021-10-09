@@ -62,7 +62,7 @@ class OrdersCategory(BaseCategory):
 
     async def get_amount(
         self, user_id: int, votes: typing.List[str], **kwargs
-    ) -> orders.OrdersAmount:
+    ) -> typing.List[orders.OrdersAmount]:
         """orders.getAmount method
         :param user_id:
         :param votes:

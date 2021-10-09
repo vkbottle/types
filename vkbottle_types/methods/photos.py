@@ -537,13 +537,13 @@ class PhotosCategory(BaseCategory):
 
     async def get_upload_server(
         self,
-        group_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = None,
+        group_id: typing.Optional[int] = None,
         **kwargs
     ) -> photos.PhotosPhotoUpload:
         """Returns the server address for photo upload.
-        :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param album_id:
+        :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         """
 
         params = self.get_set_params(locals())
@@ -858,7 +858,7 @@ class PhotosCategory(BaseCategory):
 
     async def save_owner_cover_photo(
         self, hash: str, photo: str, **kwargs
-    ) -> typing.List[photos.BaseImage]:
+    ) -> photos.SaveOwnerCoverPhotoResponseModel:
         """Saves cover photo after successful uploading.
         :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].

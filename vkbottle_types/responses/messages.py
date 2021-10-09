@@ -13,6 +13,7 @@ from vkbottle_types.objects import (
     MessagesConversationMember,
     MessagesConversationWithMessage,
     MessagesGetConversationById,
+    MessagesGetConversationByIdExtended,
     MessagesHistoryAttachment,
     MessagesLastActivity,
     MessagesLongpollMessages,
@@ -22,7 +23,7 @@ from vkbottle_types.objects import (
     MessagesPinnedMessage,
     MessagesSendUserIdsResponseItem,
     UsersUser,
-    UsersUserFull,
+    UsersUserFull
 )
 
 
@@ -83,7 +84,7 @@ class GetConversationMembersResponse(BaseResponse):
 
 
 class GetConversationsByIdExtendedResponse(BaseResponse):
-    response: "GetConversationsByIdExtendedResponseModel" = None
+    response: MessagesGetConversationByIdExtended = None
 
 
 class GetConversationsByIdResponse(BaseResponse):
@@ -221,11 +222,6 @@ class GetConversationMembersResponseModel(BaseResponse):
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
-class GetConversationsByIdExtendedResponseModel(MessagesGetConversationById):
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
 class GetConversationsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     unread_count: typing.Optional[int] = None
@@ -281,7 +277,7 @@ class GetLongPollHistoryResponseModel(BaseResponse):
     messages: typing.Optional["MessagesLongpollMessages"] = None
     credentials: typing.Optional["MessagesLongpollParams"] = None
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
     chats: typing.Optional[typing.List["MessagesChat"]] = None
     new_pts: typing.Optional[int] = None
     from_pts: typing.Optional[int] = None

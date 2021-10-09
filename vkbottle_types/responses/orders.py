@@ -13,7 +13,7 @@ class ChangeStateResponse(BaseResponse):
 
 
 class GetAmountResponse(BaseResponse):
-    response: OrdersAmount = None
+    response: typing.List["OrdersAmount"] = None
 
 
 class GetByIdResponse(BaseResponse):

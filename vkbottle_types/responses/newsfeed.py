@@ -66,8 +66,8 @@ class SearchResponse(BaseResponse):
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
-    groups: typing.Optional[typing.List["UsersUserFull"]] = None
-    profiles: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetBannedResponseModel(BaseResponse):

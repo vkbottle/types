@@ -503,6 +503,7 @@ class VideoCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
+        live: typing.Optional[bool] = None,
         filters: typing.Optional[typing.List[str]] = None,
         search_own: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
@@ -517,6 +518,7 @@ class VideoCategory(BaseCategory):
         :param sort: Sort order: '1' — by duration, '2' — by relevance, '0' — by date added
         :param hd: If not null, only searches for high-definition videos.
         :param adult: '1' — to disable the Safe Search filter, '0' — to enable the Safe Search filter
+        :param live:
         :param filters: Filters to apply: 'youtube' — return YouTube videos only, 'vimeo' — return Vimeo videos only, 'short' — return short videos only, 'long' — return long videos only
         :param search_own:
         :param offset: Offset needed to return a specific subset of videos.

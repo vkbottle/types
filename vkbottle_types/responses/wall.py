@@ -110,20 +110,21 @@ class GetCommentResponseModel(BaseResponse):
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["WallWallComment"]] = None
-    show_reply_button: typing.Optional[bool] = None
-    can_post: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
-    current_level_count: typing.Optional[int] = None
     profiles: typing.Optional[typing.List["UsersUser"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    current_level_count: typing.Optional[int] = None
+    can_post: typing.Optional[bool] = None
+    show_reply_button: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["WallWallComment"]] = None
-    can_post: typing.Optional[bool] = None
-    groups_can_post: typing.Optional[bool] = None
     current_level_count: typing.Optional[int] = None
+    can_post: typing.Optional[bool] = None
+    show_reply_button: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
 
 
 class GetRepostsResponseModel(BaseResponse):

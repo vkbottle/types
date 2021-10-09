@@ -8,7 +8,6 @@ from vkbottle_types.objects import (
     FriendsMutualFriend,
     FriendsRequests,
     FriendsRequestsXtrMessage,
-    FriendsUserXtrLists,
     FriendsUserXtrPhone,
     UsersUserFull
 )
@@ -139,7 +138,7 @@ class GetSuggestionsResponseModel(BaseResponse):
 
 class GetFieldsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FriendsUserXtrLists"]] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
 class GetResponseModel(BaseResponse):

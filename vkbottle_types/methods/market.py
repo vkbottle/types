@@ -272,6 +272,8 @@ class MarketCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         date_from: typing.Optional[str] = None,
         date_to: typing.Optional[str] = None,
+        need_variants: typing.Optional[bool] = None,
+        with_disabled: typing.Optional[bool] = None,
         **kwargs
     ) -> market.GetResponseModel:
         """Returns items list for a community.
@@ -282,6 +284,8 @@ class MarketCategory(BaseCategory):
         :param extended: '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
         :param date_from: Items update date from (format: yyyy-mm-dd)
         :param date_to: Items update date to (format: yyyy-mm-dd)
+        :param need_variants: Add variants to response if exist
+        :param with_disabled: Add disabled items to response
         """
 
         params = self.get_set_params(locals())
@@ -599,6 +603,7 @@ class MarketCategory(BaseCategory):
         count: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
         status: typing.Optional[int] = None,
+        need_variants: typing.Optional[bool] = None,
         **kwargs
     ) -> market.SearchResponseModel:
         """Searches market items in a community's catalog
@@ -613,6 +618,7 @@ class MarketCategory(BaseCategory):
         :param count: Number of items to return.
         :param extended: '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
         :param status:
+        :param need_variants: Add variants to response if exist
         """
 
         params = self.get_set_params(locals())

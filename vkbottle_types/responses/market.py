@@ -102,6 +102,7 @@ class SearchResponse(BaseResponse):
 
 class AddAlbumResponseModel(BaseResponse):
     market_album_id: typing.Optional[int] = None
+    albums_count: typing.Optional[int] = None
 
 
 class AddResponseModel(BaseResponse):
@@ -170,23 +171,27 @@ class GetOrdersResponseModel(BaseResponse):
 class GetExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["MarketMarketItemFull"]] = None
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = None
 
 
 class GetResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["MarketMarketItem"]] = None
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = None
 
 
 class SearchExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     view_type: typing.Optional["MarketServicesViewType"] = None
     items: typing.Optional[typing.List["MarketMarketItemFull"]] = None
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = None
 
 
 class SearchResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     view_type: typing.Optional["MarketServicesViewType"] = None
     items: typing.Optional[typing.List["MarketMarketItem"]] = None
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = None
 
 
 for item in locals().copy().values():
