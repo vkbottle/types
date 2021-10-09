@@ -13,7 +13,7 @@ class SearchCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         search_global: typing.Optional[bool] = None,
         **kwargs
-    ) -> "GetHintsResponseModel":
+    ) -> search.GetHintsResponseModel:
         """Allows the programmer to do a quick search for any substring.
         :param q: Search query string.
         :param offset: Offset for querying specific result subset
