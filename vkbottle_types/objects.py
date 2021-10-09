@@ -3338,6 +3338,12 @@ class GiftsLayout(BaseModel):
     thumb_96: typing.Optional[str] = None
 
 
+class GroupCallInProgress(CallsCall):
+    """VK Object GroupCallInProgress"""
+
+    join_link: typing.Optional[str] = None
+
+
 class GroupsAddress(BaseModel):
     """VK Object GroupsAddress
 
