@@ -1,55 +1,114 @@
 from typing import Union
 
-from .bot_events import *
+from .bot_events import (
+    AppPayload,
+    AudioNew,
+    BaseGroupEvent,
+    BoardPostDelete,
+    BoardPostEdit,
+    BoardPostNew,
+    BoardPostRestore,
+    DonutMoneyWithdraw,
+    DonutMoneyWithdrawError,
+    DonutSubscriptionCancelled,
+    DonutSubscriptionCreate,
+    DonutSubscriptionExpired,
+    DonutSubscriptionPriceChanged,
+    DonutSubscriptionProlonged,
+    GroupChangePhoto,
+    GroupChangeSettings,
+    GroupJoin,
+    GroupLeave,
+    GroupOfficersEdit,
+    LikeAdd,
+    LikeRemove,
+    MarketCommentDelete,
+    MarketCommentEdit,
+    MarketCommentNew,
+    MarketCommentRestore,
+    MarketOrderEdit,
+    MarketOrderNew,
+    MessageAllow,
+    MessageDeny,
+    MessageEdit,
+    MessageEvent,
+    MessageNew,
+    MessageReply,
+    MessageTypingState,
+    PhotoCommentDelete,
+    PhotoCommentEdit,
+    PhotoCommentNew,
+    PhotoCommentRestore,
+    PhotoNew,
+    PollVoteNew,
+    UserBlock,
+    UserUnblock,
+    VideoCommentDelete,
+    VideoCommentEdit,
+    VideoCommentNew,
+    VideoCommentRestore,
+    VideoNew,
+    VkpayTransaction,
+    WallPostNew,
+    WallReplyDelete,
+    WallReplyEdit,
+    WallReplyNew,
+    WallReplyRestore,
+    WallRepost,
+)
 
 
 class GroupTypes:
     MessageNew = MessageNew
+    MessageReply = MessageReply
+    MessageEdit = MessageEdit
     MessageAllow = MessageAllow
-    MessageReply = Message
-    MessageEdit = Message
-    MessageTypingState = MessageTypingState
     MessageDeny = MessageDeny
+    MessageTypingState = MessageTypingState
     MessageEvent = MessageEvent
     PhotoNew = PhotoNew
-    PhotoComment = PhotoComment
+    PhotoCommentNew = PhotoCommentNew
+    PhotoCommentEdit = PhotoCommentEdit
+    PhotoCommentRestore = PhotoCommentRestore
     PhotoCommentDelete = PhotoCommentDelete
     AudioNew = AudioNew
     VideoNew = VideoNew
-    VideoCommentNew = VideoComment
-    VideoCommentEdit = VideoComment
-    VideoCommentRestore = VideoComment
+    VideoCommentNew = VideoCommentNew
+    VideoCommentEdit = VideoCommentEdit
+    VideoCommentRestore = VideoCommentRestore
     VideoCommentDelete = VideoCommentDelete
     WallPostNew = WallPostNew
-    WallRepost = WallPostNew
-    WallReplyNew = WallReply
-    WallReplyEdit = WallReply
-    WallReplyRestore = WallReply
+    WallRepost = WallRepost
+    WallReplyNew = WallReplyNew
+    WallReplyEdit = WallReplyEdit
+    WallReplyRestore = WallReplyRestore
     WallReplyDelete = WallReplyDelete
-    LikeAdd = Like
-    LikeRemove = Like
-    BoardPostNew = BoardPost
-    BoardPostEdit = BoardPost
-    BoardPostRestore = BoardPost
+    LikeAdd = LikeAdd
+    LikeRemove = LikeRemove
+    BoardPostNew = BoardPostNew
+    BoardPostEdit = BoardPostEdit
+    BoardPostRestore = BoardPostRestore
     BoardPostDelete = BoardPostDelete
-    MarketCommentNew = MarketComment
-    MarketCommentEdit = MarketComment
-    MarketCommentRestore = MarketComment
+    MarketCommentNew = MarketCommentNew
+    MarketCommentEdit = MarketCommentEdit
+    MarketCommentRestore = MarketCommentRestore
     MarketCommentDelete = MarketCommentDelete
-    GroupJoin = GroupJoin
+    MarketOrderNew = MarketOrderNew
+    MarketOrderEdit = MarketOrderEdit
     GroupLeave = GroupLeave
+    GroupJoin = GroupJoin
     UserBlock = UserBlock
     UserUnblock = UserUnblock
     PollVoteNew = PollVoteNew
     GroupOfficersEdit = GroupOfficersEdit
     GroupChangeSettings = GroupChangeSettings
     GroupChangePhoto = GroupChangePhoto
-    VkPayTransaction = VkPayTransaction
+    VkpayTransaction = VkpayTransaction
     AppPayload = AppPayload
     DonutSubscriptionCreate = DonutSubscriptionCreate
     DonutSubscriptionProlonged = DonutSubscriptionProlonged
-    DonutSubscriptionCancelled = DonutSubscriptionCancelled
     DonutSubscriptionExpired = DonutSubscriptionExpired
+    DonutSubscriptionCancelled = DonutSubscriptionCancelled
     DonutSubscriptionPriceChanged = DonutSubscriptionPriceChanged
     DonutMoneyWithdraw = DonutMoneyWithdraw
     DonutMoneyWithdrawError = DonutMoneyWithdrawError
@@ -57,40 +116,55 @@ class GroupTypes:
     UnifiedTypes = Union[
         BaseGroupEvent,
         MessageNew,
-        Message,
+        MessageReply,
+        MessageEdit,
         MessageAllow,
-        MessageTypingState,
         MessageDeny,
+        MessageTypingState,
         MessageEvent,
         PhotoNew,
-        PhotoComment,
+        PhotoCommentNew,
+        PhotoCommentEdit,
+        PhotoCommentRestore,
         PhotoCommentDelete,
         AudioNew,
         VideoNew,
-        VideoComment,
+        VideoCommentNew,
+        VideoCommentEdit,
+        VideoCommentRestore,
         VideoCommentDelete,
         WallPostNew,
-        WallReply,
+        WallRepost,
+        WallReplyNew,
+        WallReplyEdit,
+        WallReplyRestore,
         WallReplyDelete,
-        Like,
-        BoardPost,
+        LikeAdd,
+        LikeRemove,
+        BoardPostNew,
+        BoardPostEdit,
+        BoardPostRestore,
         BoardPostDelete,
-        MarketComment,
+        MarketCommentNew,
+        MarketCommentEdit,
+        MarketCommentRestore,
         MarketCommentDelete,
-        GroupJoin,
+        MarketOrderNew,
+        MarketOrderEdit,
         GroupLeave,
+        GroupJoin,
         UserBlock,
         UserUnblock,
         PollVoteNew,
         GroupOfficersEdit,
         GroupChangeSettings,
         GroupChangePhoto,
-        VkPayTransaction,
+        VkpayTransaction,
         AppPayload,
         DonutSubscriptionCreate,
         DonutSubscriptionProlonged,
-        DonutSubscriptionCancelled,
         DonutSubscriptionExpired,
+        DonutSubscriptionCancelled,
         DonutSubscriptionPriceChanged,
         DonutMoneyWithdraw,
         DonutMoneyWithdrawError,

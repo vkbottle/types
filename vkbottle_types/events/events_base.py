@@ -17,8 +17,8 @@ class EventsBase:
     def __init__(
         self,
         type_enum: Type[Union[GroupEventType, UserEventType]],
-        on_undefined: Callable[[str], Any] = lambda et: exec(
-            f"raise NotImplementedError({et})"
+        on_undefined: Callable[[str], Any] = lambda et: EventsBase.__raise(
+            NotImplementedError(et)
         ),
     ):
         self.type_enum = type_enum
@@ -41,3 +41,7 @@ class EventsBase:
         if model is None:
             return self.on_undefined(event_type)
         return model
+
+    @staticmethod
+    def __raise(ex):
+        raise ex
