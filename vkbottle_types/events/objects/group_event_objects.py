@@ -1,14 +1,21 @@
-import enum
+import inspect
 from typing import Any, Callable, Optional, Union
 
 from vkbottle_types.objects import (
     AudioAudio,
+    BaseBoolInt,
     BoardTopicComment,
     CallbackGroupJoinType,
+    CallbackGroupMarket,
+    CallbackGroupOfficerRole,
     CallbackLikeAddRemoveObjectType,
     ClientInfoForBots,
-    GroupsBanInfoReason,
-    GroupsGroupAdminLevel,
+    GroupsGroupAudio,
+    GroupsGroupFullAgeLimits,
+    GroupsGroupIsClosed,
+    GroupsGroupPhotos,
+    GroupsGroupVideo,
+    GroupsGroupWall,
     MarketOrder,
     MessagesMessage,
     PhotosPhoto,
@@ -21,29 +28,31 @@ from .base_event_object import BaseEventObject
 
 
 class MessageNewObject(BaseEventObject):
-    message: Optional[MessagesMessage] = None
-    client_info: Optional[ClientInfoForBots] = None
+    client_info: Optional["ClientInfoForBots"] = None
+    message: Optional["MessagesMessage"] = None
 
 
-class MessageObject(MessagesMessage):
+class MessageReplyObject(MessagesMessage):
+    pass
+
+
+class MessageEditObject(MessagesMessage):
     pass
 
 
 class MessageAllowObject(BaseEventObject):
-    user_id: Optional[int] = None
-    key: Optional[str] = None
-    api: Optional[list] = None
+    key: str = None
+    user_id: int = None
+
+
+class MessageDenyObject(BaseEventObject):
+    user_id: int = None
 
 
 class MessageTypingStateObject(BaseEventObject):
     state: Optional[str] = None
     from_id: Optional[int] = None
     to_id: Optional[int] = None
-    api: Optional[list] = None
-
-
-class MessageDenyObject(BaseEventObject):
-    user_id: Optional[int] = None
 
 
 class MessageEventObject(BaseEventObject):
@@ -75,16 +84,27 @@ class PhotoNewObject(PhotosPhoto):
     pass
 
 
-class PhotoCommentObject(WallWallComment):
-    photo_id: Optional[int] = None
-    photo_owner_id: Optional[int] = None
+class PhotoCommentNewObject(BaseEventObject):
+    date: int = None
+    from_id: int = None
+    id: int = None
+    photo_owner_id: int = None
+    text: str = None
+
+
+class PhotoCommentEditObject(PhotoCommentNewObject):
+    pass
+
+
+class PhotoCommentRestoreObject(PhotoCommentNewObject):
+    pass
 
 
 class PhotoCommentDeleteObject(BaseEventObject):
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    user_id: Optional[int] = None
-    photo_id: Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    photo_id: int = None
+    user_id: int = None
 
 
 class AudioNewObject(AudioAudio):
@@ -95,43 +115,68 @@ class VideoNewObject(VideoVideo):
     pass
 
 
-class VideoCommentObject(WallWallComment):
-    video_id: Optional[int] = None
-    video_owner_id: Optional[int] = None
+class VideoCommentNewObject(BaseEventObject):
+    date: int = None
+    from_id: int = None
+    id: int = None
+    text: str = None
+    video_owner_id: int = None
+
+
+class VideoCommentEditObject(VideoCommentNewObject):
+    pass
+
+
+class VideoCommentRestoreObject(VideoCommentNewObject):
+    pass
 
 
 class VideoCommentDeleteObject(BaseEventObject):
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    user_id: Optional[int] = None
-    video_id: Optional[int] = None
+    id: int = None
+    owner_id: int = None
+    user_id: int = None
+    video_id: int = None
 
 
 class WallPostNewObject(WallWallpost):
     postponed_id: Optional[int] = None
 
 
+class WallRepostObject(WallWallpost):
+    postponed_id: Optional[int] = None
+
+
 class WallReplyNewObject(WallWallComment):
     post_id: Optional[int] = None
     post_owner_id: Optional[int] = None
-    api: Optional[list] = None
+
+
+class WallReplyEditObject(WallReplyNewObject):
+    pass
+
+
+class WallReplyRestoreObject(WallReplyNewObject):
+    pass
 
 
 class WallReplyDeleteObject(BaseEventObject):
     owner_id: Optional[int] = None
     id: Optional[int] = None
-    user_id: Optional[int] = None
     deleter_id: Optional[int] = None
     post_id: Optional[int] = None
 
 
-class LikeObject(BaseEventObject):
-    liker_id: Optional[int] = None
-    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
-    object_owner_id: Optional[int] = None
-    object_id: Optional[int] = None
+class LikeAddObject(BaseEventObject):
+    liker_id: int = None
+    object_id: int = None
+    object_owner_id: int = None
+    object_type: "CallbackLikeAddRemoveObjectType" = None
+    post_id: int = None
     thread_reply_id: Optional[int] = None
-    post_id: Optional[int] = None
+
+
+class LikeRemoveObject(LikeAddObject):
+    pass
 
 
 class BoardPostNewObject(BoardTopicComment):
@@ -139,106 +184,123 @@ class BoardPostNewObject(BoardTopicComment):
     topic_owner_id: Optional[int] = None
 
 
+class BoardPostEditObject(BoardPostNewObject):
+    pass
+
+
+class BoardPostRestoreObject(BoardPostNewObject):
+    pass
+
+
 class BoardPostDeleteObject(BaseEventObject):
-    topic_id: Optional[int] = None
-    id: Optional[int] = None
+    id: int = None
+    topic_id: int = None
+    topic_owner_id: int = None
 
 
-class MarketCommentNewObject(WallWallComment):
+class MarketCommentNewObject(BaseEventObject):
+    date: int = None
+    from_id: int = None
+    id: int = None
     market_owner_id: Optional[int] = None
-    item_id: Optional[int] = None
+    photo_id: Optional[int] = None
+    text: Optional[str] = None
+
+
+class MarketCommentEditObject(MarketCommentNewObject):
+    pass
+
+
+class MarketCommentRestoreObject(MarketCommentNewObject):
+    pass
 
 
 class MarketCommentDeleteObject(BaseEventObject):
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    user_id: Optional[int] = None
-    item_id: Optional[int] = None
+    id: int = None
+    item_id: int = None
+    owner_id: int = None
+    user_id: int = None
+
+
+class MarketOrderNewObject(MarketOrder):
+    pass
+
+
+class MarketOrderEditObject(MarketOrder):
+    pass
 
 
 class GroupLeaveObject(BaseEventObject):
+    self: Optional["BaseBoolInt"] = None
     user_id: Optional[int] = None
-    self: Optional[int] = None
 
 
 class GroupJoinObject(BaseEventObject):
-    user_id: Optional[int] = None
-    join_type: Optional[CallbackGroupJoinType] = None
+    join_type: "CallbackGroupJoinType" = None
+    user_id: int = None
 
 
 class UserBlockObject(BaseEventObject):
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    unblock_data: Optional[int] = None
-    reason: Optional[GroupsBanInfoReason] = None
+    admin_id: int = None
     comment: Optional[str] = None
+    reason: int = None
+    unblock_date: int = None
+    user_id: int = None
 
 
 class UserUnblockObject(BaseEventObject):
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    by_end_date: Optional[int] = None
+    admin_id: int = None
+    by_end_date: int = None
+    user_id: int = None
 
 
 class PollVoteNewObject(BaseEventObject):
-    owner_id: Optional[int] = None
-    poll_id: Optional[int] = None
-    option_id: Optional[int] = None
-    user_id: Optional[int] = None
+    option_id: int = None
+    owner_id: int = None
+    poll_id: int = None
+    user_id: int = None
 
 
 class GroupOfficersEditObject(BaseEventObject):
-    admin_id: Optional[int] = None
-    user_id: Optional[int] = None
-    level_old: Optional[GroupsGroupAdminLevel] = None
-    level_new: Optional[GroupsGroupAdminLevel] = None
+    admin_id: int = None
+    level_new: "CallbackGroupOfficerRole" = None
+    level_old: "CallbackGroupOfficerRole" = None
+    user_id: int = None
 
 
-class GroupChangeSettingsChangesSectionEnableObject(enum.Enum):
-    STATUS_DEFAULT = "status_default"
-    AUDIO = "audio"
-    PHOTO = "photo"
-    VIDEO = "video"
-    MARKET = "market"
-
-
-class GroupChangeSettingsChangesSectionNameObject(enum.Enum):
-    TITLE = "title"
-    DESCRIPTION = "description"
-    COMMUNITY_TYPE = "access"
-    SCREEN_NAME = "screen_name"
-    PUBLIC_CATEGORY = "public_category"
-    PUBLIC_SUBCATEGORY = "public_subcategory"
-    AGE_LIMITS = "age_limits"
-    WEBSITE = "website"
-    ENABLE_SECTION = GroupChangeSettingsChangesSectionEnableObject
-
-
-class GroupChangeSettingsChangesObject(BaseEventObject):
-    section_name: Optional[GroupChangeSettingsChangesSectionNameObject] = None
+class GroupSettingsChangesObject(BaseEventObject):
+    access: Optional["GroupsGroupIsClosed"] = None
+    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
+    description: Optional[str] = None
+    enable_audio: Optional["GroupsGroupAudio"] = None
+    enable_market: Optional["CallbackGroupMarket"] = None
+    enable_photo: Optional["GroupsGroupPhotos"] = None
+    enable_status_default: Optional["GroupsGroupWall"] = None
+    enable_video: Optional["GroupsGroupVideo"] = None
+    public_category: Optional[int] = None
+    public_subcategory: Optional[int] = None
+    screen_name: Optional[str] = None
+    title: Optional[str] = None
+    website: Optional[str] = None
     old_value: Any = None
     new_value: Any = None
 
 
 class GroupChangeSettingsObject(BaseEventObject):
-    user_id: Optional[int] = None
-    changes: Optional[GroupChangeSettingsChangesObject] = None
+    changes: Optional[GroupSettingsChangesObject] = None
+    user_id: int = None
 
 
 class GroupChangePhotoObject(BaseEventObject):
-    user_id: Optional[int] = None
-    photo: Optional[PhotosPhoto] = None
+    photo: "PhotosPhoto" = None
+    user_id: int = None
 
 
-class MarketOrderObject(MarketOrder):
-    pass
-
-
-class VkPayTransactionObject(BaseEventObject):
-    from_id: Optional[int] = None
+class VkpayTransactionObject(BaseEventObject):
     amount: Optional[int] = None
-    description: Optional[str] = None
     date: Optional[int] = None
+    description: Optional[str] = None
+    from_id: Optional[int] = None
 
 
 class AppPayloadObject(BaseEventObject):
@@ -248,64 +310,41 @@ class AppPayloadObject(BaseEventObject):
     group_id: Optional[int] = None
 
 
-class DonutSubscriptionObject(BaseEventObject):
+class DonutSubscriptionCreateObject(BaseEventObject):
+    amount: int = None
+    amount_without_fee: float = None
     user_id: Optional[int] = None
 
 
-class DonutSubscriptionCreateObject(DonutSubscriptionObject):
-    amount: Optional[int] = None
-    amount_without_fee: Optional[float] = None
-
-
-class DonutSubscriptionProlongedObject(DonutSubscriptionCreateObject):
+class DonutSubscriptionProlongedObject(BaseEventObject):
     pass
 
 
-class DonutSubscriptionExpiredObject(DonutSubscriptionObject):
-    pass
+class DonutSubscriptionExpiredObject(BaseEventObject):
+    user_id: Optional[int] = None
 
 
-class DonutSubscriptionCancelledObject(DonutSubscriptionObject):
-    pass
+class DonutSubscriptionCancelledObject(BaseEventObject):
+    user_id: Optional[int] = None
 
 
-class DonutSubscriptionPriceChangedObject(DonutSubscriptionObject):
-    amount_old: Optional[int] = None
-    amount_new: Optional[int] = None
+class DonutSubscriptionPriceChangedObject(BaseEventObject):
     amount_diff: Optional[float] = None
     amount_diff_without_fee: Optional[float] = None
+    amount_new: int = None
+    amount_old: int = None
+    user_id: Optional[int] = None
 
 
 class DonutMoneyWithdrawObject(BaseEventObject):
-    amount: Optional[float] = None
-    amount_without_fee: Optional[float] = None
+    amount: float = None
+    amount_without_fee: float = None
 
 
 class DonutMoneyWithdrawErrorObject(BaseEventObject):
-    reason: Optional[str] = None
+    reason: str = None
 
 
-MessageAllowObject.update_forward_refs()
-MessageTypingStateObject.update_forward_refs()
-MessageDenyObject.update_forward_refs()
-MessageEventObject.update_forward_refs()
-PhotoCommentObject.update_forward_refs()
-PhotoCommentDeleteObject.update_forward_refs()
-VideoCommentObject.update_forward_refs()
-VideoCommentDeleteObject.update_forward_refs()
-WallPostNewObject.update_forward_refs()
-WallReplyNewObject.update_forward_refs()
-WallReplyDeleteObject.update_forward_refs()
-BoardPostNewObject.update_forward_refs()
-BoardPostDeleteObject.update_forward_refs()
-MarketCommentNewObject.update_forward_refs()
-MarketCommentDeleteObject.update_forward_refs()
-GroupLeaveObject.update_forward_refs()
-GroupJoinObject.update_forward_refs()
-UserBlockObject.update_forward_refs()
-UserUnblockObject.update_forward_refs()
-PollVoteNewObject.update_forward_refs()
-GroupOfficersEditObject.update_forward_refs()
-GroupChangeSettingsChangesObject.update_forward_refs()
-GroupChangeSettingsObject.update_forward_refs()
-GroupChangePhotoObject.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseEventObject):
+        item.update_forward_refs()

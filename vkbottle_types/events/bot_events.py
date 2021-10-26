@@ -1,3 +1,4 @@
+import inspect
 from typing import TYPE_CHECKING, Any, Optional, Union
 
 from pydantic import BaseModel
@@ -12,7 +13,9 @@ if TYPE_CHECKING:
 
 class BaseGroupEvent(BaseModel):
     type: Optional[GroupEventType] = None
-    object: Optional[BaseEventObject] = None
+    object: Optional["BaseEventObject"] = None
+    secret: Optional[str] = None
+    event_id: Optional[str] = None
     group_id: Optional[int] = None
     unprepared_ctx_api: Optional[Any] = None
 
@@ -21,312 +24,282 @@ class BaseGroupEvent(BaseModel):
         return getattr(self, "unprepared_ctx_api")
 
 
-class Message(BaseGroupEvent):
-    object: "group_event_objects.MessageObject"
-
-
 class MessageNew(BaseGroupEvent):
-    object: "group_event_objects.MessageNewObject"
+    object: group_event_objects.MessageNewObject
+
+
+class MessageReply(BaseGroupEvent):
+    object: group_event_objects.MessageReplyObject
+
+
+class MessageEdit(BaseGroupEvent):
+    object: group_event_objects.MessageEditObject
 
 
 class MessageAllow(BaseGroupEvent):
-    object: "group_event_objects.MessageAllowObject"
-
-
-class MessageTypingState(BaseGroupEvent):
-    object: "group_event_objects.MessageTypingStateObject"
+    object: group_event_objects.MessageAllowObject
 
 
 class MessageDeny(BaseGroupEvent):
-    object: "group_event_objects.MessageDenyObject"
+    object: group_event_objects.MessageDenyObject
+
+
+class MessageTypingState(BaseGroupEvent):
+    object: group_event_objects.MessageTypingStateObject
 
 
 class MessageEvent(BaseGroupEvent):
-    object: "group_event_objects.MessageEventObject"
+    object: group_event_objects.MessageEventObject
 
 
 class PhotoNew(BaseGroupEvent):
-    object: "group_event_objects.PhotosPhoto"
+    object: group_event_objects.PhotoNewObject
 
 
-class PhotoComment(BaseGroupEvent):
-    object: "group_event_objects.PhotoCommentObject"
+class PhotoCommentNew(BaseGroupEvent):
+    object: group_event_objects.PhotoCommentNewObject
+
+
+class PhotoCommentEdit(BaseGroupEvent):
+    object: group_event_objects.PhotoCommentNewObject
+
+
+class PhotoCommentRestore(BaseGroupEvent):
+    object: group_event_objects.PhotoCommentRestoreObject
 
 
 class PhotoCommentDelete(BaseGroupEvent):
-    object: "group_event_objects.PhotoCommentDeleteObject"
+    object: group_event_objects.PhotoCommentDeleteObject
 
 
 class AudioNew(BaseGroupEvent):
-    object: "group_event_objects.AudioNewObject"
+    object: group_event_objects.AudioNewObject
 
 
 class VideoNew(BaseGroupEvent):
-    object: "group_event_objects.VideoNewObject"
+    object: group_event_objects.VideoNewObject
 
 
-class VideoComment(BaseGroupEvent):
-    object: "group_event_objects.VideoCommentObject"
+class VideoCommentNew(BaseGroupEvent):
+    object: group_event_objects.VideoCommentNewObject
+
+
+class VideoCommentEdit(BaseGroupEvent):
+    object: group_event_objects.VideoCommentEditObject
+
+
+class VideoCommentRestore(BaseGroupEvent):
+    object: group_event_objects.VideoCommentRestoreObject
 
 
 class VideoCommentDelete(BaseGroupEvent):
-    object: "group_event_objects.VideoCommentDeleteObject"
+    object: group_event_objects.VideoCommentDeleteObject
 
 
 class WallPostNew(BaseGroupEvent):
-    object: "group_event_objects.WallPostNewObject"
+    object: group_event_objects.WallPostNewObject
 
 
-class WallReply(BaseGroupEvent):
-    object: "group_event_objects.WallReplyNewObject"
+class WallRepost(BaseGroupEvent):
+    object: group_event_objects.WallRepostObject
+
+
+class WallReplyNew(BaseGroupEvent):
+    object: group_event_objects.WallReplyNewObject
+
+
+class WallReplyEdit(BaseGroupEvent):
+    object: group_event_objects.WallReplyRestoreObject
+
+
+class WallReplyRestore(BaseGroupEvent):
+    object: group_event_objects.WallReplyRestoreObject
 
 
 class WallReplyDelete(BaseGroupEvent):
-    object: "group_event_objects.WallReplyDeleteObject"
+    object: group_event_objects.WallReplyDeleteObject
 
 
-class Like(BaseGroupEvent):
-    object: "group_event_objects.LikeObject"
+class LikeAdd(BaseGroupEvent):
+    object: group_event_objects.LikeAddObject
 
 
-class BoardPost(BaseGroupEvent):
-    object: "group_event_objects.BoardPostNewObject"
+class LikeRemove(BaseGroupEvent):
+    object: group_event_objects.LikeRemoveObject
+
+
+class BoardPostNew(BaseGroupEvent):
+    object: group_event_objects.BoardPostNewObject
+
+
+class BoardPostEdit(BaseGroupEvent):
+    object: group_event_objects.BoardPostEditObject
+
+
+class BoardPostRestore(BaseGroupEvent):
+    object: group_event_objects.BoardPostRestoreObject
 
 
 class BoardPostDelete(BaseGroupEvent):
-    object: "group_event_objects.BoardPostDeleteObject"
+    object: group_event_objects.BoardPostDeleteObject
 
 
-class MarketOrder(BaseGroupEvent):
-    object: "group_event_objects.MarketOrderObject"
+class MarketCommentNew(BaseGroupEvent):
+    object: group_event_objects.MarketCommentNewObject
 
 
-class MarketComment(BaseGroupEvent):
-    object: "group_event_objects.MarketCommentNewObject"
+class MarketCommentEdit(BaseGroupEvent):
+    object: group_event_objects.MarketCommentEditObject
+
+
+class MarketCommentRestore(BaseGroupEvent):
+    object: group_event_objects.MarketCommentRestoreObject
 
 
 class MarketCommentDelete(BaseGroupEvent):
-    object: "group_event_objects.MarketCommentDeleteObject"
+    object: group_event_objects.MarketCommentDeleteObject
+
+
+class MarketOrderNew(BaseGroupEvent):
+    object: group_event_objects.MarketOrderNewObject
+
+
+class MarketOrderEdit(BaseGroupEvent):
+    object: group_event_objects.MarketOrderEditObject
 
 
 class GroupLeave(BaseGroupEvent):
-    object: "group_event_objects.GroupLeaveObject"
+    object: group_event_objects.GroupLeaveObject
 
 
 class GroupJoin(BaseGroupEvent):
-    object: "group_event_objects.GroupJoinObject"
+    object: group_event_objects.GroupJoinObject
 
 
 class UserBlock(BaseGroupEvent):
-    object: "group_event_objects.UserBlockObject"
+    object: group_event_objects.UserBlockObject
 
 
 class UserUnblock(BaseGroupEvent):
-    object: "group_event_objects.UserUnblockObject"
+    object: group_event_objects.UserUnblockObject
 
 
 class PollVoteNew(BaseGroupEvent):
-    object: "group_event_objects.PollVoteNewObject"
+    object: group_event_objects.PollVoteNewObject
 
 
 class GroupOfficersEdit(BaseGroupEvent):
-    object: "group_event_objects.GroupOfficersEditObject"
+    object: group_event_objects.GroupOfficersEditObject
 
 
 class GroupChangeSettings(BaseGroupEvent):
-    object: "group_event_objects.GroupChangeSettingsObject"
+    object: group_event_objects.GroupChangeSettingsObject
 
 
 class GroupChangePhoto(BaseGroupEvent):
-    object: "group_event_objects.GroupChangePhotoObject"
+    object: group_event_objects.GroupChangePhotoObject
 
 
-class VkPayTransaction(BaseGroupEvent):
-    object: "group_event_objects.VkPayTransactionObject"
+class VkpayTransaction(BaseGroupEvent):
+    object: group_event_objects.VkpayTransactionObject
 
 
 class AppPayload(BaseGroupEvent):
-    object: "group_event_objects.AppPayloadObject"
+    object: group_event_objects.AppPayloadObject
 
 
 class DonutSubscriptionCreate(BaseGroupEvent):
-    object: "group_event_objects.DonutSubscriptionCreateObject"
+    object: group_event_objects.DonutSubscriptionCreateObject
 
 
 class DonutSubscriptionProlonged(BaseGroupEvent):
-    object: "group_event_objects.DonutSubscriptionProlongedObject"
+    object: group_event_objects.DonutSubscriptionProlongedObject
 
 
 class DonutSubscriptionExpired(BaseGroupEvent):
-    object: "group_event_objects.DonutSubscriptionExpiredObject"
+    object: group_event_objects.DonutSubscriptionExpiredObject
 
 
 class DonutSubscriptionCancelled(BaseGroupEvent):
-    object: "group_event_objects.DonutSubscriptionCancelledObject"
+    object: group_event_objects.DonutSubscriptionCancelledObject
 
 
 class DonutSubscriptionPriceChanged(BaseGroupEvent):
-    object: "group_event_objects.DonutSubscriptionPriceChangedObject"
+    object: group_event_objects.DonutSubscriptionPriceChangedObject
 
 
 class DonutMoneyWithdraw(BaseGroupEvent):
-    object: "group_event_objects.DonutMoneyWithdrawObject"
+    object: group_event_objects.DonutMoneyWithdrawObject
 
 
 class DonutMoneyWithdrawError(BaseGroupEvent):
-    object: "group_event_objects.DonutMoneyWithdrawErrorObject"
+    object: group_event_objects.DonutMoneyWithdrawErrorObject
 
-
-Message.update_forward_refs()
-MessageNew.update_forward_refs()
-MessageAllow.update_forward_refs()
-MessageTypingState.update_forward_refs()
-MessageDeny.update_forward_refs()
-PhotoNew.update_forward_refs()
-PhotoComment.update_forward_refs()
-PhotoCommentDelete.update_forward_refs()
-VideoComment.update_forward_refs()
-VideoCommentDelete.update_forward_refs()
-WallPostNew.update_forward_refs()
-WallReply.update_forward_refs()
-WallReplyDelete.update_forward_refs()
-BoardPost.update_forward_refs()
-BoardPostDelete.update_forward_refs()
-MarketComment.update_forward_refs()
-MarketCommentDelete.update_forward_refs()
-GroupLeave.update_forward_refs()
-GroupJoin.update_forward_refs()
-UserBlock.update_forward_refs()
-UserUnblock.update_forward_refs()
-PollVoteNew.update_forward_refs()
-GroupOfficersEdit.update_forward_refs()
-GroupChangeSettings.update_forward_refs()
-GroupChangePhoto.update_forward_refs()
-VkPayTransaction.update_forward_refs()
-AppPayload.update_forward_refs()
-DonutSubscriptionCreate.update_forward_refs()
-DonutSubscriptionProlonged.update_forward_refs()
-DonutSubscriptionExpired.update_forward_refs()
-DonutSubscriptionCancelled.update_forward_refs()
-DonutSubscriptionPriceChanged.update_forward_refs()
-DonutMoneyWithdraw.update_forward_refs()
-DonutMoneyWithdrawError.update_forward_refs()
 
 DEFAULT_EVENTS_BASE_GROUP = EventsBase(GroupEventType)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_NEW, MessageNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_REPLY, Message)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_EDIT, Message)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_ALLOW, MessageAllow)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.MESSAGE_TYPING_STATE, MessageTypingState
-)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_DENY, MessageDeny)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MESSAGE_EVENT, MessageEvent)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.PHOTO_NEW, PhotoNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.PHOTO_COMMENT_NEW, PhotoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.PHOTO_COMMENT_EDIT, PhotoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.PHOTO_COMMENT_RESTORE, PhotoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.PHOTO_COMMENT_DELETE, PhotoCommentDelete
-)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.AUDIO_NEW, AudioNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VIDEO_NEW, VideoNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VIDEO_COMMENT_NEW, VideoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VIDEO_COMMENT_EDIT, VideoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VIDEO_COMMENT_RESTORE, VideoComment)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.VIDEO_COMMENT_DELETE, VideoCommentDelete
-)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_POST_NEW, WallPostNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_REPOST, WallPostNew)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_REPLY_NEW, WallReply)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_REPLY_EDIT, WallReply)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_REPLY_RESTORE, WallReply)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.WALL_REPLY_DELETE, WallReplyDelete)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.LIKE_ADD, Like)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.LIKE_REMOVE, Like)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.BOARD_POST_NEW, BoardPost)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.BOARD_POST_EDIT, BoardPost)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.BOARD_POST_RESTORE, BoardPost)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.BOARD_POST_DELETE, BoardPostDelete)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MARKET_ORDER_NEW, MarketOrder)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MARKET_ORDER_EDIT, MarketOrder)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.BOARD_POST_DELETE, BoardPostDelete)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MARKET_COMMENT_NEW, MarketComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MARKET_COMMENT_EDIT, MarketComment)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.MARKET_COMMENT_RESTORE, MarketComment)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.MARKET_COMMENT_DELETE, MarketCommentDelete
-)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.GROUP_LEAVE, GroupLeave)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.GROUP_JOIN, GroupJoin)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.USER_BLOCK, UserBlock)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.USER_UNBLOCK, UserUnblock)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.POLL_VOTE_NEW, PollVoteNew)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.GROUP_OFFICERS_EDIT, GroupOfficersEdit
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.GROUP_CHANGE_SETTINGS, GroupChangeSettings
-)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.GROUP_CHANGE_PHOTO, GroupChangePhoto)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.VKPAY_TRANSACTION, VkPayTransaction)
-DEFAULT_EVENTS_BASE_GROUP.register(GroupEventType.APP_PAYLOAD, AppPayload)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_SUBSCRIPTION_CREATE, DonutSubscriptionCreate
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_SUBSCRIPTION_PROLONGED, DonutSubscriptionProlonged
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_SUBSCRIPTION_EXPIRED, DonutSubscriptionExpired
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_SUBSCRIPTION_CANCELLED, DonutSubscriptionCancelled
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_SUBSCRIPTION_PRICE_CHANGED, DonutSubscriptionPriceChanged
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_MONEY_WITHDRAW, DonutMoneyWithdraw
-)
-DEFAULT_EVENTS_BASE_GROUP.register(
-    GroupEventType.DONUT_MONEY_WITHDRAW_ERROR, DonutMoneyWithdrawError
-)
+for item in locals().copy().values():
+    if (
+        not inspect.isclass(item)
+        or not issubclass(item, BaseGroupEvent)
+        or item is BaseGroupEvent
+    ):
+        continue
+    item.update_forward_refs()
+    event_type = GroupEventType[
+        "".join("_" + i if i.isupper() else i for i in item.__name__)
+        .lstrip("_")
+        .upper()
+    ]
+    DEFAULT_EVENTS_BASE_GROUP.register(event_type, item)
 
 __all__ = (
     "DEFAULT_EVENTS_BASE_GROUP",
     "BaseGroupEvent",
     "MessageNew",
-    "Message",
+    "MessageReply",
+    "MessageEdit",
     "MessageAllow",
-    "MessageTypingState",
     "MessageDeny",
+    "MessageTypingState",
     "MessageEvent",
     "PhotoNew",
-    "PhotoComment",
+    "PhotoCommentNew",
+    "PhotoCommentEdit",
+    "PhotoCommentRestore",
     "PhotoCommentDelete",
     "AudioNew",
     "VideoNew",
-    "VideoComment",
+    "VideoCommentNew",
+    "VideoCommentEdit",
+    "VideoCommentRestore",
     "VideoCommentDelete",
     "WallPostNew",
-    "WallReply",
+    "WallRepost",
+    "WallReplyNew",
+    "WallReplyEdit",
+    "WallReplyRestore",
     "WallReplyDelete",
-    "Like",
-    "BoardPost",
+    "LikeAdd",
+    "LikeRemove",
+    "BoardPostNew",
+    "BoardPostEdit",
+    "BoardPostRestore",
     "BoardPostDelete",
-    "MarketComment",
+    "MarketCommentNew",
+    "MarketCommentEdit",
+    "MarketCommentRestore",
     "MarketCommentDelete",
-    "GroupJoin",
+    "MarketOrderNew",
+    "MarketOrderEdit",
     "GroupLeave",
+    "GroupJoin",
     "UserBlock",
     "UserUnblock",
     "PollVoteNew",
     "GroupOfficersEdit",
     "GroupChangeSettings",
     "GroupChangePhoto",
-    "VkPayTransaction",
+    "VkpayTransaction",
     "AppPayload",
     "DonutSubscriptionCreate",
     "DonutSubscriptionProlonged",

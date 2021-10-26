@@ -1,6 +1,5 @@
+import inspect
 from typing import List, Optional, Union
-
-from vkbottle_types.objects import MessagesMessage
 
 from .base_event_object import BaseEventObject
 
@@ -16,10 +15,6 @@ class MessageObject(BaseEventObject):
     random_id: Optional[int] = None
 
 
-class MessageNewObject(MessagesMessage):
-    pass
-
-
 class ReplaceMessageFlagsObject(MessageObject):
     flags: Optional[int] = None
 
@@ -32,7 +27,12 @@ class ResetMessageFlagsObject(MessageObject):
     mask: Optional[int] = None
 
 
-class EditMessageObject(BaseEventObject):
+class MessageNewObject(MessageObject):
+    minor_id: Optional[int] = None
+    flags: Optional[int] = None
+
+
+class MessageEditObject(BaseEventObject):
     message_id: Optional[int] = None
     mask: Optional[int] = None
     peer_id: Optional[int] = None
@@ -76,7 +76,11 @@ class InstallDialogFlagsObject(ResetDialogFlagsObject):
     pass
 
 
-class DeleteMessagesObject(InReadObject):
+class MessagesDeleteObject(InReadObject):
+    pass
+
+
+class MessagesRestoreObject(InReadObject):
     pass
 
 
@@ -95,6 +99,13 @@ class ConversationTypingStateObject(BaseEventObject):
     chat_id: Optional[int] = None
 
 
+class UsersTypingStateObject(BaseEventObject):
+    user_ids: Optional[List[int]] = None
+    peer_id: Optional[int] = None
+    total_count: Optional[int] = None
+    ts: Optional[int] = None
+
+
 class CallObject(BaseEventObject):
     user_id: Optional[int] = None
     call_id: Optional[int] = None
@@ -104,14 +115,10 @@ class CounterObject(BaseEventObject):
     count: Optional[int] = None
 
 
-class ChangedNotificationsSettingsObject(BaseEventObject):
+class NotificationsSettingsChangedObject(BaseEventObject):
     peer_id: Optional[int] = None
     sound: Optional[int] = None
     disabled_until: Optional[int] = None
-
-
-class RestoreDeletedObject(DeleteMessagesObject):
-    pass
 
 
 class ChatInfoEditObject(BaseEventObject):
@@ -132,26 +139,6 @@ class ChatEditObject(BaseEventObject):
     self: Optional[int] = None
 
 
-MessageObject.update_forward_refs()
-ReplaceMessageFlagsObject.update_forward_refs()
-InstallMessageFlagsObject.update_forward_refs()
-ResetMessageFlagsObject.update_forward_refs()
-EditMessageObject.update_forward_refs()
-InReadObject.update_forward_refs()
-OutReadObject.update_forward_refs()
-FriendOnlineObject.update_forward_refs()
-FriendOfflineObject.update_forward_refs()
-ResetDialogFlagsObject.update_forward_refs()
-ReplaceDialogFlagsObject.update_forward_refs()
-InstallDialogFlagsObject.update_forward_refs()
-DeleteMessagesObject.update_forward_refs()
-ChangeConversationParamsObject.update_forward_refs()
-DialogTypingStateObject.update_forward_refs()
-ConversationTypingStateObject.update_forward_refs()
-CallObject.update_forward_refs()
-CounterObject.update_forward_refs()
-ChangedNotificationsSettingsObject.update_forward_refs()
-RestoreDeletedObject.update_forward_refs()
-ChatInfoEditObject.update_forward_refs()
-ChatVoiceMessageStatesObject.update_forward_refs()
-ChatEditObject.update_forward_refs()
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseEventObject):
+        item.update_forward_refs()
