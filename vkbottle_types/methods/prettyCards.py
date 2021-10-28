@@ -1,6 +1,18 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import prettyCards
+from vkbottle_types.responses.prettyCards import (
+    CreateResponse,
+    CreateResponseModel,
+    DeleteResponse,
+    DeleteResponseModel,
+    EditResponse,
+    EditResponseModel,
+    GetByIdResponse,
+    GetResponse,
+    GetResponseModel,
+    GetUploadURLResponse,
+    PrettyCardsPrettyCard
+)
 
 
 class PrettyCardsCategory(BaseCategory):
@@ -14,7 +26,7 @@ class PrettyCardsCategory(BaseCategory):
         price_old: typing.Optional[str] = None,
         button: typing.Optional[str] = None,
         **kwargs
-    ) -> prettyCards.CreateResponseModel:
+    ) -> CreateResponseModel:
         """prettyCards.create method
         :param owner_id:
         :param photo:
@@ -27,12 +39,12 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.create", params)
-        model = prettyCards.CreateResponse
+        model = CreateResponse
         return model(**response).response
 
     async def delete(
         self, owner_id: int, card_id: int, **kwargs
-    ) -> prettyCards.DeleteResponseModel:
+    ) -> DeleteResponseModel:
         """prettyCards.delete method
         :param owner_id:
         :param card_id:
@@ -40,7 +52,7 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.delete", params)
-        model = prettyCards.DeleteResponse
+        model = DeleteResponse
         return model(**response).response
 
     async def edit(
@@ -54,7 +66,7 @@ class PrettyCardsCategory(BaseCategory):
         price_old: typing.Optional[str] = None,
         button: typing.Optional[str] = None,
         **kwargs
-    ) -> prettyCards.EditResponseModel:
+    ) -> EditResponseModel:
         """prettyCards.edit method
         :param owner_id:
         :param card_id:
@@ -68,7 +80,7 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.edit", params)
-        model = prettyCards.EditResponse
+        model = EditResponse
         return model(**response).response
 
     async def get(
@@ -77,7 +89,7 @@ class PrettyCardsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> prettyCards.GetResponseModel:
+    ) -> GetResponseModel:
         """prettyCards.get method
         :param owner_id:
         :param offset:
@@ -86,12 +98,12 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.get", params)
-        model = prettyCards.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_by_id(
         self, owner_id: int, card_ids: typing.List[int], **kwargs
-    ) -> typing.List[prettyCards.PrettyCardsPrettyCard]:
+    ) -> typing.List[PrettyCardsPrettyCard]:
         """prettyCards.getById method
         :param owner_id:
         :param card_ids:
@@ -99,7 +111,7 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.getById", params)
-        model = prettyCards.GetByIdResponse
+        model = GetByIdResponse
         return model(**response).response
 
     async def get_upload_u_r_l(
@@ -109,5 +121,5 @@ class PrettyCardsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("prettyCards.getUploadURL", params)
-        model = prettyCards.GetUploadURLResponse
+        model = GetUploadURLResponse
         return model(**response).response

@@ -1,6 +1,68 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import ads, base
+from vkbottle_types.responses.ads import (
+    AddOfficeUsersResponse,
+    AdsAccount,
+    AdsAd,
+    AdsAdLayout,
+    AdsCampaign,
+    AdsClient,
+    AdsDemoStats,
+    AdsFloodStats,
+    AdsLinkStatus,
+    AdsPromotedPostReach,
+    AdsRejectReason,
+    AdsStats,
+    AdsTargSettings,
+    AdsTargStats,
+    AdsTargSuggestions,
+    AdsTargetGroup,
+    AdsUpdateOfficeUsersResult,
+    AdsUsers,
+    CheckLinkResponse,
+    CreateAdsResponse,
+    CreateCampaignsResponse,
+    CreateClientsResponse,
+    CreateTargetGroupResponse,
+    CreateTargetGroupResponseModel,
+    DeleteAdsResponse,
+    DeleteCampaignsResponse,
+    DeleteClientsResponse,
+    GetAccountsResponse,
+    GetAdsLayoutResponse,
+    GetAdsResponse,
+    GetAdsTargetingResponse,
+    GetBudgetResponse,
+    GetCampaignsResponse,
+    GetCategoriesResponse,
+    GetCategoriesResponseModel,
+    GetClientsResponse,
+    GetDemographicsResponse,
+    GetFloodStatsResponse,
+    GetLookalikeRequestsResponse,
+    GetLookalikeRequestsResponseModel,
+    GetMusiciansResponse,
+    GetMusiciansResponseModel,
+    GetOfficeUsersResponse,
+    GetPostsReachResponse,
+    GetRejectionReasonResponse,
+    GetStatisticsResponse,
+    GetSuggestionsCitiesResponse,
+    GetSuggestionsRegionsResponse,
+    GetSuggestionsResponse,
+    GetSuggestionsSchoolsResponse,
+    GetTargetGroupsResponse,
+    GetTargetingStatsResponse,
+    GetUploadURLResponse,
+    GetVideoUploadURLResponse,
+    ImportTargetContactsResponse,
+    RemoveOfficeUsersResponse,
+    UpdateAdsResponse,
+    UpdateCampaignsResponse,
+    UpdateClientsResponse,
+    UpdateOfficeUsersResponse
+)
+from vkbottle_types.responses.base import OkResponse
 
 
 class AdsCategory(BaseCategory):
@@ -14,7 +76,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.addOfficeUsers", params)
-        model = ads.AddOfficeUsersResponse
+        model = AddOfficeUsersResponse
         return model(**response).response
 
     async def check_link(
@@ -24,7 +86,7 @@ class AdsCategory(BaseCategory):
         link_url: str,
         campaign_id: typing.Optional[int] = None,
         **kwargs
-    ) -> ads.AdsLinkStatus:
+    ) -> AdsLinkStatus:
         """Allows to check the ad link.
         :param account_id: Advertising account ID.
         :param link_type: Object type: *'community' — community,, *'post' — community post,, *'application' — VK application,, *'video' — video,, *'site' — external site.
@@ -34,7 +96,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.checkLink", params)
-        model = ads.CheckLinkResponse
+        model = CheckLinkResponse
         return model(**response).response
 
     async def create_ads(
@@ -47,7 +109,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.createAds", params)
-        model = ads.CreateAdsResponse
+        model = CreateAdsResponse
         return model(**response).response
 
     async def create_campaigns(
@@ -60,7 +122,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.createCampaigns", params)
-        model = ads.CreateCampaignsResponse
+        model = CreateCampaignsResponse
         return model(**response).response
 
     async def create_clients(
@@ -73,7 +135,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.createClients", params)
-        model = ads.CreateClientsResponse
+        model = CreateClientsResponse
         return model(**response).response
 
     async def create_target_group(
@@ -85,7 +147,7 @@ class AdsCategory(BaseCategory):
         target_pixel_id: typing.Optional[int] = None,
         target_pixel_rules: typing.Optional[str] = None,
         **kwargs
-    ) -> ads.CreateTargetGroupResponseModel:
+    ) -> CreateTargetGroupResponseModel:
         """Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).
         :param account_id: Advertising account ID.
         :param name: Name of the target group — a string up to 64 characters long.
@@ -97,7 +159,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.createTargetGroup", params)
-        model = ads.CreateTargetGroupResponse
+        model = CreateTargetGroupResponse
         return model(**response).response
 
     async def delete_ads(
@@ -110,7 +172,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.deleteAds", params)
-        model = ads.DeleteAdsResponse
+        model = DeleteAdsResponse
         return model(**response).response
 
     async def delete_campaigns(
@@ -123,7 +185,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.deleteCampaigns", params)
-        model = ads.DeleteCampaignsResponse
+        model = DeleteCampaignsResponse
         return model(**response).response
 
     async def delete_clients(
@@ -136,7 +198,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.deleteClients", params)
-        model = ads.DeleteClientsResponse
+        model = DeleteClientsResponse
         return model(**response).response
 
     async def delete_target_group(
@@ -154,17 +216,17 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.deleteTargetGroup", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get_accounts(
         self, **kwargs
-    ) -> typing.List[ads.AdsAccount]:
+    ) -> typing.List[AdsAccount]:
         """Returns a list of advertising accounts."""
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getAccounts", params)
-        model = ads.GetAccountsResponse
+        model = GetAccountsResponse
         return model(**response).response
 
     async def get_ads(
@@ -178,7 +240,7 @@ class AdsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[ads.AdsAd]:
+    ) -> typing.List[AdsAd]:
         """Returns number of ads.
         :param account_id: Advertising account ID.
         :param ad_ids: Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
@@ -192,7 +254,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getAds", params)
-        model = ads.GetAdsResponse
+        model = GetAdsResponse
         return model(**response).response
 
     async def get_ads_layout(
@@ -206,7 +268,7 @@ class AdsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[ads.AdsAdLayout]:
+    ) -> typing.List[AdsAdLayout]:
         """Returns descriptions of ad layouts.
         :param account_id: Advertising account ID.
         :param client_id: 'For advertising agencies.' ID of the client ads are retrieved from.
@@ -220,7 +282,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getAdsLayout", params)
-        model = ads.GetAdsLayoutResponse
+        model = GetAdsLayoutResponse
         return model(**response).response
 
     async def get_ads_targeting(
@@ -233,7 +295,7 @@ class AdsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[ads.AdsTargSettings]:
+    ) -> typing.List[AdsTargSettings]:
         """Returns ad targeting parameters.
         :param account_id: Advertising account ID.
         :param ad_ids: Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
@@ -246,7 +308,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getAdsTargeting", params)
-        model = ads.GetAdsTargetingResponse
+        model = GetAdsTargetingResponse
         return model(**response).response
 
     async def get_budget(
@@ -258,7 +320,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getBudget", params)
-        model = ads.GetBudgetResponse
+        model = GetBudgetResponse
         return model(**response).response
 
     async def get_campaigns(
@@ -269,7 +331,7 @@ class AdsCategory(BaseCategory):
         campaign_ids: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> typing.List[ads.AdsCampaign]:
+    ) -> typing.List[AdsCampaign]:
         """Returns a list of campaigns in an advertising account.
         :param account_id: Advertising account ID.
         :param client_id: 'For advertising agencies'. ID of the client advertising campaigns are retrieved from.
@@ -280,31 +342,31 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getCampaigns", params)
-        model = ads.GetCampaignsResponse
+        model = GetCampaignsResponse
         return model(**response).response
 
     async def get_categories(
         self, lang: typing.Optional[str] = None, **kwargs
-    ) -> ads.GetCategoriesResponseModel:
+    ) -> GetCategoriesResponseModel:
         """Returns a list of possible ad categories.
         :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getCategories", params)
-        model = ads.GetCategoriesResponse
+        model = GetCategoriesResponse
         return model(**response).response
 
     async def get_clients(
         self, account_id: int, **kwargs
-    ) -> typing.List[ads.AdsClient]:
+    ) -> typing.List[AdsClient]:
         """Returns a list of advertising agency's clients.
         :param account_id: Advertising account ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getClients", params)
-        model = ads.GetClientsResponse
+        model = GetClientsResponse
         return model(**response).response
 
     async def get_demographics(
@@ -316,7 +378,7 @@ class AdsCategory(BaseCategory):
         date_from: str,
         date_to: str,
         **kwargs
-    ) -> typing.List[ads.AdsDemoStats]:
+    ) -> typing.List[AdsDemoStats]:
         """Returns demographics for ads or campaigns.
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.
@@ -328,19 +390,19 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getDemographics", params)
-        model = ads.GetDemographicsResponse
+        model = GetDemographicsResponse
         return model(**response).response
 
     async def get_flood_stats(
         self, account_id: int, **kwargs
-    ) -> ads.AdsFloodStats:
+    ) -> AdsFloodStats:
         """Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.
         :param account_id: Advertising account ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getFloodStats", params)
-        model = ads.GetFloodStatsResponse
+        model = GetFloodStatsResponse
         return model(**response).response
 
     async def get_lookalike_requests(
@@ -352,7 +414,7 @@ class AdsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         sort_by: typing.Optional[str] = None,
         **kwargs
-    ) -> ads.GetLookalikeRequestsResponseModel:
+    ) -> GetLookalikeRequestsResponseModel:
         """ads.getLookalikeRequests method
         :param account_id:
         :param client_id:
@@ -364,48 +426,48 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getLookalikeRequests", params)
-        model = ads.GetLookalikeRequestsResponse
+        model = GetLookalikeRequestsResponse
         return model(**response).response
 
     async def get_musicians(
         self, artist_name: str, **kwargs
-    ) -> ads.GetMusiciansResponseModel:
+    ) -> GetMusiciansResponseModel:
         """ads.getMusicians method
         :param artist_name:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getMusicians", params)
-        model = ads.GetMusiciansResponse
+        model = GetMusiciansResponse
         return model(**response).response
 
     async def get_musicians_by_ids(
         self, ids: typing.List[int], **kwargs
-    ) -> ads.GetMusiciansResponseModel:
+    ) -> GetMusiciansResponseModel:
         """ads.getMusiciansByIds method
         :param ids:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getMusiciansByIds", params)
-        model = ads.GetMusiciansResponse
+        model = GetMusiciansResponse
         return model(**response).response
 
     async def get_office_users(
         self, account_id: int, **kwargs
-    ) -> typing.List[ads.AdsUsers]:
+    ) -> typing.List[AdsUsers]:
         """Returns a list of managers and supervisors of advertising account.
         :param account_id: Advertising account ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getOfficeUsers", params)
-        model = ads.GetOfficeUsersResponse
+        model = GetOfficeUsersResponse
         return model(**response).response
 
     async def get_posts_reach(
         self, account_id: int, ids_type: str, ids: str, **kwargs
-    ) -> typing.List[ads.AdsPromotedPostReach]:
+    ) -> typing.List[AdsPromotedPostReach]:
         """Returns detailed statistics of promoted posts reach from campaigns and ads.
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.
@@ -414,12 +476,12 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getPostsReach", params)
-        model = ads.GetPostsReachResponse
+        model = GetPostsReachResponse
         return model(**response).response
 
     async def get_rejection_reason(
         self, account_id: int, ad_id: int, **kwargs
-    ) -> ads.AdsRejectReason:
+    ) -> AdsRejectReason:
         """Returns a reason of ad rejection for pre-moderation.
         :param account_id: Advertising account ID.
         :param ad_id: Ad ID.
@@ -427,7 +489,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getRejectionReason", params)
-        model = ads.GetRejectionReasonResponse
+        model = GetRejectionReasonResponse
         return model(**response).response
 
     async def get_statistics(
@@ -440,7 +502,7 @@ class AdsCategory(BaseCategory):
         date_to: str,
         stats_fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> typing.List[ads.AdsStats]:
+    ) -> typing.List[AdsStats]:
         """Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns,, *client — clients,, *office — account.
@@ -453,7 +515,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getStatistics", params)
-        model = ads.GetStatisticsResponse
+        model = GetStatisticsResponse
         return model(**response).response
 
     async def get_suggestions(
@@ -465,7 +527,7 @@ class AdsCategory(BaseCategory):
         cities: typing.Optional[str] = None,
         lang: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[ads.AdsTargSuggestions]:
+    ) -> typing.List[AdsTargSuggestions]:
         """Returns a set of auto-suggestions for various targeting parameters.
         :param section: Section, suggestions are retrieved in. Available values: *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions — requested list of regions. 'country' parameter is required. *cities — requested list of cities. 'country' parameter is required. *districts — requested list of districts. 'cities' parameter is required. *stations — requested list of subway stations. 'cities' parameter is required. *streets — requested list of streets. 'cities' parameter is required. *schools — requested list of educational organizations. 'cities' parameter is required. *interests — requested list of interests. *positions — requested list of positions (professions). *group_types — requested list of group types. *religions — requested list of religious commitments. *browsers — requested list of browsers and mobile devices.
         :param ids: Objects IDs separated by commas. If the parameter is passed, 'q, country, cities' should not be passed.
@@ -479,11 +541,11 @@ class AdsCategory(BaseCategory):
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
             {
-                ("regions",): ads.GetSuggestionsRegionsResponse,
-                ("cities",): ads.GetSuggestionsCitiesResponse,
-                ("schools",): ads.GetSuggestionsSchoolsResponse,
+                ("regions",): GetSuggestionsRegionsResponse,
+                ("cities",): GetSuggestionsCitiesResponse,
+                ("schools",): GetSuggestionsSchoolsResponse,
             },
-            default=ads.GetSuggestionsResponse,
+            default=GetSuggestionsResponse,
             params=params,
         )
         return model(**response).response
@@ -494,7 +556,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[ads.AdsTargetGroup]:
+    ) -> typing.List[AdsTargetGroup]:
         """Returns a list of target groups.
         :param account_id: Advertising account ID.
         :param client_id: 'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.
@@ -503,7 +565,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getTargetGroups", params)
-        model = ads.GetTargetGroupsResponse
+        model = GetTargetGroupsResponse
         return model(**response).response
 
     async def get_targeting_stats(
@@ -522,7 +584,7 @@ class AdsCategory(BaseCategory):
         need_precise: typing.Optional[bool] = None,
         impressions_limit_period: typing.Optional[int] = None,
         **kwargs
-    ) -> ads.AdsTargStats:
+    ) -> AdsTargStats:
         """Returns the size of targeting audience, and also recommended values for CPC and CPM.
         :param account_id: Advertising account ID.
         :param link_url: URL for the advertised object.
@@ -541,7 +603,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getTargetingStats", params)
-        model = ads.GetTargetingStatsResponse
+        model = GetTargetingStatsResponse
         return model(**response).response
 
     async def get_upload_u_r_l(
@@ -554,7 +616,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getUploadURL", params)
-        model = ads.GetUploadURLResponse
+        model = GetUploadURLResponse
         return model(**response).response
 
     async def get_video_upload_u_r_l(
@@ -564,7 +626,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getVideoUploadURL", params)
-        model = ads.GetVideoUploadURLResponse
+        model = GetVideoUploadURLResponse
         return model(**response).response
 
     async def import_target_contacts(
@@ -584,7 +646,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.importTargetContacts", params)
-        model = ads.ImportTargetContactsResponse
+        model = ImportTargetContactsResponse
         return model(**response).response
 
     async def remove_office_users(
@@ -597,7 +659,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.removeOfficeUsers", params)
-        model = ads.RemoveOfficeUsersResponse
+        model = RemoveOfficeUsersResponse
         return model(**response).response
 
     async def update_ads(
@@ -610,7 +672,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.updateAds", params)
-        model = ads.UpdateAdsResponse
+        model = UpdateAdsResponse
         return model(**response).response
 
     async def update_campaigns(
@@ -623,7 +685,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.updateCampaigns", params)
-        model = ads.UpdateCampaignsResponse
+        model = UpdateCampaignsResponse
         return model(**response).response
 
     async def update_clients(
@@ -636,12 +698,12 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.updateClients", params)
-        model = ads.UpdateClientsResponse
+        model = UpdateClientsResponse
         return model(**response).response
 
     async def update_office_users(
         self, account_id: int, data: str, **kwargs
-    ) -> typing.List[ads.AdsUpdateOfficeUsersResult]:
+    ) -> typing.List[AdsUpdateOfficeUsersResult]:
         """Adds managers and/or supervisors to advertising account.
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
@@ -649,7 +711,7 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.updateOfficeUsers", params)
-        model = ads.UpdateOfficeUsersResponse
+        model = UpdateOfficeUsersResponse
         return model(**response).response
 
     async def update_target_group(
@@ -677,5 +739,5 @@ class AdsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("ads.updateTargetGroup", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

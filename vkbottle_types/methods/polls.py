@@ -1,6 +1,18 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, polls
+from vkbottle_types.responses.polls import (
+    AddVoteResponse,
+    CreateResponse,
+    DeleteVoteResponse,
+    GetBackgroundsResponse,
+    GetByIdResponse,
+    GetVotersResponse,
+    PollsBackground,
+    PollsPoll,
+    PollsVoters,
+    SavePhotoResponse
+)
+from vkbottle_types.responses.base import BaseBoolInt, BaseUploadServer, GetUploadServerResponse, OkResponse
 
 
 class PollsCategory(BaseCategory):
@@ -11,7 +23,7 @@ class PollsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Adds the current user's vote to the selected answer in the poll.
         :param poll_id: Poll ID.
         :param answer_ids:
@@ -21,7 +33,7 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.addVote", params)
-        model = polls.AddVoteResponse
+        model = AddVoteResponse
         return model(**response).response
 
     async def create(
@@ -37,7 +49,7 @@ class PollsCategory(BaseCategory):
         background_id: typing.Optional[str] = None,
         disable_unvote: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.PollsPoll:
+    ) -> PollsPoll:
         """Creates polls that can be attached to the users' or communities' posts.
         :param question: question text
         :param is_anonymous: '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
@@ -53,7 +65,7 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.create", params)
-        model = polls.CreateResponse
+        model = CreateResponse
         return model(**response).response
 
     async def delete_vote(
@@ -63,7 +75,7 @@ class PollsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
         **kwargs
-    ) -> polls.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Deletes the current user's vote from the selected answer in the poll.
         :param poll_id: Poll ID.
         :param answer_id: Answer ID.
@@ -73,7 +85,7 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.deleteVote", params)
-        model = polls.DeleteVoteResponse
+        model = DeleteVoteResponse
         return model(**response).response
 
     async def edit(
@@ -103,17 +115,17 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get_backgrounds(
         self, **kwargs
-    ) -> typing.List[polls.PollsBackground]:
+    ) -> typing.List[PollsBackground]:
         """polls.getBackgrounds method"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getBackgrounds", params)
-        model = polls.GetBackgroundsResponse
+        model = GetBackgroundsResponse
         return model(**response).response
 
     async def get_by_id(
@@ -126,7 +138,7 @@ class PollsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> polls.PollsPoll:
+    ) -> PollsPoll:
         """Returns detailed information about a poll by its ID.
         :param poll_id: Poll ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -139,19 +151,19 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getById", params)
-        model = polls.GetByIdResponse
+        model = GetByIdResponse
         return model(**response).response
 
     async def get_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """polls.getPhotoUploadServer method
         :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getPhotoUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_voters(
@@ -166,7 +178,7 @@ class PollsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[polls.PollsVoters]:
+    ) -> typing.List[PollsVoters]:
         """Returns a list of IDs of users who selected specific answers in the poll.
         :param poll_id: Poll ID.
         :param answer_ids: Answer IDs.
@@ -181,12 +193,12 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getVoters", params)
-        model = polls.GetVotersResponse
+        model = GetVotersResponse
         return model(**response).response
 
     async def save_photo(
         self, photo: str, hash: str, **kwargs
-    ) -> polls.PollsBackground:
+    ) -> PollsBackground:
         """polls.savePhoto method
         :param photo:
         :param hash:
@@ -194,5 +206,5 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.savePhoto", params)
-        model = polls.SavePhotoResponse
+        model = SavePhotoResponse
         return model(**response).response

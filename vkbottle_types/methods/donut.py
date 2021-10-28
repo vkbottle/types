@@ -1,6 +1,13 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, donut, groups
+from vkbottle_types.responses.groups import GetMembersFieldsResponse
+from vkbottle_types.responses.donut import (
+    DonutDonatorSubscriptionInfo,
+    GetSubscriptionResponse,
+    GetSubscriptionsResponse,
+    GetSubscriptionsResponseModel,
+)
+from vkbottle_types.responses.base import BaseBoolInt, BoolResponse
 
 
 class DonutCategory(BaseCategory):
@@ -11,7 +18,7 @@ class DonutCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> groups.GetMembersFieldsResponse:
+    ) -> GetMembersFieldsResponse:
         """donut.getFriends method
         :param owner_id:
         :param offset:
@@ -21,19 +28,19 @@ class DonutCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.getFriends", params)
-        model = groups.GetMembersFieldsResponse
+        model = GetMembersFieldsResponse
         return model(**response).response
 
     async def get_subscription(
         self, owner_id: int, **kwargs
-    ) -> donut.DonutDonatorSubscriptionInfo:
+    ) -> DonutDonatorSubscriptionInfo:
         """donut.getSubscription method
         :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.getSubscription", params)
-        model = donut.GetSubscriptionResponse
+        model = GetSubscriptionResponse
         return model(**response).response
 
     async def get_subscriptions(
@@ -42,7 +49,7 @@ class DonutCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> donut.GetSubscriptionsResponseModel:
+    ) -> GetSubscriptionsResponseModel:
         """Returns a list of user's VK Donut subscriptions.
         :param fields:
         :param offset:
@@ -51,17 +58,15 @@ class DonutCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.getSubscriptions", params)
-        model = donut.GetSubscriptionsResponse
+        model = GetSubscriptionsResponse
         return model(**response).response
 
-    async def is_don(
-        self, owner_id: int, **kwargs
-    ) -> base.BaseBoolInt:
+    async def is_don(self, owner_id: int, **kwargs) -> BaseBoolInt:
         """donut.isDon method
         :param owner_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("donut.isDon", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response

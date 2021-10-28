@@ -1,6 +1,23 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import apps, base
+from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
+from vkbottle_types.responses.apps import (
+    AppsCatalogList,
+    GetCatalogResponse,
+    GetFriendsListResponse,
+    GetFriendsListResponseModel,
+    GetLeaderboardExtendedResponse,
+    GetLeaderboardResponse,
+    GetLeaderboardResponseModel,
+    GetMiniAppPoliciesResponse,
+    GetMiniAppPoliciesResponseModel,
+    GetResponse,
+    GetResponseModel,
+    GetScopesResponse,
+    GetScopesResponseModel,
+    GetScoreResponse,
+    SendRequestResponse
+)
 
 
 class AppsCategory(BaseCategory):
@@ -11,7 +28,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.deleteAppRequests", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -24,7 +41,7 @@ class AppsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> apps.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns applications data.
         :param app_id: Application ID
         :param app_ids: List of application ID
@@ -37,7 +54,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.get", params)
-        model = apps.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_catalog(
@@ -54,7 +71,7 @@ class AppsCategory(BaseCategory):
         genre_id: typing.Optional[int] = None,
         filter: typing.Optional[str] = None,
         **kwargs
-    ) -> apps.AppsCatalogList:
+    ) -> AppsCatalogList:
         """Returns a list of applications (apps) available to users in the App Catalog.
         :param count: Number of apps to return.
         :param sort: Sort order: 'popular_today' — popular for one day (default), 'visitors' — by visitors number , 'create_date' — by creation date, 'growth_rate' — by growth rate, 'popular_week' — popular for one week
@@ -71,7 +88,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getCatalog", params)
-        model = apps.GetCatalogResponse
+        model = GetCatalogResponse
         return model(**response).response
 
     async def get_friends_list(
@@ -82,7 +99,7 @@ class AppsCategory(BaseCategory):
         type: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> apps.GetFriendsListResponseModel:
+    ) -> GetFriendsListResponseModel:
         """Creates friends list for requests and invites in current app.
         :param extended:
         :param count: List size.
@@ -93,7 +110,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getFriendsList", params)
-        model = apps.GetFriendsListResponse
+        model = GetFriendsListResponse
         return model(**response).response
 
     async def get_leaderboard(
@@ -102,7 +119,7 @@ class AppsCategory(BaseCategory):
         _global: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> apps.GetLeaderboardResponseModel:
+    ) -> GetLeaderboardResponseModel:
         """Returns players rating in the game.
         :param type: Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().
         :param _global: Rating type. Possible values: *'1' — global rating among all players,, *'0' — rating among user friends.
@@ -112,34 +129,34 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getLeaderboard", params)
         model = self.get_model(
-            {("extended",): apps.GetLeaderboardExtendedResponse},
-            default=apps.GetLeaderboardResponse,
+            {("extended",): GetLeaderboardExtendedResponse},
+            default=GetLeaderboardResponse,
             params=params,
         )
         return model(**response).response
 
     async def get_mini_app_policies(
         self, app_id: int, **kwargs
-    ) -> apps.GetMiniAppPoliciesResponseModel:
+    ) -> GetMiniAppPoliciesResponseModel:
         """Returns policies and terms given to a mini app.
         :param app_id: Mini App ID
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getMiniAppPolicies", params)
-        model = apps.GetMiniAppPoliciesResponse
+        model = GetMiniAppPoliciesResponse
         return model(**response).response
 
     async def get_scopes(
         self, type: typing.Optional[str] = None, **kwargs
-    ) -> apps.GetScopesResponseModel:
+    ) -> GetScopesResponseModel:
         """Returns scopes for auth
         :param type:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getScopes", params)
-        model = apps.GetScopesResponse
+        model = GetScopesResponse
         return model(**response).response
 
     async def get_score(
@@ -151,12 +168,12 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getScore", params)
-        model = apps.GetScoreResponse
+        model = GetScoreResponse
         return model(**response).response
 
     async def promo_has_active_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BaseBoolInt:
+    ) -> BaseBoolInt:
         """apps.promoHasActiveGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -164,12 +181,12 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoHasActiveGift", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response
 
     async def promo_use_gift(
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BaseBoolInt:
+    ) -> BaseBoolInt:
         """apps.promoUseGift method
         :param promo_id: Id of game promo action
         :param user_id:
@@ -177,7 +194,7 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.promoUseGift", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response
 
     async def send_request(
@@ -201,5 +218,5 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.sendRequest", params)
-        model = apps.SendRequestResponse
+        model = SendRequestResponse
         return model(**response).response

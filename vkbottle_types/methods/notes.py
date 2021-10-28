@@ -1,6 +1,16 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, notes
+from vkbottle_types.responses.notes import (
+    AddResponse,
+    CreateCommentResponse,
+    GetByIdResponse,
+    GetCommentsResponse,
+    GetCommentsResponseModel,
+    GetResponse,
+    GetResponseModel,
+    NotesNote
+)
+from vkbottle_types.responses.base import OkResponse
 
 
 class NotesCategory(BaseCategory):
@@ -21,7 +31,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.add", params)
-        model = notes.AddResponse
+        model = AddResponse
         return model(**response).response
 
     async def create_comment(
@@ -43,7 +53,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.createComment", params)
-        model = notes.CreateCommentResponse
+        model = CreateCommentResponse
         return model(**response).response
 
     async def delete(
@@ -55,7 +65,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.delete", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_comment(
@@ -68,7 +78,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.deleteComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit(
@@ -90,7 +100,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_comment(
@@ -108,7 +118,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.editComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -119,7 +129,7 @@ class NotesCategory(BaseCategory):
         count: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs
-    ) -> notes.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns a list of notes created by a user.
         :param note_ids: Note IDs.
         :param user_id: Note owner ID.
@@ -130,7 +140,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.get", params)
-        model = notes.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_by_id(
@@ -139,7 +149,7 @@ class NotesCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         need_wiki: typing.Optional[bool] = None,
         **kwargs
-    ) -> notes.NotesNote:
+    ) -> NotesNote:
         """Returns a note by its ID.
         :param note_id: Note ID.
         :param owner_id: Note owner ID.
@@ -148,7 +158,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.getById", params)
-        model = notes.GetByIdResponse
+        model = GetByIdResponse
         return model(**response).response
 
     async def get_comments(
@@ -159,7 +169,7 @@ class NotesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> notes.GetCommentsResponseModel:
+    ) -> GetCommentsResponseModel:
         """Returns a list of comments on a note.
         :param note_id: Note ID.
         :param owner_id: Note owner ID.
@@ -170,7 +180,7 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.getComments", params)
-        model = notes.GetCommentsResponse
+        model = GetCommentsResponse
         return model(**response).response
 
     async def restore_comment(
@@ -183,5 +193,5 @@ class NotesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notes.restoreComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

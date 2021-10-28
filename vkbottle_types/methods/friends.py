@@ -1,6 +1,37 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, friends
+from vkbottle_types.responses.friends import (
+    AddListResponse,
+    AddListResponseModel,
+    AddResponse,
+    AreFriendsExtendedResponse,
+    AreFriendsResponse,
+    DeleteResponse,
+    DeleteResponseModel,
+    FriendsFriendStatus,
+    FriendsUserXtrPhone,
+    GetAppUsersResponse,
+    GetByPhonesResponse,
+    GetFieldsResponse,
+    GetListsResponse,
+    GetListsResponseModel,
+    GetMutualResponse,
+    GetMutualTargetUidsResponse,
+    GetOnlineOnlineMobileResponse,
+    GetOnlineResponse,
+    GetRecentResponse,
+    GetRequestsExtendedResponse,
+    GetRequestsNeedMutualResponse,
+    GetRequestsResponse,
+    GetRequestsResponseModel,
+    GetResponse,
+    GetResponseModel,
+    GetSuggestionsResponse,
+    GetSuggestionsResponseModel,
+    SearchResponse,
+    SearchResponseModel
+)
+from vkbottle_types.responses.base import OkResponse
 
 
 class FriendsCategory(BaseCategory):
@@ -19,12 +50,12 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.add", params)
-        model = friends.AddResponse
+        model = AddResponse
         return model(**response).response
 
     async def add_list(
         self, name: str, user_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> friends.AddListResponseModel:
+    ) -> AddListResponseModel:
         """Creates a new friend list for the current user.
         :param name: Name of the friend list.
         :param user_ids: IDs of users to be added to the friend list.
@@ -32,7 +63,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.addList", params)
-        model = friends.AddListResponse
+        model = AddListResponse
         return model(**response).response
 
     async def are_friends(
@@ -41,7 +72,7 @@ class FriendsCategory(BaseCategory):
         need_sign: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[friends.FriendsFriendStatus]:
+    ) -> typing.List[FriendsFriendStatus]:
         """Checks the current user's friendship status with other specified users.
         :param user_ids: IDs of the users whose friendship status to check.
         :param need_sign: '1' — to return 'sign' field. 'sign' is md5("{id}_{user_id}_{friends_status}_{application_secret}"), where id is current user ID. This field allows to check that data has not been modified by the client. By default: '0'.
@@ -51,22 +82,22 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.areFriends", params)
         model = self.get_model(
-            {("extended",): friends.AreFriendsExtendedResponse},
-            default=friends.AreFriendsResponse,
+            {("extended",): AreFriendsExtendedResponse},
+            default=AreFriendsResponse,
             params=params,
         )
         return model(**response).response
 
     async def delete(
         self, user_id: typing.Optional[int] = None, **kwargs
-    ) -> friends.DeleteResponseModel:
+    ) -> DeleteResponseModel:
         """Declines a friend request or deletes a user from the current user's friend list.
         :param user_id: ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.delete", params)
-        model = friends.DeleteResponse
+        model = DeleteResponse
         return model(**response).response
 
     async def delete_all_requests(
@@ -76,7 +107,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.deleteAllRequests", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_list(
@@ -88,7 +119,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.deleteList", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit(
@@ -104,7 +135,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_list(
@@ -126,7 +157,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.editList", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -140,7 +171,7 @@ class FriendsCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         ref: typing.Optional[str] = None,
         **kwargs
-    ) -> friends.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns a list of user IDs or detailed information about a user's friends.
         :param user_id: User ID. By default, the current user ID.
         :param order: Sort order: , 'name' — by name (enabled only if the 'fields' parameter is used), 'hints' — by rating, similar to how friends are sorted in My friends section, , This parameter is available only for [vk.com/dev/standalone|desktop applications].
@@ -155,8 +186,8 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.get", params)
         model = self.get_model(
-            {("fields",): friends.GetFieldsResponse},
-            default=friends.GetResponse,
+            {("fields",): GetFieldsResponse},
+            default=GetResponse,
             params=params,
         )
         return model(**response).response
@@ -168,7 +199,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getAppUsers", params)
-        model = friends.GetAppUsersResponse
+        model = GetAppUsersResponse
         return model(**response).response
 
     async def get_by_phones(
@@ -176,7 +207,7 @@ class FriendsCategory(BaseCategory):
         phones: typing.Optional[typing.List[str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> typing.List[friends.FriendsUserXtrPhone]:
+    ) -> typing.List[FriendsUserXtrPhone]:
         """Returns a list of the current user's friends whose phone numbers, validated or specified in a profile, are in a given list.
         :param phones: List of phone numbers in MSISDN format (maximum 1000). Example: "+79219876543,+79111234567"
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online, counters'.
@@ -184,7 +215,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getByPhones", params)
-        model = friends.GetByPhonesResponse
+        model = GetByPhonesResponse
         return model(**response).response
 
     async def get_lists(
@@ -192,7 +223,7 @@ class FriendsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         return_system: typing.Optional[bool] = None,
         **kwargs
-    ) -> friends.GetListsResponseModel:
+    ) -> GetListsResponseModel:
         """Returns a list of the user's friend lists.
         :param user_id: User ID.
         :param return_system: '1' — to return system friend lists. By default: '0'.
@@ -200,7 +231,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getLists", params)
-        model = friends.GetListsResponse
+        model = GetListsResponse
         return model(**response).response
 
     async def get_mutual(
@@ -225,8 +256,8 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getMutual", params)
         model = self.get_model(
-            {("target_uids",): friends.GetMutualTargetUidsResponse},
-            default=friends.GetMutualResponse,
+            {("target_uids",): GetMutualTargetUidsResponse},
+            default=GetMutualResponse,
             params=params,
         )
         return model(**response).response
@@ -253,8 +284,8 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getOnline", params)
         model = self.get_model(
-            {("online_mobile",): friends.GetOnlineOnlineMobileResponse},
-            default=friends.GetOnlineResponse,
+            {("online_mobile",): GetOnlineOnlineMobileResponse},
+            default=GetOnlineResponse,
             params=params,
         )
         return model(**response).response
@@ -268,7 +299,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getRecent", params)
-        model = friends.GetRecentResponse
+        model = GetRecentResponse
         return model(**response).response
 
     async def get_requests(
@@ -284,7 +315,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> friends.GetRequestsResponseModel:
+    ) -> GetRequestsResponseModel:
         """Returns information about the current user's incoming and outgoing friend requests.
         :param offset: Offset needed to return a specific subset of friend requests.
         :param count: Number of friend requests to return (default 100, maximum 1000).
@@ -302,10 +333,10 @@ class FriendsCategory(BaseCategory):
         response = await self.api.request("friends.getRequests", params)
         model = self.get_model(
             {
-                ("need_mutual",): friends.GetRequestsNeedMutualResponse,
-                ("extended",): friends.GetRequestsExtendedResponse,
+                ("need_mutual",): GetRequestsNeedMutualResponse,
+                ("extended",): GetRequestsExtendedResponse,
             },
-            default=friends.GetRequestsResponse,
+            default=GetRequestsResponse,
             params=params,
         )
         return model(**response).response
@@ -318,7 +349,7 @@ class FriendsCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> friends.GetSuggestionsResponseModel:
+    ) -> GetSuggestionsResponseModel:
         """Returns a list of profiles of users whom the current user may know.
         :param filter: Types of potential friends to return: 'mutual' — users with many mutual friends , 'contacts' — users found with the [vk.com/dev/account.importContacts|account.importContacts] method , 'mutual_contacts' — users who imported the same contacts as the current user with the [vk.com/dev/account.importContacts|account.importContacts] method
         :param count: Number of suggestions to return.
@@ -329,7 +360,7 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getSuggestions", params)
-        model = friends.GetSuggestionsResponse
+        model = GetSuggestionsResponse
         return model(**response).response
 
     async def search(
@@ -341,7 +372,7 @@ class FriendsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> friends.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Returns a list of friends matching the search criteria.
         :param user_id: User ID.
         :param q: Search query string (e.g., 'Vasya Babich').
@@ -353,5 +384,5 @@ class FriendsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("friends.search", params)
-        model = friends.SearchResponse
+        model = SearchResponse
         return model(**response).response

@@ -4,7 +4,7 @@ from pydantic import BaseModel
 
 
 class BaseResponse(BaseModel):
-    _raw_json: Optional[str] = None
+    _raw_json: Optional[str]
 
     @property
     def raw_json(self) -> str:

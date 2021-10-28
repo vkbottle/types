@@ -1,6 +1,7 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, status
+from vkbottle_types.responses.status import GetResponse, StatusStatus
+from vkbottle_types.responses.base import OkResponse
 
 
 class StatusCategory(BaseCategory):
@@ -9,7 +10,7 @@ class StatusCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> status.StatusStatus:
+    ) -> StatusStatus:
         """Returns data required to show the status of a user or community.
         :param user_id: User ID or community ID. Use a negative value to designate a community ID.
         :param group_id:
@@ -17,7 +18,7 @@ class StatusCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("status.get", params)
-        model = status.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def set(
@@ -33,5 +34,5 @@ class StatusCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("status.set", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

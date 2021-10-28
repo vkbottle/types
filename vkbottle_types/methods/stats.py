@@ -1,6 +1,7 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, stats
+from vkbottle_types.responses.stats import GetPostReachResponse, GetResponse, StatsPeriod, StatsWallpostStat
+from vkbottle_types.responses.base import OkResponse
 
 
 class StatsCategory(BaseCategory):
@@ -16,7 +17,7 @@ class StatsCategory(BaseCategory):
         stats_groups: typing.Optional[typing.List[str]] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[stats.StatsPeriod]:
+    ) -> typing.List[StatsPeriod]:
         """Returns statistics of a community or an application.
         :param group_id: Community ID.
         :param app_id: Application ID.
@@ -31,12 +32,12 @@ class StatsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.get", params)
-        model = stats.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_post_reach(
         self, owner_id: str, post_ids: typing.List[int], **kwargs
-    ) -> typing.List[stats.StatsWallpostStat]:
+    ) -> typing.List[StatsWallpostStat]:
         """Returns stats for a wall post.
         :param owner_id: post owner community id. Specify with "-" sign.
         :param post_ids: wall posts id
@@ -44,7 +45,7 @@ class StatsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.getPostReach", params)
-        model = stats.GetPostReachResponse
+        model = GetPostReachResponse
         return model(**response).response
 
     async def track_visitor(
@@ -56,5 +57,5 @@ class StatsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.trackVisitor", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

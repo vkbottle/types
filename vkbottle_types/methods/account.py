@@ -1,6 +1,25 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import account, base
+from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.account import (
+    AccountAccountCounters,
+    AccountInfo,
+    AccountPushSettings,
+    AccountUserSettings,
+    ChangePasswordResponse,
+    ChangePasswordResponseModel,
+    GetActiveOffersResponse,
+    GetActiveOffersResponseModel,
+    GetAppPermissionsResponse,
+    GetBannedResponse,
+    GetBannedResponseModel,
+    GetCountersResponse,
+    GetInfoResponse,
+    GetProfileInfoResponse,
+    GetPushSettingsResponse,
+    SaveProfileInfoResponse,
+    SaveProfileInfoResponseModel
+)
 
 
 class AccountCategory(BaseCategory):
@@ -13,7 +32,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.ban", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def change_password(
@@ -23,7 +42,7 @@ class AccountCategory(BaseCategory):
         change_password_hash: typing.Optional[str] = None,
         old_password: typing.Optional[str] = None,
         **kwargs
-    ) -> account.ChangePasswordResponseModel:
+    ) -> ChangePasswordResponseModel:
         """Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
         :param new_password: New password that will be set as a current
         :param restore_sid: Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
@@ -33,7 +52,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.changePassword", params)
-        model = account.ChangePasswordResponse
+        model = ChangePasswordResponse
         return model(**response).response
 
     async def get_active_offers(
@@ -41,7 +60,7 @@ class AccountCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> account.GetActiveOffersResponseModel:
+    ) -> GetActiveOffersResponseModel:
         """Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
         :param offset:
         :param count: Number of results to return.
@@ -49,7 +68,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getActiveOffers", params)
-        model = account.GetActiveOffersResponse
+        model = GetActiveOffersResponse
         return model(**response).response
 
     async def get_app_permissions(
@@ -61,7 +80,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getAppPermissions", params)
-        model = account.GetAppPermissionsResponse
+        model = GetAppPermissionsResponse
         return model(**response).response
 
     async def get_banned(
@@ -69,7 +88,7 @@ class AccountCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> account.GetBannedResponseModel:
+    ) -> GetBannedResponseModel:
         """Returns a user's blacklist.
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of results to return.
@@ -77,7 +96,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getBanned", params)
-        model = account.GetBannedResponse
+        model = GetBannedResponse
         return model(**response).response
 
     async def get_counters(
@@ -85,7 +104,7 @@ class AccountCategory(BaseCategory):
         filter: typing.Optional[typing.List[str]] = None,
         user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> account.AccountAccountCounters:
+    ) -> AccountAccountCounters:
         """Returns non-null values of user counters.
         :param filter: Counters to be returned.
         :param user_id: User ID
@@ -93,41 +112,41 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getCounters", params)
-        model = account.GetCountersResponse
+        model = GetCountersResponse
         return model(**response).response
 
     async def get_info(
         self, fields: typing.Optional[typing.List[str]] = None, **kwargs
-    ) -> account.AccountInfo:
+    ) -> AccountInfo:
         """Returns current account info.
         :param fields: Fields to return. Possible values: *'country' — user country,, *'https_required' — is "HTTPS only" option enabled,, *'own_posts_default' — is "Show my posts only" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getInfo", params)
-        model = account.GetInfoResponse
+        model = GetInfoResponse
         return model(**response).response
 
     async def get_profile_info(
         self, **kwargs
-    ) -> account.AccountUserSettings:
+    ) -> AccountUserSettings:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getProfileInfo", params)
-        model = account.GetProfileInfoResponse
+        model = GetProfileInfoResponse
         return model(**response).response
 
     async def get_push_settings(
         self, device_id: typing.Optional[str] = None, **kwargs
-    ) -> account.AccountPushSettings:
+    ) -> AccountPushSettings:
         """Gets settings of push notifications.
         :param device_id: Unique device ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.getPushSettings", params)
-        model = account.GetPushSettingsResponse
+        model = GetPushSettingsResponse
         return model(**response).response
 
     async def register_device(
@@ -153,7 +172,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.registerDevice", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def save_profile_info(
@@ -173,7 +192,7 @@ class AccountCategory(BaseCategory):
         city_id: typing.Optional[int] = None,
         status: typing.Optional[str] = None,
         **kwargs
-    ) -> account.SaveProfileInfoResponseModel:
+    ) -> SaveProfileInfoResponseModel:
         """Edits current profile info.
         :param first_name: User first name.
         :param last_name: User last name.
@@ -193,7 +212,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.saveProfileInfo", params)
-        model = account.SaveProfileInfoResponse
+        model = SaveProfileInfoResponse
         return model(**response).response
 
     async def set_info(
@@ -209,7 +228,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setInfo", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_name_in_menu(
@@ -222,7 +241,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setNameInMenu", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_offline(
@@ -232,7 +251,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setOffline", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_online(
@@ -244,7 +263,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setOnline", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_push_settings(
@@ -264,7 +283,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setPushSettings", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_silence_mode(
@@ -284,7 +303,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setSilenceMode", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def unban(
@@ -296,7 +315,7 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.unban", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def unregister_device(
@@ -312,5 +331,5 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.unregisterDevice", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

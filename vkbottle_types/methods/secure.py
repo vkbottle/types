@@ -1,6 +1,20 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, secure
+from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.secure import (
+    CheckTokenResponse,
+    GetAppBalanceResponse,
+    GetSMSHistoryResponse,
+    GetTransactionsHistoryResponse,
+    GetUserLevelResponse,
+    GiveEventStickerResponse,
+    SecureGiveEventStickerItem,
+    SecureLevel,
+    SecureSmsNotification,
+    SecureTokenChecked,
+    SecureTransaction,
+    SendNotificationResponse
+)
 
 
 class SecureCategory(BaseCategory):
@@ -19,7 +33,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.addAppEvent", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def check_token(
@@ -27,7 +41,7 @@ class SecureCategory(BaseCategory):
         token: typing.Optional[str] = None,
         ip: typing.Optional[str] = None,
         **kwargs
-    ) -> secure.SecureTokenChecked:
+    ) -> SecureTokenChecked:
         """Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
         :param token: client 'access_token'
         :param ip: user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. If not transmitted, the address will not be checked.
@@ -35,7 +49,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.checkToken", params)
-        model = secure.CheckTokenResponse
+        model = CheckTokenResponse
         return model(**response).response
 
     async def get_app_balance(
@@ -45,7 +59,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.getAppBalance", params)
-        model = secure.GetAppBalanceResponse
+        model = GetAppBalanceResponse
         return model(**response).response
 
     async def get_s_m_s_history(
@@ -55,7 +69,7 @@ class SecureCategory(BaseCategory):
         date_to: typing.Optional[int] = None,
         limit: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[secure.SecureSmsNotification]:
+    ) -> typing.List[SecureSmsNotification]:
         """Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
         :param user_id:
         :param date_from: filter by start date. It is set as UNIX-time.
@@ -65,7 +79,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.getSMSHistory", params)
-        model = secure.GetSMSHistoryResponse
+        model = GetSMSHistoryResponse
         return model(**response).response
 
     async def get_transactions_history(
@@ -77,7 +91,7 @@ class SecureCategory(BaseCategory):
         date_to: typing.Optional[int] = None,
         limit: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[secure.SecureTransaction]:
+    ) -> typing.List[SecureTransaction]:
         """Shows history of votes transaction between users and the application.
         :param type:
         :param uid_from:
@@ -89,24 +103,24 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.getTransactionsHistory", params)
-        model = secure.GetTransactionsHistoryResponse
+        model = GetTransactionsHistoryResponse
         return model(**response).response
 
     async def get_user_level(
         self, user_ids: typing.List[int], **kwargs
-    ) -> typing.List[secure.SecureLevel]:
+    ) -> typing.List[SecureLevel]:
         """Returns one of the previously set game levels of one or more users in the application.
         :param user_ids:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.getUserLevel", params)
-        model = secure.GetUserLevelResponse
+        model = GetUserLevelResponse
         return model(**response).response
 
     async def give_event_sticker(
         self, user_ids: typing.List[int], achievement_id: int, **kwargs
-    ) -> typing.List[secure.SecureGiveEventStickerItem]:
+    ) -> typing.List[SecureGiveEventStickerItem]:
         """Opens the game achievement and gives the user a sticker
         :param user_ids:
         :param achievement_id:
@@ -114,7 +128,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.giveEventSticker", params)
-        model = secure.GiveEventStickerResponse
+        model = GiveEventStickerResponse
         return model(**response).response
 
     async def send_notification(
@@ -132,7 +146,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.sendNotification", params)
-        model = secure.SendNotificationResponse
+        model = SendNotificationResponse
         return model(**response).response
 
     async def send_s_m_s_notification(
@@ -145,7 +159,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.sendSMSNotification", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def set_counter(
@@ -165,5 +179,5 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.setCounter", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

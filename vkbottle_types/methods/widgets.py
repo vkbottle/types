@@ -1,6 +1,11 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import widgets
+from vkbottle_types.responses.widgets import (
+    GetCommentsResponse,
+    GetCommentsResponseModel,
+    GetPagesResponse,
+    GetPagesResponseModel
+)
 
 
 class WidgetsCategory(BaseCategory):
@@ -14,7 +19,7 @@ class WidgetsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> widgets.GetCommentsResponseModel:
+    ) -> GetCommentsResponseModel:
         """Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
         :param widget_api_id:
         :param url:
@@ -27,7 +32,7 @@ class WidgetsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("widgets.getComments", params)
-        model = widgets.GetCommentsResponse
+        model = GetCommentsResponse
         return model(**response).response
 
     async def get_pages(
@@ -38,7 +43,7 @@ class WidgetsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> widgets.GetPagesResponseModel:
+    ) -> GetPagesResponseModel:
         """Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
         :param widget_api_id:
         :param order:
@@ -49,5 +54,5 @@ class WidgetsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("widgets.getPages", params)
-        model = widgets.GetPagesResponse
+        model = GetPagesResponse
         return model(**response).response

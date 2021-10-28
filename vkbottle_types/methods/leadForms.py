@@ -1,6 +1,17 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import leadForms
+from vkbottle_types.responses.leadForms import (
+    CreateResponse,
+    CreateResponseModel,
+    DeleteResponse,
+    DeleteResponseModel,
+    GetLeadsResponse,
+    GetLeadsResponseModel,
+    GetResponse,
+    LeadFormsForm,
+    ListResponse,
+    UploadUrlResponse
+)
 
 
 class LeadFormsCategory(BaseCategory):
@@ -21,7 +32,7 @@ class LeadFormsCategory(BaseCategory):
         notify_admins: typing.Optional[typing.List[int]] = None,
         notify_emails: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> leadForms.CreateResponseModel:
+    ) -> CreateResponseModel:
         """leadForms.create method
         :param group_id:
         :param name:
@@ -41,12 +52,12 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.create", params)
-        model = leadForms.CreateResponse
+        model = CreateResponse
         return model(**response).response
 
     async def delete(
         self, group_id: int, form_id: int, **kwargs
-    ) -> leadForms.DeleteResponseModel:
+    ) -> DeleteResponseModel:
         """leadForms.delete method
         :param group_id:
         :param form_id:
@@ -54,12 +65,12 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.delete", params)
-        model = leadForms.DeleteResponse
+        model = DeleteResponse
         return model(**response).response
 
     async def get(
         self, group_id: int, form_id: int, **kwargs
-    ) -> leadForms.LeadFormsForm:
+    ) -> LeadFormsForm:
         """leadForms.get method
         :param group_id:
         :param form_id:
@@ -67,7 +78,7 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.get", params)
-        model = leadForms.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_leads(
@@ -77,7 +88,7 @@ class LeadFormsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         next_page_token: typing.Optional[str] = None,
         **kwargs
-    ) -> leadForms.GetLeadsResponseModel:
+    ) -> GetLeadsResponseModel:
         """leadForms.getLeads method
         :param group_id:
         :param form_id:
@@ -87,7 +98,7 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.getLeads", params)
-        model = leadForms.GetLeadsResponse
+        model = GetLeadsResponse
         return model(**response).response
 
     async def get_upload_u_r_l(
@@ -97,19 +108,19 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.getUploadURL", params)
-        model = leadForms.UploadUrlResponse
+        model = UploadUrlResponse
         return model(**response).response
 
     async def list(
         self, group_id: int, **kwargs
-    ) -> typing.List[leadForms.LeadFormsForm]:
+    ) -> typing.List[LeadFormsForm]:
         """leadForms.list method
         :param group_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.list", params)
-        model = leadForms.ListResponse
+        model = ListResponse
         return model(**response).response
 
     async def update(
@@ -130,7 +141,7 @@ class LeadFormsCategory(BaseCategory):
         notify_admins: typing.Optional[typing.List[int]] = None,
         notify_emails: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> leadForms.CreateResponseModel:
+    ) -> CreateResponseModel:
         """leadForms.update method
         :param group_id:
         :param form_id:
@@ -151,5 +162,5 @@ class LeadFormsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("leadForms.update", params)
-        model = leadForms.CreateResponse
+        model = CreateResponse
         return model(**response).response

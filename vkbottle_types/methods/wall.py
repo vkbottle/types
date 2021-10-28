@@ -1,24 +1,53 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, wall
+from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
+from vkbottle_types.responses.wall import (
+    CreateCommentResponse,
+    CreateCommentResponseModel,
+    EditResponse,
+    EditResponseModel,
+    GetByIdExtendedResponse,
+    GetByIdLegacyResponse,
+    GetCommentExtendedResponse,
+    GetCommentResponse,
+    GetCommentResponseModel,
+    GetCommentsExtendedResponse,
+    GetCommentsResponse,
+    GetCommentsResponseModel,
+    GetExtendedResponse,
+    GetRepostsResponse,
+    GetRepostsResponseModel,
+    GetResponse,
+    GetResponseModel,
+    PostAdsStealthResponse,
+    PostAdsStealthResponseModel,
+    PostResponse,
+    PostResponseModel,
+    RepostResponse,
+    RepostResponseModel,
+    SearchExtendedResponse,
+    SearchResponse,
+    SearchResponseModel,
+    WallWallpostFull
+)
 
 
 class WallCategory(BaseCategory):
     async def check_copyright_link(
         self, link: str, **kwargs
-    ) -> base.BaseBoolInt:
+    ) -> BaseBoolInt:
         """wall.checkCopyrightLink method
         :param link:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.checkCopyrightLink", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response
 
     async def close_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BaseBoolInt:
+    ) -> BaseBoolInt:
         """wall.closeComments method
         :param owner_id:
         :param post_id:
@@ -26,7 +55,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.closeComments", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response
 
     async def create_comment(
@@ -40,7 +69,7 @@ class WallCategory(BaseCategory):
         sticker_id: typing.Optional[int] = None,
         guid: typing.Optional[str] = None,
         **kwargs
-    ) -> wall.CreateCommentResponseModel:
+    ) -> CreateCommentResponseModel:
         """Adds a comment to a post on a user wall or community wall.
         :param post_id: Post ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -54,7 +83,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.createComment", params)
-        model = wall.CreateCommentResponse
+        model = CreateCommentResponse
         return model(**response).response
 
     async def delete(
@@ -70,7 +99,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.delete", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_comment(
@@ -83,7 +112,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.deleteComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit(
@@ -108,7 +137,7 @@ class WallCategory(BaseCategory):
         copyright: typing.Optional[str] = None,
         topic_id: typing.Optional[int] = None,
         **kwargs
-    ) -> wall.EditResponseModel:
+    ) -> EditResponseModel:
         """Edits a post on a user wall or community wall.
         :param post_id:
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -133,7 +162,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.edit", params)
-        model = wall.EditResponse
+        model = EditResponse
         return model(**response).response
 
     async def edit_ads_stealth(
@@ -169,7 +198,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.editAdsStealth", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_comment(
@@ -189,7 +218,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.editComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -202,7 +231,7 @@ class WallCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> wall.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns a list of posts on a user wall or community wall.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
         :param domain: User or community short address.
@@ -216,8 +245,8 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.get", params)
         model = self.get_model(
-            {("extended",): wall.GetExtendedResponse},
-            default=wall.GetResponse,
+            {("extended",): GetExtendedResponse},
+            default=GetResponse,
             params=params,
         )
         return model(**response).response
@@ -229,7 +258,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> typing.List[wall.WallWallpostFull]:
+    ) -> typing.List[WallWallpostFull]:
         """Returns a list of posts from user or community walls by their IDs.
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
         :param extended: '1' — to return user and community objects needed to display posts, '0' — no additional fields are returned (default)
@@ -240,8 +269,8 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getById", params)
         model = self.get_model(
-            {("extended",): wall.GetByIdExtendedResponse},
-            default=wall.GetByIdLegacyResponse,
+            {("extended",): GetByIdExtendedResponse},
+            default=GetByIdLegacyResponse,
             params=params,
         )
         return model(**response).response
@@ -253,7 +282,7 @@ class WallCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> wall.GetCommentResponseModel:
+    ) -> GetCommentResponseModel:
         """Returns a comment on a post on a user wall or community wall.
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -264,8 +293,8 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComment", params)
         model = self.get_model(
-            {("extended",): wall.GetCommentExtendedResponse},
-            default=wall.GetCommentResponse,
+            {("extended",): GetCommentExtendedResponse},
+            default=GetCommentResponse,
             params=params,
         )
         return model(**response).response
@@ -285,7 +314,7 @@ class WallCategory(BaseCategory):
         comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs
-    ) -> wall.GetCommentsResponseModel:
+    ) -> GetCommentsResponseModel:
         """Returns a list of comments on a post on a user wall or community wall.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param post_id: Post ID.
@@ -304,8 +333,8 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComments", params)
         model = self.get_model(
-            {("extended",): wall.GetCommentsExtendedResponse},
-            default=wall.GetCommentsResponse,
+            {("extended",): GetCommentsExtendedResponse},
+            default=GetCommentsResponse,
             params=params,
         )
         return model(**response).response
@@ -317,7 +346,7 @@ class WallCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> wall.GetRepostsResponseModel:
+    ) -> GetRepostsResponseModel:
         """Returns information about reposts of a post on user wall or community wall.
         :param owner_id: User ID or community ID. By default, current user ID. Use a negative value to designate a community ID.
         :param post_id: Post ID.
@@ -327,12 +356,12 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getReposts", params)
-        model = wall.GetRepostsResponse
+        model = GetRepostsResponse
         return model(**response).response
 
     async def open_comments(
         self, owner_id: int, post_id: int, **kwargs
-    ) -> base.BaseBoolInt:
+    ) -> BaseBoolInt:
         """wall.openComments method
         :param owner_id:
         :param post_id:
@@ -340,7 +369,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.openComments", params)
-        model = base.BoolResponse
+        model = BoolResponse
         return model(**response).response
 
     async def pin(
@@ -353,7 +382,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.pin", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def post(
@@ -378,7 +407,7 @@ class WallCategory(BaseCategory):
         copyright: typing.Optional[str] = None,
         topic_id: typing.Optional[int] = None,
         **kwargs
-    ) -> wall.PostResponseModel:
+    ) -> PostResponseModel:
         """Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param friends_only: '1' — post will be available to friends only, '0' — post will be available to all users (default)
@@ -403,7 +432,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.post", params)
-        model = wall.PostResponse
+        model = PostResponse
         return model(**response).response
 
     async def post_ads_stealth(
@@ -421,7 +450,7 @@ class WallCategory(BaseCategory):
         link_image: typing.Optional[str] = None,
         link_video: typing.Optional[str] = None,
         **kwargs
-    ) -> wall.PostAdsStealthResponseModel:
+    ) -> PostAdsStealthResponseModel:
         """Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param message: (Required if 'attachments' is not set.) Text of the post.
@@ -439,7 +468,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.postAdsStealth", params)
-        model = wall.PostAdsStealthResponse
+        model = PostAdsStealthResponse
         return model(**response).response
 
     async def report_comment(
@@ -457,7 +486,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.reportComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def report_post(
@@ -475,7 +504,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.reportPost", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def repost(
@@ -486,7 +515,7 @@ class WallCategory(BaseCategory):
         mark_as_ads: typing.Optional[bool] = None,
         mute_notifications: typing.Optional[bool] = None,
         **kwargs
-    ) -> wall.RepostResponseModel:
+    ) -> RepostResponseModel:
         """Reposts (copies) an object to a user wall or community wall.
         :param object: ID of the object to be reposted on the wall. Example: "wall66748_3675"
         :param message: Comment to be added along with the reposted object.
@@ -497,7 +526,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.repost", params)
-        model = wall.RepostResponse
+        model = RepostResponse
         return model(**response).response
 
     async def restore(
@@ -513,7 +542,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.restore", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def restore_comment(
@@ -526,7 +555,7 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.restoreComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def search(
@@ -540,7 +569,7 @@ class WallCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> wall.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Allows to search posts on user or community walls.
         :param owner_id: user or community id. "Remember that for a community 'owner_id' must be negative."
         :param domain: user or community screen name.
@@ -555,8 +584,8 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.search", params)
         model = self.get_model(
-            {("extended",): wall.SearchExtendedResponse},
-            default=wall.SearchResponse,
+            {("extended",): SearchExtendedResponse},
+            default=SearchResponse,
             params=params,
         )
         return model(**response).response
@@ -571,5 +600,5 @@ class WallCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("wall.unpin", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

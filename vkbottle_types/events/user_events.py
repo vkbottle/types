@@ -1,11 +1,11 @@
 import inspect
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, List, Optional, Union
 
 from pydantic import BaseModel
 
-from .enums import UserEventType
-from .events_base import EventsBase
-from .objects import user_event_objects
+from vkbottle_types.events.enums import UserEventType
+from vkbottle_types.events.events_base import EventsBase
+from vkbottle_types.events.objects import user_event_objects, BaseEventObject
 
 if TYPE_CHECKING:
     from vkbottle import ABCAPI, API
@@ -13,10 +13,19 @@ if TYPE_CHECKING:
 
 class BaseUserEvent(BaseModel):
     unprepared_ctx_api: Optional[Any] = None
+    object: Optional["BaseEventObject"] = None
 
     @property
     def ctx_api(self) -> Optional[Union["ABCAPI", "API"]]:
         return getattr(self, "unprepared_ctx_api")
+
+
+class RawUserEvent(BaseUserEvent):
+    object: Optional[List[Any]] = None
+
+    def __init__(self, *args, **data: Any) -> None:
+        data["object"] = args
+        super().__init__(**data)
 
 
 class ReplaceMessageFlags(BaseUserEvent):
@@ -116,7 +125,7 @@ for item in locals().copy().values():
     if (
         not inspect.isclass(item)
         or not issubclass(item, BaseUserEvent)
-        or item is BaseUserEvent
+        or item in (BaseUserEvent, RawUserEvent)
     ):
         continue
     item.update_forward_refs()

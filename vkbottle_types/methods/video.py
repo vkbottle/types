@@ -1,6 +1,29 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, video
+from vkbottle_types.responses.base import BaseBoolInt, OkResponse
+from vkbottle_types.responses.video import (
+    AddAlbumResponse,
+    AddAlbumResponseModel,
+    CreateCommentResponse,
+    GetAlbumByIdResponse,
+    GetAlbumsByVideoExtendedResponse,
+    GetAlbumsByVideoResponse,
+    GetAlbumsExtendedResponse,
+    GetAlbumsResponse,
+    GetAlbumsResponseModel,
+    GetCommentsExtendedResponse,
+    GetCommentsResponse,
+    GetCommentsResponseModel,
+    GetResponse,
+    GetResponseModel,
+    RestoreCommentResponse,
+    SaveResponse,
+    SearchExtendedResponse,
+    SearchResponse,
+    SearchResponseModel,
+    VideoSaveResult,
+    VideoVideoAlbumFull
+)
 
 
 class VideoCategory(BaseCategory):
@@ -19,7 +42,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.add", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def add_album(
@@ -28,7 +51,7 @@ class VideoCategory(BaseCategory):
         title: typing.Optional[str] = None,
         privacy: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> video.AddAlbumResponseModel:
+    ) -> AddAlbumResponseModel:
         """Creates an empty album for videos.
         :param group_id: Community ID (if the album will be created in a community).
         :param title: Album title.
@@ -37,7 +60,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.addAlbum", params)
-        model = video.AddAlbumResponse
+        model = AddAlbumResponse
         return model(**response).response
 
     async def add_to_album(
@@ -59,7 +82,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.addToAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def create_comment(
@@ -87,7 +110,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.createComment", params)
-        model = video.CreateCommentResponse
+        model = CreateCommentResponse
         return model(**response).response
 
     async def delete(
@@ -105,7 +128,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.delete", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_album(
@@ -118,7 +141,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.deleteAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_comment(
@@ -131,7 +154,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.deleteComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit(
@@ -159,7 +182,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_album(
@@ -179,7 +202,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.editAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_comment(
@@ -199,7 +222,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.editComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -212,7 +235,7 @@ class VideoCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> video.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns detailed information about videos.
         :param owner_id: ID of the user or community that owns the video(s).
         :param videos: Video IDs, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", Use a negative value to designate a community ID. Example: "-4363_136089719,13245770_137352259"
@@ -225,12 +248,12 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.get", params)
-        model = video.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_album_by_id(
         self, album_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> video.VideoVideoAlbumFull:
+    ) -> VideoVideoAlbumFull:
         """Returns video album info
         :param album_id: Album ID.
         :param owner_id: identifier of a user or community to add a video to. Use a negative value to designate a community ID.
@@ -238,7 +261,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbumById", params)
-        model = video.GetAlbumByIdResponse
+        model = GetAlbumByIdResponse
         return model(**response).response
 
     async def get_albums(
@@ -249,7 +272,7 @@ class VideoCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         need_system: typing.Optional[bool] = None,
         **kwargs
-    ) -> video.GetAlbumsResponseModel:
+    ) -> GetAlbumsResponseModel:
         """Returns a list of video albums owned by a user or community.
         :param owner_id: ID of the user or community that owns the video album(s).
         :param offset: Offset needed to return a specific subset of video albums.
@@ -261,8 +284,8 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbums", params)
         model = self.get_model(
-            {("extended",): video.GetAlbumsExtendedResponse},
-            default=video.GetAlbumsResponse,
+            {("extended",): GetAlbumsExtendedResponse},
+            default=GetAlbumsResponse,
             params=params,
         )
         return model(**response).response
@@ -285,8 +308,8 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbumsByVideo", params)
         model = self.get_model(
-            {("extended",): video.GetAlbumsByVideoExtendedResponse},
-            default=video.GetAlbumsByVideoResponse,
+            {("extended",): GetAlbumsByVideoExtendedResponse},
+            default=GetAlbumsByVideoResponse,
             params=params,
         )
         return model(**response).response
@@ -303,7 +326,7 @@ class VideoCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> video.GetCommentsResponseModel:
+    ) -> GetCommentsResponseModel:
         """Returns a list of comments on a video.
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
@@ -319,8 +342,8 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getComments", params)
         model = self.get_model(
-            {("extended",): video.GetCommentsExtendedResponse},
-            default=video.GetCommentsResponse,
+            {("extended",): GetCommentsExtendedResponse},
+            default=GetCommentsResponse,
             params=params,
         )
         return model(**response).response
@@ -344,7 +367,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.removeFromAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def reorder_albums(
@@ -364,7 +387,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.reorderAlbums", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def reorder_videos(
@@ -392,7 +415,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.reorderVideos", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def report(
@@ -414,7 +437,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.report", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def report_comment(
@@ -432,7 +455,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.reportComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def restore(
@@ -445,12 +468,12 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.restore", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> video.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Restores a previously deleted comment on a video.
         :param comment_id: ID of the deleted comment.
         :param owner_id: ID of the user or community that owns the video.
@@ -458,7 +481,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.restoreComment", params)
-        model = video.RestoreCommentResponse
+        model = RestoreCommentResponse
         return model(**response).response
 
     async def save(
@@ -476,7 +499,7 @@ class VideoCategory(BaseCategory):
         repeat: typing.Optional[bool] = None,
         compression: typing.Optional[bool] = None,
         **kwargs
-    ) -> video.VideoSaveResult:
+    ) -> VideoSaveResult:
         """Returns a server address (required for upload) and video data.
         :param name: Name of the video.
         :param description: Description of the video.
@@ -494,7 +517,7 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.save", params)
-        model = video.SaveResponse
+        model = SaveResponse
         return model(**response).response
 
     async def search(
@@ -512,7 +535,7 @@ class VideoCategory(BaseCategory):
         count: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> video.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Returns a list of videos under the set search criterion.
         :param q: Search query string (e.g., 'The Beatles').
         :param sort: Sort order: '1' — by duration, '2' — by relevance, '0' — by date added
@@ -531,8 +554,8 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.search", params)
         model = self.get_model(
-            {("extended",): video.SearchExtendedResponse},
-            default=video.SearchResponse,
+            {("extended",): SearchExtendedResponse},
+            default=SearchResponse,
             params=params,
         )
         return model(**response).response

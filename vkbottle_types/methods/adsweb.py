@@ -1,29 +1,42 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import adsweb
+from vkbottle_types.responses.adsweb import (
+    GetAdCategoriesResponse,
+    GetAdCategoriesResponseModel,
+    GetAdUnitCodeResponse,
+    GetAdUnitCodeResponseModel,
+    GetAdUnitsResponse,
+    GetAdUnitsResponseModel,
+    GetFraudHistoryResponse,
+    GetFraudHistoryResponseModel,
+    GetSitesResponse,
+    GetSitesResponseModel,
+    GetStatisticsResponse,
+    GetStatisticsResponseModel
+)
 
 
 class AdswebCategory(BaseCategory):
     async def get_ad_categories(
         self, office_id: int, **kwargs
-    ) -> adsweb.GetAdCategoriesResponseModel:
+    ) -> GetAdCategoriesResponseModel:
         """adsweb.getAdCategories method
         :param office_id:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getAdCategories", params)
-        model = adsweb.GetAdCategoriesResponse
+        model = GetAdCategoriesResponse
         return model(**response).response
 
     async def get_ad_unit_code(
         self, **kwargs
-    ) -> adsweb.GetAdUnitCodeResponseModel:
+    ) -> GetAdUnitCodeResponseModel:
         """adsweb.getAdUnitCode method"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getAdUnitCode", params)
-        model = adsweb.GetAdUnitCodeResponse
+        model = GetAdUnitCodeResponse
         return model(**response).response
 
     async def get_ad_units(
@@ -35,7 +48,7 @@ class AdswebCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> adsweb.GetAdUnitsResponseModel:
+    ) -> GetAdUnitsResponseModel:
         """adsweb.getAdUnits method
         :param office_id:
         :param sites_ids:
@@ -47,7 +60,7 @@ class AdswebCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getAdUnits", params)
-        model = adsweb.GetAdUnitsResponse
+        model = GetAdUnitsResponse
         return model(**response).response
 
     async def get_fraud_history(
@@ -57,7 +70,7 @@ class AdswebCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> adsweb.GetFraudHistoryResponseModel:
+    ) -> GetFraudHistoryResponseModel:
         """adsweb.getFraudHistory method
         :param office_id:
         :param sites_ids:
@@ -67,7 +80,7 @@ class AdswebCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getFraudHistory", params)
-        model = adsweb.GetFraudHistoryResponse
+        model = GetFraudHistoryResponse
         return model(**response).response
 
     async def get_sites(
@@ -78,7 +91,7 @@ class AdswebCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs
-    ) -> adsweb.GetSitesResponseModel:
+    ) -> GetSitesResponseModel:
         """adsweb.getSites method
         :param office_id:
         :param sites_ids:
@@ -89,7 +102,7 @@ class AdswebCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getSites", params)
-        model = adsweb.GetSitesResponse
+        model = GetSitesResponse
         return model(**response).response
 
     async def get_statistics(
@@ -104,7 +117,7 @@ class AdswebCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         page_id: typing.Optional[str] = None,
         **kwargs
-    ) -> adsweb.GetStatisticsResponseModel:
+    ) -> GetStatisticsResponseModel:
         """adsweb.getStatistics method
         :param office_id:
         :param ids_type:
@@ -119,5 +132,5 @@ class AdswebCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("adsweb.getStatistics", params)
-        model = adsweb.GetStatisticsResponse
+        model = GetStatisticsResponse
         return model(**response).response

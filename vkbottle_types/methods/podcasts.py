@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import podcasts
+from vkbottle_types.responses.podcasts import SearchPodcastResponse, SearchPodcastResponseModel
 
 
 class PodcastsCategory(BaseCategory):
@@ -10,7 +10,7 @@ class PodcastsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> podcasts.SearchPodcastResponseModel:
+    ) -> SearchPodcastResponseModel:
         """podcasts.searchPodcast method
         :param search_string:
         :param offset:
@@ -19,5 +19,5 @@ class PodcastsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("podcasts.searchPodcast", params)
-        model = podcasts.SearchPodcastResponse
+        model = SearchPodcastResponse
         return model(**response).response

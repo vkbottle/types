@@ -1,6 +1,13 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import notifications
+from vkbottle_types.responses.notifications import (
+    GetResponse,
+    GetResponseModel,
+    MarkAsViewedResponse,
+    NotificationsSendMessageItem,
+    SendMessageResponse
+)
+from vkbottle_types.responses.base import BaseBoolInt
 
 
 class NotificationsCategory(BaseCategory):
@@ -12,7 +19,7 @@ class NotificationsCategory(BaseCategory):
         start_time: typing.Optional[int] = None,
         end_time: typing.Optional[int] = None,
         **kwargs
-    ) -> notifications.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns a list of notifications about other users' feedback to the current user's wall posts.
         :param count: Number of notifications to return.
         :param start_from:
@@ -23,17 +30,17 @@ class NotificationsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notifications.get", params)
-        model = notifications.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def mark_as_viewed(
         self, **kwargs
-    ) -> notifications.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
 
         params = self.get_set_params(locals())
         response = await self.api.request("notifications.markAsViewed", params)
-        model = notifications.MarkAsViewedResponse
+        model = MarkAsViewedResponse
         return model(**response).response
 
     async def send_message(
@@ -45,7 +52,7 @@ class NotificationsCategory(BaseCategory):
         random_id: typing.Optional[int] = None,
         sending_mode: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[notifications.NotificationsSendMessageItem]:
+    ) -> typing.List[NotificationsSendMessageItem]:
         """notifications.sendMessage method
         :param user_ids:
         :param message:
@@ -57,5 +64,5 @@ class NotificationsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("notifications.sendMessage", params)
-        model = notifications.SendMessageResponse
+        model = SendMessageResponse
         return model(**response).response

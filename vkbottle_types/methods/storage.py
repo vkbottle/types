@@ -1,6 +1,7 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, storage
+from vkbottle_types.responses.storage import GetKeysResponse, GetResponse, StorageValue
+from vkbottle_types.responses.base import OkResponse
 
 
 class StorageCategory(BaseCategory):
@@ -10,7 +11,7 @@ class StorageCategory(BaseCategory):
         keys: typing.Optional[typing.List[str]] = None,
         user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[storage.StorageValue]:
+    ) -> typing.List[StorageValue]:
         """Returns a value of variable with the name set by key parameter.
         :param key:
         :param keys:
@@ -19,7 +20,7 @@ class StorageCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.get", params)
-        model = storage.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_keys(
@@ -37,7 +38,7 @@ class StorageCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.getKeys", params)
-        model = storage.GetKeysResponse
+        model = GetKeysResponse
         return model(**response).response
 
     async def set(
@@ -55,5 +56,5 @@ class StorageCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("storage.set", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

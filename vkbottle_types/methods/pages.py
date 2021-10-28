@@ -1,6 +1,18 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, pages
+from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.pages import (
+    GetHistoryResponse,
+    GetResponse,
+    GetTitlesResponse,
+    GetVersionResponse,
+    PagesWikipage,
+    PagesWikipageFull,
+    PagesWikipageHistory,
+    ParseWikiResponse,
+    SaveAccessResponse,
+    SaveResponse
+)
 
 
 class PagesCategory(BaseCategory):
@@ -13,7 +25,7 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.clearCache", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -26,7 +38,7 @@ class PagesCategory(BaseCategory):
         need_source: typing.Optional[bool] = None,
         need_html: typing.Optional[bool] = None,
         **kwargs
-    ) -> pages.PagesWikipageFull:
+    ) -> PagesWikipageFull:
         """Returns information about a wiki page.
         :param owner_id: Page owner ID.
         :param page_id: Wiki page ID.
@@ -39,7 +51,7 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.get", params)
-        model = pages.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_history(
@@ -48,7 +60,7 @@ class PagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs
-    ) -> typing.List[pages.PagesWikipageHistory]:
+    ) -> typing.List[PagesWikipageHistory]:
         """Returns a list of all previous versions of a wiki page.
         :param page_id: Wiki page ID.
         :param group_id: ID of the community that owns the wiki page.
@@ -57,19 +69,19 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.getHistory", params)
-        model = pages.GetHistoryResponse
+        model = GetHistoryResponse
         return model(**response).response
 
     async def get_titles(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> typing.List[pages.PagesWikipage]:
+    ) -> typing.List[PagesWikipage]:
         """Returns a list of wiki pages in a group.
         :param group_id: ID of the community that owns the wiki page.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.getTitles", params)
-        model = pages.GetTitlesResponse
+        model = GetTitlesResponse
         return model(**response).response
 
     async def get_version(
@@ -79,7 +91,7 @@ class PagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         need_html: typing.Optional[bool] = None,
         **kwargs
-    ) -> pages.PagesWikipageFull:
+    ) -> PagesWikipageFull:
         """Returns the text of one of the previous versions of a wiki page.
         :param version_id:
         :param group_id: ID of the community that owns the wiki page.
@@ -89,7 +101,7 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.getVersion", params)
-        model = pages.GetVersionResponse
+        model = GetVersionResponse
         return model(**response).response
 
     async def parse_wiki(
@@ -102,7 +114,7 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.parseWiki", params)
-        model = pages.ParseWikiResponse
+        model = ParseWikiResponse
         return model(**response).response
 
     async def save(
@@ -124,7 +136,7 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.save", params)
-        model = pages.SaveResponse
+        model = SaveResponse
         return model(**response).response
 
     async def save_access(
@@ -146,5 +158,5 @@ class PagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("pages.saveAccess", params)
-        model = pages.SaveAccessResponse
+        model = SaveAccessResponse
         return model(**response).response

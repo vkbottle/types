@@ -1,6 +1,30 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import database
+from vkbottle_types.responses.database import (
+    BaseCountry,
+    BaseObject,
+    DatabaseStation,
+    GetChairsResponse,
+    GetChairsResponseModel,
+    GetCitiesByIdResponse,
+    GetCitiesResponse,
+    GetCitiesResponseModel,
+    GetCountriesByIdResponse,
+    GetCountriesResponse,
+    GetCountriesResponseModel,
+    GetFacultiesResponse,
+    GetFacultiesResponseModel,
+    GetMetroStationsByIdResponse,
+    GetMetroStationsResponse,
+    GetMetroStationsResponseModel,
+    GetRegionsResponse,
+    GetRegionsResponseModel,
+    GetSchoolClassesResponse,
+    GetSchoolsResponse,
+    GetSchoolsResponseModel,
+    GetUniversitiesResponse,
+    GetUniversitiesResponseModel
+)
 
 
 class DatabaseCategory(BaseCategory):
@@ -10,7 +34,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetChairsResponseModel:
+    ) -> GetChairsResponseModel:
         """Returns list of chairs on a specified faculty.
         :param faculty_id: id of the faculty to get chairs from
         :param offset: offset required to get a certain subset of chairs
@@ -19,7 +43,7 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getChairs", params)
-        model = database.GetChairsResponse
+        model = GetChairsResponse
         return model(**response).response
 
     async def get_cities(
@@ -31,7 +55,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetCitiesResponseModel:
+    ) -> GetCitiesResponseModel:
         """Returns a list of cities.
         :param country_id: Country ID.
         :param region_id: Region ID.
@@ -43,19 +67,19 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getCities", params)
-        model = database.GetCitiesResponse
+        model = GetCitiesResponse
         return model(**response).response
 
     async def get_cities_by_id(
         self, city_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> typing.List[database.BaseObject]:
+    ) -> typing.List[BaseObject]:
         """Returns information about cities by their IDs.
         :param city_ids: City IDs.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getCitiesById", params)
-        model = database.GetCitiesByIdResponse
+        model = GetCitiesByIdResponse
         return model(**response).response
 
     async def get_countries(
@@ -65,7 +89,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetCountriesResponseModel:
+    ) -> GetCountriesResponseModel:
         """Returns a list of countries.
         :param need_all: '1' — to return a full list of all countries, '0' — to return a list of countries near the current user's country (default).
         :param code: Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
@@ -75,19 +99,19 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getCountries", params)
-        model = database.GetCountriesResponse
+        model = GetCountriesResponse
         return model(**response).response
 
     async def get_countries_by_id(
         self, country_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> typing.List[database.BaseCountry]:
+    ) -> typing.List[BaseCountry]:
         """Returns information about countries by their IDs.
         :param country_ids: Country IDs.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getCountriesById", params)
-        model = database.GetCountriesByIdResponse
+        model = GetCountriesByIdResponse
         return model(**response).response
 
     async def get_faculties(
@@ -96,7 +120,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetFacultiesResponseModel:
+    ) -> GetFacultiesResponseModel:
         """Returns a list of faculties (i.e., university departments).
         :param university_id: University ID.
         :param offset: Offset needed to return a specific subset of faculties.
@@ -105,7 +129,7 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getFaculties", params)
-        model = database.GetFacultiesResponse
+        model = GetFacultiesResponse
         return model(**response).response
 
     async def get_metro_stations(
@@ -115,7 +139,7 @@ class DatabaseCategory(BaseCategory):
         count: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> database.GetMetroStationsResponseModel:
+    ) -> GetMetroStationsResponseModel:
         """Get metro stations by city
         :param city_id:
         :param offset:
@@ -125,19 +149,19 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getMetroStations", params)
-        model = database.GetMetroStationsResponse
+        model = GetMetroStationsResponse
         return model(**response).response
 
     async def get_metro_stations_by_id(
         self, station_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> typing.List[database.DatabaseStation]:
+    ) -> typing.List[DatabaseStation]:
         """Get metro station by his id
         :param station_ids:
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getMetroStationsById", params)
-        model = database.GetMetroStationsByIdResponse
+        model = GetMetroStationsByIdResponse
         return model(**response).response
 
     async def get_regions(
@@ -147,7 +171,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetRegionsResponseModel:
+    ) -> GetRegionsResponseModel:
         """Returns a list of regions.
         :param country_id: Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.
         :param q: Search query.
@@ -157,7 +181,7 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getRegions", params)
-        model = database.GetRegionsResponse
+        model = GetRegionsResponse
         return model(**response).response
 
     async def get_school_classes(
@@ -169,7 +193,7 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getSchoolClasses", params)
-        model = database.GetSchoolClassesResponse
+        model = GetSchoolClassesResponse
         return model(**response).response
 
     async def get_schools(
@@ -179,7 +203,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetSchoolsResponseModel:
+    ) -> GetSchoolsResponseModel:
         """Returns a list of schools.
         :param city_id: City ID.
         :param q: Search query.
@@ -189,7 +213,7 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getSchools", params)
-        model = database.GetSchoolsResponse
+        model = GetSchoolsResponse
         return model(**response).response
 
     async def get_universities(
@@ -200,7 +224,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> database.GetUniversitiesResponseModel:
+    ) -> GetUniversitiesResponseModel:
         """Returns a list of higher education institutions.
         :param q: Search query.
         :param country_id: Country ID.
@@ -211,5 +235,5 @@ class DatabaseCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("database.getUniversities", params)
-        model = database.GetUniversitiesResponse
+        model = GetUniversitiesResponse
         return model(**response).response

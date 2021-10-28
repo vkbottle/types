@@ -20,14 +20,14 @@ class BaseCategory:
         exclude_params.update(params["kwargs"])
         exclude_params.pop("kwargs")
         return {
-            k if not k.endswith("_") else k[:-1]: v
+            k if not k.startswith("_") else k[1:]: v
             for k, v in exclude_params.items()
             if k != "self" and v is not None
         }
 
     @classmethod
     def get_model(
-        cls, dependent: typing.Dict[typing.Tuple[str, ...], T], default: T, params: dict
+        cls, dependent: typing.Mapping[typing.Tuple[str, ...], T], default: T, params: dict
     ) -> T:
         for items in sorted(dependent.items(), key=len):
             ks, model = items
@@ -36,6 +36,6 @@ class BaseCategory:
         return default
 
     @classmethod
-    def construct_api(cls, api: "API") -> "BaseCategory":
+    def construct_api(cls, api: "API") -> typing.Type["BaseCategory"]:
         cls.api = api
         return cls

@@ -1,6 +1,14 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, store
+from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.store import (
+    BaseSticker,
+    GetFavoriteStickersResponse,
+    GetProductsResponse,
+    GetStickersKeywordsResponse,
+    GetStickersKeywordsResponseModel,
+    StoreProduct
+)
 
 
 class StoreCategory(BaseCategory):
@@ -13,17 +21,17 @@ class StoreCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("store.addStickersToFavorite", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get_favorite_stickers(
         self, **kwargs
-    ) -> typing.List[store.BaseSticker]:
+    ) -> typing.List[BaseSticker]:
         """store.getFavoriteStickers method"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("store.getFavoriteStickers", params)
-        model = store.GetFavoriteStickersResponse
+        model = GetFavoriteStickersResponse
         return model(**response).response
 
     async def get_products(
@@ -35,7 +43,7 @@ class StoreCategory(BaseCategory):
         filters: typing.Optional[typing.List[str]] = None,
         extended: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[store.StoreProduct]:
+    ) -> typing.List[StoreProduct]:
         """store.getProducts method
         :param type:
         :param merchant:
@@ -47,7 +55,7 @@ class StoreCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("store.getProducts", params)
-        model = store.GetProductsResponse
+        model = GetProductsResponse
         return model(**response).response
 
     async def get_stickers_keywords(
@@ -58,7 +66,7 @@ class StoreCategory(BaseCategory):
         all_products: typing.Optional[bool] = None,
         need_stickers: typing.Optional[bool] = None,
         **kwargs
-    ) -> store.GetStickersKeywordsResponseModel:
+    ) -> GetStickersKeywordsResponseModel:
         """store.getStickersKeywords method
         :param stickers_ids:
         :param products_ids:
@@ -69,7 +77,7 @@ class StoreCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("store.getStickersKeywords", params)
-        model = store.GetStickersKeywordsResponse
+        model = GetStickersKeywordsResponse
         return model(**response).response
 
     async def remove_stickers_from_favorite(
@@ -81,5 +89,5 @@ class StoreCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("store.removeStickersFromFavorite", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

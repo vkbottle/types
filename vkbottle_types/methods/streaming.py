@@ -1,17 +1,18 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, streaming
+from vkbottle_types.responses.streaming import GetServerUrlResponse, GetServerUrlResponseModel
+from vkbottle_types.responses.base import OkResponse
 
 
 class StreamingCategory(BaseCategory):
     async def get_server_url(
         self, **kwargs
-    ) -> streaming.GetServerUrlResponseModel:
+    ) -> GetServerUrlResponseModel:
         """Allows to receive data for the connection to Streaming API."""
 
         params = self.get_set_params(locals())
         response = await self.api.request("streaming.getServerUrl", params)
-        model = streaming.GetServerUrlResponse
+        model = GetServerUrlResponse
         return model(**response).response
 
     async def set_settings(
@@ -23,5 +24,5 @@ class StreamingCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("streaming.setSettings", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response

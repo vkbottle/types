@@ -1,6 +1,16 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import likes
+from vkbottle_types.responses.likes import (
+    AddResponse,
+    AddResponseModel,
+    DeleteResponse,
+    DeleteResponseModel,
+    GetListExtendedResponse,
+    GetListResponse,
+    GetListResponseModel,
+    IsLikedResponse,
+    IsLikedResponseModel
+)
 
 
 class LikesCategory(BaseCategory):
@@ -11,7 +21,7 @@ class LikesCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> likes.AddResponseModel:
+    ) -> AddResponseModel:
         """Adds the specified object to the 'Likes' list of the current user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
         :param item_id: Object ID.
@@ -21,7 +31,7 @@ class LikesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("likes.add", params)
-        model = likes.AddResponse
+        model = AddResponse
         return model(**response).response
 
     async def delete(
@@ -31,7 +41,7 @@ class LikesCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> likes.DeleteResponseModel:
+    ) -> DeleteResponseModel:
         """Deletes the specified object from the 'Likes' list of the current user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
         :param item_id: Object ID.
@@ -41,7 +51,7 @@ class LikesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("likes.delete", params)
-        model = likes.DeleteResponse
+        model = DeleteResponse
         return model(**response).response
 
     async def get_list(
@@ -57,7 +67,7 @@ class LikesCategory(BaseCategory):
         count: typing.Optional[int] = None,
         skip_own: typing.Optional[bool] = None,
         **kwargs
-    ) -> likes.GetListResponseModel:
+    ) -> GetListResponseModel:
         """Returns a list of IDs of users who added the specified object to their 'Likes' list.
         :param type: , Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion, 'sitepage' — page of the site where the [vk.com/dev/Like|Like widget] is installed
         :param owner_id: ID of the user, community, or application that owns the object. If the 'type' parameter is set as 'sitepage', the application ID is passed as 'owner_id'. Use negative value for a community id. If the 'type' parameter is not set, the 'owner_id' is assumed to be either the current user or the same application ID as if the 'type' parameter was set to 'sitepage'.
@@ -74,8 +84,8 @@ class LikesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("likes.getList", params)
         model = self.get_model(
-            {("extended",): likes.GetListExtendedResponse},
-            default=likes.GetListResponse,
+            {("extended",): GetListExtendedResponse},
+            default=GetListResponse,
             params=params,
         )
         return model(**response).response
@@ -87,7 +97,7 @@ class LikesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs
-    ) -> likes.IsLikedResponseModel:
+    ) -> IsLikedResponseModel:
         """Checks for the object in the 'Likes' list of the specified user.
         :param type: Object type: 'post' — post on user or community wall, 'comment' — comment on a wall post, 'photo' — photo, 'audio' — audio, 'video' — video, 'note' — note, 'photo_comment' — comment on the photo, 'video_comment' — comment on the video, 'topic_comment' — comment in the discussion
         :param item_id: Object ID.
@@ -97,5 +107,5 @@ class LikesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("likes.isLiked", params)
-        model = likes.IsLikedResponse
+        model = IsLikedResponse
         return model(**response).response

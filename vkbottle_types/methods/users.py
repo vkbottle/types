@@ -1,6 +1,18 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, users
+from vkbottle_types.responses.users import (
+    GetFollowersFieldsResponse,
+    GetFollowersResponse,
+    GetFollowersResponseModel,
+    GetResponse,
+    GetSubscriptionsExtendedResponse,
+    GetSubscriptionsResponse,
+    GetSubscriptionsResponseModel,
+    SearchResponse,
+    SearchResponseModel,
+    UsersUserFull
+)
+from vkbottle_types.responses.base import OkResponse
 
 
 class UsersCategory(BaseCategory):
@@ -10,7 +22,7 @@ class UsersCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[users.UsersUserFull]:
+    ) -> typing.List[UsersUserFull]:
         """Returns detailed information on users.
         :param user_ids: User IDs or screen names ('screen_name'). By default, current user ID.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'
@@ -19,7 +31,7 @@ class UsersCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("users.get", params)
-        model = users.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_followers(
@@ -30,7 +42,7 @@ class UsersCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs
-    ) -> users.GetFollowersResponseModel:
+    ) -> GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
         :param user_id: User ID.
         :param offset: Offset needed to return a specific subset of followers.
@@ -42,8 +54,8 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getFollowers", params)
         model = self.get_model(
-            {("fields",): users.GetFollowersFieldsResponse},
-            default=users.GetFollowersResponse,
+            {("fields",): GetFollowersFieldsResponse},
+            default=GetFollowersResponse,
             params=params,
         )
         return model(**response).response
@@ -56,7 +68,7 @@ class UsersCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> users.GetSubscriptionsResponseModel:
+    ) -> GetSubscriptionsResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
         :param user_id: User ID.
         :param extended: '1' — to return a combined list of users and communities, '0' — to return separate lists of users and communities (default)
@@ -68,8 +80,8 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getSubscriptions", params)
         model = self.get_model(
-            {("extended",): users.GetSubscriptionsExtendedResponse},
-            default=users.GetSubscriptionsResponse,
+            {("extended",): GetSubscriptionsExtendedResponse},
+            default=GetSubscriptionsResponse,
             params=params,
         )
         return model(**response).response
@@ -85,7 +97,7 @@ class UsersCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("users.report", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def search(
@@ -123,7 +135,7 @@ class UsersCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         from_list: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> users.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Returns a list of users matching the search criteria.
         :param q: Search query string (e.g., 'Vasya Babich').
         :param sort: Sort order: '1' — by date registered, '0' — by rating
@@ -161,5 +173,5 @@ class UsersCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("users.search", params)
-        model = users.SearchResponse
+        model = SearchResponse
         return model(**response).response

@@ -1,6 +1,20 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, docs
+from vkbottle_types.responses.docs import (
+    AddResponse,
+    DocsDoc,
+    GetByIdResponse,
+    GetResponse,
+    GetResponseModel,
+    GetTypesResponse,
+    GetTypesResponseModel,
+    GetUploadServerResponse,
+    SaveResponse,
+    SaveResponseModel,
+    SearchResponse,
+    SearchResponseModel
+)
+from vkbottle_types.responses.base import BaseUploadServer, GetUploadServerResponse, OkResponse
 
 
 class DocsCategory(BaseCategory):
@@ -19,7 +33,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.add", params)
-        model = docs.AddResponse
+        model = AddResponse
         return model(**response).response
 
     async def delete(
@@ -32,7 +46,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.delete", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit(
@@ -52,7 +66,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -63,7 +77,7 @@ class DocsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         return_tags: typing.Optional[bool] = None,
         **kwargs
-    ) -> docs.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns detailed information about user or community documents.
         :param count: Number of documents to return. By default, all documents.
         :param offset: Offset needed to return a specific subset of documents.
@@ -74,7 +88,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.get", params)
-        model = docs.GetResponse
+        model = GetResponse
         return model(**response).response
 
     async def get_by_id(
@@ -82,7 +96,7 @@ class DocsCategory(BaseCategory):
         docs: typing.List[str],
         return_tags: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[docs.DocsDoc]:
+    ) -> typing.List[DocsDoc]:
         """Returns information about documents by their IDs.
         :param docs: Document IDs. Example: , "66748_91488,66748_91455",
         :param return_tags:
@@ -90,7 +104,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getById", params)
-        model = docs.GetByIdResponse
+        model = GetByIdResponse
         return model(**response).response
 
     async def get_messages_upload_server(
@@ -98,7 +112,7 @@ class DocsCategory(BaseCategory):
         type: typing.Optional[str] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for document upload.
         :param type: Document type.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
@@ -106,43 +120,43 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getMessagesUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_types(
         self, owner_id: int, **kwargs
-    ) -> docs.GetTypesResponseModel:
+    ) -> GetTypesResponseModel:
         """Returns documents types available for current user.
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getTypes", params)
-        model = docs.GetTypesResponse
+        model = GetTypesResponse
         return model(**response).response
 
     async def get_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> docs.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for document upload.
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getUploadServer", params)
-        model = docs.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_wall_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for document upload onto a user's or community's wall.
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getWallUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def save(
@@ -152,7 +166,7 @@ class DocsCategory(BaseCategory):
         tags: typing.Optional[str] = None,
         return_tags: typing.Optional[bool] = None,
         **kwargs
-    ) -> docs.SaveResponseModel:
+    ) -> SaveResponseModel:
         """Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
         :param file: This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
         :param title: Document title.
@@ -162,7 +176,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.save", params)
-        model = docs.SaveResponse
+        model = SaveResponse
         return model(**response).response
 
     async def search(
@@ -173,7 +187,7 @@ class DocsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         return_tags: typing.Optional[bool] = None,
         **kwargs
-    ) -> docs.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Returns a list of documents matching the search criteria.
         :param q: Search query string.
         :param search_own:
@@ -184,5 +198,5 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.search", params)
-        model = docs.SearchResponse
+        model = SearchResponse
         return model(**response).response

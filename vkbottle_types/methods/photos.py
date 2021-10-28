@@ -1,6 +1,55 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses import base, photos
+from vkbottle_types.responses.base import BaseBoolInt, BaseUploadServer, GetUploadServerResponse, OkResponse
+from vkbottle_types.responses.photos import (
+    CopyResponse,
+    CreateAlbumResponse,
+    CreateCommentResponse,
+    DeleteCommentResponse,
+    GetAlbumsCountResponse,
+    GetAlbumsResponse,
+    GetAlbumsResponseModel,
+    GetAllCommentsResponse,
+    GetAllCommentsResponseModel,
+    GetAllExtendedResponse,
+    GetAllResponse,
+    GetAllResponseModel,
+    GetByIdLegacyExtendedResponse,
+    GetByIdLegacyResponse,
+    GetCommentsExtendedResponse,
+    GetCommentsResponse,
+    GetCommentsResponseModel,
+    GetExtendedResponse,
+    GetMarketUploadServerResponse,
+    GetMessagesUploadServerResponse,
+    GetNewTagsResponse,
+    GetNewTagsResponseModel,
+    GetResponse,
+    GetResponseModel,
+    GetTagsResponse,
+    GetUploadServerResponse,
+    GetUserPhotosExtendedResponse,
+    GetUserPhotosResponse,
+    GetUserPhotosResponseModel,
+    GetWallUploadServerResponse,
+    PhotosPhoto,
+    PhotosPhotoAlbumFull,
+    PhotosPhotoTag,
+    PhotosPhotoUpload,
+    PutTagResponse,
+    RestoreCommentResponse,
+    SaveMarketAlbumPhotoResponse,
+    SaveMarketPhotoResponse,
+    SaveMessagesPhotoResponse,
+    SaveOwnerCoverPhotoResponse,
+    SaveOwnerCoverPhotoResponseModel,
+    SaveOwnerPhotoResponse,
+    SaveOwnerPhotoResponseModel,
+    SaveResponse,
+    SaveWallPhotoResponse,
+    SearchResponse,
+    SearchResponseModel
+)
 
 
 class PhotosCategory(BaseCategory):
@@ -19,7 +68,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.confirmTag", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def copy(
@@ -37,7 +86,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.copy", params)
-        model = photos.CopyResponse
+        model = CopyResponse
         return model(**response).response
 
     async def create_album(
@@ -50,7 +99,7 @@ class PhotosCategory(BaseCategory):
         upload_by_admins_only: typing.Optional[bool] = None,
         comments_disabled: typing.Optional[bool] = None,
         **kwargs
-    ) -> photos.PhotosPhotoAlbumFull:
+    ) -> PhotosPhotoAlbumFull:
         """Creates an empty photo album.
         :param title: Album title.
         :param group_id: ID of the community in which the album will be created.
@@ -63,7 +112,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.createAlbum", params)
-        model = photos.CreateAlbumResponse
+        model = CreateAlbumResponse
         return model(**response).response
 
     async def create_comment(
@@ -93,7 +142,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.createComment", params)
-        model = photos.CreateCommentResponse
+        model = CreateCommentResponse
         return model(**response).response
 
     async def delete(
@@ -106,7 +155,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.delete", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_album(
@@ -119,12 +168,12 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.deleteAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def delete_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Deletes a comment on the photo.
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -132,7 +181,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.deleteComment", params)
-        model = photos.DeleteCommentResponse
+        model = DeleteCommentResponse
         return model(**response).response
 
     async def edit(
@@ -160,7 +209,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.edit", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_album(
@@ -188,7 +237,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.editAlbum", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def edit_comment(
@@ -208,7 +257,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.editComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def get(
@@ -224,7 +273,7 @@ class PhotosCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetResponseModel:
+    ) -> GetResponseModel:
         """Returns a list of a user's or community's photos.
         :param owner_id: ID of the user or community that owns the photos. Use a negative value to designate a community ID.
         :param album_id: Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
@@ -241,8 +290,8 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.get", params)
         model = self.get_model(
-            {("extended",): photos.GetExtendedResponse},
-            default=photos.GetResponse,
+            {("extended",): GetExtendedResponse},
+            default=GetResponse,
             params=params,
         )
         return model(**response).response
@@ -257,7 +306,7 @@ class PhotosCategory(BaseCategory):
         need_covers: typing.Optional[bool] = None,
         photo_sizes: typing.Optional[bool] = None,
         **kwargs
-    ) -> photos.GetAlbumsResponseModel:
+    ) -> GetAlbumsResponseModel:
         """Returns a list of a user's or community's photo albums.
         :param owner_id: ID of the user or community that owns the albums.
         :param album_ids: Album IDs.
@@ -270,7 +319,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAlbums", params)
-        model = photos.GetAlbumsResponse
+        model = GetAlbumsResponse
         return model(**response).response
 
     async def get_albums_count(
@@ -286,7 +335,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAlbumsCount", params)
-        model = photos.GetAlbumsCountResponse
+        model = GetAlbumsCountResponse
         return model(**response).response
 
     async def get_all(
@@ -300,7 +349,7 @@ class PhotosCategory(BaseCategory):
         need_hidden: typing.Optional[bool] = None,
         skip_hidden: typing.Optional[bool] = None,
         **kwargs
-    ) -> photos.GetAllResponseModel:
+    ) -> GetAllResponseModel:
         """Returns a list of photos belonging to a user or community, in reverse chronological order.
         :param owner_id: ID of a user or community that owns the photos. Use a negative value to designate a community ID.
         :param extended: '1' — to return detailed information about photos
@@ -315,8 +364,8 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAll", params)
         model = self.get_model(
-            {("extended",): photos.GetAllExtendedResponse},
-            default=photos.GetAllResponse,
+            {("extended",): GetAllExtendedResponse},
+            default=GetAllResponse,
             params=params,
         )
         return model(**response).response
@@ -329,7 +378,7 @@ class PhotosCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetAllCommentsResponseModel:
+    ) -> GetAllCommentsResponseModel:
         """Returns a list of comments on a specific photo album or all albums of the user sorted in reverse chronological order.
         :param owner_id: ID of the user or community that owns the album(s).
         :param album_id: Album ID. If the parameter is not set, comments on all of the user's albums will be returned.
@@ -340,7 +389,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAllComments", params)
-        model = photos.GetAllCommentsResponse
+        model = GetAllCommentsResponse
         return model(**response).response
 
     async def get_by_id(
@@ -349,7 +398,7 @@ class PhotosCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         photo_sizes: typing.Optional[bool] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Returns information about photos by their IDs.
         :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
         :param extended: '1' — to return additional fields, '0' — (default)
@@ -359,8 +408,8 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getById", params)
         model = self.get_model(
-            {("extended",): photos.GetByIdLegacyExtendedResponse},
-            default=photos.GetByIdLegacyResponse,
+            {("extended",): GetByIdLegacyExtendedResponse},
+            default=GetByIdLegacyResponse,
             params=params,
         )
         return model(**response).response
@@ -372,7 +421,7 @@ class PhotosCategory(BaseCategory):
         crop_y: typing.Optional[int] = None,
         crop_width: typing.Optional[int] = None,
         **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns an upload link for chat cover pictures.
         :param chat_id: ID of the chat for which you want to upload a cover photo.
         :param crop_x:
@@ -382,7 +431,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getChatUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_comments(
@@ -398,7 +447,7 @@ class PhotosCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> photos.GetCommentsResponseModel:
+    ) -> GetCommentsResponseModel:
         """Returns a list of comments on a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -415,22 +464,22 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getComments", params)
         model = self.get_model(
-            {("extended",): photos.GetCommentsExtendedResponse},
-            default=photos.GetCommentsResponse,
+            {("extended",): GetCommentsExtendedResponse},
+            default=GetCommentsResponse,
             params=params,
         )
         return model(**response).response
 
     async def get_market_album_upload_server(
         self, group_id: int, **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for market album photo upload.
         :param group_id: Community ID.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getMarketAlbumUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_market_upload_server(
@@ -441,7 +490,7 @@ class PhotosCategory(BaseCategory):
         crop_y: typing.Optional[int] = None,
         crop_width: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for market photo upload.
         :param group_id: Community ID.
         :param main_photo: '1' if you want to upload the main item photo.
@@ -452,19 +501,19 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getMarketUploadServer", params)
-        model = photos.GetMarketUploadServerResponse
+        model = GetMarketUploadServerResponse
         return model(**response).response
 
     async def get_messages_upload_server(
         self, peer_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.PhotosPhotoUpload:
+    ) -> PhotosPhotoUpload:
         """Returns the server address for photo upload in a private message for a user.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getMessagesUploadServer", params)
-        model = photos.GetMessagesUploadServerResponse
+        model = GetMessagesUploadServerResponse
         return model(**response).response
 
     async def get_new_tags(
@@ -472,7 +521,7 @@ class PhotosCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.GetNewTagsResponseModel:
+    ) -> GetNewTagsResponseModel:
         """Returns a list of photos with tags that have not been viewed.
         :param offset: Offset needed to return a specific subset of photos.
         :param count: Number of photos to return.
@@ -480,7 +529,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getNewTags", params)
-        model = photos.GetNewTagsResponse
+        model = GetNewTagsResponse
         return model(**response).response
 
     async def get_owner_cover_photo_upload_server(
@@ -491,7 +540,7 @@ class PhotosCategory(BaseCategory):
         crop_x2: typing.Optional[int] = None,
         crop_y2: typing.Optional[int] = None,
         **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns the server address for owner cover upload.
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param crop_x: X coordinate of the left-upper corner
@@ -502,19 +551,19 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getOwnerCoverPhotoUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_owner_photo_upload_server(
         self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> base.BaseUploadServer:
+    ) -> BaseUploadServer:
         """Returns an upload server address for a profile or community photo.
         :param owner_id: identifier of a community or current user. "Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, "
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getOwnerPhotoUploadServer", params)
-        model = base.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_tags(
@@ -523,7 +572,7 @@ class PhotosCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         access_key: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhotoTag]:
+    ) -> typing.List[PhotosPhotoTag]:
         """Returns a list of tags on a photo.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -532,7 +581,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getTags", params)
-        model = photos.GetTagsResponse
+        model = GetTagsResponse
         return model(**response).response
 
     async def get_upload_server(
@@ -540,7 +589,7 @@ class PhotosCategory(BaseCategory):
         album_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.PhotosPhotoUpload:
+    ) -> BaseUploadServer:
         """Returns the server address for photo upload.
         :param album_id:
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
@@ -548,7 +597,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getUploadServer", params)
-        model = photos.GetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_user_photos(
@@ -559,7 +608,7 @@ class PhotosCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         sort: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.GetUserPhotosResponseModel:
+    ) -> GetUserPhotosResponseModel:
         """Returns a list of photos in which a user is tagged.
         :param user_id: User ID.
         :param offset: Offset needed to return a specific subset of photos. By default, '0'.
@@ -571,22 +620,22 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getUserPhotos", params)
         model = self.get_model(
-            {("extended",): photos.GetUserPhotosExtendedResponse},
-            default=photos.GetUserPhotosResponse,
+            {("extended",): GetUserPhotosExtendedResponse},
+            default=GetUserPhotosResponse,
             params=params,
         )
         return model(**response).response
 
     async def get_wall_upload_server(
         self, group_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.PhotosPhotoUpload:
+    ) -> PhotosPhotoUpload:
         """Returns the server address for photo upload onto a user's wall.
         :param group_id: ID of community to whose wall the photo will be uploaded.
         """
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getWallUploadServer", params)
-        model = photos.GetWallUploadServerResponse
+        model = GetWallUploadServerResponse
         return model(**response).response
 
     async def make_cover(
@@ -604,7 +653,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.makeCover", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def move(
@@ -622,7 +671,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.move", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def put_tag(
@@ -648,7 +697,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.putTag", params)
-        model = photos.PutTagResponse
+        model = PutTagResponse
         return model(**response).response
 
     async def remove_tag(
@@ -666,7 +715,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.removeTag", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def reorder_albums(
@@ -686,7 +735,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.reorderAlbums", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def reorder_photos(
@@ -706,7 +755,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.reorderPhotos", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def report(
@@ -724,7 +773,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.report", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def report_comment(
@@ -742,7 +791,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.reportComment", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def restore(
@@ -755,12 +804,12 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.restore", params)
-        model = base.OkResponse
+        model = OkResponse
         return model(**response).response
 
     async def restore_comment(
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> photos.BaseBoolInt:
+    ) -> BaseBoolInt:
         """Restores a deleted comment on a photo.
         :param comment_id: ID of the deleted comment.
         :param owner_id: ID of the user or community that owns the photo.
@@ -768,7 +817,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.restoreComment", params)
-        model = photos.RestoreCommentResponse
+        model = RestoreCommentResponse
         return model(**response).response
 
     async def save(
@@ -782,7 +831,7 @@ class PhotosCategory(BaseCategory):
         longitude: typing.Optional[float] = None,
         caption: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Saves photos after successful uploading.
         :param album_id: ID of the album to save photos to.
         :param group_id: ID of the community to save photos to.
@@ -796,12 +845,12 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.save", params)
-        model = photos.SaveResponse
+        model = SaveResponse
         return model(**response).response
 
     async def save_market_album_photo(
         self, group_id: int, photo: str, server: int, hash: str, **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Saves market album photos after successful uploading.
         :param group_id: Community ID.
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -811,7 +860,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveMarketAlbumPhoto", params)
-        model = photos.SaveMarketAlbumPhotoResponse
+        model = SaveMarketAlbumPhotoResponse
         return model(**response).response
 
     async def save_market_photo(
@@ -823,7 +872,7 @@ class PhotosCategory(BaseCategory):
         crop_data: typing.Optional[str] = None,
         crop_hash: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Saves market photos after successful uploading.
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -835,7 +884,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveMarketPhoto", params)
-        model = photos.SaveMarketPhotoResponse
+        model = SaveMarketPhotoResponse
         return model(**response).response
 
     async def save_messages_photo(
@@ -844,7 +893,7 @@ class PhotosCategory(BaseCategory):
         server: typing.Optional[int] = None,
         hash: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
         :param photo: Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param server:
@@ -853,12 +902,12 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveMessagesPhoto", params)
-        model = photos.SaveMessagesPhotoResponse
+        model = SaveMessagesPhotoResponse
         return model(**response).response
 
     async def save_owner_cover_photo(
         self, hash: str, photo: str, **kwargs
-    ) -> photos.SaveOwnerCoverPhotoResponseModel:
+    ) -> SaveOwnerCoverPhotoResponseModel:
         """Saves cover photo after successful uploading.
         :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -866,7 +915,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveOwnerCoverPhoto", params)
-        model = photos.SaveOwnerCoverPhotoResponse
+        model = SaveOwnerCoverPhotoResponse
         return model(**response).response
 
     async def save_owner_photo(
@@ -875,7 +924,7 @@ class PhotosCategory(BaseCategory):
         hash: typing.Optional[str] = None,
         photo: typing.Optional[str] = None,
         **kwargs
-    ) -> photos.SaveOwnerPhotoResponseModel:
+    ) -> SaveOwnerPhotoResponseModel:
         """Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.
         :param server: parameter returned after [vk.com/dev/upload_files|photo upload].
         :param hash: parameter returned after [vk.com/dev/upload_files|photo upload].
@@ -884,7 +933,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveOwnerPhoto", params)
-        model = photos.SaveOwnerPhotoResponse
+        model = SaveOwnerPhotoResponse
         return model(**response).response
 
     async def save_wall_photo(
@@ -898,7 +947,7 @@ class PhotosCategory(BaseCategory):
         longitude: typing.Optional[float] = None,
         caption: typing.Optional[str] = None,
         **kwargs
-    ) -> typing.List[photos.PhotosPhoto]:
+    ) -> typing.List[PhotosPhoto]:
         """Saves a photo to a user's or community's wall after being uploaded.
         :param photo: Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param user_id: ID of the user on whose wall the photo will be saved.
@@ -912,7 +961,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveWallPhoto", params)
-        model = photos.SaveWallPhotoResponse
+        model = SaveWallPhotoResponse
         return model(**response).response
 
     async def search(
@@ -927,7 +976,7 @@ class PhotosCategory(BaseCategory):
         count: typing.Optional[int] = None,
         radius: typing.Optional[int] = None,
         **kwargs
-    ) -> photos.SearchResponseModel:
+    ) -> SearchResponseModel:
         """Returns a list of photos.
         :param q: Search query string.
         :param lat: Geographical latitude, in degrees (from '-90' to '90').
@@ -942,5 +991,5 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.search", params)
-        model = photos.SearchResponse
+        model = SearchResponse
         return model(**response).response
