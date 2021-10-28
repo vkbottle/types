@@ -3,9 +3,9 @@ from typing import TYPE_CHECKING, Any, List, Optional, Union
 
 from pydantic import BaseModel
 
-from vkbottle_types.events.enums import UserEventType
-from vkbottle_types.events.events_base import EventsBase
-from vkbottle_types.events.objects import user_event_objects, BaseEventObject
+from .enums import UserEventType
+from .events_base import EventsBase
+from .objects import BaseEventObject, user_event_objects
 
 if TYPE_CHECKING:
     from vkbottle import ABCAPI, API
