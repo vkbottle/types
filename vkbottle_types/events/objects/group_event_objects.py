@@ -59,7 +59,7 @@ class MessageEventObject(BaseEventObject):
     user_id: Optional[int] = None
     peer_id: Optional[int] = None
     event_id: Optional[str] = None
-    payload: Optional[Union[dict, str, Any]] = None
+    payload: Optional[str] = None
     conversation_message_id: Optional[int] = None
 
     @property
