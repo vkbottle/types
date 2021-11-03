@@ -169,9 +169,7 @@ class MessagesCategory(BaseCategory):
         model = DeleteConversationResponse
         return model(**response).response
 
-    async def deny_messages_from_group(
-        self, group_id: int, **kwargs
-    ) -> int:
+    async def deny_messages_from_group(self, group_id: int, **kwargs) -> int:
         """Denies sending message from community to the current user.
         :param group_id: Group ID.
         """
@@ -192,6 +190,7 @@ class MessagesCategory(BaseCategory):
         keep_snippets: typing.Optional[bool] = None,
         group_id: typing.Optional[int] = None,
         dont_parse_links: typing.Optional[bool] = None,
+        disable_mentions: typing.Optional[bool] = None,
         message_id: typing.Optional[int] = None,
         conversation_message_id: typing.Optional[int] = None,
         template: typing.Optional[str] = None,
@@ -208,6 +207,7 @@ class MessagesCategory(BaseCategory):
         :param keep_snippets: '1' — to keep attached snippets.
         :param group_id: Group ID (for group messages with user access token)
         :param dont_parse_links:
+        :param disable_mentions:
         :param message_id:
         :param conversation_message_id:
         :param template:
@@ -504,9 +504,7 @@ class MessagesCategory(BaseCategory):
         model = GetInviteLinkResponse
         return model(**response).response
 
-    async def get_last_activity(
-        self, user_id: int, **kwargs
-    ) -> MessagesLastActivity:
+    async def get_last_activity(self, user_id: int, **kwargs) -> MessagesLastActivity:
         """Returns a user's current status and date of last activity.
         :param user_id: User ID.
         """
@@ -643,7 +641,9 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request("messages.markAsImportantConversation", params)
+        response = await self.api.request(
+            "messages.markAsImportantConversation", params
+        )
         model = OkResponse
         return model(**response).response
 
@@ -885,9 +885,7 @@ class MessagesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def set_chat_photo(
-        self, file: str, **kwargs
-    ) -> SetChatPhotoResponseModel:
+    async def set_chat_photo(self, file: str, **kwargs) -> SetChatPhotoResponseModel:
         """Sets a previously-uploaded picture as the cover picture of a chat.
         :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """

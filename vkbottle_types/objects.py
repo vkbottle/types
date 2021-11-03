@@ -1514,7 +1514,7 @@ class BaseError(BaseModel):
     request_params -
     """
 
-    error_code: typing.Optional[int] = None
+    error_code: int = None
     error_msg: typing.Optional[str] = None
     error_subcode: typing.Optional[int] = None
     error_text: typing.Optional[str] = None
@@ -3845,6 +3845,7 @@ class GroupsGroupFull(GroupsGroup):
     can_send_notify - Information whether community can send notifications by phone number to current user
     can_subscribe_podcasts - Owner in whitelist or not
     can_subscribe_posts - Can subscribe to wall
+    can_subscribe_stories - Owner in whitelist or not
     can_suggest -
     can_upload_doc - Information whether current user can upload doc
     can_upload_story - Information whether current user can upload story
@@ -3869,6 +3870,7 @@ class GroupsGroupFull(GroupsGroup):
     is_messages_blocked - Information whether community can send a message to current user
     is_subscribed - Information whether current user is subscribed
     is_subscribed_podcasts - Information whether current user is subscribed to podcasts
+    is_subscribed_stories - Information whether current user is subscribed to stories
     links -
     live_covers - Live covers state
     main_album_id - Community's main photo album ID
@@ -3903,6 +3905,7 @@ class GroupsGroupFull(GroupsGroup):
     can_send_notify: typing.Optional["BaseBoolInt"] = None
     can_subscribe_podcasts: typing.Optional[bool] = None
     can_subscribe_posts: typing.Optional[bool] = None
+    can_subscribe_stories: typing.Optional[bool] = None
     can_suggest: typing.Optional["BaseBoolInt"] = None
     can_upload_doc: typing.Optional["BaseBoolInt"] = None
     can_upload_story: typing.Optional["BaseBoolInt"] = None
@@ -3927,6 +3930,7 @@ class GroupsGroupFull(GroupsGroup):
     is_messages_blocked: typing.Optional["BaseBoolInt"] = None
     is_subscribed: typing.Optional["BaseBoolInt"] = None
     is_subscribed_podcasts: typing.Optional[bool] = None
+    is_subscribed_stories: typing.Optional[bool] = None
     links: typing.Optional[typing.List["GroupsLinksItem"]] = None
     live_covers: typing.Optional["GroupsLiveCovers"] = None
     main_album_id: typing.Optional[int] = None
@@ -6156,7 +6160,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     can_edit: typing.Optional["BaseBoolInt"] = None
     can_pin: typing.Optional["BaseBoolInt"] = None
     comments: typing.Optional["BaseCommentsInfo"] = None
-    copy_history: typing.Optional[typing.List["WallWallpost"]] = None
+    copy_history: typing.Optional[typing.List["WallWallpostFull"]] = None
     created_by: typing.Optional[int] = None
     donut: typing.Optional["WallWallpostDonut"] = None
     hash: typing.Optional[str] = None
@@ -6390,7 +6394,7 @@ class NotificationsNotification(BaseModel):
 
     date: typing.Optional[int] = None
     feedback: typing.Optional["NotificationsFeedback"] = None
-    parent: typing.Optional["NotificationsNotificationParent"] = None
+    parent: typing.Optional["NotificationsNotification"] = None
     reply: typing.Optional["NotificationsReply"] = None
     type: typing.Optional[str] = None
 
@@ -9014,16 +9018,24 @@ class WallGetFilter(enum.Enum):
 class WallGraffiti(BaseModel):
     """VK Object WallGraffiti
 
+    access_key - Access key for graffiti
+    height - Graffiti height
     id - Graffiti ID
     owner_id - Graffiti owner's ID
     photo_200 - URL of the preview image with 200 px in width
     photo_586 - URL of the preview image with 586 px in width
+    url - Graffiti URL
+    width - Graffiti width
     """
 
+    access_key: typing.Optional[str] = None
+    height: typing.Optional[int] = None
     id: typing.Optional[int] = None
     owner_id: typing.Optional[int] = None
     photo_200: typing.Optional[str] = None
     photo_586: typing.Optional[str] = None
+    url: typing.Optional[str] = None
+    width: typing.Optional[int] = None
 
 
 class WallPostCopyright(BaseModel):
@@ -9073,6 +9085,7 @@ class WallPostType(enum.Enum):
     SUGGEST = "suggest"
     POST_ADS = "post_ads"
     PHOTO = "photo"
+    VIDEO = "video"
 
 
 class WallPostedPhoto(BaseModel):
@@ -9208,6 +9221,7 @@ class WallWallpostAttachmentType(enum.Enum):
     """ Attachment type """
 
     PHOTO = "photo"
+    PHOTOS_LIST = "photos_list"
     POSTED_PHOTO = "posted_photo"
     AUDIO = "audio"
     AUDIO_PLAYLIST = "audio_playlist"

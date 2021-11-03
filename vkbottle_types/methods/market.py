@@ -637,7 +637,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         extended: typing.Optional[bool] = None,
-        status: typing.Optional[int] = None,
+        status: typing.Optional[typing.List[int]] = None,
         need_variants: typing.Optional[bool] = None,
         **kwargs
     ) -> SearchResponseModel:

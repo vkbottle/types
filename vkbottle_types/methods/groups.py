@@ -682,7 +682,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> GroupsLongPollServer:
         """Returns the data needed to query a Long Poll server for events
-        :param group_id: Community ID
+        :param group_id: Community ID.
         """
 
         params = self.get_set_params(locals())
