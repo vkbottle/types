@@ -1,21 +1,26 @@
 from enum import IntEnum
-from typing import Tuple, Type
+from typing import Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 
 
 class BaseStateGroup(IntEnum):
     pass
 
 
+def get_state_repr(state: BaseStateGroup) -> str:
+    return f"{state.__class__.__name__}:{state.value}"
+
+
 class StatePeer(BaseModel):
     peer_id: int
-    state: int
-    payload: dict
+    state: str
+    payload: dict = {}
 
-    def get_state_path(self) -> Tuple[Type[BaseStateGroup], BaseStateGroup]:
-        return self.state.__class__, self.state
-
-    def get_state_repr(self) -> str:
-        state_group, index = self.get_state_path()
-        return f"{state_group.__name__}_{index}"
+    @validator("state", pre=True)
+    def validate_state(cls, v: Union[BaseStateGroup, str]) -> str:
+        if isinstance(v, BaseStateGroup):
+            return get_state_repr(v)
+        elif isinstance(v, str):
+            return v
+        raise ValueError(f"State value must be `string` or `BaseStateGroup`, got `{type(v)}`")
