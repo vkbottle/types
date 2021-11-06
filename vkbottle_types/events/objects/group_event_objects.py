@@ -59,7 +59,7 @@ class MessageEventObject(BaseEventObject):
     user_id: Optional[int] = None
     peer_id: Optional[int] = None
     event_id: Optional[str] = None
-    payload: Optional[str] = None
+    payload: Union[str, dict, None] = None
     conversation_message_id: Optional[int] = None
 
     @property
@@ -71,7 +71,9 @@ class MessageEventObject(BaseEventObject):
         throw_error: bool = False,
         unpack_failure: Callable[[str], dict] = lambda payload: payload,
         json: Any = __import__("json"),
-    ) -> Union[dict, None]:
+    ) -> Optional[dict]:
+        if isinstance(self.payload, dict):
+            return self.payload
         try:
             return json.loads(self.payload)
         except (json.decoder.JSONDecodeError, TypeError) as e:
