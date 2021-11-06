@@ -51,10 +51,6 @@ class MessageTypingState(BaseGroupEvent):
 class MessageEvent(BaseGroupEvent):
     object: group_event_objects.MessageEventObject
 
-    def get_payload_json(self, *args, **kwargs) -> Optional[dict]:
-        # Нужно для рулов связанных с пейлоадом
-        return self.object.get_payload_json(*args, **kwargs)
-
 
 class PhotoNew(BaseGroupEvent):
     object: group_event_objects.PhotoNewObject
