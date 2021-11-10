@@ -21,7 +21,7 @@ from vkbottle_types.objects import (
     PhotosPhoto,
     VideoVideo,
     WallWallComment,
-    WallWallpost,
+    WallWallpostFull,
 )
 
 from .base_event_object import BaseEventObject
@@ -32,11 +32,11 @@ class MessageNewObject(BaseEventObject):
     message: Optional["MessagesMessage"] = None
 
 
-class MessageReplyObject(MessagesMessage):
+class MessageReplyObject(BaseEventObject, MessagesMessage):
     pass
 
 
-class MessageEditObject(MessagesMessage):
+class MessageEditObject(BaseEventObject, MessagesMessage):
     pass
 
 
@@ -82,16 +82,13 @@ class MessageEventObject(BaseEventObject):
         return unpack_failure(self.payload)
 
 
-class PhotoNewObject(PhotosPhoto):
+class PhotoNewObject(BaseEventObject, PhotosPhoto):
     pass
 
 
-class PhotoCommentNewObject(BaseEventObject):
-    date: int = None
-    from_id: int = None
-    id: int = None
+class PhotoCommentNewObject(BaseEventObject, WallWallComment):
+    photo_id: int = None
     photo_owner_id: int = None
-    text: str = None
 
 
 class PhotoCommentEditObject(PhotoCommentNewObject):
@@ -109,19 +106,16 @@ class PhotoCommentDeleteObject(BaseEventObject):
     user_id: int = None
 
 
-class AudioNewObject(AudioAudio):
+class AudioNewObject(BaseEventObject, AudioAudio):
     pass
 
 
-class VideoNewObject(VideoVideo):
+class VideoNewObject(BaseEventObject, VideoVideo):
     pass
 
 
-class VideoCommentNewObject(BaseEventObject):
-    date: int = None
-    from_id: int = None
-    id: int = None
-    text: str = None
+class VideoCommentNewObject(BaseEventObject, WallWallComment):
+    video_id: int = None
     video_owner_id: int = None
 
 
@@ -135,20 +129,21 @@ class VideoCommentRestoreObject(VideoCommentNewObject):
 
 class VideoCommentDeleteObject(BaseEventObject):
     id: int = None
+    deleter_id: int = None
     owner_id: int = None
     user_id: int = None
     video_id: int = None
 
 
-class WallPostNewObject(WallWallpost):
+class WallPostNewObject(BaseEventObject, WallWallpostFull):
     postponed_id: Optional[int] = None
 
 
-class WallRepostObject(WallWallpost):
-    postponed_id: Optional[int] = None
+class WallRepostObject(WallPostNewObject):
+    pass
 
 
-class WallReplyNewObject(WallWallComment):
+class WallReplyNewObject(BaseEventObject, WallWallComment):
     post_id: Optional[int] = None
     post_owner_id: Optional[int] = None
 
@@ -181,7 +176,7 @@ class LikeRemoveObject(LikeAddObject):
     pass
 
 
-class BoardPostNewObject(BoardTopicComment):
+class BoardPostNewObject(BaseEventObject, BoardTopicComment):
     topic_id: Optional[int] = None
     topic_owner_id: Optional[int] = None
 
@@ -224,11 +219,11 @@ class MarketCommentDeleteObject(BaseEventObject):
     user_id: int = None
 
 
-class MarketOrderNewObject(MarketOrder):
+class MarketOrderNewObject(BaseEventObject, MarketOrder):
     pass
 
 
-class MarketOrderEditObject(MarketOrder):
+class MarketOrderEditObject(MarketOrderNewObject):
     pass
 
 
