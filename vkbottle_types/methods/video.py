@@ -522,7 +522,7 @@ class VideoCategory(BaseCategory):
 
     async def search(
         self,
-        q: str,
+        q: typing.Optional[str] = None,
         sort: typing.Optional[int] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,

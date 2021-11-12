@@ -1,5 +1,5 @@
 import typing
-
+from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, OkResponse
 from vkbottle_types.responses.messages import (
     CreateChatResponse,
@@ -17,7 +17,6 @@ from vkbottle_types.responses.messages import (
     GetChatPreviewResponse,
     GetChatPreviewResponseModel,
     GetConversationMembersResponse,
-    GetConversationMembersResponseModel,
     GetConversationsByIdExtendedResponse,
     GetConversationsByIdResponse,
     GetConversationsResponse,
@@ -44,6 +43,7 @@ from vkbottle_types.responses.messages import (
     JoinChatByInviteLinkResponseModel,
     MarkAsImportantResponse,
     MessagesGetConversationById,
+    MessagesGetConversationMembers,
     MessagesLastActivity,
     MessagesLongpollParams,
     MessagesPinnedMessage,
@@ -58,10 +58,8 @@ from vkbottle_types.responses.messages import (
     SendResponse,
     SendUserIdsResponse,
     SetChatPhotoResponse,
-    SetChatPhotoResponseModel,
+    SetChatPhotoResponseModel
 )
-
-from .base_category import BaseCategory
 
 
 class MessagesCategory(BaseCategory):
@@ -169,7 +167,9 @@ class MessagesCategory(BaseCategory):
         model = DeleteConversationResponse
         return model(**response).response
 
-    async def deny_messages_from_group(self, group_id: int, **kwargs) -> int:
+    async def deny_messages_from_group(
+        self, group_id: int, **kwargs
+    ) -> int:
         """Denies sending message from community to the current user.
         :param group_id: Group ID.
         """
@@ -304,7 +304,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> GetConversationMembersResponseModel:
+    ) -> MessagesGetConversationMembers:
         """Returns a list of IDs of users participating in a chat.
         :param peer_id: Peer ID.
         :param fields: Profile fields to return.
@@ -504,7 +504,9 @@ class MessagesCategory(BaseCategory):
         model = GetInviteLinkResponse
         return model(**response).response
 
-    async def get_last_activity(self, user_id: int, **kwargs) -> MessagesLastActivity:
+    async def get_last_activity(
+        self, user_id: int, **kwargs
+    ) -> MessagesLastActivity:
         """Returns a user's current status and date of last activity.
         :param user_id: User ID.
         """
@@ -641,9 +643,7 @@ class MessagesCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request(
-            "messages.markAsImportantConversation", params
-        )
+        response = await self.api.request("messages.markAsImportantConversation", params)
         model = OkResponse
         return model(**response).response
 
@@ -885,7 +885,9 @@ class MessagesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def set_chat_photo(self, file: str, **kwargs) -> SetChatPhotoResponseModel:
+    async def set_chat_photo(
+        self, file: str, **kwargs
+    ) -> SetChatPhotoResponseModel:
         """Sets a previously-uploaded picture as the cover picture of a chat.
         :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """

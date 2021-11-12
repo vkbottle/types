@@ -8,12 +8,11 @@ from vkbottle_types.objects import (
     MessagesChat,
     MessagesChatFull,
     MessagesChatPreview,
-    MessagesChatRestrictions,
     MessagesConversation,
-    MessagesConversationMember,
     MessagesConversationWithMessage,
     MessagesGetConversationById,
     MessagesGetConversationByIdExtended,
+    MessagesGetConversationMembers,
     MessagesHistoryAttachment,
     MessagesLastActivity,
     MessagesLongpollMessages,
@@ -23,7 +22,7 @@ from vkbottle_types.objects import (
     MessagesPinnedMessage,
     MessagesSendUserIdsResponseItem,
     UsersUser,
-    UsersUserFull,
+    UsersUserFull
 )
 
 
@@ -80,7 +79,7 @@ class GetChatResponse(BaseResponse):
 
 
 class GetConversationMembersResponse(BaseResponse):
-    response: "GetConversationMembersResponseModel" = None
+    response: MessagesGetConversationMembers = None
 
 
 class GetConversationsByIdExtendedResponse(BaseResponse):
@@ -212,14 +211,6 @@ class GetByIdResponseModel(BaseResponse):
 class GetChatPreviewResponseModel(BaseResponse):
     preview: typing.Optional["MessagesChatPreview"] = None
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-
-
-class GetConversationMembersResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["MessagesConversationMember"]] = None
-    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetConversationsResponseModel(BaseResponse):

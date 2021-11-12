@@ -5298,6 +5298,23 @@ class MessagesGetConversationByIdExtended(MessagesGetConversationById):
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
+class MessagesGetConversationMembers(BaseModel):
+    """VK Object MessagesGetConversationMembers
+
+    chat_restrictions -
+    count - Chat members count
+    groups -
+    items -
+    profiles -
+    """
+
+    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = None
+    count: int = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    items: typing.List["MessagesConversationMember"] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+
+
 class MessagesGraffiti(BaseModel):
     """VK Object MessagesGraffiti
 
@@ -5785,21 +5802,6 @@ class NewsfeedCommentsFilters(enum.Enum):
     NOTE = "note"
 
 
-class NewsfeedFilters(enum.Enum):
-    """ NewsfeedFilters enum """
-
-    POST = "post"
-    PHOTO = "photo"
-    PHOTO_TAG = "photo_tag"
-    WALL_PHOTO = "wall_photo"
-    FRIEND = "friend"
-    NOTE = "note"
-    AUDIO = "audio"
-    VIDEO = "video"
-    AUDIO_PLAYLIST = "audio_playlist"
-    CLIP = "clip"
-
-
 class NewsfeedIgnoreItemType(enum.Enum):
     """ NewsfeedIgnoreItemType enum """
 
@@ -6251,6 +6253,9 @@ class NewsfeedNewsfeedItemType(enum.Enum):
     TOPIC = "topic"
     DIGEST = "digest"
     STORIES = "stories"
+    NOTE = "note"
+    AUDIO_PLAYLIST = "audio_playlist"
+    CLIP = "clip"
 
 
 class PhotosPhoto(BaseModel):
@@ -7840,8 +7845,8 @@ StoreStickersKeywordStickers = BaseStickersList
 class StoriesClickableArea(BaseModel):
     """VK Object StoriesClickableArea"""
 
-    x: typing.Optional[int] = None
-    y: typing.Optional[int] = None
+    x: int = None
+    y: int = None
 
 
 class StoriesClickableStickerStyle(enum.Enum):
@@ -9241,6 +9246,7 @@ class WallWallpostAttachmentType(enum.Enum):
     ARTICLE = "article"
     TEXTLIVE = "textlive"
     TEXTPOST = "textpost"
+    TEXTPOST_PUBLISH = "textpost_publish"
     SITUATIONAL_THEME = "situational_theme"
     GROUP = "group"
     STICKER = "sticker"
