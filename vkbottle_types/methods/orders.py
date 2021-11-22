@@ -26,6 +26,7 @@ class OrdersCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """orders.cancelSubscription method
+
         :param user_id:
         :param subscription_id:
         :param pending_cancel:
@@ -45,6 +46,7 @@ class OrdersCategory(BaseCategory):
         **kwargs
     ) -> str:
         """Changes order status.
+
         :param order_id: order ID.
         :param action: action to be done with the order. Available actions: *cancel — to cancel unconfirmed order. *charge — to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund — to cancel confirmed order.
         :param app_order_id: internal ID of the order in the application.
@@ -64,6 +66,7 @@ class OrdersCategory(BaseCategory):
         **kwargs
     ) -> typing.List[OrdersOrder]:
         """Returns a list of orders.
+
         :param offset:
         :param count: number of returned orders.
         :param test_mode: if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.
@@ -78,6 +81,7 @@ class OrdersCategory(BaseCategory):
         self, user_id: int, votes: typing.List[str], **kwargs
     ) -> typing.List[OrdersAmount]:
         """orders.getAmount method
+
         :param user_id:
         :param votes:
         """
@@ -95,6 +99,7 @@ class OrdersCategory(BaseCategory):
         **kwargs
     ) -> typing.List[OrdersOrder]:
         """Returns information about orders by their IDs.
+
         :param order_id: order ID.
         :param order_ids: order IDs (when information about several orders is requested).
         :param test_mode: if this parameter is set to 1, this method returns a list of test mode orders. By default — 0.
@@ -109,6 +114,7 @@ class OrdersCategory(BaseCategory):
         self, user_id: int, subscription_id: int, **kwargs
     ) -> OrdersSubscription:
         """orders.getUserSubscriptionById method
+
         :param user_id:
         :param subscription_id:
         """
@@ -122,6 +128,7 @@ class OrdersCategory(BaseCategory):
         self, user_id: int, **kwargs
     ) -> GetUserSubscriptionsResponseModel:
         """orders.getUserSubscriptions method
+
         :param user_id:
         """
 
@@ -134,6 +141,7 @@ class OrdersCategory(BaseCategory):
         self, user_id: int, subscription_id: int, price: int, **kwargs
     ) -> BaseBoolInt:
         """orders.updateSubscription method
+
         :param user_id:
         :param subscription_id:
         :param price:

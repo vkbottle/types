@@ -20,6 +20,7 @@ class DonutCategory(BaseCategory):
         **kwargs
     ) -> GetMembersFieldsResponse:
         """donut.getFriends method
+
         :param owner_id:
         :param offset:
         :param count:
@@ -35,6 +36,7 @@ class DonutCategory(BaseCategory):
         self, owner_id: int, **kwargs
     ) -> DonutDonatorSubscriptionInfo:
         """donut.getSubscription method
+
         :param owner_id:
         """
 
@@ -51,6 +53,7 @@ class DonutCategory(BaseCategory):
         **kwargs
     ) -> GetSubscriptionsResponseModel:
         """Returns a list of user's VK Donut subscriptions.
+
         :param fields:
         :param offset:
         :param count:
@@ -65,6 +68,7 @@ class DonutCategory(BaseCategory):
         self, owner_id: int, **kwargs
     ) -> BaseBoolInt:
         """donut.isDon method
+
         :param owner_id:
         """
 

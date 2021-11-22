@@ -81,6 +81,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GroupsAddress:
         """groups.addAddress method
+
         :param group_id:
         :param title:
         :param address:
@@ -110,6 +111,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> AddCallbackServerResponseModel:
         """groups.addCallbackServer method
+
         :param group_id:
         :param url:
         :param title:
@@ -125,6 +127,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, link: str, text: typing.Optional[str] = None, **kwargs
     ) -> GroupsLinksItem:
         """Allows to add a link to the community.
+
         :param group_id: Community ID.
         :param link: Link URL.
         :param text: Description text for the link.
@@ -139,6 +142,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, user_id: int, **kwargs
     ) -> int:
         """Allows to approve join request to the community.
+
         :param group_id: Community ID.
         :param user_id: User ID.
         """
@@ -159,6 +163,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """groups.ban method
+
         :param group_id:
         :param owner_id:
         :param end_date:
@@ -183,6 +188,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GroupsGroup:
         """Creates a new community.
+
         :param title: Community title.
         :param description: Community description (ignored for 'type' = 'public').
         :param type: Community type. Possible values: *'group' - group,, *'event' - event,, *'public' - public page
@@ -200,6 +206,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, address_id: int, **kwargs
     ) -> int:
         """groups.deleteAddress method
+
         :param group_id:
         :param address_id:
         """
@@ -213,6 +220,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, server_id: int, **kwargs
     ) -> int:
         """groups.deleteCallbackServer method
+
         :param group_id:
         :param server_id:
         """
@@ -226,6 +234,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, link_id: int, **kwargs
     ) -> int:
         """Allows to delete a link from the community.
+
         :param group_id: Community ID.
         :param link_id: Link ID.
         """
@@ -239,6 +248,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> int:
         """groups.disableOnline method
+
         :param group_id:
         """
 
@@ -297,6 +307,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a community.
+
         :param group_id: Community ID.
         :param title: Community title.
         :param description: Community description.
@@ -368,6 +379,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GroupsAddress:
         """groups.editAddress method
+
         :param group_id:
         :param address_id:
         :param title:
@@ -399,6 +411,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """groups.editCallbackServer method
+
         :param group_id:
         :param server_id:
         :param url:
@@ -415,6 +428,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, link_id: int, text: typing.Optional[str] = None, **kwargs
     ) -> int:
         """Allows to edit a link in the community.
+
         :param group_id: Community ID.
         :param link_id: Link ID.
         :param text: New description text for the link.
@@ -437,6 +451,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows to add, remove or edit the community manager.
+
         :param group_id: Community ID.
         :param user_id: User ID.
         :param role: Manager role. Possible values: *'moderator',, *'editor',, *'administrator',, *'advertiser'.
@@ -455,6 +470,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> int:
         """groups.enableOnline method
+
         :param group_id:
         """
 
@@ -474,6 +490,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of the communities to which a user belongs.
+
         :param user_id: User ID.
         :param extended: '1' — to return complete information about a user's communities, '0' — to return a list of community IDs without any additional fields (default),
         :param filter: Types of communities to return: 'admin' — to return communities administered by the user , 'editor' — to return communities where the user is an administrator or editor, 'moder' — to return communities where the user is an administrator, editor, or moderator, 'groups' — to return only groups, 'publics' — to return only public pages, 'events' — to return only events
@@ -503,6 +520,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetAddressesResponseModel:
         """Returns a list of community addresses.
+
         :param group_id: ID or screen name of the community.
         :param address_ids:
         :param latitude: Latitude of  the user geo position.
@@ -527,6 +545,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetBannedResponseModel:
         """Returns a list of users on a community blacklist.
+
         :param group_id: Community ID.
         :param offset: Offset needed to return a specific subset of users.
         :param count: Number of users to return.
@@ -547,6 +566,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[GroupsGroupFull]:
         """Returns information about communities by their IDs.
+
         :param group_ids: IDs or screen names of communities.
         :param group_id: ID or screen name of the community.
         :param fields: Group fields to return.
@@ -561,6 +581,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> GetCallbackConfirmationCodeResponseModel:
         """Returns Callback API confirmation code for the community.
+
         :param group_id: Community ID.
         """
 
@@ -576,6 +597,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetCallbackServersResponseModel:
         """groups.getCallbackServers method
+
         :param group_id:
         :param server_ids:
         """
@@ -589,6 +611,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, server_id: typing.Optional[int] = None, **kwargs
     ) -> GroupsCallbackSettings:
         """Returns [vk.com/dev/callback_api|Callback API] notifications settings.
+
         :param group_id: Community ID.
         :param server_id: Server ID.
         """
@@ -605,6 +628,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetCatalogResponseModel:
         """Returns communities list for a catalog category.
+
         :param category_id: Category id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].
         :param subcategory_id: Subcategory id received from [vk.com/dev/groups.getCatalogInfo|groups.getCatalogInfo].
         """
@@ -621,6 +645,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetCatalogInfoResponseModel:
         """Returns categories list for communities catalog
+
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
         :param subcategories: 1 - to return subcategories info. By default: 0.
         """
@@ -644,6 +669,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetInvitedUsersResponseModel:
         """Returns invited users list of a community
+
         :param group_id: Group ID to return invited users for.
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of results to return.
@@ -664,6 +690,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetInvitesResponseModel:
         """Returns a list of invitations to join communities and events.
+
         :param offset: Offset needed to return a specific subset of invitations.
         :param count: Number of invitations to return.
         :param extended: '1' — to return additional [vk.com/dev/fields_groups|fields] for communities..
@@ -682,6 +709,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> GroupsLongPollServer:
         """Returns the data needed to query a Long Poll server for events
+
         :param group_id: Community ID.
         """
 
@@ -694,6 +722,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> GroupsLongPollSettings:
         """Returns Long Poll notification settings
+
         :param group_id: Community ID.
         """
 
@@ -713,6 +742,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetMembersResponseModel:
         """Returns a list of community members.
+
         :param group_id: ID or screen name of the community.
         :param sort: Sort order. Available values: 'id_asc', 'id_desc', 'time_asc', 'time_desc'. 'time_asc' and 'time_desc' are availavle only if the method is called by the group's 'moderator'.
         :param offset: Offset needed to return a specific subset of community members.
@@ -739,6 +769,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> GetRequestsResponseModel:
         """Returns a list of requests to the community.
+
         :param group_id: Community ID.
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of results to return.
@@ -758,6 +789,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> GetSettingsResponseModel:
         """Returns community settings.
+
         :param group_id: Community ID.
         """
 
@@ -770,6 +802,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> typing.List[GroupsGroupTag]:
         """List of group's tags
+
         :param group_id:
         """
 
@@ -792,6 +825,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, user_id: int, **kwargs
     ) -> int:
         """Allows to invite friends to the community.
+
         :param group_id: Community ID.
         :param user_id: User ID.
         """
@@ -810,6 +844,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """Returns information specifying whether a user is a member of a community.
+
         :param group_id: ID or screen name of the community.
         :param user_id: User ID.
         :param user_ids: User IDs.
@@ -836,6 +871,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """With this method you can join the group or public page, and also confirm your participation in an event.
+
         :param group_id: ID or screen name of the community.
         :param not_sure: Optional parameter which is taken into account when 'gid' belongs to the event: '1' — Perhaps I will attend, '0' — I will be there for sure (default), ,
         """
@@ -849,6 +885,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> int:
         """With this method you can leave a group, public page, or event.
+
         :param group_id: ID or screen name of the community.
         """
 
@@ -861,6 +898,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, user_id: int, **kwargs
     ) -> int:
         """Removes a user from the community.
+
         :param group_id: Community ID.
         :param user_id: User ID.
         """
@@ -874,6 +912,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, link_id: int, after: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Allows to reorder links in the community.
+
         :param group_id: Community ID.
         :param link_id: Link ID.
         :param after: ID of the link after which to place the link with 'link_id'.
@@ -898,6 +937,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of communities matching the search criteria.
+
         :param q: Search query string.
         :param type: Community type. Possible values: 'group, page, event.'
         :param country_id: Country ID.
@@ -974,6 +1014,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allow to set notifications settings for group.
+
         :param group_id: Community ID.
         :param server_id: Server ID.
         :param api_version:
@@ -1093,6 +1134,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Sets Long Poll notification settings
+
         :param group_id: Community ID.
         :param enabled: Sets whether Long Poll is enabled ('0' — disabled, '1' — enabled).
         :param api_version:
@@ -1162,6 +1204,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """groups.setSettings method
+
         :param group_id:
         :param messages:
         :param bots_capabilities:
@@ -1178,6 +1221,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, user_id: int, note: typing.Optional[str] = None, **kwargs
     ) -> BaseBoolInt:
         """In order to save note about group participant
+
         :param group_id:
         :param user_id:
         :param note: Note body
@@ -1196,6 +1240,7 @@ class GroupsCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """Add new group's tag
+
         :param group_id:
         :param tag_name:
         :param tag_color:
@@ -1210,6 +1255,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, tag_id: int, user_id: int, act: str, **kwargs
     ) -> BaseBoolInt:
         """Bind or unbind group's tag to user
+
         :param group_id:
         :param tag_id:
         :param user_id:
@@ -1225,6 +1271,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, tag_id: int, **kwargs
     ) -> BaseBoolInt:
         """Delete group's tag
+
         :param group_id:
         :param tag_id:
         """
@@ -1238,6 +1285,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, tag_id: int, tag_name: str, **kwargs
     ) -> BaseBoolInt:
         """Update group's tag
+
         :param group_id:
         :param tag_id:
         :param tag_name:
@@ -1252,6 +1300,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, state: str, ref: typing.Optional[str] = None, **kwargs
     ) -> int:
         """groups.toggleMarket method
+
         :param group_id:
         :param state:
         :param ref:
@@ -1266,6 +1315,7 @@ class GroupsCategory(BaseCategory):
         self, group_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """groups.unban method
+
         :param group_id:
         :param owner_id:
         """

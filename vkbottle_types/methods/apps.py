@@ -43,6 +43,7 @@ class AppsCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns applications data.
+
         :param app_id: Application ID
         :param app_ids: List of application ID
         :param platform: platform. Possible values: *'ios' — iOS,, *'android' — Android,, *'winphone' — Windows Phone,, *'web' — приложения на vk.com. By default: 'web'.
@@ -73,6 +74,7 @@ class AppsCategory(BaseCategory):
         **kwargs
     ) -> AppsCatalogList:
         """Returns a list of applications (apps) available to users in the App Catalog.
+
         :param count: Number of apps to return.
         :param sort: Sort order: 'popular_today' — popular for one day (default), 'visitors' — by visitors number , 'create_date' — by creation date, 'growth_rate' — by growth rate, 'popular_week' — popular for one week
         :param offset: Offset required to return a specific subset of apps.
@@ -101,6 +103,7 @@ class AppsCategory(BaseCategory):
         **kwargs
     ) -> GetFriendsListResponseModel:
         """Creates friends list for requests and invites in current app.
+
         :param extended:
         :param count: List size.
         :param offset:
@@ -121,6 +124,7 @@ class AppsCategory(BaseCategory):
         **kwargs
     ) -> GetLeaderboardResponseModel:
         """Returns players rating in the game.
+
         :param type: Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().
         :param _global: Rating type. Possible values: *'1' — global rating among all players,, *'0' — rating among user friends.
         :param extended: 1 — to return additional info about users
@@ -139,6 +143,7 @@ class AppsCategory(BaseCategory):
         self, app_id: int, **kwargs
     ) -> GetMiniAppPoliciesResponseModel:
         """Returns policies and terms given to a mini app.
+
         :param app_id: Mini App ID
         """
 
@@ -151,6 +156,7 @@ class AppsCategory(BaseCategory):
         self, type: typing.Optional[str] = None, **kwargs
     ) -> GetScopesResponseModel:
         """Returns scopes for auth
+
         :param type:
         """
 
@@ -163,6 +169,7 @@ class AppsCategory(BaseCategory):
         self, user_id: int, **kwargs
     ) -> int:
         """Returns user score in app
+
         :param user_id:
         """
 
@@ -175,6 +182,7 @@ class AppsCategory(BaseCategory):
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
     ) -> BaseBoolInt:
         """apps.promoHasActiveGift method
+
         :param promo_id: Id of game promo action
         :param user_id:
         """
@@ -188,6 +196,7 @@ class AppsCategory(BaseCategory):
         self, promo_id: int, user_id: typing.Optional[int] = None, **kwargs
     ) -> BaseBoolInt:
         """apps.promoUseGift method
+
         :param promo_id: Id of game promo action
         :param user_id:
         """
@@ -208,6 +217,7 @@ class AppsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Sends a request to another user in an app that uses VK authorization.
+
         :param user_id: id of the user to send a request
         :param text: request text
         :param type: request type. Values: 'invite' - if the request is sent to a user who does not have the app installed,, 'request' - if a user has already installed the app

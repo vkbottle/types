@@ -26,6 +26,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds user activity information to an application
+
         :param user_id: ID of a user to save the data
         :param activity_id: there are 2 default activities: , * 1 - level. Works similar to ,, * 2 - points, saves points amount, Any other value is for saving completed missions
         :param value: depends on activity_id: * 1 - number, current level number,, * 2 - number, current user's points amount, , Any other value is ignored
@@ -43,6 +44,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> SecureTokenChecked:
         """Checks the user authentication in 'IFrame' and 'Flash' apps using the 'access_token' parameter.
+
         :param token: client 'access_token'
         :param ip: user 'ip address'. Note that user may access using the 'ipv6' address, in this case it is required to transmit the 'ipv6' address. If not transmitted, the address will not be checked.
         """
@@ -71,6 +73,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> typing.List[SecureSmsNotification]:
         """Shows a list of SMS notifications sent by the application using [vk.com/dev/secure.sendSMSNotification|secure.sendSMSNotification] method.
+
         :param user_id:
         :param date_from: filter by start date. It is set as UNIX-time.
         :param date_to: filter by end date. It is set as UNIX-time.
@@ -93,6 +96,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> typing.List[SecureTransaction]:
         """Shows history of votes transaction between users and the application.
+
         :param type:
         :param uid_from:
         :param uid_to:
@@ -110,6 +114,7 @@ class SecureCategory(BaseCategory):
         self, user_ids: typing.List[int], **kwargs
     ) -> typing.List[SecureLevel]:
         """Returns one of the previously set game levels of one or more users in the application.
+
         :param user_ids:
         """
 
@@ -122,6 +127,7 @@ class SecureCategory(BaseCategory):
         self, user_ids: typing.List[int], achievement_id: int, **kwargs
     ) -> typing.List[SecureGiveEventStickerItem]:
         """Opens the game achievement and gives the user a sticker
+
         :param user_ids:
         :param achievement_id:
         """
@@ -139,6 +145,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> typing.List[int]:
         """Sends notification to the user.
+
         :param message: notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).
         :param user_ids:
         :param user_id:
@@ -153,6 +160,7 @@ class SecureCategory(BaseCategory):
         self, user_id: int, message: str, **kwargs
     ) -> int:
         """Sends 'SMS' notification to a user's mobile device.
+
         :param user_id: ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).
         :param message: 'SMS' text to be sent in 'UTF-8' encoding. Only Latin letters and numbers are allowed. Maximum size is '160' characters.
         """
@@ -171,6 +179,7 @@ class SecureCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Sets a counter which is shown to the user in bold in the left menu.
+
         :param counters:
         :param user_id:
         :param counter: counter value.

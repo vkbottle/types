@@ -25,6 +25,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """Adds the current user's vote to the selected answer in the poll.
+
         :param poll_id: Poll ID.
         :param answer_ids:
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -51,6 +52,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> PollsPoll:
         """Creates polls that can be attached to the users' or communities' posts.
+
         :param question: question text
         :param is_anonymous: '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
         :param is_multiple:
@@ -77,6 +79,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """Deletes the current user's vote from the selected answer in the poll.
+
         :param poll_id: Poll ID.
         :param answer_id: Answer ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -102,6 +105,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits created polls
+
         :param poll_id: edited poll's id
         :param owner_id: poll owner id
         :param question: new question text
@@ -140,6 +144,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> PollsPoll:
         """Returns detailed information about a poll by its ID.
+
         :param poll_id: Poll ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         :param is_board: '1' - poll is in a board, '0' - poll is on a wall. '0' by default.
@@ -158,6 +163,7 @@ class PollsCategory(BaseCategory):
         self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> BaseUploadServer:
         """polls.getPhotoUploadServer method
+
         :param owner_id:
         """
 
@@ -180,6 +186,7 @@ class PollsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PollsVoters]:
         """Returns a list of IDs of users who selected specific answers in the poll.
+
         :param poll_id: Poll ID.
         :param answer_ids: Answer IDs.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -200,6 +207,7 @@ class PollsCategory(BaseCategory):
         self, photo: str, hash: str, **kwargs
     ) -> PollsBackground:
         """polls.savePhoto method
+
         :param photo:
         :param hash:
         """

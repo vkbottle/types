@@ -16,6 +16,7 @@ class StoreCategory(BaseCategory):
         self, sticker_ids: typing.List[int], **kwargs
     ) -> int:
         """Adds given sticker IDs to the list of user's favorite stickers
+
         :param sticker_ids: Sticker IDs to be added
         """
 
@@ -45,6 +46,7 @@ class StoreCategory(BaseCategory):
         **kwargs
     ) -> typing.List[StoreProduct]:
         """store.getProducts method
+
         :param type:
         :param merchant:
         :param section:
@@ -68,6 +70,7 @@ class StoreCategory(BaseCategory):
         **kwargs
     ) -> GetStickersKeywordsResponseModel:
         """store.getStickersKeywords method
+
         :param stickers_ids:
         :param products_ids:
         :param aliases:
@@ -84,6 +87,7 @@ class StoreCategory(BaseCategory):
         self, sticker_ids: typing.List[int], **kwargs
     ) -> int:
         """Removes given sticker IDs from the list of user's favorite stickers
+
         :param sticker_ids: Sticker IDs to be removed
         """
 

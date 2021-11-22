@@ -71,6 +71,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a new user to a chat.
+
         :param chat_id: Chat ID.
         :param user_id: ID of the user to be added to the chat.
         :param visible_messages_count:
@@ -85,6 +86,7 @@ class MessagesCategory(BaseCategory):
         self, group_id: int, key: typing.Optional[str] = None, **kwargs
     ) -> int:
         """Allows sending messages from community to the current user.
+
         :param group_id: Group ID.
         :param key:
         """
@@ -102,6 +104,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Creates a chat with several participants.
+
         :param user_ids: IDs of the users to be added to the chat.
         :param title: Chat title.
         :param group_id:
@@ -123,6 +126,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> typing.Dict[str, int]:
         """Deletes one or more messages.
+
         :param message_ids: Message IDs.
         :param spam: '1' — to mark message as spam.
         :param group_id: Group ID (for group messages with user access token)
@@ -140,6 +144,7 @@ class MessagesCategory(BaseCategory):
         self, chat_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> DeleteChatPhotoResponseModel:
         """Deletes a chat's cover picture.
+
         :param chat_id: Chat ID.
         :param group_id:
         """
@@ -157,6 +162,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> DeleteConversationResponseModel:
         """Deletes all private messages in a conversation.
+
         :param user_id: User ID. To clear a chat history use 'chat_id'
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param group_id: Group ID (for group messages with user access token)
@@ -167,10 +173,9 @@ class MessagesCategory(BaseCategory):
         model = DeleteConversationResponse
         return model(**response).response
 
-    async def deny_messages_from_group(
-        self, group_id: int, **kwargs
-    ) -> int:
+    async def deny_messages_from_group(self, group_id: int, **kwargs) -> int:
         """Denies sending message from community to the current user.
+
         :param group_id: Group ID.
         """
 
@@ -198,6 +203,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> BaseBoolInt:
         """Edits the message.
+
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param message: (Required if 'attachments' is not set.) Text of the message.
         :param lat: Geographical latitude of a check-in, in degrees (from -90 to 90).
@@ -223,6 +229,7 @@ class MessagesCategory(BaseCategory):
         self, chat_id: int, title: typing.Optional[str] = None, **kwargs
     ) -> int:
         """Edits the title of a chat.
+
         :param chat_id: Chat ID.
         :param title: New title of the chat.
         """
@@ -242,6 +249,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetByConversationMessageIdResponseModel:
         """Returns messages by their IDs within the conversation.
+
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param conversation_message_ids: Conversation message IDs.
         :param extended: Information whether the response should be extended
@@ -264,6 +272,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetByIdResponseModel:
         """Returns messages by their IDs.
+
         :param message_ids: Message IDs.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
         :param extended: Information whether the response should be extended
@@ -288,6 +297,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetChatPreviewResponseModel:
         """messages.getChatPreview method
+
         :param peer_id:
         :param link: Invitation link.
         :param fields: Profile fields to return.
@@ -306,6 +316,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> MessagesGetConversationMembers:
         """Returns a list of IDs of users participating in a chat.
+
         :param peer_id: Peer ID.
         :param fields: Profile fields to return.
         :param group_id: Group ID (for group messages with group access token)
@@ -328,6 +339,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetConversationsResponseModel:
         """Returns a list of the current user's conversations.
+
         :param offset: Offset needed to return a specific subset of conversations.
         :param count: Number of conversations to return.
         :param filter: Filter to apply: 'all' — all conversations, 'unread' — conversations with unread messages, 'important' — conversations, marked as important (only for community messages), 'unanswered' — conversations, marked as unanswered (only for community messages)
@@ -351,6 +363,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> MessagesGetConversationById:
         """Returns conversations by their IDs
+
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param extended: Return extended properties
         :param fields: Profile and communities fields to return.
@@ -380,6 +393,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetHistoryResponseModel:
         """Returns message history for the specified user or group chat.
+
         :param offset: Offset needed to return a specific subset of messages.
         :param count: Number of messages to return.
         :param user_id: ID of the user whose message history you want to return.
@@ -414,6 +428,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetHistoryAttachmentsResponseModel:
         """Returns media files from the dialog or group chat.
+
         :param peer_id: Peer ID. ", For group chat: '2000000000 + chat ID' , , For community: '-community ID'"
         :param media_type: Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'
         :param start_from: Message ID to start return results from.
@@ -442,6 +457,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetImportantMessagesResponseModel:
         """Returns a list of user's important messages.
+
         :param count: Amount of needed important messages.
         :param offset:
         :param start_message_id:
@@ -472,6 +488,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetIntentUsersResponseModel:
         """messages.getIntentUsers method
+
         :param intent:
         :param subscribe_id:
         :param offset:
@@ -494,6 +511,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetInviteLinkResponseModel:
         """messages.getInviteLink method
+
         :param peer_id: Destination ID.
         :param reset: 1 — to generate new link (revoke previous), 0 — to return previous link.
         :param group_id: Group ID
@@ -504,10 +522,9 @@ class MessagesCategory(BaseCategory):
         model = GetInviteLinkResponse
         return model(**response).response
 
-    async def get_last_activity(
-        self, user_id: int, **kwargs
-    ) -> MessagesLastActivity:
+    async def get_last_activity(self, user_id: int, **kwargs) -> MessagesLastActivity:
         """Returns a user's current status and date of last activity.
+
         :param user_id: User ID.
         """
 
@@ -533,6 +550,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> GetLongPollHistoryResponseModel:
         """Returns updates in user's private messages.
+
         :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         :param pts: Lsat value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
@@ -560,6 +578,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> MessagesLongpollParams:
         """Returns data required for connection to a Long Poll server.
+
         :param need_pts: '1' — to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         :param group_id: Group ID (for group messages with user access token)
         :param lp_version: Long poll version
@@ -574,6 +593,7 @@ class MessagesCategory(BaseCategory):
         self, group_id: int, user_id: int, **kwargs
     ) -> IsMessagesFromGroupAllowedResponseModel:
         """Returns information whether sending messages from the community to current user is allowed.
+
         :param group_id: Group ID.
         :param user_id: User ID.
         """
@@ -587,6 +607,7 @@ class MessagesCategory(BaseCategory):
         self, link: str, **kwargs
     ) -> JoinChatByInviteLinkResponseModel:
         """messages.joinChatByInviteLink method
+
         :param link: Invitation link.
         """
 
@@ -603,6 +624,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Marks and unmarks conversations as unanswered.
+
         :param peer_id: ID of conversation to mark as important.
         :param answered: '1' — to mark as answered, '0' — to remove the mark
         :param group_id: Group ID (for group messages with group access token)
@@ -620,6 +642,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> typing.List[int]:
         """Marks and unmarks messages as important (starred).
+
         :param message_ids: IDs of messages to mark as important.
         :param important: '1' — to add a star (mark as important), '0' — to remove the star
         """
@@ -637,13 +660,16 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Marks and unmarks conversations as important.
+
         :param peer_id: ID of conversation to mark as important.
         :param important: '1' — to add a star (mark as important), '0' — to remove the star
         :param group_id: Group ID (for group messages with group access token)
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request("messages.markAsImportantConversation", params)
+        response = await self.api.request(
+            "messages.markAsImportantConversation", params
+        )
         model = OkResponse
         return model(**response).response
 
@@ -657,6 +683,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Marks messages as read.
+
         :param message_ids: IDs of messages to mark as read.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param start_message_id: Message ID to start from.
@@ -677,6 +704,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> MessagesPinnedMessage:
         """Pin a message.
+
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         :param message_id: Message ID
         :param conversation_message_id: Conversation message ID
@@ -695,6 +723,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows the current user to leave a chat or, if the current user started the chat, allows the user to remove another user from the chat.
+
         :param chat_id: Chat ID.
         :param user_id: ID of the user to be removed from the chat.
         :param member_id:
@@ -709,6 +738,7 @@ class MessagesCategory(BaseCategory):
         self, message_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Restores a deleted message.
+
         :param message_id: ID of a previously-deleted message to restore.
         :param group_id: Group ID (for group messages with user access token)
         """
@@ -732,6 +762,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of the current user's private messages that match search criteria.
+
         :param q: Search query string.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
         :param date: Date to search message before in Unixtime.
@@ -762,6 +793,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> SearchConversationsResponseModel:
         """Returns a list of the current user's conversations that match search criteria.
+
         :param q: Search query string.
         :param count: Maximum number of results.
         :param extended: '1' — return extra information about users and communities
@@ -807,6 +839,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Sends a message.
+
         :param user_id: User ID (by default — current user).
         :param random_id: Unique identifier to avoid resending the message.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -854,6 +887,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """messages.sendMessageEventAnswer method
+
         :param event_id:
         :param user_id:
         :param peer_id:
@@ -874,6 +908,7 @@ class MessagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Changes the status of a user as typing in a conversation.
+
         :param user_id: User ID.
         :param type: 'typing' — user has started to type.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -885,10 +920,9 @@ class MessagesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def set_chat_photo(
-        self, file: str, **kwargs
-    ) -> SetChatPhotoResponseModel:
+    async def set_chat_photo(self, file: str, **kwargs) -> SetChatPhotoResponseModel:
         """Sets a previously-uploaded picture as the cover picture of a chat.
+
         :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """
 
@@ -901,6 +935,7 @@ class MessagesCategory(BaseCategory):
         self, peer_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """messages.unpin method
+
         :param peer_id:
         :param group_id:
         """

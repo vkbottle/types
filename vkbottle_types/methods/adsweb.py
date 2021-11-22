@@ -21,6 +21,7 @@ class AdswebCategory(BaseCategory):
         self, office_id: int, **kwargs
     ) -> GetAdCategoriesResponseModel:
         """adsweb.getAdCategories method
+
         :param office_id:
         """
 
@@ -50,6 +51,7 @@ class AdswebCategory(BaseCategory):
         **kwargs
     ) -> GetAdUnitsResponseModel:
         """adsweb.getAdUnits method
+
         :param office_id:
         :param sites_ids:
         :param ad_units_ids:
@@ -72,6 +74,7 @@ class AdswebCategory(BaseCategory):
         **kwargs
     ) -> GetFraudHistoryResponseModel:
         """adsweb.getFraudHistory method
+
         :param office_id:
         :param sites_ids:
         :param limit:
@@ -93,6 +96,7 @@ class AdswebCategory(BaseCategory):
         **kwargs
     ) -> GetSitesResponseModel:
         """adsweb.getSites method
+
         :param office_id:
         :param sites_ids:
         :param fields:
@@ -119,6 +123,7 @@ class AdswebCategory(BaseCategory):
         **kwargs
     ) -> GetStatisticsResponseModel:
         """adsweb.getStatistics method
+
         :param office_id:
         :param ids_type:
         :param ids:

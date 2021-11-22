@@ -26,6 +26,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Copies a document to a user's or community's document list.
+
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
         :param access_key: Access key. This parameter is required if 'access_key' was returned with the document's data.
@@ -40,6 +41,7 @@ class DocsCategory(BaseCategory):
         self, owner_id: int, doc_id: int, **kwargs
     ) -> int:
         """Deletes a user or community document.
+
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
         """
@@ -58,6 +60,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a document.
+
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param doc_id: Document ID.
         :param title: Document title.
@@ -79,6 +82,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns detailed information about user or community documents.
+
         :param count: Number of documents to return. By default, all documents.
         :param offset: Offset needed to return a specific subset of documents.
         :param type:
@@ -98,6 +102,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[DocsDoc]:
         """Returns information about documents by their IDs.
+
         :param docs: Document IDs. Example: , "66748_91488,66748_91455",
         :param return_tags:
         """
@@ -114,6 +119,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for document upload.
+
         :param type: Document type.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         """
@@ -127,6 +133,7 @@ class DocsCategory(BaseCategory):
         self, owner_id: int, **kwargs
     ) -> GetTypesResponseModel:
         """Returns documents types available for current user.
+
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.
         """
 
@@ -139,6 +146,7 @@ class DocsCategory(BaseCategory):
         self, group_id: typing.Optional[int] = None, **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for document upload.
+
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
 
@@ -151,6 +159,7 @@ class DocsCategory(BaseCategory):
         self, group_id: typing.Optional[int] = None, **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for document upload onto a user's or community's wall.
+
         :param group_id: Community ID (if the document will be uploaded to the community).
         """
 
@@ -168,6 +177,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> SaveResponseModel:
         """Saves a document after [vk.com/dev/upload_files_2|uploading it to a server].
+
         :param file: This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
         :param title: Document title.
         :param tags: Document tags.
@@ -189,6 +199,7 @@ class DocsCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of documents matching the search criteria.
+
         :param q: Search query string.
         :param search_own:
         :param count: Number of results to return.

@@ -28,6 +28,7 @@ class PrettyCardsCategory(BaseCategory):
         **kwargs
     ) -> CreateResponseModel:
         """prettyCards.create method
+
         :param owner_id:
         :param photo:
         :param title:
@@ -46,6 +47,7 @@ class PrettyCardsCategory(BaseCategory):
         self, owner_id: int, card_id: int, **kwargs
     ) -> DeleteResponseModel:
         """prettyCards.delete method
+
         :param owner_id:
         :param card_id:
         """
@@ -68,6 +70,7 @@ class PrettyCardsCategory(BaseCategory):
         **kwargs
     ) -> EditResponseModel:
         """prettyCards.edit method
+
         :param owner_id:
         :param card_id:
         :param photo:
@@ -91,6 +94,7 @@ class PrettyCardsCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """prettyCards.get method
+
         :param owner_id:
         :param offset:
         :param count:
@@ -105,6 +109,7 @@ class PrettyCardsCategory(BaseCategory):
         self, owner_id: int, card_ids: typing.List[int], **kwargs
     ) -> typing.List[PrettyCardsPrettyCard]:
         """prettyCards.getById method
+
         :param owner_id:
         :param card_ids:
         """

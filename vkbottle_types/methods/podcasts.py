@@ -12,6 +12,7 @@ class PodcastsCategory(BaseCategory):
         **kwargs
     ) -> SearchPodcastResponseModel:
         """podcasts.searchPodcast method
+
         :param search_string:
         :param offset:
         :param count:

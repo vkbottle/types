@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vkbottle-types"
-version = "5.131.129"
+version = "5.131.129.1"
 description = "Types for vkbottle"
 authors = ["timoniq"]
 license = "MIT"

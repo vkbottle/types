@@ -24,6 +24,7 @@ class BoardCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Creates a new topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param title: Topic title.
         :param text: Text of the topic.
@@ -40,6 +41,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, **kwargs
     ) -> int:
         """Closes a topic on a community's discussion board so that comments cannot be posted.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """
@@ -61,6 +63,7 @@ class BoardCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a comment on a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: ID of the topic to be commented on.
         :param message: (Required if 'attachments' is not set.) Text of the comment.
@@ -79,6 +82,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
     ) -> int:
         """Deletes a comment on a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param comment_id: Comment ID.
@@ -93,6 +97,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, **kwargs
     ) -> int:
         """Deletes a topic from a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """
@@ -112,6 +117,7 @@ class BoardCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a comment on a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param comment_id: ID of the comment on the topic.
@@ -128,6 +134,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, title: str, **kwargs
     ) -> int:
         """Edits the title of a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param title: New title of the topic.
@@ -142,6 +149,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, **kwargs
     ) -> int:
         """Pins a topic (fixes its place) to the top of a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """
@@ -164,6 +172,7 @@ class BoardCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param need_likes: '1' — to return the 'likes' field, '0' — not to return the 'likes' field (default)
@@ -196,6 +205,7 @@ class BoardCategory(BaseCategory):
         **kwargs
     ) -> GetTopicsResponseModel:
         """Returns a list of topics on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_ids: IDs of topics to be returned (100 maximum). By default, all topics are returned. If this parameter is set, the 'order', 'offset', and 'count' parameters are ignored.
         :param order: Sort order: '1' — by date updated in reverse chronological order. '2' — by date created in reverse chronological order. '-1' — by date updated in chronological order. '-2' — by date created in chronological order. If no sort order is specified, topics are returned in the order specified by the group administrator. Pinned topics are returned first, regardless of the sorting.
@@ -219,6 +229,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, **kwargs
     ) -> int:
         """Re-opens a previously closed topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """
@@ -232,6 +243,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, comment_id: int, **kwargs
     ) -> int:
         """Restores a comment deleted from a topic on a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         :param comment_id: Comment ID.
@@ -246,6 +258,7 @@ class BoardCategory(BaseCategory):
         self, group_id: int, topic_id: int, **kwargs
     ) -> int:
         """Unpins a pinned topic from the top of a community's discussion board.
+
         :param group_id: ID of the community that owns the discussion board.
         :param topic_id: Topic ID.
         """

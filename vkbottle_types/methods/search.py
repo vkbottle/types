@@ -15,6 +15,7 @@ class SearchCategory(BaseCategory):
         **kwargs
     ) -> GetHintsResponseModel:
         """Allows the programmer to do a quick search for any substring.
+
         :param q: Search query string.
         :param offset: Offset for querying specific result subset
         :param limit: Maximum number of results to return.

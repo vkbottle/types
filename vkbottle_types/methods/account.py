@@ -27,6 +27,7 @@ class AccountCategory(BaseCategory):
         self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """account.ban method
+
         :param owner_id:
         """
 
@@ -44,6 +45,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> ChangePasswordResponseModel:
         """Changes a user password after access is successfully restored with the [vk.com/dev/auth.restore|auth.restore] method.
+
         :param new_password: New password that will be set as a current
         :param restore_sid: Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
         :param change_password_hash: Hash received after a successful OAuth authorization with a code got by SMS. (If the password is changed right after the access was restored)
@@ -62,6 +64,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> GetActiveOffersResponseModel:
         """Returns a list of active ads (offers) which executed by the user will bring him/her respective number of votes to his balance in the application.
+
         :param offset:
         :param count: Number of results to return.
         """
@@ -75,6 +78,7 @@ class AccountCategory(BaseCategory):
         self, user_id: int, **kwargs
     ) -> int:
         """Gets settings of the user in this application.
+
         :param user_id: User ID whose settings information shall be got. By default: current user.
         """
 
@@ -90,6 +94,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> GetBannedResponseModel:
         """Returns a user's blacklist.
+
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of results to return.
         """
@@ -106,6 +111,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> AccountAccountCounters:
         """Returns non-null values of user counters.
+
         :param filter: Counters to be returned.
         :param user_id: User ID
         """
@@ -119,6 +125,7 @@ class AccountCategory(BaseCategory):
         self, fields: typing.Optional[typing.List[str]] = None, **kwargs
     ) -> AccountInfo:
         """Returns current account info.
+
         :param fields: Fields to return. Possible values: *'country' — user country,, *'https_required' — is "HTTPS only" option enabled,, *'own_posts_default' — is "Show my posts only" option is enabled,, *'no_wall_replies' — are wall replies disabled or not,, *'intro' — is intro passed by user or not,, *'lang' — user language. By default: all.
         """
 
@@ -141,6 +148,7 @@ class AccountCategory(BaseCategory):
         self, device_id: typing.Optional[str] = None, **kwargs
     ) -> AccountPushSettings:
         """Gets settings of push notifications.
+
         :param device_id: Unique device ID.
         """
 
@@ -161,6 +169,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Subscribes an iOS/Android/Windows Phone-based device to receive push notifications
+
         :param token: Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)
         :param device_id: Unique device ID.
         :param device_model: String name of device model.
@@ -194,6 +203,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> SaveProfileInfoResponseModel:
         """Edits current profile info.
+
         :param first_name: User first name.
         :param last_name: User last name.
         :param maiden_name: User maiden name (female only)
@@ -222,6 +232,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows to edit the current account info.
+
         :param name: Setting name.
         :param value: Setting value.
         """
@@ -235,6 +246,7 @@ class AccountCategory(BaseCategory):
         self, user_id: int, name: typing.Optional[str] = None, **kwargs
     ) -> int:
         """Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.
+
         :param user_id: User ID.
         :param name: Application screen name.
         """
@@ -258,6 +270,7 @@ class AccountCategory(BaseCategory):
         self, voip: typing.Optional[bool] = None, **kwargs
     ) -> int:
         """Marks the current user as online for 15 minutes.
+
         :param voip: '1' if videocalls are available for current device.
         """
 
@@ -275,6 +288,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Change push settings.
+
         :param device_id: Unique device ID.
         :param settings: Push settings in a [vk.com/dev/push_settings|special format].
         :param key: Notification key.
@@ -295,6 +309,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Mutes push notifications for the set period of time.
+
         :param device_id: Unique device ID.
         :param time: Time in seconds for what notifications should be disabled. '-1' to disable forever.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
@@ -310,6 +325,7 @@ class AccountCategory(BaseCategory):
         self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """account.unban method
+
         :param owner_id:
         """
 
@@ -325,6 +341,7 @@ class AccountCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Unsubscribes a device from push notifications.
+
         :param device_id: Unique device ID.
         :param sandbox:
         """

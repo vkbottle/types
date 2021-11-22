@@ -61,6 +61,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Confirms a tag on a photo.
+
         :param photo_id: Photo ID.
         :param tag_id: Tag ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -79,6 +80,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows to copy a photo to the "Saved photos" album
+
         :param owner_id: photo's owner ID
         :param photo_id: photo ID
         :param access_key: for private photos
@@ -101,6 +103,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> PhotosPhotoAlbumFull:
         """Creates an empty photo album.
+
         :param title: Album title.
         :param group_id: ID of the community in which the album will be created.
         :param description: Album description.
@@ -129,6 +132,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a new comment on the photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param message: Comment text.
@@ -149,6 +153,7 @@ class PhotosCategory(BaseCategory):
         self, photo_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         """
@@ -162,6 +167,7 @@ class PhotosCategory(BaseCategory):
         self, album_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a photo album belonging to the current user.
+
         :param album_id: Album ID.
         :param group_id: ID of the community that owns the album.
         """
@@ -175,6 +181,7 @@ class PhotosCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> BaseBoolInt:
         """Deletes a comment on the photo.
+
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
         """
@@ -197,6 +204,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits the caption of a photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param caption: New caption for the photo. If this parameter is not set, it is considered to be equal to an empty string.
@@ -225,6 +233,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits information about a photo album.
+
         :param album_id: ID of the photo album to be edited.
         :param title: New album title.
         :param description: New album description.
@@ -249,6 +258,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a comment on a photo.
+
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param message: New text of the comment.
@@ -275,6 +285,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of a user's or community's photos.
+
         :param owner_id: ID of the user or community that owns the photos. Use a negative value to designate a community ID.
         :param album_id: Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
         :param photo_ids: Photo IDs.
@@ -308,6 +319,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetAlbumsResponseModel:
         """Returns a list of a user's or community's photo albums.
+
         :param owner_id: ID of the user or community that owns the albums.
         :param album_ids: Album IDs.
         :param offset: Offset needed to return a specific subset of albums.
@@ -329,6 +341,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Returns the number of photo albums belonging to a user or community.
+
         :param user_id: User ID.
         :param group_id: Community ID.
         """
@@ -351,6 +364,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetAllResponseModel:
         """Returns a list of photos belonging to a user or community, in reverse chronological order.
+
         :param owner_id: ID of a user or community that owns the photos. Use a negative value to designate a community ID.
         :param extended: '1' — to return detailed information about photos
         :param offset: Offset needed to return a specific subset of photos. By default, '0'.
@@ -380,6 +394,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetAllCommentsResponseModel:
         """Returns a list of comments on a specific photo album or all albums of the user sorted in reverse chronological order.
+
         :param owner_id: ID of the user or community that owns the album(s).
         :param album_id: Album ID. If the parameter is not set, comments on all of the user's albums will be returned.
         :param need_likes: '1' — to return an additional 'likes' field, '0' — (default)
@@ -400,6 +415,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Returns information about photos by their IDs.
+
         :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
         :param extended: '1' — to return additional fields, '0' — (default)
         :param photo_sizes: '1' — to return photo sizes in a
@@ -423,6 +439,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> BaseUploadServer:
         """Returns an upload link for chat cover pictures.
+
         :param chat_id: ID of the chat for which you want to upload a cover photo.
         :param crop_x:
         :param crop_y:
@@ -449,6 +466,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param need_likes: '1' — to return an additional 'likes' field, '0' — (default)
@@ -474,6 +492,7 @@ class PhotosCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for market album photo upload.
+
         :param group_id: Community ID.
         """
 
@@ -492,6 +511,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for market photo upload.
+
         :param group_id: Community ID.
         :param main_photo: '1' if you want to upload the main item photo.
         :param crop_x: X coordinate of the crop left upper corner.
@@ -508,6 +528,7 @@ class PhotosCategory(BaseCategory):
         self, peer_id: typing.Optional[int] = None, **kwargs
     ) -> PhotosPhotoUpload:
         """Returns the server address for photo upload in a private message for a user.
+
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'Chat ID', e.g. '2000000001'. For community: '- Community ID', e.g. '-12345'. "
         """
 
@@ -523,6 +544,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetNewTagsResponseModel:
         """Returns a list of photos with tags that have not been viewed.
+
         :param offset: Offset needed to return a specific subset of photos.
         :param count: Number of photos to return.
         """
@@ -542,6 +564,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for owner cover upload.
+
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         :param crop_x: X coordinate of the left-upper corner
         :param crop_y: Y coordinate of the left-upper corner
@@ -558,6 +581,7 @@ class PhotosCategory(BaseCategory):
         self, owner_id: typing.Optional[int] = None, **kwargs
     ) -> BaseUploadServer:
         """Returns an upload server address for a profile or community photo.
+
         :param owner_id: identifier of a community or current user. "Note that community id must be negative. 'owner_id=1' - user, 'owner_id=-1' - community, "
         """
 
@@ -574,6 +598,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhotoTag]:
         """Returns a list of tags on a photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param access_key:
@@ -591,6 +616,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> BaseUploadServer:
         """Returns the server address for photo upload.
+
         :param album_id:
         :param group_id: ID of community that owns the album (if the photo will be uploaded to a community album).
         """
@@ -610,6 +636,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> GetUserPhotosResponseModel:
         """Returns a list of photos in which a user is tagged.
+
         :param user_id: User ID.
         :param offset: Offset needed to return a specific subset of photos. By default, '0'.
         :param count: Number of photos to return. Maximum value is 1000.
@@ -630,6 +657,7 @@ class PhotosCategory(BaseCategory):
         self, group_id: typing.Optional[int] = None, **kwargs
     ) -> PhotosPhotoUpload:
         """Returns the server address for photo upload onto a user's wall.
+
         :param group_id: ID of community to whose wall the photo will be uploaded.
         """
 
@@ -646,6 +674,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Makes a photo into an album cover.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param album_id: Album ID.
@@ -664,6 +693,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Moves a photo from one album to another.
+
         :param target_album_id: ID of the album to which the photo will be moved.
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -686,6 +716,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a tag on the photo.
+
         :param photo_id: Photo ID.
         :param user_id: ID of the user to be tagged.
         :param owner_id: ID of the user or community that owns the photo.
@@ -708,6 +739,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Removes a tag from a photo.
+
         :param photo_id: Photo ID.
         :param tag_id: Tag ID.
         :param owner_id: ID of the user or community that owns the photo.
@@ -727,6 +759,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reorders the album in the list of user albums.
+
         :param album_id: Album ID.
         :param owner_id: ID of the user or community that owns the album.
         :param before: ID of the album before which the album in question shall be placed.
@@ -747,6 +780,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reorders the photo in the list of photos of the user album.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         :param before: ID of the photo before which the photo in question shall be placed.
@@ -766,6 +800,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a photo.
+
         :param owner_id: ID of the user or community that owns the photo.
         :param photo_id: Photo ID.
         :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
@@ -784,6 +819,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a photo.
+
         :param owner_id: ID of the user or community that owns the photo.
         :param comment_id: ID of the comment being reported.
         :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
@@ -798,6 +834,7 @@ class PhotosCategory(BaseCategory):
         self, photo_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Restores a deleted photo.
+
         :param photo_id: Photo ID.
         :param owner_id: ID of the user or community that owns the photo.
         """
@@ -811,6 +848,7 @@ class PhotosCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> BaseBoolInt:
         """Restores a deleted comment on a photo.
+
         :param comment_id: ID of the deleted comment.
         :param owner_id: ID of the user or community that owns the photo.
         """
@@ -833,6 +871,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Saves photos after successful uploading.
+
         :param album_id: ID of the album to save photos to.
         :param group_id: ID of the community to save photos to.
         :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -852,6 +891,7 @@ class PhotosCategory(BaseCategory):
         self, group_id: int, photo: str, server: int, hash: str, **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Saves market album photos after successful uploading.
+
         :param group_id: Community ID.
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -874,6 +914,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Saves market photos after successful uploading.
+
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
@@ -895,6 +936,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Saves a photo after being successfully uploaded. URL obtained with [vk.com/dev/photos.getMessagesUploadServer|photos.getMessagesUploadServer] method.
+
         :param photo: Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param server:
         :param hash:
@@ -909,6 +951,7 @@ class PhotosCategory(BaseCategory):
         self, hash: str, photo: str, **kwargs
     ) -> SaveOwnerCoverPhotoResponseModel:
         """Saves cover photo after successful uploading.
+
         :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
         """
@@ -926,6 +969,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> SaveOwnerPhotoResponseModel:
         """Saves a profile or community photo. Upload URL can be got with the [vk.com/dev/photos.getOwnerPhotoUploadServer|photos.getOwnerPhotoUploadServer] method.
+
         :param server: parameter returned after [vk.com/dev/upload_files|photo upload].
         :param hash: parameter returned after [vk.com/dev/upload_files|photo upload].
         :param photo: parameter returned after [vk.com/dev/upload_files|photo upload].
@@ -949,6 +993,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Saves a photo to a user's or community's wall after being uploaded.
+
         :param photo: Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].
         :param user_id: ID of the user on whose wall the photo will be saved.
         :param group_id: ID of community on whose wall the photo will be saved.
@@ -978,6 +1023,7 @@ class PhotosCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of photos.
+
         :param q: Search query string.
         :param lat: Geographical latitude, in degrees (from '-90' to '90').
         :param long: Geographical longitude, in degrees (from '-180' to '180').

@@ -8,6 +8,7 @@ class AuthCategory(BaseCategory):
         self, phone: str, last_name: str, **kwargs
     ) -> RestoreResponseModel:
         """Allows to restore account access using a code received via SMS. " This method is only available for apps with [vk.com/dev/auth_direct|Direct authorization] access. "
+
         :param phone: User phone number.
         :param last_name: User last name.
         """

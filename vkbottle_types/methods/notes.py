@@ -23,6 +23,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Creates a new note for the current user.
+
         :param title: Note title.
         :param text: Note text.
         :param privacy_view:
@@ -44,6 +45,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a new comment on a note.
+
         :param note_id: Note ID.
         :param message: Comment text.
         :param owner_id: Note owner ID.
@@ -60,6 +62,7 @@ class NotesCategory(BaseCategory):
         self, note_id: int, **kwargs
     ) -> int:
         """Deletes a note of the current user.
+
         :param note_id: Note ID.
         """
 
@@ -72,6 +75,7 @@ class NotesCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a comment on a note.
+
         :param comment_id: Comment ID.
         :param owner_id: Note owner ID.
         """
@@ -91,6 +95,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a note of the current user.
+
         :param note_id: Note ID.
         :param title: Note title.
         :param text: Note text.
@@ -111,6 +116,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a comment on a note.
+
         :param comment_id: Comment ID.
         :param message: New comment text.
         :param owner_id: Note owner ID.
@@ -131,6 +137,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of notes created by a user.
+
         :param note_ids: Note IDs.
         :param user_id: Note owner ID.
         :param offset:
@@ -151,6 +158,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> NotesNote:
         """Returns a note by its ID.
+
         :param note_id: Note ID.
         :param owner_id: Note owner ID.
         :param need_wiki:
@@ -171,6 +179,7 @@ class NotesCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a note.
+
         :param note_id: Note ID.
         :param owner_id: Note owner ID.
         :param sort:
@@ -187,6 +196,7 @@ class NotesCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Restores a deleted comment on a note.
+
         :param comment_id: Comment ID.
         :param owner_id: Note owner ID.
         """

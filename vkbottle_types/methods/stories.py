@@ -28,6 +28,7 @@ class StoriesCategory(BaseCategory):
         self, owners_ids: typing.List[int], **kwargs
     ) -> int:
         """Allows to hide stories from chosen sources from current user's feed.
+
         :param owners_ids: List of sources IDs
         """
 
@@ -44,6 +45,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows to delete story.
+
         :param owner_id: Story owner's ID. Current user id is used by default.
         :param story_id: Story ID.
         :param stories:
@@ -62,6 +64,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetV5113ResponseModel:
         """Returns stories available for current user.
+
         :param owner_id: Owner ID.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
         :param fields:
@@ -79,6 +82,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetBannedResponseModel:
         """Returns list of sources hidden from current user's feed.
+
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
         :param fields: Additional fields to return
         """
@@ -100,6 +104,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetByIdResponseModel:
         """Returns story by its ID.
+
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
         :param fields: Additional fields to return
@@ -126,6 +131,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetPhotoUploadServerResponseModel:
         """Returns URL for uploading a story with photo.
+
         :param add_to_news: 1 — to add the story to friend's feed.
         :param user_ids: List of users IDs who can see the story.
         :param reply_to_story: ID of the story to reply with the current.
@@ -150,6 +156,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetV5113ResponseModel:
         """Returns replies to the story.
+
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
         :param access_key: Access key for the private object.
@@ -166,6 +173,7 @@ class StoriesCategory(BaseCategory):
         self, owner_id: int, story_id: int, **kwargs
     ) -> StoriesStoryStats:
         """Returns stories available for current user.
+
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
         """
@@ -187,6 +195,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetVideoUploadServerResponseModel:
         """Allows to receive URL for uploading story with video.
+
         :param add_to_news: 1 — to add the story to friend's feed.
         :param user_ids: List of users IDs who can see the story.
         :param reply_to_story: ID of the story to reply with the current.
@@ -211,6 +220,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetViewersExtendedV5115ResponseModel:
         """Returns a list of story viewers.
+
         :param owner_id: Story owner ID.
         :param story_id: Story ID.
         :param count: Maximum number of results.
@@ -231,6 +241,7 @@ class StoriesCategory(BaseCategory):
         self, owner_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Hides all replies in the last 24 hours from the user to current user's stories.
+
         :param owner_id: ID of the user whose replies should be hidden.
         :param group_id:
         """
@@ -244,6 +255,7 @@ class StoriesCategory(BaseCategory):
         self, owner_id: int, story_id: int, **kwargs
     ) -> int:
         """Hides the reply to the current user's story.
+
         :param owner_id: ID of the user whose replies should be hidden.
         :param story_id: Story ID.
         """
@@ -261,6 +273,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> SaveResponseModel:
         """stories.save method
+
         :param upload_results:
         :param extended:
         :param fields:
@@ -285,6 +298,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> GetV5113ResponseModel:
         """stories.search method
+
         :param q:
         :param place_id:
         :param latitude:
@@ -311,6 +325,7 @@ class StoriesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """stories.sendInteraction method
+
         :param access_key:
         :param message:
         :param is_broadcast:
@@ -327,6 +342,7 @@ class StoriesCategory(BaseCategory):
         self, owners_ids: typing.List[int], **kwargs
     ) -> int:
         """Allows to show stories from hidden sources in current user's feed.
+
         :param owners_ids: List of hidden sources to show stories from.
         """
 

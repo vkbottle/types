@@ -24,6 +24,7 @@ class UsersCategory(BaseCategory):
         **kwargs
     ) -> typing.List[UsersUserFull]:
         """Returns detailed information on users.
+
         :param user_ids: User IDs or screen names ('screen_name'). By default, current user ID.
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'
         :param name_case: Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
@@ -44,6 +45,7 @@ class UsersCategory(BaseCategory):
         **kwargs
     ) -> GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
+
         :param user_id: User ID.
         :param offset: Offset needed to return a specific subset of followers.
         :param count: Number of followers to return.
@@ -70,6 +72,7 @@ class UsersCategory(BaseCategory):
         **kwargs
     ) -> GetSubscriptionsResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
+
         :param user_id: User ID.
         :param extended: '1' — to return a combined list of users and communities, '0' — to return separate lists of users and communities (default)
         :param offset: Offset needed to return a specific subset of subscriptions.
@@ -90,6 +93,7 @@ class UsersCategory(BaseCategory):
         self, user_id: int, type: str, comment: typing.Optional[str] = None, **kwargs
     ) -> int:
         """Reports (submits a complain about) a user.
+
         :param user_id: ID of the user about whom a complaint is being made.
         :param type: Type of complaint: 'porn' - pornography, 'spam' - spamming, 'insult' - abusive behavior, 'advertisement' - disruptive advertisements
         :param comment: Comment describing the complaint.
@@ -137,6 +141,7 @@ class UsersCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of users matching the search criteria.
+
         :param q: Search query string (e.g., 'Vasya Babich').
         :param sort: Sort order: '1' — by date registered, '0' — by rating
         :param offset: Offset needed to return a specific subset of users.

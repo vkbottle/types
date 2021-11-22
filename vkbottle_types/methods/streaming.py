@@ -19,6 +19,7 @@ class StreamingCategory(BaseCategory):
         self, monthly_tier: typing.Optional[str] = None, **kwargs
     ) -> int:
         """streaming.setSettings method
+
         :param monthly_tier:
         """
 

@@ -21,6 +21,7 @@ class NotificationsCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of notifications about other users' feedback to the current user's wall posts.
+
         :param count: Number of notifications to return.
         :param start_from:
         :param filters: Type of notifications to return: 'wall' — wall posts, 'mentions' — mentions in wall posts, comments, or topics, 'comments' — comments to wall posts, photos, and videos, 'likes' — likes, 'reposted' — wall posts that are copied from the current user's wall, 'followers' — new followers, 'friends' — accepted friend requests
@@ -54,6 +55,7 @@ class NotificationsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[NotificationsSendMessageItem]:
         """notifications.sendMessage method
+
         :param user_ids:
         :param message:
         :param fragment:

@@ -36,6 +36,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetChairsResponseModel:
         """Returns list of chairs on a specified faculty.
+
         :param faculty_id: id of the faculty to get chairs from
         :param offset: offset required to get a certain subset of chairs
         :param count: amount of chairs to get
@@ -57,6 +58,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetCitiesResponseModel:
         """Returns a list of cities.
+
         :param country_id: Country ID.
         :param region_id: Region ID.
         :param q: Search query.
@@ -74,6 +76,7 @@ class DatabaseCategory(BaseCategory):
         self, city_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> typing.List[BaseObject]:
         """Returns information about cities by their IDs.
+
         :param city_ids: City IDs.
         """
 
@@ -91,6 +94,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetCountriesResponseModel:
         """Returns a list of countries.
+
         :param need_all: '1' — to return a full list of all countries, '0' — to return a list of countries near the current user's country (default).
         :param code: Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
         :param offset: Offset needed to return a specific subset of countries.
@@ -106,6 +110,7 @@ class DatabaseCategory(BaseCategory):
         self, country_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> typing.List[BaseCountry]:
         """Returns information about countries by their IDs.
+
         :param country_ids: Country IDs.
         """
 
@@ -122,6 +127,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetFacultiesResponseModel:
         """Returns a list of faculties (i.e., university departments).
+
         :param university_id: University ID.
         :param offset: Offset needed to return a specific subset of faculties.
         :param count: Number of faculties to return.
@@ -141,6 +147,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetMetroStationsResponseModel:
         """Get metro stations by city
+
         :param city_id:
         :param offset:
         :param count:
@@ -156,6 +163,7 @@ class DatabaseCategory(BaseCategory):
         self, station_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> typing.List[DatabaseStation]:
         """Get metro station by his id
+
         :param station_ids:
         """
 
@@ -173,6 +181,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetRegionsResponseModel:
         """Returns a list of regions.
+
         :param country_id: Country ID, received in [vk.com/dev/database.getCountries|database.getCountries] method.
         :param q: Search query.
         :param offset: Offset needed to return specific subset of regions.
@@ -188,6 +197,7 @@ class DatabaseCategory(BaseCategory):
         self, country_id: typing.Optional[int] = None, **kwargs
     ) -> typing.List[list]:
         """Returns a list of school classes specified for the country.
+
         :param country_id: Country ID.
         """
 
@@ -205,6 +215,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetSchoolsResponseModel:
         """Returns a list of schools.
+
         :param city_id: City ID.
         :param q: Search query.
         :param offset: Offset needed to return a specific subset of schools.
@@ -226,6 +237,7 @@ class DatabaseCategory(BaseCategory):
         **kwargs
     ) -> GetUniversitiesResponseModel:
         """Returns a list of higher education institutions.
+
         :param q: Search query.
         :param country_id: Country ID.
         :param city_id: City ID.

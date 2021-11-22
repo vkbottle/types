@@ -13,6 +13,7 @@ class StorageCategory(BaseCategory):
         **kwargs
     ) -> typing.List[StorageValue]:
         """Returns a value of variable with the name set by key parameter.
+
         :param key:
         :param keys:
         :param user_id:
@@ -31,6 +32,7 @@ class StorageCategory(BaseCategory):
         **kwargs
     ) -> typing.List[str]:
         """Returns the names of all variables.
+
         :param user_id: user id, whose variables names are returned if they were requested with a server method.
         :param offset:
         :param count: amount of variable names the info needs to be collected from.
@@ -49,6 +51,7 @@ class StorageCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Saves a value of variable with the name set by 'key' parameter.
+
         :param key:
         :param value:
         :param user_id:

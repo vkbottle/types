@@ -21,6 +21,7 @@ class WidgetsCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Gets a list of comments for the page added through the [vk.com/dev/Comments|Comments widget].
+
         :param widget_api_id:
         :param url:
         :param page_id:
@@ -45,6 +46,7 @@ class WidgetsCategory(BaseCategory):
         **kwargs
     ) -> GetPagesResponseModel:
         """Gets a list of application/site pages where the [vk.com/dev/Comments|Comments widget] or [vk.com/dev/Like|Like widget] is installed.
+
         :param widget_api_id:
         :param order:
         :param period:

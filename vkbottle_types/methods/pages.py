@@ -20,6 +20,7 @@ class PagesCategory(BaseCategory):
         self, url: str, **kwargs
     ) -> int:
         """Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
+
         :param url: Address of the page where you need to refesh the cached version
         """
 
@@ -40,6 +41,7 @@ class PagesCategory(BaseCategory):
         **kwargs
     ) -> PagesWikipageFull:
         """Returns information about a wiki page.
+
         :param owner_id: Page owner ID.
         :param page_id: Wiki page ID.
         :param _global: '1' — to return information about a global wiki page
@@ -62,6 +64,7 @@ class PagesCategory(BaseCategory):
         **kwargs
     ) -> typing.List[PagesWikipageHistory]:
         """Returns a list of all previous versions of a wiki page.
+
         :param page_id: Wiki page ID.
         :param group_id: ID of the community that owns the wiki page.
         :param user_id:
@@ -76,6 +79,7 @@ class PagesCategory(BaseCategory):
         self, group_id: typing.Optional[int] = None, **kwargs
     ) -> typing.List[PagesWikipage]:
         """Returns a list of wiki pages in a group.
+
         :param group_id: ID of the community that owns the wiki page.
         """
 
@@ -93,6 +97,7 @@ class PagesCategory(BaseCategory):
         **kwargs
     ) -> PagesWikipageFull:
         """Returns the text of one of the previous versions of a wiki page.
+
         :param version_id:
         :param group_id: ID of the community that owns the wiki page.
         :param user_id:
@@ -108,6 +113,7 @@ class PagesCategory(BaseCategory):
         self, text: str, group_id: typing.Optional[int] = None, **kwargs
     ) -> str:
         """Returns HTML representation of the wiki markup.
+
         :param text: Text of the wiki page.
         :param group_id: ID of the group in the context of which this markup is interpreted.
         """
@@ -127,6 +133,7 @@ class PagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Saves the text of a wiki page.
+
         :param text: Text of the wiki page in wiki-format.
         :param page_id: Wiki page ID. The 'title' parameter can be passed instead of 'pid'.
         :param group_id: ID of the community that owns the wiki page.
@@ -149,6 +156,7 @@ class PagesCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Saves modified read and edit access settings for a wiki page.
+
         :param page_id: Wiki page ID.
         :param group_id: ID of the community that owns the wiki page.
         :param user_id:

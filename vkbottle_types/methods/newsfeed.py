@@ -33,6 +33,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Prevents news from specified users and communities from appearing in the current user's newsfeed.
+
         :param user_ids:
         :param group_ids:
         """
@@ -49,6 +50,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows news from previously banned users and communities to be shown in the current user's newsfeed.
+
         :param user_ids:
         :param group_ids:
         """
@@ -62,6 +64,7 @@ class NewsfeedCategory(BaseCategory):
         self, list_id: int, **kwargs
     ) -> int:
         """newsfeed.deleteList method
+
         :param list_id:
         """
 
@@ -85,6 +88,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns data required to show newsfeed for the current user.
+
         :param filters: Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends
         :param return_banned: '1' — to return news items from banned sources
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
@@ -110,6 +114,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetBannedResponseModel:
         """Returns a list of users and communities banned from the current user's newsfeed.
+
         :param extended: '1' — return extra information about users and communities
         :param fields: Profile fields to return.
         :param name_case: Case for declension of user name and surname: 'nom' — nominative (default), 'gen' — genitive , 'dat' — dative, 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
@@ -137,6 +142,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments in the current user's newsfeed.
+
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param filters: Filters to apply: 'post' — new comments on wall posts, 'photo' — new comments on photos, 'video' — new comments on videos, 'topic' — new comments on discussions, 'note' — new comments on notes,
         :param reposts: Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),
@@ -159,6 +165,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetListsResponseModel:
         """Returns a list of newsfeeds followed by the current user.
+
         :param list_ids: numeric list identifiers.
         :param extended: Return additional list info
         """
@@ -182,6 +189,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetMentionsResponseModel:
         """Returns a list of posts on user walls in which the current user is mentioned.
+
         :param owner_id: Owner ID.
         :param start_time: Earliest timestamp (in Unix time) of a post to return. By default, 24 hours ago.
         :param end_time: Latest timestamp (in Unix time) of a post to return. By default, the current time.
@@ -205,6 +213,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetRecommendedResponseModel:
         """, Returns a list of newsfeeds recommended to the current user.
+
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
         :param max_photos: Maximum number of photos to return. By default, '5'.
@@ -227,6 +236,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> GetSuggestedSourcesResponseModel:
         """Returns communities and users that current user is suggested to follow.
+
         :param offset: offset required to choose a particular subset of communities or users.
         :param count: amount of communities or users to return.
         :param shuffle: shuffle the returned list or not.
@@ -246,6 +256,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Hides an item from the newsfeed.
+
         :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
         :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
         :param item_id: Item identifier
@@ -265,6 +276,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Creates and edits user newsfeed lists
+
         :param title: list name.
         :param list_id: numeric list identifier (if not sent, will be set automatically).
         :param source_ids: users and communities identifiers to be added to the list. Community identifiers must be negative numbers.
@@ -290,6 +302,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns search results by statuses.
+
         :param q: Search query string (e.g., 'New Year').
         :param extended: '1' — to return additional information about the user or community that placed the post.
         :param count: Number of posts to return.
@@ -319,6 +332,7 @@ class NewsfeedCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Returns a hidden item to the newsfeed.
+
         :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
         :param owner_id: Item owner's identifier (user or community), "Note that community id must be negative. 'owner_id=1' - user , 'owner_id=-1' - community "
         :param item_id: Item identifier
@@ -334,6 +348,7 @@ class NewsfeedCategory(BaseCategory):
         self, type: str, item_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Unsubscribes the current user from specified newsfeeds.
+
         :param type: Type of object from which to unsubscribe: 'note' — note, 'photo' — photo, 'post' — post on user wall or community wall, 'topic' — topic, 'video' — video
         :param item_id: Object ID.
         :param owner_id: Object owner ID.

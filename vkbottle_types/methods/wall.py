@@ -37,6 +37,7 @@ class WallCategory(BaseCategory):
         self, link: str, **kwargs
     ) -> BaseBoolInt:
         """wall.checkCopyrightLink method
+
         :param link:
         """
 
@@ -49,6 +50,7 @@ class WallCategory(BaseCategory):
         self, owner_id: int, post_id: int, **kwargs
     ) -> BaseBoolInt:
         """wall.closeComments method
+
         :param owner_id:
         :param post_id:
         """
@@ -71,6 +73,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> CreateCommentResponseModel:
         """Adds a comment to a post on a user wall or community wall.
+
         :param post_id: Post ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param from_group: Group ID.
@@ -93,6 +96,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Deletes a post from a user wall or community wall.
+
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param post_id: ID of the post to be deleted.
         """
@@ -106,6 +110,7 @@ class WallCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a comment on a post on a user wall or community wall.
+
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         """
@@ -139,6 +144,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> EditResponseModel:
         """Edits a post on a user wall or community wall.
+
         :param post_id:
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param friends_only:
@@ -182,6 +188,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Allows to edit hidden post.
+
         :param post_id: Post ID. Used for publishing of scheduled and suggested posts.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param message: (Required if 'attachments' is not set.) Text of the post.
@@ -210,6 +217,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a comment on a user wall or community wall.
+
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param message: New comment text.
@@ -233,6 +241,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of posts on a user wall or community wall.
+
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
         :param domain: User or community short address.
         :param offset: Offset needed to return a specific subset of posts.
@@ -260,6 +269,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> typing.List[WallWallpostFull]:
         """Returns a list of posts from user or community walls by their IDs.
+
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
         :param extended: '1' — to return user and community objects needed to display posts, '0' — no additional fields are returned (default)
         :param copy_history_depth: Sets the number of parent elements to include in the array 'copy_history' that is returned if the post is a repost from another wall.
@@ -284,6 +294,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> GetCommentResponseModel:
         """Returns a comment on a post on a user wall or community wall.
+
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param extended:
@@ -316,6 +327,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a post on a user wall or community wall.
+
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param post_id: Post ID.
         :param need_likes: '1' — to return the 'likes' field, '0' — not to return the 'likes' field (default)
@@ -348,6 +360,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> GetRepostsResponseModel:
         """Returns information about reposts of a post on user wall or community wall.
+
         :param owner_id: User ID or community ID. By default, current user ID. Use a negative value to designate a community ID.
         :param post_id: Post ID.
         :param offset: Offset needed to return a specific subset of reposts.
@@ -363,6 +376,7 @@ class WallCategory(BaseCategory):
         self, owner_id: int, post_id: int, **kwargs
     ) -> BaseBoolInt:
         """wall.openComments method
+
         :param owner_id:
         :param post_id:
         """
@@ -376,6 +390,7 @@ class WallCategory(BaseCategory):
         self, post_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Pins the post on wall.
+
         :param post_id: Post ID.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
         """
@@ -409,6 +424,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> PostResponseModel:
         """Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
+
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param friends_only: '1' — post will be available to friends only, '0' — post will be available to all users (default)
         :param from_group: For a community: '1' — post will be published by the community, '0' — post will be published by the user (default)
@@ -452,6 +468,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> PostAdsStealthResponseModel:
         """Allows to create hidden post which will not be shown on the community's wall and can be used for creating an ad with type "Community post".
+
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         :param message: (Required if 'attachments' is not set.) Text of the post.
         :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' — Type of media attachment: 'photo' — photo, 'video' — video, 'audio' — audio, 'doc' — document, 'page' — wiki-page, 'note' — note, 'poll' — poll, 'album' — photo album, '<owner_id>' — ID of the media application owner. '<media_id>' — Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
@@ -479,6 +496,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a post on a user wall or community wall.
+
         :param owner_id: ID of the user or community that owns the wall.
         :param comment_id: Comment ID.
         :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
@@ -497,6 +515,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a post on a user wall or community wall.
+
         :param owner_id: ID of the user or community that owns the wall.
         :param post_id: Post ID.
         :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
@@ -517,6 +536,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> RepostResponseModel:
         """Reposts (copies) an object to a user wall or community wall.
+
         :param object: ID of the object to be reposted on the wall. Example: "wall66748_3675"
         :param message: Comment to be added along with the reposted object.
         :param group_id: Target community ID when reposting to a community.
@@ -536,6 +556,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Restores a post deleted from a user wall or community wall.
+
         :param owner_id: User ID or community ID from whose wall the post was deleted. Use a negative value to designate a community ID.
         :param post_id: ID of the post to be restored.
         """
@@ -549,6 +570,7 @@ class WallCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Restores a comment deleted from a user wall or community wall.
+
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
         """
@@ -571,6 +593,7 @@ class WallCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Allows to search posts on user or community walls.
+
         :param owner_id: user or community id. "Remember that for a community 'owner_id' must be negative."
         :param domain: user or community screen name.
         :param query: search query string.
@@ -594,6 +617,7 @@ class WallCategory(BaseCategory):
         self, post_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Unpins the post on wall.
+
         :param post_id: Post ID.
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
         """

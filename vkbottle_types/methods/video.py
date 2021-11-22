@@ -35,6 +35,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a video to a user or community page.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video. Use a negative value to designate a community ID.
         :param target_id: identifier of a user or community to add a video to. Use a negative value to designate a community ID.
@@ -53,6 +54,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> AddAlbumResponseModel:
         """Creates an empty album for videos.
+
         :param group_id: Community ID (if the album will be created in a community).
         :param title: Album title.
         :param privacy: new access permissions for the album. Possible values: , *'0' - all users,, *'1' - friends only,, *'2' - friends and friends of friends,, *'3' - "only me".
@@ -73,6 +75,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """video.addToAlbum method
+
         :param owner_id:
         :param video_id:
         :param target_id:
@@ -98,6 +101,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds a new comment on a video.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
         :param message: New comment text.
@@ -121,6 +125,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Deletes a video from a user or community page.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
         :param target_id:
@@ -135,6 +140,7 @@ class VideoCategory(BaseCategory):
         self, album_id: int, group_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a video album.
+
         :param album_id: Album ID.
         :param group_id: Community ID (if the album is owned by a community).
         """
@@ -148,6 +154,7 @@ class VideoCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Deletes a comment on a video.
+
         :param comment_id: ID of the comment to be deleted.
         :param owner_id: ID of the user or community that owns the video.
         """
@@ -170,6 +177,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits information about a video on a user or community page.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
         :param name: New video title.
@@ -194,6 +202,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits the title of a video album.
+
         :param album_id: Album ID.
         :param title: New album title.
         :param group_id: Community ID (if the album edited is owned by a community).
@@ -214,6 +223,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits the text of a comment on a video.
+
         :param comment_id: Comment ID.
         :param owner_id: ID of the user or community that owns the video.
         :param message: New comment text.
@@ -237,6 +247,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns detailed information about videos.
+
         :param owner_id: ID of the user or community that owns the video(s).
         :param videos: Video IDs, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", Use a negative value to designate a community ID. Example: "-4363_136089719,13245770_137352259"
         :param album_id: ID of the album containing the video(s).
@@ -255,6 +266,7 @@ class VideoCategory(BaseCategory):
         self, album_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> VideoVideoAlbumFull:
         """Returns video album info
+
         :param album_id: Album ID.
         :param owner_id: identifier of a user or community to add a video to. Use a negative value to designate a community ID.
         """
@@ -274,6 +286,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> GetAlbumsResponseModel:
         """Returns a list of video albums owned by a user or community.
+
         :param owner_id: ID of the user or community that owns the video album(s).
         :param offset: Offset needed to return a specific subset of video albums.
         :param count: Number of video albums to return.
@@ -299,6 +312,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> typing.List[int]:
         """video.getAlbumsByVideo method
+
         :param owner_id:
         :param video_id:
         :param target_id:
@@ -328,6 +342,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a video.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
         :param need_likes: '1' — to return an additional 'likes' field
@@ -358,6 +373,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """video.removeFromAlbum method
+
         :param owner_id:
         :param video_id:
         :param target_id:
@@ -379,6 +395,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reorders the album in the list of user video albums.
+
         :param album_id: Album ID.
         :param owner_id: ID of the user or community that owns the albums..
         :param before: ID of the album before which the album in question shall be placed.
@@ -403,6 +420,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reorders the video in the video album.
+
         :param owner_id: ID of the user or community that owns the video.
         :param video_id: ID of the video.
         :param target_id: ID of the user or community that owns the album with videos.
@@ -428,6 +446,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a video.
+
         :param owner_id: ID of the user or community that owns the video.
         :param video_id: Video ID.
         :param reason: Reason for the complaint: '0' - spam, '1' - child pornography, '2' - extremism, '3' - violence, '4' - drug propaganda, '5' - adult material, '6' - insult, abuse
@@ -448,6 +467,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a video.
+
         :param owner_id: ID of the user or community that owns the video.
         :param comment_id: ID of the comment being reported.
         :param reason: Reason for the complaint: , 0 - spam , 1 - child pornography , 2 - extremism , 3 - violence , 4 - drug propaganda , 5 - adult material , 6 - insult, abuse
@@ -462,6 +482,7 @@ class VideoCategory(BaseCategory):
         self, video_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> int:
         """Restores a previously deleted video.
+
         :param video_id: Video ID.
         :param owner_id: ID of the user or community that owns the video.
         """
@@ -475,6 +496,7 @@ class VideoCategory(BaseCategory):
         self, comment_id: int, owner_id: typing.Optional[int] = None, **kwargs
     ) -> BaseBoolInt:
         """Restores a previously deleted comment on a video.
+
         :param comment_id: ID of the deleted comment.
         :param owner_id: ID of the user or community that owns the video.
         """
@@ -501,6 +523,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> VideoSaveResult:
         """Returns a server address (required for upload) and video data.
+
         :param name: Name of the video.
         :param description: Description of the video.
         :param is_private: '1' — to designate the video as private (send it via a private message), the video will not appear on the user's video list and will not be available by ID for other users, '0' — not to designate the video as private
@@ -537,6 +560,7 @@ class VideoCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of videos under the set search criterion.
+
         :param q: Search query string (e.g., 'The Beatles').
         :param sort: Sort order: '1' — by duration, '2' — by relevance, '0' — by date added
         :param hd: If not null, only searches for high-definition videos.

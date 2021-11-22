@@ -21,6 +21,7 @@ class AppWidgetsCategory(BaseCategory):
         self, image_type: str, **kwargs
     ) -> GetAppImageUploadServerResponseModel:
         """Returns a URL for uploading a photo to the community collection for community app widgets
+
         :param image_type:
         """
 
@@ -37,6 +38,7 @@ class AppWidgetsCategory(BaseCategory):
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns an app collection of images for community app widgets
+
         :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
         :param image_type:
@@ -51,6 +53,7 @@ class AppWidgetsCategory(BaseCategory):
         self, image_type: str, **kwargs
     ) -> GetGroupImageUploadServerResponseModel:
         """Returns a URL for uploading a photo to the community collection for community app widgets
+
         :param image_type:
         """
 
@@ -67,6 +70,7 @@ class AppWidgetsCategory(BaseCategory):
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns a community collection of images for community app widgets
+
         :param offset: Offset needed to return a specific subset of images.
         :param count: Maximum count of results.
         :param image_type:
@@ -81,6 +85,7 @@ class AppWidgetsCategory(BaseCategory):
         self, images: typing.List[str], **kwargs
     ) -> typing.List[AppWidgetsPhoto]:
         """Returns an image for community app widgets by its ID
+
         :param images: List of images IDs
         """
 
@@ -93,6 +98,7 @@ class AppWidgetsCategory(BaseCategory):
         self, hash: str, image: str, **kwargs
     ) -> AppWidgetsPhoto:
         """Allows to save image into app collection for community app widgets
+
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
         """
@@ -106,6 +112,7 @@ class AppWidgetsCategory(BaseCategory):
         self, hash: str, image: str, **kwargs
     ) -> AppWidgetsPhoto:
         """Allows to save image into community collection for community app widgets
+
         :param hash: Parameter returned when photo is uploaded to server
         :param image: Parameter returned when photo is uploaded to server
         """
@@ -119,6 +126,7 @@ class AppWidgetsCategory(BaseCategory):
         self, code: str, type: str, **kwargs
     ) -> int:
         """Allows to update community app widget
+
         :param code:
         :param type:
         """

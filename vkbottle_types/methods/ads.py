@@ -70,6 +70,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> bool:
         """Adds managers and/or supervisors to advertising account.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
         """
@@ -88,6 +89,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> AdsLinkStatus:
         """Allows to check the ad link.
+
         :param account_id: Advertising account ID.
         :param link_type: Object type: *'community' — community,, *'post' — community post,, *'application' — VK application,, *'video' — video,, *'site' — external site.
         :param link_url: Object URL.
@@ -103,6 +105,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> typing.List[int]:
         """Creates ads.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe created ads. Description of 'ad_specification' objects see below.
         """
@@ -116,6 +119,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> typing.List[int]:
         """Creates advertising campaigns.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe created campaigns. Description of 'campaign_specification' objects see below.
         """
@@ -129,6 +133,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> typing.List[int]:
         """Creates clients of an advertising agency.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe created campaigns. Description of 'client_specification' objects see below.
         """
@@ -149,6 +154,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> CreateTargetGroupResponseModel:
         """Creates a group to re-target ads for users who visited advertiser's site (viewed information about the product, registered, etc.).
+
         :param account_id: Advertising account ID.
         :param name: Name of the target group — a string up to 64 characters long.
         :param lifetime: 'For groups with auditory created with pixel code only.', , Number of days after that users will be automatically removed from the group.
@@ -166,6 +172,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ids: str, **kwargs
     ) -> typing.List[int]:
         """Archives ads.
+
         :param account_id: Advertising account ID.
         :param ids: Serialized JSON array with ad IDs.
         """
@@ -179,6 +186,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ids: str, **kwargs
     ) -> int:
         """Archives advertising campaigns.
+
         :param account_id: Advertising account ID.
         :param ids: Serialized JSON array with IDs of deleted campaigns.
         """
@@ -192,6 +200,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ids: str, **kwargs
     ) -> int:
         """Archives clients of an advertising agency.
+
         :param account_id: Advertising account ID.
         :param ids: Serialized JSON array with IDs of deleted clients.
         """
@@ -209,6 +218,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Deletes a retarget group.
+
         :param account_id: Advertising account ID.
         :param target_group_id: Group ID.
         :param client_id: 'Only for advertising agencies.' , ID of the client with the advertising account where the group will be created.
@@ -242,6 +252,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsAd]:
         """Returns number of ads.
+
         :param account_id: Advertising account ID.
         :param ad_ids: Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
         :param campaign_ids: Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
@@ -270,6 +281,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsAdLayout]:
         """Returns descriptions of ad layouts.
+
         :param account_id: Advertising account ID.
         :param client_id: 'For advertising agencies.' ID of the client ads are retrieved from.
         :param include_deleted: Flag that specifies whether archived ads shall be shown. *0 — show only active ads,, *1 — show all ads.
@@ -297,6 +309,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsTargSettings]:
         """Returns ad targeting parameters.
+
         :param account_id: Advertising account ID.
         :param ad_ids: Filter by ads. Serialized JSON array with ad IDs. If the parameter is null, all ads will be shown.
         :param campaign_ids: Filter by advertising campaigns. Serialized JSON array with campaign IDs. If the parameter is null, ads of all campaigns will be shown.
@@ -315,6 +328,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, **kwargs
     ) -> int:
         """Returns current budget of the advertising account.
+
         :param account_id: Advertising account ID.
         """
 
@@ -333,6 +347,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsCampaign]:
         """Returns a list of campaigns in an advertising account.
+
         :param account_id: Advertising account ID.
         :param client_id: 'For advertising agencies'. ID of the client advertising campaigns are retrieved from.
         :param include_deleted: Flag that specifies whether archived ads shall be shown. *0 — show only active campaigns,, *1 — show all campaigns.
@@ -349,6 +364,7 @@ class AdsCategory(BaseCategory):
         self, lang: typing.Optional[str] = None, **kwargs
     ) -> GetCategoriesResponseModel:
         """Returns a list of possible ad categories.
+
         :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
         """
 
@@ -361,6 +377,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, **kwargs
     ) -> typing.List[AdsClient]:
         """Returns a list of advertising agency's clients.
+
         :param account_id: Advertising account ID.
         """
 
@@ -380,6 +397,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsDemoStats]:
         """Returns demographics for ads or campaigns.
+
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.
         :param ids: IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.
@@ -397,6 +415,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, **kwargs
     ) -> AdsFloodStats:
         """Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.
+
         :param account_id: Advertising account ID.
         """
 
@@ -416,6 +435,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> GetLookalikeRequestsResponseModel:
         """ads.getLookalikeRequests method
+
         :param account_id:
         :param client_id:
         :param requests_ids:
@@ -433,6 +453,7 @@ class AdsCategory(BaseCategory):
         self, artist_name: str, **kwargs
     ) -> GetMusiciansResponseModel:
         """ads.getMusicians method
+
         :param artist_name:
         """
 
@@ -445,6 +466,7 @@ class AdsCategory(BaseCategory):
         self, ids: typing.List[int], **kwargs
     ) -> GetMusiciansResponseModel:
         """ads.getMusiciansByIds method
+
         :param ids:
         """
 
@@ -457,6 +479,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, **kwargs
     ) -> typing.List[AdsUsers]:
         """Returns a list of managers and supervisors of advertising account.
+
         :param account_id: Advertising account ID.
         """
 
@@ -469,6 +492,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ids_type: str, ids: str, **kwargs
     ) -> typing.List[AdsPromotedPostReach]:
         """Returns detailed statistics of promoted posts reach from campaigns and ads.
+
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns.
         :param ids: IDs requested ads or campaigns, separated with a comma, depending on the value set in 'ids_type'. Maximum 100 objects.
@@ -483,6 +507,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ad_id: int, **kwargs
     ) -> AdsRejectReason:
         """Returns a reason of ad rejection for pre-moderation.
+
         :param account_id: Advertising account ID.
         :param ad_id: Ad ID.
         """
@@ -504,6 +529,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsStats]:
         """Returns statistics of performance indicators for ads, campaigns, clients or the whole account.
+
         :param account_id: Advertising account ID.
         :param ids_type: Type of requested objects listed in 'ids' parameter: *ad — ads,, *campaign — campaigns,, *client — clients,, *office — account.
         :param ids: IDs requested ads, campaigns, clients or account, separated with a comma, depending on the value set in 'ids_type'. Maximum 2000 objects.
@@ -529,6 +555,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsTargSuggestions]:
         """Returns a set of auto-suggestions for various targeting parameters.
+
         :param section: Section, suggestions are retrieved in. Available values: *countries — request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions — requested list of regions. 'country' parameter is required. *cities — requested list of cities. 'country' parameter is required. *districts — requested list of districts. 'cities' parameter is required. *stations — requested list of subway stations. 'cities' parameter is required. *streets — requested list of streets. 'cities' parameter is required. *schools — requested list of educational organizations. 'cities' parameter is required. *interests — requested list of interests. *positions — requested list of positions (professions). *group_types — requested list of group types. *religions — requested list of religious commitments. *browsers — requested list of browsers and mobile devices.
         :param ids: Objects IDs separated by commas. If the parameter is passed, 'q, country, cities' should not be passed.
         :param q: Filter-line of the request (for countries, regions, cities, streets, schools, interests, positions).
@@ -558,6 +585,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[AdsTargetGroup]:
         """Returns a list of target groups.
+
         :param account_id: Advertising account ID.
         :param client_id: 'Only for advertising agencies.', ID of the client with the advertising account where the group will be created.
         :param extended: '1' — to return pixel code.
@@ -586,6 +614,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> AdsTargStats:
         """Returns the size of targeting audience, and also recommended values for CPC and CPM.
+
         :param account_id: Advertising account ID.
         :param link_url: URL for the advertised object.
         :param client_id:
@@ -610,6 +639,7 @@ class AdsCategory(BaseCategory):
         self, ad_format: int, icon: typing.Optional[int] = None, **kwargs
     ) -> str:
         """Returns URL to upload an ad photo to.
+
         :param ad_format: Ad format: *1 — image and text,, *2 — big image,, *3 — exclusive format,, *4 — community, square image,, *7 — special app format.
         :param icon:
         """
@@ -638,6 +668,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Imports a list of advertiser's contacts to count VK registered users against the target group.
+
         :param account_id: Advertising account ID.
         :param target_group_id: Target group ID.
         :param contacts: List of phone numbers, emails or user IDs separated with a comma.
@@ -653,6 +684,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, ids: str, **kwargs
     ) -> bool:
         """Removes managers and/or supervisors from advertising account.
+
         :param account_id: Advertising account ID.
         :param ids: Serialized JSON array with IDs of deleted managers.
         """
@@ -666,6 +698,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> typing.List[int]:
         """Edits ads.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe changes in ads. Description of 'ad_edit_specification' objects see below.
         """
@@ -679,6 +712,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> int:
         """Edits advertising campaigns.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe changes in campaigns. Description of 'campaign_mod' objects see below.
         """
@@ -692,6 +726,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> int:
         """Edits clients of an advertising agency.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe changes in clients. Description of 'client_mod' objects see below.
         """
@@ -705,6 +740,7 @@ class AdsCategory(BaseCategory):
         self, account_id: int, data: str, **kwargs
     ) -> typing.List[AdsUpdateOfficeUsersResult]:
         """Adds managers and/or supervisors to advertising account.
+
         :param account_id: Advertising account ID.
         :param data: Serialized JSON array of objects that describe added managers. Description of 'user_specification' objects see below.
         """
@@ -727,6 +763,7 @@ class AdsCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a retarget group.
+
         :param account_id: Advertising account ID.
         :param target_group_id: Group ID.
         :param name: New name of the target group — a string up to 64 characters long.

@@ -22,6 +22,7 @@ class UtilsCategory(BaseCategory):
         self, url: str, **kwargs
     ) -> UtilsLinkChecked:
         """Checks whether a link is blocked in VK.
+
         :param url: Link to check (e.g., 'http://google.com').
         """
 
@@ -34,6 +35,7 @@ class UtilsCategory(BaseCategory):
         self, key: str, **kwargs
     ) -> int:
         """Deletes shortened link from user's list.
+
         :param key: Link key (characters after vk.cc/).
         """
 
@@ -49,6 +51,7 @@ class UtilsCategory(BaseCategory):
         **kwargs
     ) -> GetLastShortenedLinksResponseModel:
         """Returns a list of user's shortened links.
+
         :param count: Number of links to return.
         :param offset: Offset needed to return a specific subset of links.
         """
@@ -69,6 +72,7 @@ class UtilsCategory(BaseCategory):
         **kwargs
     ) -> UtilsLinkStats:
         """Returns stats data for shortened link.
+
         :param key: Link key (characters after vk.cc/).
         :param source: Source of scope
         :param access_key: Access key for private link stats.
@@ -100,6 +104,7 @@ class UtilsCategory(BaseCategory):
         self, url: str, private: typing.Optional[bool] = None, **kwargs
     ) -> UtilsShortLink:
         """Allows to receive a link shortened via vk.cc.
+
         :param url: URL to be shortened.
         :param private: 1 — private stats, 0 — public stats.
         """
@@ -113,6 +118,7 @@ class UtilsCategory(BaseCategory):
         self, screen_name: str, **kwargs
     ) -> UtilsDomainResolved:
         """Detects a type of object (e.g., user, community, application) and its ID by screen name.
+
         :param screen_name: Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
         """
 

@@ -19,6 +19,7 @@ class StatsCategory(BaseCategory):
         **kwargs
     ) -> typing.List[StatsPeriod]:
         """Returns statistics of a community or an application.
+
         :param group_id: Community ID.
         :param app_id: Application ID.
         :param timestamp_from:
@@ -39,6 +40,7 @@ class StatsCategory(BaseCategory):
         self, owner_id: str, post_ids: typing.List[int], **kwargs
     ) -> typing.List[StatsWallpostStat]:
         """Returns stats for a wall post.
+
         :param owner_id: post owner community id. Specify with "-" sign.
         :param post_ids: wall posts id
         """
@@ -52,6 +54,7 @@ class StatsCategory(BaseCategory):
         self, id: str, **kwargs
     ) -> int:
         """stats.trackVisitor method
+
         :param id:
         """
 

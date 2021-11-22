@@ -8,6 +8,7 @@ class DownloadedGamesCategory(BaseCategory):
         self, user_id: typing.Optional[int] = None, **kwargs
     ) -> PaidStatusResponseModel:
         """downloadedGames.getPaidStatus method
+
         :param user_id:
         """
 

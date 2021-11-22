@@ -34,6 +34,7 @@ class LeadFormsCategory(BaseCategory):
         **kwargs
     ) -> CreateResponseModel:
         """leadForms.create method
+
         :param group_id:
         :param name:
         :param title:
@@ -59,6 +60,7 @@ class LeadFormsCategory(BaseCategory):
         self, group_id: int, form_id: int, **kwargs
     ) -> DeleteResponseModel:
         """leadForms.delete method
+
         :param group_id:
         :param form_id:
         """
@@ -72,6 +74,7 @@ class LeadFormsCategory(BaseCategory):
         self, group_id: int, form_id: int, **kwargs
     ) -> LeadFormsForm:
         """leadForms.get method
+
         :param group_id:
         :param form_id:
         """
@@ -90,6 +93,7 @@ class LeadFormsCategory(BaseCategory):
         **kwargs
     ) -> GetLeadsResponseModel:
         """leadForms.getLeads method
+
         :param group_id:
         :param form_id:
         :param limit:
@@ -115,6 +119,7 @@ class LeadFormsCategory(BaseCategory):
         self, group_id: int, **kwargs
     ) -> typing.List[LeadFormsForm]:
         """leadForms.list method
+
         :param group_id:
         """
 
@@ -143,6 +148,7 @@ class LeadFormsCategory(BaseCategory):
         **kwargs
     ) -> CreateResponseModel:
         """leadForms.update method
+
         :param group_id:
         :param form_id:
         :param name:

@@ -59,6 +59,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> AddResponseModel:
         """Ads a new item to the market.
+
         :param owner_id: ID of an item owner community.
         :param name: Item name.
         :param description: Item description.
@@ -91,6 +92,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> AddAlbumResponseModel:
         """Creates new collection of items
+
         :param owner_id: ID of an item owner community.
         :param title: Collection title.
         :param photo_id: Cover photo ID.
@@ -111,6 +113,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Adds an item to one or multiple collections.
+
         :param owner_id: ID of an item owner community.
         :param item_ids:
         :param album_ids: Collections IDs to add item to.
@@ -134,6 +137,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Creates a new comment for an item.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         :param message: Comment text (required if 'attachments' parameter is not specified)
@@ -153,6 +157,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, item_id: int, **kwargs
     ) -> int:
         """Deletes an item.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         """
@@ -166,6 +171,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, album_id: int, **kwargs
     ) -> int:
         """Deletes a collection of items.
+
         :param owner_id: ID of an collection owner community.
         :param album_id: Collection ID.
         """
@@ -179,6 +185,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, comment_id: int, **kwargs
     ) -> BaseBoolInt:
         """Deletes an item's comment
+
         :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param comment_id: comment id
         """
@@ -203,6 +210,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits an item.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         :param name: Item name.
@@ -231,6 +239,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edits a collection of items
+
         :param owner_id: ID of an collection owner community.
         :param album_id: Collection ID.
         :param title: Collection title.
@@ -253,6 +262,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Chages item comment's text
+
         :param owner_id: ID of an item owner community.
         :param comment_id: Comment ID.
         :param message: New comment text (required if 'attachments' are not specified), , 2048 symbols maximum.
@@ -280,6 +290,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Edit order
+
         :param user_id:
         :param order_id:
         :param merchant_comment:
@@ -312,6 +323,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """Returns items list for a community.
+
         :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param album_id:
         :param count: Number of items to return.
@@ -336,6 +348,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, album_ids: typing.List[int], **kwargs
     ) -> GetAlbumByIdResponseModel:
         """Returns items album's data
+
         :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param album_ids: collections identifiers to obtain data from
         """
@@ -353,6 +366,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetAlbumsResponseModel:
         """Returns community's market collections list.
+
         :param owner_id: ID of an items owner community.
         :param offset: Offset needed to return a specific subset of results.
         :param count: Number of items to return.
@@ -370,6 +384,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetByIdResponseModel:
         """Returns information about market items by their ids.
+
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
         :param extended: '1' - to return additional fields: 'likes, can_comment, car_repost, photos'. By default: '0'.
         """
@@ -390,6 +405,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetCategoriesResponseModel:
         """Returns a list of market categories.
+
         :param count: Number of results to return.
         :param offset: Offset needed to return a specific subset of results.
         """
@@ -413,6 +429,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns comments list for an item.
+
         :param owner_id: ID of an item owner community
         :param item_id: Item ID.
         :param need_likes: '1' — to return likes info.
@@ -437,6 +454,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetGroupOrdersResponseModel:
         """Get market orders
+
         :param group_id:
         :param offset:
         :param count:
@@ -455,6 +473,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetOrderByIdResponseModel:
         """Get order
+
         :param order_id:
         :param user_id:
         :param extended:
@@ -474,6 +493,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetOrderItemsResponseModel:
         """Get market items in the order
+
         :param order_id:
         :param user_id:
         :param offset:
@@ -495,6 +515,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> GetOrdersResponseModel:
         """market.getOrders method
+
         :param offset:
         :param count:
         :param extended:
@@ -515,6 +536,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, item_id: int, album_ids: typing.List[int], **kwargs
     ) -> int:
         """Removes an item from one or multiple collections.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         :param album_ids: Collections IDs to remove item from.
@@ -534,6 +556,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Reorders the collections list.
+
         :param owner_id: ID of an item owner community.
         :param album_id: Collection ID.
         :param before: ID of a collection to place current collection before it.
@@ -555,6 +578,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Changes item place in a collection.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         :param album_id: ID of a collection to reorder items in. Set 0 to reorder full items list.
@@ -575,6 +599,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Sends a complaint to the item.
+
         :param owner_id: ID of an item owner community.
         :param item_id: Item ID.
         :param reason: Complaint reason. Possible values: *'0' — spam,, *'1' — child porn,, *'2' — extremism,, *'3' — violence,, *'4' — drugs propaganda,, *'5' — adult materials,, *'6' — insult.
@@ -589,6 +614,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, comment_id: int, reason: int, **kwargs
     ) -> int:
         """Sends a complaint to the item's comment.
+
         :param owner_id: ID of an item owner community.
         :param comment_id: Comment ID.
         :param reason: Complaint reason. Possible values: *'0' — spam,, *'1' — child porn,, *'2' — extremism,, *'3' — violence,, *'4' — drugs propaganda,, *'5' — adult materials,, *'6' — insult.
@@ -603,6 +629,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, item_id: int, **kwargs
     ) -> int:
         """Restores recently deleted item
+
         :param owner_id: ID of an item owner community.
         :param item_id: Deleted item ID.
         """
@@ -616,6 +643,7 @@ class MarketCategory(BaseCategory):
         self, owner_id: int, comment_id: int, **kwargs
     ) -> BaseBoolInt:
         """Restores a recently deleted comment
+
         :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param comment_id: deleted comment id
         """
@@ -642,6 +670,7 @@ class MarketCategory(BaseCategory):
         **kwargs
     ) -> SearchResponseModel:
         """Searches market items in a community's catalog
+
         :param owner_id: ID of an items owner community.
         :param album_id:
         :param q: Search query, for example "pink slippers".

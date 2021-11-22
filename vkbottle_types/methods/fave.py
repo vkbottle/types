@@ -19,6 +19,7 @@ class FaveCategory(BaseCategory):
         self, url: str, **kwargs
     ) -> int:
         """fave.addArticle method
+
         :param url:
         """
 
@@ -31,6 +32,7 @@ class FaveCategory(BaseCategory):
         self, link: str, **kwargs
     ) -> int:
         """Adds a link to user faves.
+
         :param link: Link URL.
         """
 
@@ -46,6 +48,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """fave.addPage method
+
         :param user_id:
         :param group_id:
         """
@@ -59,6 +62,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, access_key: typing.Optional[str] = None, **kwargs
     ) -> int:
         """fave.addPost method
+
         :param owner_id:
         :param id:
         :param access_key:
@@ -73,6 +77,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, access_key: typing.Optional[str] = None, **kwargs
     ) -> int:
         """fave.addProduct method
+
         :param owner_id:
         :param id:
         :param access_key:
@@ -90,6 +95,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> FaveTag:
         """fave.addTag method
+
         :param name:
         :param position:
         """
@@ -103,6 +109,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, access_key: typing.Optional[str] = None, **kwargs
     ) -> int:
         """fave.addVideo method
+
         :param owner_id:
         :param id:
         :param access_key:
@@ -117,6 +124,7 @@ class FaveCategory(BaseCategory):
         self, id: int, name: str, **kwargs
     ) -> int:
         """fave.editTag method
+
         :param id:
         :param name:
         """
@@ -138,6 +146,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> GetResponseModel:
         """fave.get method
+
         :param extended: '1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.
         :param item_type:
         :param tag_id: Tag ID.
@@ -166,6 +175,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> GetPagesResponseModel:
         """fave.getPages method
+
         :param offset:
         :param count:
         :param type:
@@ -202,6 +212,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, article_id: int, **kwargs
     ) -> BaseBoolInt:
         """fave.removeArticle method
+
         :param owner_id:
         :param article_id:
         """
@@ -218,6 +229,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """Removes link from the user's faves.
+
         :param link_id: Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).
         :param link: Link URL
         """
@@ -234,6 +246,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """fave.removePage method
+
         :param user_id:
         :param group_id:
         """
@@ -247,6 +260,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, **kwargs
     ) -> int:
         """fave.removePost method
+
         :param owner_id:
         :param id:
         """
@@ -260,6 +274,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, **kwargs
     ) -> int:
         """fave.removeProduct method
+
         :param owner_id:
         :param id:
         """
@@ -273,6 +288,7 @@ class FaveCategory(BaseCategory):
         self, id: int, **kwargs
     ) -> int:
         """fave.removeTag method
+
         :param id:
         """
 
@@ -285,6 +301,7 @@ class FaveCategory(BaseCategory):
         self, owner_id: int, id: int, **kwargs
     ) -> int:
         """fave.removeVideo method
+
         :param owner_id:
         :param id:
         """
@@ -298,6 +315,7 @@ class FaveCategory(BaseCategory):
         self, ids: typing.List[int], **kwargs
     ) -> int:
         """fave.reorderTags method
+
         :param ids:
         """
 
@@ -314,6 +332,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """fave.setPageTags method
+
         :param user_id:
         :param group_id:
         :param tag_ids:
@@ -335,6 +354,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """fave.setTags method
+
         :param item_type:
         :param item_owner_id:
         :param item_id:
@@ -355,6 +375,7 @@ class FaveCategory(BaseCategory):
         **kwargs
     ) -> int:
         """fave.trackPageInteraction method
+
         :param user_id:
         :param group_id:
         """
