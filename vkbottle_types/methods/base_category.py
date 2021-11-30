@@ -27,7 +27,10 @@ class BaseCategory:
 
     @classmethod
     def get_model(
-        cls, dependent: typing.Mapping[typing.Tuple[str, ...], T], default: T, params: dict
+        cls,
+        dependent: typing.Mapping[typing.Tuple[str, ...], T],
+        default: T,
+        params: dict,
     ) -> T:
         for items in sorted(dependent.items(), key=len):
             ks, model = items

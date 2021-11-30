@@ -1,5 +1,5 @@
 import inspect
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any, List, Optional, Union
 
 from pydantic import BaseModel
 
@@ -25,7 +25,7 @@ class BaseUserEvent(BaseModel):
 
 
 class RawUserEvent(BaseUserEvent):
-    object: user_event_objects.RawUserEventObject
+    object: List[Any]
 
 
 class ReplaceMessageFlags(BaseUserEvent):
