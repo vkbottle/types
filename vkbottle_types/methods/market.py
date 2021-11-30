@@ -693,3 +693,32 @@ class MarketCategory(BaseCategory):
             params=params,
         )
         return model(**response).response
+
+    async def search_items(
+        self,
+        q: str,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        category_id: typing.Optional[int] = None,
+        price_from: typing.Optional[int] = None,
+        price_to: typing.Optional[int] = None,
+        sort_by: typing.Optional[int] = None,
+        sort_direction: typing.Optional[int] = None,
+        **kwargs
+    ) -> SearchResponseModel:
+        """market.searchItems method
+
+        :param q:
+        :param offset:
+        :param count:
+        :param category_id:
+        :param price_from:
+        :param price_to:
+        :param sort_by:
+        :param sort_direction:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.searchItems", params)
+        model = SearchResponse
+        return model(**response).response

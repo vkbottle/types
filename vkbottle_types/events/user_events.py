@@ -1,5 +1,5 @@
 import inspect
-from typing import TYPE_CHECKING, Any, List, Optional, Union
+from typing import TYPE_CHECKING, Any, Optional, Union
 
 from pydantic import BaseModel
 
@@ -15,17 +15,17 @@ class BaseUserEvent(BaseModel):
     unprepared_ctx_api: Optional[Any] = None
     object: Optional["BaseEventObject"] = None
 
+    def __init__(self, *args, **data: Any) -> None:
+        data["object"] = args
+        super().__init__(**data)
+
     @property
     def ctx_api(self) -> Optional[Union["ABCAPI", "API"]]:
         return getattr(self, "unprepared_ctx_api")
 
 
 class RawUserEvent(BaseUserEvent):
-    object: Optional[List[Any]] = None
-
-    def __init__(self, *args, **data: Any) -> None:
-        data["object"] = args
-        super().__init__(**data)
+    object: user_event_objects.RawUserEventObject
 
 
 class ReplaceMessageFlags(BaseUserEvent):

@@ -1,7 +1,11 @@
 import inspect
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from .base_event_object import BaseEventObject
+
+
+class RawUserEventObject(BaseEventObject):
+    __root__: List[Any] = None
 
 
 class MessageObject(BaseEventObject):

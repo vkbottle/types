@@ -6,7 +6,6 @@ from vkbottle_types.objects import (
     GroupsGroupFull,
     UsersUser,
     UsersUserFull,
-    UsersUserMin,
     VideoSaveResult,
     VideoVideo,
     VideoVideoAlbumFull,
@@ -97,7 +96,7 @@ class GetAlbumsResponseModel(BaseResponse):
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 

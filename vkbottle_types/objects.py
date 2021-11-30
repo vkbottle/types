@@ -3845,7 +3845,6 @@ class GroupsGroupFull(GroupsGroup):
     can_send_notify - Information whether community can send notifications by phone number to current user
     can_subscribe_podcasts - Owner in whitelist or not
     can_subscribe_posts - Can subscribe to wall
-    can_subscribe_stories - Owner in whitelist or not
     can_suggest -
     can_upload_doc - Information whether current user can upload doc
     can_upload_story - Information whether current user can upload story
@@ -3870,7 +3869,6 @@ class GroupsGroupFull(GroupsGroup):
     is_messages_blocked - Information whether community can send a message to current user
     is_subscribed - Information whether current user is subscribed
     is_subscribed_podcasts - Information whether current user is subscribed to podcasts
-    is_subscribed_stories - Information whether current user is subscribed to stories
     links -
     live_covers - Live covers state
     main_album_id - Community's main photo album ID
@@ -3905,7 +3903,6 @@ class GroupsGroupFull(GroupsGroup):
     can_send_notify: typing.Optional["BaseBoolInt"] = None
     can_subscribe_podcasts: typing.Optional[bool] = None
     can_subscribe_posts: typing.Optional[bool] = None
-    can_subscribe_stories: typing.Optional[bool] = None
     can_suggest: typing.Optional["BaseBoolInt"] = None
     can_upload_doc: typing.Optional["BaseBoolInt"] = None
     can_upload_story: typing.Optional["BaseBoolInt"] = None
@@ -3930,7 +3927,6 @@ class GroupsGroupFull(GroupsGroup):
     is_messages_blocked: typing.Optional["BaseBoolInt"] = None
     is_subscribed: typing.Optional["BaseBoolInt"] = None
     is_subscribed_podcasts: typing.Optional[bool] = None
-    is_subscribed_stories: typing.Optional[bool] = None
     links: typing.Optional[typing.List["GroupsLinksItem"]] = None
     live_covers: typing.Optional["GroupsLiveCovers"] = None
     main_album_id: typing.Optional[int] = None
@@ -4853,8 +4849,10 @@ class MessagesChat(BaseModel):
     admin_id - Chat creator ID
     id - Chat ID
     is_default_photo - If provided photo is default
+    is_group_channel - If chat is group channel
     kicked - Shows that user has been kicked from the chat
     left - Shows that user has been left the chat
+    members_count - Count members in a chat
     photo_100 - URL of the preview image with 100 px in width
     photo_200 - URL of the preview image with 200 px in width
     photo_50 - URL of the preview image with 50 px in width
@@ -4867,8 +4865,10 @@ class MessagesChat(BaseModel):
     admin_id: int = None
     id: int = None
     is_default_photo: typing.Optional[bool] = None
+    is_group_channel: typing.Optional[bool] = None
     kicked: typing.Optional["BaseBoolInt"] = None
     left: typing.Optional["BaseBoolInt"] = None
+    members_count: int = None
     photo_100: typing.Optional[str] = None
     photo_200: typing.Optional[str] = None
     photo_50: typing.Optional[str] = None
@@ -5411,29 +5411,154 @@ class MessagesKeyboardButton(BaseModel):
     color - Button color
     """
 
-    action: "MessagesKeyboardButtonAction" = None
+    action: "MessagesKeyboardButtonPropertyAction" = None
     color: typing.Optional["ButtonColor"] = None
 
 
-class MessagesKeyboardButtonAction(BaseModel):
-    """VK Object MessagesKeyboardButtonAction
+class MessagesKeyboardButtonActionCallbackType(enum.Enum):
+    """ MessagesKeyboardButtonActionCallbackType enum """
+
+    CALLBACK = "callback"
+
+
+class MessagesKeyboardButtonActionCallback(BaseModel):
+    """VK Object MessagesKeyboardButtonActionCallback
+
+    label - Label for button
+    payload - Additional data sent along with message for developer convenience
+    type -
+    """
+
+    label: str = None
+    payload: typing.Optional[str] = None
+    type: "MessagesKeyboardButtonActionCallbackType" = None
+
+
+class MessagesKeyboardButtonActionLocationType(enum.Enum):
+    """ MessagesKeyboardButtonActionLocationType enum """
+
+    LOCATION = "location"
+
+
+class MessagesKeyboardButtonActionLocation(BaseModel):
+    """VK Object MessagesKeyboardButtonActionLocation
+
+    payload - Additional data sent along with message for developer convenience
+    type -
+    """
+
+    payload: typing.Optional[str] = None
+    type: "MessagesKeyboardButtonActionLocationType" = None
+
+
+class MessagesKeyboardButtonActionOpenAppType(enum.Enum):
+    """ MessagesKeyboardButtonActionOpenAppType enum """
+
+    OPEN_APP = "open_app"
+
+
+class MessagesKeyboardButtonActionOpenApp(BaseModel):
+    """VK Object MessagesKeyboardButtonActionOpenApp
 
     app_id - Fragment value in app link like vk.com/app{app_id}_-654321#hash
     hash - Fragment value in app link like vk.com/app123456_-654321#{hash}
     label - Label for button
-    link - link for button
     owner_id - Fragment value in app link like vk.com/app123456_{owner_id}#hash
     payload - Additional data sent along with message for developer convenience
-    type - Button type
+    type -
     """
 
-    app_id: typing.Optional[int] = None
+    app_id: int = None
     hash: typing.Optional[str] = None
-    label: typing.Optional[str] = None
-    link: typing.Optional[str] = None
-    owner_id: typing.Optional[int] = None
+    label: str = None
+    owner_id: int = None
     payload: typing.Optional[str] = None
-    type: "MessagesTemplateActionTypeNames" = None
+    type: "MessagesKeyboardButtonActionOpenAppType" = None
+
+
+class MessagesKeyboardButtonActionOpenLinkType(enum.Enum):
+    """ MessagesKeyboardButtonActionOpenLinkType enum """
+
+    OPEN_LINK = "open_link"
+
+
+class MessagesKeyboardButtonActionOpenLink(BaseModel):
+    """VK Object MessagesKeyboardButtonActionOpenLink
+
+    label - Label for button
+    link - link for button
+    payload - Additional data sent along with message for developer convenience
+    type -
+    """
+
+    label: str = None
+    link: str = None
+    payload: typing.Optional[str] = None
+    type: "MessagesKeyboardButtonActionOpenLinkType" = None
+
+
+class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
+    """ MessagesKeyboardButtonActionOpenPhotoType enum """
+
+    OPEN_PHOTO = "open_photo"
+
+
+class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
+    """VK Object MessagesKeyboardButtonActionOpenPhoto"""
+
+    type: "MessagesKeyboardButtonActionOpenPhotoType" = None
+
+
+class MessagesKeyboardButtonActionTextType(enum.Enum):
+    """ MessagesKeyboardButtonActionTextType enum """
+
+    TEXT = "text"
+
+
+class MessagesKeyboardButtonActionText(BaseModel):
+    """VK Object MessagesKeyboardButtonActionText
+
+    label - Label for button
+    payload - Additional data sent along with message for developer convenience
+    type -
+    """
+
+    label: str = None
+    payload: typing.Optional[str] = None
+    type: "MessagesKeyboardButtonActionTextType" = None
+
+
+class MessagesKeyboardButtonActionVkpayType(enum.Enum):
+    """ MessagesKeyboardButtonActionVkpayType enum """
+
+    VKPAY = "vkpay"
+
+
+class MessagesKeyboardButtonActionVkpay(BaseModel):
+    """VK Object MessagesKeyboardButtonActionVkpay
+
+    hash - Fragment value in app link like vk.com/app123456_-654321#{hash}
+    payload - Additional data sent along with message for developer convenience
+    type -
+    """
+
+    hash: str = None
+    payload: typing.Optional[str] = None
+    type: "MessagesKeyboardButtonActionVkpayType" = None
+
+
+class MessagesKeyboardButtonPropertyAction(
+    MessagesKeyboardButtonActionLocation,
+    MessagesKeyboardButtonActionOpenApp,
+    MessagesKeyboardButtonActionOpenLink,
+    MessagesKeyboardButtonActionOpenPhoto,
+    MessagesKeyboardButtonActionText,
+    MessagesKeyboardButtonActionCallback,
+    MessagesKeyboardButtonActionVkpay
+):
+    """VK Object MessagesKeyboardButtonPropertyAction"""
+
+    pass
 
 
 class MessagesLastActivity(BaseModel):
@@ -8897,10 +9022,12 @@ class VideoVideoFull(VideoVideo):
 
     files -
     live_settings - Settings for live stream
+    trailer -
     """
 
     files: typing.Optional["VideoVideoFiles"] = None
     live_settings: typing.Optional["VideoLiveSettings"] = None
+    trailer: typing.Optional["VideoVideoFiles"] = None
 
 
 class VideoVideoImage(BaseImage):

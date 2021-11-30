@@ -122,7 +122,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         delete_for_all: typing.Optional[bool] = None,
         peer_id: typing.Optional[int] = None,
-        conversation_message_ids: typing.Optional[typing.List[int]] = None,
+        cmids: typing.Optional[typing.List[int]] = None,
         **kwargs
     ) -> typing.Dict[str, int]:
         """Deletes one or more messages.
@@ -132,7 +132,7 @@ class MessagesCategory(BaseCategory):
         :param group_id: Group ID (for group messages with user access token)
         :param delete_for_all: '1' — delete message for for all.
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
-        :param conversation_message_ids: Conversation message IDs.
+        :param cmids: Conversation message IDs.
         """
 
         params = self.get_set_params(locals())
