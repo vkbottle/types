@@ -8,7 +8,9 @@ class BaseStateGroup:
         "use vkbottle.BaseStateGroup instead",
         DeprecationWarning,
     )
-    pass
+
+    def __init__(self, *args, **kwargs):
+        pass
 
 
 class StatePeer:
@@ -18,3 +20,6 @@ class StatePeer:
         "use vkbottle.StatePeer instead",
         DeprecationWarning,
     )
+
+    def __init__(self, *args, **kwargs):
+        pass
