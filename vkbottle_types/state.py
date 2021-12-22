@@ -12,6 +12,5 @@ class StatePeer:
         raise DeprecationWarning(
             "StatePeer from vkbottle_types is deprecated "
             "and will be removed in future releases, "
-            "use vkbottle.StatePeer instead",
-            DeprecationWarning,
+            "use vkbottle.StatePeer instead"
         )
