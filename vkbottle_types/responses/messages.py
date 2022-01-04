@@ -174,6 +174,10 @@ class SendUserIdsResponse(BaseResponse):
     response: typing.List["MessagesSendUserIdsResponseItem"] = None
 
 
+class SendPeerIdsResponse(SendUserIdsResponse):
+    pass
+
+
 class SetChatPhotoResponse(BaseResponse):
     response: "SetChatPhotoResponseModel" = None
 
