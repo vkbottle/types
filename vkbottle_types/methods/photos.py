@@ -346,7 +346,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.get", params)
         model = self.get_model(
-            ((("extended",), GetExtendedResponse)),
+            ((("extended",), GetExtendedResponse),),
             default=GetResponse,
             params=params,
         )
@@ -453,7 +453,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAll", params)
         model = self.get_model(
-            ((("extended",), GetAllExtendedResponse)),
+            ((("extended",), GetAllExtendedResponse),),
             default=GetAllResponse,
             params=params,
         )
@@ -515,7 +515,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getById", params)
         model = self.get_model(
-            ((("extended",), GetByIdLegacyExtendedResponse)),
+            ((("extended",), GetByIdLegacyExtendedResponse),),
             default=GetByIdLegacyResponse,
             params=params,
         )
@@ -607,7 +607,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getComments", params)
         model = self.get_model(
-            ((("extended",), GetCommentsExtendedResponse)),
+            ((("extended",), GetCommentsExtendedResponse),),
             default=GetCommentsResponse,
             params=params,
         )
@@ -792,7 +792,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getUserPhotos", params)
         model = self.get_model(
-            ((("extended",), GetUserPhotosExtendedResponse)),
+            ((("extended",), GetUserPhotosExtendedResponse),),
             default=GetUserPhotosResponse,
             params=params,
         )

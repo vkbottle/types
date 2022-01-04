@@ -205,7 +205,7 @@ class FaveCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("fave.get", params)
         model = self.get_model(
-            ((("extended",), GetExtendedResponse)),
+            ((("extended",), GetExtendedResponse),),
             default=GetResponse,
             params=params,
         )

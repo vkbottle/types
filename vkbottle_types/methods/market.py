@@ -371,7 +371,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.get", params)
         model = self.get_model(
-            ((("extended",), GetExtendedResponse)),
+            ((("extended",), GetExtendedResponse),),
             default=GetResponse,
             params=params,
         )
@@ -437,7 +437,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.getById", params)
         model = self.get_model(
-            ((("extended",), GetByIdExtendedResponse)),
+            ((("extended",), GetByIdExtendedResponse),),
             default=GetByIdResponse,
             params=params,
         )
@@ -595,7 +595,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.getOrders", params)
         model = self.get_model(
-            ((("extended",), GetOrdersExtendedResponse)),
+            ((("extended",), GetOrdersExtendedResponse),),
             default=GetOrdersResponse,
             params=params,
         )
@@ -797,7 +797,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.search", params)
         model = self.get_model(
-            ((("extended",), SearchExtendedResponse)),
+            ((("extended",), SearchExtendedResponse),),
             default=SearchResponse,
             params=params,
         )

@@ -108,7 +108,7 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getLinkStats", params)
         model = self.get_model(
-            ((("extended",), GetLinkStatsExtendedResponse)),
+            ((("extended",), GetLinkStatsExtendedResponse),),
             default=GetLinkStatsResponse,
             params=params,
         )

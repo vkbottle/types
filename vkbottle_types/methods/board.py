@@ -213,7 +213,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("board.getComments", params)
         model = self.get_model(
-            ((("extended",), GetCommentsExtendedResponse)),
+            ((("extended",), GetCommentsExtendedResponse),),
             default=GetCommentsResponse,
             params=params,
         )
@@ -276,7 +276,7 @@ class BoardCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("board.getTopics", params)
         model = self.get_model(
-            ((("extended",), GetTopicsExtendedResponse)),
+            ((("extended",), GetTopicsExtendedResponse),),
             default=GetTopicsResponse,
             params=params,
         )

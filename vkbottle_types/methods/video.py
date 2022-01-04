@@ -326,7 +326,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbums", params)
         model = self.get_model(
-            ((("extended",), GetAlbumsExtendedResponse)),
+            ((("extended",), GetAlbumsExtendedResponse),),
             default=GetAlbumsResponse,
             params=params,
         )
@@ -368,7 +368,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbumsByVideo", params)
         model = self.get_model(
-            ((("extended",), GetAlbumsByVideoExtendedResponse)),
+            ((("extended",), GetAlbumsByVideoExtendedResponse),),
             default=GetAlbumsByVideoResponse,
             params=params,
         )
@@ -435,7 +435,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getComments", params)
         model = self.get_model(
-            ((("extended",), GetCommentsExtendedResponse)),
+            ((("extended",), GetCommentsExtendedResponse),),
             default=GetCommentsResponse,
             params=params,
         )
@@ -694,7 +694,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.search", params)
         model = self.get_model(
-            ((("extended",), SearchExtendedResponse)),
+            ((("extended",), SearchExtendedResponse),),
             default=SearchResponse,
             params=params,
         )

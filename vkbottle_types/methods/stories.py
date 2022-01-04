@@ -106,7 +106,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getBanned", params)
         model = self.get_model(
-            ((("extended",), GetBannedExtendedResponse)),
+            ((("extended",), GetBannedExtendedResponse),),
             default=GetBannedResponse,
             params=params,
         )
@@ -145,7 +145,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getById", params)
         model = self.get_model(
-            ((("extended",), GetByIdExtendedResponse)),
+            ((("extended",), GetByIdExtendedResponse),),
             default=GetByIdResponse,
             params=params,
         )
@@ -287,7 +287,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getViewers", params)
         model = self.get_model(
-            ((("extended",), GetViewersExtendedV5115Response)),
+            ((("extended",), GetViewersExtendedV5115Response),),
             default=GetViewersExtendedV5115Response,
             params=params,
         )

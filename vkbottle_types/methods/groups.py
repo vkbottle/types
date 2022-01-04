@@ -540,7 +540,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.get", params)
         model = self.get_model(
-            ((("extended",), GetObjectExtendedResponse)),
+            ((("extended",), GetObjectExtendedResponse),),
             default=GetResponse,
             params=params,
         )
@@ -706,7 +706,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getCatalogInfo", params)
         model = self.get_model(
-            ((("extended",), GetCatalogInfoExtendedResponse)),
+            ((("extended",), GetCatalogInfoExtendedResponse),),
             default=GetCatalogInfoResponse,
             params=params,
         )
@@ -768,7 +768,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getInvites", params)
         model = self.get_model(
-            ((("extended",), GetInvitesExtendedResponse)),
+            ((("extended",), GetInvitesExtendedResponse),),
             default=GetInvitesResponse,
             params=params,
         )
@@ -907,7 +907,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getRequests", params)
         model = self.get_model(
-            ((("fields",), GetRequestsFieldsResponse)),
+            ((("fields",), GetRequestsFieldsResponse),),
             default=GetRequestsResponse,
             params=params,
         )

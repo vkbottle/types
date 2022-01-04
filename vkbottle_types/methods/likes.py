@@ -123,7 +123,7 @@ class LikesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("likes.getList", params)
         model = self.get_model(
-            ((("extended",), GetListExtendedResponse)),
+            ((("extended",), GetListExtendedResponse),),
             default=GetListResponse,
             params=params,
         )

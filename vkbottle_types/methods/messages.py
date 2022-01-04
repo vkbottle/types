@@ -317,7 +317,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.getById", params)
         model = self.get_model(
-            ((("extended",), GetByIdExtendedResponse)),
+            ((("extended",), GetByIdExtendedResponse),),
             default=GetByIdResponse,
             params=params,
         )
@@ -424,7 +424,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.getConversationsById", params)
         model = self.get_model(
-            ((("extended",), GetConversationsByIdExtendedResponse)),
+            ((("extended",), GetConversationsByIdExtendedResponse),),
             default=GetConversationsByIdResponse,
             params=params,
         )
@@ -491,7 +491,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.getHistory", params)
         model = self.get_model(
-            ((("extended",), GetHistoryExtendedResponse)),
+            ((("extended",), GetHistoryExtendedResponse),),
             default=GetHistoryResponse,
             params=params,
         )
@@ -592,7 +592,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.getImportantMessages", params)
         model = self.get_model(
-            ((("extended",), GetImportantMessagesExtendedResponse)),
+            ((("extended",), GetImportantMessagesExtendedResponse),),
             default=GetImportantMessagesResponse,
             params=params,
         )
@@ -933,7 +933,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.search", params)
         model = self.get_model(
-            ((("extended",), SearchExtendedResponse)),
+            ((("extended",), SearchExtendedResponse),),
             default=SearchResponse,
             params=params,
         )
@@ -978,7 +978,7 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.searchConversations", params)
         model = self.get_model(
-            ((("extended",), SearchConversationsExtendedResponse)),
+            ((("extended",), SearchConversationsExtendedResponse),),
             default=SearchConversationsResponse,
             params=params,
         )

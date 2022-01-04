@@ -83,7 +83,7 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getFollowers", params)
         model = self.get_model(
-            ((("fields",), GetFollowersFieldsResponse)),
+            ((("fields",), GetFollowersFieldsResponse),),
             default=GetFollowersResponse,
             params=params,
         )
@@ -134,7 +134,7 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getSubscriptions", params)
         model = self.get_model(
-            ((("extended",), GetSubscriptionsExtendedResponse)),
+            ((("extended",), GetSubscriptionsExtendedResponse),),
             default=GetSubscriptionsResponse,
             params=params,
         )

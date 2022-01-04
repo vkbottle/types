@@ -141,7 +141,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.getBanned", params)
         model = self.get_model(
-            ((("extended",), GetBannedExtendedResponse)),
+            ((("extended",), GetBannedExtendedResponse),),
             default=GetBannedResponse,
             params=params,
         )
@@ -206,7 +206,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.getLists", params)
         model = self.get_model(
-            ((("extended",), GetListsExtendedResponse)),
+            ((("extended",), GetListsExtendedResponse),),
             default=GetListsResponse,
             params=params,
         )
@@ -382,7 +382,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
-            ((("extended",), SearchExtendedResponse)),
+            ((("extended",), SearchExtendedResponse),),
             default=SearchResponse,
             params=params,
         )

@@ -151,7 +151,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getLeaderboard", params)
         model = self.get_model(
-            ((("extended",), GetLeaderboardExtendedResponse)),
+            ((("extended",), GetLeaderboardExtendedResponse),),
             default=GetLeaderboardResponse,
             params=params,
         )

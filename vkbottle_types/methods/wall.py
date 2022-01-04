@@ -286,7 +286,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.get", params)
         model = self.get_model(
-            ((("extended",), GetExtendedResponse)),
+            ((("extended",), GetExtendedResponse),),
             default=GetResponse,
             params=params,
         )
@@ -328,7 +328,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getById", params)
         model = self.get_model(
-            ((("extended",), GetByIdExtendedResponse)),
+            ((("extended",), GetByIdExtendedResponse),),
             default=GetByIdLegacyResponse,
             params=params,
         )
@@ -370,7 +370,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComment", params)
         model = self.get_model(
-            ((("extended",), GetCommentExtendedResponse)),
+            ((("extended",), GetCommentExtendedResponse),),
             default=GetCommentResponse,
             params=params,
         )
@@ -449,7 +449,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComments", params)
         model = self.get_model(
-            ((("extended",), GetCommentsExtendedResponse)),
+            ((("extended",), GetCommentsExtendedResponse),),
             default=GetCommentsResponse,
             params=params,
         )
@@ -739,7 +739,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.search", params)
         model = self.get_model(
-            ((("extended",), SearchExtendedResponse)),
+            ((("extended",), SearchExtendedResponse),),
             default=SearchResponse,
             params=params,
         )

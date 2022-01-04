@@ -108,7 +108,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.areFriends", params)
         model = self.get_model(
-            ((("extended",), AreFriendsExtendedResponse)),
+            ((("extended",), AreFriendsExtendedResponse),),
             default=AreFriendsResponse,
             params=params,
         )
@@ -240,7 +240,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.get", params)
         model = self.get_model(
-            ((("fields",), GetFieldsResponse)),
+            ((("fields",), GetFieldsResponse),),
             default=GetResponse,
             params=params,
         )
@@ -337,7 +337,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getMutual", params)
         model = self.get_model(
-            ((("target_uids",), GetMutualTargetUidsResponse)),
+            ((("target_uids",), GetMutualTargetUidsResponse),),
             default=GetMutualResponse,
             params=params,
         )
@@ -392,7 +392,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getOnline", params)
         model = self.get_model(
-            ((("online_mobile",), GetOnlineOnlineMobileResponse)),
+            ((("online_mobile",), GetOnlineOnlineMobileResponse),),
             default=GetOnlineResponse,
             params=params,
         )
