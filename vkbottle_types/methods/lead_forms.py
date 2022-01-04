@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses.leadForms import (
+from vkbottle_types.responses.lead_forms import (
     CreateResponse,
     CreateResponseModel,
     DeleteResponse,

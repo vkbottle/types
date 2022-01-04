@@ -1,7 +1,7 @@
 import typing
 from typing_extensions import Literal
 from .base_category import BaseCategory
-from vkbottle_types.responses.appWidgets import (
+from vkbottle_types.responses.app_widgets import (
     AppWidgetsPhoto,
     AppWidgetsPhotos,
     GetAppImageUploadServerResponse,

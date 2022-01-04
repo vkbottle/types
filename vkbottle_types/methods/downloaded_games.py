@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses.downloadedGames import (
+from vkbottle_types.responses.downloaded_games import (
     PaidStatusResponse,
     PaidStatusResponseModel,
 )

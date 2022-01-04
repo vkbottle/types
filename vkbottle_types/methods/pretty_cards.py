@@ -1,6 +1,6 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses.prettyCards import (
+from vkbottle_types.responses.pretty_cards import (
     CreateResponse,
     CreateResponseModel,
     DeleteResponse,
