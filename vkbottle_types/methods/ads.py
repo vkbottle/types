@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.ads import (
     AddOfficeUsersResponse,
@@ -16,6 +17,9 @@ from vkbottle_types.responses.ads import (
     AdsTargSettings,
     AdsTargStats,
     AdsTargSuggestions,
+    AdsTargSuggestionsCities,
+    AdsTargSuggestionsRegions,
+    AdsTargSuggestionsSchools,
     AdsTargetGroup,
     AdsUpdateOfficeUsersResult,
     AdsUsers,
@@ -60,15 +64,13 @@ from vkbottle_types.responses.ads import (
     UpdateAdsResponse,
     UpdateCampaignsResponse,
     UpdateClientsResponse,
-    UpdateOfficeUsersResponse
+    UpdateOfficeUsersResponse,
 )
 from vkbottle_types.responses.base import OkResponse
 
 
 class AdsCategory(BaseCategory):
-    async def add_office_users(
-        self, account_id: int, data: str, **kwargs
-    ) -> bool:
+    async def add_office_users(self, account_id: int, data: str, **kwargs) -> bool:
         """Adds managers and/or supervisors to advertising account.
 
         :param account_id: Advertising account ID.
@@ -83,7 +85,7 @@ class AdsCategory(BaseCategory):
     async def check_link(
         self,
         account_id: int,
-        link_type: str,
+        link_type: Literal["community", "post", "application", "video", "site"],
         link_url: str,
         campaign_id: typing.Optional[int] = None,
         **kwargs
@@ -168,9 +170,7 @@ class AdsCategory(BaseCategory):
         model = CreateTargetGroupResponse
         return model(**response).response
 
-    async def delete_ads(
-        self, account_id: int, ids: str, **kwargs
-    ) -> typing.List[int]:
+    async def delete_ads(self, account_id: int, ids: str, **kwargs) -> typing.List[int]:
         """Archives ads.
 
         :param account_id: Advertising account ID.
@@ -182,9 +182,7 @@ class AdsCategory(BaseCategory):
         model = DeleteAdsResponse
         return model(**response).response
 
-    async def delete_campaigns(
-        self, account_id: int, ids: str, **kwargs
-    ) -> int:
+    async def delete_campaigns(self, account_id: int, ids: str, **kwargs) -> int:
         """Archives advertising campaigns.
 
         :param account_id: Advertising account ID.
@@ -196,9 +194,7 @@ class AdsCategory(BaseCategory):
         model = DeleteCampaignsResponse
         return model(**response).response
 
-    async def delete_clients(
-        self, account_id: int, ids: str, **kwargs
-    ) -> int:
+    async def delete_clients(self, account_id: int, ids: str, **kwargs) -> int:
         """Archives clients of an advertising agency.
 
         :param account_id: Advertising account ID.
@@ -229,9 +225,7 @@ class AdsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def get_accounts(
-        self, **kwargs
-    ) -> typing.List[AdsAccount]:
+    async def get_accounts(self, **kwargs) -> typing.List[AdsAccount]:
         """Returns a list of advertising accounts."""
 
         params = self.get_set_params(locals())
@@ -324,9 +318,7 @@ class AdsCategory(BaseCategory):
         model = GetAdsTargetingResponse
         return model(**response).response
 
-    async def get_budget(
-        self, account_id: int, **kwargs
-    ) -> int:
+    async def get_budget(self, account_id: int, **kwargs) -> int:
         """Returns current budget of the advertising account.
 
         :param account_id: Advertising account ID.
@@ -373,9 +365,7 @@ class AdsCategory(BaseCategory):
         model = GetCategoriesResponse
         return model(**response).response
 
-    async def get_clients(
-        self, account_id: int, **kwargs
-    ) -> typing.List[AdsClient]:
+    async def get_clients(self, account_id: int, **kwargs) -> typing.List[AdsClient]:
         """Returns a list of advertising agency's clients.
 
         :param account_id: Advertising account ID.
@@ -389,9 +379,9 @@ class AdsCategory(BaseCategory):
     async def get_demographics(
         self,
         account_id: int,
-        ids_type: str,
+        ids_type: Literal["ad", "campaign"],
         ids: str,
-        period: str,
+        period: Literal["day", "month", "overall"],
         date_from: str,
         date_to: str,
         **kwargs
@@ -411,9 +401,7 @@ class AdsCategory(BaseCategory):
         model = GetDemographicsResponse
         return model(**response).response
 
-    async def get_flood_stats(
-        self, account_id: int, **kwargs
-    ) -> AdsFloodStats:
+    async def get_flood_stats(self, account_id: int, **kwargs) -> AdsFloodStats:
         """Returns information about current state of a counter — number of remaining runs of methods and time to the next counter nulling in seconds.
 
         :param account_id: Advertising account ID.
@@ -489,7 +477,7 @@ class AdsCategory(BaseCategory):
         return model(**response).response
 
     async def get_posts_reach(
-        self, account_id: int, ids_type: str, ids: str, **kwargs
+        self, account_id: int, ids_type: Literal["ad", "campaign"], ids: str, **kwargs
     ) -> typing.List[AdsPromotedPostReach]:
         """Returns detailed statistics of promoted posts reach from campaigns and ads.
 
@@ -520,9 +508,9 @@ class AdsCategory(BaseCategory):
     async def get_statistics(
         self,
         account_id: int,
-        ids_type: str,
+        ids_type: Literal["ad", "campaign", "client", "office"],
         ids: str,
-        period: str,
+        period: Literal["day", "month", "overall"],
         date_from: str,
         date_to: str,
         stats_fields: typing.Optional[typing.List[str]] = None,
@@ -544,14 +532,76 @@ class AdsCategory(BaseCategory):
         model = GetStatisticsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_suggestions(
         self,
-        section: str,
+        section: Literal["regions"],
         ids: typing.Optional[str] = None,
         q: typing.Optional[str] = None,
         country: typing.Optional[int] = None,
         cities: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
+        lang: Literal["ru", "ua", "en"] = None,
+        **kwargs
+    ) -> typing.List[AdsTargSuggestionsRegions]:
+        ...
+
+    @typing.overload
+    async def get_suggestions(
+        self,
+        section: Literal["cities"],
+        ids: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+        country: typing.Optional[int] = None,
+        cities: typing.Optional[str] = None,
+        lang: Literal["ru", "ua", "en"] = None,
+        **kwargs
+    ) -> typing.List[AdsTargSuggestionsCities]:
+        ...
+
+    @typing.overload
+    async def get_suggestions(
+        self,
+        section: Literal["schools"],
+        ids: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+        country: typing.Optional[int] = None,
+        cities: typing.Optional[str] = None,
+        lang: Literal["ru", "ua", "en"] = None,
+        **kwargs
+    ) -> typing.List[AdsTargSuggestionsSchools]:
+        ...
+
+    @typing.overload
+    async def get_suggestions(
+        self,
+        section: Literal[
+            "countries",
+            "districts",
+            "stations",
+            "streets",
+            "interests",
+            "positions",
+            "group_types",
+            "religions",
+            "browsers",
+        ],
+        ids: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+        country: typing.Optional[int] = None,
+        cities: typing.Optional[str] = None,
+        lang: Literal["ru", "ua", "en"] = None,
+        **kwargs
+    ) -> typing.List[AdsTargSuggestions]:
+        ...
+
+    async def get_suggestions(
+        self,
+        section=None,
+        ids=None,
+        q=None,
+        country=None,
+        cities=None,
+        lang=None,
         **kwargs
     ) -> typing.List[AdsTargSuggestions]:
         """Returns a set of auto-suggestions for various targeting parameters.
@@ -567,11 +617,11 @@ class AdsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
-            {
-                ("regions",): GetSuggestionsRegionsResponse,
-                ("cities",): GetSuggestionsCitiesResponse,
-                ("schools",): GetSuggestionsSchoolsResponse,
-            },
+            (
+                (["section", "regions"], GetSuggestionsRegionsResponse),
+                (["section", "cities"], GetSuggestionsCitiesResponse),
+                (["section", "schools"], GetSuggestionsSchoolsResponse),
+            ),
             default=GetSuggestionsResponse,
             params=params,
         )
@@ -603,7 +653,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         criteria: typing.Optional[str] = None,
         ad_id: typing.Optional[int] = None,
-        ad_format: typing.Optional[int] = None,
+        ad_format: Literal[1, 2, 3, 4, 7, 8, 9, 10] = None,
         ad_platform: typing.Optional[str] = None,
         ad_platform_no_wall: typing.Optional[str] = None,
         ad_platform_no_ad_network: typing.Optional[str] = None,
@@ -635,8 +685,11 @@ class AdsCategory(BaseCategory):
         model = GetTargetingStatsResponse
         return model(**response).response
 
-    async def get_upload_u_r_l(
-        self, ad_format: int, icon: typing.Optional[int] = None, **kwargs
+    async def get_upload_url(
+        self,
+        ad_format: Literal[1, 2, 3, 4, 7],
+        icon: typing.Optional[int] = None,
+        **kwargs
     ) -> str:
         """Returns URL to upload an ad photo to.
 
@@ -649,9 +702,7 @@ class AdsCategory(BaseCategory):
         model = GetUploadURLResponse
         return model(**response).response
 
-    async def get_video_upload_u_r_l(
-        self, **kwargs
-    ) -> str:
+    async def get_video_upload_url(self, **kwargs) -> str:
         """Returns URL to upload an ad video to."""
 
         params = self.get_set_params(locals())
@@ -680,9 +731,7 @@ class AdsCategory(BaseCategory):
         model = ImportTargetContactsResponse
         return model(**response).response
 
-    async def remove_office_users(
-        self, account_id: int, ids: str, **kwargs
-    ) -> bool:
+    async def remove_office_users(self, account_id: int, ids: str, **kwargs) -> bool:
         """Removes managers and/or supervisors from advertising account.
 
         :param account_id: Advertising account ID.
@@ -708,9 +757,7 @@ class AdsCategory(BaseCategory):
         model = UpdateAdsResponse
         return model(**response).response
 
-    async def update_campaigns(
-        self, account_id: int, data: str, **kwargs
-    ) -> int:
+    async def update_campaigns(self, account_id: int, data: str, **kwargs) -> int:
         """Edits advertising campaigns.
 
         :param account_id: Advertising account ID.
@@ -722,9 +769,7 @@ class AdsCategory(BaseCategory):
         model = UpdateCampaignsResponse
         return model(**response).response
 
-    async def update_clients(
-        self, account_id: int, data: str, **kwargs
-    ) -> int:
+    async def update_clients(self, account_id: int, data: str, **kwargs) -> int:
         """Edits clients of an advertising agency.
 
         :param account_id: Advertising account ID.

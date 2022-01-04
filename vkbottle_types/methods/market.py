@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.market import (
     AddAlbumResponse,
@@ -12,6 +13,7 @@ from vkbottle_types.responses.market import (
     GetAlbumsResponse,
     GetAlbumsResponseModel,
     GetByIdExtendedResponse,
+    GetByIdExtendedResponseModel,
     GetByIdResponse,
     GetByIdResponseModel,
     GetCategoriesResponse,
@@ -19,6 +21,7 @@ from vkbottle_types.responses.market import (
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetExtendedResponse,
+    GetExtendedResponseModel,
     GetGroupOrdersResponse,
     GetGroupOrdersResponseModel,
     GetOrderByIdResponse,
@@ -26,14 +29,16 @@ from vkbottle_types.responses.market import (
     GetOrderItemsResponse,
     GetOrderItemsResponseModel,
     GetOrdersExtendedResponse,
+    GetOrdersExtendedResponseModel,
     GetOrdersResponse,
     GetOrdersResponseModel,
     GetResponse,
     GetResponseModel,
     RestoreCommentResponse,
     SearchExtendedResponse,
+    SearchExtendedResponseModel,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
 from vkbottle_types.responses.base import BaseBoolInt, OkResponse
 
@@ -153,9 +158,7 @@ class MarketCategory(BaseCategory):
         model = CreateCommentResponse
         return model(**response).response
 
-    async def delete(
-        self, owner_id: int, item_id: int, **kwargs
-    ) -> int:
+    async def delete(self, owner_id: int, item_id: int, **kwargs) -> int:
         """Deletes an item.
 
         :param owner_id: ID of an item owner community.
@@ -167,9 +170,7 @@ class MarketCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def delete_album(
-        self, owner_id: int, album_id: int, **kwargs
-    ) -> int:
+    async def delete_album(self, owner_id: int, album_id: int, **kwargs) -> int:
         """Deletes a collection of items.
 
         :param owner_id: ID of an collection owner community.
@@ -281,7 +282,7 @@ class MarketCategory(BaseCategory):
         merchant_comment: typing.Optional[str] = None,
         status: typing.Optional[int] = None,
         track_number: typing.Optional[str] = None,
-        payment_status: typing.Optional[str] = None,
+        payment_status: Literal["not_paid", "paid", "returned"] = None,
         delivery_price: typing.Optional[int] = None,
         width: typing.Optional[int] = None,
         length: typing.Optional[int] = None,
@@ -309,17 +310,49 @@ class MarketCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
         owner_id: int,
         album_id: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         date_from: typing.Optional[str] = None,
         date_to: typing.Optional[str] = None,
         need_variants: typing.Optional[bool] = None,
         with_disabled: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        owner_id: int,
+        album_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        date_from: typing.Optional[str] = None,
+        date_to: typing.Optional[str] = None,
+        need_variants: typing.Optional[bool] = None,
+        with_disabled: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetExtendedResponseModel:
+        ...
+
+    async def get(
+        self,
+        owner_id=None,
+        album_id=None,
+        count=None,
+        offset=None,
+        extended=None,
+        date_from=None,
+        date_to=None,
+        need_variants=None,
+        with_disabled=None,
         **kwargs
     ) -> GetResponseModel:
         """Returns items list for a community.
@@ -338,7 +371,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.get", params)
         model = self.get_model(
-            {("extended",): GetExtendedResponse},
+            ((("extended",), GetExtendedResponse)),
             default=GetResponse,
             params=params,
         )
@@ -377,11 +410,23 @@ class MarketCategory(BaseCategory):
         model = GetAlbumsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_by_id(
         self,
         item_ids: typing.List[str],
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> GetByIdResponseModel:
+        ...
+
+    @typing.overload
+    async def get_by_id(
+        self, item_ids: typing.List[str], extended: Literal[True] = ..., **kwargs
+    ) -> GetByIdExtendedResponseModel:
+        ...
+
+    async def get_by_id(
+        self, item_ids=None, extended=None, **kwargs
     ) -> GetByIdResponseModel:
         """Returns information about market items by their ids.
 
@@ -392,7 +437,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.getById", params)
         model = self.get_model(
-            {("extended",): GetByIdExtendedResponse},
+            ((("extended",), GetByIdExtendedResponse)),
             default=GetByIdResponse,
             params=params,
         )
@@ -423,7 +468,7 @@ class MarketCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        sort: Literal["asc", "desc"] = None,
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
@@ -505,13 +550,37 @@ class MarketCategory(BaseCategory):
         model = GetOrderItemsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_orders(
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         date_from: typing.Optional[str] = None,
         date_to: typing.Optional[str] = None,
+        **kwargs
+    ) -> GetOrdersResponseModel:
+        ...
+
+    @typing.overload
+    async def get_orders(
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        date_from: typing.Optional[str] = None,
+        date_to: typing.Optional[str] = None,
+        **kwargs
+    ) -> GetOrdersExtendedResponseModel:
+        ...
+
+    async def get_orders(
+        self,
+        offset=None,
+        count=None,
+        extended=None,
+        date_from=None,
+        date_to=None,
         **kwargs
     ) -> GetOrdersResponseModel:
         """market.getOrders method
@@ -526,7 +595,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.getOrders", params)
         model = self.get_model(
-            {("extended",): GetOrdersExtendedResponse},
+            ((("extended",), GetOrdersExtendedResponse)),
             default=GetOrdersResponse,
             params=params,
         )
@@ -595,7 +664,7 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Sends a complaint to the item.
@@ -611,7 +680,11 @@ class MarketCategory(BaseCategory):
         return model(**response).response
 
     async def report_comment(
-        self, owner_id: int, comment_id: int, reason: int, **kwargs
+        self,
+        owner_id: int,
+        comment_id: int,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6],
+        **kwargs
     ) -> int:
         """Sends a complaint to the item's comment.
 
@@ -625,9 +698,7 @@ class MarketCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def restore(
-        self, owner_id: int, item_id: int, **kwargs
-    ) -> int:
+    async def restore(self, owner_id: int, item_id: int, **kwargs) -> int:
         """Restores recently deleted item
 
         :param owner_id: ID of an item owner community.
@@ -653,6 +724,7 @@ class MarketCategory(BaseCategory):
         model = RestoreCommentResponse
         return model(**response).response
 
+    @typing.overload
     async def search(
         self,
         owner_id: int,
@@ -660,13 +732,50 @@ class MarketCategory(BaseCategory):
         q: typing.Optional[str] = None,
         price_from: typing.Optional[int] = None,
         price_to: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        rev: typing.Optional[int] = None,
+        sort: Literal[0, 1, 2, 3] = None,
+        rev: Literal[0, 1] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         status: typing.Optional[typing.List[int]] = None,
         need_variants: typing.Optional[bool] = None,
+        **kwargs
+    ) -> SearchResponseModel:
+        ...
+
+    @typing.overload
+    async def search(
+        self,
+        owner_id: int,
+        album_id: typing.Optional[int] = None,
+        q: typing.Optional[str] = None,
+        price_from: typing.Optional[int] = None,
+        price_to: typing.Optional[int] = None,
+        sort: Literal[0, 1, 2, 3] = None,
+        rev: Literal[0, 1] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        status: typing.Optional[typing.List[int]] = None,
+        need_variants: typing.Optional[bool] = None,
+        **kwargs
+    ) -> SearchExtendedResponseModel:
+        ...
+
+    async def search(
+        self,
+        owner_id=None,
+        album_id=None,
+        q=None,
+        price_from=None,
+        price_to=None,
+        sort=None,
+        rev=None,
+        offset=None,
+        count=None,
+        extended=None,
+        status=None,
+        need_variants=None,
         **kwargs
     ) -> SearchResponseModel:
         """Searches market items in a community's catalog
@@ -688,7 +797,7 @@ class MarketCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("market.search", params)
         model = self.get_model(
-            {("extended",): SearchExtendedResponse},
+            ((("extended",), SearchExtendedResponse)),
             default=SearchResponse,
             params=params,
         )
@@ -702,8 +811,8 @@ class MarketCategory(BaseCategory):
         category_id: typing.Optional[int] = None,
         price_from: typing.Optional[int] = None,
         price_to: typing.Optional[int] = None,
-        sort_by: typing.Optional[int] = None,
-        sort_direction: typing.Optional[int] = None,
+        sort_by: Literal[1, 2, 3] = None,
+        sort_direction: Literal[0, 1] = None,
         **kwargs
     ) -> SearchResponseModel:
         """market.searchItems method

@@ -7,7 +7,7 @@ from vkbottle_types.objects import (
     UsersUser,
     UsersUserFull,
     WallWallComment,
-    WallWallpostFull
+    WallWallpostFull,
 )
 
 

@@ -36,7 +36,7 @@ from vkbottle_types.objects import (
     GroupsTokenPermissionSetting,
     GroupsUserXtrRole,
     UsersUserFull,
-    UsersUserMin
+    UsersUserMin,
 )
 
 
@@ -279,7 +279,9 @@ class GetSettingsResponseModel(BaseResponse):
     event_group_id: typing.Optional[int] = None
     photos: typing.Optional["GroupsGroupPhotos"] = None
     public_category: typing.Optional[int] = None
-    public_category_list: typing.Optional[typing.List["GroupsGroupPublicCategoryList"]] = None
+    public_category_list: typing.Optional[
+        typing.List["GroupsGroupPublicCategoryList"]
+    ] = None
     public_date: typing.Optional[str] = None
     public_date_label: typing.Optional[str] = None
     public_subcategory: typing.Optional[int] = None

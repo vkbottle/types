@@ -1,13 +1,16 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.newsfeed import (
     GetBannedExtendedResponse,
+    GetBannedExtendedResponseModel,
     GetBannedResponse,
     GetBannedResponseModel,
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetListsExtendedResponse,
+    GetListsExtendedResponseModel,
     GetListsResponse,
     GetListsResponseModel,
     GetMentionsResponse,
@@ -20,8 +23,9 @@ from vkbottle_types.responses.newsfeed import (
     GetSuggestedSourcesResponseModel,
     SaveListResponse,
     SearchExtendedResponse,
+    SearchExtendedResponseModel,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
 
 
@@ -60,9 +64,7 @@ class NewsfeedCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def delete_list(
-        self, list_id: int, **kwargs
-    ) -> int:
+    async def delete_list(self, list_id: int, **kwargs) -> int:
         """newsfeed.deleteList method
 
         :param list_id:
@@ -106,12 +108,28 @@ class NewsfeedCategory(BaseCategory):
         model = GetResponse
         return model(**response).response
 
+    @typing.overload
     async def get_banned(
         self,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
+    ) -> GetBannedResponseModel:
+        ...
+
+    @typing.overload
+    async def get_banned(
+        self,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        **kwargs
+    ) -> GetBannedExtendedResponseModel:
+        ...
+
+    async def get_banned(
+        self, extended=None, fields=None, name_case=None, **kwargs
     ) -> GetBannedResponseModel:
         """Returns a list of users and communities banned from the current user's newsfeed.
 
@@ -123,7 +141,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.getBanned", params)
         model = self.get_model(
-            {("extended",): GetBannedExtendedResponse},
+            ((("extended",), GetBannedExtendedResponse)),
             default=GetBannedResponse,
             params=params,
         )
@@ -158,11 +176,26 @@ class NewsfeedCategory(BaseCategory):
         model = GetCommentsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_lists(
         self,
         list_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> GetListsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_lists(
+        self,
+        list_ids: typing.Optional[typing.List[int]] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> GetListsExtendedResponseModel:
+        ...
+
+    async def get_lists(
+        self, list_ids=None, extended=None, **kwargs
     ) -> GetListsResponseModel:
         """Returns a list of newsfeeds followed by the current user.
 
@@ -173,7 +206,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.getLists", params)
         model = self.get_model(
-            {("extended",): GetListsExtendedResponse},
+            ((("extended",), GetListsExtendedResponse)),
             default=GetListsResponse,
             params=params,
         )
@@ -288,10 +321,11 @@ class NewsfeedCategory(BaseCategory):
         model = SaveListResponse
         return model(**response).response
 
+    @typing.overload
     async def search(
         self,
         q: typing.Optional[str] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         count: typing.Optional[int] = None,
         latitude: typing.Optional[float] = None,
         longitude: typing.Optional[float] = None,
@@ -299,6 +333,37 @@ class NewsfeedCategory(BaseCategory):
         end_time: typing.Optional[int] = None,
         start_from: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> SearchResponseModel:
+        ...
+
+    @typing.overload
+    async def search(
+        self,
+        q: typing.Optional[str] = None,
+        extended: Literal[True] = ...,
+        count: typing.Optional[int] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        start_time: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        start_from: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> SearchExtendedResponseModel:
+        ...
+
+    async def search(
+        self,
+        q=None,
+        extended=None,
+        count=None,
+        latitude=None,
+        longitude=None,
+        start_time=None,
+        end_time=None,
+        start_from=None,
+        fields=None,
         **kwargs
     ) -> SearchResponseModel:
         """Returns search results by statuses.
@@ -317,7 +382,7 @@ class NewsfeedCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
-            {("extended",): SearchExtendedResponse},
+            ((("extended",), SearchExtendedResponse)),
             default=SearchResponse,
             params=params,
         )
@@ -345,7 +410,11 @@ class NewsfeedCategory(BaseCategory):
         return model(**response).response
 
     async def unsubscribe(
-        self, type: str, item_id: int, owner_id: typing.Optional[int] = None, **kwargs
+        self,
+        type: Literal["note", "photo", "post", "topic", "video"],
+        item_id: int,
+        owner_id: typing.Optional[int] = None,
+        **kwargs
     ) -> int:
         """Unsubscribes the current user from specified newsfeeds.
 

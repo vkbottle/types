@@ -4,7 +4,7 @@ from vkbottle_types.responses.widgets import (
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetPagesResponse,
-    GetPagesResponseModel
+    GetPagesResponseModel,
 )
 
 

@@ -10,7 +10,7 @@ from vkbottle_types.responses.leadForms import (
     GetResponse,
     LeadFormsForm,
     ListResponse,
-    UploadUrlResponse
+    UploadUrlResponse,
 )
 
 
@@ -70,9 +70,7 @@ class LeadFormsCategory(BaseCategory):
         model = DeleteResponse
         return model(**response).response
 
-    async def get(
-        self, group_id: int, form_id: int, **kwargs
-    ) -> LeadFormsForm:
+    async def get(self, group_id: int, form_id: int, **kwargs) -> LeadFormsForm:
         """leadForms.get method
 
         :param group_id:
@@ -105,9 +103,7 @@ class LeadFormsCategory(BaseCategory):
         model = GetLeadsResponse
         return model(**response).response
 
-    async def get_upload_u_r_l(
-        self, **kwargs
-    ) -> str:
+    async def get_upload_url(self, **kwargs) -> str:
         """leadForms.getUploadURL method"""
 
         params = self.get_set_params(locals())
@@ -115,9 +111,7 @@ class LeadFormsCategory(BaseCategory):
         model = UploadUrlResponse
         return model(**response).response
 
-    async def list(
-        self, group_id: int, **kwargs
-    ) -> typing.List[LeadFormsForm]:
+    async def list(self, group_id: int, **kwargs) -> typing.List[LeadFormsForm]:
         """leadForms.list method
 
         :param group_id:

@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 from vkbottle_types.responses.wall import (
@@ -7,14 +8,18 @@ from vkbottle_types.responses.wall import (
     EditResponse,
     EditResponseModel,
     GetByIdExtendedResponse,
+    GetByIdExtendedResponseModel,
     GetByIdLegacyResponse,
     GetCommentExtendedResponse,
+    GetCommentExtendedResponseModel,
     GetCommentResponse,
     GetCommentResponseModel,
     GetCommentsExtendedResponse,
+    GetCommentsExtendedResponseModel,
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetExtendedResponse,
+    GetExtendedResponseModel,
     GetRepostsResponse,
     GetRepostsResponseModel,
     GetResponse,
@@ -26,16 +31,15 @@ from vkbottle_types.responses.wall import (
     RepostResponse,
     RepostResponseModel,
     SearchExtendedResponse,
+    SearchExtendedResponseModel,
     SearchResponse,
     SearchResponseModel,
-    WallWallpostFull
+    WallWallpostFull,
 )
 
 
 class WallCategory(BaseCategory):
-    async def check_copyright_link(
-        self, link: str, **kwargs
-    ) -> BaseBoolInt:
+    async def check_copyright_link(self, link: str, **kwargs) -> BaseBoolInt:
         """wall.checkCopyrightLink method
 
         :param link:
@@ -140,7 +144,7 @@ class WallCategory(BaseCategory):
         poster_bkg_owner_id: typing.Optional[int] = None,
         poster_bkg_access_hash: typing.Optional[str] = None,
         copyright: typing.Optional[str] = None,
-        topic_id: typing.Optional[int] = None,
+        topic_id: Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43] = None,
         **kwargs
     ) -> EditResponseModel:
         """Edits a post on a user wall or community wall.
@@ -229,6 +233,7 @@ class WallCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
         owner_id: typing.Optional[int] = None,
@@ -236,8 +241,35 @@ class WallCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         filter: typing.Optional[str] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        owner_id: typing.Optional[int] = None,
+        domain: typing.Optional[str] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        filter: typing.Optional[str] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetExtendedResponseModel:
+        ...
+
+    async def get(
+        self,
+        owner_id=None,
+        domain=None,
+        offset=None,
+        count=None,
+        filter=None,
+        extended=None,
+        fields=None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of posts on a user wall or community wall.
@@ -254,19 +286,36 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.get", params)
         model = self.get_model(
-            {("extended",): GetExtendedResponse},
+            ((("extended",), GetExtendedResponse)),
             default=GetResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_by_id(
         self,
         posts: typing.List[str],
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
+    ) -> typing.List[WallWallpostFull]:
+        ...
+
+    @typing.overload
+    async def get_by_id(
+        self,
+        posts: typing.List[str],
+        extended: Literal[True] = ...,
+        copy_history_depth: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetByIdExtendedResponseModel:
+        ...
+
+    async def get_by_id(
+        self, posts=None, extended=None, copy_history_depth=None, fields=None, **kwargs
     ) -> typing.List[WallWallpostFull]:
         """Returns a list of posts from user or community walls by their IDs.
 
@@ -279,19 +328,36 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getById", params)
         model = self.get_model(
-            {("extended",): GetByIdExtendedResponse},
+            ((("extended",), GetByIdExtendedResponse)),
             default=GetByIdLegacyResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_comment(
         self,
         comment_id: int,
         owner_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
+    ) -> GetCommentResponseModel:
+        ...
+
+    @typing.overload
+    async def get_comment(
+        self,
+        comment_id: int,
+        owner_id: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetCommentExtendedResponseModel:
+        ...
+
+    async def get_comment(
+        self, comment_id=None, owner_id=None, extended=None, fields=None, **kwargs
     ) -> GetCommentResponseModel:
         """Returns a comment on a post on a user wall or community wall.
 
@@ -304,12 +370,13 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComment", params)
         model = self.get_model(
-            {("extended",): GetCommentExtendedResponse},
+            ((("extended",), GetCommentExtendedResponse)),
             default=GetCommentResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_comments(
         self,
         owner_id: typing.Optional[int] = None,
@@ -318,12 +385,49 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        sort: Literal["asc", "desc"] = None,
         preview_length: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetCommentsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_comments(
+        self,
+        owner_id: typing.Optional[int] = None,
+        post_id: typing.Optional[int] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: Literal["asc", "desc"] = None,
+        preview_length: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        comment_id: typing.Optional[int] = None,
+        thread_items_count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetCommentsExtendedResponseModel:
+        ...
+
+    async def get_comments(
+        self,
+        owner_id=None,
+        post_id=None,
+        need_likes=None,
+        start_comment_id=None,
+        offset=None,
+        count=None,
+        sort=None,
+        preview_length=None,
+        extended=None,
+        fields=None,
+        comment_id=None,
+        thread_items_count=None,
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a post on a user wall or community wall.
@@ -345,7 +449,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.getComments", params)
         model = self.get_model(
-            {("extended",): GetCommentsExtendedResponse},
+            ((("extended",), GetCommentsExtendedResponse)),
             default=GetCommentsResponse,
             params=params,
         )
@@ -372,9 +476,7 @@ class WallCategory(BaseCategory):
         model = GetRepostsResponse
         return model(**response).response
 
-    async def open_comments(
-        self, owner_id: int, post_id: int, **kwargs
-    ) -> BaseBoolInt:
+    async def open_comments(self, owner_id: int, post_id: int, **kwargs) -> BaseBoolInt:
         """wall.openComments method
 
         :param owner_id:
@@ -420,7 +522,7 @@ class WallCategory(BaseCategory):
         donut_paid_duration: typing.Optional[int] = None,
         mute_notifications: typing.Optional[bool] = None,
         copyright: typing.Optional[str] = None,
-        topic_id: typing.Optional[int] = None,
+        topic_id: Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43] = None,
         **kwargs
     ) -> PostResponseModel:
         """Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
@@ -492,7 +594,7 @@ class WallCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a post on a user wall or community wall.
@@ -511,7 +613,7 @@ class WallCategory(BaseCategory):
         self,
         owner_id: int,
         post_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a post on a user wall or community wall.
@@ -580,6 +682,7 @@ class WallCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def search(
         self,
         owner_id: typing.Optional[int] = None,
@@ -588,8 +691,37 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> SearchResponseModel:
+        ...
+
+    @typing.overload
+    async def search(
+        self,
+        owner_id: typing.Optional[int] = None,
+        domain: typing.Optional[str] = None,
+        query: typing.Optional[str] = None,
+        owners_only: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> SearchExtendedResponseModel:
+        ...
+
+    async def search(
+        self,
+        owner_id=None,
+        domain=None,
+        query=None,
+        owners_only=None,
+        count=None,
+        offset=None,
+        extended=None,
+        fields=None,
         **kwargs
     ) -> SearchResponseModel:
         """Allows to search posts on user or community walls.
@@ -607,7 +739,7 @@ class WallCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("wall.search", params)
         model = self.get_model(
-            {("extended",): SearchExtendedResponse},
+            ((("extended",), SearchExtendedResponse)),
             default=SearchResponse,
             params=params,
         )

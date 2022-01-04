@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.orders import (
     CancelSubscriptionResponse,
@@ -12,7 +13,7 @@ from vkbottle_types.responses.orders import (
     OrdersAmount,
     OrdersOrder,
     OrdersSubscription,
-    UpdateSubscriptionResponse
+    UpdateSubscriptionResponse,
 )
 from vkbottle_types.responses.base import BaseBoolInt
 
@@ -40,7 +41,7 @@ class OrdersCategory(BaseCategory):
     async def change_state(
         self,
         order_id: int,
-        action: str,
+        action: Literal["cancel", "charge", "refund"],
         app_order_id: typing.Optional[int] = None,
         test_mode: typing.Optional[bool] = None,
         **kwargs

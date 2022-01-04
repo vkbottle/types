@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.notes import (
     AddResponse,
@@ -8,7 +9,7 @@ from vkbottle_types.responses.notes import (
     GetCommentsResponseModel,
     GetResponse,
     GetResponseModel,
-    NotesNote
+    NotesNote,
 )
 from vkbottle_types.responses.base import OkResponse
 
@@ -58,9 +59,7 @@ class NotesCategory(BaseCategory):
         model = CreateCommentResponse
         return model(**response).response
 
-    async def delete(
-        self, note_id: int, **kwargs
-    ) -> int:
+    async def delete(self, note_id: int, **kwargs) -> int:
         """Deletes a note of the current user.
 
         :param note_id: Note ID.
@@ -133,7 +132,7 @@ class NotesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[0, 1] = None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of notes created by a user.
@@ -173,7 +172,7 @@ class NotesCategory(BaseCategory):
         self,
         note_id: int,
         owner_id: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[0, 1] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs

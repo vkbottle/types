@@ -7,7 +7,7 @@ from vkbottle_types.responses.store import (
     GetProductsResponse,
     GetStickersKeywordsResponse,
     GetStickersKeywordsResponseModel,
-    StoreProduct
+    StoreProduct,
 )
 
 
@@ -25,9 +25,7 @@ class StoreCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def get_favorite_stickers(
-        self, **kwargs
-    ) -> typing.List[BaseSticker]:
+    async def get_favorite_stickers(self, **kwargs) -> typing.List[BaseSticker]:
         """store.getFavoriteStickers method"""
 
         params = self.get_set_params(locals())

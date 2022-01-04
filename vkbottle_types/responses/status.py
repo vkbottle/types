@@ -1,5 +1,4 @@
 import inspect
-import typing
 from .base_response import BaseResponse
 from vkbottle_types.objects import StatusStatus
 

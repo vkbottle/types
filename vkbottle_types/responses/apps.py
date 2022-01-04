@@ -7,7 +7,7 @@ from vkbottle_types.objects import (
     AppsLeaderboard,
     AppsScope,
     UsersUserFull,
-    UsersUserMin
+    UsersUserMin,
 )
 
 

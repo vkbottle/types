@@ -1,6 +1,12 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
-from vkbottle_types.responses.base import BaseBoolInt, BaseUploadServer, GetUploadServerResponse, OkResponse
+from vkbottle_types.responses.base import (
+    BaseBoolInt,
+    BaseUploadServer,
+    GetUploadServerResponse,
+    OkResponse,
+)
 from vkbottle_types.responses.photos import (
     CopyResponse,
     CreateAlbumResponse,
@@ -12,14 +18,17 @@ from vkbottle_types.responses.photos import (
     GetAllCommentsResponse,
     GetAllCommentsResponseModel,
     GetAllExtendedResponse,
+    GetAllExtendedResponseModel,
     GetAllResponse,
     GetAllResponseModel,
     GetByIdLegacyExtendedResponse,
     GetByIdLegacyResponse,
     GetCommentsExtendedResponse,
+    GetCommentsExtendedResponseModel,
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetExtendedResponse,
+    GetExtendedResponseModel,
     GetMarketUploadServerResponse,
     GetMessagesUploadServerResponse,
     GetNewTagsResponse,
@@ -29,11 +38,13 @@ from vkbottle_types.responses.photos import (
     GetTagsResponse,
     GetUploadServerResponse,
     GetUserPhotosExtendedResponse,
+    GetUserPhotosExtendedResponseModel,
     GetUserPhotosResponse,
     GetUserPhotosResponseModel,
     GetWallUploadServerResponse,
     PhotosPhoto,
     PhotosPhotoAlbumFull,
+    PhotosPhotoFull,
     PhotosPhotoTag,
     PhotosPhotoUpload,
     PutTagResponse,
@@ -48,7 +59,7 @@ from vkbottle_types.responses.photos import (
     SaveResponse,
     SaveWallPhotoResponse,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
 
 
@@ -270,18 +281,52 @@ class PhotosCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
         owner_id: typing.Optional[int] = None,
         album_id: typing.Optional[str] = None,
         photo_ids: typing.Optional[typing.List[str]] = None,
         rev: typing.Optional[bool] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         feed_type: typing.Optional[str] = None,
         feed: typing.Optional[int] = None,
         photo_sizes: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        owner_id: typing.Optional[int] = None,
+        album_id: typing.Optional[str] = None,
+        photo_ids: typing.Optional[typing.List[str]] = None,
+        rev: typing.Optional[bool] = None,
+        extended: Literal[True] = ...,
+        feed_type: typing.Optional[str] = None,
+        feed: typing.Optional[int] = None,
+        photo_sizes: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetExtendedResponseModel:
+        ...
+
+    async def get(
+        self,
+        owner_id=None,
+        album_id=None,
+        photo_ids=None,
+        rev=None,
+        extended=None,
+        feed_type=None,
+        feed=None,
+        photo_sizes=None,
+        offset=None,
+        count=None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of a user's or community's photos.
@@ -301,7 +346,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.get", params)
         model = self.get_model(
-            {("extended",): GetExtendedResponse},
+            ((("extended",), GetExtendedResponse)),
             default=GetResponse,
             params=params,
         )
@@ -351,16 +396,46 @@ class PhotosCategory(BaseCategory):
         model = GetAlbumsCountResponse
         return model(**response).response
 
+    @typing.overload
     async def get_all(
         self,
         owner_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         photo_sizes: typing.Optional[bool] = None,
         no_service_albums: typing.Optional[bool] = None,
         need_hidden: typing.Optional[bool] = None,
         skip_hidden: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetAllResponseModel:
+        ...
+
+    @typing.overload
+    async def get_all(
+        self,
+        owner_id: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        photo_sizes: typing.Optional[bool] = None,
+        no_service_albums: typing.Optional[bool] = None,
+        need_hidden: typing.Optional[bool] = None,
+        skip_hidden: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetAllExtendedResponseModel:
+        ...
+
+    async def get_all(
+        self,
+        owner_id=None,
+        extended=None,
+        offset=None,
+        count=None,
+        photo_sizes=None,
+        no_service_albums=None,
+        need_hidden=None,
+        skip_hidden=None,
         **kwargs
     ) -> GetAllResponseModel:
         """Returns a list of photos belonging to a user or community, in reverse chronological order.
@@ -378,7 +453,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getAll", params)
         model = self.get_model(
-            {("extended",): GetAllExtendedResponse},
+            ((("extended",), GetAllExtendedResponse)),
             default=GetAllResponse,
             params=params,
         )
@@ -407,12 +482,28 @@ class PhotosCategory(BaseCategory):
         model = GetAllCommentsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_by_id(
         self,
         photos: typing.List[str],
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         photo_sizes: typing.Optional[bool] = None,
         **kwargs
+    ) -> typing.List[PhotosPhoto]:
+        ...
+
+    @typing.overload
+    async def get_by_id(
+        self,
+        photos: typing.List[str],
+        extended: Literal[True] = ...,
+        photo_sizes: typing.Optional[bool] = None,
+        **kwargs
+    ) -> typing.List[PhotosPhotoFull]:
+        ...
+
+    async def get_by_id(
+        self, photos=None, extended=None, photo_sizes=None, **kwargs
     ) -> typing.List[PhotosPhoto]:
         """Returns information about photos by their IDs.
 
@@ -424,7 +515,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getById", params)
         model = self.get_model(
-            {("extended",): GetByIdLegacyExtendedResponse},
+            ((("extended",), GetByIdLegacyExtendedResponse)),
             default=GetByIdLegacyResponse,
             params=params,
         )
@@ -451,6 +542,7 @@ class PhotosCategory(BaseCategory):
         model = GetUploadServerResponse
         return model(**response).response
 
+    @typing.overload
     async def get_comments(
         self,
         photo_id: int,
@@ -459,10 +551,43 @@ class PhotosCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        sort: Literal["asc", "desc"] = None,
         access_key: typing.Optional[str] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetCommentsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_comments(
+        self,
+        photo_id: int,
+        owner_id: typing.Optional[int] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: Literal["asc", "desc"] = None,
+        access_key: typing.Optional[str] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetCommentsExtendedResponseModel:
+        ...
+
+    async def get_comments(
+        self,
+        photo_id=None,
+        owner_id=None,
+        need_likes=None,
+        start_comment_id=None,
+        offset=None,
+        count=None,
+        sort=None,
+        access_key=None,
+        extended=None,
+        fields=None,
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a photo.
@@ -482,7 +607,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getComments", params)
         model = self.get_model(
-            {("extended",): GetCommentsExtendedResponse},
+            ((("extended",), GetCommentsExtendedResponse)),
             default=GetCommentsResponse,
             params=params,
         )
@@ -573,7 +698,9 @@ class PhotosCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request("photos.getOwnerCoverPhotoUploadServer", params)
+        response = await self.api.request(
+            "photos.getOwnerCoverPhotoUploadServer", params
+        )
         model = GetUploadServerResponse
         return model(**response).response
 
@@ -626,14 +753,32 @@ class PhotosCategory(BaseCategory):
         model = GetUploadServerResponse
         return model(**response).response
 
+    @typing.overload
     async def get_user_photos(
         self,
         user_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         sort: typing.Optional[str] = None,
         **kwargs
+    ) -> GetUserPhotosResponseModel:
+        ...
+
+    @typing.overload
+    async def get_user_photos(
+        self,
+        user_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        sort: typing.Optional[str] = None,
+        **kwargs
+    ) -> GetUserPhotosExtendedResponseModel:
+        ...
+
+    async def get_user_photos(
+        self, user_id=None, offset=None, count=None, extended=None, sort=None, **kwargs
     ) -> GetUserPhotosResponseModel:
         """Returns a list of photos in which a user is tagged.
 
@@ -647,7 +792,7 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getUserPhotos", params)
         model = self.get_model(
-            {("extended",): GetUserPhotosExtendedResponse},
+            ((("extended",), GetUserPhotosExtendedResponse)),
             default=GetUserPhotosResponse,
             params=params,
         )
@@ -796,7 +941,7 @@ class PhotosCategory(BaseCategory):
         self,
         owner_id: int,
         photo_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a photo.
@@ -815,7 +960,7 @@ class PhotosCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a photo.

@@ -1,11 +1,12 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.notifications import (
     GetResponse,
     GetResponseModel,
     MarkAsViewedResponse,
     NotificationsSendMessageItem,
-    SendMessageResponse
+    SendMessageResponse,
 )
 from vkbottle_types.responses.base import BaseBoolInt
 
@@ -34,9 +35,7 @@ class NotificationsCategory(BaseCategory):
         model = GetResponse
         return model(**response).response
 
-    async def mark_as_viewed(
-        self, **kwargs
-    ) -> BaseBoolInt:
+    async def mark_as_viewed(self, **kwargs) -> BaseBoolInt:
         """Resets the counter of new notifications about other users' feedback to the current user's wall posts."""
 
         params = self.get_set_params(locals())
@@ -51,7 +50,7 @@ class NotificationsCategory(BaseCategory):
         fragment: typing.Optional[str] = None,
         group_id: typing.Optional[int] = None,
         random_id: typing.Optional[int] = None,
-        sending_mode: typing.Optional[str] = None,
+        sending_mode: Literal["delayed", "delayed_push", "immediately"] = None,
         **kwargs
     ) -> typing.List[NotificationsSendMessageItem]:
         """notifications.sendMessage method

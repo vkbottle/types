@@ -5,7 +5,7 @@ from vkbottle_types.responses.donut import (
     DonutDonatorSubscriptionInfo,
     GetSubscriptionResponse,
     GetSubscriptionsResponse,
-    GetSubscriptionsResponseModel
+    GetSubscriptionsResponseModel,
 )
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse
 
@@ -64,9 +64,7 @@ class DonutCategory(BaseCategory):
         model = GetSubscriptionsResponse
         return model(**response).response
 
-    async def is_don(
-        self, owner_id: int, **kwargs
-    ) -> BaseBoolInt:
+    async def is_don(self, owner_id: int, **kwargs) -> BaseBoolInt:
         """donut.isDon method
 
         :param owner_id:

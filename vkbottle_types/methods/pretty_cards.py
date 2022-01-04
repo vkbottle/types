@@ -11,7 +11,7 @@ from vkbottle_types.responses.prettyCards import (
     GetResponse,
     GetResponseModel,
     GetUploadURLResponse,
-    PrettyCardsPrettyCard
+    PrettyCardsPrettyCard,
 )
 
 
@@ -119,9 +119,7 @@ class PrettyCardsCategory(BaseCategory):
         model = GetByIdResponse
         return model(**response).response
 
-    async def get_upload_u_r_l(
-        self, **kwargs
-    ) -> str:
+    async def get_upload_url(self, **kwargs) -> str:
         """prettyCards.getUploadURL method"""
 
         params = self.get_set_params(locals())

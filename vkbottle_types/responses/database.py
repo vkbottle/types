@@ -9,7 +9,7 @@ from vkbottle_types.objects import (
     DatabaseRegion,
     DatabaseSchool,
     DatabaseStation,
-    DatabaseUniversity
+    DatabaseUniversity,
 )
 
 

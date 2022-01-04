@@ -1,6 +1,9 @@
 import typing
 from .base_category import BaseCategory
-from vkbottle_types.responses.podcasts import SearchPodcastResponse, SearchPodcastResponseModel
+from vkbottle_types.responses.podcasts import (
+    SearchPodcastResponse,
+    SearchPodcastResponseModel,
+)
 
 
 class PodcastsCategory(BaseCategory):

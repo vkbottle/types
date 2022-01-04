@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, OkResponse
 from vkbottle_types.responses.video import (
@@ -7,11 +8,14 @@ from vkbottle_types.responses.video import (
     CreateCommentResponse,
     GetAlbumByIdResponse,
     GetAlbumsByVideoExtendedResponse,
+    GetAlbumsByVideoExtendedResponseModel,
     GetAlbumsByVideoResponse,
     GetAlbumsExtendedResponse,
+    GetAlbumsExtendedResponseModel,
     GetAlbumsResponse,
     GetAlbumsResponseModel,
     GetCommentsExtendedResponse,
+    GetCommentsExtendedResponseModel,
     GetCommentsResponse,
     GetCommentsResponseModel,
     GetResponse,
@@ -19,10 +23,11 @@ from vkbottle_types.responses.video import (
     RestoreCommentResponse,
     SaveResponse,
     SearchExtendedResponse,
+    SearchExtendedResponseModel,
     SearchResponse,
     SearchResponseModel,
     VideoSaveResult,
-    VideoVideoAlbumFull
+    VideoVideoAlbumFull,
 )
 
 
@@ -276,13 +281,37 @@ class VideoCategory(BaseCategory):
         model = GetAlbumByIdResponse
         return model(**response).response
 
+    @typing.overload
     async def get_albums(
         self,
         owner_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         need_system: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetAlbumsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_albums(
+        self,
+        owner_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        need_system: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetAlbumsExtendedResponseModel:
+        ...
+
+    async def get_albums(
+        self,
+        owner_id=None,
+        offset=None,
+        count=None,
+        extended=None,
+        need_system=None,
         **kwargs
     ) -> GetAlbumsResponseModel:
         """Returns a list of video albums owned by a user or community.
@@ -297,19 +326,36 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbums", params)
         model = self.get_model(
-            {("extended",): GetAlbumsExtendedResponse},
+            ((("extended",), GetAlbumsExtendedResponse)),
             default=GetAlbumsResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_albums_by_video(
         self,
         owner_id: int,
         video_id: int,
         target_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> typing.List[int]:
+        ...
+
+    @typing.overload
+    async def get_albums_by_video(
+        self,
+        owner_id: int,
+        video_id: int,
+        target_id: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> GetAlbumsByVideoExtendedResponseModel:
+        ...
+
+    async def get_albums_by_video(
+        self, owner_id=None, video_id=None, target_id=None, extended=None, **kwargs
     ) -> typing.List[int]:
         """video.getAlbumsByVideo method
 
@@ -322,12 +368,13 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getAlbumsByVideo", params)
         model = self.get_model(
-            {("extended",): GetAlbumsByVideoExtendedResponse},
+            ((("extended",), GetAlbumsByVideoExtendedResponse)),
             default=GetAlbumsByVideoResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_comments(
         self,
         video_id: int,
@@ -336,9 +383,40 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        extended: typing.Optional[bool] = None,
+        sort: Literal["asc", "desc"] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetCommentsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_comments(
+        self,
+        video_id: int,
+        owner_id: typing.Optional[int] = None,
+        need_likes: typing.Optional[bool] = None,
+        start_comment_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        sort: Literal["asc", "desc"] = None,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetCommentsExtendedResponseModel:
+        ...
+
+    async def get_comments(
+        self,
+        video_id=None,
+        owner_id=None,
+        need_likes=None,
+        start_comment_id=None,
+        offset=None,
+        count=None,
+        sort=None,
+        extended=None,
+        fields=None,
         **kwargs
     ) -> GetCommentsResponseModel:
         """Returns a list of comments on a video.
@@ -357,7 +435,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getComments", params)
         model = self.get_model(
-            {("extended",): GetCommentsExtendedResponse},
+            ((("extended",), GetCommentsExtendedResponse)),
             default=GetCommentsResponse,
             params=params,
         )
@@ -440,7 +518,7 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         comment: typing.Optional[str] = None,
         search_query: typing.Optional[str] = None,
         **kwargs
@@ -463,7 +541,7 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        reason: typing.Optional[int] = None,
+        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a video.
@@ -543,10 +621,11 @@ class VideoCategory(BaseCategory):
         model = SaveResponse
         return model(**response).response
 
+    @typing.overload
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[1, 2, 0] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
         live: typing.Optional[bool] = None,
@@ -556,7 +635,44 @@ class VideoCategory(BaseCategory):
         longer: typing.Optional[int] = None,
         shorter: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        **kwargs
+    ) -> SearchResponseModel:
+        ...
+
+    @typing.overload
+    async def search(
+        self,
+        q: typing.Optional[str] = None,
+        sort: Literal[1, 2, 0] = None,
+        hd: typing.Optional[int] = None,
+        adult: typing.Optional[bool] = None,
+        live: typing.Optional[bool] = None,
+        filters: typing.Optional[typing.List[str]] = None,
+        search_own: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        longer: typing.Optional[int] = None,
+        shorter: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> SearchExtendedResponseModel:
+        ...
+
+    async def search(
+        self,
+        q=None,
+        sort=None,
+        hd=None,
+        adult=None,
+        live=None,
+        filters=None,
+        search_own=None,
+        offset=None,
+        longer=None,
+        shorter=None,
+        count=None,
+        extended=None,
         **kwargs
     ) -> SearchResponseModel:
         """Returns a list of videos under the set search criterion.
@@ -578,7 +694,7 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.search", params)
         model = self.get_model(
-            {("extended",): SearchExtendedResponse},
+            ((("extended",), SearchExtendedResponse)),
             default=SearchResponse,
             params=params,
         )

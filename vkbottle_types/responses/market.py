@@ -12,7 +12,7 @@ from vkbottle_types.objects import (
     MarketOrder,
     MarketOrderItem,
     MarketServicesViewType,
-    WallWallComment
+    WallWallComment,
 )
 
 

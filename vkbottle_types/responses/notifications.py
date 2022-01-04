@@ -9,7 +9,7 @@ from vkbottle_types.objects import (
     NotificationsSendMessageItem,
     PhotosPhoto,
     UsersUser,
-    VideoVideo
+    VideoVideo,
 )
 
 

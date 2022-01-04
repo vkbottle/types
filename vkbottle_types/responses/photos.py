@@ -15,7 +15,7 @@ from vkbottle_types.objects import (
     PhotosPhotoXtrRealOffset,
     PhotosPhotoXtrTagInfo,
     UsersUserFull,
-    WallWallComment
+    WallWallComment,
 )
 
 

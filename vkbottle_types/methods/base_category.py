@@ -28,14 +28,21 @@ class BaseCategory:
     @classmethod
     def get_model(
         cls,
-        dependent: typing.Mapping[typing.Tuple[str, ...], T],
+        dependent: typing.Tuple[
+            typing.Tuple[typing.Union[typing.Tuple[str, ...], typing.List[str]], T], ...
+        ],
         default: T,
         params: dict,
     ) -> T:
-        for items in sorted(dependent.items(), key=len):
+        for items in sorted(dependent, key=lambda x: len(x[0])):
             ks, model = items
-            if all(params.get(k) is not None for k in ks):
-                return model
+            if isinstance(ks, tuple):
+                if all(params.get(k) is not None for k in ks):
+                    return model
+            elif isinstance(ks, list):
+                arg, *ks = ks
+                if any(arg == k for k in ks):
+                    return model
         return default
 
     @classmethod

@@ -23,7 +23,7 @@ from vkbottle_types.responses.database import (
     GetSchoolsResponse,
     GetSchoolsResponseModel,
     GetUniversitiesResponse,
-    GetUniversitiesResponseModel
+    GetUniversitiesResponseModel,
 )
 
 

@@ -10,7 +10,7 @@ from vkbottle_types.objects import (
     AccountUserSettings,
     BaseBoolInt,
     GroupsGroup,
-    UsersUserFull
+    UsersUserFull,
 )
 
 

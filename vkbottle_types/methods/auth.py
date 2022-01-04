@@ -1,4 +1,3 @@
-import typing
 from .base_category import BaseCategory
 from vkbottle_types.responses.auth import RestoreResponse, RestoreResponseModel
 

@@ -1,7 +1,6 @@
 import inspect
 import typing
 from .base_response import BaseResponse
-import vkbottle_types.objects
 
 
 class GetServerUrlResponse(BaseResponse):

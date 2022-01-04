@@ -9,7 +9,7 @@ from vkbottle_types.objects import (
     FriendsRequests,
     FriendsRequestsXtrMessage,
     FriendsUserXtrPhone,
-    UsersUserFull
+    UsersUserFull,
 )
 
 

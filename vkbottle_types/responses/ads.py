@@ -24,7 +24,7 @@ from vkbottle_types.objects import (
     AdsTargSuggestionsSchools,
     AdsTargetGroup,
     AdsUpdateOfficeUsersResult,
-    AdsUsers
+    AdsUsers,
 )
 
 

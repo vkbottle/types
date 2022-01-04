@@ -10,7 +10,7 @@ from vkbottle_types.objects import (
     VideoVideo,
     VideoVideoAlbumFull,
     VideoVideoFull,
-    WallWallComment
+    WallWallComment,
 )
 
 

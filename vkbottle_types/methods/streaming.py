@@ -1,13 +1,14 @@
-import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
-from vkbottle_types.responses.streaming import GetServerUrlResponse, GetServerUrlResponseModel
+from vkbottle_types.responses.streaming import (
+    GetServerUrlResponse,
+    GetServerUrlResponseModel,
+)
 from vkbottle_types.responses.base import OkResponse
 
 
 class StreamingCategory(BaseCategory):
-    async def get_server_url(
-        self, **kwargs
-    ) -> GetServerUrlResponseModel:
+    async def get_server_url(self, **kwargs) -> GetServerUrlResponseModel:
         """Allows to receive data for the connection to Streaming API."""
 
         params = self.get_set_params(locals())
@@ -16,7 +17,11 @@ class StreamingCategory(BaseCategory):
         return model(**response).response
 
     async def set_settings(
-        self, monthly_tier: typing.Optional[str] = None, **kwargs
+        self,
+        monthly_tier: Literal[
+            "tier_1", "tier_2", "tier_3", "tier_4", "tier_5", "tier_6", "unlimited"
+        ] = None,
+        **kwargs
     ) -> int:
         """streaming.setSettings method
 

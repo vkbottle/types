@@ -1,23 +1,23 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 from vkbottle_types.responses.fave import (
     AddTagResponse,
     FaveTag,
     GetExtendedResponse,
+    GetExtendedResponseModel,
     GetPagesResponse,
     GetPagesResponseModel,
     GetResponse,
     GetResponseModel,
     GetTagsResponse,
-    GetTagsResponseModel
+    GetTagsResponseModel,
 )
 
 
 class FaveCategory(BaseCategory):
-    async def add_article(
-        self, url: str, **kwargs
-    ) -> int:
+    async def add_article(self, url: str, **kwargs) -> int:
         """fave.addArticle method
 
         :param url:
@@ -28,9 +28,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def add_link(
-        self, link: str, **kwargs
-    ) -> int:
+    async def add_link(self, link: str, **kwargs) -> int:
         """Adds a link to user faves.
 
         :param link: Link URL.
@@ -91,7 +89,7 @@ class FaveCategory(BaseCategory):
     async def add_tag(
         self,
         name: typing.Optional[str] = None,
-        position: typing.Optional[str] = None,
+        position: Literal["back", "front"] = None,
         **kwargs
     ) -> FaveTag:
         """fave.addTag method
@@ -120,9 +118,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def edit_tag(
-        self, id: int, name: str, **kwargs
-    ) -> int:
+    async def edit_tag(self, id: int, name: str, **kwargs) -> int:
         """fave.editTag method
 
         :param id:
@@ -134,15 +130,65 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
-        extended: typing.Optional[bool] = None,
-        item_type: typing.Optional[str] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        item_type: Literal[
+            "article",
+            "clip",
+            "link",
+            "narrative",
+            "page",
+            "podcast",
+            "post",
+            "product",
+            "video",
+            "youla_product",
+        ] = None,
         tag_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[str] = None,
         is_from_snackbar: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        extended: Literal[True] = ...,
+        item_type: Literal[
+            "article",
+            "clip",
+            "link",
+            "narrative",
+            "page",
+            "podcast",
+            "post",
+            "product",
+            "video",
+            "youla_product",
+        ] = None,
+        tag_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[str] = None,
+        is_from_snackbar: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetExtendedResponseModel:
+        ...
+
+    async def get(
+        self,
+        extended=None,
+        item_type=None,
+        tag_id=None,
+        offset=None,
+        count=None,
+        fields=None,
+        is_from_snackbar=None,
         **kwargs
     ) -> GetResponseModel:
         """fave.get method
@@ -159,7 +205,7 @@ class FaveCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("fave.get", params)
         model = self.get_model(
-            {("extended",): GetExtendedResponse},
+            ((("extended",), GetExtendedResponse)),
             default=GetResponse,
             params=params,
         )
@@ -169,7 +215,7 @@ class FaveCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        type: Literal["groups", "hints", "users"] = None,
         fields: typing.Optional[typing.List[str]] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs
@@ -188,9 +234,7 @@ class FaveCategory(BaseCategory):
         model = GetPagesResponse
         return model(**response).response
 
-    async def get_tags(
-        self, **kwargs
-    ) -> GetTagsResponseModel:
+    async def get_tags(self, **kwargs) -> GetTagsResponseModel:
         """fave.getTags method"""
 
         params = self.get_set_params(locals())
@@ -198,9 +242,7 @@ class FaveCategory(BaseCategory):
         model = GetTagsResponse
         return model(**response).response
 
-    async def mark_seen(
-        self, **kwargs
-    ) -> BaseBoolInt:
+    async def mark_seen(self, **kwargs) -> BaseBoolInt:
         """fave.markSeen method"""
 
         params = self.get_set_params(locals())
@@ -256,9 +298,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def remove_post(
-        self, owner_id: int, id: int, **kwargs
-    ) -> int:
+    async def remove_post(self, owner_id: int, id: int, **kwargs) -> int:
         """fave.removePost method
 
         :param owner_id:
@@ -270,9 +310,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def remove_product(
-        self, owner_id: int, id: int, **kwargs
-    ) -> int:
+    async def remove_product(self, owner_id: int, id: int, **kwargs) -> int:
         """fave.removeProduct method
 
         :param owner_id:
@@ -284,9 +322,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def remove_tag(
-        self, id: int, **kwargs
-    ) -> int:
+    async def remove_tag(self, id: int, **kwargs) -> int:
         """fave.removeTag method
 
         :param id:
@@ -297,9 +333,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def remove_video(
-        self, owner_id: int, id: int, **kwargs
-    ) -> int:
+    async def remove_video(self, owner_id: int, id: int, **kwargs) -> int:
         """fave.removeVideo method
 
         :param owner_id:
@@ -311,9 +345,7 @@ class FaveCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def reorder_tags(
-        self, ids: typing.List[int], **kwargs
-    ) -> int:
+    async def reorder_tags(self, ids: typing.List[int], **kwargs) -> int:
         """fave.reorderTags method
 
         :param ids:
@@ -345,7 +377,18 @@ class FaveCategory(BaseCategory):
 
     async def set_tags(
         self,
-        item_type: typing.Optional[str] = None,
+        item_type: Literal[
+            "article",
+            "clip",
+            "link",
+            "narrative",
+            "page",
+            "podcast",
+            "post",
+            "product",
+            "video",
+            "youla_product",
+        ] = None,
         item_owner_id: typing.Optional[int] = None,
         item_id: typing.Optional[int] = None,
         tag_ids: typing.Optional[typing.List[int]] = None,

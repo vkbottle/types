@@ -12,7 +12,7 @@ from vkbottle_types.responses.adsweb import (
     GetSitesResponse,
     GetSitesResponseModel,
     GetStatisticsResponse,
-    GetStatisticsResponseModel
+    GetStatisticsResponseModel,
 )
 
 
@@ -30,9 +30,7 @@ class AdswebCategory(BaseCategory):
         model = GetAdCategoriesResponse
         return model(**response).response
 
-    async def get_ad_unit_code(
-        self, **kwargs
-    ) -> GetAdUnitCodeResponseModel:
+    async def get_ad_unit_code(self, **kwargs) -> GetAdUnitCodeResponseModel:
         """adsweb.getAdUnitCode method"""
 
         params = self.get_set_params(locals())

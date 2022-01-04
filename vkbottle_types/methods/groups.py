@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.groups import (
     AddAddressResponse,
@@ -18,6 +19,7 @@ from vkbottle_types.responses.groups import (
     GetCallbackServersResponseModel,
     GetCallbackSettingsResponse,
     GetCatalogInfoExtendedResponse,
+    GetCatalogInfoExtendedResponseModel,
     GetCatalogInfoResponse,
     GetCatalogInfoResponseModel,
     GetCatalogResponse,
@@ -25,16 +27,21 @@ from vkbottle_types.responses.groups import (
     GetInvitedUsersResponse,
     GetInvitedUsersResponseModel,
     GetInvitesExtendedResponse,
+    GetInvitesExtendedResponseModel,
     GetInvitesResponse,
     GetInvitesResponseModel,
     GetLongPollServerResponse,
     GetLongPollSettingsResponse,
     GetMembersFieldsResponse,
+    GetMembersFieldsResponseModel,
     GetMembersFilterResponse,
+    GetMembersFilterResponseModel,
     GetMembersResponse,
     GetMembersResponseModel,
     GetObjectExtendedResponse,
+    GetObjectExtendedResponseModel,
     GetRequestsFieldsResponse,
+    GetRequestsFieldsResponseModel,
     GetRequestsResponse,
     GetRequestsResponseModel,
     GetResponse,
@@ -52,12 +59,15 @@ from vkbottle_types.responses.groups import (
     GroupsLinksItem,
     GroupsLongPollServer,
     GroupsLongPollSettings,
+    GroupsMemberStatus,
+    GroupsMemberStatusFull,
     IsMemberExtendedResponse,
+    IsMemberExtendedResponseModel,
     IsMemberResponse,
     IsMemberUserIdsExtendedResponse,
     IsMemberUserIdsResponse,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 
@@ -75,7 +85,13 @@ class GroupsCategory(BaseCategory):
         additional_address: typing.Optional[str] = None,
         metro_id: typing.Optional[int] = None,
         phone: typing.Optional[str] = None,
-        work_info_status: typing.Optional[str] = None,
+        work_info_status: Literal[
+            "always_opened",
+            "forever_closed",
+            "no_information",
+            "temporarily_closed",
+            "timetable",
+        ] = None,
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
         **kwargs
@@ -138,9 +154,7 @@ class GroupsCategory(BaseCategory):
         model = AddLinkResponse
         return model(**response).response
 
-    async def approve_request(
-        self, group_id: int, user_id: int, **kwargs
-    ) -> int:
+    async def approve_request(self, group_id: int, user_id: int, **kwargs) -> int:
         """Allows to approve join request to the community.
 
         :param group_id: Community ID.
@@ -181,10 +195,10 @@ class GroupsCategory(BaseCategory):
         self,
         title: str,
         description: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        type: Literal["event", "group", "public"] = None,
         public_category: typing.Optional[int] = None,
         public_subcategory: typing.Optional[int] = None,
-        subtype: typing.Optional[int] = None,
+        subtype: Literal[1, 2, 3, 4] = None,
         **kwargs
     ) -> GroupsGroup:
         """Creates a new community.
@@ -202,9 +216,7 @@ class GroupsCategory(BaseCategory):
         model = CreateResponse
         return model(**response).response
 
-    async def delete_address(
-        self, group_id: int, address_id: int, **kwargs
-    ) -> int:
+    async def delete_address(self, group_id: int, address_id: int, **kwargs) -> int:
         """groups.deleteAddress method
 
         :param group_id:
@@ -230,9 +242,7 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def delete_link(
-        self, group_id: int, link_id: int, **kwargs
-    ) -> int:
+    async def delete_link(self, group_id: int, link_id: int, **kwargs) -> int:
         """Allows to delete a link from the community.
 
         :param group_id: Community ID.
@@ -244,9 +254,7 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def disable_online(
-        self, group_id: int, **kwargs
-    ) -> int:
+    async def disable_online(self, group_id: int, **kwargs) -> int:
         """groups.disableOnline method
 
         :param group_id:
@@ -289,7 +297,7 @@ class GroupsCategory(BaseCategory):
         messages: typing.Optional[bool] = None,
         articles: typing.Optional[bool] = None,
         addresses: typing.Optional[bool] = None,
-        age_limits: typing.Optional[int] = None,
+        age_limits: Literal[1, 2, 3] = None,
         market: typing.Optional[bool] = None,
         market_comments: typing.Optional[bool] = None,
         market_country: typing.Optional[typing.List[int]] = None,
@@ -373,7 +381,13 @@ class GroupsCategory(BaseCategory):
         latitude: typing.Optional[float] = None,
         longitude: typing.Optional[float] = None,
         phone: typing.Optional[str] = None,
-        work_info_status: typing.Optional[str] = None,
+        work_info_status: Literal[
+            "always_opened",
+            "forever_closed",
+            "no_information",
+            "temporarily_closed",
+            "timetable",
+        ] = None,
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
         **kwargs
@@ -466,9 +480,7 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def enable_online(
-        self, group_id: int, **kwargs
-    ) -> int:
+    async def enable_online(self, group_id: int, **kwargs) -> int:
         """groups.enableOnline method
 
         :param group_id:
@@ -479,14 +491,40 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
         user_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         filter: typing.Optional[typing.List[str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        user_id: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        filter: typing.Optional[typing.List[str]] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetObjectExtendedResponseModel:
+        ...
+
+    async def get(
+        self,
+        user_id=None,
+        extended=None,
+        filter=None,
+        fields=None,
+        offset=None,
+        count=None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of the communities to which a user belongs.
@@ -502,7 +540,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.get", params)
         model = self.get_model(
-            {("extended",): GetObjectExtendedResponse},
+            ((("extended",), GetObjectExtendedResponse)),
             default=GetResponse,
             params=params,
         )
@@ -638,11 +676,26 @@ class GroupsCategory(BaseCategory):
         model = GetCatalogResponse
         return model(**response).response
 
+    @typing.overload
     async def get_catalog_info(
         self,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         subcategories: typing.Optional[bool] = None,
         **kwargs
+    ) -> GetCatalogInfoResponseModel:
+        ...
+
+    @typing.overload
+    async def get_catalog_info(
+        self,
+        extended: Literal[True] = ...,
+        subcategories: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetCatalogInfoExtendedResponseModel:
+        ...
+
+    async def get_catalog_info(
+        self, extended=None, subcategories=None, **kwargs
     ) -> GetCatalogInfoResponseModel:
         """Returns categories list for communities catalog
 
@@ -653,7 +706,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getCatalogInfo", params)
         model = self.get_model(
-            {("extended",): GetCatalogInfoExtendedResponse},
+            ((("extended",), GetCatalogInfoExtendedResponse)),
             default=GetCatalogInfoResponse,
             params=params,
         )
@@ -665,7 +718,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
     ) -> GetInvitedUsersResponseModel:
         """Returns invited users list of a community
@@ -682,12 +735,28 @@ class GroupsCategory(BaseCategory):
         model = GetInvitedUsersResponse
         return model(**response).response
 
+    @typing.overload
     async def get_invites(
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> GetInvitesResponseModel:
+        ...
+
+    @typing.overload
+    async def get_invites(
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> GetInvitesExtendedResponseModel:
+        ...
+
+    async def get_invites(
+        self, offset=None, count=None, extended=None, **kwargs
     ) -> GetInvitesResponseModel:
         """Returns a list of invitations to join communities and events.
 
@@ -699,7 +768,7 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getInvites", params)
         model = self.get_model(
-            {("extended",): GetInvitesExtendedResponse},
+            ((("extended",), GetInvitesExtendedResponse)),
             default=GetInvitesResponse,
             params=params,
         )
@@ -731,14 +800,53 @@ class GroupsCategory(BaseCategory):
         model = GetLongPollSettingsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_members(
         self,
         group_id: typing.Optional[str] = None,
-        sort: typing.Optional[str] = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        filter: typing.Optional[str] = None,
+        fields: typing.Optional[Literal[None]] = ...,
+        filter: typing.Optional[Literal["friends", "unsure", "donut"]] = ...,
+        **kwargs
+    ) -> GetMembersResponseModel:
+        ...
+
+    @typing.overload
+    async def get_members(
+        self,
+        group_id: typing.Optional[str] = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.List[str] = ...,
+        filter: typing.Optional[Literal[None]] = ...,
+        **kwargs
+    ) -> GetMembersFieldsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_members(
+        self,
+        group_id: typing.Optional[str] = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[Literal[None]] = ...,
+        filter: Literal["managers"] = ...,
+        **kwargs
+    ) -> GetMembersFilterResponseModel:
+        ...
+
+    async def get_members(
+        self,
+        group_id=None,
+        sort=None,
+        offset=None,
+        count=None,
+        fields=None,
+        filter=None,
         **kwargs
     ) -> GetMembersResponseModel:
         """Returns a list of community members.
@@ -754,19 +862,39 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
-            {("fields",): GetMembersFieldsResponse, ("filter",): GetMembersFilterResponse},
+            (
+                (("fields",), GetMembersFieldsResponse),
+                (["filter", "managers"], GetMembersFilterResponse),
+            ),
             default=GetMembersResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_requests(
         self,
         group_id: int,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
+        fields: typing.Optional[Literal[None]] = ...,
         **kwargs
+    ) -> GetRequestsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        group_id: int,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.List[str] = ...,
+        **kwargs
+    ) -> GetRequestsFieldsResponseModel:
+        ...
+
+    async def get_requests(
+        self, group_id=None, offset=None, count=None, fields=None, **kwargs
     ) -> GetRequestsResponseModel:
         """Returns a list of requests to the community.
 
@@ -779,15 +907,13 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.getRequests", params)
         model = self.get_model(
-            {("fields",): GetRequestsFieldsResponse},
+            ((("fields",), GetRequestsFieldsResponse)),
             default=GetRequestsResponse,
             params=params,
         )
         return model(**response).response
 
-    async def get_settings(
-        self, group_id: int, **kwargs
-    ) -> GetSettingsResponseModel:
+    async def get_settings(self, group_id: int, **kwargs) -> GetSettingsResponseModel:
         """Returns community settings.
 
         :param group_id: Community ID.
@@ -811,9 +937,7 @@ class GroupsCategory(BaseCategory):
         model = GetTagListResponse
         return model(**response).response
 
-    async def get_token_permissions(
-        self, **kwargs
-    ) -> GetTokenPermissionsResponseModel:
+    async def get_token_permissions(self, **kwargs) -> GetTokenPermissionsResponseModel:
         """groups.getTokenPermissions method"""
 
         params = self.get_set_params(locals())
@@ -821,9 +945,7 @@ class GroupsCategory(BaseCategory):
         model = GetTokenPermissionsResponse
         return model(**response).response
 
-    async def invite(
-        self, group_id: int, user_id: int, **kwargs
-    ) -> int:
+    async def invite(self, group_id: int, user_id: int, **kwargs) -> int:
         """Allows to invite friends to the community.
 
         :param group_id: Community ID.
@@ -835,13 +957,63 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def is_member(
         self,
         group_id: str,
         user_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
+        user_ids: typing.Optional[Literal[None]] = ...,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> BaseBoolInt:
+        ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: str,
+        user_id: typing.Optional[int] = None,
+        user_ids: typing.List[int] = ...,
+        extended: typing.Optional[Literal[False]] = ...,
+        **kwargs
+    ) -> typing.List[GroupsMemberStatus]:
+        ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: str,
+        user_id: typing.Optional[int] = None,
+        user_ids: typing.Optional[Literal[None]] = ...,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> IsMemberExtendedResponseModel:
+        ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: str,
+        user_id: typing.Optional[int] = None,
+        user_ids: typing.List[int] = ...,
+        extended: typing.Optional[Literal[False]] = ...,
+        **kwargs
+    ) -> typing.List[GroupsMemberStatusFull]:
+        ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: str,
+        user_id: typing.Optional[int] = None,
+        user_ids: typing.List[int] = ...,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> typing.List[GroupsMemberStatusFull]:
+        ...
+
+    async def is_member(
+        self, group_id=None, user_id=None, user_ids=None, extended=None, **kwargs
     ) -> BaseBoolInt:
         """Returns information specifying whether a user is a member of a community.
 
@@ -854,11 +1026,11 @@ class GroupsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
-            {
-                ("user_ids",): IsMemberUserIdsResponse,
-                ("extended",): IsMemberExtendedResponse,
-                ("user_ids", "extended",): IsMemberUserIdsExtendedResponse,
-            },
+            (
+                (("user_ids",), IsMemberUserIdsResponse),
+                (("extended",), IsMemberExtendedResponse),
+                (("user_ids", "extended"), IsMemberUserIdsExtendedResponse),
+            ),
             default=IsMemberResponse,
             params=params,
         )
@@ -881,9 +1053,7 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def leave(
-        self, group_id: int, **kwargs
-    ) -> int:
+    async def leave(self, group_id: int, **kwargs) -> int:
         """With this method you can leave a group, public page, or event.
 
         :param group_id: ID or screen name of the community.
@@ -894,9 +1064,7 @@ class GroupsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def remove_user(
-        self, group_id: int, user_id: int, **kwargs
-    ) -> int:
+    async def remove_user(self, group_id: int, user_id: int, **kwargs) -> int:
         """Removes a user from the community.
 
         :param group_id: Community ID.
@@ -926,12 +1094,12 @@ class GroupsCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        type: typing.Optional[str] = None,
+        type: Literal["group", "page", "event"] = None,
         country_id: typing.Optional[int] = None,
         city_id: typing.Optional[int] = None,
         future: typing.Optional[bool] = None,
         market: typing.Optional[bool] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[0, 1, 2, 3, 4, 5] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
@@ -1236,7 +1404,28 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         tag_name: str,
-        tag_color: typing.Optional[str] = None,
+        tag_color: Literal[
+            "454647",
+            "45678f",
+            "4bb34b",
+            "5181b8",
+            "539b9c",
+            "5c9ce6",
+            "63b9ba",
+            "6bc76b",
+            "76787a",
+            "792ec0",
+            "7a6c4f",
+            "7ececf",
+            "9e8d6b",
+            "a162de",
+            "aaaeb3",
+            "bbaa84",
+            "e64646",
+            "ff5c5c",
+            "ffa000",
+            "ffc107",
+        ] = None,
         **kwargs
     ) -> BaseBoolInt:
         """Add new group's tag
@@ -1252,7 +1441,12 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def tag_bind(
-        self, group_id: int, tag_id: int, user_id: int, act: str, **kwargs
+        self,
+        group_id: int,
+        tag_id: int,
+        user_id: int,
+        act: Literal["bind", "unbind"],
+        **kwargs
     ) -> BaseBoolInt:
         """Bind or unbind group's tag to user
 
@@ -1267,9 +1461,7 @@ class GroupsCategory(BaseCategory):
         model = BoolResponse
         return model(**response).response
 
-    async def tag_delete(
-        self, group_id: int, tag_id: int, **kwargs
-    ) -> BaseBoolInt:
+    async def tag_delete(self, group_id: int, tag_id: int, **kwargs) -> BaseBoolInt:
         """Delete group's tag
 
         :param group_id:
@@ -1297,7 +1489,11 @@ class GroupsCategory(BaseCategory):
         return model(**response).response
 
     async def toggle_market(
-        self, group_id: int, state: str, ref: typing.Optional[str] = None, **kwargs
+        self,
+        group_id: int,
+        state: Literal["advanced", "basic", "none"],
+        ref: typing.Optional[str] = None,
+        **kwargs
     ) -> int:
         """groups.toggleMarket method
 

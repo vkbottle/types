@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.docs import (
     AddResponse,
@@ -12,9 +13,13 @@ from vkbottle_types.responses.docs import (
     SaveResponse,
     SaveResponseModel,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
-from vkbottle_types.responses.base import BaseUploadServer, GetUploadServerResponse, OkResponse
+from vkbottle_types.responses.base import (
+    BaseUploadServer,
+    GetUploadServerResponse,
+    OkResponse,
+)
 
 
 class DocsCategory(BaseCategory):
@@ -37,9 +42,7 @@ class DocsCategory(BaseCategory):
         model = AddResponse
         return model(**response).response
 
-    async def delete(
-        self, owner_id: int, doc_id: int, **kwargs
-    ) -> int:
+    async def delete(self, owner_id: int, doc_id: int, **kwargs) -> int:
         """Deletes a user or community document.
 
         :param owner_id: ID of the user or community that owns the document. Use a negative value to designate a community ID.
@@ -76,7 +79,7 @@ class DocsCategory(BaseCategory):
         self,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        type: typing.Optional[int] = None,
+        type: Literal[0, 1, 2, 3, 4, 5, 6, 7, 8] = None,
         owner_id: typing.Optional[int] = None,
         return_tags: typing.Optional[bool] = None,
         **kwargs
@@ -114,7 +117,7 @@ class DocsCategory(BaseCategory):
 
     async def get_messages_upload_server(
         self,
-        type: typing.Optional[str] = None,
+        type: Literal["audio_message", "doc", "graffiti"] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs
     ) -> BaseUploadServer:
@@ -129,9 +132,7 @@ class DocsCategory(BaseCategory):
         model = GetUploadServerResponse
         return model(**response).response
 
-    async def get_types(
-        self, owner_id: int, **kwargs
-    ) -> GetTypesResponseModel:
+    async def get_types(self, owner_id: int, **kwargs) -> GetTypesResponseModel:
         """Returns documents types available for current user.
 
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.

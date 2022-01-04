@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.account import (
@@ -18,14 +19,12 @@ from vkbottle_types.responses.account import (
     GetProfileInfoResponse,
     GetPushSettingsResponse,
     SaveProfileInfoResponse,
-    SaveProfileInfoResponseModel
+    SaveProfileInfoResponseModel,
 )
 
 
 class AccountCategory(BaseCategory):
-    async def ban(
-        self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> int:
+    async def ban(self, owner_id: typing.Optional[int] = None, **kwargs) -> int:
         """account.ban method
 
         :param owner_id:
@@ -74,9 +73,7 @@ class AccountCategory(BaseCategory):
         model = GetActiveOffersResponse
         return model(**response).response
 
-    async def get_app_permissions(
-        self, user_id: int, **kwargs
-    ) -> int:
+    async def get_app_permissions(self, user_id: int, **kwargs) -> int:
         """Gets settings of the user in this application.
 
         :param user_id: User ID whose settings information shall be got. By default: current user.
@@ -134,9 +131,7 @@ class AccountCategory(BaseCategory):
         model = GetInfoResponse
         return model(**response).response
 
-    async def get_profile_info(
-        self, **kwargs
-    ) -> AccountUserSettings:
+    async def get_profile_info(self, **kwargs) -> AccountUserSettings:
         """Returns the current account info."""
 
         params = self.get_set_params(locals())
@@ -191,11 +186,11 @@ class AccountCategory(BaseCategory):
         maiden_name: typing.Optional[str] = None,
         screen_name: typing.Optional[str] = None,
         cancel_request_id: typing.Optional[int] = None,
-        sex: typing.Optional[int] = None,
-        relation: typing.Optional[int] = None,
+        sex: Literal[0, 1, 2] = None,
+        relation: Literal[1, 2, 3, 4, 5, 6, 7, 0] = None,
         relation_partner_id: typing.Optional[int] = None,
         bdate: typing.Optional[str] = None,
-        bdate_visibility: typing.Optional[int] = None,
+        bdate_visibility: Literal[1, 2, 0] = None,
         home_town: typing.Optional[str] = None,
         country_id: typing.Optional[int] = None,
         city_id: typing.Optional[int] = None,
@@ -227,7 +222,7 @@ class AccountCategory(BaseCategory):
 
     async def set_info(
         self,
-        name: typing.Optional[str] = None,
+        name: Literal["intro", "no_wall_replies", "own_posts_default"] = None,
         value: typing.Optional[str] = None,
         **kwargs
     ) -> int:
@@ -256,9 +251,7 @@ class AccountCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def set_offline(
-        self, **kwargs
-    ) -> int:
+    async def set_offline(self, **kwargs) -> int:
         """Marks a current user as offline."""
 
         params = self.get_set_params(locals())
@@ -266,9 +259,7 @@ class AccountCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def set_online(
-        self, voip: typing.Optional[bool] = None, **kwargs
-    ) -> int:
+    async def set_online(self, voip: typing.Optional[bool] = None, **kwargs) -> int:
         """Marks the current user as online for 15 minutes.
 
         :param voip: '1' if videocalls are available for current device.
@@ -321,9 +312,7 @@ class AccountCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def unban(
-        self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> int:
+    async def unban(self, owner_id: typing.Optional[int] = None, **kwargs) -> int:
         """account.unban method
 
         :param owner_id:

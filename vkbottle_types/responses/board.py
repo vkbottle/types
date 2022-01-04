@@ -9,7 +9,7 @@ from vkbottle_types.objects import (
     BoardTopicPoll,
     GroupsGroup,
     UsersUser,
-    UsersUserMin
+    UsersUserMin,
 )
 
 

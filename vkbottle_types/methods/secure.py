@@ -13,7 +13,7 @@ from vkbottle_types.responses.secure import (
     SecureSmsNotification,
     SecureTokenChecked,
     SecureTransaction,
-    SendNotificationResponse
+    SendNotificationResponse,
 )
 
 
@@ -54,9 +54,7 @@ class SecureCategory(BaseCategory):
         model = CheckTokenResponse
         return model(**response).response
 
-    async def get_app_balance(
-        self, **kwargs
-    ) -> int:
+    async def get_app_balance(self, **kwargs) -> int:
         """Returns payment balance of the application in hundredth of a vote."""
 
         params = self.get_set_params(locals())
@@ -64,7 +62,7 @@ class SecureCategory(BaseCategory):
         model = GetAppBalanceResponse
         return model(**response).response
 
-    async def get_s_m_s_history(
+    async def get_sms_history(
         self,
         user_id: typing.Optional[int] = None,
         date_from: typing.Optional[int] = None,
@@ -156,9 +154,7 @@ class SecureCategory(BaseCategory):
         model = SendNotificationResponse
         return model(**response).response
 
-    async def send_s_m_s_notification(
-        self, user_id: int, message: str, **kwargs
-    ) -> int:
+    async def send_sms_notification(self, user_id: int, message: str, **kwargs) -> int:
         """Sends 'SMS' notification to a user's mobile device.
 
         :param user_id: ID of the user to whom SMS notification is sent. The user shall allow the application to send him/her notifications (, +1).

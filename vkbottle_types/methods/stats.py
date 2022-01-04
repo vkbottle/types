@@ -1,6 +1,12 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
-from vkbottle_types.responses.stats import GetPostReachResponse, GetResponse, StatsPeriod, StatsWallpostStat
+from vkbottle_types.responses.stats import (
+    GetPostReachResponse,
+    GetResponse,
+    StatsPeriod,
+    StatsWallpostStat,
+)
 from vkbottle_types.responses.base import OkResponse
 
 
@@ -11,7 +17,7 @@ class StatsCategory(BaseCategory):
         app_id: typing.Optional[int] = None,
         timestamp_from: typing.Optional[int] = None,
         timestamp_to: typing.Optional[int] = None,
-        interval: typing.Optional[str] = None,
+        interval: Literal["all", "day", "month", "week", "year"] = None,
         intervals_count: typing.Optional[int] = None,
         filters: typing.Optional[typing.List[str]] = None,
         stats_groups: typing.Optional[typing.List[str]] = None,
@@ -50,9 +56,7 @@ class StatsCategory(BaseCategory):
         model = GetPostReachResponse
         return model(**response).response
 
-    async def track_visitor(
-        self, id: str, **kwargs
-    ) -> int:
+    async def track_visitor(self, id: str, **kwargs) -> int:
         """stats.trackVisitor method
 
         :param id:

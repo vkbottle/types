@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.friends import (
     AddListResponse,
@@ -8,20 +9,26 @@ from vkbottle_types.responses.friends import (
     AreFriendsResponse,
     DeleteResponse,
     DeleteResponseModel,
+    FriendsFriendExtendedStatus,
     FriendsFriendStatus,
+    FriendsMutualFriend,
     FriendsUserXtrPhone,
     GetAppUsersResponse,
     GetByPhonesResponse,
     GetFieldsResponse,
+    GetFieldsResponseModel,
     GetListsResponse,
     GetListsResponseModel,
     GetMutualResponse,
     GetMutualTargetUidsResponse,
     GetOnlineOnlineMobileResponse,
+    GetOnlineOnlineMobileResponseModel,
     GetOnlineResponse,
     GetRecentResponse,
     GetRequestsExtendedResponse,
+    GetRequestsExtendedResponseModel,
     GetRequestsNeedMutualResponse,
+    GetRequestsNeedMutualResponseModel,
     GetRequestsResponse,
     GetRequestsResponseModel,
     GetResponse,
@@ -29,7 +36,7 @@ from vkbottle_types.responses.friends import (
     GetSuggestionsResponse,
     GetSuggestionsResponseModel,
     SearchResponse,
-    SearchResponseModel
+    SearchResponseModel,
 )
 from vkbottle_types.responses.base import OkResponse
 
@@ -68,12 +75,28 @@ class FriendsCategory(BaseCategory):
         model = AddListResponse
         return model(**response).response
 
+    @typing.overload
     async def are_friends(
         self,
         user_ids: typing.List[int],
         need_sign: typing.Optional[bool] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> typing.List[FriendsFriendStatus]:
+        ...
+
+    @typing.overload
+    async def are_friends(
+        self,
+        user_ids: typing.List[int],
+        need_sign: typing.Optional[bool] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> typing.List[FriendsFriendExtendedStatus]:
+        ...
+
+    async def are_friends(
+        self, user_ids=None, need_sign=None, extended=None, **kwargs
     ) -> typing.List[FriendsFriendStatus]:
         """Checks the current user's friendship status with other specified users.
 
@@ -85,7 +108,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.areFriends", params)
         model = self.get_model(
-            {("extended",): AreFriendsExtendedResponse},
+            ((("extended",), AreFriendsExtendedResponse)),
             default=AreFriendsResponse,
             params=params,
         )
@@ -104,9 +127,7 @@ class FriendsCategory(BaseCategory):
         model = DeleteResponse
         return model(**response).response
 
-    async def delete_all_requests(
-        self, **kwargs
-    ) -> int:
+    async def delete_all_requests(self, **kwargs) -> int:
         """Marks all incoming friend requests as viewed."""
 
         params = self.get_set_params(locals())
@@ -114,9 +135,7 @@ class FriendsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def delete_list(
-        self, list_id: int, **kwargs
-    ) -> int:
+    async def delete_list(self, list_id: int, **kwargs) -> int:
         """Deletes a friend list of the current user.
 
         :param list_id: ID of the friend list to delete.
@@ -128,10 +147,7 @@ class FriendsCategory(BaseCategory):
         return model(**response).response
 
     async def edit(
-        self,
-        user_id: int,
-        list_ids: typing.Optional[typing.List[int]] = None,
-        **kwargs
+        self, user_id: int, list_ids: typing.Optional[typing.List[int]] = None, **kwargs
     ) -> int:
         """Edits the friend lists of the selected user.
 
@@ -167,16 +183,46 @@ class FriendsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get(
         self,
         user_id: typing.Optional[int] = None,
-        order: typing.Optional[str] = None,
+        order: Literal["hints", "random", "mobile", "name", "smart"] = None,
         list_id: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        fields: typing.Optional[Literal[None]] = ...,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         ref: typing.Optional[str] = None,
+        **kwargs
+    ) -> GetResponseModel:
+        ...
+
+    @typing.overload
+    async def get(
+        self,
+        user_id: typing.Optional[int] = None,
+        order: Literal["hints", "random", "mobile", "name", "smart"] = None,
+        list_id: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        fields: typing.List[str] = ...,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        ref: typing.Optional[str] = None,
+        **kwargs
+    ) -> GetFieldsResponseModel:
+        ...
+
+    async def get(
+        self,
+        user_id=None,
+        order=None,
+        list_id=None,
+        count=None,
+        offset=None,
+        fields=None,
+        name_case=None,
+        ref=None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of user IDs or detailed information about a user's friends.
@@ -194,15 +240,13 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.get", params)
         model = self.get_model(
-            {("fields",): GetFieldsResponse},
+            ((("fields",), GetFieldsResponse)),
             default=GetResponse,
             params=params,
         )
         return model(**response).response
 
-    async def get_app_users(
-        self, **kwargs
-    ) -> typing.List[int]:
+    async def get_app_users(self, **kwargs) -> typing.List[int]:
         """Returns a list of IDs of the current user's friends who installed the application."""
 
         params = self.get_set_params(locals())
@@ -244,14 +288,40 @@ class FriendsCategory(BaseCategory):
         model = GetListsResponse
         return model(**response).response
 
+    @typing.overload
     async def get_mutual(
         self,
         source_uid: typing.Optional[int] = None,
         target_uid: typing.Optional[int] = None,
-        target_uids: typing.Optional[typing.List[int]] = None,
+        target_uids: typing.Optional[Literal[None]] = ...,
         order: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
+        **kwargs
+    ) -> typing.List[int]:
+        ...
+
+    @typing.overload
+    async def get_mutual(
+        self,
+        source_uid: typing.Optional[int] = None,
+        target_uid: typing.Optional[int] = None,
+        target_uids: typing.List[int] = ...,
+        order: typing.Optional[str] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs
+    ) -> typing.List[FriendsMutualFriend]:
+        ...
+
+    async def get_mutual(
+        self,
+        source_uid=None,
+        target_uid=None,
+        target_uids=None,
+        order=None,
+        count=None,
+        offset=None,
         **kwargs
     ) -> typing.List[int]:
         """Returns a list of user IDs of the mutual friends of two users.
@@ -267,20 +337,46 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getMutual", params)
         model = self.get_model(
-            {("target_uids",): GetMutualTargetUidsResponse},
+            ((("target_uids",), GetMutualTargetUidsResponse)),
             default=GetMutualResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_online(
         self,
         user_id: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
-        online_mobile: typing.Optional[bool] = None,
+        online_mobile: typing.Optional[Literal[False]] = ...,
         order: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
+        **kwargs
+    ) -> typing.List[int]:
+        ...
+
+    @typing.overload
+    async def get_online(
+        self,
+        user_id: typing.Optional[int] = None,
+        list_id: typing.Optional[int] = None,
+        online_mobile: Literal[True] = ...,
+        order: typing.Optional[str] = None,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetOnlineOnlineMobileResponseModel:
+        ...
+
+    async def get_online(
+        self,
+        user_id=None,
+        list_id=None,
+        online_mobile=None,
+        order=None,
+        count=None,
+        offset=None,
         **kwargs
     ) -> typing.List[int]:
         """Returns a list of user IDs of a user's friends who are online.
@@ -296,7 +392,7 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getOnline", params)
         model = self.get_model(
-            {("online_mobile",): GetOnlineOnlineMobileResponse},
+            ((("online_mobile",), GetOnlineOnlineMobileResponse)),
             default=GetOnlineResponse,
             params=params,
         )
@@ -315,18 +411,69 @@ class FriendsCategory(BaseCategory):
         model = GetRecentResponse
         return model(**response).response
 
+    @typing.overload
     async def get_requests(
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        need_mutual: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        need_mutual: typing.Optional[Literal[False]] = ...,
         out: typing.Optional[bool] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[0, 1, 2] = None,
         need_viewed: typing.Optional[bool] = None,
         suggested: typing.Optional[bool] = None,
         ref: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetRequestsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        need_mutual: Literal[True] = ...,
+        out: typing.Optional[bool] = None,
+        sort: Literal[0, 1, 2] = None,
+        need_viewed: typing.Optional[bool] = None,
+        suggested: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetRequestsNeedMutualResponseModel:
+        ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        need_mutual: typing.Optional[Literal[False]] = ...,
+        out: typing.Optional[bool] = None,
+        sort: Literal[0, 1, 2] = None,
+        need_viewed: typing.Optional[bool] = None,
+        suggested: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetRequestsExtendedResponseModel:
+        ...
+
+    async def get_requests(
+        self,
+        offset=None,
+        count=None,
+        extended=None,
+        need_mutual=None,
+        out=None,
+        sort=None,
+        need_viewed=None,
+        suggested=None,
+        ref=None,
+        fields=None,
         **kwargs
     ) -> GetRequestsResponseModel:
         """Returns information about the current user's incoming and outgoing friend requests.
@@ -346,10 +493,10 @@ class FriendsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("friends.getRequests", params)
         model = self.get_model(
-            {
-                ("need_mutual",): GetRequestsNeedMutualResponse,
-                ("extended",): GetRequestsExtendedResponse,
-            },
+            (
+                (("need_mutual",), GetRequestsNeedMutualResponse),
+                (("extended",), GetRequestsExtendedResponse),
+            ),
             default=GetRequestsResponse,
             params=params,
         )
@@ -361,7 +508,7 @@ class FriendsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
     ) -> GetSuggestionsResponseModel:
         """Returns a list of profiles of users whom the current user may know.
@@ -383,7 +530,7 @@ class FriendsCategory(BaseCategory):
         user_id: int,
         q: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs

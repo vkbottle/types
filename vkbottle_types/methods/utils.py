@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.utils import (
     CheckLinkResponse,
@@ -12,15 +13,14 @@ from vkbottle_types.responses.utils import (
     UtilsDomainResolved,
     UtilsLinkChecked,
     UtilsLinkStats,
-    UtilsShortLink
+    UtilsLinkStatsExtended,
+    UtilsShortLink,
 )
 from vkbottle_types.responses.base import OkResponse
 
 
 class UtilsCategory(BaseCategory):
-    async def check_link(
-        self, url: str, **kwargs
-    ) -> UtilsLinkChecked:
+    async def check_link(self, url: str, **kwargs) -> UtilsLinkChecked:
         """Checks whether a link is blocked in VK.
 
         :param url: Link to check (e.g., 'http://google.com').
@@ -31,9 +31,7 @@ class UtilsCategory(BaseCategory):
         model = CheckLinkResponse
         return model(**response).response
 
-    async def delete_from_last_shortened(
-        self, key: str, **kwargs
-    ) -> int:
+    async def delete_from_last_shortened(self, key: str, **kwargs) -> int:
         """Deletes shortened link from user's list.
 
         :param key: Link key (characters after vk.cc/).
@@ -61,14 +59,40 @@ class UtilsCategory(BaseCategory):
         model = GetLastShortenedLinksResponse
         return model(**response).response
 
+    @typing.overload
     async def get_link_stats(
         self,
         key: str,
-        source: typing.Optional[str] = None,
+        source: Literal["vk_cc", "vk_link"] = None,
         access_key: typing.Optional[str] = None,
-        interval: typing.Optional[str] = None,
+        interval: Literal["day", "forever", "hour", "month", "week"] = None,
         intervals_count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        **kwargs
+    ) -> UtilsLinkStats:
+        ...
+
+    @typing.overload
+    async def get_link_stats(
+        self,
+        key: str,
+        source: Literal["vk_cc", "vk_link"] = None,
+        access_key: typing.Optional[str] = None,
+        interval: Literal["day", "forever", "hour", "month", "week"] = None,
+        intervals_count: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> UtilsLinkStatsExtended:
+        ...
+
+    async def get_link_stats(
+        self,
+        key=None,
+        source=None,
+        access_key=None,
+        interval=None,
+        intervals_count=None,
+        extended=None,
         **kwargs
     ) -> UtilsLinkStats:
         """Returns stats data for shortened link.
@@ -84,15 +108,13 @@ class UtilsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("utils.getLinkStats", params)
         model = self.get_model(
-            {("extended",): GetLinkStatsExtendedResponse},
+            ((("extended",), GetLinkStatsExtendedResponse)),
             default=GetLinkStatsResponse,
             params=params,
         )
         return model(**response).response
 
-    async def get_server_time(
-        self, **kwargs
-    ) -> int:
+    async def get_server_time(self, **kwargs) -> int:
         """Returns the current time of the VK server."""
 
         params = self.get_set_params(locals())

@@ -7,7 +7,7 @@ from vkbottle_types.objects import (
     UtilsLinkChecked,
     UtilsLinkStats,
     UtilsLinkStatsExtended,
-    UtilsShortLink
+    UtilsShortLink,
 )
 
 

@@ -10,7 +10,7 @@ from vkbottle_types.objects import (
     StoriesStoryStats,
     StoriesViewersItem,
     UsersUser,
-    UsersUserFull
+    UsersUserFull,
 )
 
 

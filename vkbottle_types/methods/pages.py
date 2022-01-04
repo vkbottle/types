@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.pages import (
@@ -11,14 +12,12 @@ from vkbottle_types.responses.pages import (
     PagesWikipageHistory,
     ParseWikiResponse,
     SaveAccessResponse,
-    SaveResponse
+    SaveResponse,
 )
 
 
 class PagesCategory(BaseCategory):
-    async def clear_cache(
-        self, url: str, **kwargs
-    ) -> int:
+    async def clear_cache(self, url: str, **kwargs) -> int:
         """Allows to clear the cache of particular 'external' pages which may be attached to VK posts.
 
         :param url: Address of the page where you need to refesh the cached version
@@ -151,8 +150,8 @@ class PagesCategory(BaseCategory):
         page_id: int,
         group_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
-        view: typing.Optional[int] = None,
-        edit: typing.Optional[int] = None,
+        view: Literal[0, 1, 2] = None,
+        edit: Literal[0, 1, 2] = None,
         **kwargs
     ) -> int:
         """Saves modified read and edit access settings for a wiki page.

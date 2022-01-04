@@ -1,11 +1,14 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.stories import (
     GetBannedExtendedResponse,
+    GetBannedExtendedResponseModel,
     GetBannedResponse,
     GetBannedResponseModel,
     GetByIdExtendedResponse,
+    GetByIdExtendedResponseModel,
     GetByIdResponse,
     GetByIdResponseModel,
     GetPhotoUploadServerResponse,
@@ -19,14 +22,12 @@ from vkbottle_types.responses.stories import (
     GetViewersExtendedV5115ResponseModel,
     SaveResponse,
     SaveResponseModel,
-    StoriesStoryStats
+    StoriesStoryStats,
 )
 
 
 class StoriesCategory(BaseCategory):
-    async def ban_owner(
-        self, owners_ids: typing.List[int], **kwargs
-    ) -> int:
+    async def ban_owner(self, owners_ids: typing.List[int], **kwargs) -> int:
         """Allows to hide stories from chosen sources from current user's feed.
 
         :param owners_ids: List of sources IDs
@@ -75,11 +76,26 @@ class StoriesCategory(BaseCategory):
         model = GetV5113Response
         return model(**response).response
 
+    @typing.overload
     async def get_banned(
         self,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
+    ) -> GetBannedResponseModel:
+        ...
+
+    @typing.overload
+    async def get_banned(
+        self,
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetBannedExtendedResponseModel:
+        ...
+
+    async def get_banned(
+        self, extended=None, fields=None, **kwargs
     ) -> GetBannedResponseModel:
         """Returns list of sources hidden from current user's feed.
 
@@ -90,18 +106,34 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getBanned", params)
         model = self.get_model(
-            {("extended",): GetBannedExtendedResponse},
+            ((("extended",), GetBannedExtendedResponse)),
             default=GetBannedResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_by_id(
         self,
         stories: typing.List[str],
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
+    ) -> GetByIdResponseModel:
+        ...
+
+    @typing.overload
+    async def get_by_id(
+        self,
+        stories: typing.List[str],
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetByIdExtendedResponseModel:
+        ...
+
+    async def get_by_id(
+        self, stories=None, extended=None, fields=None, **kwargs
     ) -> GetByIdResponseModel:
         """Returns story by its ID.
 
@@ -113,7 +145,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getById", params)
         model = self.get_model(
-            {("extended",): GetByIdExtendedResponse},
+            ((("extended",), GetByIdExtendedResponse)),
             default=GetByIdResponse,
             params=params,
         )
@@ -210,13 +242,37 @@ class StoriesCategory(BaseCategory):
         model = GetVideoUploadServerResponse
         return model(**response).response
 
+    @typing.overload
     async def get_viewers(
         self,
         owner_id: int,
         story_id: int,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
+        **kwargs
+    ) -> GetViewersExtendedV5115ResponseModel:
+        ...
+
+    @typing.overload
+    async def get_viewers(
+        self,
+        owner_id: int,
+        story_id: int,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> GetViewersExtendedV5115ResponseModel:
+        ...
+
+    async def get_viewers(
+        self,
+        owner_id=None,
+        story_id=None,
+        count=None,
+        offset=None,
+        extended=None,
         **kwargs
     ) -> GetViewersExtendedV5115ResponseModel:
         """Returns a list of story viewers.
@@ -231,7 +287,7 @@ class StoriesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getViewers", params)
         model = self.get_model(
-            {("extended",): GetViewersExtendedV5115Response},
+            ((("extended",), GetViewersExtendedV5115Response)),
             default=GetViewersExtendedV5115Response,
             params=params,
         )
@@ -251,9 +307,7 @@ class StoriesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def hide_reply(
-        self, owner_id: int, story_id: int, **kwargs
-    ) -> int:
+    async def hide_reply(self, owner_id: int, story_id: int, **kwargs) -> int:
         """Hides the reply to the current user's story.
 
         :param owner_id: ID of the user whose replies should be hidden.
@@ -338,9 +392,7 @@ class StoriesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def unban_owner(
-        self, owners_ids: typing.List[int], **kwargs
-    ) -> int:
+    async def unban_owner(self, owners_ids: typing.List[int], **kwargs) -> int:
         """Allows to show stories from hidden sources in current user's feed.
 
         :param owners_ids: List of hidden sources to show stories from.

@@ -1,7 +1,11 @@
 import inspect
 import typing
 from .base_response import BaseResponse
-from vkbottle_types.objects import DonutDonatorSubscriptionInfo, GroupsGroupFull, UsersUserFull
+from vkbottle_types.objects import (
+    DonutDonatorSubscriptionInfo,
+    GroupsGroupFull,
+    UsersUserFull,
+)
 
 
 class GetSubscriptionResponse(BaseResponse):

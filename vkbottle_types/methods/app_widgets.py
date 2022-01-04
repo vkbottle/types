@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.appWidgets import (
     AppWidgetsPhoto,
@@ -11,14 +12,16 @@ from vkbottle_types.responses.appWidgets import (
     GetGroupImagesResponse,
     GetImagesByIdResponse,
     SaveAppImageResponse,
-    SaveGroupImageResponse
+    SaveGroupImageResponse,
 )
 from vkbottle_types.responses.base import OkResponse
 
 
 class AppWidgetsCategory(BaseCategory):
     async def get_app_image_upload_server(
-        self, image_type: str, **kwargs
+        self,
+        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"],
+        **kwargs
     ) -> GetAppImageUploadServerResponseModel:
         """Returns a URL for uploading a photo to the community collection for community app widgets
 
@@ -34,7 +37,7 @@ class AppWidgetsCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: typing.Optional[str] = None,
+        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"] = None,
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns an app collection of images for community app widgets
@@ -50,7 +53,9 @@ class AppWidgetsCategory(BaseCategory):
         return model(**response).response
 
     async def get_group_image_upload_server(
-        self, image_type: str, **kwargs
+        self,
+        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"],
+        **kwargs
     ) -> GetGroupImageUploadServerResponseModel:
         """Returns a URL for uploading a photo to the community collection for community app widgets
 
@@ -58,7 +63,9 @@ class AppWidgetsCategory(BaseCategory):
         """
 
         params = self.get_set_params(locals())
-        response = await self.api.request("appWidgets.getGroupImageUploadServer", params)
+        response = await self.api.request(
+            "appWidgets.getGroupImageUploadServer", params
+        )
         model = GetGroupImageUploadServerResponse
         return model(**response).response
 
@@ -66,7 +73,7 @@ class AppWidgetsCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: typing.Optional[str] = None,
+        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"] = None,
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns a community collection of images for community app widgets
@@ -94,9 +101,7 @@ class AppWidgetsCategory(BaseCategory):
         model = GetImagesByIdResponse
         return model(**response).response
 
-    async def save_app_image(
-        self, hash: str, image: str, **kwargs
-    ) -> AppWidgetsPhoto:
+    async def save_app_image(self, hash: str, image: str, **kwargs) -> AppWidgetsPhoto:
         """Allows to save image into app collection for community app widgets
 
         :param hash: Parameter returned when photo is uploaded to server
@@ -123,7 +128,20 @@ class AppWidgetsCategory(BaseCategory):
         return model(**response).response
 
     async def update(
-        self, code: str, type: str, **kwargs
+        self,
+        code: str,
+        type: Literal[
+            "compact_list",
+            "cover_list",
+            "donation",
+            "list",
+            "match",
+            "matches",
+            "table",
+            "text",
+            "tiles",
+        ],
+        **kwargs
     ) -> int:
         """Allows to update community app widget
 

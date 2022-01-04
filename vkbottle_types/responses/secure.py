@@ -6,7 +6,7 @@ from vkbottle_types.objects import (
     SecureLevel,
     SecureSmsNotification,
     SecureTokenChecked,
-    SecureTransaction
+    SecureTransaction,
 )
 
 

@@ -1,16 +1,19 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.users import (
     GetFollowersFieldsResponse,
+    GetFollowersFieldsResponseModel,
     GetFollowersResponse,
     GetFollowersResponseModel,
     GetResponse,
     GetSubscriptionsExtendedResponse,
+    GetSubscriptionsExtendedResponseModel,
     GetSubscriptionsResponse,
     GetSubscriptionsResponseModel,
     SearchResponse,
     SearchResponseModel,
-    UsersUserFull
+    UsersUserFull,
 )
 from vkbottle_types.responses.base import OkResponse
 
@@ -20,7 +23,7 @@ class UsersCategory(BaseCategory):
         self,
         user_ids: typing.Optional[typing.List[str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
     ) -> typing.List[UsersUserFull]:
         """Returns detailed information on users.
@@ -35,13 +38,37 @@ class UsersCategory(BaseCategory):
         model = GetResponse
         return model(**response).response
 
+    @typing.overload
     async def get_followers(
         self,
         user_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        fields: typing.Optional[Literal[None]] = ...,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        **kwargs
+    ) -> GetFollowersResponseModel:
+        ...
+
+    @typing.overload
+    async def get_followers(
+        self,
+        user_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.List[str] = ...,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        **kwargs
+    ) -> GetFollowersFieldsResponseModel:
+        ...
+
+    async def get_followers(
+        self,
+        user_id=None,
+        offset=None,
+        count=None,
+        fields=None,
+        name_case=None,
         **kwargs
     ) -> GetFollowersResponseModel:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
@@ -56,19 +83,43 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getFollowers", params)
         model = self.get_model(
-            {("fields",): GetFollowersFieldsResponse},
+            ((("fields",), GetFollowersFieldsResponse)),
             default=GetFollowersResponse,
             params=params,
         )
         return model(**response).response
 
+    @typing.overload
     async def get_subscriptions(
         self,
         user_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetSubscriptionsResponseModel:
+        ...
+
+    @typing.overload
+    async def get_subscriptions(
+        self,
+        user_id: typing.Optional[int] = None,
+        extended: Literal[True] = ...,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetSubscriptionsExtendedResponseModel:
+        ...
+
+    async def get_subscriptions(
+        self,
+        user_id=None,
+        extended=None,
+        offset=None,
+        count=None,
+        fields=None,
         **kwargs
     ) -> GetSubscriptionsResponseModel:
         """Returns a list of IDs of users and communities followed by the user.
@@ -83,14 +134,18 @@ class UsersCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("users.getSubscriptions", params)
         model = self.get_model(
-            {("extended",): GetSubscriptionsExtendedResponse},
+            ((("extended",), GetSubscriptionsExtendedResponse)),
             default=GetSubscriptionsResponse,
             params=params,
         )
         return model(**response).response
 
     async def report(
-        self, user_id: int, type: str, comment: typing.Optional[str] = None, **kwargs
+        self,
+        user_id: int,
+        type: Literal["porn", "spam", "insult", "advertisement"],
+        comment: typing.Optional[str] = None,
+        **kwargs
     ) -> int:
         """Reports (submits a complain about) a user.
 
@@ -107,7 +162,7 @@ class UsersCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: typing.Optional[int] = None,
+        sort: Literal[0, 1] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
@@ -119,8 +174,8 @@ class UsersCategory(BaseCategory):
         university_year: typing.Optional[int] = None,
         university_faculty: typing.Optional[int] = None,
         university_chair: typing.Optional[int] = None,
-        sex: typing.Optional[int] = None,
-        status: typing.Optional[int] = None,
+        sex: Literal[0, 1, 2] = None,
+        status: Literal[0, 1, 2, 3, 4, 5, 6, 7] = None,
         age_from: typing.Optional[int] = None,
         age_to: typing.Optional[int] = None,
         birth_day: typing.Optional[int] = None,

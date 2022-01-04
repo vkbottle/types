@@ -7,7 +7,7 @@ from vkbottle_types.objects import (
     DocsDocAttachmentType,
     DocsDocTypes,
     MessagesAudioMessage,
-    MessagesGraffiti
+    MessagesGraffiti,
 )
 
 

@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.polls import (
     AddVoteResponse,
@@ -10,9 +11,14 @@ from vkbottle_types.responses.polls import (
     PollsBackground,
     PollsPoll,
     PollsVoters,
-    SavePhotoResponse
+    SavePhotoResponse,
 )
-from vkbottle_types.responses.base import BaseBoolInt, BaseUploadServer, GetUploadServerResponse, OkResponse
+from vkbottle_types.responses.base import (
+    BaseBoolInt,
+    BaseUploadServer,
+    GetUploadServerResponse,
+    OkResponse,
+)
 
 
 class PollsCategory(BaseCategory):
@@ -47,7 +53,7 @@ class PollsCategory(BaseCategory):
         app_id: typing.Optional[int] = None,
         add_answers: typing.Optional[str] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: typing.Optional[str] = None,
+        background_id: Literal[1, 2, 3, 4, 6, 8, 9] = None,
         disable_unvote: typing.Optional[bool] = None,
         **kwargs
     ) -> PollsPoll:
@@ -101,7 +107,7 @@ class PollsCategory(BaseCategory):
         delete_answers: typing.Optional[str] = None,
         end_date: typing.Optional[int] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: typing.Optional[str] = None,
+        background_id: Literal[0, 1, 2, 3, 4, 6, 8, 9] = None,
         **kwargs
     ) -> int:
         """Edits created polls
@@ -122,9 +128,7 @@ class PollsCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
-    async def get_backgrounds(
-        self, **kwargs
-    ) -> typing.List[PollsBackground]:
+    async def get_backgrounds(self, **kwargs) -> typing.List[PollsBackground]:
         """polls.getBackgrounds method"""
 
         params = self.get_set_params(locals())
@@ -140,7 +144,7 @@ class PollsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         friends_count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["abl", "acc", "dat", "gen", "ins", "nom"] = None,
         **kwargs
     ) -> PollsPoll:
         """Returns detailed information about a poll by its ID.
@@ -182,7 +186,7 @@ class PollsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
     ) -> typing.List[PollsVoters]:
         """Returns a list of IDs of users who selected specific answers in the poll.
@@ -203,9 +207,7 @@ class PollsCategory(BaseCategory):
         model = GetVotersResponse
         return model(**response).response
 
-    async def save_photo(
-        self, photo: str, hash: str, **kwargs
-    ) -> PollsBackground:
+    async def save_photo(self, photo: str, hash: str, **kwargs) -> PollsBackground:
         """polls.savePhoto method
 
         :param photo:

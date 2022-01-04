@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 from vkbottle_types.responses.apps import (
@@ -7,6 +8,7 @@ from vkbottle_types.responses.apps import (
     GetFriendsListResponse,
     GetFriendsListResponseModel,
     GetLeaderboardExtendedResponse,
+    GetLeaderboardExtendedResponseModel,
     GetLeaderboardResponse,
     GetLeaderboardResponseModel,
     GetMiniAppPoliciesResponse,
@@ -16,14 +18,12 @@ from vkbottle_types.responses.apps import (
     GetScopesResponse,
     GetScopesResponseModel,
     GetScoreResponse,
-    SendRequestResponse
+    SendRequestResponse,
 )
 
 
 class AppsCategory(BaseCategory):
-    async def delete_app_requests(
-        self, **kwargs
-    ) -> int:
+    async def delete_app_requests(self, **kwargs) -> int:
         """Deletes all request notifications from the current app."""
 
         params = self.get_set_params(locals())
@@ -35,11 +35,11 @@ class AppsCategory(BaseCategory):
         self,
         app_id: typing.Optional[int] = None,
         app_ids: typing.Optional[typing.List[str]] = None,
-        platform: typing.Optional[str] = None,
+        platform: Literal["android", "ios", "web", "winphone"] = None,
         extended: typing.Optional[bool] = None,
         return_friends: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
         **kwargs
     ) -> GetResponseModel:
         """Returns applications data.
@@ -61,7 +61,9 @@ class AppsCategory(BaseCategory):
     async def get_catalog(
         self,
         count: int,
-        sort: typing.Optional[str] = None,
+        sort: Literal[
+            "popular_today", "visitors", "create_date", "growth_rate", "popular_week"
+        ] = None,
         offset: typing.Optional[int] = None,
         platform: typing.Optional[str] = None,
         extended: typing.Optional[bool] = None,
@@ -70,7 +72,7 @@ class AppsCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         q: typing.Optional[str] = None,
         genre_id: typing.Optional[int] = None,
-        filter: typing.Optional[str] = None,
+        filter: Literal["favorite", "featured", "installed", "new"] = None,
         **kwargs
     ) -> AppsCatalogList:
         """Returns a list of applications (apps) available to users in the App Catalog.
@@ -98,7 +100,7 @@ class AppsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        type: Literal["invite", "request"] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> GetFriendsListResponseModel:
@@ -116,12 +118,28 @@ class AppsCategory(BaseCategory):
         model = GetFriendsListResponse
         return model(**response).response
 
+    @typing.overload
     async def get_leaderboard(
         self,
-        type: str,
+        type: Literal["level", "points", "score"],
         _global: typing.Optional[bool] = None,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         **kwargs
+    ) -> GetLeaderboardResponseModel:
+        ...
+
+    @typing.overload
+    async def get_leaderboard(
+        self,
+        type: Literal["level", "points", "score"],
+        _global: typing.Optional[bool] = None,
+        extended: Literal[True] = ...,
+        **kwargs
+    ) -> GetLeaderboardExtendedResponseModel:
+        ...
+
+    async def get_leaderboard(
+        self, type=None, _global=None, extended=None, **kwargs
     ) -> GetLeaderboardResponseModel:
         """Returns players rating in the game.
 
@@ -133,7 +151,7 @@ class AppsCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getLeaderboard", params)
         model = self.get_model(
-            {("extended",): GetLeaderboardExtendedResponse},
+            ((("extended",), GetLeaderboardExtendedResponse)),
             default=GetLeaderboardResponse,
             params=params,
         )
@@ -153,7 +171,7 @@ class AppsCategory(BaseCategory):
         return model(**response).response
 
     async def get_scopes(
-        self, type: typing.Optional[str] = None, **kwargs
+        self, type: Literal["group", "user"] = None, **kwargs
     ) -> GetScopesResponseModel:
         """Returns scopes for auth
 
@@ -165,9 +183,7 @@ class AppsCategory(BaseCategory):
         model = GetScopesResponse
         return model(**response).response
 
-    async def get_score(
-        self, user_id: int, **kwargs
-    ) -> int:
+    async def get_score(self, user_id: int, **kwargs) -> int:
         """Returns user score in app
 
         :param user_id:
@@ -210,7 +226,7 @@ class AppsCategory(BaseCategory):
         self,
         user_id: int,
         text: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        type: Literal["invite", "request"] = None,
         name: typing.Optional[str] = None,
         key: typing.Optional[str] = None,
         separate: typing.Optional[bool] = None,

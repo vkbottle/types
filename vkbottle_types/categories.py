@@ -1,22 +1,23 @@
 import typing
 from abc import ABC, abstractmethod
 
-from vkbottle_types.methods import (
+from .methods import (
     account,
     ads,
     adsweb,
+    app_widgets,
     apps,
-    appWidgets,
     auth,
     board,
     database,
     docs,
     donut,
-    downloadedGames,
+    downloaded_games,
     fave,
     friends,
     gifts,
     groups,
+    lead_forms,
     likes,
     market,
     messages,
@@ -28,7 +29,7 @@ from vkbottle_types.methods import (
     photos,
     podcasts,
     polls,
-    prettyCards,
+    pretty_cards,
     search,
     secure,
     stats,
@@ -45,7 +46,7 @@ from vkbottle_types.methods import (
 )
 
 if typing.TYPE_CHECKING:
-    from vkbottle import API
+    from vkbottle import ABCAPI
 
 
 class APICategories(ABC):
@@ -66,8 +67,8 @@ class APICategories(ABC):
         return apps.AppsCategory(self.api_instance)
 
     @property
-    def app_widgets(self) -> appWidgets.AppWidgetsCategory:
-        return appWidgets.AppWidgetsCategory(self.api_instance)
+    def app_widgets(self) -> app_widgets.AppWidgetsCategory:
+        return app_widgets.AppWidgetsCategory(self.api_instance)
 
     @property
     def auth(self) -> auth.AuthCategory:
@@ -90,8 +91,8 @@ class APICategories(ABC):
         return donut.DonutCategory(self.api_instance)
 
     @property
-    def downloaded_games(self) -> downloadedGames.DownloadedGamesCategory:
-        return downloadedGames.DownloadedGamesCategory(self.api_instance)
+    def downloaded_games(self) -> downloaded_games.DownloadedGamesCategory:
+        return downloaded_games.DownloadedGamesCategory(self.api_instance)
 
     @property
     def fave(self) -> fave.FaveCategory:
@@ -108,6 +109,10 @@ class APICategories(ABC):
     @property
     def groups(self) -> groups.GroupsCategory:
         return groups.GroupsCategory(self.api_instance)
+
+    @property
+    def lead_forms(self) -> lead_forms.LeadFormsCategory:
+        return lead_forms.LeadFormsCategory(self.api_instance)
 
     @property
     def likes(self) -> likes.LikesCategory:
@@ -154,8 +159,8 @@ class APICategories(ABC):
         return polls.PollsCategory(self.api_instance)
 
     @property
-    def prettyCards(self) -> prettyCards.PrettyCardsCategory:
-        return prettyCards.PrettyCardsCategory(self.api_instance)
+    def prettyCards(self) -> pretty_cards.PrettyCardsCategory:
+        return pretty_cards.PrettyCardsCategory(self.api_instance)
 
     @property
     def search(self) -> search.SearchCategory:
@@ -211,7 +216,7 @@ class APICategories(ABC):
 
     @property
     @abstractmethod
-    def api_instance(self) -> "API":
+    def api_instance(self) -> "ABCAPI":
         pass
 
     async def execute(self, code: str) -> typing.Any:

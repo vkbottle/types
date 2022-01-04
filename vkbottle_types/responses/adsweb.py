@@ -6,7 +6,7 @@ from vkbottle_types.objects import (
     AdswebGetAdUnitsResponseAdUnitsAdUnit,
     AdswebGetFraudHistoryResponseEntriesEntry,
     AdswebGetSitesResponseSitesSite,
-    AdswebGetStatisticsResponseItemsItem
+    AdswebGetStatisticsResponseItemsItem,
 )
 
 
@@ -35,7 +35,9 @@ class GetStatisticsResponse(BaseResponse):
 
 
 class GetAdCategoriesResponseModel(BaseResponse):
-    categories: typing.Optional[typing.List["AdswebGetAdCategoriesResponseCategoriesCategory"]] = None
+    categories: typing.Optional[
+        typing.List["AdswebGetAdCategoriesResponseCategoriesCategory"]
+    ] = None
 
 
 class GetAdUnitCodeResponseModel(BaseResponse):
@@ -44,12 +46,16 @@ class GetAdUnitCodeResponseModel(BaseResponse):
 
 class GetAdUnitsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    ad_units: typing.Optional[typing.List["AdswebGetAdUnitsResponseAdUnitsAdUnit"]] = None
+    ad_units: typing.Optional[
+        typing.List["AdswebGetAdUnitsResponseAdUnitsAdUnit"]
+    ] = None
 
 
 class GetFraudHistoryResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    entries: typing.Optional[typing.List["AdswebGetFraudHistoryResponseEntriesEntry"]] = None
+    entries: typing.Optional[
+        typing.List["AdswebGetFraudHistoryResponseEntriesEntry"]
+    ] = None
 
 
 class GetSitesResponseModel(BaseResponse):

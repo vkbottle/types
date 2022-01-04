@@ -9,7 +9,7 @@ from vkbottle_types.objects import (
     UsersSubscriptionsItem,
     UsersUserFull,
     WallWallpostFull,
-    WallWallpostToId
+    WallWallpostToId,
 )
 
 

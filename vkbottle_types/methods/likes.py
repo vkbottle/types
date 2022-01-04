@@ -1,4 +1,5 @@
 import typing
+from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.likes import (
     AddResponse,
@@ -6,10 +7,11 @@ from vkbottle_types.responses.likes import (
     DeleteResponse,
     DeleteResponseModel,
     GetListExtendedResponse,
+    GetListExtendedResponseModel,
     GetListResponse,
     GetListResponseModel,
     IsLikedResponse,
-    IsLikedResponseModel
+    IsLikedResponseModel,
 )
 
 
@@ -56,18 +58,52 @@ class LikesCategory(BaseCategory):
         model = DeleteResponse
         return model(**response).response
 
+    @typing.overload
     async def get_list(
         self,
         type: str,
         owner_id: typing.Optional[int] = None,
         item_id: typing.Optional[int] = None,
         page_url: typing.Optional[str] = None,
-        filter: typing.Optional[str] = None,
-        friends_only: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        filter: Literal["likes", "copies"] = None,
+        friends_only: Literal[0, 1, 2, 3] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         skip_own: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetListResponseModel:
+        ...
+
+    @typing.overload
+    async def get_list(
+        self,
+        type: str,
+        owner_id: typing.Optional[int] = None,
+        item_id: typing.Optional[int] = None,
+        page_url: typing.Optional[str] = None,
+        filter: Literal["likes", "copies"] = None,
+        friends_only: Literal[0, 1, 2, 3] = None,
+        extended: Literal[True] = ...,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        skip_own: typing.Optional[bool] = None,
+        **kwargs
+    ) -> GetListExtendedResponseModel:
+        ...
+
+    async def get_list(
+        self,
+        type=None,
+        owner_id=None,
+        item_id=None,
+        page_url=None,
+        filter=None,
+        friends_only=None,
+        extended=None,
+        offset=None,
+        count=None,
+        skip_own=None,
         **kwargs
     ) -> GetListResponseModel:
         """Returns a list of IDs of users who added the specified object to their 'Likes' list.
@@ -87,7 +123,7 @@ class LikesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("likes.getList", params)
         model = self.get_model(
-            {("extended",): GetListExtendedResponse},
+            ((("extended",), GetListExtendedResponse)),
             default=GetListResponse,
             params=params,
         )
