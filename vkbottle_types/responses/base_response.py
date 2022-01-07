@@ -8,7 +8,7 @@ class BaseResponse(BaseModel):
 
     @property
     def raw_json(self) -> str:
-        if not self.raw_json:
+        if not self._raw_json:
             raise AttributeError(
                 "You cannot get raw_json from here. Get a full raw_json from unnested response"
             )
