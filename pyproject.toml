@@ -9,7 +9,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7.2"
 pydantic = "^1.6.1"
 vkbottle = "^4.1"
 
