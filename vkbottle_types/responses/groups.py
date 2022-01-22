@@ -120,8 +120,12 @@ class GetMembersFieldsResponse(BaseResponse):
     response: "GetMembersFieldsResponseModel" = None
 
 
-class GetMembersFilterResponse(BaseResponse):
-    response: "GetMembersFilterResponseModel" = None
+class GetMembersFilterManagersResponse(BaseResponse):
+    response: "GetMembersFilterManagersResponseModel" = None
+
+
+class GetMembersFieldsFilterManagersResponse(BaseResponse):
+    response: "GetMembersFilterManagersResponseModel" = None
 
 
 class GetMembersResponse(BaseResponse):
@@ -233,12 +237,17 @@ class GetInvitesResponseModel(BaseResponse):
 
 class GetMembersFieldsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["GroupsUserXtrRole"]] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None
 
 
-class GetMembersFilterResponseModel(BaseResponse):
+class GetMembersFilterManagersResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsMemberRole"]] = None
+
+
+class GetMembersFieldsFilterManagersResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["GroupsUserXtrRole"]] = None
 
 
 class GetMembersResponseModel(BaseResponse):

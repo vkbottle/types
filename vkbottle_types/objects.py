@@ -4459,10 +4459,9 @@ class GroupsTokenPermissionSetting(BaseModel):
     setting: int = None
 
 
-class GroupsUserXtrRole(UsersUserFull):
+class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
     """VK Object GroupsUserXtrRole"""
-
-    role: typing.Optional["GroupsRoleOptions"] = None
+    pass
 
 
 class LeadFormsAnswer(BaseModel):

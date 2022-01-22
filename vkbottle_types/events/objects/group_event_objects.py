@@ -1,5 +1,5 @@
 import inspect
-from typing import Any, Callable, Optional, Union
+from typing import Any, Callable, Optional
 
 from vkbottle_types.objects import (
     AudioAudio,
@@ -41,12 +41,12 @@ class MessageEditObject(BaseEventObject, MessagesMessage):
 
 
 class MessageAllowObject(BaseEventObject):
-    key: str = None
-    user_id: int = None
+    key: str
+    user_id: int
 
 
 class MessageDenyObject(BaseEventObject):
-    user_id: int = None
+    user_id: int
 
 
 class MessageTypingStateObject(BaseEventObject):
@@ -56,11 +56,11 @@ class MessageTypingStateObject(BaseEventObject):
 
 
 class MessageEventObject(BaseEventObject):
-    user_id: Optional[int] = None
-    peer_id: Optional[int] = None
-    event_id: Optional[str] = None
-    payload: Optional[Union[str, dict]] = None
-    conversation_message_id: Optional[int] = None
+    user_id: int
+    peer_id: int
+    event_id: str
+    payload: Optional[dict] = None
+    conversation_message_id: int
 
     @property
     def chat_id(self) -> int:
@@ -69,7 +69,9 @@ class MessageEventObject(BaseEventObject):
     def get_payload_json(
         self,
         throw_error: bool = False,
-        unpack_failure: Callable[[str], dict] = lambda payload: payload,
+        unpack_failure: Callable[
+            [Optional[dict]], Optional[dict]
+        ] = lambda payload: payload,
         json: Any = __import__("json"),
     ) -> Optional[dict]:
         if isinstance(self.payload, dict):
@@ -87,8 +89,8 @@ class PhotoNewObject(BaseEventObject, PhotosPhoto):
 
 
 class PhotoCommentNewObject(BaseEventObject, WallWallComment):
-    photo_id: int = None
-    photo_owner_id: int = None
+    photo_id: int
+    photo_owner_id: int
 
 
 class PhotoCommentEditObject(PhotoCommentNewObject):
@@ -100,10 +102,10 @@ class PhotoCommentRestoreObject(PhotoCommentNewObject):
 
 
 class PhotoCommentDeleteObject(BaseEventObject):
-    id: int = None
-    owner_id: int = None
-    photo_id: int = None
-    user_id: int = None
+    id: int
+    owner_id: int
+    photo_id: int
+    user_id: int
 
 
 class AudioNewObject(BaseEventObject, AudioAudio):
@@ -115,8 +117,8 @@ class VideoNewObject(BaseEventObject, VideoVideo):
 
 
 class VideoCommentNewObject(BaseEventObject, WallWallComment):
-    video_id: int = None
-    video_owner_id: int = None
+    video_id: int
+    video_owner_id: int
 
 
 class VideoCommentEditObject(VideoCommentNewObject):
@@ -128,11 +130,11 @@ class VideoCommentRestoreObject(VideoCommentNewObject):
 
 
 class VideoCommentDeleteObject(BaseEventObject):
-    id: int = None
-    deleter_id: int = None
-    owner_id: int = None
-    user_id: int = None
-    video_id: int = None
+    id: int
+    deleter_id: int
+    owner_id: int
+    user_id: int
+    video_id: int
 
 
 class WallPostNewObject(BaseEventObject, WallWallpostFull):
@@ -164,11 +166,11 @@ class WallReplyDeleteObject(BaseEventObject):
 
 
 class LikeAddObject(BaseEventObject):
-    liker_id: int = None
-    object_id: int = None
-    object_owner_id: int = None
-    object_type: "CallbackLikeAddRemoveObjectType" = None
-    post_id: int = None
+    liker_id: int
+    object_id: int
+    object_owner_id: int
+    object_type: "CallbackLikeAddRemoveObjectType"
+    post_id: int
     thread_reply_id: Optional[int] = None
 
 
@@ -190,15 +192,15 @@ class BoardPostRestoreObject(BoardPostNewObject):
 
 
 class BoardPostDeleteObject(BaseEventObject):
-    id: int = None
-    topic_id: int = None
-    topic_owner_id: int = None
+    id: int
+    topic_id: int
+    topic_owner_id: int
 
 
 class MarketCommentNewObject(BaseEventObject):
-    date: int = None
-    from_id: int = None
-    id: int = None
+    date: int
+    from_id: int
+    id: int
     market_owner_id: Optional[int] = None
     photo_id: Optional[int] = None
     text: Optional[str] = None
@@ -213,10 +215,10 @@ class MarketCommentRestoreObject(MarketCommentNewObject):
 
 
 class MarketCommentDeleteObject(BaseEventObject):
-    id: int = None
-    item_id: int = None
-    owner_id: int = None
-    user_id: int = None
+    id: int
+    item_id: int
+    owner_id: int
+    user_id: int
 
 
 class MarketOrderNewObject(BaseEventObject, MarketOrder):
@@ -233,36 +235,36 @@ class GroupLeaveObject(BaseEventObject):
 
 
 class GroupJoinObject(BaseEventObject):
-    join_type: "CallbackGroupJoinType" = None
-    user_id: int = None
+    join_type: "CallbackGroupJoinType"
+    user_id: int
 
 
 class UserBlockObject(BaseEventObject):
-    admin_id: int = None
+    admin_id: int
     comment: Optional[str] = None
-    reason: int = None
-    unblock_date: int = None
-    user_id: int = None
+    reason: int
+    unblock_date: int
+    user_id: int
 
 
 class UserUnblockObject(BaseEventObject):
-    admin_id: int = None
-    by_end_date: int = None
-    user_id: int = None
+    admin_id: int
+    by_end_date: int
+    user_id: int
 
 
 class PollVoteNewObject(BaseEventObject):
-    option_id: int = None
-    owner_id: int = None
-    poll_id: int = None
-    user_id: int = None
+    option_id: int
+    owner_id: int
+    poll_id: int
+    user_id: int
 
 
 class GroupOfficersEditObject(BaseEventObject):
-    admin_id: int = None
-    level_new: "CallbackGroupOfficerRole" = None
-    level_old: "CallbackGroupOfficerRole" = None
-    user_id: int = None
+    admin_id: int
+    level_new: "CallbackGroupOfficerRole"
+    level_old: "CallbackGroupOfficerRole"
+    user_id: int
 
 
 class GroupSettingsChangesObject(BaseEventObject):
@@ -279,18 +281,18 @@ class GroupSettingsChangesObject(BaseEventObject):
     screen_name: Optional[str] = None
     title: Optional[str] = None
     website: Optional[str] = None
-    old_value: Any = None
-    new_value: Any = None
+    old_value: Any
+    new_value: Any
 
 
 class GroupChangeSettingsObject(BaseEventObject):
     changes: Optional[GroupSettingsChangesObject] = None
-    user_id: int = None
+    user_id: int
 
 
 class GroupChangePhotoObject(BaseEventObject):
-    photo: "PhotosPhoto" = None
-    user_id: int = None
+    photo: "PhotosPhoto"
+    user_id: int
 
 
 class VkpayTransactionObject(BaseEventObject):
@@ -308,8 +310,8 @@ class AppPayloadObject(BaseEventObject):
 
 
 class DonutSubscriptionCreateObject(BaseEventObject):
-    amount: int = None
-    amount_without_fee: float = None
+    amount: int
+    amount_without_fee: float
     user_id: Optional[int] = None
 
 
@@ -328,18 +330,18 @@ class DonutSubscriptionCancelledObject(BaseEventObject):
 class DonutSubscriptionPriceChangedObject(BaseEventObject):
     amount_diff: Optional[float] = None
     amount_diff_without_fee: Optional[float] = None
-    amount_new: int = None
-    amount_old: int = None
+    amount_new: int
+    amount_old: int
     user_id: Optional[int] = None
 
 
 class DonutMoneyWithdrawObject(BaseEventObject):
-    amount: float = None
-    amount_without_fee: float = None
+    amount: float
+    amount_without_fee: float
 
 
 class DonutMoneyWithdrawErrorObject(BaseEventObject):
-    reason: str = None
+    reason: str
 
 
 for item in locals().copy().values():

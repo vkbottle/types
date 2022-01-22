@@ -618,9 +618,9 @@ class AdsCategory(BaseCategory):
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
             (
-                (["section", "regions"], GetSuggestionsRegionsResponse),
-                (["section", "cities"], GetSuggestionsCitiesResponse),
-                (["section", "schools"], GetSuggestionsSchoolsResponse),
+                ((["section", "regions"],), GetSuggestionsRegionsResponse),
+                ((["section", "cities"],), GetSuggestionsCitiesResponse),
+                ((["section", "schools"],), GetSuggestionsSchoolsResponse),
             ),
             default=GetSuggestionsResponse,
             params=params,

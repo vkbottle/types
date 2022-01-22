@@ -29,20 +29,22 @@ class BaseCategory:
     def get_model(
         cls,
         dependent: typing.Tuple[
-            typing.Tuple[typing.Union[typing.Tuple[str, ...], typing.List[str]], T], ...
+            typing.Tuple[typing.Tuple[typing.Union[str, typing.List[str]], ...], T], ...
         ],
         default: T,
         params: dict,
     ) -> T:
+        """Choices model depending on params"""
         for items in sorted(dependent, key=lambda x: len(x[0])):
-            ks, model = items
-            if isinstance(ks, tuple):
-                if all(params.get(k) is not None for k in ks):
-                    return model
-            elif isinstance(ks, list):
-                arg, *ks = ks
-                if any(arg == k for k in ks):
-                    return model
+            keys, model = items
+            for key in keys:
+                if isinstance(key, str) and params.get(key) is None:
+                    break
+                elif isinstance(key, list) and params.get(key[0]) not in key[1:]:
+                    break
+            else:
+                return model
+
         return default
 
     @classmethod

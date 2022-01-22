@@ -34,8 +34,10 @@ from vkbottle_types.responses.groups import (
     GetLongPollSettingsResponse,
     GetMembersFieldsResponse,
     GetMembersFieldsResponseModel,
-    GetMembersFilterResponse,
-    GetMembersFilterResponseModel,
+    GetMembersFilterManagersResponse,
+    GetMembersFilterManagersResponseModel,
+    GetMembersFieldsFilterManagersResponse,
+    GetMembersFieldsFilterManagersResponseModel,
     GetMembersResponse,
     GetMembersResponseModel,
     GetObjectExtendedResponse,
@@ -836,7 +838,20 @@ class GroupsCategory(BaseCategory):
         fields: typing.Optional[Literal[None]] = ...,
         filter: Literal["managers"] = ...,
         **kwargs
-    ) -> GetMembersFilterResponseModel:
+    ) -> GetMembersFilterManagersResponseModel:
+        ...
+
+    @typing.overload
+    async def get_members(
+        self,
+        group_id: typing.Optional[str] = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.List[str] = ...,
+        filter: Literal["managers"] = ...,
+        **kwargs
+    ) -> GetMembersFieldsFilterManagersResponseModel:
         ...
 
     async def get_members(
@@ -864,7 +879,11 @@ class GroupsCategory(BaseCategory):
         model = self.get_model(
             (
                 (("fields",), GetMembersFieldsResponse),
-                (["filter", "managers"], GetMembersFilterResponse),
+                ((["filter", "managers"],), GetMembersFilterManagersResponse),
+                (
+                    (["filter", "managers"], "fields"),
+                    GetMembersFieldsFilterManagersResponse,
+                ),
             ),
             default=GetMembersResponse,
             params=params,
