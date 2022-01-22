@@ -9,31 +9,31 @@ from vkbottle_types.objects import (
 
 
 class GetHistoryResponse(BaseResponse):
-    response: typing.List["PagesWikipageHistory"] = None
+    response: typing.List["PagesWikipageHistory"]
 
 
 class GetTitlesResponse(BaseResponse):
-    response: typing.List["PagesWikipage"] = None
+    response: typing.List["PagesWikipage"]
 
 
 class GetVersionResponse(BaseResponse):
-    response: PagesWikipageFull = None
+    response: PagesWikipageFull
 
 
 class GetResponse(BaseResponse):
-    response: PagesWikipageFull = None
+    response: PagesWikipageFull
 
 
 class ParseWikiResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class SaveAccessResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class SaveResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 for item in locals().copy().values():

@@ -5,27 +5,27 @@ from vkbottle_types.objects import PrettyCardsPrettyCard
 
 
 class CreateResponse(BaseResponse):
-    response: "CreateResponseModel" = None
+    response: "CreateResponseModel"
 
 
 class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel" = None
+    response: "DeleteResponseModel"
 
 
 class EditResponse(BaseResponse):
-    response: "EditResponseModel" = None
+    response: "EditResponseModel"
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.List["PrettyCardsPrettyCard"] = None
+    response: typing.List["PrettyCardsPrettyCard"]
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class CreateResponseModel(BaseResponse):

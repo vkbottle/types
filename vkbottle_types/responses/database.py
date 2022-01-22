@@ -14,51 +14,51 @@ from vkbottle_types.objects import (
 
 
 class GetChairsResponse(BaseResponse):
-    response: "GetChairsResponseModel" = None
+    response: "GetChairsResponseModel"
 
 
 class GetCitiesByIdResponse(BaseResponse):
-    response: typing.List["BaseObject"] = None
+    response: typing.List["BaseObject"]
 
 
 class GetCitiesResponse(BaseResponse):
-    response: "GetCitiesResponseModel" = None
+    response: "GetCitiesResponseModel"
 
 
 class GetCountriesByIdResponse(BaseResponse):
-    response: typing.List["BaseCountry"] = None
+    response: typing.List["BaseCountry"]
 
 
 class GetCountriesResponse(BaseResponse):
-    response: "GetCountriesResponseModel" = None
+    response: "GetCountriesResponseModel"
 
 
 class GetFacultiesResponse(BaseResponse):
-    response: "GetFacultiesResponseModel" = None
+    response: "GetFacultiesResponseModel"
 
 
 class GetMetroStationsByIdResponse(BaseResponse):
-    response: typing.List["DatabaseStation"] = None
+    response: typing.List["DatabaseStation"]
 
 
 class GetMetroStationsResponse(BaseResponse):
-    response: "GetMetroStationsResponseModel" = None
+    response: "GetMetroStationsResponseModel"
 
 
 class GetRegionsResponse(BaseResponse):
-    response: "GetRegionsResponseModel" = None
+    response: "GetRegionsResponseModel"
 
 
 class GetSchoolClassesResponse(BaseResponse):
-    response: typing.List[list] = None
+    response: typing.List[list]
 
 
 class GetSchoolsResponse(BaseResponse):
-    response: "GetSchoolsResponseModel" = None
+    response: "GetSchoolsResponseModel"
 
 
 class GetUniversitiesResponse(BaseResponse):
-    response: "GetUniversitiesResponseModel" = None
+    response: "GetUniversitiesResponseModel"
 
 
 class GetChairsResponseModel(BaseResponse):

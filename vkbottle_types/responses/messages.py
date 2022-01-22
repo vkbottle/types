@@ -27,151 +27,151 @@ from vkbottle_types.objects import (
 
 
 class CreateChatResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class DeleteChatPhotoResponse(BaseResponse):
-    response: "DeleteChatPhotoResponseModel" = None
+    response: "DeleteChatPhotoResponseModel"
 
 
 class DeleteConversationResponse(BaseResponse):
-    response: "DeleteConversationResponseModel" = None
+    response: "DeleteConversationResponseModel"
 
 
 class DeleteResponse(BaseResponse):
-    response: typing.Dict[str, int] = None
+    response: typing.Dict[str, int]
 
 
 class EditResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetByConversationMessageIdResponse(BaseResponse):
-    response: "GetByConversationMessageIdResponseModel" = None
+    response: "GetByConversationMessageIdResponseModel"
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel" = None
+    response: "GetByIdExtendedResponseModel"
 
 
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
+    response: "GetByIdResponseModel"
 
 
 class GetChatPreviewResponse(BaseResponse):
-    response: "GetChatPreviewResponseModel" = None
+    response: "GetChatPreviewResponseModel"
 
 
 class GetChatChatIdsFieldsResponse(BaseResponse):
-    response: typing.List["MessagesChatFull"] = None
+    response: typing.List["MessagesChatFull"]
 
 
 class GetChatChatIdsResponse(BaseResponse):
-    response: typing.List["MessagesChat"] = None
+    response: typing.List["MessagesChat"]
 
 
 class GetChatFieldsResponse(BaseResponse):
-    response: MessagesChatFull = None
+    response: MessagesChatFull
 
 
 class GetChatResponse(BaseResponse):
-    response: MessagesChat = None
+    response: MessagesChat
 
 
 class GetConversationMembersResponse(BaseResponse):
-    response: MessagesGetConversationMembers = None
+    response: MessagesGetConversationMembers
 
 
 class GetConversationsByIdExtendedResponse(BaseResponse):
-    response: MessagesGetConversationByIdExtended = None
+    response: MessagesGetConversationByIdExtended
 
 
 class GetConversationsByIdResponse(BaseResponse):
-    response: MessagesGetConversationById = None
+    response: MessagesGetConversationById
 
 
 class GetConversationsResponse(BaseResponse):
-    response: "GetConversationsResponseModel" = None
+    response: "GetConversationsResponseModel"
 
 
 class GetHistoryAttachmentsResponse(BaseResponse):
-    response: "GetHistoryAttachmentsResponseModel" = None
+    response: "GetHistoryAttachmentsResponseModel"
 
 
 class GetHistoryExtendedResponse(BaseResponse):
-    response: "GetHistoryExtendedResponseModel" = None
+    response: "GetHistoryExtendedResponseModel"
 
 
 class GetHistoryResponse(BaseResponse):
-    response: "GetHistoryResponseModel" = None
+    response: "GetHistoryResponseModel"
 
 
 class GetImportantMessagesExtendedResponse(BaseResponse):
-    response: "GetImportantMessagesExtendedResponseModel" = None
+    response: "GetImportantMessagesExtendedResponseModel"
 
 
 class GetImportantMessagesResponse(BaseResponse):
-    response: "GetImportantMessagesResponseModel" = None
+    response: "GetImportantMessagesResponseModel"
 
 
 class GetIntentUsersResponse(BaseResponse):
-    response: "GetIntentUsersResponseModel" = None
+    response: "GetIntentUsersResponseModel"
 
 
 class GetInviteLinkResponse(BaseResponse):
-    response: "GetInviteLinkResponseModel" = None
+    response: "GetInviteLinkResponseModel"
 
 
 class GetLastActivityResponse(BaseResponse):
-    response: MessagesLastActivity = None
+    response: MessagesLastActivity
 
 
 class GetLongPollHistoryResponse(BaseResponse):
-    response: "GetLongPollHistoryResponseModel" = None
+    response: "GetLongPollHistoryResponseModel"
 
 
 class GetLongPollServerResponse(BaseResponse):
-    response: MessagesLongpollParams = None
+    response: MessagesLongpollParams
 
 
 class IsMessagesFromGroupAllowedResponse(BaseResponse):
-    response: "IsMessagesFromGroupAllowedResponseModel" = None
+    response: "IsMessagesFromGroupAllowedResponseModel"
 
 
 class JoinChatByInviteLinkResponse(BaseResponse):
-    response: "JoinChatByInviteLinkResponseModel" = None
+    response: "JoinChatByInviteLinkResponseModel"
 
 
 class MarkAsImportantResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class PinResponse(BaseResponse):
-    response: MessagesPinnedMessage = None
+    response: MessagesPinnedMessage
 
 
 class SearchConversationsExtendedResponse(BaseResponse):
-    response: "SearchConversationsExtendedResponseModel" = None
+    response: "SearchConversationsExtendedResponseModel"
 
 
 class SearchConversationsResponse(BaseResponse):
-    response: "SearchConversationsResponseModel" = None
+    response: "SearchConversationsResponseModel"
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel" = None
+    response: "SearchExtendedResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class SendResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class SendUserIdsResponse(BaseResponse):
-    response: typing.List["MessagesSendUserIdsResponseItem"] = None
+    response: typing.List["MessagesSendUserIdsResponseItem"]
 
 
 class SendPeerIdsResponse(SendUserIdsResponse):
@@ -179,7 +179,7 @@ class SendPeerIdsResponse(SendUserIdsResponse):
 
 
 class SetChatPhotoResponse(BaseResponse):
-    response: "SetChatPhotoResponseModel" = None
+    response: "SetChatPhotoResponseModel"
 
 
 class DeleteChatPhotoResponseModel(BaseResponse):

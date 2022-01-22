@@ -10,27 +10,27 @@ from vkbottle_types.objects import (
 
 
 class GetFollowersFieldsResponse(BaseResponse):
-    response: "GetFollowersFieldsResponseModel" = None
+    response: "GetFollowersFieldsResponseModel"
 
 
 class GetFollowersResponse(BaseResponse):
-    response: "GetFollowersResponseModel" = None
+    response: "GetFollowersResponseModel"
 
 
 class GetSubscriptionsExtendedResponse(BaseResponse):
-    response: "GetSubscriptionsExtendedResponseModel" = None
+    response: "GetSubscriptionsExtendedResponseModel"
 
 
 class GetSubscriptionsResponse(BaseResponse):
-    response: "GetSubscriptionsResponseModel" = None
+    response: "GetSubscriptionsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: typing.List["UsersUserFull"] = None
+    response: typing.List["UsersUserFull"]
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class GetFollowersFieldsResponseModel(BaseResponse):

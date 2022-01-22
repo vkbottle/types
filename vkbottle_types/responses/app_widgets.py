@@ -5,31 +5,31 @@ from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
 
 
 class GetAppImageUploadServerResponse(BaseResponse):
-    response: "GetAppImageUploadServerResponseModel" = None
+    response: "GetAppImageUploadServerResponseModel"
 
 
 class GetAppImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos = None
+    response: AppWidgetsPhotos
 
 
 class GetGroupImageUploadServerResponse(BaseResponse):
-    response: "GetGroupImageUploadServerResponseModel" = None
+    response: "GetGroupImageUploadServerResponseModel"
 
 
 class GetGroupImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos = None
+    response: AppWidgetsPhotos
 
 
 class GetImagesByIdResponse(BaseResponse):
-    response: typing.List["AppWidgetsPhoto"] = None
+    response: typing.List["AppWidgetsPhoto"]
 
 
 class SaveAppImageResponse(BaseResponse):
-    response: AppWidgetsPhoto = None
+    response: AppWidgetsPhoto
 
 
 class SaveGroupImageResponse(BaseResponse):
-    response: AppWidgetsPhoto = None
+    response: AppWidgetsPhoto
 
 
 class GetAppImageUploadServerResponseModel(BaseResponse):

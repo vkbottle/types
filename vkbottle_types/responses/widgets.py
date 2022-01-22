@@ -5,11 +5,11 @@ from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetPagesResponse(BaseResponse):
-    response: "GetPagesResponseModel" = None
+    response: "GetPagesResponseModel"
 
 
 class GetCommentsResponseModel(BaseResponse):

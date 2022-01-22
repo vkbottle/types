@@ -5,23 +5,23 @@ from vkbottle_types.objects import NotesNote, NotesNoteComment
 
 
 class AddResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class CreateCommentResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetByIdResponse(BaseResponse):
-    response: NotesNote = None
+    response: NotesNote
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class GetCommentsResponseModel(BaseResponse):

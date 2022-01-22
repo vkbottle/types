@@ -12,43 +12,43 @@ from vkbottle_types.objects import (
 
 
 class GetCatalogResponse(BaseResponse):
-    response: AppsCatalogList = None
+    response: AppsCatalogList
 
 
 class GetFriendsListResponse(BaseResponse):
-    response: "GetFriendsListResponseModel" = None
+    response: "GetFriendsListResponseModel"
 
 
 class GetLeaderboardExtendedResponse(BaseResponse):
-    response: "GetLeaderboardExtendedResponseModel" = None
+    response: "GetLeaderboardExtendedResponseModel"
 
 
 class GetLeaderboardResponse(BaseResponse):
-    response: "GetLeaderboardResponseModel" = None
+    response: "GetLeaderboardResponseModel"
 
 
 class GetMiniAppPoliciesResponse(BaseResponse):
-    response: "GetMiniAppPoliciesResponseModel" = None
+    response: "GetMiniAppPoliciesResponseModel"
 
 
 class GetScopesResponse(BaseResponse):
-    response: "GetScopesResponseModel" = None
+    response: "GetScopesResponseModel"
 
 
 class GetScoreResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class ImageUploadResponse(BaseResponse):
-    response: "ImageUploadResponseModel" = None
+    response: "ImageUploadResponseModel"
 
 
 class SendRequestResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetFriendsListResponseModel(BaseResponse):

@@ -29,159 +29,159 @@ from vkbottle_types.objects import (
 
 
 class AddOfficeUsersResponse(BaseResponse):
-    response: bool = None
+    response: bool
 
 
 class CheckLinkResponse(BaseResponse):
-    response: AdsLinkStatus = None
+    response: AdsLinkStatus
 
 
 class CreateAdsResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class CreateCampaignsResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class CreateClientsResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class CreateTargetGroupResponse(BaseResponse):
-    response: "CreateTargetGroupResponseModel" = None
+    response: "CreateTargetGroupResponseModel"
 
 
 class DeleteAdsResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class DeleteCampaignsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class DeleteClientsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetAccountsResponse(BaseResponse):
-    response: typing.List["AdsAccount"] = None
+    response: typing.List["AdsAccount"]
 
 
 class GetAdsLayoutResponse(BaseResponse):
-    response: typing.List["AdsAdLayout"] = None
+    response: typing.List["AdsAdLayout"]
 
 
 class GetAdsTargetingResponse(BaseResponse):
-    response: typing.List["AdsTargSettings"] = None
+    response: typing.List["AdsTargSettings"]
 
 
 class GetAdsResponse(BaseResponse):
-    response: typing.List["AdsAd"] = None
+    response: typing.List["AdsAd"]
 
 
 class GetBudgetResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetCampaignsResponse(BaseResponse):
-    response: typing.List["AdsCampaign"] = None
+    response: typing.List["AdsCampaign"]
 
 
 class GetCategoriesResponse(BaseResponse):
-    response: "GetCategoriesResponseModel" = None
+    response: "GetCategoriesResponseModel"
 
 
 class GetClientsResponse(BaseResponse):
-    response: typing.List["AdsClient"] = None
+    response: typing.List["AdsClient"]
 
 
 class GetDemographicsResponse(BaseResponse):
-    response: typing.List["AdsDemoStats"] = None
+    response: typing.List["AdsDemoStats"]
 
 
 class GetFloodStatsResponse(BaseResponse):
-    response: AdsFloodStats = None
+    response: AdsFloodStats
 
 
 class GetLookalikeRequestsResponse(BaseResponse):
-    response: "GetLookalikeRequestsResponseModel" = None
+    response: "GetLookalikeRequestsResponseModel"
 
 
 class GetMusiciansResponse(BaseResponse):
-    response: "GetMusiciansResponseModel" = None
+    response: "GetMusiciansResponseModel"
 
 
 class GetOfficeUsersResponse(BaseResponse):
-    response: typing.List["AdsUsers"] = None
+    response: typing.List["AdsUsers"]
 
 
 class GetPostsReachResponse(BaseResponse):
-    response: typing.List["AdsPromotedPostReach"] = None
+    response: typing.List["AdsPromotedPostReach"]
 
 
 class GetRejectionReasonResponse(BaseResponse):
-    response: AdsRejectReason = None
+    response: AdsRejectReason
 
 
 class GetStatisticsResponse(BaseResponse):
-    response: typing.List["AdsStats"] = None
+    response: typing.List["AdsStats"]
 
 
 class GetSuggestionsCitiesResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsCities"] = None
+    response: typing.List["AdsTargSuggestionsCities"]
 
 
 class GetSuggestionsRegionsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsRegions"] = None
+    response: typing.List["AdsTargSuggestionsRegions"]
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestions"] = None
+    response: typing.List["AdsTargSuggestions"]
 
 
 class GetSuggestionsSchoolsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsSchools"] = None
+    response: typing.List["AdsTargSuggestionsSchools"]
 
 
 class GetTargetGroupsResponse(BaseResponse):
-    response: typing.List["AdsTargetGroup"] = None
+    response: typing.List["AdsTargetGroup"]
 
 
 class GetTargetingStatsResponse(BaseResponse):
-    response: AdsTargStats = None
+    response: AdsTargStats
 
 
 class GetUploadURLResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class GetVideoUploadURLResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class ImportTargetContactsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class RemoveOfficeUsersResponse(BaseResponse):
-    response: bool = None
+    response: bool
 
 
 class UpdateAdsResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class UpdateCampaignsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class UpdateClientsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class UpdateOfficeUsersResponse(BaseResponse):
-    response: typing.List["AdsUpdateOfficeUsersResult"] = None
+    response: typing.List["AdsUpdateOfficeUsersResult"]
 
 
 class CreateTargetGroupResponseModel(BaseResponse):

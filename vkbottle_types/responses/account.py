@@ -15,39 +15,39 @@ from vkbottle_types.objects import (
 
 
 class ChangePasswordResponse(BaseResponse):
-    response: "ChangePasswordResponseModel" = None
+    response: "ChangePasswordResponseModel"
 
 
 class GetActiveOffersResponse(BaseResponse):
-    response: "GetActiveOffersResponseModel" = None
+    response: "GetActiveOffersResponseModel"
 
 
 class GetAppPermissionsResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel" = None
+    response: "GetBannedResponseModel"
 
 
 class GetCountersResponse(BaseResponse):
-    response: AccountAccountCounters = None
+    response: AccountAccountCounters
 
 
 class GetInfoResponse(BaseResponse):
-    response: AccountInfo = None
+    response: AccountInfo
 
 
 class GetProfileInfoResponse(BaseResponse):
-    response: AccountUserSettings = None
+    response: AccountUserSettings
 
 
 class GetPushSettingsResponse(BaseResponse):
-    response: AccountPushSettings = None
+    response: AccountPushSettings
 
 
 class SaveProfileInfoResponse(BaseResponse):
-    response: "SaveProfileInfoResponseModel" = None
+    response: "SaveProfileInfoResponseModel"
 
 
 class ChangePasswordResponseModel(BaseResponse):

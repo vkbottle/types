@@ -12,35 +12,35 @@ from vkbottle_types.objects import (
 
 
 class AddResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class DocUploadResponse(BaseResponse):
-    response: "DocUploadResponseModel" = None
+    response: "DocUploadResponseModel"
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.List["DocsDoc"] = None
+    response: typing.List["DocsDoc"]
 
 
 class GetTypesResponse(BaseResponse):
-    response: "GetTypesResponseModel" = None
+    response: "GetTypesResponseModel"
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: BaseUploadServer = None
+    response: BaseUploadServer
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class SaveResponse(BaseResponse):
-    response: "SaveResponseModel" = None
+    response: "SaveResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class DocUploadResponseModel(BaseResponse):

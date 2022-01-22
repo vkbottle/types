@@ -5,7 +5,7 @@ from vkbottle_types.objects import SearchHint
 
 
 class GetHintsResponse(BaseResponse):
-    response: "GetHintsResponseModel" = None
+    response: "GetHintsResponseModel"
 
 
 class GetHintsResponseModel(BaseResponse):

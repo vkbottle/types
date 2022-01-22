@@ -4,7 +4,7 @@ from .base_response import BaseResponse
 
 
 class GetServerUrlResponse(BaseResponse):
-    response: "GetServerUrlResponseModel" = None
+    response: "GetServerUrlResponseModel"
 
 
 class GetServerUrlResponseModel(BaseResponse):

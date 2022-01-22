@@ -5,7 +5,7 @@ from vkbottle_types.objects import GiftsGift
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class GetResponseModel(BaseResponse):

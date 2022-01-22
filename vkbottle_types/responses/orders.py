@@ -10,35 +10,35 @@ from vkbottle_types.objects import (
 
 
 class CancelSubscriptionResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class ChangeStateResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class GetAmountResponse(BaseResponse):
-    response: typing.List["OrdersAmount"] = None
+    response: typing.List["OrdersAmount"]
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.List["OrdersOrder"] = None
+    response: typing.List["OrdersOrder"]
 
 
 class GetUserSubscriptionByIdResponse(BaseResponse):
-    response: OrdersSubscription = None
+    response: OrdersSubscription
 
 
 class GetUserSubscriptionsResponse(BaseResponse):
-    response: "GetUserSubscriptionsResponseModel" = None
+    response: "GetUserSubscriptionsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: typing.List["OrdersOrder"] = None
+    response: typing.List["OrdersOrder"]
 
 
 class UpdateSubscriptionResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetUserSubscriptionsResponseModel(BaseResponse):

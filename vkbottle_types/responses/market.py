@@ -17,87 +17,87 @@ from vkbottle_types.objects import (
 
 
 class AddAlbumResponse(BaseResponse):
-    response: "AddAlbumResponseModel" = None
+    response: "AddAlbumResponseModel"
 
 
 class AddResponse(BaseResponse):
-    response: "AddResponseModel" = None
+    response: "AddResponseModel"
 
 
 class CreateCommentResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class DeleteCommentResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetAlbumByIdResponse(BaseResponse):
-    response: "GetAlbumByIdResponseModel" = None
+    response: "GetAlbumByIdResponseModel"
 
 
 class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel" = None
+    response: "GetAlbumsResponseModel"
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel" = None
+    response: "GetByIdExtendedResponseModel"
 
 
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
+    response: "GetByIdResponseModel"
 
 
 class GetCategoriesNewResponse(BaseResponse):
-    response: "GetCategoriesNewResponseModel" = None
+    response: "GetCategoriesNewResponseModel"
 
 
 class GetCategoriesResponse(BaseResponse):
-    response: "GetCategoriesResponseModel" = None
+    response: "GetCategoriesResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetGroupOrdersResponse(BaseResponse):
-    response: "GetGroupOrdersResponseModel" = None
+    response: "GetGroupOrdersResponseModel"
 
 
 class GetOrderByIdResponse(BaseResponse):
-    response: "GetOrderByIdResponseModel" = None
+    response: "GetOrderByIdResponseModel"
 
 
 class GetOrderItemsResponse(BaseResponse):
-    response: "GetOrderItemsResponseModel" = None
+    response: "GetOrderItemsResponseModel"
 
 
 class GetOrdersExtendedResponse(BaseResponse):
-    response: "GetOrdersExtendedResponseModel" = None
+    response: "GetOrdersExtendedResponseModel"
 
 
 class GetOrdersResponse(BaseResponse):
-    response: "GetOrdersResponseModel" = None
+    response: "GetOrdersResponseModel"
 
 
 class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel" = None
+    response: "GetExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel" = None
+    response: "SearchExtendedResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class AddAlbumResponseModel(BaseResponse):

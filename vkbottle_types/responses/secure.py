@@ -11,31 +11,31 @@ from vkbottle_types.objects import (
 
 
 class CheckTokenResponse(BaseResponse):
-    response: SecureTokenChecked = None
+    response: SecureTokenChecked
 
 
 class GetAppBalanceResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetSMSHistoryResponse(BaseResponse):
-    response: typing.List["SecureSmsNotification"] = None
+    response: typing.List["SecureSmsNotification"]
 
 
 class GetTransactionsHistoryResponse(BaseResponse):
-    response: typing.List["SecureTransaction"] = None
+    response: typing.List["SecureTransaction"]
 
 
 class GetUserLevelResponse(BaseResponse):
-    response: typing.List["SecureLevel"] = None
+    response: typing.List["SecureLevel"]
 
 
 class GiveEventStickerResponse(BaseResponse):
-    response: typing.List["SecureGiveEventStickerItem"] = None
+    response: typing.List["SecureGiveEventStickerItem"]
 
 
 class SendNotificationResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 for item in locals().copy().values():

@@ -4,7 +4,7 @@ from vkbottle_types.objects import StatusStatus
 
 
 class GetResponse(BaseResponse):
-    response: StatusStatus = None
+    response: StatusStatus
 
 
 for item in locals().copy().values():

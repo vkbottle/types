@@ -15,55 +15,55 @@ from vkbottle_types.objects import (
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: "GetBannedExtendedResponseModel" = None
+    response: "GetBannedExtendedResponseModel"
 
 
 class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel" = None
+    response: "GetBannedResponseModel"
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel" = None
+    response: "GetByIdExtendedResponseModel"
 
 
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
+    response: "GetByIdResponseModel"
 
 
 class GetPhotoUploadServerResponse(BaseResponse):
-    response: "GetPhotoUploadServerResponseModel" = None
+    response: "GetPhotoUploadServerResponseModel"
 
 
 class GetStatsResponse(BaseResponse):
-    response: StoriesStoryStats = None
+    response: StoriesStoryStats
 
 
 class GetVideoUploadServerResponse(BaseResponse):
-    response: "GetVideoUploadServerResponseModel" = None
+    response: "GetVideoUploadServerResponseModel"
 
 
 class GetViewersExtendedV5115Response(BaseResponse):
-    response: "GetViewersExtendedV5115ResponseModel" = None
+    response: "GetViewersExtendedV5115ResponseModel"
 
 
 class GetViewersExtendedResponse(BaseResponse):
-    response: "GetViewersExtendedResponseModel" = None
+    response: "GetViewersExtendedResponseModel"
 
 
 class GetV5113Response(BaseResponse):
-    response: "GetV5113ResponseModel" = None
+    response: "GetV5113ResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class SaveResponse(BaseResponse):
-    response: "SaveResponseModel" = None
+    response: "SaveResponseModel"
 
 
 class UploadResponse(BaseResponse):
-    response: "UploadResponseModel" = None
+    response: "UploadResponseModel"
 
 
 class GetBannedExtendedResponseModel(BaseResponse):

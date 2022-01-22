@@ -9,11 +9,11 @@ from vkbottle_types.objects import (
 
 
 class GetSubscriptionResponse(BaseResponse):
-    response: DonutDonatorSubscriptionInfo = None
+    response: DonutDonatorSubscriptionInfo
 
 
 class GetSubscriptionsResponse(BaseResponse):
-    response: "GetSubscriptionsResponseModel" = None
+    response: "GetSubscriptionsResponseModel"
 
 
 class GetSubscriptionsResponseModel(BaseResponse):

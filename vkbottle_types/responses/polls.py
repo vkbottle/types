@@ -5,31 +5,31 @@ from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, Poll
 
 
 class AddVoteResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class CreateResponse(BaseResponse):
-    response: PollsPoll = None
+    response: PollsPoll
 
 
 class DeleteVoteResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetBackgroundsResponse(BaseResponse):
-    response: typing.List["PollsBackground"] = None
+    response: typing.List["PollsBackground"]
 
 
 class GetByIdResponse(BaseResponse):
-    response: PollsPoll = None
+    response: PollsPoll
 
 
 class GetVotersResponse(BaseResponse):
-    response: typing.List["PollsVoters"] = None
+    response: typing.List["PollsVoters"]
 
 
 class SavePhotoResponse(BaseResponse):
-    response: PollsBackground = None
+    response: PollsBackground
 
 
 for item in locals().copy().values():

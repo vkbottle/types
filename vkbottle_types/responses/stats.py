@@ -5,11 +5,11 @@ from vkbottle_types.objects import StatsPeriod, StatsWallpostStat
 
 
 class GetPostReachResponse(BaseResponse):
-    response: typing.List["StatsWallpostStat"] = None
+    response: typing.List["StatsWallpostStat"]
 
 
 class GetResponse(BaseResponse):
-    response: typing.List["StatsPeriod"] = None
+    response: typing.List["StatsPeriod"]
 
 
 for item in locals().copy().values():

@@ -15,63 +15,63 @@ from vkbottle_types.objects import (
 
 
 class AddAlbumResponse(BaseResponse):
-    response: "AddAlbumResponseModel" = None
+    response: "AddAlbumResponseModel"
 
 
 class CreateCommentResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetAlbumByIdResponse(BaseResponse):
-    response: VideoVideoAlbumFull = None
+    response: VideoVideoAlbumFull
 
 
 class GetAlbumsByVideoExtendedResponse(BaseResponse):
-    response: "GetAlbumsByVideoExtendedResponseModel" = None
+    response: "GetAlbumsByVideoExtendedResponseModel"
 
 
 class GetAlbumsByVideoResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class GetAlbumsExtendedResponse(BaseResponse):
-    response: "GetAlbumsExtendedResponseModel" = None
+    response: "GetAlbumsExtendedResponseModel"
 
 
 class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel" = None
+    response: "GetAlbumsResponseModel"
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel" = None
+    response: "GetCommentsExtendedResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class SaveResponse(BaseResponse):
-    response: VideoSaveResult = None
+    response: VideoSaveResult
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel" = None
+    response: "SearchExtendedResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class UploadResponse(BaseResponse):
-    response: "UploadResponseModel" = None
+    response: "UploadResponseModel"
 
 
 class AddAlbumResponseModel(BaseResponse):

@@ -4,7 +4,7 @@ from .base_response import BaseResponse
 
 
 class PaidStatusResponse(BaseResponse):
-    response: "PaidStatusResponseModel" = None
+    response: "PaidStatusResponseModel"
 
 
 class PaidStatusResponseModel(BaseResponse):

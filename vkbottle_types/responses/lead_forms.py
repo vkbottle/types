@@ -5,27 +5,27 @@ from vkbottle_types.objects import LeadFormsForm, LeadFormsLead
 
 
 class CreateResponse(BaseResponse):
-    response: "CreateResponseModel" = None
+    response: "CreateResponseModel"
 
 
 class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel" = None
+    response: "DeleteResponseModel"
 
 
 class GetLeadsResponse(BaseResponse):
-    response: "GetLeadsResponseModel" = None
+    response: "GetLeadsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: LeadFormsForm = None
+    response: LeadFormsForm
 
 
 class ListResponse(BaseResponse):
-    response: typing.List["LeadFormsForm"] = None
+    response: typing.List["LeadFormsForm"]
 
 
 class UploadUrlResponse(BaseResponse):
-    response: str = None
+    response: str
 
 
 class CreateResponseModel(BaseResponse):

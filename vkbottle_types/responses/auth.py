@@ -4,7 +4,7 @@ from .base_response import BaseResponse
 
 
 class RestoreResponse(BaseResponse):
-    response: "RestoreResponseModel" = None
+    response: "RestoreResponseModel"
 
 
 class RestoreResponseModel(BaseResponse):

@@ -11,23 +11,23 @@ from vkbottle_types.objects import (
 
 
 class AddTagResponse(BaseResponse):
-    response: FaveTag = None
+    response: FaveTag
 
 
 class GetPagesResponse(BaseResponse):
-    response: "GetPagesResponseModel" = None
+    response: "GetPagesResponseModel"
 
 
 class GetTagsResponse(BaseResponse):
-    response: "GetTagsResponseModel" = None
+    response: "GetTagsResponseModel"
 
 
 class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel" = None
+    response: "GetExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class GetPagesResponseModel(BaseResponse):

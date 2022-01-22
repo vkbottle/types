@@ -12,71 +12,71 @@ from vkbottle_types.objects import (
 
 
 class CreateCommentResponse(BaseResponse):
-    response: "CreateCommentResponseModel" = None
+    response: "CreateCommentResponseModel"
 
 
 class EditResponse(BaseResponse):
-    response: "EditResponseModel" = None
+    response: "EditResponseModel"
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel" = None
+    response: "GetByIdExtendedResponseModel"
 
 
 class GetByIdLegacyResponse(BaseResponse):
-    response: typing.List["WallWallpostFull"] = None
+    response: typing.List["WallWallpostFull"]
 
 
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
+    response: "GetByIdResponseModel"
 
 
 class GetCommentExtendedResponse(BaseResponse):
-    response: "GetCommentExtendedResponseModel" = None
+    response: "GetCommentExtendedResponseModel"
 
 
 class GetCommentResponse(BaseResponse):
-    response: "GetCommentResponseModel" = None
+    response: "GetCommentResponseModel"
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel" = None
+    response: "GetCommentsExtendedResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetRepostsResponse(BaseResponse):
-    response: "GetRepostsResponseModel" = None
+    response: "GetRepostsResponseModel"
 
 
 class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel" = None
+    response: "GetExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class PostAdsStealthResponse(BaseResponse):
-    response: "PostAdsStealthResponseModel" = None
+    response: "PostAdsStealthResponseModel"
 
 
 class PostResponse(BaseResponse):
-    response: "PostResponseModel" = None
+    response: "PostResponseModel"
 
 
 class RepostResponse(BaseResponse):
-    response: "RepostResponseModel" = None
+    response: "RepostResponseModel"
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel" = None
+    response: "SearchExtendedResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class CreateCommentResponseModel(BaseResponse):

@@ -4,15 +4,15 @@ from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
 
 
 class BoolResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: BaseUploadServer = None
+    response: BaseUploadServer
 
 
 class OkResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 for item in locals().copy().values():

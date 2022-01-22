@@ -14,27 +14,27 @@ from vkbottle_types.objects import (
 
 
 class AddTopicResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class CreateCommentResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel" = None
+    response: "GetCommentsExtendedResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetTopicsExtendedResponse(BaseResponse):
-    response: "GetTopicsExtendedResponseModel" = None
+    response: "GetTopicsExtendedResponseModel"
 
 
 class GetTopicsResponse(BaseResponse):
-    response: "GetTopicsResponseModel" = None
+    response: "GetTopicsResponseModel"
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):

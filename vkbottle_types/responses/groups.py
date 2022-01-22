@@ -41,143 +41,143 @@ from vkbottle_types.objects import (
 
 
 class AddAddressResponse(BaseResponse):
-    response: GroupsAddress = None
+    response: GroupsAddress
 
 
 class AddCallbackServerResponse(BaseResponse):
-    response: "AddCallbackServerResponseModel" = None
+    response: "AddCallbackServerResponseModel"
 
 
 class AddLinkResponse(BaseResponse):
-    response: GroupsLinksItem = None
+    response: GroupsLinksItem
 
 
 class CreateResponse(BaseResponse):
-    response: GroupsGroup = None
+    response: GroupsGroup
 
 
 class EditAddressResponse(BaseResponse):
-    response: GroupsAddress = None
+    response: GroupsAddress
 
 
 class GetAddressesResponse(BaseResponse):
-    response: "GetAddressesResponseModel" = None
+    response: "GetAddressesResponseModel"
 
 
 class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel" = None
+    response: "GetBannedResponseModel"
 
 
 class GetByIdObjectLegacyResponse(BaseResponse):
-    response: typing.List["GroupsGroupFull"] = None
+    response: typing.List["GroupsGroupFull"]
 
 
 class GetCallbackConfirmationCodeResponse(BaseResponse):
-    response: "GetCallbackConfirmationCodeResponseModel" = None
+    response: "GetCallbackConfirmationCodeResponseModel"
 
 
 class GetCallbackServersResponse(BaseResponse):
-    response: "GetCallbackServersResponseModel" = None
+    response: "GetCallbackServersResponseModel"
 
 
 class GetCallbackSettingsResponse(BaseResponse):
-    response: GroupsCallbackSettings = None
+    response: GroupsCallbackSettings
 
 
 class GetCatalogInfoExtendedResponse(BaseResponse):
-    response: "GetCatalogInfoExtendedResponseModel" = None
+    response: "GetCatalogInfoExtendedResponseModel"
 
 
 class GetCatalogInfoResponse(BaseResponse):
-    response: "GetCatalogInfoResponseModel" = None
+    response: "GetCatalogInfoResponseModel"
 
 
 class GetCatalogResponse(BaseResponse):
-    response: "GetCatalogResponseModel" = None
+    response: "GetCatalogResponseModel"
 
 
 class GetInvitedUsersResponse(BaseResponse):
-    response: "GetInvitedUsersResponseModel" = None
+    response: "GetInvitedUsersResponseModel"
 
 
 class GetInvitesExtendedResponse(BaseResponse):
-    response: "GetInvitesExtendedResponseModel" = None
+    response: "GetInvitesExtendedResponseModel"
 
 
 class GetInvitesResponse(BaseResponse):
-    response: "GetInvitesResponseModel" = None
+    response: "GetInvitesResponseModel"
 
 
 class GetLongPollServerResponse(BaseResponse):
-    response: GroupsLongPollServer = None
+    response: GroupsLongPollServer
 
 
 class GetLongPollSettingsResponse(BaseResponse):
-    response: GroupsLongPollSettings = None
+    response: GroupsLongPollSettings
 
 
 class GetMembersFieldsResponse(BaseResponse):
-    response: "GetMembersFieldsResponseModel" = None
+    response: "GetMembersFieldsResponseModel"
 
 
 class GetMembersFilterManagersResponse(BaseResponse):
-    response: "GetMembersFilterManagersResponseModel" = None
+    response: "GetMembersFilterManagersResponseModel"
 
 
 class GetMembersFieldsFilterManagersResponse(BaseResponse):
-    response: "GetMembersFilterManagersResponseModel" = None
+    response: "GetMembersFieldsFilterManagersResponseModel"
 
 
 class GetMembersResponse(BaseResponse):
-    response: "GetMembersResponseModel" = None
+    response: "GetMembersResponseModel"
 
 
 class GetRequestsFieldsResponse(BaseResponse):
-    response: "GetRequestsFieldsResponseModel" = None
+    response: "GetRequestsFieldsResponseModel"
 
 
 class GetRequestsResponse(BaseResponse):
-    response: "GetRequestsResponseModel" = None
+    response: "GetRequestsResponseModel"
 
 
 class GetSettingsResponse(BaseResponse):
-    response: "GetSettingsResponseModel" = None
+    response: "GetSettingsResponseModel"
 
 
 class GetTagListResponse(BaseResponse):
-    response: typing.List["GroupsGroupTag"] = None
+    response: typing.List["GroupsGroupTag"]
 
 
 class GetTokenPermissionsResponse(BaseResponse):
-    response: "GetTokenPermissionsResponseModel" = None
+    response: "GetTokenPermissionsResponseModel"
 
 
 class GetObjectExtendedResponse(BaseResponse):
-    response: "GetObjectExtendedResponseModel" = None
+    response: "GetObjectExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class IsMemberExtendedResponse(BaseResponse):
-    response: "IsMemberExtendedResponseModel" = None
+    response: "IsMemberExtendedResponseModel"
 
 
 class IsMemberResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class IsMemberUserIdsExtendedResponse(BaseResponse):
-    response: typing.List["GroupsMemberStatusFull"] = None
+    response: typing.List["GroupsMemberStatusFull"]
 
 
 class IsMemberUserIdsResponse(BaseResponse):
-    response: typing.List["GroupsMemberStatus"] = None
+    response: typing.List["GroupsMemberStatus"]
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class AddCallbackServerResponseModel(BaseResponse):

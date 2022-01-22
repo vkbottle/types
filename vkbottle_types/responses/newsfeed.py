@@ -14,55 +14,55 @@ from vkbottle_types.objects import (
 
 
 class GetBannedExtendedResponse(BaseResponse):
-    response: "GetBannedExtendedResponseModel" = None
+    response: "GetBannedExtendedResponseModel"
 
 
 class GetBannedResponse(BaseResponse):
-    response: "GetBannedResponseModel" = None
+    response: "GetBannedResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetListsExtendedResponse(BaseResponse):
-    response: "GetListsExtendedResponseModel" = None
+    response: "GetListsExtendedResponseModel"
 
 
 class GetListsResponse(BaseResponse):
-    response: "GetListsResponseModel" = None
+    response: "GetListsResponseModel"
 
 
 class GetMentionsResponse(BaseResponse):
-    response: "GetMentionsResponseModel" = None
+    response: "GetMentionsResponseModel"
 
 
 class GetRecommendedResponse(BaseResponse):
-    response: "GetRecommendedResponseModel" = None
+    response: "GetRecommendedResponseModel"
 
 
 class GetSuggestedSourcesResponse(BaseResponse):
-    response: "GetSuggestedSourcesResponseModel" = None
+    response: "GetSuggestedSourcesResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class IgnoreItemResponse(BaseResponse):
-    response: "IgnoreItemResponseModel" = None
+    response: "IgnoreItemResponseModel"
 
 
 class SaveListResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class SearchExtendedResponse(BaseResponse):
-    response: "SearchExtendedResponseModel" = None
+    response: "SearchExtendedResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class GetBannedExtendedResponseModel(BaseResponse):

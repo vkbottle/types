@@ -12,31 +12,31 @@ from vkbottle_types.objects import (
 
 
 class CheckLinkResponse(BaseResponse):
-    response: UtilsLinkChecked = None
+    response: UtilsLinkChecked
 
 
 class GetLastShortenedLinksResponse(BaseResponse):
-    response: "GetLastShortenedLinksResponseModel" = None
+    response: "GetLastShortenedLinksResponseModel"
 
 
 class GetLinkStatsExtendedResponse(BaseResponse):
-    response: UtilsLinkStatsExtended = None
+    response: UtilsLinkStatsExtended
 
 
 class GetLinkStatsResponse(BaseResponse):
-    response: UtilsLinkStats = None
+    response: UtilsLinkStats
 
 
 class GetServerTimeResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetShortLinkResponse(BaseResponse):
-    response: UtilsShortLink = None
+    response: UtilsShortLink
 
 
 class ResolveScreenNameResponse(BaseResponse):
-    response: UtilsDomainResolved = None
+    response: UtilsDomainResolved
 
 
 class GetLastShortenedLinksResponseModel(BaseResponse):

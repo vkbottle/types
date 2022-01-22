@@ -20,171 +20,171 @@ from vkbottle_types.objects import (
 
 
 class CopyResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class CreateAlbumResponse(BaseResponse):
-    response: PhotosPhotoAlbumFull = None
+    response: PhotosPhotoAlbumFull
 
 
 class CreateCommentResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class DeleteCommentResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class GetAlbumsCountResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class GetAlbumsResponse(BaseResponse):
-    response: "GetAlbumsResponseModel" = None
+    response: "GetAlbumsResponseModel"
 
 
 class GetAllCommentsResponse(BaseResponse):
-    response: "GetAllCommentsResponseModel" = None
+    response: "GetAllCommentsResponseModel"
 
 
 class GetAllExtendedResponse(BaseResponse):
-    response: "GetAllExtendedResponseModel" = None
+    response: "GetAllExtendedResponseModel"
 
 
 class GetAllResponse(BaseResponse):
-    response: "GetAllResponseModel" = None
+    response: "GetAllResponseModel"
 
 
 class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel" = None
+    response: "GetByIdExtendedResponseModel"
 
 
 class GetByIdLegacyExtendedResponse(BaseResponse):
-    response: typing.List["PhotosPhotoFull"] = None
+    response: typing.List["PhotosPhotoFull"]
 
 
 class GetByIdLegacyResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel" = None
+    response: "GetByIdResponseModel"
 
 
 class GetCommentsExtendedResponse(BaseResponse):
-    response: "GetCommentsExtendedResponseModel" = None
+    response: "GetCommentsExtendedResponseModel"
 
 
 class GetCommentsResponse(BaseResponse):
-    response: "GetCommentsResponseModel" = None
+    response: "GetCommentsResponseModel"
 
 
 class GetMarketUploadServerResponse(BaseResponse):
-    response: BaseUploadServer = None
+    response: BaseUploadServer
 
 
 class GetMessagesUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload = None
+    response: PhotosPhotoUpload
 
 
 class GetNewTagsResponse(BaseResponse):
-    response: "GetNewTagsResponseModel" = None
+    response: "GetNewTagsResponseModel"
 
 
 class GetTagsResponse(BaseResponse):
-    response: typing.List["PhotosPhotoTag"] = None
+    response: typing.List["PhotosPhotoTag"]
 
 
 class GetUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload = None
+    response: PhotosPhotoUpload
 
 
 class GetUserPhotosExtendedResponse(BaseResponse):
-    response: "GetUserPhotosExtendedResponseModel" = None
+    response: "GetUserPhotosExtendedResponseModel"
 
 
 class GetUserPhotosResponse(BaseResponse):
-    response: "GetUserPhotosResponseModel" = None
+    response: "GetUserPhotosResponseModel"
 
 
 class GetWallUploadServerResponse(BaseResponse):
-    response: PhotosPhotoUpload = None
+    response: PhotosPhotoUpload
 
 
 class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel" = None
+    response: "GetExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class MarketAlbumUploadResponse(BaseResponse):
-    response: "MarketAlbumUploadResponseModel" = None
+    response: "MarketAlbumUploadResponseModel"
 
 
 class MarketUploadResponse(BaseResponse):
-    response: "MarketUploadResponseModel" = None
+    response: "MarketUploadResponseModel"
 
 
 class MessageUploadResponse(BaseResponse):
-    response: "MessageUploadResponseModel" = None
+    response: "MessageUploadResponseModel"
 
 
 class OwnerCoverUploadResponse(BaseResponse):
-    response: "OwnerCoverUploadResponseModel" = None
+    response: "OwnerCoverUploadResponseModel"
 
 
 class OwnerUploadResponse(BaseResponse):
-    response: "OwnerUploadResponseModel" = None
+    response: "OwnerUploadResponseModel"
 
 
 class PhotoUploadResponse(BaseResponse):
-    response: "PhotoUploadResponseModel" = None
+    response: "PhotoUploadResponseModel"
 
 
 class PutTagResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class RestoreCommentResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class SaveMarketAlbumPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class SaveMarketPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class SaveMessagesPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class SaveOwnerCoverPhotoResponse(BaseResponse):
-    response: "SaveOwnerCoverPhotoResponseModel" = None
+    response: "SaveOwnerCoverPhotoResponseModel"
 
 
 class SaveOwnerPhotoResponse(BaseResponse):
-    response: "SaveOwnerPhotoResponseModel" = None
+    response: "SaveOwnerPhotoResponseModel"
 
 
 class SaveWallPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class SaveResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = None
+    response: typing.List["PhotosPhoto"]
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class WallUploadResponse(BaseResponse):
-    response: "WallUploadResponseModel" = None
+    response: "WallUploadResponseModel"
 
 
 class GetAlbumsResponseModel(BaseResponse):

@@ -14,83 +14,83 @@ from vkbottle_types.objects import (
 
 
 class AddListResponse(BaseResponse):
-    response: "AddListResponseModel" = None
+    response: "AddListResponseModel"
 
 
 class AddResponse(BaseResponse):
-    response: int = None
+    response: int
 
 
 class AreFriendsExtendedResponse(BaseResponse):
-    response: typing.List["FriendsFriendExtendedStatus"] = None
+    response: typing.List["FriendsFriendExtendedStatus"]
 
 
 class AreFriendsResponse(BaseResponse):
-    response: typing.List["FriendsFriendStatus"] = None
+    response: typing.List["FriendsFriendStatus"]
 
 
 class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel" = None
+    response: "DeleteResponseModel"
 
 
 class GetAppUsersResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class GetByPhonesResponse(BaseResponse):
-    response: typing.List["FriendsUserXtrPhone"] = None
+    response: typing.List["FriendsUserXtrPhone"]
 
 
 class GetListsResponse(BaseResponse):
-    response: "GetListsResponseModel" = None
+    response: "GetListsResponseModel"
 
 
 class GetMutualResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class GetMutualTargetUidsResponse(BaseResponse):
-    response: typing.List["FriendsMutualFriend"] = None
+    response: typing.List["FriendsMutualFriend"]
 
 
 class GetOnlineOnlineMobileResponse(BaseResponse):
-    response: "GetOnlineOnlineMobileResponseModel" = None
+    response: "GetOnlineOnlineMobileResponseModel"
 
 
 class GetOnlineResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class GetRecentResponse(BaseResponse):
-    response: typing.List[int] = None
+    response: typing.List[int]
 
 
 class GetRequestsExtendedResponse(BaseResponse):
-    response: "GetRequestsExtendedResponseModel" = None
+    response: "GetRequestsExtendedResponseModel"
 
 
 class GetRequestsNeedMutualResponse(BaseResponse):
-    response: "GetRequestsNeedMutualResponseModel" = None
+    response: "GetRequestsNeedMutualResponseModel"
 
 
 class GetRequestsResponse(BaseResponse):
-    response: "GetRequestsResponseModel" = None
+    response: "GetRequestsResponseModel"
 
 
 class GetSuggestionsResponse(BaseResponse):
-    response: "GetSuggestionsResponseModel" = None
+    response: "GetSuggestionsResponseModel"
 
 
 class GetFieldsResponse(BaseResponse):
-    response: "GetFieldsResponseModel" = None
+    response: "GetFieldsResponseModel"
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class SearchResponse(BaseResponse):
-    response: "SearchResponseModel" = None
+    response: "SearchResponseModel"
 
 
 class AddListResponseModel(BaseResponse):

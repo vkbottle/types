@@ -5,7 +5,7 @@ from vkbottle_types.objects import PodcastExternalData
 
 
 class SearchPodcastResponse(BaseResponse):
-    response: "SearchPodcastResponseModel" = None
+    response: "SearchPodcastResponseModel"
 
 
 class SearchPodcastResponseModel(BaseResponse):

@@ -11,27 +11,27 @@ from vkbottle_types.objects import (
 
 
 class GetAdCategoriesResponse(BaseResponse):
-    response: "GetAdCategoriesResponseModel" = None
+    response: "GetAdCategoriesResponseModel"
 
 
 class GetAdUnitCodeResponse(BaseResponse):
-    response: "GetAdUnitCodeResponseModel" = None
+    response: "GetAdUnitCodeResponseModel"
 
 
 class GetAdUnitsResponse(BaseResponse):
-    response: "GetAdUnitsResponseModel" = None
+    response: "GetAdUnitsResponseModel"
 
 
 class GetFraudHistoryResponse(BaseResponse):
-    response: "GetFraudHistoryResponseModel" = None
+    response: "GetFraudHistoryResponseModel"
 
 
 class GetSitesResponse(BaseResponse):
-    response: "GetSitesResponseModel" = None
+    response: "GetSitesResponseModel"
 
 
 class GetStatisticsResponse(BaseResponse):
-    response: "GetStatisticsResponseModel" = None
+    response: "GetStatisticsResponseModel"
 
 
 class GetAdCategoriesResponseModel(BaseResponse):

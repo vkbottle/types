@@ -14,15 +14,15 @@ from vkbottle_types.objects import (
 
 
 class GetResponse(BaseResponse):
-    response: "GetResponseModel" = None
+    response: "GetResponseModel"
 
 
 class MarkAsViewedResponse(BaseResponse):
-    response: BaseBoolInt = None
+    response: BaseBoolInt
 
 
 class SendMessageResponse(BaseResponse):
-    response: typing.List["NotificationsSendMessageItem"] = None
+    response: typing.List["NotificationsSendMessageItem"]
 
 
 class GetResponseModel(BaseResponse):
