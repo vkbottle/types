@@ -70,7 +70,7 @@ class UsersCategory(BaseCategory):
         fields=None,
         name_case=None,
         **kwargs
-    ) -> GetFollowersResponseModel:
+    ) -> typing.Union[GetFollowersResponseModel, GetFollowersFieldsResponseModel]:
         """Returns a list of IDs of followers of the user in question, sorted by date added, most recent first.
 
         :param user_id: User ID.
@@ -121,7 +121,9 @@ class UsersCategory(BaseCategory):
         count=None,
         fields=None,
         **kwargs
-    ) -> GetSubscriptionsResponseModel:
+    ) -> typing.Union[
+        GetSubscriptionsResponseModel, GetSubscriptionsExtendedResponseModel
+    ]:
         """Returns a list of IDs of users and communities followed by the user.
 
         :param user_id: User ID.

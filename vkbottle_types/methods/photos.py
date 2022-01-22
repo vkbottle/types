@@ -328,7 +328,7 @@ class PhotosCategory(BaseCategory):
         offset=None,
         count=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetExtendedResponseModel]:
         """Returns a list of a user's or community's photos.
 
         :param owner_id: ID of the user or community that owns the photos. Use a negative value to designate a community ID.
@@ -437,7 +437,7 @@ class PhotosCategory(BaseCategory):
         need_hidden=None,
         skip_hidden=None,
         **kwargs
-    ) -> GetAllResponseModel:
+    ) -> typing.Union[GetAllResponseModel, GetAllExtendedResponseModel]:
         """Returns a list of photos belonging to a user or community, in reverse chronological order.
 
         :param owner_id: ID of a user or community that owns the photos. Use a negative value to designate a community ID.
@@ -504,7 +504,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_by_id(
         self, photos=None, extended=None, photo_sizes=None, **kwargs
-    ) -> typing.List[PhotosPhoto]:
+    ) -> typing.Union[typing.List[PhotosPhoto], typing.List[PhotosPhotoFull]]:
         """Returns information about photos by their IDs.
 
         :param photos: IDs separated with a comma, that are IDs of users who posted photos and IDs of photos themselves with an underscore character between such IDs. To get information about a photo in the group album, you shall specify group ID instead of user ID. Example: "1_129207899,6492_135055734, , -20629724_271945303"
@@ -589,7 +589,7 @@ class PhotosCategory(BaseCategory):
         extended=None,
         fields=None,
         **kwargs
-    ) -> GetCommentsResponseModel:
+    ) -> typing.Union[GetCommentsResponseModel, GetCommentsExtendedResponseModel]:
         """Returns a list of comments on a photo.
 
         :param photo_id: Photo ID.
@@ -779,7 +779,7 @@ class PhotosCategory(BaseCategory):
 
     async def get_user_photos(
         self, user_id=None, offset=None, count=None, extended=None, sort=None, **kwargs
-    ) -> GetUserPhotosResponseModel:
+    ) -> typing.Union[GetUserPhotosResponseModel, GetUserPhotosExtendedResponseModel]:
         """Returns a list of photos in which a user is tagged.
 
         :param user_id: User ID.

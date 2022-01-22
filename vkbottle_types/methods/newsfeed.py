@@ -130,7 +130,7 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_banned(
         self, extended=None, fields=None, name_case=None, **kwargs
-    ) -> GetBannedResponseModel:
+    ) -> typing.Union[GetBannedResponseModel, GetBannedExtendedResponseModel]:
         """Returns a list of users and communities banned from the current user's newsfeed.
 
         :param extended: '1' — return extra information about users and communities
@@ -196,7 +196,7 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_lists(
         self, list_ids=None, extended=None, **kwargs
-    ) -> GetListsResponseModel:
+    ) -> typing.Union[GetListsResponseModel, GetListsExtendedResponseModel]:
         """Returns a list of newsfeeds followed by the current user.
 
         :param list_ids: numeric list identifiers.
@@ -365,7 +365,7 @@ class NewsfeedCategory(BaseCategory):
         start_from=None,
         fields=None,
         **kwargs
-    ) -> SearchResponseModel:
+    ) -> typing.Union[SearchResponseModel, SearchExtendedResponseModel]:
         """Returns search results by statuses.
 
         :param q: Search query string (e.g., 'New Year').

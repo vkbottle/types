@@ -354,7 +354,7 @@ class MarketCategory(BaseCategory):
         need_variants=None,
         with_disabled=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetExtendedResponseModel]:
         """Returns items list for a community.
 
         :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
@@ -427,7 +427,7 @@ class MarketCategory(BaseCategory):
 
     async def get_by_id(
         self, item_ids=None, extended=None, **kwargs
-    ) -> GetByIdResponseModel:
+    ) -> typing.Union[GetByIdResponseModel, GetByIdExtendedResponseModel]:
         """Returns information about market items by their ids.
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
@@ -582,7 +582,7 @@ class MarketCategory(BaseCategory):
         date_from=None,
         date_to=None,
         **kwargs
-    ) -> GetOrdersResponseModel:
+    ) -> typing.Union[GetOrdersResponseModel, GetOrdersExtendedResponseModel]:
         """market.getOrders method
 
         :param offset:
@@ -777,7 +777,7 @@ class MarketCategory(BaseCategory):
         status=None,
         need_variants=None,
         **kwargs
-    ) -> SearchResponseModel:
+    ) -> typing.Union[SearchResponseModel, SearchExtendedResponseModel]:
         """Searches market items in a community's catalog
 
         :param owner_id: ID of an items owner community.

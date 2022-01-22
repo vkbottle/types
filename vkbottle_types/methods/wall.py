@@ -271,7 +271,7 @@ class WallCategory(BaseCategory):
         extended=None,
         fields=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetExtendedResponseModel]:
         """Returns a list of posts on a user wall or community wall.
 
         :param owner_id: ID of the user or community that owns the wall. By default, current user ID. Use a negative value to designate a community ID.
@@ -316,7 +316,7 @@ class WallCategory(BaseCategory):
 
     async def get_by_id(
         self, posts=None, extended=None, copy_history_depth=None, fields=None, **kwargs
-    ) -> typing.List[WallWallpostFull]:
+    ) -> typing.Union[typing.List[WallWallpostFull], GetByIdExtendedResponseModel]:
         """Returns a list of posts from user or community walls by their IDs.
 
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
@@ -358,7 +358,7 @@ class WallCategory(BaseCategory):
 
     async def get_comment(
         self, comment_id=None, owner_id=None, extended=None, fields=None, **kwargs
-    ) -> GetCommentResponseModel:
+    ) -> typing.Union[GetCommentResponseModel, GetCommentExtendedResponseModel]:
         """Returns a comment on a post on a user wall or community wall.
 
         :param comment_id: Comment ID.
@@ -429,7 +429,7 @@ class WallCategory(BaseCategory):
         comment_id=None,
         thread_items_count=None,
         **kwargs
-    ) -> GetCommentsResponseModel:
+    ) -> typing.Union[GetCommentsResponseModel, GetCommentsExtendedResponseModel]:
         """Returns a list of comments on a post on a user wall or community wall.
 
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -723,7 +723,7 @@ class WallCategory(BaseCategory):
         extended=None,
         fields=None,
         **kwargs
-    ) -> SearchResponseModel:
+    ) -> typing.Union[SearchResponseModel, SearchExtendedResponseModel]:
         """Allows to search posts on user or community walls.
 
         :param owner_id: user or community id. "Remember that for a community 'owner_id' must be negative."

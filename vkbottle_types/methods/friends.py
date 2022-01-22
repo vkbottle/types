@@ -97,7 +97,9 @@ class FriendsCategory(BaseCategory):
 
     async def are_friends(
         self, user_ids=None, need_sign=None, extended=None, **kwargs
-    ) -> typing.List[FriendsFriendStatus]:
+    ) -> typing.Union[
+        typing.List[FriendsFriendStatus], typing.List[FriendsFriendExtendedStatus]
+    ]:
         """Checks the current user's friendship status with other specified users.
 
         :param user_ids: IDs of the users whose friendship status to check.
@@ -224,7 +226,7 @@ class FriendsCategory(BaseCategory):
         name_case=None,
         ref=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetFieldsResponseModel]:
         """Returns a list of user IDs or detailed information about a user's friends.
 
         :param user_id: User ID. By default, the current user ID.
@@ -323,7 +325,7 @@ class FriendsCategory(BaseCategory):
         count=None,
         offset=None,
         **kwargs
-    ) -> typing.List[int]:
+    ) -> typing.Union[typing.List[int], typing.List[FriendsMutualFriend]]:
         """Returns a list of user IDs of the mutual friends of two users.
 
         :param source_uid: ID of the user whose friends will be checked against the friends of the user specified in 'target_uid'.
@@ -378,7 +380,7 @@ class FriendsCategory(BaseCategory):
         count=None,
         offset=None,
         **kwargs
-    ) -> typing.List[int]:
+    ) -> typing.Union[typing.List[int], GetOnlineOnlineMobileResponseModel]:
         """Returns a list of user IDs of a user's friends who are online.
 
         :param user_id: User ID.
@@ -475,7 +477,11 @@ class FriendsCategory(BaseCategory):
         ref=None,
         fields=None,
         **kwargs
-    ) -> GetRequestsResponseModel:
+    ) -> typing.Union[
+        GetRequestsResponseModel,
+        GetRequestsNeedMutualResponseModel,
+        GetRequestsExtendedResponseModel,
+    ]:
         """Returns information about the current user's incoming and outgoing friend requests.
 
         :param offset: Offset needed to return a specific subset of friend requests.

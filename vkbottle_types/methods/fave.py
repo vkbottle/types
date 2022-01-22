@@ -190,7 +190,7 @@ class FaveCategory(BaseCategory):
         fields=None,
         is_from_snackbar=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetExtendedResponseModel]:
         """fave.get method
 
         :param extended: '1' — to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.

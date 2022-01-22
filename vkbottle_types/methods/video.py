@@ -313,7 +313,7 @@ class VideoCategory(BaseCategory):
         extended=None,
         need_system=None,
         **kwargs
-    ) -> GetAlbumsResponseModel:
+    ) -> typing.Union[GetAlbumsResponseModel, GetAlbumsExtendedResponseModel]:
         """Returns a list of video albums owned by a user or community.
 
         :param owner_id: ID of the user or community that owns the video album(s).
@@ -356,7 +356,7 @@ class VideoCategory(BaseCategory):
 
     async def get_albums_by_video(
         self, owner_id=None, video_id=None, target_id=None, extended=None, **kwargs
-    ) -> typing.List[int]:
+    ) -> typing.Union[typing.List[int], GetAlbumsByVideoExtendedResponseModel]:
         """video.getAlbumsByVideo method
 
         :param owner_id:
@@ -418,7 +418,7 @@ class VideoCategory(BaseCategory):
         extended=None,
         fields=None,
         **kwargs
-    ) -> GetCommentsResponseModel:
+    ) -> typing.Union[GetCommentsResponseModel, GetCommentsExtendedResponseModel]:
         """Returns a list of comments on a video.
 
         :param video_id: Video ID.
@@ -674,7 +674,7 @@ class VideoCategory(BaseCategory):
         count=None,
         extended=None,
         **kwargs
-    ) -> SearchResponseModel:
+    ) -> typing.Union[SearchResponseModel, SearchExtendedResponseModel]:
         """Returns a list of videos under the set search criterion.
 
         :param q: Search query string (e.g., 'The Beatles').

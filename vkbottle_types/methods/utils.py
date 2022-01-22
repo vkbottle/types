@@ -94,7 +94,7 @@ class UtilsCategory(BaseCategory):
         intervals_count=None,
         extended=None,
         **kwargs
-    ) -> UtilsLinkStats:
+    ) -> typing.Union[UtilsLinkStats, UtilsLinkStatsExtended]:
         """Returns stats data for shortened link.
 
         :param key: Link key (characters after vk.cc/).

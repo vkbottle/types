@@ -96,7 +96,7 @@ class StoriesCategory(BaseCategory):
 
     async def get_banned(
         self, extended=None, fields=None, **kwargs
-    ) -> GetBannedResponseModel:
+    ) -> typing.Union[GetBannedResponseModel, GetBannedExtendedResponseModel]:
         """Returns list of sources hidden from current user's feed.
 
         :param extended: '1' — to return additional fields for users and communities. Default value is 0.
@@ -134,7 +134,7 @@ class StoriesCategory(BaseCategory):
 
     async def get_by_id(
         self, stories=None, extended=None, fields=None, **kwargs
-    ) -> GetByIdResponseModel:
+    ) -> typing.Union[GetByIdResponseModel, GetByIdExtendedResponseModel]:
         """Returns story by its ID.
 
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
@@ -274,7 +274,9 @@ class StoriesCategory(BaseCategory):
         offset=None,
         extended=None,
         **kwargs
-    ) -> GetViewersExtendedV5115ResponseModel:
+    ) -> typing.Union[
+        GetViewersExtendedV5115ResponseModel, GetViewersExtendedV5115ResponseModel
+    ]:
         """Returns a list of story viewers.
 
         :param owner_id: Story owner ID.

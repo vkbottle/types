@@ -528,7 +528,7 @@ class GroupsCategory(BaseCategory):
         offset=None,
         count=None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> typing.Union[GetResponseModel, GetObjectExtendedResponseModel]:
         """Returns a list of the communities to which a user belongs.
 
         :param user_id: User ID.
@@ -698,7 +698,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_catalog_info(
         self, extended=None, subcategories=None, **kwargs
-    ) -> GetCatalogInfoResponseModel:
+    ) -> typing.Union[GetCatalogInfoResponseModel, GetCatalogInfoExtendedResponseModel]:
         """Returns categories list for communities catalog
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -759,7 +759,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_invites(
         self, offset=None, count=None, extended=None, **kwargs
-    ) -> GetInvitesResponseModel:
+    ) -> typing.Union[GetInvitesResponseModel, GetInvitesExtendedResponseModel]:
         """Returns a list of invitations to join communities and events.
 
         :param offset: Offset needed to return a specific subset of invitations.
@@ -863,7 +863,12 @@ class GroupsCategory(BaseCategory):
         fields=None,
         filter=None,
         **kwargs
-    ) -> GetMembersResponseModel:
+    ) -> typing.Union[
+        GetMembersResponseModel,
+        GetMembersFieldsResponseModel,
+        GetMembersFilterManagersResponseModel,
+        GetMembersFieldsFilterManagersResponseModel,
+    ]:
         """Returns a list of community members.
 
         :param group_id: ID or screen name of the community.
@@ -914,7 +919,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_requests(
         self, group_id=None, offset=None, count=None, fields=None, **kwargs
-    ) -> GetRequestsResponseModel:
+    ) -> typing.Union[GetRequestsResponseModel, GetRequestsFieldsResponseModel]:
         """Returns a list of requests to the community.
 
         :param group_id: Community ID.
@@ -1033,7 +1038,12 @@ class GroupsCategory(BaseCategory):
 
     async def is_member(
         self, group_id=None, user_id=None, user_ids=None, extended=None, **kwargs
-    ) -> BaseBoolInt:
+    ) -> typing.Union[
+        BaseBoolInt,
+        typing.List[GroupsMemberStatus],
+        IsMemberExtendedResponseModel,
+        typing.List[GroupsMemberStatusFull],
+    ]:
         """Returns information specifying whether a user is a member of a community.
 
         :param group_id: ID or screen name of the community.

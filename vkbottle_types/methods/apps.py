@@ -140,7 +140,7 @@ class AppsCategory(BaseCategory):
 
     async def get_leaderboard(
         self, type=None, _global=None, extended=None, **kwargs
-    ) -> GetLeaderboardResponseModel:
+    ) -> typing.Union[GetLeaderboardResponseModel, GetLeaderboardExtendedResponseModel]:
         """Returns players rating in the game.
 
         :param type: Leaderboard type. Possible values: *'level' — by level,, *'points' — by mission points,, *'score' — by score ().

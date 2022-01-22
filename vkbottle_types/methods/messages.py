@@ -304,7 +304,7 @@ class MessagesCategory(BaseCategory):
         fields=None,
         group_id=None,
         **kwargs
-    ) -> GetByIdResponseModel:
+    ) -> typing.Union[GetByIdResponseModel, GetByIdExtendedResponseModel]:
         """Returns messages by their IDs.
 
         :param message_ids: Message IDs.
@@ -412,7 +412,7 @@ class MessagesCategory(BaseCategory):
 
     async def get_conversations_by_id(
         self, peer_ids=None, extended=None, fields=None, group_id=None, **kwargs
-    ) -> MessagesGetConversationById:
+    ) -> typing.Union[MessagesGetConversationById, MessagesGetConversationByIdExtended]:
         """Returns conversations by their IDs
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -474,7 +474,7 @@ class MessagesCategory(BaseCategory):
         fields=None,
         group_id=None,
         **kwargs
-    ) -> GetHistoryResponseModel:
+    ) -> typing.Union[GetHistoryResponseModel, GetHistoryExtendedResponseModel]:
         """Returns message history for the specified user or group chat.
 
         :param offset: Offset needed to return a specific subset of messages.
@@ -577,7 +577,9 @@ class MessagesCategory(BaseCategory):
         extended=None,
         group_id=None,
         **kwargs
-    ) -> GetImportantMessagesResponseModel:
+    ) -> typing.Union[
+        GetImportantMessagesResponseModel, GetImportantMessagesExtendedResponseModel
+    ]:
         """Returns a list of user's important messages.
 
         :param count: Amount of needed important messages.
@@ -916,7 +918,7 @@ class MessagesCategory(BaseCategory):
         fields=None,
         group_id=None,
         **kwargs
-    ) -> SearchResponseModel:
+    ) -> typing.Union[SearchResponseModel, SearchExtendedResponseModel]:
         """Returns a list of the current user's private messages that match search criteria.
 
         :param q: Search query string.
@@ -965,7 +967,9 @@ class MessagesCategory(BaseCategory):
 
     async def search_conversations(
         self, q=None, count=None, extended=None, fields=None, group_id=None, **kwargs
-    ) -> SearchConversationsResponseModel:
+    ) -> typing.Union[
+        SearchConversationsResponseModel, SearchConversationsExtendedResponseModel
+    ]:
         """Returns a list of the current user's conversations that match search criteria.
 
         :param q: Search query string.
@@ -1140,7 +1144,7 @@ class MessagesCategory(BaseCategory):
         intent=None,
         subscribe_id=None,
         **kwargs
-    ) -> int:
+    ) -> typing.Union[int, typing.List[MessagesSendUserIdsResponseItem]]:
         """Sends a message.
 
         :param user_id: User ID (by default — current user).

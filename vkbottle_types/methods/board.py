@@ -197,7 +197,7 @@ class BoardCategory(BaseCategory):
         extended=None,
         sort=None,
         **kwargs
-    ) -> GetCommentsResponseModel:
+    ) -> typing.Union[GetCommentsResponseModel, GetCommentsExtendedResponseModel]:
         """Returns a list of comments on a topic on a community's discussion board.
 
         :param group_id: ID of the community that owns the discussion board.
@@ -260,7 +260,7 @@ class BoardCategory(BaseCategory):
         preview=None,
         preview_length=None,
         **kwargs
-    ) -> GetTopicsResponseModel:
+    ) -> typing.Union[GetTopicsResponseModel, GetTopicsExtendedResponseModel]:
         """Returns a list of topics on a community's discussion board.
 
         :param group_id: ID of the community that owns the discussion board.
