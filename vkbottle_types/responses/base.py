@@ -7,12 +7,12 @@ class BoolResponse(BaseResponse):
     response: BaseBoolInt
 
 
-class GetUploadServerResponse(BaseResponse):
-    response: BaseUploadServer
-
-
 class OkResponse(BaseResponse):
     response: int
+
+
+class BaseGetUploadServerResponse(BaseResponse):
+    response: BaseUploadServer
 
 
 for item in locals().copy().values():

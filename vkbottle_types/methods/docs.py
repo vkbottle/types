@@ -16,8 +16,8 @@ from vkbottle_types.responses.docs import (
     SearchResponseModel,
 )
 from vkbottle_types.responses.base import (
+    BaseGetUploadServerResponse,
     BaseUploadServer,
-    GetUploadServerResponse,
     OkResponse,
 )
 
@@ -129,7 +129,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getMessagesUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def get_types(self, owner_id: int, **kwargs) -> GetTypesResponseModel:
@@ -166,7 +166,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getWallUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def save(

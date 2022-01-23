@@ -3,8 +3,8 @@ from typing_extensions import Literal
 from .base_category import BaseCategory
 from vkbottle_types.responses.base import (
     BaseBoolInt,
+    BaseGetUploadServerResponse,
     BaseUploadServer,
-    GetUploadServerResponse,
     OkResponse,
 )
 from vkbottle_types.responses.photos import (
@@ -539,7 +539,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getChatUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     @typing.overload
@@ -623,7 +623,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getMarketAlbumUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def get_market_upload_server(
@@ -701,7 +701,7 @@ class PhotosCategory(BaseCategory):
         response = await self.api.request(
             "photos.getOwnerCoverPhotoUploadServer", params
         )
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def get_owner_photo_upload_server(
@@ -714,7 +714,7 @@ class PhotosCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("photos.getOwnerPhotoUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def get_tags(
@@ -741,7 +741,7 @@ class PhotosCategory(BaseCategory):
         album_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
-    ) -> BaseUploadServer:
+    ) -> PhotosPhotoUpload:
         """Returns the server address for photo upload.
 
         :param album_id:

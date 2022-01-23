@@ -15,8 +15,8 @@ from vkbottle_types.responses.polls import (
 )
 from vkbottle_types.responses.base import (
     BaseBoolInt,
+    BaseGetUploadServerResponse,
     BaseUploadServer,
-    GetUploadServerResponse,
     OkResponse,
 )
 
@@ -173,7 +173,7 @@ class PollsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("polls.getPhotoUploadServer", params)
-        model = GetUploadServerResponse
+        model = BaseGetUploadServerResponse
         return model(**response).response
 
     async def get_voters(
