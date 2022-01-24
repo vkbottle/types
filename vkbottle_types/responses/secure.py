@@ -4,6 +4,7 @@ import typing
 from vkbottle_types.objects import (
     SecureGiveEventStickerItem,
     SecureLevel,
+    SecureSetCounterItem,
     SecureSmsNotification,
     SecureTokenChecked,
     SecureTransaction,
@@ -38,6 +39,14 @@ class GiveEventStickerResponse(BaseResponse):
 
 class SendNotificationResponse(BaseResponse):
     response: typing.List[int]
+
+
+class SetCounterArrayResponse(BaseResponse):
+    response: typing.List["SecureSetCounterItem"]
+
+
+class SetCounterIntegerResponse(BaseResponse):
+    response: int
 
 
 for item in locals().copy().values():

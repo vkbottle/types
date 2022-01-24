@@ -194,6 +194,7 @@ class SearchResponseModel(BaseResponse):
     view_type: typing.Optional["MarketServicesViewType"] = None
     items: typing.Optional[typing.List["MarketMarketItem"]] = None
     variants: typing.Optional[typing.List["MarketMarketItem"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 for item in locals().copy().values():

@@ -3983,6 +3983,7 @@ class GroupsGroupFullSection(enum.IntEnum):
     articles = 39
     chats = 43
     market_services = 51
+    classifieds = 53
 
 
 class GroupsGroupIsClosed(enum.IntEnum):
@@ -7581,7 +7582,7 @@ class PrettyCardsPrettyCard(BaseModel):
     title - Title
     """
 
-    button: typing.Optional[str] = None
+    button: typing.Optional[typing.Union["BaseLinkButton", str]] = None
     button_text: typing.Optional[str] = None
     card_id: str
     images: typing.Optional[typing.List["BaseImage"]] = None
@@ -7655,6 +7656,17 @@ class SecureLevel(BaseModel):
 
     level: typing.Optional[int] = None
     uid: typing.Optional[int] = None
+
+
+class SecureSetCounterItem(BaseModel):
+    """VK Object SecureSetCounterItem
+
+    id - User ID
+    result - result (0 or 1)
+    """
+
+    id: typing.Optional[int] = None
+    result: typing.Optional[int] = None
 
 
 class SecureSmsNotification(BaseModel):

@@ -10,10 +10,13 @@ from vkbottle_types.responses.secure import (
     GiveEventStickerResponse,
     SecureGiveEventStickerItem,
     SecureLevel,
+    SecureSetCounterItem,
     SecureSmsNotification,
     SecureTokenChecked,
     SecureTransaction,
     SendNotificationResponse,
+    SetCounterArrayResponse,
+    SetCounterIntegerResponse,
 )
 
 from .base_category import BaseCategory
@@ -175,7 +178,7 @@ class SecureCategory(BaseCategory):
         counter: typing.Optional[int] = None,
         increment: typing.Optional[bool] = None,
         **kwargs
-    ) -> int:
+    ) -> typing.Union[int, typing.List["SecureSetCounterItem"]]:
         """Sets a counter which is shown to the user in bold in the left menu.
 
         :param counters:
@@ -186,5 +189,8 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.setCounter", params)
-        model = OkResponse
+        if counters and counters.count(",") > 0:
+            model = SetCounterArrayResponse
+        else:
+            model = SetCounterIntegerResponse
         return model(**response).response
