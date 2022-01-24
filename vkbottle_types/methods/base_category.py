@@ -1,7 +1,7 @@
 import typing
 
 if typing.TYPE_CHECKING:
-    from vkbottle import API
+    from vkbottle import ABCAPI
 
 # from typing import NamedTuple
 # RequestMethod = NamedTuple("RequestMethod", [("base_name", str), ("method_name", str), ("params", dict)])
@@ -11,7 +11,7 @@ T = typing.TypeVar("T")
 
 
 class BaseCategory:
-    def __init__(self, api: "API"):
+    def __init__(self, api: "ABCAPI"):
         self.api = api
 
     @classmethod
@@ -48,6 +48,6 @@ class BaseCategory:
         return default
 
     @classmethod
-    def construct_api(cls, api: "API") -> typing.Type["BaseCategory"]:
+    def construct_api(cls, api: "ABCAPI") -> typing.Type["BaseCategory"]:
         cls.api = api
         return cls

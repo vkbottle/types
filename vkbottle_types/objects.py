@@ -5666,11 +5666,15 @@ class MessagesMessage(BaseModel):
     def message_id(self) -> int:
         return self.conversation_message_id or self.id
 
-    def get_wall_attachment(self) -> typing.List["WallWallpostFull"]:
+    def get_wall_attachment(self) -> typing.Optional[typing.List["WallWallpostFull"]]:
+        if self.attachments is None:
+            return None
         result = [attachment.wall for attachment in self.attachments if attachment.wall]
         return result if result else None
 
-    def get_wall_reply_attachment(self) -> typing.List["WallWallComment"]:
+    def get_wall_reply_attachment(self) -> typing.Optional[typing.List["WallWallComment"]]:
+        if self.attachments is None:
+            return None
         result = [
             attachment.wall_reply
             for attachment in self.attachments
@@ -5678,27 +5682,37 @@ class MessagesMessage(BaseModel):
         ]
         return result if result else None
 
-    def get_photo_attachments(self) -> typing.List["PhotosPhoto"]:
+    def get_photo_attachments(self) -> typing.Optional[typing.List["PhotosPhoto"]]:
+        if self.attachments is None:
+            return None
         return [attachment.photo for attachment in self.attachments if attachment.photo]
 
-    def get_video_attachments(self) -> typing.List["VideoVideo"]:
+    def get_video_attachments(self) -> typing.Optional[typing.List["VideoVideo"]]:
+        if self.attachments is None:
+            return None
         return [attachment.video for attachment in self.attachments if attachment.video]
 
-    def get_doc_attachments(self) -> typing.List["DocsDoc"]:
+    def get_doc_attachments(self) -> typing.Optional[typing.List["DocsDoc"]]:
+        if self.attachments is None:
+            return None
         return [attachment.doc for attachment in self.attachments if attachment.doc]
 
-    def get_audio_attachments(self) -> typing.List["AudioAudio"]:
+    def get_audio_attachments(self) -> typing.Optional[typing.List["AudioAudio"]]:
+        if self.attachments is None:
+            return None
         return [attachment.audio for attachment in self.attachments if attachment.audio]
 
-    def get_message_id(self) -> int:
+    def get_message_id(self) -> typing.Optional[int]:
         return self.id or self.conversation_message_id
 
     def get_payload_json(
         self,
         throw_error: bool = False,
-        unpack_failure: typing.Callable[[str], dict] = lambda payload: payload,
+        unpack_failure: typing.Callable[[str], typing.Union[dict, str]] = lambda payload: payload,
         json: typing.Any = __import__("json"),
-    ) -> typing.Union[dict, None]:
+    ) -> typing.Optional[typing.Union[dict, str]]:
+        if self.payload is None:
+            return None
         try:
             return json.loads(self.payload)
         except (json.decoder.JSONDecodeError, TypeError) as e:
