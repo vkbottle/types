@@ -1,13 +1,15 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.stats import (
     GetPostReachResponse,
     GetResponse,
     StatsPeriod,
     StatsWallpostStat,
 )
-from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class StatsCategory(BaseCategory):

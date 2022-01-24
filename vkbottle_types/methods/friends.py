@@ -1,6 +1,7 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.friends import (
     AddListResponse,
     AddListResponseModel,
@@ -38,7 +39,8 @@ from vkbottle_types.responses.friends import (
     SearchResponse,
     SearchResponseModel,
 )
-from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class FriendsCategory(BaseCategory):

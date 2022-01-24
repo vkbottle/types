@@ -1,6 +1,6 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 from vkbottle_types.responses.fave import (
     AddTagResponse,
@@ -14,6 +14,8 @@ from vkbottle_types.responses.fave import (
     GetTagsResponse,
     GetTagsResponseModel,
 )
+
+from .base_category import BaseCategory
 
 
 class FaveCategory(BaseCategory):

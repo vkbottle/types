@@ -1,6 +1,7 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import BaseBoolInt
 from vkbottle_types.responses.notifications import (
     GetResponse,
     GetResponseModel,
@@ -8,7 +9,8 @@ from vkbottle_types.responses.notifications import (
     NotificationsSendMessageItem,
     SendMessageResponse,
 )
-from vkbottle_types.responses.base import BaseBoolInt
+
+from .base_category import BaseCategory
 
 
 class NotificationsCategory(BaseCategory):

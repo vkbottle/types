@@ -1,6 +1,12 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import (
+    BaseBoolInt,
+    BaseGetUploadServerResponse,
+    BaseUploadServer,
+    OkResponse,
+)
 from vkbottle_types.responses.polls import (
     AddVoteResponse,
     CreateResponse,
@@ -13,12 +19,8 @@ from vkbottle_types.responses.polls import (
     PollsVoters,
     SavePhotoResponse,
 )
-from vkbottle_types.responses.base import (
-    BaseBoolInt,
-    BaseGetUploadServerResponse,
-    BaseUploadServer,
-    OkResponse,
-)
+
+from .base_category import BaseCategory
 
 
 class PollsCategory(BaseCategory):

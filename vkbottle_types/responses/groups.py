@@ -1,6 +1,6 @@
 import inspect
 import typing
-from .base_response import BaseResponse
+
 from vkbottle_types.objects import (
     BaseBoolInt,
     GroupsAddress,
@@ -38,6 +38,8 @@ from vkbottle_types.objects import (
     UsersUserFull,
     UsersUserMin,
 )
+
+from .base_response import BaseResponse
 
 
 class AddAddressResponse(BaseResponse):

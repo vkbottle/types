@@ -1,6 +1,7 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.notes import (
     AddResponse,
     CreateCommentResponse,
@@ -11,7 +12,8 @@ from vkbottle_types.responses.notes import (
     GetResponseModel,
     NotesNote,
 )
-from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class NotesCategory(BaseCategory):

@@ -1,6 +1,7 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.board import (
     AddTopicResponse,
     CreateCommentResponse,
@@ -13,7 +14,8 @@ from vkbottle_types.responses.board import (
     GetTopicsResponse,
     GetTopicsResponseModel,
 )
-from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class BoardCategory(BaseCategory):

@@ -1,6 +1,6 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.stories import (
     GetBannedExtendedResponse,
@@ -24,6 +24,8 @@ from vkbottle_types.responses.stories import (
     SaveResponseModel,
     StoriesStoryStats,
 )
+
+from .base_category import BaseCategory
 
 
 class StoriesCategory(BaseCategory):

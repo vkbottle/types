@@ -1,20 +1,22 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
 from vkbottle_types.responses.app_widgets import (
     AppWidgetsPhoto,
     AppWidgetsPhotos,
+    GetAppImagesResponse,
     GetAppImageUploadServerResponse,
     GetAppImageUploadServerResponseModel,
-    GetAppImagesResponse,
+    GetGroupImagesResponse,
     GetGroupImageUploadServerResponse,
     GetGroupImageUploadServerResponseModel,
-    GetGroupImagesResponse,
     GetImagesByIdResponse,
     SaveAppImageResponse,
     SaveGroupImageResponse,
 )
 from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class AppWidgetsCategory(BaseCategory):

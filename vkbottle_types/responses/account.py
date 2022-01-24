@@ -1,6 +1,6 @@
 import inspect
 import typing
-from .base_response import BaseResponse
+
 from vkbottle_types.objects import (
     AccountAccountCounters,
     AccountInfo,
@@ -12,6 +12,8 @@ from vkbottle_types.objects import (
     GroupsGroup,
     UsersUserFull,
 )
+
+from .base_response import BaseResponse
 
 
 class ChangePasswordResponse(BaseResponse):

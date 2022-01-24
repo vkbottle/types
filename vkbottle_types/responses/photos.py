@@ -1,6 +1,6 @@
 import inspect
 import typing
-from .base_response import BaseResponse
+
 from vkbottle_types.objects import (
     BaseBoolInt,
     BaseImage,
@@ -17,6 +17,8 @@ from vkbottle_types.objects import (
     UsersUserFull,
     WallWallComment,
 )
+
+from .base_response import BaseResponse
 
 
 class CopyResponse(BaseResponse):

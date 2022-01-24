@@ -1,5 +1,5 @@
 import typing
-from .base_category import BaseCategory
+
 from vkbottle_types.responses.lead_forms import (
     CreateResponse,
     CreateResponseModel,
@@ -12,6 +12,8 @@ from vkbottle_types.responses.lead_forms import (
     ListResponse,
     UploadUrlResponse,
 )
+
+from .base_category import BaseCategory
 
 
 class LeadFormsCategory(BaseCategory):

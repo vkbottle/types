@@ -1,6 +1,8 @@
 import typing
-from .base_category import BaseCategory
+
 from vkbottle_types.responses.search import GetHintsResponse, GetHintsResponseModel
+
+from .base_category import BaseCategory
 
 
 class SearchCategory(BaseCategory):

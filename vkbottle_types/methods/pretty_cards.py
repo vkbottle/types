@@ -1,5 +1,5 @@
 import typing
-from .base_category import BaseCategory
+
 from vkbottle_types.responses.pretty_cards import (
     CreateResponse,
     CreateResponseModel,
@@ -13,6 +13,8 @@ from vkbottle_types.responses.pretty_cards import (
     GetUploadURLResponse,
     PrettyCardsPrettyCard,
 )
+
+from .base_category import BaseCategory
 
 
 class PrettyCardsCategory(BaseCategory):

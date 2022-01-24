@@ -1,10 +1,11 @@
 from typing_extensions import Literal
-from .base_category import BaseCategory
+from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.streaming import (
     GetServerUrlResponse,
     GetServerUrlResponseModel,
 )
-from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class StreamingCategory(BaseCategory):

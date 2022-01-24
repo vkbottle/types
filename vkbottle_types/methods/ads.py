@@ -1,6 +1,6 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
 from vkbottle_types.responses.ads import (
     AddOfficeUsersResponse,
     AdsAccount,
@@ -14,13 +14,13 @@ from vkbottle_types.responses.ads import (
     AdsPromotedPostReach,
     AdsRejectReason,
     AdsStats,
+    AdsTargetGroup,
     AdsTargSettings,
     AdsTargStats,
     AdsTargSuggestions,
     AdsTargSuggestionsCities,
     AdsTargSuggestionsRegions,
     AdsTargSuggestionsSchools,
-    AdsTargetGroup,
     AdsUpdateOfficeUsersResult,
     AdsUsers,
     CheckLinkResponse,
@@ -67,6 +67,8 @@ from vkbottle_types.responses.ads import (
     UpdateOfficeUsersResponse,
 )
 from vkbottle_types.responses.base import OkResponse
+
+from .base_category import BaseCategory
 
 
 class AdsCategory(BaseCategory):

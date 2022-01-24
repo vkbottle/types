@@ -1,6 +1,6 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
 from vkbottle_types.responses.base import (
     BaseBoolInt,
     BaseGetUploadServerResponse,
@@ -61,6 +61,8 @@ from vkbottle_types.responses.photos import (
     SearchResponse,
     SearchResponseModel,
 )
+
+from .base_category import BaseCategory
 
 
 class PhotosCategory(BaseCategory):

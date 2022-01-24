@@ -1,7 +1,6 @@
 import typing
+
 from typing_extensions import Literal
-from .base_category import BaseCategory
-from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
 from vkbottle_types.responses.apps import (
     AppsCatalogList,
     GetCatalogResponse,
@@ -20,6 +19,9 @@ from vkbottle_types.responses.apps import (
     GetScoreResponse,
     SendRequestResponse,
 )
+from vkbottle_types.responses.base import BaseBoolInt, BoolResponse, OkResponse
+
+from .base_category import BaseCategory
 
 
 class AppsCategory(BaseCategory):

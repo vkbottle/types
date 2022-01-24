@@ -1,13 +1,18 @@
 import typing
-from .base_category import BaseCategory
-from vkbottle_types.responses.groups import GetMembersFieldsResponse
+
+from vkbottle_types.responses.base import BaseBoolInt, BoolResponse
 from vkbottle_types.responses.donut import (
     DonutDonatorSubscriptionInfo,
     GetSubscriptionResponse,
     GetSubscriptionsResponse,
     GetSubscriptionsResponseModel,
 )
-from vkbottle_types.responses.base import BaseBoolInt, BoolResponse
+from vkbottle_types.responses.groups import (
+    GetMembersFieldsResponse,
+    GetMembersFieldsResponseModel,
+)
+
+from .base_category import BaseCategory
 
 
 class DonutCategory(BaseCategory):
@@ -18,7 +23,7 @@ class DonutCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> GetMembersFieldsResponse:
+    ) -> GetMembersFieldsResponseModel:
         """donut.getFriends method
 
         :param owner_id:
