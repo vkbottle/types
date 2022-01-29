@@ -1,5 +1,5 @@
 import inspect
-from typing import Any, Callable, Optional
+from typing import Any, Optional
 
 from vkbottle_types.objects import (
     AudioAudio,
@@ -61,27 +61,6 @@ class MessageEventObject(BaseEventObject):
     event_id: str
     payload: Optional[dict] = None
     conversation_message_id: int
-
-    @property
-    def chat_id(self) -> int:
-        return self.peer_id - 2_000_000_000
-
-    def get_payload_json(
-        self,
-        throw_error: bool = False,
-        unpack_failure: Callable[
-            [Optional[dict]], Optional[dict]
-        ] = lambda payload: payload,
-        json: Any = __import__("json"),
-    ) -> Optional[dict]:
-        if isinstance(self.payload, dict):
-            return self.payload
-        try:
-            return json.loads(self.payload)
-        except (json.decoder.JSONDecodeError, TypeError) as e:
-            if throw_error:
-                raise e
-        return unpack_failure(self.payload)
 
 
 class PhotoNewObject(BaseEventObject, PhotosPhoto):
@@ -169,7 +148,7 @@ class LikeAddObject(BaseEventObject):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: "CallbackLikeAddRemoveObjectType"
+    object_type: Optional["CallbackLikeAddRemoveObjectType"] = None
     post_id: int
     thread_reply_id: Optional[int] = None
 

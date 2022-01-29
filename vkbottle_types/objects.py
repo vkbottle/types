@@ -782,8 +782,8 @@ class AdsLookalikeRequest(BaseModel):
     scheduled_delete_time: typing.Optional[int] = None
     source_name: typing.Optional[str] = None
     source_retargeting_group_id: typing.Optional[int] = None
-    source_type: "LookalikeRequestSourceType"
-    status: "LookalikeRequestStatus"
+    source_type: typing.Optional["LookalikeRequestSourceType"] = None
+    status: typing.Optional["LookalikeRequestStatus"] = None
     update_time: int
 
 
@@ -1385,7 +1385,7 @@ class AppsScope(BaseModel):
     title - Scope title
     """
 
-    name: "ScopeName"
+    name: typing.Optional["ScopeName"] = None
     title: typing.Optional[str] = None
 
 
@@ -2313,7 +2313,7 @@ class CallbackLikeAddRemove(BaseModel):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: "CallbackLikeAddRemoveObjectType"
+    object_type: typing.Optional["CallbackLikeAddRemoveObjectType"] = None
     post_id: int
     thread_reply_id: typing.Optional[int] = None
 
@@ -2341,7 +2341,7 @@ class CallbackMarketCommentDelete(BaseModel):
 class CallbackMessageAllow(CallbackBase):
     """VK Object CallbackMessageAllow"""
 
-    object: typing.Optional["CallbackMessageAllowObject"] = None
+    object: "CallbackMessageAllowObject"
     type: typing.Optional["CallbackType"] = None
 
 
@@ -2361,14 +2361,14 @@ class CallbackMessageDeny(BaseModel):
 class CallbackMessageEdit(CallbackBase):
     """VK Object CallbackMessageEdit"""
 
-    object: typing.Optional["MessagesMessage"] = None
+    object: "MessagesMessage"
     type: typing.Optional["CallbackType"] = None
 
 
 class CallbackMessageNew(CallbackBase):
     """VK Object CallbackMessageNew"""
 
-    object: typing.Optional["CallbackMessageObject"] = None
+    object: "CallbackMessageObject"
     type: typing.Optional["CallbackType"] = None
 
 
@@ -2382,7 +2382,7 @@ class CallbackMessageObject(BaseModel):
 class CallbackMessageReply(CallbackBase):
     """VK Object CallbackMessageReply"""
 
-    object: typing.Optional["MessagesMessage"] = None
+    object: "MessagesMessage"
     type: typing.Optional["CallbackType"] = None
 
 
@@ -2802,7 +2802,7 @@ class DonutDonatorSubscriptionInfo(BaseModel):
     amount: int
     next_payment_date: int
     owner_id: int
-    status: "DonutDonatorSubscriptionInfoStatus"
+    status: typing.Optional["DonutDonatorSubscriptionInfoStatus"] = None
 
 
 class EventsEventAttach(BaseModel):
@@ -3505,7 +3505,7 @@ class GroupsCallbackServer(BaseModel):
     creator_id: int
     id: int
     secret_key: str
-    status: "GroupsCallbackServerStatus"
+    status: typing.Optional["GroupsCallbackServerStatus"] = None
     title: str
     url: str
 
@@ -4112,7 +4112,7 @@ class GroupsGroupTagColor(enum.Enum):
 class GroupsGroupTag(BaseModel):
     """VK Object GroupsGroupTag"""
 
-    color: "GroupsGroupTagColor"
+    color: typing.Optional["GroupsGroupTagColor"] = None
     id: int
     name: str
     uses: typing.Optional[int] = None
@@ -4439,7 +4439,7 @@ class GroupsSettingsTwitter(BaseModel):
     """VK Object GroupsSettingsTwitter"""
 
     name: typing.Optional[str] = None
-    status: "GroupsSettingsTwitterStatus"
+    status: typing.Optional["GroupsSettingsTwitterStatus"] = None
 
 
 class GroupsSubjectItem(BaseModel):
@@ -4533,7 +4533,7 @@ class LeadFormsQuestionItem(BaseModel):
     key: str
     label: typing.Optional[str] = None
     options: typing.Optional[typing.List["LeadFormsQuestionItemOption"]] = None
-    type: "LeadFormsQuestionItemType"
+    type: typing.Optional["LeadFormsQuestionItemType"] = None
 
 
 class LeadFormsQuestionItemOption(BaseModel):
@@ -5431,7 +5431,7 @@ class MessagesKeyboardButtonActionCallback(BaseModel):
 
     label: str
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionCallbackType"
+    type: typing.Optional["MessagesKeyboardButtonActionCallbackType"] = None
 
 
 class MessagesKeyboardButtonActionLocationType(enum.Enum):
@@ -5448,7 +5448,7 @@ class MessagesKeyboardButtonActionLocation(BaseModel):
     """
 
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionLocationType"
+    type: typing.Optional["MessagesKeyboardButtonActionLocationType"] = None
 
 
 class MessagesKeyboardButtonActionOpenAppType(enum.Enum):
@@ -5473,7 +5473,7 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     label: str
     owner_id: int
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionOpenAppType"
+    type: typing.Optional["MessagesKeyboardButtonActionOpenAppType"] = None
 
 
 class MessagesKeyboardButtonActionOpenLinkType(enum.Enum):
@@ -5494,7 +5494,7 @@ class MessagesKeyboardButtonActionOpenLink(BaseModel):
     label: str
     link: str
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionOpenLinkType"
+    type: typing.Optional["MessagesKeyboardButtonActionOpenLinkType"] = None
 
 
 class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
@@ -5506,7 +5506,7 @@ class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
 class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """VK Object MessagesKeyboardButtonActionOpenPhoto"""
 
-    type: "MessagesKeyboardButtonActionOpenPhotoType"
+    type: typing.Optional["MessagesKeyboardButtonActionOpenPhotoType"] = None
 
 
 class MessagesKeyboardButtonActionTextType(enum.Enum):
@@ -5525,7 +5525,7 @@ class MessagesKeyboardButtonActionText(BaseModel):
 
     label: str
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionTextType"
+    type: typing.Optional["MessagesKeyboardButtonActionTextType"] = None
 
 
 class MessagesKeyboardButtonActionVkpayType(enum.Enum):
@@ -5544,7 +5544,7 @@ class MessagesKeyboardButtonActionVkpay(BaseModel):
 
     hash: str
     payload: typing.Optional[str] = None
-    type: "MessagesKeyboardButtonActionVkpayType"
+    type: typing.Optional["MessagesKeyboardButtonActionVkpayType"] = None
 
 
 class MessagesKeyboardButtonPropertyAction(
@@ -5657,68 +5657,6 @@ class MessagesMessage(BaseModel):
     text: str
     update_time: typing.Optional[int] = None
     was_listened: typing.Optional[bool] = None
-
-    @property
-    def chat_id(self) -> int:
-        return self.peer_id - 2_000_000_000
-
-    @property
-    def message_id(self) -> int:
-        return self.conversation_message_id or self.id
-
-    def get_wall_attachment(self) -> typing.Optional[typing.List["WallWallpostFull"]]:
-        if self.attachments is None:
-            return None
-        result = [attachment.wall for attachment in self.attachments if attachment.wall]
-        return result if result else None
-
-    def get_wall_reply_attachment(self) -> typing.Optional[typing.List["WallWallComment"]]:
-        if self.attachments is None:
-            return None
-        result = [
-            attachment.wall_reply
-            for attachment in self.attachments
-            if attachment.wall_reply
-        ]
-        return result if result else None
-
-    def get_photo_attachments(self) -> typing.Optional[typing.List["PhotosPhoto"]]:
-        if self.attachments is None:
-            return None
-        return [attachment.photo for attachment in self.attachments if attachment.photo]
-
-    def get_video_attachments(self) -> typing.Optional[typing.List["VideoVideo"]]:
-        if self.attachments is None:
-            return None
-        return [attachment.video for attachment in self.attachments if attachment.video]
-
-    def get_doc_attachments(self) -> typing.Optional[typing.List["DocsDoc"]]:
-        if self.attachments is None:
-            return None
-        return [attachment.doc for attachment in self.attachments if attachment.doc]
-
-    def get_audio_attachments(self) -> typing.Optional[typing.List["AudioAudio"]]:
-        if self.attachments is None:
-            return None
-        return [attachment.audio for attachment in self.attachments if attachment.audio]
-
-    def get_message_id(self) -> typing.Optional[int]:
-        return self.id or self.conversation_message_id
-
-    def get_payload_json(
-        self,
-        throw_error: bool = False,
-        unpack_failure: typing.Callable[[str], typing.Union[dict, str]] = lambda payload: payload,
-        json: typing.Any = __import__("json"),
-    ) -> typing.Optional[typing.Union[dict, str]]:
-        if self.payload is None:
-            return None
-        try:
-            return json.loads(self.payload)
-        except (json.decoder.JSONDecodeError, TypeError) as e:
-            if throw_error:
-                raise e
-        return unpack_failure(self.payload)
 
 
 class MessagesMessageAction(BaseModel):
@@ -6037,7 +5975,7 @@ class NewsfeedItemDigestFooter(BaseModel):
     """
 
     button: typing.Optional["NewsfeedItemDigestButton"] = None
-    style: "NewsfeedItemDigestFooterStyle"
+    style: typing.Optional["NewsfeedItemDigestFooterStyle"] = None
     text: str
 
 
@@ -6077,7 +6015,7 @@ class NewsfeedItemDigestHeader(BaseModel):
     """
 
     button: typing.Optional["NewsfeedItemDigestButton"] = None
-    style: "NewsfeedItemDigestHeaderStyle"
+    style: typing.Optional["NewsfeedItemDigestHeaderStyle"] = None
     subtitle: typing.Optional[str] = None
     title: str
 
@@ -6259,8 +6197,8 @@ class NewsfeedItemTopic(NewsfeedItemBase):
 
     comments: typing.Optional["BaseCommentsInfo"] = None
     likes: typing.Optional["BaseLikesInfo"] = None
-    post_id: typing.Optional[int] = None
-    text: typing.Optional[str] = None
+    post_id: int
+    text: str
 
 
 class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
@@ -6840,7 +6778,7 @@ class OrdersOrder(BaseModel):
     id: str
     item: str
     receiver_id: str
-    status: "OrderStatus"
+    status: typing.Optional["OrderStatus"] = None
     transaction_id: typing.Optional[str] = None
     user_id: str
 
@@ -7963,7 +7901,7 @@ class StoreProduct(BaseModel):
     style_sticker_ids: typing.Optional[typing.List[int]] = None
     subtitle: typing.Optional[str] = None
     title: typing.Optional[str] = None
-    type: "ProductType"
+    type: typing.Optional["ProductType"] = None
 
 
 StoreProductIcon = typing.List["BaseImage"]
@@ -8102,7 +8040,7 @@ class StoriesClickableSticker(BaseModel):
     style: typing.Optional["StoriesClickableStickerStyle"] = None
     subtype: typing.Optional["StoriesClickableStickerSubtype"] = None
     tooltip_text: typing.Optional[str] = None
-    type: "StoriesClickableStickerType"
+    type: typing.Optional["StoriesClickableStickerType"] = None
 
 
 class StoriesClickableStickers(BaseModel):
@@ -8149,7 +8087,7 @@ class StoriesFeedItem(BaseModel):
     promo_data: typing.Optional["StoriesPromoBlock"] = None
     stories: typing.Optional[typing.List["StoriesStory"]] = None
     track_code: typing.Optional[str] = None
-    type: "FeedItemType"
+    type: typing.Optional["FeedItemType"] = None
 
 
 class StoriesPromoBlock(BaseModel):
@@ -8612,7 +8550,7 @@ class UsersRelative(BaseModel):
     birth_date: typing.Optional[str] = None
     id: typing.Optional[int] = None
     name: typing.Optional[str] = None
-    type: "RelativeType"
+    type: typing.Optional["RelativeType"] = None
 
 
 class UsersSchool(BaseModel):
@@ -9010,11 +8948,11 @@ class VideoVideoAlbumFull(VideoVideoAlbum):
     updated_time - Date when the album has been updated last time in Unixtime
     """
 
-    count: typing.Optional[int] = None
+    count: int
     image: typing.Optional[typing.List["VideoVideoImage"]] = None
     image_blur: typing.Optional["BasePropertyExists"] = None
     is_system: typing.Optional["BasePropertyExists"] = None
-    updated_time: typing.Optional[int] = None
+    updated_time: int
 
 
 class VideoVideoFiles(BaseModel):
