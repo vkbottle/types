@@ -5835,7 +5835,7 @@ class MessagesSendUserIdsResponseItem(BaseModel):
 
     conversation_message_id: typing.Optional[int] = None
     error: typing.Optional["BaseMessageError"] = None
-    message_id: int
+    message_id: typing.Optional[int] = None
     peer_id: int
 
 
