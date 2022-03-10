@@ -28,10 +28,6 @@ class GetByIdExtendedResponse(BaseResponse):
     response: "GetByIdExtendedResponseModel"
 
 
-class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel"
-
-
 class GetPhotoUploadServerResponse(BaseResponse):
     response: "GetPhotoUploadServerResponseModel"
 
@@ -85,11 +81,6 @@ class GetByIdExtendedResponseModel(BaseResponse):
     items: typing.Optional[typing.List["StoriesStory"]] = None
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-class GetByIdResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["StoriesStory"]] = None
 
 
 class GetPhotoUploadServerResponseModel(BaseResponse):

@@ -45,10 +45,6 @@ class SetCounterArrayResponse(BaseResponse):
     response: typing.List["SecureSetCounterItem"]
 
 
-class SetCounterIntegerResponse(BaseResponse):
-    response: int
-
-
 for item in locals().copy().values():
     if inspect.isclass(item) and issubclass(item, BaseResponse):
         item.update_forward_refs()

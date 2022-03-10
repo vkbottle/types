@@ -15,6 +15,10 @@ from vkbottle_types.objects import (
 from .base_response import BaseResponse
 
 
+class GenericResponse(BaseResponse):
+    response: "GenericResponseModel"
+
+
 class GetBannedExtendedResponse(BaseResponse):
     response: "GetBannedExtendedResponseModel"
 
@@ -39,16 +43,8 @@ class GetMentionsResponse(BaseResponse):
     response: "GetMentionsResponseModel"
 
 
-class GetRecommendedResponse(BaseResponse):
-    response: "GetRecommendedResponseModel"
-
-
 class GetSuggestedSourcesResponse(BaseResponse):
     response: "GetSuggestedSourcesResponseModel"
-
-
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
 
 
 class IgnoreItemResponse(BaseResponse):
@@ -65,6 +61,13 @@ class SearchExtendedResponse(BaseResponse):
 
 class SearchResponse(BaseResponse):
     response: "SearchResponseModel"
+
+
+class GenericResponseModel(BaseResponse):
+    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    new_returned_news_items_count: typing.Optional[int] = None
 
 
 class GetBannedExtendedResponseModel(BaseResponse):
@@ -99,23 +102,9 @@ class GetMentionsResponseModel(BaseResponse):
     items: typing.Optional[typing.List["WallWallpostToId"]] = None
 
 
-class GetRecommendedResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    next_from: typing.Optional[str] = None
-
-
 class GetSuggestedSourcesResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["UsersSubscriptionsItem"]] = None
-
-
-class GetResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["NewsfeedNewsfeedItem"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-    next_from: typing.Optional[str] = None
 
 
 class IgnoreItemResponseModel(BaseResponse):

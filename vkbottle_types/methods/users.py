@@ -23,9 +23,11 @@ from .base_category import BaseCategory
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        user_ids: typing.Optional[typing.List[str]] = None,
+        user_ids: typing.Optional[typing.List[typing.Union[int, str]]] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> typing.List[UsersUserFull]:
         """Returns detailed information on users.
@@ -47,7 +49,9 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[Literal[None]] = ...,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetFollowersResponseModel:
         ...
@@ -59,7 +63,9 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.List[str] = ...,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetFollowersFieldsResponseModel:
         ...
@@ -166,7 +172,7 @@ class UsersCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: Literal[0, 1] = None,
+        sort: typing.Optional[Literal[0, 1]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
@@ -178,8 +184,8 @@ class UsersCategory(BaseCategory):
         university_year: typing.Optional[int] = None,
         university_faculty: typing.Optional[int] = None,
         university_chair: typing.Optional[int] = None,
-        sex: Literal[0, 1, 2] = None,
-        status: Literal[0, 1, 2, 3, 4, 5, 6, 7] = None,
+        sex: typing.Optional[Literal[0, 1, 2]] = None,
+        status: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6, 7]] = None,
         age_from: typing.Optional[int] = None,
         age_to: typing.Optional[int] = None,
         birth_day: typing.Optional[int] = None,

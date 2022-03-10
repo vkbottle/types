@@ -2,7 +2,7 @@ import typing
 
 from vkbottle_types.responses.database import (
     BaseCountry,
-    BaseObject,
+    DatabaseCityById,
     DatabaseStation,
     GetChairsResponse,
     GetChairsResponseModel,
@@ -76,7 +76,7 @@ class DatabaseCategory(BaseCategory):
 
     async def get_cities_by_id(
         self, city_ids: typing.Optional[typing.List[int]] = None, **kwargs
-    ) -> typing.List[BaseObject]:
+    ) -> typing.List[DatabaseCityById]:
         """Returns information about cities by their IDs.
 
         :param city_ids: City IDs.

@@ -257,11 +257,11 @@ class UsersUserMin(BaseModel):
 
     can_access_closed: typing.Optional[bool] = None
     deactivated: typing.Optional[str] = None
-    first_name: str
+    first_name: typing.Optional[str] = None
     hidden: typing.Optional[int] = None
     id: int
     is_closed: typing.Optional[bool] = None
-    last_name: str
+    last_name: typing.Optional[str] = None
 
 
 class UsersUserSettingsXtr(BaseModel):
@@ -592,7 +592,7 @@ class AdsCategory(BaseModel):
 
     id: int
     name: str
-    subcategories: typing.Optional[typing.List["BaseObjectWithName"]] = None
+    subcategories: typing.Optional[typing.List["AdsCategory"]] = None
 
 
 class AdsClient(BaseModel):
@@ -608,6 +608,34 @@ class AdsClient(BaseModel):
     day_limit: str
     id: int
     name: str
+
+
+class AdsCreateAdStatus(BaseModel):
+    """VK Object AdsCreateAdStatus
+
+    error_code - Error code
+    error_desc - Error description
+    id - Ad ID
+    post_id - Stealth Post ID
+    """
+
+    error_code: typing.Optional[int] = None
+    error_desc: typing.Optional[str] = None
+    id: int
+    post_id: typing.Optional[int] = None
+
+
+class AdsCreateCampaignStatus(BaseModel):
+    """VK Object AdsCreateCampaignStatus
+
+    error_code - Error code
+    error_desc - Error description
+    id - Campaign ID
+    """
+
+    error_code: typing.Optional[int] = None
+    error_desc: typing.Optional[str] = None
+    id: int
 
 
 class AdsCriteria(BaseModel):
@@ -2039,6 +2067,16 @@ class BaseUserGroupFields(enum.Enum):
     VERIFIED = "verified"
     WALL_COMMENTS = "wall_comments"
     WIKI_PAGE = "wiki_page"
+    FIRST_NAME = "first_name"
+    FIRST_NAME_ACC = "first_name_acc"
+    FIRST_NAME_DAT = "first_name_dat"
+    FIRST_NAME_GEN = "first_name_gen"
+    LAST_NAME = "last_name"
+    LAST_NAME_ACC = "last_name_acc"
+    LAST_NAME_DAT = "last_name_dat"
+    LAST_NAME_GEN = "last_name_gen"
+    CAN_SUBSCRIBE_STORIES = "can_subscribe_stories"
+    IS_SUBSCRIBED_STORIES = "is_subscribed_stories"
     VK_ADMIN_STATUS = "vk_admin_status"
 
 
@@ -2066,9 +2104,11 @@ class BoardTopic(BaseModel):
     comments - Comments number
     created - Date when the topic has been created in Unixtime
     created_by - Creator ID
+    first_comment - First comment text
     id - Topic ID
     is_closed - Information whether the topic is closed
     is_fixed - Information whether the topic is fixed
+    last_comment - Last comment text
     title - Topic title
     updated - Date when the topic has been updated in Unixtime
     updated_by - ID of user who updated the topic
@@ -2077,9 +2117,11 @@ class BoardTopic(BaseModel):
     comments: typing.Optional[int] = None
     created: typing.Optional[int] = None
     created_by: typing.Optional[int] = None
+    first_comment: typing.Optional[str] = None
     id: typing.Optional[int] = None
     is_closed: typing.Optional["BaseBoolInt"] = None
     is_fixed: typing.Optional["BaseBoolInt"] = None
+    last_comment: typing.Optional[str] = None
     title: typing.Optional[str] = None
     updated: typing.Optional[int] = None
     updated_by: typing.Optional[int] = None
@@ -2106,29 +2148,6 @@ class BoardTopicComment(BaseModel):
     likes: typing.Optional["BaseLikesInfo"] = None
     real_offset: typing.Optional[int] = None
     text: str
-
-
-class BoardTopicPoll(BaseModel):
-    """VK Object BoardTopicPoll
-
-    answer_id - Current user's answer ID
-    answers -
-    created - Date when poll has been created in Unixtime
-    is_closed - Information whether the poll is closed
-    owner_id - Poll owner's ID
-    poll_id - Poll ID
-    question - Poll question
-    votes - Votes number
-    """
-
-    answer_id: int
-    answers: typing.List["PollsAnswer"]
-    created: int
-    is_closed: typing.Optional["BaseBoolInt"] = None
-    owner_id: int
-    poll_id: int
-    question: str
-    votes: int
 
 
 class CallbackBase(BaseModel):
@@ -2605,6 +2624,12 @@ class DatabaseCity(BaseObject):
     region: typing.Optional[str] = None
 
 
+class DatabaseCityById(BaseObject):
+    """VK Object DatabaseCityById"""
+
+    pass
+
+
 class DatabaseFaculty(BaseModel):
     """VK Object DatabaseFaculty
 
@@ -2848,7 +2873,7 @@ class FaveBookmark(BaseModel):
     seen: bool
     tags: typing.List["FaveTag"]
     type: "FaveBookmarkType"
-    video: typing.Optional["VideoVideo"] = None
+    video: typing.Optional["VideoVideoFull"] = None
 
 
 class FaveBookmarkType(enum.Enum):
@@ -3338,6 +3363,7 @@ class GiftsLayout(BaseModel):
     thumb_96: typing.Optional[str] = None
 
 
+# NOTE: NOT A CODEGEN
 class GroupCallInProgress(CallsCall):
     """VK Object GroupCallInProgress"""
 
@@ -3652,6 +3678,7 @@ class GroupsFields(enum.Enum):
     HAS_UNSEEN_STORIES = "has_unseen_stories"
     IS_BUSINESS = "is_business"
     TEXTLIVES_COUNT = "textlives_count"
+    MEMBERS_COUNT_TEXT = "members_count_text"
 
 
 class GroupsFilter(enum.Enum):
@@ -3704,10 +3731,10 @@ class GroupsGroup(BaseModel):
     id: int
     is_admin: typing.Optional["BaseBoolInt"] = None
     is_advertiser: typing.Optional["BaseBoolInt"] = None
-    is_closed: "GroupsGroupIsClosed"
+    is_closed: typing.Optional["GroupsGroupIsClosed"] = None
     is_member: typing.Optional["BaseBoolInt"] = None
     is_video_live_notifications_blocked: typing.Optional["BaseBoolInt"] = None
-    name: str
+    name: typing.Optional[str] = None
     photo_100: typing.Optional[str] = None
     photo_200: typing.Optional[str] = None
     photo_200_orig: typing.Optional[str] = None
@@ -3718,7 +3745,7 @@ class GroupsGroup(BaseModel):
     photo_max_orig: typing.Optional[str] = None
     photo_max_size: typing.Optional["GroupsPhotoSize"] = None
     public_date_label: typing.Optional[str] = None
-    screen_name: str
+    screen_name: typing.Optional[str] = None
     start_date: typing.Optional[int] = None
     type: typing.Optional["GroupsGroupType"] = None
     video_live: typing.Optional["VideoLiveInfo"] = None
@@ -3876,6 +3903,7 @@ class GroupsGroupFull(GroupsGroup):
     market -
     member_status - Current user's member status
     members_count - Community members number
+    members_count_text - Info about number of users in group
     online_status - Status of replies in community messages
     requests_count - The number of incoming requests to the community
     secondary_section -
@@ -3934,6 +3962,7 @@ class GroupsGroupFull(GroupsGroup):
     market: typing.Optional["GroupsMarketInfo"] = None
     member_status: typing.Optional["GroupsGroupFullMemberStatus"] = None
     members_count: typing.Optional[int] = None
+    members_count_text: typing.Optional[str] = None
     online_status: typing.Optional["GroupsOnlineStatus"] = None
     requests_count: typing.Optional[int] = None
     secondary_section: typing.Optional["GroupsGroupFullSection"] = None
@@ -3972,18 +4001,51 @@ class GroupsGroupFullMemberStatus(enum.IntEnum):
 class GroupsGroupFullSection(enum.IntEnum):
     """ Main section of community """
 
-    absent = 0
+    none = 0
     photos = 1
     topics = 2
-    audio = 3
-    video = 4
+    audios = 3
+    videos = 4
     market = 5
+    stories = 6
+    apps = 7
+    followers = 8
+    links = 9
     events = 10
+    places = 11
+    contacts = 12
+    app_btns = 13
+    docs = 14
+    event_counters = 15
+    group_messages = 16
+    albums = 24
+    categories = 26
+    admin_help = 27
+    app_widget = 31
+    public_help = 32
+    hs_donation_app = 33
+    hs_market_app = 34
     addresses = 35
+    artist_page = 36
+    podcast = 37
     articles = 39
+    admin_tips = 40
+    menu = 41
+    fixed_post = 42
     chats = 43
+    evergreen_notice = 44
+    musicians = 45
+    narratives = 46
+    donut_donate = 47
+    clips = 48
+    market_cart = 49
+    curators = 50
     market_services = 51
     classifieds = 53
+    textlives = 54
+    donut_for_dons = 55
+    badges = 57
+    chats_creation = 58
 
 
 class GroupsGroupIsClosed(enum.IntEnum):
@@ -4460,6 +4522,7 @@ class GroupsTokenPermissionSetting(BaseModel):
     setting: int
 
 
+# NOTE: NOT A CODEGEN
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
     """VK Object GroupsUserXtrRole"""
     pass
@@ -4707,6 +4770,7 @@ class MarketMarketItemAvailability(enum.IntEnum):
 class MarketMarketItemFull(MarketMarketItem):
     """VK Object MarketMarketItemFull
 
+    ad_id - Contains ad ID if it has
     albums_ids -
     can_comment - Information whether current use can comment the item
     can_repost - Information whether current use can repost the item
@@ -4719,6 +4783,7 @@ class MarketMarketItemFull(MarketMarketItem):
     wishlist_item_id - Object identifier in wishlist of viewer
     """
 
+    ad_id: typing.Optional[int] = None
     albums_ids: typing.Optional[typing.List[int]] = None
     can_comment: typing.Optional["BaseBoolInt"] = None
     can_repost: typing.Optional["BaseBoolInt"] = None
@@ -4911,11 +4976,15 @@ class MessagesChatPreview(BaseModel):
     """VK Object MessagesChatPreview"""
 
     admin_id: typing.Optional[int] = None
+    button: typing.Optional["BaseLinkButton"] = None
+    is_don: typing.Optional[bool] = None
+    is_group_channel: typing.Optional[bool] = None
     is_member: typing.Optional[bool] = None
     joined: typing.Optional[bool] = None
     local_id: typing.Optional[int] = None
     members: typing.Optional[typing.List[int]] = None
     members_count: typing.Optional[int] = None
+    photo: typing.Optional["MessagesChatSettingsPhoto"] = None
     title: typing.Optional[str] = None
 
 
@@ -5341,12 +5410,14 @@ class MessagesHistoryAttachment(BaseModel):
     forward_level - Forward level (optional)
     from_id - Message author's ID
     message_id - Message ID
+    was_listened -
     """
 
     attachment: "MessagesHistoryMessageAttachment"
     forward_level: typing.Optional[int] = None
     from_id: int
     message_id: int
+    was_listened: typing.Optional[bool] = None
 
 
 class MessagesHistoryMessageAttachment(BaseModel):
@@ -5357,12 +5428,12 @@ class MessagesHistoryMessageAttachment(BaseModel):
     doc: typing.Optional["DocsDoc"] = None
     graffiti: typing.Optional["MessagesGraffiti"] = None
     link: typing.Optional["BaseLink"] = None
-    market: typing.Optional["BaseLink"] = None
+    market: typing.Optional["MarketMarketItem"] = None
     photo: typing.Optional["PhotosPhoto"] = None
-    share: typing.Optional["BaseLink"] = None
+    share: typing.Optional["BaseLink"] = None  # NOTE: NOT A CODEGEN
     type: "MessagesHistoryMessageAttachmentType"
     video: typing.Optional["VideoVideo"] = None
-    wall: typing.Optional["BaseLink"] = None
+    wall: typing.Optional["WallWallpostFull"] = None
 
 
 class MessagesHistoryMessageAttachmentType(enum.Enum):
@@ -5678,7 +5749,7 @@ class MessagesMessageAction(BaseModel):
     photo: typing.Optional["MessagesMessageActionPhoto"] = None
     text: typing.Optional[str] = None
     type: "MessagesMessageActionStatus"
-    style: typing.Optional[str] = None
+    style: typing.Optional[str] = None  # NOTE: NOT A CODEGEN
 
 
 class MessagesMessageActionPhoto(BaseModel):
@@ -5708,7 +5779,7 @@ class MessagesMessageActionStatus(enum.Enum):
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
     CHAT_SCREENSHOT = "chat_screenshot"
-    CONVERSATION_STYLE_UPDATE = "conversation_style_update"
+    CONVERSATION_STYLE_UPDATE = "conversation_style_update"  # NOTE: NOT A CODEGEN
 
 
 class MessagesMessageAttachment(BaseModel):
@@ -5720,8 +5791,8 @@ class MessagesMessageAttachment(BaseModel):
     doc: typing.Optional["DocsDoc"] = None
     gift: typing.Optional["GiftsLayout"] = None
     graffiti: typing.Optional["MessagesGraffiti"] = None
-    group_call_in_progress: typing.Optional["GroupCallInProgress"] = None
-    link: typing.Optional["BaseLink"] = None
+    group_call_in_progress: typing.Optional["GroupCallInProgress"] = None  # NOTE: NOT A CODEGEN
+    link: typing.Optional["BaseLink"] = None  # NOTE: NOT A CODEGEN
     market: typing.Optional["MarketMarketItem"] = None
     market_market_album: typing.Optional["MarketMarketAlbum"] = None
     photo: typing.Optional["PhotosPhoto"] = None
@@ -5729,8 +5800,8 @@ class MessagesMessageAttachment(BaseModel):
     sticker: typing.Optional["BaseSticker"] = None
     story: typing.Optional["StoriesStory"] = None
     type: "MessagesMessageAttachmentType"
-    video: typing.Optional["VideoVideo"] = None
-    wall: typing.Optional["WallWallpostFull"] = None
+    video: typing.Optional["VideoVideoFull"] = None
+    wall: typing.Optional["WallWallpostFull"] = None  # NOTE: NOT A CODEGEN
     wall_reply: typing.Optional["WallWallComment"] = None
 
 
@@ -5753,8 +5824,8 @@ class MessagesMessageAttachmentType(enum.Enum):
     CALL = "call"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
-    STORY = "story"
-    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
+    STORY = "story"  # NOTE: NOT A CODEGEN
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # NOTE: NOT A CODEGEN
 
 
 class MessagesMessageRequestData(BaseModel):
@@ -5835,7 +5906,7 @@ class MessagesSendUserIdsResponseItem(BaseModel):
 
     conversation_message_id: typing.Optional[int] = None
     error: typing.Optional["BaseMessageError"] = None
-    message_id: typing.Optional[int] = None
+    message_id: int  # NOTE: NOT A CODEGEN
     peer_id: int
 
 
@@ -6249,7 +6320,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     topic_id: typing.Optional[int] = None
 
 
-class NewsfeedItemWallpost(WallWallpostFull):
+class NewsfeedItemWallpost(WallWallpostFull):  # NOTE: NOT A CODEGEN
     """VK Object NewsfeedItemWallpost"""
 
     feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None
@@ -6341,18 +6412,22 @@ class PhotosPhoto(BaseModel):
     access_key - Access key for the photo
     album_id - Album ID
     can_comment - Information whether current user can comment the photo
+    comments -
     date - Date when uploaded
     has_tags - Whether photo has attached tag links
     height - Original photo height
     id - Photo ID
     images -
     lat - Latitude
+    likes -
     long - Longitude
     owner_id - Photo owner's ID
     photo_256 - URL of image with 2560 px width
     place -
     post_id - Post ID
+    reposts -
     sizes -
+    tags -
     text - Photo caption
     user_id - ID of the user who have uploaded the photo
     width - Original photo width
@@ -6361,18 +6436,22 @@ class PhotosPhoto(BaseModel):
     access_key: typing.Optional[str] = None
     album_id: int
     can_comment: typing.Optional["BaseBoolInt"] = None
+    comments: typing.Optional["BaseObjectCount"] = None
     date: int
     has_tags: bool
     height: typing.Optional[int] = None
     id: int
     images: typing.Optional[typing.List["PhotosImage"]] = None
     lat: typing.Optional[float] = None
+    likes: typing.Optional["BaseLikes"] = None
     long: typing.Optional[float] = None
     owner_id: int
     photo_256: typing.Optional[str] = None
     place: typing.Optional[str] = None
     post_id: typing.Optional[int] = None
+    reposts: typing.Optional["BaseRepostsInfo"] = None
     sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = None
+    tags: typing.Optional["BaseObjectCount"] = None
     text: typing.Optional[str] = None
     user_id: typing.Optional[int] = None
     width: typing.Optional[int] = None
@@ -6528,6 +6607,24 @@ class WallWallpostToId(BaseModel):
     to_id: typing.Optional[int] = None
 
 
+class VideoVideoType(enum.Enum):
+    """ VideoVideoType enum """
+
+    VIDEO = "video"
+    MUSIC_VIDEO = "music_video"
+    MOVIE = "movie"
+
+
+class LiveStreamStatus(enum.Enum):
+    """ Live stream status """
+
+    WAITING = "waiting"
+    STARTED = "started"
+    FINISHED = "finished"
+    FAILED = "failed"
+    UPCOMING = "upcoming"
+
+
 class VideoVideo(BaseModel):
     """VK Object VideoVideo
 
@@ -6609,7 +6706,7 @@ class VideoVideo(BaseModel):
     live: typing.Optional["BasePropertyExists"] = None
     live_notify: typing.Optional["BaseBoolInt"] = None
     live_start_time: typing.Optional[int] = None
-    live_status: typing.Optional[str] = None
+    live_status: typing.Optional["LiveStreamStatus"] = None
     local_views: typing.Optional[int] = None
     owner_id: typing.Optional[int] = None
     platform: typing.Optional[str] = None
@@ -6620,7 +6717,7 @@ class VideoVideo(BaseModel):
     spectators: typing.Optional[int] = None
     title: typing.Optional[str] = None
     track_code: typing.Optional[str] = None
-    type: typing.Optional[str] = None
+    type: typing.Optional["VideoVideoType"] = None
     upcoming: typing.Optional["BasePropertyExists"] = None
     user_id: typing.Optional[int] = None
     views: typing.Optional[int] = None
@@ -6871,7 +6968,7 @@ class PagesWikipage(BaseModel):
     """
 
     creator_id: typing.Optional[int] = None
-    creator_name: typing.Optional[int] = None
+    creator_name: typing.Optional[str] = None
     editor_id: typing.Optional[int] = None
     editor_name: typing.Optional[str] = None
     group_id: int
@@ -7001,6 +7098,7 @@ class PhotosPhotoAlbum(BaseModel):
 class PhotosPhotoAlbumFull(BaseModel):
     """VK Object PhotosPhotoAlbumFull
 
+    can_delete - album can delete
     can_upload - Information whether current user can upload photo to the album
     comments_disabled - Information whether album comments are disabled
     created - Date when the album has been created in Unixtime
@@ -7017,6 +7115,7 @@ class PhotosPhotoAlbumFull(BaseModel):
     upload_by_admins_only - Information whether only community administrators can upload photos
     """
 
+    can_delete: typing.Optional[bool] = None
     can_upload: typing.Optional["BaseBoolInt"] = None
     comments_disabled: typing.Optional["BaseBoolInt"] = None
     created: int
@@ -7034,49 +7133,6 @@ class PhotosPhotoAlbumFull(BaseModel):
 
 
 PhotosPhotoFalseable = typing.Union[bool, str]
-
-
-class PhotosPhotoFull(BaseModel):
-    """VK Object PhotosPhotoFull
-
-    access_key - Access key for the photo
-    album_id - Album ID
-    can_comment - Information whether current user can comment the photo
-    comments -
-    date - Date when uploaded
-    height - Original photo height
-    id - Photo ID
-    images -
-    lat - Latitude
-    likes -
-    long - Longitude
-    owner_id - Photo owner's ID
-    post_id - Post ID
-    reposts -
-    tags -
-    text - Photo caption
-    user_id - ID of the user who have uploaded the photo
-    width - Original photo width
-    """
-
-    access_key: typing.Optional[str] = None
-    album_id: int
-    can_comment: typing.Optional["BaseBoolInt"] = None
-    comments: typing.Optional["BaseObjectCount"] = None
-    date: int
-    height: typing.Optional[int] = None
-    id: int
-    images: typing.Optional[typing.List["PhotosImage"]] = None
-    lat: typing.Optional[float] = None
-    likes: typing.Optional["BaseLikes"] = None
-    long: typing.Optional[float] = None
-    owner_id: int
-    post_id: typing.Optional[int] = None
-    reposts: typing.Optional["BaseRepostsInfo"] = None
-    tags: typing.Optional["BaseObjectCount"] = None
-    text: typing.Optional[str] = None
-    user_id: typing.Optional[int] = None
-    width: typing.Optional[int] = None
 
 
 class PhotosPhotoFullXtrRealOffset(BaseModel):
@@ -7545,6 +7601,12 @@ class PrettyCardsPrettyCard(BaseModel):
     title: str
 
 
+class PrettyCardsPrettyCardOrError(PrettyCardsPrettyCard, BaseError):
+    """VK Object PrettyCardsPrettyCardOrError"""
+
+    pass
+
+
 class SearchHint(BaseModel):
     """VK Object SearchHint
 
@@ -7614,11 +7676,11 @@ class SecureSetCounterItem(BaseModel):
     """VK Object SecureSetCounterItem
 
     id - User ID
-    result - result (0 or 1)
+    result -
     """
 
-    id: typing.Optional[int] = None
-    result: typing.Optional[int] = None
+    id: int
+    result: "BaseBoolInt"
 
 
 class SecureSmsNotification(BaseModel):
@@ -8189,17 +8251,19 @@ class StoriesStory(BaseModel):
     replies: typing.Optional["StoriesReplies"] = None
     seen: typing.Optional["BaseBoolInt"] = None
     type: typing.Optional["StoriesStoryType"] = None
-    video: typing.Optional["VideoVideo"] = None
+    video: typing.Optional["VideoVideoFull"] = None
     views: typing.Optional[int] = None
 
 
 class StoriesStoryLink(BaseModel):
     """VK Object StoriesStoryLink
 
+    link_url_target - How to open url
     text - Link text
     url - Link URL
     """
 
+    link_url_target: typing.Optional[str] = None
     text: str
     url: str
 
@@ -8337,6 +8401,7 @@ class UsersFields(enum.Enum):
     VERIFIED = "verified"
     SEX = "sex"
     BDATE = "bdate"
+    BDATE_VISIBILITY = "bdate_visibility"
     CITY = "city"
     COUNTRY = "country"
     HOME_TOWN = "home_town"
@@ -8961,6 +9026,7 @@ class VideoVideoFiles(BaseModel):
     external - URL of the external player
     flv_320 - URL of the flv file with 320p quality
     mp4_1080 - URL of the mpeg4 file with 1080p quality
+    mp4_144 - URL of the mpeg4 file with 144p quality
     mp4_1440 - URL of the mpeg4 file with 2K quality
     mp4_2160 - URL of the mpeg4 file with 4K quality
     mp4_240 - URL of the mpeg4 file with 240p quality
@@ -8972,6 +9038,7 @@ class VideoVideoFiles(BaseModel):
     external: typing.Optional[str] = None
     flv_320: typing.Optional[str] = None
     mp4_1080: typing.Optional[str] = None
+    mp4_144: typing.Optional[str] = None
     mp4_1440: typing.Optional[str] = None
     mp4_2160: typing.Optional[str] = None
     mp4_240: typing.Optional[str] = None

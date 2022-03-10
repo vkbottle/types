@@ -55,7 +55,7 @@ class PollsCategory(BaseCategory):
         app_id: typing.Optional[int] = None,
         add_answers: typing.Optional[str] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: Literal[1, 2, 3, 4, 6, 8, 9] = None,
+        background_id: typing.Optional[Literal[1, 2, 3, 4, 6, 8, 9]] = None,
         disable_unvote: typing.Optional[bool] = None,
         **kwargs
     ) -> PollsPoll:
@@ -109,7 +109,7 @@ class PollsCategory(BaseCategory):
         delete_answers: typing.Optional[str] = None,
         end_date: typing.Optional[int] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: Literal[0, 1, 2, 3, 4, 6, 8, 9] = None,
+        background_id: typing.Optional[Literal[0, 1, 2, 3, 4, 6, 8, 9]] = None,
         **kwargs
     ) -> int:
         """Edits created polls
@@ -146,7 +146,9 @@ class PollsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         friends_count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["abl", "acc", "dat", "gen", "ins", "nom"] = None,
+        name_case: typing.Optional[
+            Literal["abl", "acc", "dat", "gen", "ins", "nom"]
+        ] = None,
         **kwargs
     ) -> PollsPoll:
         """Returns detailed information about a poll by its ID.
@@ -188,7 +190,9 @@ class PollsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> typing.List[PollsVoters]:
         """Returns a list of IDs of users who selected specific answers in the poll.

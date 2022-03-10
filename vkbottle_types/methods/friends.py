@@ -191,12 +191,16 @@ class FriendsCategory(BaseCategory):
     async def get(
         self,
         user_id: typing.Optional[int] = None,
-        order: Literal["hints", "random", "mobile", "name", "smart"] = None,
+        order: typing.Optional[
+            Literal["hints", "random", "mobile", "name", "smart"]
+        ] = None,
         list_id: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         fields: typing.Optional[Literal[None]] = ...,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         ref: typing.Optional[str] = None,
         **kwargs
     ) -> GetResponseModel:
@@ -206,12 +210,16 @@ class FriendsCategory(BaseCategory):
     async def get(
         self,
         user_id: typing.Optional[int] = None,
-        order: Literal["hints", "random", "mobile", "name", "smart"] = None,
+        order: typing.Optional[
+            Literal["hints", "random", "mobile", "name", "smart"]
+        ] = None,
         list_id: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         fields: typing.List[str] = ...,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         ref: typing.Optional[str] = None,
         **kwargs
     ) -> GetFieldsResponseModel:
@@ -423,7 +431,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[Literal[False]] = ...,
         need_mutual: typing.Optional[Literal[False]] = ...,
         out: typing.Optional[bool] = None,
-        sort: Literal[0, 1, 2] = None,
+        sort: typing.Optional[Literal[0, 1, 2]] = None,
         need_viewed: typing.Optional[bool] = None,
         suggested: typing.Optional[bool] = None,
         ref: typing.Optional[str] = None,
@@ -440,7 +448,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[Literal[False]] = ...,
         need_mutual: Literal[True] = ...,
         out: typing.Optional[bool] = None,
-        sort: Literal[0, 1, 2] = None,
+        sort: typing.Optional[Literal[0, 1, 2]] = None,
         need_viewed: typing.Optional[bool] = None,
         suggested: typing.Optional[bool] = None,
         ref: typing.Optional[str] = None,
@@ -457,7 +465,7 @@ class FriendsCategory(BaseCategory):
         extended: Literal[True] = ...,
         need_mutual: typing.Optional[Literal[False]] = ...,
         out: typing.Optional[bool] = None,
-        sort: Literal[0, 1, 2] = None,
+        sort: typing.Optional[Literal[0, 1, 2]] = None,
         need_viewed: typing.Optional[bool] = None,
         suggested: typing.Optional[bool] = None,
         ref: typing.Optional[str] = None,
@@ -516,7 +524,9 @@ class FriendsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetSuggestionsResponseModel:
         """Returns a list of profiles of users whom the current user may know.
@@ -535,10 +545,12 @@ class FriendsCategory(BaseCategory):
 
     async def search(
         self,
-        user_id: int,
+        user_id: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs

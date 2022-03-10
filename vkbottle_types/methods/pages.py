@@ -152,8 +152,8 @@ class PagesCategory(BaseCategory):
         page_id: int,
         group_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
-        view: Literal[0, 1, 2] = None,
-        edit: Literal[0, 1, 2] = None,
+        view: typing.Optional[Literal[0, 1, 2]] = None,
+        edit: typing.Optional[Literal[0, 1, 2]] = None,
         **kwargs
     ) -> int:
         """Saves modified read and edit access settings for a wiki page.

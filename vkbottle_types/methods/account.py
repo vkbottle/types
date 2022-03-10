@@ -188,11 +188,11 @@ class AccountCategory(BaseCategory):
         maiden_name: typing.Optional[str] = None,
         screen_name: typing.Optional[str] = None,
         cancel_request_id: typing.Optional[int] = None,
-        sex: Literal[0, 1, 2] = None,
-        relation: Literal[1, 2, 3, 4, 5, 6, 7, 0] = None,
+        sex: typing.Optional[Literal[0, 1, 2]] = None,
+        relation: typing.Optional[Literal[1, 2, 3, 4, 5, 6, 7, 0]] = None,
         relation_partner_id: typing.Optional[int] = None,
         bdate: typing.Optional[str] = None,
-        bdate_visibility: Literal[1, 2, 0] = None,
+        bdate_visibility: typing.Optional[Literal[1, 2, 0]] = None,
         home_town: typing.Optional[str] = None,
         country_id: typing.Optional[int] = None,
         city_id: typing.Optional[int] = None,
@@ -224,7 +224,9 @@ class AccountCategory(BaseCategory):
 
     async def set_info(
         self,
-        name: Literal["intro", "no_wall_replies", "own_posts_default"] = None,
+        name: typing.Optional[
+            Literal["intro", "no_wall_replies", "own_posts_default"]
+        ] = None,
         value: typing.Optional[str] = None,
         **kwargs
     ) -> int:
@@ -236,20 +238,6 @@ class AccountCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("account.setInfo", params)
-        model = OkResponse
-        return model(**response).response
-
-    async def set_name_in_menu(
-        self, user_id: int, name: typing.Optional[str] = None, **kwargs
-    ) -> int:
-        """Sets an application screen name (up to 17 characters), that is shown to the user in the left menu.
-
-        :param user_id: User ID.
-        :param name: Application screen name.
-        """
-
-        params = self.get_set_params(locals())
-        response = await self.api.request("account.setNameInMenu", params)
         model = OkResponse
         return model(**response).response
 

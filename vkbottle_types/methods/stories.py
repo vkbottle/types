@@ -9,8 +9,6 @@ from vkbottle_types.responses.stories import (
     GetBannedResponseModel,
     GetByIdExtendedResponse,
     GetByIdExtendedResponseModel,
-    GetByIdResponse,
-    GetByIdResponseModel,
     GetPhotoUploadServerResponse,
     GetPhotoUploadServerResponseModel,
     GetStatsResponse,
@@ -114,29 +112,13 @@ class StoriesCategory(BaseCategory):
         )
         return model(**response).response
 
-    @typing.overload
     async def get_by_id(
         self,
         stories: typing.List[str],
-        extended: typing.Optional[Literal[False]] = ...,
-        fields: typing.Optional[typing.List[str]] = None,
-        **kwargs
-    ) -> GetByIdResponseModel:
-        ...
-
-    @typing.overload
-    async def get_by_id(
-        self,
-        stories: typing.List[str],
-        extended: Literal[True] = ...,
+        extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> GetByIdExtendedResponseModel:
-        ...
-
-    async def get_by_id(
-        self, stories=None, extended=None, fields=None, **kwargs
-    ) -> typing.Union[GetByIdResponseModel, GetByIdExtendedResponseModel]:
         """Returns story by its ID.
 
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
@@ -146,11 +128,7 @@ class StoriesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getById", params)
-        model = self.get_model(
-            ((("extended",), GetByIdExtendedResponse),),
-            default=GetByIdResponse,
-            params=params,
-        )
+        model = GetByIdExtendedResponse
         return model(**response).response
 
     async def get_photo_upload_server(
@@ -252,6 +230,7 @@ class StoriesCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         extended: typing.Optional[Literal[False]] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> GetViewersExtendedV5115ResponseModel:
         ...
@@ -264,6 +243,7 @@ class StoriesCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> GetViewersExtendedV5115ResponseModel:
         ...
@@ -275,6 +255,7 @@ class StoriesCategory(BaseCategory):
         count=None,
         offset=None,
         extended=None,
+        fields=None,
         **kwargs
     ) -> typing.Union[
         GetViewersExtendedV5115ResponseModel, GetViewersExtendedV5115ResponseModel
@@ -286,6 +267,7 @@ class StoriesCategory(BaseCategory):
         :param count: Maximum number of results.
         :param offset: Offset needed to return a specific subset of results.
         :param extended: '1' — to return detailed information about photos
+        :param fields:
         """
 
         params = self.get_set_params(locals())

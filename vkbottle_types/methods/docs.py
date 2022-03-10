@@ -1,13 +1,10 @@
 import typing
 
 from typing_extensions import Literal
-from vkbottle_types.responses.base import (
-    BaseGetUploadServerResponse,
-    BaseUploadServer,
-    OkResponse,
-)
+from vkbottle_types.responses.base import BaseGetUploadServerResponse, OkResponse
 from vkbottle_types.responses.docs import (
     AddResponse,
+    BaseUploadServer,
     DocsDoc,
     GetByIdResponse,
     GetResponse,
@@ -81,7 +78,7 @@ class DocsCategory(BaseCategory):
         self,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        type: Literal[0, 1, 2, 3, 4, 5, 6, 7, 8] = None,
+        type: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6, 7, 8]] = None,
         owner_id: typing.Optional[int] = None,
         return_tags: typing.Optional[bool] = None,
         **kwargs
@@ -119,7 +116,7 @@ class DocsCategory(BaseCategory):
 
     async def get_messages_upload_server(
         self,
-        type: Literal["audio_message", "doc", "graffiti"] = None,
+        type: typing.Optional[Literal["audio_message", "doc", "graffiti"]] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs
     ) -> BaseUploadServer:
@@ -131,7 +128,7 @@ class DocsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("docs.getMessagesUploadServer", params)
-        model = BaseGetUploadServerResponse
+        model = GetUploadServerResponse
         return model(**response).response
 
     async def get_types(self, owner_id: int, **kwargs) -> GetTypesResponseModel:

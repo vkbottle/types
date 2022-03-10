@@ -91,7 +91,7 @@ class FaveCategory(BaseCategory):
     async def add_tag(
         self,
         name: typing.Optional[str] = None,
-        position: Literal["back", "front"] = None,
+        position: typing.Optional[Literal["back", "front"]] = None,
         **kwargs
     ) -> FaveTag:
         """fave.addTag method
@@ -136,17 +136,19 @@ class FaveCategory(BaseCategory):
     async def get(
         self,
         extended: typing.Optional[Literal[False]] = ...,
-        item_type: Literal[
-            "article",
-            "clip",
-            "link",
-            "narrative",
-            "page",
-            "podcast",
-            "post",
-            "product",
-            "video",
-            "youla_product",
+        item_type: typing.Optional[
+            Literal[
+                "article",
+                "clip",
+                "link",
+                "narrative",
+                "page",
+                "podcast",
+                "post",
+                "product",
+                "video",
+                "youla_product",
+            ]
         ] = None,
         tag_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
@@ -161,17 +163,19 @@ class FaveCategory(BaseCategory):
     async def get(
         self,
         extended: Literal[True] = ...,
-        item_type: Literal[
-            "article",
-            "clip",
-            "link",
-            "narrative",
-            "page",
-            "podcast",
-            "post",
-            "product",
-            "video",
-            "youla_product",
+        item_type: typing.Optional[
+            Literal[
+                "article",
+                "clip",
+                "link",
+                "narrative",
+                "page",
+                "podcast",
+                "post",
+                "product",
+                "video",
+                "youla_product",
+            ]
         ] = None,
         tag_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
@@ -217,7 +221,7 @@ class FaveCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        type: Literal["groups", "hints", "users"] = None,
+        type: typing.Optional[Literal["groups", "hints", "users"]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs
@@ -379,17 +383,19 @@ class FaveCategory(BaseCategory):
 
     async def set_tags(
         self,
-        item_type: Literal[
-            "article",
-            "clip",
-            "link",
-            "narrative",
-            "page",
-            "podcast",
-            "post",
-            "product",
-            "video",
-            "youla_product",
+        item_type: typing.Optional[
+            Literal[
+                "article",
+                "clip",
+                "link",
+                "narrative",
+                "page",
+                "podcast",
+                "post",
+                "product",
+                "video",
+                "youla_product",
+            ]
         ] = None,
         item_owner_id: typing.Optional[int] = None,
         item_id: typing.Optional[int] = None,

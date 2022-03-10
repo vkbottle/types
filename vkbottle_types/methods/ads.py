@@ -8,6 +8,8 @@ from vkbottle_types.responses.ads import (
     AdsAdLayout,
     AdsCampaign,
     AdsClient,
+    AdsCreateAdStatus,
+    AdsCreateCampaignStatus,
     AdsDemoStats,
     AdsFloodStats,
     AdsLinkStatus,
@@ -107,7 +109,7 @@ class AdsCategory(BaseCategory):
 
     async def create_ads(
         self, account_id: int, data: str, **kwargs
-    ) -> typing.List[int]:
+    ) -> typing.List[AdsCreateAdStatus]:
         """Creates ads.
 
         :param account_id: Advertising account ID.
@@ -121,7 +123,7 @@ class AdsCategory(BaseCategory):
 
     async def create_campaigns(
         self, account_id: int, data: str, **kwargs
-    ) -> typing.List[int]:
+    ) -> typing.List[AdsCreateCampaignStatus]:
         """Creates advertising campaigns.
 
         :param account_id: Advertising account ID.
@@ -184,7 +186,9 @@ class AdsCategory(BaseCategory):
         model = DeleteAdsResponse
         return model(**response).response
 
-    async def delete_campaigns(self, account_id: int, ids: str, **kwargs) -> int:
+    async def delete_campaigns(
+        self, account_id: int, ids: str, **kwargs
+    ) -> typing.List[int]:
         """Archives advertising campaigns.
 
         :param account_id: Advertising account ID.
@@ -196,7 +200,9 @@ class AdsCategory(BaseCategory):
         model = DeleteCampaignsResponse
         return model(**response).response
 
-    async def delete_clients(self, account_id: int, ids: str, **kwargs) -> int:
+    async def delete_clients(
+        self, account_id: int, ids: str, **kwargs
+    ) -> typing.List[int]:
         """Archives clients of an advertising agency.
 
         :param account_id: Advertising account ID.
@@ -542,7 +548,7 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         country: typing.Optional[int] = None,
         cities: typing.Optional[str] = None,
-        lang: Literal["ru", "ua", "en"] = None,
+        lang: typing.Optional[Literal["ru", "ua", "en"]] = None,
         **kwargs
     ) -> typing.List[AdsTargSuggestionsRegions]:
         ...
@@ -555,7 +561,7 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         country: typing.Optional[int] = None,
         cities: typing.Optional[str] = None,
-        lang: Literal["ru", "ua", "en"] = None,
+        lang: typing.Optional[Literal["ru", "ua", "en"]] = None,
         **kwargs
     ) -> typing.List[AdsTargSuggestionsCities]:
         ...
@@ -568,7 +574,7 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         country: typing.Optional[int] = None,
         cities: typing.Optional[str] = None,
-        lang: Literal["ru", "ua", "en"] = None,
+        lang: typing.Optional[Literal["ru", "ua", "en"]] = None,
         **kwargs
     ) -> typing.List[AdsTargSuggestionsSchools]:
         ...
@@ -591,7 +597,7 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         country: typing.Optional[int] = None,
         cities: typing.Optional[str] = None,
-        lang: Literal["ru", "ua", "en"] = None,
+        lang: typing.Optional[Literal["ru", "ua", "en"]] = None,
         **kwargs
     ) -> typing.List[AdsTargSuggestions]:
         ...
@@ -660,7 +666,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         criteria: typing.Optional[str] = None,
         ad_id: typing.Optional[int] = None,
-        ad_format: Literal[1, 2, 3, 4, 7, 8, 9, 10] = None,
+        ad_format: typing.Optional[Literal[1, 2, 3, 4, 7, 8, 9, 10]] = None,
         ad_platform: typing.Optional[str] = None,
         ad_platform_no_wall: typing.Optional[str] = None,
         ad_platform_no_ad_network: typing.Optional[str] = None,

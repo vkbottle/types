@@ -1,7 +1,7 @@
 import inspect
 import typing
 
-from vkbottle_types.objects import PrettyCardsPrettyCard
+from vkbottle_types.objects import PrettyCardsPrettyCard, PrettyCardsPrettyCardOrError
 
 from .base_response import BaseResponse
 
@@ -19,7 +19,7 @@ class EditResponse(BaseResponse):
 
 
 class GetByIdResponse(BaseResponse):
-    response: typing.List["PrettyCardsPrettyCard"]
+    response: typing.List["PrettyCardsPrettyCardOrError"]
 
 
 class GetUploadURLResponse(BaseResponse):

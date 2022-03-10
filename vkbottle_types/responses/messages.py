@@ -3,7 +3,6 @@ import typing
 
 from vkbottle_types.objects import (
     BaseBoolInt,
-    GroupsGroup,
     GroupsGroupFull,
     MessagesChat,
     MessagesChatFull,
@@ -46,6 +45,10 @@ class DeleteResponse(BaseResponse):
 
 class EditResponse(BaseResponse):
     response: BaseBoolInt
+
+
+class GetByConversationMessageIdExtendedResponse(BaseResponse):
+    response: "GetByConversationMessageIdExtendedResponseModel"
 
 
 class GetByConversationMessageIdResponse(BaseResponse):
@@ -176,7 +179,7 @@ class SendUserIdsResponse(BaseResponse):
     response: typing.List["MessagesSendUserIdsResponseItem"]
 
 
-class SendPeerIdsResponse(SendUserIdsResponse):
+class SendPeerIdsResponse(SendUserIdsResponse):  # NOTE: NOT A CODEGEN
     pass
 
 
@@ -191,6 +194,13 @@ class DeleteChatPhotoResponseModel(BaseResponse):
 
 class DeleteConversationResponseModel(BaseResponse):
     last_deleted_id: typing.Optional[int] = None
+
+
+class GetByConversationMessageIdExtendedResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["MessagesMessage"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetByConversationMessageIdResponseModel(BaseResponse):
@@ -213,6 +223,7 @@ class GetByIdResponseModel(BaseResponse):
 class GetChatPreviewResponseModel(BaseResponse):
     preview: typing.Optional["MessagesChatPreview"] = None
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetConversationsResponseModel(BaseResponse):
@@ -226,6 +237,8 @@ class GetConversationsResponseModel(BaseResponse):
 class GetHistoryAttachmentsResponseModel(BaseResponse):
     items: typing.Optional[typing.List["MessagesHistoryAttachment"]] = None
     next_from: typing.Optional[str] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetHistoryExtendedResponseModel(BaseResponse):
@@ -243,15 +256,15 @@ class GetHistoryResponseModel(BaseResponse):
 
 class GetImportantMessagesExtendedResponseModel(BaseResponse):
     messages: typing.Optional["MessagesMessagesArray"] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
     conversations: typing.Optional[typing.List["MessagesConversation"]] = None
 
 
 class GetImportantMessagesResponseModel(BaseResponse):
     messages: typing.Optional["MessagesMessagesArray"] = None
     profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
     conversations: typing.Optional[typing.List["MessagesConversation"]] = None
 
 

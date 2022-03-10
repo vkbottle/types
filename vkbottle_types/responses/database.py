@@ -5,6 +5,7 @@ from vkbottle_types.objects import (
     BaseCountry,
     BaseObject,
     DatabaseCity,
+    DatabaseCityById,
     DatabaseFaculty,
     DatabaseRegion,
     DatabaseSchool,
@@ -20,7 +21,7 @@ class GetChairsResponse(BaseResponse):
 
 
 class GetCitiesByIdResponse(BaseResponse):
-    response: typing.List["BaseObject"]
+    response: typing.List["DatabaseCityById"]
 
 
 class GetCitiesResponse(BaseResponse):

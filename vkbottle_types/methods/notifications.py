@@ -52,7 +52,9 @@ class NotificationsCategory(BaseCategory):
         fragment: typing.Optional[str] = None,
         group_id: typing.Optional[int] = None,
         random_id: typing.Optional[int] = None,
-        sending_mode: Literal["delayed", "delayed_push", "immediately"] = None,
+        sending_mode: typing.Optional[
+            Literal["delayed", "delayed_push", "immediately"]
+        ] = None,
         **kwargs
     ) -> typing.List[NotificationsSendMessageItem]:
         """notifications.sendMessage method

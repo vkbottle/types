@@ -122,10 +122,12 @@ class GetMembersFieldsResponse(BaseResponse):
     response: "GetMembersFieldsResponseModel"
 
 
+# NOTE: NOT A CODEGEN
 class GetMembersFilterManagersResponse(BaseResponse):
     response: "GetMembersFilterManagersResponseModel"
 
 
+# NOTE: NOT A CODEGEN
 class GetMembersFieldsFilterManagersResponse(BaseResponse):
     response: "GetMembersFieldsFilterManagersResponseModel"
 
@@ -239,15 +241,15 @@ class GetInvitesResponseModel(BaseResponse):
 
 class GetMembersFieldsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["UsersUserFull"]] = None
+    items: typing.Optional[typing.List["UsersUserFull"]] = None  # NOTE: NOT A CODEGEN
 
 
-class GetMembersFilterManagersResponseModel(BaseResponse):
+class GetMembersFilterManagersResponseModel(BaseResponse):  # NOTE: NOT A CODEGEN
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsMemberRole"]] = None
 
 
-class GetMembersFieldsFilterManagersResponseModel(BaseResponse):
+class GetMembersFieldsFilterManagersResponseModel(BaseResponse):  # NOTE: NOT A CODEGEN
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsUserXtrRole"]] = None
 
@@ -274,6 +276,7 @@ class GetSettingsResponseModel(BaseResponse):
     articles: typing.Optional[int] = None
     recognize_photo: typing.Optional[int] = None
     city_id: typing.Optional[int] = None
+    city_name: typing.Optional[str] = None
     contacts: typing.Optional["BaseBoolInt"] = None
     links: typing.Optional["BaseBoolInt"] = None
     sections_list: typing.Optional[typing.List["GroupsSectionsListItem"]] = None
@@ -281,6 +284,7 @@ class GetSettingsResponseModel(BaseResponse):
     secondary_section: typing.Optional["GroupsGroupFullSection"] = None
     age_limits: typing.Optional["GroupsGroupAgeLimits"] = None
     country_id: typing.Optional[int] = None
+    country_name: typing.Optional[str] = None
     description: typing.Optional[str] = None
     docs: typing.Optional["GroupsGroupDocs"] = None
     events: typing.Optional["BaseBoolInt"] = None

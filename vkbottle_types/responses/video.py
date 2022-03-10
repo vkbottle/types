@@ -3,11 +3,12 @@ import typing
 
 from vkbottle_types.objects import (
     BaseBoolInt,
+    GroupsGroup,
     GroupsGroupFull,
     UsersUser,
     UsersUserFull,
     VideoSaveResult,
-    VideoVideo,
+    VideoVideoAlbum,
     VideoVideoAlbumFull,
     VideoVideoFull,
     WallWallComment,
@@ -18,6 +19,10 @@ from .base_response import BaseResponse
 
 class AddAlbumResponse(BaseResponse):
     response: "AddAlbumResponseModel"
+
+
+class ChangeVideoAlbumsResponse(BaseResponse):
+    response: typing.List[int]
 
 
 class CreateCommentResponse(BaseResponse):
@@ -92,19 +97,29 @@ class GetAlbumsExtendedResponseModel(BaseResponse):
 
 class GetAlbumsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideoAlbumFull"]] = None
+    items: typing.Optional[typing.List["VideoVideoAlbum"]] = None
 
 
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["WallWallComment"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
+    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    current_level_count: typing.Optional[int] = None
+    can_post: typing.Optional[bool] = None
+    show_reply_button: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
+    real_offset: typing.Optional[int] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["WallWallComment"]] = None
+    current_level_count: typing.Optional[int] = None
+    can_post: typing.Optional[bool] = None
+    show_reply_button: typing.Optional[bool] = None
+    groups_can_post: typing.Optional[bool] = None
+    real_offset: typing.Optional[int] = None
 
 
 class GetResponseModel(BaseResponse):
@@ -123,7 +138,7 @@ class SearchExtendedResponseModel(BaseResponse):
 
 class SearchResponseModel(BaseResponse):
     count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["VideoVideo"]] = None
+    items: typing.Optional[typing.List["VideoVideoFull"]] = None
 
 
 class UploadResponseModel(BaseResponse):

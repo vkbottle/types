@@ -6,8 +6,8 @@ from vkbottle_types.objects import (
     AppsCatalogList,
     AppsLeaderboard,
     AppsScope,
+    UsersUser,
     UsersUserFull,
-    UsersUserMin,
 )
 
 from .base_response import BaseResponse
@@ -15,6 +15,10 @@ from .base_response import BaseResponse
 
 class GetCatalogResponse(BaseResponse):
     response: AppsCatalogList
+
+
+class GetFriendsListExtendedResponse(BaseResponse):
+    response: "GetFriendsListExtendedResponseModel"
 
 
 class GetFriendsListResponse(BaseResponse):
@@ -53,15 +57,20 @@ class SendRequestResponse(BaseResponse):
     response: int
 
 
-class GetFriendsListResponseModel(BaseResponse):
+class GetFriendsListExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["UsersUserFull"]] = None
+
+
+class GetFriendsListResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List[int]] = None
 
 
 class GetLeaderboardExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["AppsLeaderboard"]] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    profiles: typing.Optional[typing.List["UsersUser"]] = None
 
 
 class GetLeaderboardResponseModel(BaseResponse):

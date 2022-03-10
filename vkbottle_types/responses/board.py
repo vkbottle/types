@@ -6,10 +6,8 @@ from vkbottle_types.objects import (
     BoardDefaultOrder,
     BoardTopic,
     BoardTopicComment,
-    BoardTopicPoll,
-    GroupsGroup,
-    UsersUser,
-    UsersUserMin,
+    GroupsGroupFull,
+    UsersUserFull,
 )
 
 from .base_response import BaseResponse
@@ -42,15 +40,17 @@ class GetTopicsResponse(BaseResponse):
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["BoardTopicComment"]] = None
-    poll: typing.Optional["BoardTopicPoll"] = None
-    profiles: typing.Optional[typing.List["UsersUser"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+    poll: typing.Optional[typing.Any] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
+    real_offset: typing.Optional[int] = None
 
 
 class GetCommentsResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["BoardTopicComment"]] = None
-    poll: typing.Optional["BoardTopicPoll"] = None
+    poll: typing.Optional[typing.Any] = None
+    real_offset: typing.Optional[int] = None
 
 
 class GetTopicsExtendedResponseModel(BaseResponse):
@@ -58,7 +58,8 @@ class GetTopicsExtendedResponseModel(BaseResponse):
     items: typing.Optional[typing.List["BoardTopic"]] = None
     default_order: typing.Optional["BoardDefaultOrder"] = None
     can_add_topics: typing.Optional["BaseBoolInt"] = None
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = None
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
 
 
 class GetTopicsResponseModel(BaseResponse):

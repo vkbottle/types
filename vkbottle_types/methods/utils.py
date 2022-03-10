@@ -65,9 +65,11 @@ class UtilsCategory(BaseCategory):
     async def get_link_stats(
         self,
         key: str,
-        source: Literal["vk_cc", "vk_link"] = None,
+        source: typing.Optional[Literal["vk_cc", "vk_link"]] = None,
         access_key: typing.Optional[str] = None,
-        interval: Literal["day", "forever", "hour", "month", "week"] = None,
+        interval: typing.Optional[
+            Literal["day", "forever", "hour", "month", "week"]
+        ] = None,
         intervals_count: typing.Optional[int] = None,
         extended: typing.Optional[Literal[False]] = ...,
         **kwargs
@@ -78,9 +80,11 @@ class UtilsCategory(BaseCategory):
     async def get_link_stats(
         self,
         key: str,
-        source: Literal["vk_cc", "vk_link"] = None,
+        source: typing.Optional[Literal["vk_cc", "vk_link"]] = None,
         access_key: typing.Optional[str] = None,
-        interval: Literal["day", "forever", "hour", "month", "week"] = None,
+        interval: typing.Optional[
+            Literal["day", "forever", "hour", "month", "week"]
+        ] = None,
         intervals_count: typing.Optional[int] = None,
         extended: Literal[True] = ...,
         **kwargs

@@ -7,6 +7,8 @@ from vkbottle_types.responses.donut import (
     GetSubscriptionsResponse,
     GetSubscriptionsResponseModel,
 )
+
+# NOTE: NOT A CODEGEN
 from vkbottle_types.responses.groups import (
     GetMembersFieldsResponse,
     GetMembersFieldsResponseModel,
@@ -23,7 +25,7 @@ class DonutCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> GetMembersFieldsResponseModel:
+    ) -> GetMembersFieldsResponseModel:  # NOTE: NOT A CODEGEN
         """donut.getFriends method
 
         :param owner_id:

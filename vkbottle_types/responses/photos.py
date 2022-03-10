@@ -8,7 +8,6 @@ from vkbottle_types.objects import (
     GroupsGroupFull,
     PhotosPhoto,
     PhotosPhotoAlbumFull,
-    PhotosPhotoFull,
     PhotosPhotoFullXtrRealOffset,
     PhotosPhotoTag,
     PhotosPhotoUpload,
@@ -57,20 +56,8 @@ class GetAllResponse(BaseResponse):
     response: "GetAllResponseModel"
 
 
-class GetByIdExtendedResponse(BaseResponse):
-    response: "GetByIdExtendedResponseModel"
-
-
-class GetByIdLegacyExtendedResponse(BaseResponse):
-    response: typing.List["PhotosPhotoFull"]
-
-
-class GetByIdLegacyResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"]
-
-
 class GetByIdResponse(BaseResponse):
-    response: "GetByIdResponseModel"
+    response: typing.List["PhotosPhoto"]
 
 
 class GetCommentsExtendedResponse(BaseResponse):
@@ -101,20 +88,12 @@ class GetUploadServerResponse(BaseResponse):
     response: PhotosPhotoUpload
 
 
-class GetUserPhotosExtendedResponse(BaseResponse):
-    response: "GetUserPhotosExtendedResponseModel"
-
-
 class GetUserPhotosResponse(BaseResponse):
     response: "GetUserPhotosResponseModel"
 
 
 class GetWallUploadServerResponse(BaseResponse):
     response: PhotosPhotoUpload
-
-
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel"
 
 
 class GetResponse(BaseResponse):
@@ -211,14 +190,6 @@ class GetAllResponseModel(BaseResponse):
     more: typing.Optional["BaseBoolInt"] = None
 
 
-class GetByIdExtendedResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["PhotosPhotoFull"]] = None
-
-
-class GetByIdResponseModel(BaseResponse):
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
-
-
 class GetCommentsExtendedResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     real_offset: typing.Optional[int] = None
@@ -238,19 +209,9 @@ class GetNewTagsResponseModel(BaseResponse):
     items: typing.Optional[typing.List["PhotosPhotoXtrTagInfo"]] = None
 
 
-class GetUserPhotosExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoFull"]] = None
-
-
 class GetUserPhotosResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["PhotosPhoto"]] = None
-
-
-class GetExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PhotosPhotoFull"]] = None
 
 
 class GetResponseModel(BaseResponse):

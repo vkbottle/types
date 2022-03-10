@@ -1,5 +1,6 @@
 import typing
 
+# NOTE: NOT A CODEGEN
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.secure import (
     CheckTokenResponse,
@@ -16,6 +17,7 @@ from vkbottle_types.responses.secure import (
     SecureTransaction,
     SendNotificationResponse,
     SetCounterArrayResponse,
+    # NOTE: NOT A CODEGEN
     SetCounterIntegerResponse,
 )
 
@@ -189,6 +191,7 @@ class SecureCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.setCounter", params)
+        # NOTE: NOT A CODEGEN
         if counters and counters.count(",") > 0:
             model = SetCounterArrayResponse
         else:

@@ -3,6 +3,8 @@ import typing
 from typing_extensions import Literal
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.newsfeed import (
+    GenericResponse,
+    GenericResponseModel,
     GetBannedExtendedResponse,
     GetBannedExtendedResponseModel,
     GetBannedResponse,
@@ -15,10 +17,6 @@ from vkbottle_types.responses.newsfeed import (
     GetListsResponseModel,
     GetMentionsResponse,
     GetMentionsResponseModel,
-    GetRecommendedResponse,
-    GetRecommendedResponseModel,
-    GetResponse,
-    GetResponseModel,
     GetSuggestedSourcesResponse,
     GetSuggestedSourcesResponseModel,
     SaveListResponse,
@@ -90,7 +88,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         section: typing.Optional[str] = None,
         **kwargs
-    ) -> GetResponseModel:
+    ) -> GenericResponseModel:
         """Returns data required to show newsfeed for the current user.
 
         :param filters: Filters to apply: 'post' — new wall posts, 'photo' — new photos, 'photo_tag' — new photo tags, 'wall_photo' — new wall photos, 'friend' — new friends
@@ -107,7 +105,7 @@ class NewsfeedCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.get", params)
-        model = GetResponse
+        model = GenericResponse
         return model(**response).response
 
     @typing.overload
@@ -115,7 +113,9 @@ class NewsfeedCategory(BaseCategory):
         self,
         extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetBannedResponseModel:
         ...
@@ -125,7 +125,9 @@ class NewsfeedCategory(BaseCategory):
         self,
         extended: Literal[True] = ...,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetBannedExtendedResponseModel:
         ...
@@ -246,7 +248,7 @@ class NewsfeedCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
-    ) -> GetRecommendedResponseModel:
+    ) -> GenericResponseModel:
         """, Returns a list of newsfeeds recommended to the current user.
 
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
@@ -259,7 +261,7 @@ class NewsfeedCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("newsfeed.getRecommended", params)
-        model = GetRecommendedResponse
+        model = GenericResponse
         return model(**response).response
 
     async def get_suggested_sources(

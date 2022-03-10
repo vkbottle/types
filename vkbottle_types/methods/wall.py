@@ -146,7 +146,9 @@ class WallCategory(BaseCategory):
         poster_bkg_owner_id: typing.Optional[int] = None,
         poster_bkg_access_hash: typing.Optional[str] = None,
         copyright: typing.Optional[str] = None,
-        topic_id: Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43] = None,
+        topic_id: typing.Optional[
+            Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43]
+        ] = None,
         **kwargs
     ) -> EditResponseModel:
         """Edits a post on a user wall or community wall.
@@ -387,7 +389,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal["asc", "desc"] = None,
+        sort: typing.Optional[Literal["asc", "desc"]] = None,
         preview_length: typing.Optional[int] = None,
         extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
@@ -406,7 +408,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal["asc", "desc"] = None,
+        sort: typing.Optional[Literal["asc", "desc"]] = None,
         preview_length: typing.Optional[int] = None,
         extended: Literal[True] = ...,
         fields: typing.Optional[typing.List[str]] = None,
@@ -524,7 +526,9 @@ class WallCategory(BaseCategory):
         donut_paid_duration: typing.Optional[int] = None,
         mute_notifications: typing.Optional[bool] = None,
         copyright: typing.Optional[str] = None,
-        topic_id: Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43] = None,
+        topic_id: typing.Optional[
+            Literal[0, 1, 7, 12, 16, 19, 21, 23, 25, 26, 32, 43]
+        ] = None,
         **kwargs
     ) -> PostResponseModel:
         """Adds a new post on a user wall or community wall. Can also be used to publish suggested or scheduled posts.
@@ -596,7 +600,7 @@ class WallCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
+        reason: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6]] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a post on a user wall or community wall.
@@ -615,7 +619,7 @@ class WallCategory(BaseCategory):
         self,
         owner_id: int,
         post_id: int,
-        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
+        reason: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6]] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a post on a user wall or community wall.

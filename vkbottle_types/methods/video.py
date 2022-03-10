@@ -5,6 +5,7 @@ from vkbottle_types.responses.base import BaseBoolInt, OkResponse
 from vkbottle_types.responses.video import (
     AddAlbumResponse,
     AddAlbumResponseModel,
+    ChangeVideoAlbumsResponse,
     CreateCommentResponse,
     GetAlbumByIdResponse,
     GetAlbumsByVideoExtendedResponse,
@@ -92,7 +93,11 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.addToAlbum", params)
-        model = OkResponse
+        model = self.get_model(
+            ((("multi",), ChangeVideoAlbumsResponse),),
+            default=OkResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def create_comment(
@@ -385,7 +390,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal["asc", "desc"] = None,
+        sort: typing.Optional[Literal["asc", "desc"]] = None,
         extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
@@ -401,7 +406,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal["asc", "desc"] = None,
+        sort: typing.Optional[Literal["asc", "desc"]] = None,
         extended: Literal[True] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
@@ -463,7 +468,11 @@ class VideoCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("video.removeFromAlbum", params)
-        model = OkResponse
+        model = self.get_model(
+            ((("multi",), ChangeVideoAlbumsResponse),),
+            default=OkResponse,
+            params=params,
+        )
         return model(**response).response
 
     async def reorder_albums(
@@ -520,7 +529,7 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
+        reason: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6]] = None,
         comment: typing.Optional[str] = None,
         search_query: typing.Optional[str] = None,
         **kwargs
@@ -543,7 +552,7 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         comment_id: int,
-        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
+        reason: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6]] = None,
         **kwargs
     ) -> int:
         """Reports (submits a complaint about) a comment on a video.
@@ -627,7 +636,7 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: Literal[1, 2, 0] = None,
+        sort: typing.Optional[Literal[1, 2, 0]] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
         live: typing.Optional[bool] = None,
@@ -646,7 +655,7 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: Literal[1, 2, 0] = None,
+        sort: typing.Optional[Literal[1, 2, 0]] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
         live: typing.Optional[bool] = None,

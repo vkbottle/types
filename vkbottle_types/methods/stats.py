@@ -19,7 +19,9 @@ class StatsCategory(BaseCategory):
         app_id: typing.Optional[int] = None,
         timestamp_from: typing.Optional[int] = None,
         timestamp_to: typing.Optional[int] = None,
-        interval: Literal["all", "day", "month", "week", "year"] = None,
+        interval: typing.Optional[
+            Literal["all", "day", "month", "week", "year"]
+        ] = None,
         intervals_count: typing.Optional[int] = None,
         filters: typing.Optional[typing.List[str]] = None,
         stats_groups: typing.Optional[typing.List[str]] = None,
@@ -58,11 +60,8 @@ class StatsCategory(BaseCategory):
         model = GetPostReachResponse
         return model(**response).response
 
-    async def track_visitor(self, id: str, **kwargs) -> int:
-        """stats.trackVisitor method
-
-        :param id:
-        """
+    async def track_visitor(self, **kwargs) -> int:
+        """stats.trackVisitor method"""
 
         params = self.get_set_params(locals())
         response = await self.api.request("stats.trackVisitor", params)

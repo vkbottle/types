@@ -35,6 +35,7 @@ from vkbottle_types.responses.groups import (
     GetLongPollSettingsResponse,
     GetMembersFieldsResponse,
     GetMembersFieldsResponseModel,
+    # NOTE: NOT A CODEGEN
     GetMembersFilterManagersResponse,
     GetMembersFilterManagersResponseModel,
     GetMembersFieldsFilterManagersResponse,
@@ -89,12 +90,14 @@ class GroupsCategory(BaseCategory):
         additional_address: typing.Optional[str] = None,
         metro_id: typing.Optional[int] = None,
         phone: typing.Optional[str] = None,
-        work_info_status: Literal[
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable",
+        work_info_status: typing.Optional[
+            Literal[
+                "always_opened",
+                "forever_closed",
+                "no_information",
+                "temporarily_closed",
+                "timetable",
+            ]
         ] = None,
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
@@ -199,10 +202,10 @@ class GroupsCategory(BaseCategory):
         self,
         title: str,
         description: typing.Optional[str] = None,
-        type: Literal["event", "group", "public"] = None,
+        type: typing.Optional[Literal["event", "group", "public"]] = None,
         public_category: typing.Optional[int] = None,
         public_subcategory: typing.Optional[int] = None,
-        subtype: Literal[1, 2, 3, 4] = None,
+        subtype: typing.Optional[Literal[1, 2, 3, 4]] = None,
         **kwargs
     ) -> GroupsGroup:
         """Creates a new community.
@@ -301,7 +304,7 @@ class GroupsCategory(BaseCategory):
         messages: typing.Optional[bool] = None,
         articles: typing.Optional[bool] = None,
         addresses: typing.Optional[bool] = None,
-        age_limits: Literal[1, 2, 3] = None,
+        age_limits: typing.Optional[Literal[1, 2, 3]] = None,
         market: typing.Optional[bool] = None,
         market_comments: typing.Optional[bool] = None,
         market_country: typing.Optional[typing.List[int]] = None,
@@ -385,12 +388,14 @@ class GroupsCategory(BaseCategory):
         latitude: typing.Optional[float] = None,
         longitude: typing.Optional[float] = None,
         phone: typing.Optional[str] = None,
-        work_info_status: Literal[
-            "always_opened",
-            "forever_closed",
-            "no_information",
-            "temporarily_closed",
-            "timetable",
+        work_info_status: typing.Optional[
+            Literal[
+                "always_opened",
+                "forever_closed",
+                "no_information",
+                "temporarily_closed",
+                "timetable",
+            ]
         ] = None,
         timetable: typing.Optional[str] = None,
         is_main_address: typing.Optional[bool] = None,
@@ -722,7 +727,9 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetInvitedUsersResponseModel:
         """Returns invited users list of a community
@@ -808,7 +815,9 @@ class GroupsCategory(BaseCategory):
     async def get_members(
         self,
         group_id: typing.Optional[str] = None,
-        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        sort: typing.Optional[
+            Literal["id_asc", "id_desc", "time_asc", "time_desc"]
+        ] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[Literal[None]] = ...,
@@ -821,7 +830,9 @@ class GroupsCategory(BaseCategory):
     async def get_members(
         self,
         group_id: typing.Optional[str] = None,
-        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        sort: typing.Optional[
+            Literal["id_asc", "id_desc", "time_asc", "time_desc"]
+        ] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.List[str] = ...,
@@ -834,7 +845,9 @@ class GroupsCategory(BaseCategory):
     async def get_members(
         self,
         group_id: typing.Optional[str] = None,
-        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        sort: typing.Optional[
+            Literal["id_asc", "id_desc", "time_asc", "time_desc"]
+        ] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[Literal[None]] = ...,
@@ -847,7 +860,9 @@ class GroupsCategory(BaseCategory):
     async def get_members(
         self,
         group_id: typing.Optional[str] = None,
-        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] = None,
+        sort: typing.Optional[
+            Literal["id_asc", "id_desc", "time_asc", "time_desc"]
+        ] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         fields: typing.List[str] = ...,
@@ -1125,12 +1140,12 @@ class GroupsCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        type: Literal["group", "page", "event"] = None,
+        type: typing.Optional[Literal["group", "page", "event"]] = None,
         country_id: typing.Optional[int] = None,
         city_id: typing.Optional[int] = None,
         future: typing.Optional[bool] = None,
         market: typing.Optional[bool] = None,
-        sort: Literal[0, 1, 2, 3, 4, 5] = None,
+        sort: typing.Optional[Literal[0, 1, 2, 3, 4, 5]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs
@@ -1435,27 +1450,29 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         tag_name: str,
-        tag_color: Literal[
-            "454647",
-            "45678f",
-            "4bb34b",
-            "5181b8",
-            "539b9c",
-            "5c9ce6",
-            "63b9ba",
-            "6bc76b",
-            "76787a",
-            "792ec0",
-            "7a6c4f",
-            "7ececf",
-            "9e8d6b",
-            "a162de",
-            "aaaeb3",
-            "bbaa84",
-            "e64646",
-            "ff5c5c",
-            "ffa000",
-            "ffc107",
+        tag_color: typing.Optional[
+            Literal[
+                "454647",
+                "45678f",
+                "4bb34b",
+                "5181b8",
+                "539b9c",
+                "5c9ce6",
+                "63b9ba",
+                "6bc76b",
+                "76787a",
+                "792ec0",
+                "7a6c4f",
+                "7ececf",
+                "9e8d6b",
+                "a162de",
+                "aaaeb3",
+                "bbaa84",
+                "e64646",
+                "ff5c5c",
+                "ffa000",
+                "ffc107",
+            ]
         ] = None,
         **kwargs
     ) -> BaseBoolInt:

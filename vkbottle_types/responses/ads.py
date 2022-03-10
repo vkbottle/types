@@ -8,6 +8,8 @@ from vkbottle_types.objects import (
     AdsCampaign,
     AdsCategory,
     AdsClient,
+    AdsCreateAdStatus,
+    AdsCreateCampaignStatus,
     AdsDemoStats,
     AdsFloodStats,
     AdsLinkStatus,
@@ -39,11 +41,11 @@ class CheckLinkResponse(BaseResponse):
 
 
 class CreateAdsResponse(BaseResponse):
-    response: typing.List[int]
+    response: typing.List["AdsCreateAdStatus"]
 
 
 class CreateCampaignsResponse(BaseResponse):
-    response: typing.List[int]
+    response: typing.List["AdsCreateCampaignStatus"]
 
 
 class CreateClientsResponse(BaseResponse):
@@ -59,11 +61,11 @@ class DeleteAdsResponse(BaseResponse):
 
 
 class DeleteCampaignsResponse(BaseResponse):
-    response: int
+    response: typing.List[int]
 
 
 class DeleteClientsResponse(BaseResponse):
-    response: int
+    response: typing.List[int]
 
 
 class GetAccountsResponse(BaseResponse):

@@ -134,7 +134,7 @@ class NotesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal[0, 1] = None,
+        sort: typing.Optional[Literal[0, 1]] = None,
         **kwargs
     ) -> GetResponseModel:
         """Returns a list of notes created by a user.
@@ -174,7 +174,7 @@ class NotesCategory(BaseCategory):
         self,
         note_id: int,
         owner_id: typing.Optional[int] = None,
-        sort: Literal[0, 1] = None,
+        sort: typing.Optional[Literal[0, 1]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         **kwargs

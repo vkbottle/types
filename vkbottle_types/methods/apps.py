@@ -4,6 +4,8 @@ from typing_extensions import Literal
 from vkbottle_types.responses.apps import (
     AppsCatalogList,
     GetCatalogResponse,
+    GetFriendsListExtendedResponse,
+    GetFriendsListExtendedResponseModel,
     GetFriendsListResponse,
     GetFriendsListResponseModel,
     GetLeaderboardExtendedResponse,
@@ -37,11 +39,13 @@ class AppsCategory(BaseCategory):
         self,
         app_id: typing.Optional[int] = None,
         app_ids: typing.Optional[typing.List[str]] = None,
-        platform: Literal["android", "ios", "web", "winphone"] = None,
+        platform: typing.Optional[Literal["android", "ios", "web", "winphone"]] = None,
         extended: typing.Optional[bool] = None,
         return_friends: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: Literal["nom", "gen", "dat", "acc", "ins", "abl"] = None,
+        name_case: typing.Optional[
+            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
+        ] = None,
         **kwargs
     ) -> GetResponseModel:
         """Returns applications data.
@@ -63,8 +67,14 @@ class AppsCategory(BaseCategory):
     async def get_catalog(
         self,
         count: int,
-        sort: Literal[
-            "popular_today", "visitors", "create_date", "growth_rate", "popular_week"
+        sort: typing.Optional[
+            Literal[
+                "popular_today",
+                "visitors",
+                "create_date",
+                "growth_rate",
+                "popular_week",
+            ]
         ] = None,
         offset: typing.Optional[int] = None,
         platform: typing.Optional[str] = None,
@@ -74,7 +84,9 @@ class AppsCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         q: typing.Optional[str] = None,
         genre_id: typing.Optional[int] = None,
-        filter: Literal["favorite", "featured", "installed", "new"] = None,
+        filter: typing.Optional[
+            Literal["favorite", "featured", "installed", "new"]
+        ] = None,
         **kwargs
     ) -> AppsCatalogList:
         """Returns a list of applications (apps) available to users in the App Catalog.
@@ -97,15 +109,33 @@ class AppsCategory(BaseCategory):
         model = GetCatalogResponse
         return model(**response).response
 
+    @typing.overload
     async def get_friends_list(
         self,
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        type: Literal["invite", "request"] = None,
+        type: typing.Optional[Literal["invite", "request"]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> GetFriendsListResponseModel:
+        ...
+
+    @typing.overload
+    async def get_friends_list(
+        self,
+        extended: Literal[True] = ...,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        type: typing.Optional[Literal["invite", "request"]] = None,
+        fields: typing.Optional[typing.List[str]] = None,
+        **kwargs
+    ) -> GetFriendsListExtendedResponseModel:
+        ...
+
+    async def get_friends_list(
+        self, extended=None, count=None, offset=None, type=None, fields=None, **kwargs
+    ) -> typing.Union[GetFriendsListResponseModel, GetFriendsListExtendedResponseModel]:
         """Creates friends list for requests and invites in current app.
 
         :param extended:
@@ -117,7 +147,11 @@ class AppsCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("apps.getFriendsList", params)
-        model = GetFriendsListResponse
+        model = self.get_model(
+            ((("extended",), GetFriendsListExtendedResponse),),
+            default=GetFriendsListResponse,
+            params=params,
+        )
         return model(**response).response
 
     @typing.overload
@@ -173,7 +207,7 @@ class AppsCategory(BaseCategory):
         return model(**response).response
 
     async def get_scopes(
-        self, type: Literal["group", "user"] = None, **kwargs
+        self, type: typing.Optional[Literal["group", "user"]] = None, **kwargs
     ) -> GetScopesResponseModel:
         """Returns scopes for auth
 
@@ -228,7 +262,7 @@ class AppsCategory(BaseCategory):
         self,
         user_id: int,
         text: typing.Optional[str] = None,
-        type: Literal["invite", "request"] = None,
+        type: typing.Optional[Literal["invite", "request"]] = None,
         name: typing.Optional[str] = None,
         key: typing.Optional[str] = None,
         separate: typing.Optional[bool] = None,

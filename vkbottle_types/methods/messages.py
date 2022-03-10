@@ -10,6 +10,8 @@ from vkbottle_types.responses.messages import (
     DeleteConversationResponseModel,
     DeleteResponse,
     EditResponse,
+    GetByConversationMessageIdExtendedResponse,
+    GetByConversationMessageIdExtendedResponseModel,
     GetByConversationMessageIdResponse,
     GetByConversationMessageIdResponseModel,
     GetByIdExtendedResponse,
@@ -62,6 +64,7 @@ from vkbottle_types.responses.messages import (
     SearchExtendedResponseModel,
     SearchResponse,
     SearchResponseModel,
+    # NOTE: NOT A CODEGEN
     SendPeerIdsResponse,
     SendResponse,
     SendUserIdsResponse,
@@ -249,15 +252,42 @@ class MessagesCategory(BaseCategory):
         model = OkResponse
         return model(**response).response
 
+    @typing.overload
     async def get_by_conversation_message_id(
         self,
         peer_id: int,
         conversation_message_ids: typing.List[int],
-        extended: typing.Optional[bool] = None,
+        extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs
     ) -> GetByConversationMessageIdResponseModel:
+        ...
+
+    @typing.overload
+    async def get_by_conversation_message_id(
+        self,
+        peer_id: int,
+        conversation_message_ids: typing.List[int],
+        extended: Literal[True] = ...,
+        fields: typing.Optional[typing.List[str]] = None,
+        group_id: typing.Optional[int] = None,
+        **kwargs
+    ) -> GetByConversationMessageIdExtendedResponseModel:
+        ...
+
+    async def get_by_conversation_message_id(
+        self,
+        peer_id=None,
+        conversation_message_ids=None,
+        extended=None,
+        fields=None,
+        group_id=None,
+        **kwargs
+    ) -> typing.Union[
+        GetByConversationMessageIdResponseModel,
+        GetByConversationMessageIdExtendedResponseModel,
+    ]:
         """Returns messages by their IDs within the conversation.
 
         :param peer_id: Destination ID. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -269,7 +299,11 @@ class MessagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("messages.getByConversationMessageId", params)
-        model = GetByConversationMessageIdResponse
+        model = self.get_model(
+            ((("extended",), GetByConversationMessageIdExtendedResponse),),
+            default=GetByConversationMessageIdResponse,
+            params=params,
+        )
         return model(**response).response
 
     @typing.overload
@@ -365,7 +399,9 @@ class MessagesCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        filter: Literal["all", "archive", "important", "unanswered", "unread"] = None,
+        filter: typing.Optional[
+            Literal["all", "archive", "important", "unanswered", "unread"]
+        ] = None,
         extended: typing.Optional[bool] = None,
         start_message_id: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
@@ -438,7 +474,7 @@ class MessagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         peer_id: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
-        rev: Literal[1, 0] = None,
+        rev: typing.Optional[Literal[1, 0]] = None,
         extended: typing.Optional[Literal[False]] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         group_id: typing.Optional[int] = None,
@@ -454,7 +490,7 @@ class MessagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         peer_id: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
-        rev: Literal[1, 0] = None,
+        rev: typing.Optional[Literal[1, 0]] = None,
         extended: Literal[True] = ...,
         fields: typing.Optional[typing.List[str]] = None,
         group_id: typing.Optional[int] = None,
@@ -500,17 +536,19 @@ class MessagesCategory(BaseCategory):
     async def get_history_attachments(
         self,
         peer_id: int,
-        media_type: Literal[
-            "audio",
-            "audio_message",
-            "doc",
-            "graffiti",
-            "link",
-            "market",
-            "photo",
-            "share",
-            "video",
-            "wall",
+        media_type: typing.Optional[
+            Literal[
+                "audio",
+                "audio_message",
+                "doc",
+                "graffiti",
+                "link",
+                "market",
+                "photo",
+                "share",
+                "video",
+                "wall",
+            ]
         ] = None,
         start_from: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
@@ -673,12 +711,13 @@ class MessagesCategory(BaseCategory):
         lp_version: typing.Optional[int] = None,
         last_n: typing.Optional[int] = None,
         credentials: typing.Optional[bool] = None,
+        extended: typing.Optional[bool] = None,
         **kwargs
     ) -> GetLongPollHistoryResponseModel:
         """Returns updates in user's private messages.
 
         :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
-        :param pts: Lsat value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param pts: Last value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
         :param onlines: '1' — to return history with online users only.
         :param fields: Additional profile [vk.com/dev/fields|fields] to return.
@@ -689,6 +728,7 @@ class MessagesCategory(BaseCategory):
         :param lp_version:
         :param last_n:
         :param credentials:
+        :param extended:
         """
 
         params = self.get_set_params(locals())
@@ -994,7 +1034,7 @@ class MessagesCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         random_id: typing.Optional[int] = None,
         peer_id: typing.Optional[int] = None,
-        peer_ids: typing.Optional[Literal[None]] = ...,
+        peer_ids: typing.Optional[typing.List[int]] = None,
         domain: typing.Optional[str] = None,
         chat_id: typing.Optional[int] = None,
         user_ids: typing.Optional[Literal[None]] = ...,
@@ -1013,18 +1053,20 @@ class MessagesCategory(BaseCategory):
         content_source: typing.Optional[str] = None,
         dont_parse_links: typing.Optional[bool] = None,
         disable_mentions: typing.Optional[bool] = None,
-        intent: Literal[
-            "account_update",
-            "bot_ad_invite",
-            "bot_ad_promo",
-            "confirmed_notification",
-            "customer_support",
-            "default",
-            "game_notification",
-            "moderated_newsletter",
-            "non_promo_newsletter",
-            "promo_newsletter",
-            "purchase_update",
+        intent: typing.Optional[
+            Literal[
+                "account_update",
+                "bot_ad_invite",
+                "bot_ad_promo",
+                "confirmed_notification",
+                "customer_support",
+                "default",
+                "game_notification",
+                "moderated_newsletter",
+                "non_promo_newsletter",
+                "promo_newsletter",
+                "purchase_update",
+            ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
         **kwargs
@@ -1056,18 +1098,20 @@ class MessagesCategory(BaseCategory):
         content_source: typing.Optional[str] = None,
         dont_parse_links: typing.Optional[bool] = None,
         disable_mentions: typing.Optional[bool] = None,
-        intent: Literal[
-            "account_update",
-            "bot_ad_invite",
-            "bot_ad_promo",
-            "confirmed_notification",
-            "customer_support",
-            "default",
-            "game_notification",
-            "moderated_newsletter",
-            "non_promo_newsletter",
-            "promo_newsletter",
-            "purchase_update",
+        intent: typing.Optional[
+            Literal[
+                "account_update",
+                "bot_ad_invite",
+                "bot_ad_promo",
+                "confirmed_notification",
+                "customer_support",
+                "default",
+                "game_notification",
+                "moderated_newsletter",
+                "non_promo_newsletter",
+                "promo_newsletter",
+                "purchase_update",
+            ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
         **kwargs
@@ -1099,18 +1143,20 @@ class MessagesCategory(BaseCategory):
         content_source: typing.Optional[str] = None,
         dont_parse_links: typing.Optional[bool] = None,
         disable_mentions: typing.Optional[bool] = None,
-        intent: Literal[
-            "account_update",
-            "bot_ad_invite",
-            "bot_ad_promo",
-            "confirmed_notification",
-            "customer_support",
-            "default",
-            "game_notification",
-            "moderated_newsletter",
-            "non_promo_newsletter",
-            "promo_newsletter",
-            "purchase_update",
+        intent: typing.Optional[
+            Literal[
+                "account_update",
+                "bot_ad_invite",
+                "bot_ad_promo",
+                "confirmed_notification",
+                "customer_support",
+                "default",
+                "game_notification",
+                "moderated_newsletter",
+                "non_promo_newsletter",
+                "promo_newsletter",
+                "purchase_update",
+            ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
         **kwargs
@@ -1175,6 +1221,7 @@ class MessagesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("messages.send", params)
+        # NOTE: NOT A CODEGEN
         model = self.get_model(
             (
                 (("user_ids",), SendUserIdsResponse),
@@ -1209,7 +1256,9 @@ class MessagesCategory(BaseCategory):
     async def set_activity(
         self,
         user_id: typing.Optional[int] = None,
-        type: Literal["audiomessage", "file", "photo", "typing", "video"] = None,
+        type: typing.Optional[
+            Literal["audiomessage", "file", "photo", "typing", "video"]
+        ] = None,
         peer_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs

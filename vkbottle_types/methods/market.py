@@ -202,14 +202,20 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        name: str,
-        description: str,
-        category_id: int,
+        name: typing.Optional[str] = None,
+        description: typing.Optional[str] = None,
+        category_id: typing.Optional[int] = None,
         price: typing.Optional[float] = None,
+        old_price: typing.Optional[float] = None,
         deleted: typing.Optional[bool] = None,
         main_photo_id: typing.Optional[int] = None,
         photo_ids: typing.Optional[typing.List[int]] = None,
         url: typing.Optional[str] = None,
+        dimension_width: typing.Optional[int] = None,
+        dimension_height: typing.Optional[int] = None,
+        dimension_length: typing.Optional[int] = None,
+        weight: typing.Optional[int] = None,
+        sku: typing.Optional[str] = None,
         **kwargs
     ) -> int:
         """Edits an item.
@@ -220,10 +226,16 @@ class MarketCategory(BaseCategory):
         :param description: Item description.
         :param category_id: Item category ID.
         :param price: Item price.
+        :param old_price:
         :param deleted: Item status ('1' — deleted, '0' — not deleted).
         :param main_photo_id: Cover photo ID.
         :param photo_ids: IDs of additional photos.
         :param url: Url for button in market item.
+        :param dimension_width:
+        :param dimension_height:
+        :param dimension_length:
+        :param weight:
+        :param sku:
         """
 
         params = self.get_set_params(locals())
@@ -284,7 +296,7 @@ class MarketCategory(BaseCategory):
         merchant_comment: typing.Optional[str] = None,
         status: typing.Optional[int] = None,
         track_number: typing.Optional[str] = None,
-        payment_status: Literal["not_paid", "paid", "returned"] = None,
+        payment_status: typing.Optional[Literal["not_paid", "paid", "returned"]] = None,
         delivery_price: typing.Optional[int] = None,
         width: typing.Optional[int] = None,
         length: typing.Optional[int] = None,
@@ -470,7 +482,7 @@ class MarketCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        sort: Literal["asc", "desc"] = None,
+        sort: typing.Optional[Literal["asc", "desc"]] = None,
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
@@ -666,7 +678,7 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         item_id: int,
-        reason: Literal[0, 1, 2, 3, 4, 5, 6] = None,
+        reason: typing.Optional[Literal[0, 1, 2, 3, 4, 5, 6]] = None,
         **kwargs
     ) -> int:
         """Sends a complaint to the item.
@@ -734,8 +746,8 @@ class MarketCategory(BaseCategory):
         q: typing.Optional[str] = None,
         price_from: typing.Optional[int] = None,
         price_to: typing.Optional[int] = None,
-        sort: Literal[0, 1, 2, 3] = None,
-        rev: Literal[0, 1] = None,
+        sort: typing.Optional[Literal[0, 1, 2, 3]] = None,
+        rev: typing.Optional[Literal[0, 1]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         extended: typing.Optional[Literal[False]] = ...,
@@ -753,8 +765,8 @@ class MarketCategory(BaseCategory):
         q: typing.Optional[str] = None,
         price_from: typing.Optional[int] = None,
         price_to: typing.Optional[int] = None,
-        sort: Literal[0, 1, 2, 3] = None,
-        rev: Literal[0, 1] = None,
+        sort: typing.Optional[Literal[0, 1, 2, 3]] = None,
+        rev: typing.Optional[Literal[0, 1]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         extended: Literal[True] = ...,
@@ -813,8 +825,10 @@ class MarketCategory(BaseCategory):
         category_id: typing.Optional[int] = None,
         price_from: typing.Optional[int] = None,
         price_to: typing.Optional[int] = None,
-        sort_by: Literal[1, 2, 3] = None,
-        sort_direction: Literal[0, 1] = None,
+        sort_by: typing.Optional[Literal[1, 2, 3]] = None,
+        sort_direction: typing.Optional[Literal[0, 1]] = None,
+        country: typing.Optional[int] = None,
+        city: typing.Optional[int] = None,
         **kwargs
     ) -> SearchResponseModel:
         """market.searchItems method
@@ -827,6 +841,8 @@ class MarketCategory(BaseCategory):
         :param price_to:
         :param sort_by:
         :param sort_direction:
+        :param country:
+        :param city:
         """
 
         params = self.get_set_params(locals())

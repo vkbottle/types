@@ -39,7 +39,9 @@ class AppWidgetsCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"] = None,
+        image_type: typing.Optional[
+            Literal["160x160", "160x240", "24x24", "50x50", "510x128"]
+        ] = None,
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns an app collection of images for community app widgets
@@ -75,7 +77,9 @@ class AppWidgetsCategory(BaseCategory):
         self,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        image_type: Literal["160x160", "160x240", "24x24", "50x50", "510x128"] = None,
+        image_type: typing.Optional[
+            Literal["160x160", "160x240", "24x24", "50x50", "510x128"]
+        ] = None,
         **kwargs
     ) -> AppWidgetsPhotos:
         """Returns a community collection of images for community app widgets
