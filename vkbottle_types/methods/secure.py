@@ -1,6 +1,5 @@
 import typing
 
-# NOTE: NOT A CODEGEN
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.secure import (
     CheckTokenResponse,
@@ -17,8 +16,7 @@ from vkbottle_types.responses.secure import (
     SecureTransaction,
     SendNotificationResponse,
     SetCounterArrayResponse,
-    # NOTE: NOT A CODEGEN
-    SetCounterIntegerResponse,
+    SetCounterIntegerResponse,  # NOTE: NOT A CODEGEN
 )
 
 from .base_category import BaseCategory
