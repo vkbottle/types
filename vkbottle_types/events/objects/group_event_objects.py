@@ -60,7 +60,7 @@ class MessageEventObject(BaseEventObject):
     peer_id: int
     event_id: str
     payload: Optional[dict] = None
-    conversation_message_id: int
+    conversation_message_id: Optional[int] = None
 
 
 class PhotoNewObject(BaseEventObject, PhotosPhoto):
