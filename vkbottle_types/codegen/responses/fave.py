@@ -8,8 +8,7 @@ from vkbottle_types.objects import (
     GroupsGroup,
     UsersUserFull,
 )
-
-from .base_response import BaseResponse
+from vkbottle_types.responses.base_response import BaseResponse
 
 
 class AddTagResponse(BaseResponse):

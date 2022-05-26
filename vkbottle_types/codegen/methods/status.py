@@ -1,9 +1,8 @@
 import typing
 
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.status import GetResponse, StatusStatus
-
-from .base_category import BaseCategory
 
 
 class StatusCategory(BaseCategory):

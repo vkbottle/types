@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt, OkResponse
 from vkbottle_types.responses.market import (
     AddAlbumResponse,
@@ -41,8 +42,6 @@ from vkbottle_types.responses.market import (
     SearchResponse,
     SearchResponseModel,
 )
-
-from .base_category import BaseCategory
 
 
 class MarketCategory(BaseCategory):

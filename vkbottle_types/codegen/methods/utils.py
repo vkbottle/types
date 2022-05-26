@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.utils import (
     CheckLinkResponse,
@@ -17,8 +18,6 @@ from vkbottle_types.responses.utils import (
     UtilsLinkStatsExtended,
     UtilsShortLink,
 )
-
-from .base_category import BaseCategory
 
 
 class UtilsCategory(BaseCategory):

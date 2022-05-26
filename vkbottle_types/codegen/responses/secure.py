@@ -9,8 +9,7 @@ from vkbottle_types.objects import (
     SecureTokenChecked,
     SecureTransaction,
 )
-
-from .base_response import BaseResponse
+from vkbottle_types.responses.base_response import BaseResponse
 
 
 class CheckTokenResponse(BaseResponse):

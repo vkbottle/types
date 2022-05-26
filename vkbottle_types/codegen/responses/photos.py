@@ -16,8 +16,7 @@ from vkbottle_types.objects import (
     UsersUserFull,
     WallWallComment,
 )
-
-from .base_response import BaseResponse
+from vkbottle_types.responses.base_response import BaseResponse
 
 
 class CopyResponse(BaseResponse):

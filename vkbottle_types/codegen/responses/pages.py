@@ -6,8 +6,7 @@ from vkbottle_types.objects import (
     PagesWikipageFull,
     PagesWikipageHistory,
 )
-
-from .base_response import BaseResponse
+from vkbottle_types.responses.base_response import BaseResponse
 
 
 class GetHistoryResponse(BaseResponse):

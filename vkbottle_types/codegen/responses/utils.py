@@ -9,8 +9,7 @@ from vkbottle_types.objects import (
     UtilsLinkStatsExtended,
     UtilsShortLink,
 )
-
-from .base_response import BaseResponse
+from vkbottle_types.responses.base_response import BaseResponse
 
 
 class CheckLinkResponse(BaseResponse):

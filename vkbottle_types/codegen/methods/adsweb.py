@@ -1,5 +1,6 @@
 import typing
 
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.adsweb import (
     GetAdCategoriesResponse,
     GetAdCategoriesResponseModel,
@@ -14,8 +15,6 @@ from vkbottle_types.responses.adsweb import (
     GetStatisticsResponse,
     GetStatisticsResponseModel,
 )
-
-from .base_category import BaseCategory
 
 
 class AdswebCategory(BaseCategory):

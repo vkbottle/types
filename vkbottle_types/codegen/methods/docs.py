@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import BaseGetUploadServerResponse, OkResponse
 from vkbottle_types.responses.docs import (
     AddResponse,
@@ -17,8 +18,6 @@ from vkbottle_types.responses.docs import (
     SearchResponse,
     SearchResponseModel,
 )
-
-from .base_category import BaseCategory
 
 
 class DocsCategory(BaseCategory):

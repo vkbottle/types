@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.account import (
     AccountAccountCounters,
     AccountInfo,
@@ -21,8 +22,6 @@ from vkbottle_types.responses.account import (
     SaveProfileInfoResponseModel,
 )
 from vkbottle_types.responses.base import OkResponse
-
-from .base_category import BaseCategory
 
 
 class AccountCategory(BaseCategory):

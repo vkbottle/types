@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import OkResponse
 from vkbottle_types.responses.stats import (
     GetPostReachResponse,
@@ -8,8 +9,6 @@ from vkbottle_types.responses.stats import (
     StatsPeriod,
     StatsWallpostStat,
 )
-
-from .base_category import BaseCategory
 
 
 class StatsCategory(BaseCategory):

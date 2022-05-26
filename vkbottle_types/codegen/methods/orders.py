@@ -1,6 +1,7 @@
 import typing
 
 from typing_extensions import Literal
+from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.responses.base import BaseBoolInt
 from vkbottle_types.responses.orders import (
     CancelSubscriptionResponse,
@@ -16,8 +17,6 @@ from vkbottle_types.responses.orders import (
     OrdersSubscription,
     UpdateSubscriptionResponse,
 )
-
-from .base_category import BaseCategory
 
 
 class OrdersCategory(BaseCategory):

@@ -2,7 +2,7 @@ import enum
 import inspect
 import typing
 
-from .base_model import BaseModel
+from vkbottle_types.base_model import BaseModel
 
 
 class AccountAccountCounters(BaseModel):
@@ -6307,7 +6307,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     topic_id: typing.Optional[int] = None
 
 
-class NewsfeedItemWallpost(WallWallpostFull):
+class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase, WallWallpostFull):
     """VK Object NewsfeedItemWallpost"""
 
     feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None
