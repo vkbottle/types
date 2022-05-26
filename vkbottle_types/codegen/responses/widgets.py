@@ -1,0 +1,35 @@
+import inspect
+import typing
+
+from vkbottle_types.objects import WidgetsWidgetComment, WidgetsWidgetPage
+
+from .base_response import BaseResponse
+
+
+class GetCommentsResponse(BaseResponse):
+    response: "GetCommentsResponseModel"
+
+
+class GetPagesResponse(BaseResponse):
+    response: "GetPagesResponseModel"
+
+
+class GetCommentsResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    posts: typing.Optional[typing.List["WidgetsWidgetComment"]] = None
+
+
+class GetPagesResponseModel(BaseResponse):
+    count: typing.Optional[int] = None
+    pages: typing.Optional[typing.List["WidgetsWidgetPage"]] = None
+
+
+for item in locals().copy().values():
+    if inspect.isclass(item) and issubclass(item, BaseResponse):
+        item.update_forward_refs()
+
+
+__all__ = (
+    "GetCommentsResponse",
+    "GetPagesResponse",
+)
