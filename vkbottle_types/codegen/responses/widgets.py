@@ -30,5 +30,9 @@ for item in locals().copy().values():
 
 __all__ = (
     "GetCommentsResponse",
+    "GetCommentsResponseModel",
     "GetPagesResponse",
+    "GetPagesResponseModel",
+    "WidgetsWidgetComment",
+    "WidgetsWidgetPage",
 )

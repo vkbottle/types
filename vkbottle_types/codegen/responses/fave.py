@@ -60,8 +60,17 @@ for item in locals().copy().values():
 
 __all__ = (
     "AddTagResponse",
-    "GetPagesResponse",
-    "GetTagsResponse",
+    "FaveBookmark",
+    "FavePage",
+    "FaveTag",
     "GetExtendedResponse",
+    "GetExtendedResponseModel",
+    "GetPagesResponse",
+    "GetPagesResponseModel",
     "GetResponse",
+    "GetResponseModel",
+    "GetTagsResponse",
+    "GetTagsResponseModel",
+    "GroupsGroup",
+    "UsersUserFull",
 )

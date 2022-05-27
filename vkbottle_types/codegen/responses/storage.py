@@ -21,4 +21,5 @@ for item in locals().copy().values():
 __all__ = (
     "GetKeysResponse",
     "GetResponse",
+    "StorageValue",
 )

@@ -45,7 +45,16 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "AppsApp",
+    "BaseBoolInt",
     "GetResponse",
+    "GetResponseModel",
+    "GroupsGroup",
     "MarkAsViewedResponse",
+    "NotificationsNotificationItem",
+    "NotificationsSendMessageItem",
+    "PhotosPhoto",
     "SendMessageResponse",
+    "UsersUser",
+    "VideoVideo",
 )

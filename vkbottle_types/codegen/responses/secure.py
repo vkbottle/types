@@ -56,6 +56,12 @@ __all__ = (
     "GetTransactionsHistoryResponse",
     "GetUserLevelResponse",
     "GiveEventStickerResponse",
+    "SecureGiveEventStickerItem",
+    "SecureLevel",
+    "SecureSetCounterItem",
+    "SecureSmsNotification",
+    "SecureTokenChecked",
+    "SecureTransaction",
     "SendNotificationResponse",
     "SetCounterArrayResponse",
 )

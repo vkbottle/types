@@ -20,4 +20,8 @@ for item in locals().copy().values():
         item.update_forward_refs()
 
 
-__all__ = ("GetHintsResponse",)
+__all__ = (
+    "GetHintsResponse",
+    "GetHintsResponseModel",
+    "SearchHint",
+)

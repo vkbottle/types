@@ -17,4 +17,7 @@ for item in locals().copy().values():
         item.update_forward_refs()
 
 
-__all__ = ("PaidStatusResponse",)
+__all__ = (
+    "PaidStatusResponse",
+    "PaidStatusResponseModel",
+)

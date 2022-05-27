@@ -75,10 +75,21 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "AdswebGetAdCategoriesResponseCategoriesCategory",
+    "AdswebGetAdUnitsResponseAdUnitsAdUnit",
+    "AdswebGetFraudHistoryResponseEntriesEntry",
+    "AdswebGetSitesResponseSitesSite",
+    "AdswebGetStatisticsResponseItemsItem",
     "GetAdCategoriesResponse",
+    "GetAdCategoriesResponseModel",
     "GetAdUnitCodeResponse",
+    "GetAdUnitCodeResponseModel",
     "GetAdUnitsResponse",
+    "GetAdUnitsResponseModel",
     "GetFraudHistoryResponse",
+    "GetFraudHistoryResponseModel",
     "GetSitesResponse",
+    "GetSitesResponseModel",
     "GetStatisticsResponse",
+    "GetStatisticsResponseModel",
 )

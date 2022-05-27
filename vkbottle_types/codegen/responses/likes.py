@@ -55,8 +55,15 @@ for item in locals().copy().values():
 
 __all__ = (
     "AddResponse",
+    "AddResponseModel",
+    "BaseBoolInt",
     "DeleteResponse",
+    "DeleteResponseModel",
     "GetListExtendedResponse",
+    "GetListExtendedResponseModel",
     "GetListResponse",
+    "GetListResponseModel",
     "IsLikedResponse",
+    "IsLikedResponseModel",
+    "UsersUserMin",
 )

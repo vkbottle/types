@@ -30,7 +30,11 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "BaseSticker",
     "GetFavoriteStickersResponse",
     "GetProductsResponse",
     "GetStickersKeywordsResponse",
+    "GetStickersKeywordsResponseModel",
+    "StoreProduct",
+    "StoreStickersKeyword",
 )

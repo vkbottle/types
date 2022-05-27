@@ -53,12 +53,17 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "BaseBoolInt",
     "CancelSubscriptionResponse",
     "ChangeStateResponse",
     "GetAmountResponse",
     "GetByIdResponse",
+    "GetResponse",
     "GetUserSubscriptionByIdResponse",
     "GetUserSubscriptionsResponse",
-    "GetResponse",
+    "GetUserSubscriptionsResponseModel",
+    "OrdersAmount",
+    "OrdersOrder",
+    "OrdersSubscription",
     "UpdateSubscriptionResponse",
 )

@@ -44,9 +44,12 @@ for item in locals().copy().values():
 
 __all__ = (
     "GetHistoryResponse",
+    "GetResponse",
     "GetTitlesResponse",
     "GetVersionResponse",
-    "GetResponse",
+    "PagesWikipage",
+    "PagesWikipageFull",
+    "PagesWikipageHistory",
     "ParseWikiResponse",
     "SaveAccessResponse",
     "SaveResponse",

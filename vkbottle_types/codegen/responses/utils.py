@@ -53,9 +53,16 @@ for item in locals().copy().values():
 __all__ = (
     "CheckLinkResponse",
     "GetLastShortenedLinksResponse",
+    "GetLastShortenedLinksResponseModel",
     "GetLinkStatsExtendedResponse",
     "GetLinkStatsResponse",
     "GetServerTimeResponse",
     "GetShortLinkResponse",
     "ResolveScreenNameResponse",
+    "UtilsDomainResolved",
+    "UtilsLastShortenedLink",
+    "UtilsLinkChecked",
+    "UtilsLinkStats",
+    "UtilsLinkStatsExtended",
+    "UtilsShortLink",
 )

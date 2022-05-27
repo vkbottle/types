@@ -19,4 +19,8 @@ for item in locals().copy().values():
         item.update_forward_refs()
 
 
-__all__ = ("SearchPodcastResponse",)
+__all__ = (
+    "PodcastExternalData",
+    "SearchPodcastResponse",
+    "SearchPodcastResponseModel",
+)

@@ -66,9 +66,18 @@ for item in locals().copy().values():
 
 __all__ = (
     "GetFollowersFieldsResponse",
+    "GetFollowersFieldsResponseModel",
     "GetFollowersResponse",
-    "GetSubscriptionsExtendedResponse",
-    "GetSubscriptionsResponse",
+    "GetFollowersResponseModel",
     "GetResponse",
+    "GetSubscriptionsExtendedResponse",
+    "GetSubscriptionsExtendedResponseModel",
+    "GetSubscriptionsResponse",
+    "GetSubscriptionsResponseModel",
+    "GroupsGroupsArray",
     "SearchResponse",
+    "SearchResponseModel",
+    "UsersSubscriptionsItem",
+    "UsersUserFull",
+    "UsersUsersArray",
 )

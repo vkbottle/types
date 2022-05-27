@@ -40,10 +40,14 @@ for item in locals().copy().values():
 
 __all__ = (
     "AddVoteResponse",
+    "BaseBoolInt",
     "CreateResponse",
     "DeleteVoteResponse",
     "GetBackgroundsResponse",
     "GetByIdResponse",
     "GetVotersResponse",
+    "PollsBackground",
+    "PollsPoll",
+    "PollsVoters",
     "SavePhotoResponse",
 )

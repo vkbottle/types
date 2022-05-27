@@ -7,6 +7,7 @@ from vkbottle_types.objects import (
     BoardTopic,
     BoardTopicComment,
     GroupsGroupFull,
+    PollsPoll,
     UsersUserFull,
 )
 from vkbottle_types.responses.base_response import BaseResponse
@@ -75,9 +76,20 @@ for item in locals().copy().values():
 
 __all__ = (
     "AddTopicResponse",
+    "BaseBoolInt",
+    "BoardDefaultOrder",
+    "BoardTopic",
+    "BoardTopicComment",
     "CreateCommentResponse",
     "GetCommentsExtendedResponse",
+    "GetCommentsExtendedResponseModel",
     "GetCommentsResponse",
+    "GetCommentsResponseModel",
     "GetTopicsExtendedResponse",
+    "GetTopicsExtendedResponseModel",
     "GetTopicsResponse",
+    "GetTopicsResponseModel",
+    "GroupsGroupFull",
+    "PollsPoll",
+    "UsersUserFull",
 )

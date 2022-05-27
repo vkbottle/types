@@ -6307,7 +6307,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     topic_id: typing.Optional[int] = None
 
 
-class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase, WallWallpostFull):
+class NewsfeedItemWallpost(WallWallpostFull):
     """VK Object NewsfeedItemWallpost"""
 
     feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None

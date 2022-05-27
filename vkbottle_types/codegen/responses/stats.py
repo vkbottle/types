@@ -21,4 +21,6 @@ for item in locals().copy().values():
 __all__ = (
     "GetPostReachResponse",
     "GetResponse",
+    "StatsPeriod",
+    "StatsWallpostStat",
 )

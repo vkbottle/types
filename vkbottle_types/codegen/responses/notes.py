@@ -45,5 +45,9 @@ __all__ = (
     "CreateCommentResponse",
     "GetByIdResponse",
     "GetCommentsResponse",
+    "GetCommentsResponseModel",
     "GetResponse",
+    "GetResponseModel",
+    "NotesNote",
+    "NotesNoteComment",
 )

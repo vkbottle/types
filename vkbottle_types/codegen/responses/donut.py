@@ -30,6 +30,10 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "DonutDonatorSubscriptionInfo",
     "GetSubscriptionResponse",
     "GetSubscriptionsResponse",
+    "GetSubscriptionsResponseModel",
+    "GroupsGroupFull",
+    "UsersUserFull",
 )

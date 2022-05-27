@@ -47,9 +47,13 @@ for item in locals().copy().values():
 
 
 __all__ = (
+    "AppWidgetsPhoto",
+    "AppWidgetsPhotos",
     "GetAppImageUploadServerResponse",
+    "GetAppImageUploadServerResponseModel",
     "GetAppImagesResponse",
     "GetGroupImageUploadServerResponse",
+    "GetGroupImageUploadServerResponseModel",
     "GetGroupImagesResponse",
     "GetImagesByIdResponse",
     "SaveAppImageResponse",
