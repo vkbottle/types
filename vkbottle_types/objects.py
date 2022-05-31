@@ -2,51 +2,22 @@
 import inspect
 from pydantic import BaseModel
 from enum import Enum
-from typing import Optional
+from typing import List, Optional
 from vkbottle_types.codegen.objects import *  # noqa: F403,F401
-
-# There is too many objects to import, so we will use * to import them all
-
-
-class GroupCallInProgress(CallsCall):
-    """VK Object GroupCallInProgress"""
-
-    receiver_id: Optional[int] = None
-    time: Optional[int] = None
-    join_link: Optional[str] = None
-    state: Optional["CallsEndState"] = None
 
 
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
-    """VK Object GroupsUserXtrRole"""
-
+    #  https://github.com/VKCOM/vk-api-schema/issues/224
     pass
 
 
-class MessagesHistoryMessageAttachment(BaseModel):
-    """VK Object MessagesHistoryMessageAttachment"""
-
-    share: Optional["BaseLink"] = None
-
-
 class MessagesMessageAction(MessagesMessageAction):
-    """VK Object MessagesMessageAction
-
-    conversation_message_id - Message ID
-    email - Email address for chat_invite_user or chat_kick_user actions
-    member_id - User or email peer ID
-    message - Message body of related message
-    photo -
-    text - New chat title for chat_create and chat_title_update actions
-    type -
-    """
-
+    # https://github.com/VKCOM/vk-api-schema/issues/226
     style: Optional[str] = None
 
 
 class MessagesMessageActionStatus(Enum):
-    """Action status"""
-
+    # https://github.com/VKCOM/vk-api-schema/issues/226
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -58,19 +29,47 @@ class MessagesMessageActionStatus(Enum):
     CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
     CHAT_SCREENSHOT = "chat_screenshot"
+    CONVERSATION_STYLE_UPDATE = "conversation_style_update"
+
+
+class GroupCallInProgress(CallsCall):
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    receiver_id: Optional[int] = None
+    time: Optional[int] = None
+    join_link: Optional[str] = None
+    state: Optional["CallsEndState"] = None
 
 
 class MessagesMessageAttachment(MessagesMessageAttachment):
-    """VK Object MessagesMessageAttachment"""
-
+    # https://github.com/VKCOM/vk-api-schema/issues/225
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLink"] = None
     wall: Optional["WallWallpostFull"] = None
+    type: "MessagesMessageAttachmentType"
+
+
+class BaseLinkAttachment(BaseLink):
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    photo: Optional["LinkPhoto"] = None
+
+
+class LinkPhoto(PhotosPhoto):
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    has_tags: Optional[bool] = None
+    date: Optional[int] = None
+
+
+class MessagesMessage(MessagesMessage):
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    attachments: Optional[List["MessagesMessageAttachment"]] = None
+
+
+class MessagesForeignMessage(MessagesForeignMessage):
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    attachments: Optional[List["MessagesMessageAttachment"]] = None
 
 
 class MessagesMessageAttachmentType(Enum):
-    """Attachment type"""
-
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -88,12 +87,25 @@ class MessagesMessageAttachmentType(Enum):
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
+    GROUP_CALL_IN_PROGRESS = (
+        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    )
+
+
+class VideoVideoType(Enum):
+    VIDEO = "video"
+    MUSIC_VIDEO = "music_video"
+    MOVIE = "movie"
+    SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
+
+
+class VideoVideo(VideoVideo):
+    # https://github.com/VKCOM/vk-api-schema/issues/212
+    type: Optional[VideoVideoType] = None
 
 
 class MessagesSendUserIdsResponseItem(BaseModel):
-    """VK Object MessagesSendUserIdsResponseItem"""
-
+    # https://github.com/VKCOM/vk-api-schema/issues/208
     conversation_message_id: Optional[int] = None
     error: Optional["BaseMessageError"] = None
     message_id: Optional[int]
@@ -102,8 +114,11 @@ class MessagesSendUserIdsResponseItem(BaseModel):
 
 GroupCallInProgress.update_forward_refs()
 GroupsUserXtrRole.update_forward_refs()
+MessagesForeignMessage.update_forward_refs()
 MessagesHistoryMessageAttachment.update_forward_refs()
 MessagesMessageAction.update_forward_refs()
 MessagesMessageAttachment.update_forward_refs()
+MessagesMessage.update_forward_refs()
 MessagesSendUserIdsResponseItem.update_forward_refs()
 NewsfeedItemWallpost.update_forward_refs()
+VideoVideo.update_forward_refs()
