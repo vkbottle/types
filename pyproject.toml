@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vkbottle-types"
-version = "5.131.146.3"
+version = "5.131.146.4"
 description = "Types for vkbottle"
 authors = ["timoniq"]
 license = "MIT"
@@ -11,7 +11,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.7.2"
 pydantic = "^1.6.1"
-vkbottle = "^4.1"
+vkbottle = "^4.3.4"
 
 [tool.poetry.dev-dependencies]
 
