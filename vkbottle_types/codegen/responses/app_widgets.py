@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
@@ -39,11 +38,6 @@ class GetAppImageUploadServerResponseModel(BaseResponse):
 
 class GetGroupImageUploadServerResponseModel(BaseResponse):
     upload_url: typing.Optional[str] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

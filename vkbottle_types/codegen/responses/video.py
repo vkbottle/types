@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -143,11 +142,6 @@ class SearchResponseModel(BaseResponse):
 class UploadResponseModel(BaseResponse):
     size: typing.Optional[int] = None
     video_id: typing.Optional[int] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

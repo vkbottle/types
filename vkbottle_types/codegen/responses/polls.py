@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import BaseBoolInt, PollsBackground, PollsPoll, PollsVoters
@@ -31,11 +30,6 @@ class GetVotersResponse(BaseResponse):
 
 class SavePhotoResponse(BaseResponse):
     response: PollsBackground
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

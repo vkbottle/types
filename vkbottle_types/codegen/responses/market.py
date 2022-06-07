@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -194,11 +193,6 @@ class SearchResponseModel(BaseResponse):
     items: typing.Optional[typing.List["MarketMarketItem"]] = None
     variants: typing.Optional[typing.List["MarketMarketItem"]] = None
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

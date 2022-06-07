@@ -1,5 +1,4 @@
 import enum
-import inspect
 import typing
 
 from vkbottle_types.base_model import BaseModel
@@ -9563,11 +9562,6 @@ class WidgetsWidgetPage(BaseModel):
     photo: typing.Optional[str] = None
     title: typing.Optional[str] = None
     url: typing.Optional[str] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseModel):
-        item.update_forward_refs()
 
 
 __all__ = (

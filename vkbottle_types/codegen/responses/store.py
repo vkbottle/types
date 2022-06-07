@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import BaseSticker, StoreProduct, StoreStickersKeyword
@@ -22,11 +21,6 @@ class GetStickersKeywordsResponseModel(BaseResponse):
     dictionary: typing.Optional[typing.List["StoreStickersKeyword"]] = None
     chunks_count: typing.Optional[int] = None
     chunks_hash: typing.Optional[str] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

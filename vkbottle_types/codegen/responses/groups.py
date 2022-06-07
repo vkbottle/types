@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -331,11 +330,6 @@ class IsMemberExtendedResponseModel(BaseResponse):
 class SearchResponseModel(BaseResponse):
     count: typing.Optional[int] = None
     items: typing.Optional[typing.List["GroupsGroup"]] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

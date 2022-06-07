@@ -1,5 +1,3 @@
-import inspect
-
 from vkbottle_types.objects import BaseBoolInt, BaseUploadServer
 from vkbottle_types.responses.base_response import BaseResponse
 
@@ -14,11 +12,6 @@ class OkResponse(BaseResponse):
 
 class BaseGetUploadServerResponse(BaseResponse):
     response: BaseUploadServer
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

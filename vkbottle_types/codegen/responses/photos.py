@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -281,11 +280,6 @@ class WallUploadResponseModel(BaseResponse):
     hash: typing.Optional[str] = None
     photo: typing.Optional[str] = None
     server: typing.Optional[int] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

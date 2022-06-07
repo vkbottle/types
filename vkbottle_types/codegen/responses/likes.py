@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import BaseBoolInt, UsersUserMin
@@ -46,11 +45,6 @@ class GetListResponseModel(BaseResponse):
 class IsLikedResponseModel(BaseResponse):
     liked: typing.Optional["BaseBoolInt"] = None
     copied: typing.Optional["BaseBoolInt"] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

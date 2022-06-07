@@ -121,19 +121,22 @@ class OutRead(BaseUserEvent):
 
 
 DEFAULT_EVENTS_BASE_USER = EventsBase(UserEventType)
-for item in locals().copy().values():
+_locals = locals().copy()
+_locals_values = _locals.values()
+for item in _locals_values:
     if (
         not inspect.isclass(item)
         or not issubclass(item, BaseUserEvent)
         or item in (BaseUserEvent, RawUserEvent)
     ):
         continue
-    item.update_forward_refs()
+    item.update_forward_refs(**_locals)
     event_type = UserEventType[
-        "".join("_" + i if i.isupper() else i for i in item.__name__)
+        "".join(f"_{i}" if i.isupper() else i for i in item.__name__)
         .lstrip("_")
         .upper()
     ]
+
     DEFAULT_EVENTS_BASE_USER.register(event_type, item)
 __all__ = (
     "DEFAULT_EVENTS_BASE_USER",

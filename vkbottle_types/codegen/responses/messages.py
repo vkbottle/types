@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -322,11 +321,6 @@ class SearchResponseModel(BaseResponse):
 class SetChatPhotoResponseModel(BaseResponse):
     message_id: typing.Optional[int] = None
     chat: typing.Optional["MessagesChat"] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import LeadFormsForm, LeadFormsLead
@@ -41,11 +40,6 @@ class DeleteResponseModel(BaseResponse):
 class GetLeadsResponseModel(BaseResponse):
     leads: typing.Optional[typing.List["LeadFormsLead"]] = None
     next_page_token: typing.Optional[str] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

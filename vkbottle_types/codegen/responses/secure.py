@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -42,11 +41,6 @@ class SendNotificationResponse(BaseResponse):
 
 class SetCounterArrayResponse(BaseResponse):
     response: typing.List["SecureSetCounterItem"]
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

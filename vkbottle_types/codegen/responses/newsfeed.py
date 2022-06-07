@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -126,11 +125,6 @@ class SearchResponseModel(BaseResponse):
     next_from: typing.Optional[str] = None
     count: typing.Optional[int] = None
     total_count: typing.Optional[int] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

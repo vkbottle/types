@@ -237,19 +237,22 @@ class DonutMoneyWithdrawError(BaseGroupEvent):
 
 
 DEFAULT_EVENTS_BASE_GROUP = EventsBase(GroupEventType)
-for item in locals().copy().values():
+_locals = locals().copy()
+_locals_values = _locals.values()
+for item in _locals_values:
     if (
         not inspect.isclass(item)
         or not issubclass(item, BaseGroupEvent)
         or item is BaseGroupEvent
     ):
         continue
-    item.update_forward_refs()
+    item.update_forward_refs(**_locals)
     event_type = GroupEventType[
-        "".join("_" + i if i.isupper() else i for i in item.__name__)
+        "".join(f"_{i}" if i.isupper() else i for i in item.__name__)
         .lstrip("_")
         .upper()
     ]
+
     DEFAULT_EVENTS_BASE_GROUP.register(event_type, item)
 
 __all__ = (

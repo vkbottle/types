@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -67,11 +66,6 @@ class GetTopicsResponseModel(BaseResponse):
     items: typing.Optional[typing.List["BoardTopic"]] = None
     default_order: typing.Optional["BoardDefaultOrder"] = None
     can_add_topics: typing.Optional["BaseBoolInt"] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (

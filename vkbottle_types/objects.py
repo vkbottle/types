@@ -1,9 +1,11 @@
 # flake8: noqa: F405
 import inspect
-from pydantic import BaseModel
 from enum import Enum
 from typing import List, Optional
+
 from vkbottle_types.codegen.objects import *  # noqa: F403,F401
+
+from vkbottle_types.base_model import BaseModel
 
 
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
@@ -13,6 +15,7 @@ class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
 
 class MessagesMessageAction(MessagesMessageAction):
     # https://github.com/VKCOM/vk-api-schema/issues/226
+    type: "MessagesMessageActionStatus"
     style: Optional[str] = None
 
 
@@ -42,8 +45,9 @@ class GroupCallInProgress(CallsCall):
 
 class MessagesMessageAttachment(MessagesMessageAttachment):
     # https://github.com/VKCOM/vk-api-schema/issues/225
+    story: Optional["StoriesStory"] = None
     group_call_in_progress: Optional["GroupCallInProgress"] = None
-    link: Optional["BaseLink"] = None
+    link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
     type: "MessagesMessageAttachmentType"
 
@@ -62,11 +66,15 @@ class LinkPhoto(PhotosPhoto):
 class MessagesMessage(MessagesMessage):
     # https://github.com/VKCOM/vk-api-schema/issues/225
     attachments: Optional[List["MessagesMessageAttachment"]] = None
+    reply_message: Optional["MessagesForeignMessage"] = None
+    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
 
 
 class MessagesForeignMessage(MessagesForeignMessage):
     # https://github.com/VKCOM/vk-api-schema/issues/225
     attachments: Optional[List["MessagesMessageAttachment"]] = None
+    reply_message: Optional["MessagesForeignMessage"] = None
+    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
 
 
 class MessagesMessageAttachmentType(Enum):
@@ -101,7 +109,12 @@ class VideoVideoType(Enum):
 
 class VideoVideo(VideoVideo):
     # https://github.com/VKCOM/vk-api-schema/issues/212
-    type: Optional[VideoVideoType] = None
+    type: Optional["VideoVideoType"] = None
+
+
+class VideoVideoFull(VideoVideo, VideoVideoFull):
+    # https://github.com/VKCOM/vk-api-schema/issues/212
+    pass
 
 
 class MessagesSendUserIdsResponseItem(BaseModel):
@@ -112,13 +125,12 @@ class MessagesSendUserIdsResponseItem(BaseModel):
     peer_id: int
 
 
-GroupCallInProgress.update_forward_refs()
-GroupsUserXtrRole.update_forward_refs()
-MessagesForeignMessage.update_forward_refs()
-MessagesHistoryMessageAttachment.update_forward_refs()
-MessagesMessageAction.update_forward_refs()
-MessagesMessageAttachment.update_forward_refs()
-MessagesMessage.update_forward_refs()
-MessagesSendUserIdsResponseItem.update_forward_refs()
-NewsfeedItemWallpost.update_forward_refs()
-VideoVideo.update_forward_refs()
+_locals = locals().copy()
+_locals_values = _locals.values()
+for item in _locals_values:
+    if not (inspect.isclass(item) and issubclass(item, BaseModel)):
+        continue
+    item.update_forward_refs(**_locals)
+    for parent in item.__bases__:
+        if parent.__name__ == item.__name__:
+            parent.update_forward_refs(**_locals)  # type: ignore

@@ -139,6 +139,8 @@ class ChatEditObject(BaseEventObject):
     self: Optional[int] = None
 
 
-for item in locals().copy().values():
+_locals = locals().copy()
+_locals_values = _locals.values()
+for item in _locals_values:
     if inspect.isclass(item) and issubclass(item, BaseEventObject):
-        item.update_forward_refs()
+        item.update_forward_refs(**_locals)

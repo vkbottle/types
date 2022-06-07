@@ -1,4 +1,3 @@
-import inspect
 import typing
 
 from vkbottle_types.objects import (
@@ -37,11 +36,6 @@ class GetResponseModel(BaseResponse):
     apps: typing.Optional[typing.List["AppsApp"]] = None
     next_from: typing.Optional[str] = None
     ttl: typing.Optional[int] = None
-
-
-for item in locals().copy().values():
-    if inspect.isclass(item) and issubclass(item, BaseResponse):
-        item.update_forward_refs()
 
 
 __all__ = (
