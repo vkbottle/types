@@ -8,17 +8,6 @@ from vkbottle_types.codegen.objects import *  # noqa: F403,F401
 from vkbottle_types.base_model import BaseModel
 
 
-class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
-    #  https://github.com/VKCOM/vk-api-schema/issues/224
-    pass
-
-
-class MessagesMessageAction(MessagesMessageAction):
-    # https://github.com/VKCOM/vk-api-schema/issues/226
-    type: "MessagesMessageActionStatus"
-    style: Optional[str] = None
-
-
 class MessagesMessageActionStatus(Enum):
     # https://github.com/VKCOM/vk-api-schema/issues/226
     CHAT_PHOTO_UPDATE = "chat_photo_update"
@@ -33,6 +22,47 @@ class MessagesMessageActionStatus(Enum):
     CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
     CHAT_SCREENSHOT = "chat_screenshot"
     CONVERSATION_STYLE_UPDATE = "conversation_style_update"
+
+
+class MessagesMessageAttachmentType(Enum):
+    PHOTO = "photo"
+    AUDIO = "audio"
+    VIDEO = "video"
+    DOC = "doc"
+    LINK = "link"
+    MARKET = "market"
+    MARKET_ALBUM = "market_album"
+    GIFT = "gift"
+    STICKER = "sticker"
+    WALL = "wall"
+    WALL_REPLY = "wall_reply"
+    ARTICLE = "article"
+    POLL = "poll"
+    CALL = "call"
+    GRAFFITI = "graffiti"
+    AUDIO_MESSAGE = "audio_message"
+    STORY = "story"
+    GROUP_CALL_IN_PROGRESS = (
+        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    )
+
+
+class VideoVideoType(Enum):
+    VIDEO = "video"
+    MUSIC_VIDEO = "music_video"
+    MOVIE = "movie"
+    SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
+
+
+class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
+    #  https://github.com/VKCOM/vk-api-schema/issues/224
+    pass
+
+
+class MessagesMessageAction(MessagesMessageAction):
+    # https://github.com/VKCOM/vk-api-schema/issues/226
+    type: "MessagesMessageActionStatus"
+    style: Optional[str] = None
 
 
 class GroupCallInProgress(CallsCall):
@@ -75,36 +105,6 @@ class MessagesForeignMessage(MessagesForeignMessage):
     attachments: Optional[List["MessagesMessageAttachment"]] = None
     reply_message: Optional["MessagesForeignMessage"] = None
     fwd_messages: Optional[List["MessagesForeignMessage"]] = None
-
-
-class MessagesMessageAttachmentType(Enum):
-    PHOTO = "photo"
-    AUDIO = "audio"
-    VIDEO = "video"
-    DOC = "doc"
-    LINK = "link"
-    MARKET = "market"
-    MARKET_ALBUM = "market_album"
-    GIFT = "gift"
-    STICKER = "sticker"
-    WALL = "wall"
-    WALL_REPLY = "wall_reply"
-    ARTICLE = "article"
-    POLL = "poll"
-    CALL = "call"
-    GRAFFITI = "graffiti"
-    AUDIO_MESSAGE = "audio_message"
-    STORY = "story"
-    GROUP_CALL_IN_PROGRESS = (
-        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
-    )
-
-
-class VideoVideoType(Enum):
-    VIDEO = "video"
-    MUSIC_VIDEO = "music_video"
-    MOVIE = "movie"
-    SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
 
 
 class VideoVideo(VideoVideo):
