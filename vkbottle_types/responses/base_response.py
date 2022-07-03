@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel
+from vkbottle_types.base_model import BaseModel
 
 
 class BaseResponse(BaseModel):
