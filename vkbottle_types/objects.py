@@ -54,8 +54,14 @@ class VideoVideoType(Enum):
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
 
 
+class BaseLinkButtonActionType(Enum):
+    # https://github.com/VKCOM/vk-api-schema/issues/227
+    OPEN_URL = "open_url"
+    JOIN_GROUP_AND_OPEN_URL = "join_group_and_open_url"
+
+
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
-    #  https://github.com/VKCOM/vk-api-schema/issues/224
+    # https://github.com/VKCOM/vk-api-schema/issues/224
     pass
 
 
@@ -115,7 +121,6 @@ class VideoVideo(VideoVideo):
 class VideoVideoFull(VideoVideo, VideoVideoFull):
     # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
-    pass
 
 
 class MessagesSendUserIdsResponseItem(BaseModel):
