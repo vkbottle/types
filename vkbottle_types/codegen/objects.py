@@ -3050,6 +3050,13 @@ class UsersUser(UsersUserMin):
     verified: typing.Optional["BaseBoolInt"] = None
 
 
+class UsersUserFullWallDefault(enum.Enum):
+    """ UsersUserFullWallDefault enum """
+
+    OWNER = "owner"
+    ALL = "all"
+
+
 class UsersUserFull(UsersUser):
     """VK Object UsersUserFull
 
@@ -3298,7 +3305,7 @@ class UsersUserFull(UsersUser):
     video_live_count: typing.Optional[int] = None
     video_live_level: typing.Optional[int] = None
     wall_comments: typing.Optional["BaseBoolInt"] = None
-    wall_default: typing.Optional[str] = None
+    wall_default: typing.Optional["UsersUserFullWallDefault"] = None
 
 
 class FriendsUserXtrPhone(UsersUserFull):
@@ -3852,6 +3859,15 @@ class GroupsGroupDocs(enum.IntEnum):
     limited = 2
 
 
+class GroupsGroupFullWall(enum.IntEnum):
+    """ Information about wall status in community """
+
+    disabled = 0
+    open = 1
+    limited = 2
+    restricted = 3
+
+
 class GroupsGroupFull(GroupsGroup):
     """VK Object GroupsGroupFull
 
@@ -3969,7 +3985,7 @@ class GroupsGroupFull(GroupsGroup):
     verified: typing.Optional["BaseBoolInt"] = None
     video_live_count: typing.Optional[int] = None
     video_live_level: typing.Optional[int] = None
-    wall: typing.Optional[int] = None
+    wall: typing.Optional["GroupsGroupFullWall"] = None
     wiki_page: typing.Optional[str] = None
 
 
@@ -5982,6 +5998,14 @@ class NewsfeedItemAudioAudio(BaseModel):
     items: typing.Optional[typing.List["AudioAudio"]] = None
 
 
+class DigestType(enum.Enum):
+    """ type of digest """
+
+    LIST = "list"
+    GRID = "grid"
+    SINGLE = "single"
+
+
 class NewsfeedItemDigest(NewsfeedItemBase):
     """VK Object NewsfeedItemDigest
 
@@ -5999,7 +6023,7 @@ class NewsfeedItemDigest(NewsfeedItemBase):
     header: typing.Optional["NewsfeedItemDigestHeader"] = None
     items: typing.Optional[typing.List["NewsfeedItemDigestItem"]] = None
     main_post_ids: typing.Optional[typing.List[str]] = None
-    template: typing.Optional[str] = None
+    template: typing.Optional["DigestType"] = None
     track_code: typing.Optional[str] = None
 
 
@@ -6275,6 +6299,23 @@ class NewsfeedItemVideoVideo(BaseModel):
     items: typing.Optional[typing.List["VideoVideo"]] = None
 
 
+class WallWallpostFullTopicId(enum.IntEnum):
+    """ Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method """
+
+    empty_topic = 0
+    art = 1
+    it = 7
+    games = 12
+    music = 16
+    photo = 19
+    science_and_tech = 21
+    sport = 23
+    travel = 25
+    tv_and_cinema = 26
+    humor = 32
+    fashion = 43
+
+
 class WallWallpostFull(WallCarouselBase, WallWallpost):
     """VK Object WallWallpostFull
 
@@ -6303,10 +6344,10 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     is_pinned: typing.Optional[int] = None
     marked_as_ads: typing.Optional["BaseBoolInt"] = None
     short_text_rate: typing.Optional[float] = None
-    topic_id: typing.Optional[int] = None
+    topic_id: typing.Optional["WallWallpostFullTopicId"] = None
 
 
-class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase, WallWallpostFull):
+class NewsfeedItemWallpost(WallWallpostFull):
     """VK Object NewsfeedItemWallpost"""
 
     feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None
@@ -9778,6 +9819,7 @@ __all__ = (
     "FriendsRequestsMutual",
     "FriendsRequestsXtrMessage",
     "UsersUser",
+    "UsersUserFullWallDefault",
     "UsersUserFull",
     "FriendsUserXtrPhone",
     "GiftsGift",
@@ -9811,6 +9853,7 @@ __all__ = (
     "GroupsGroupCategoryFull",
     "GroupsGroupCategoryType",
     "GroupsGroupDocs",
+    "GroupsGroupFullWall",
     "GroupsGroupFull",
     "GroupsGroupFullAgeLimits",
     "GroupsGroupFullMemberStatus",
@@ -9952,6 +9995,7 @@ __all__ = (
     "NewsfeedItemBase",
     "NewsfeedItemAudio",
     "NewsfeedItemAudioAudio",
+    "DigestType",
     "NewsfeedItemDigest",
     "NewsfeedItemDigestButtonStyle",
     "NewsfeedItemDigestButton",
@@ -9977,6 +10021,7 @@ __all__ = (
     "NewsfeedItemTopic",
     "NewsfeedItemVideo",
     "NewsfeedItemVideoVideo",
+    "WallWallpostFullTopicId",
     "WallWallpostFull",
     "NewsfeedItemWallpost",
     "NewsfeedItemWallpostFeedback",
