@@ -810,8 +810,8 @@ class AdsLookalikeRequest(BaseModel):
     scheduled_delete_time: typing.Optional[int] = None
     source_name: typing.Optional[str] = None
     source_retargeting_group_id: typing.Optional[int] = None
-    source_type: typing.Optional["LookalikeRequestSourceType"] = None
-    status: typing.Optional["LookalikeRequestStatus"] = None
+    source_type: "LookalikeRequestSourceType"
+    status: "LookalikeRequestStatus"
     update_time: int
 
 
@@ -1413,7 +1413,7 @@ class AppsScope(BaseModel):
     title - Scope title
     """
 
-    name: typing.Optional["ScopeName"] = None
+    name: "ScopeName"
     title: typing.Optional[str] = None
 
 
@@ -2333,7 +2333,7 @@ class CallbackLikeAddRemove(BaseModel):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: typing.Optional["CallbackLikeAddRemoveObjectType"] = None
+    object_type: "CallbackLikeAddRemoveObjectType"
     post_id: int
     thread_reply_id: typing.Optional[int] = None
 
@@ -2828,7 +2828,7 @@ class DonutDonatorSubscriptionInfo(BaseModel):
     amount: int
     next_payment_date: int
     owner_id: int
-    status: typing.Optional["DonutDonatorSubscriptionInfoStatus"] = None
+    status: "DonutDonatorSubscriptionInfoStatus"
 
 
 class EventsEventAttach(BaseModel):
@@ -3525,7 +3525,7 @@ class GroupsCallbackServer(BaseModel):
     creator_id: int
     id: int
     secret_key: str
-    status: typing.Optional["GroupsCallbackServerStatus"] = None
+    status: "GroupsCallbackServerStatus"
     title: str
     url: str
 
@@ -4168,7 +4168,7 @@ class GroupsGroupTagColor(enum.Enum):
 class GroupsGroupTag(BaseModel):
     """VK Object GroupsGroupTag"""
 
-    color: typing.Optional["GroupsGroupTagColor"] = None
+    color: "GroupsGroupTagColor"
     id: int
     name: str
     uses: typing.Optional[int] = None
@@ -4495,7 +4495,7 @@ class GroupsSettingsTwitter(BaseModel):
     """VK Object GroupsSettingsTwitter"""
 
     name: typing.Optional[str] = None
-    status: typing.Optional["GroupsSettingsTwitterStatus"] = None
+    status: "GroupsSettingsTwitterStatus"
 
 
 class GroupsSubjectItem(BaseModel):
@@ -4590,7 +4590,7 @@ class LeadFormsQuestionItem(BaseModel):
     key: str
     label: typing.Optional[str] = None
     options: typing.Optional[typing.List["LeadFormsQuestionItemOption"]] = None
-    type: typing.Optional["LeadFormsQuestionItemType"] = None
+    type: "LeadFormsQuestionItemType"
 
 
 class LeadFormsQuestionItemOption(BaseModel):
@@ -5495,7 +5495,7 @@ class MessagesKeyboardButtonActionCallback(BaseModel):
 
     label: str
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionCallbackType"] = None
+    type: "MessagesKeyboardButtonActionCallbackType"
 
 
 class MessagesKeyboardButtonActionLocationType(enum.Enum):
@@ -5512,7 +5512,7 @@ class MessagesKeyboardButtonActionLocation(BaseModel):
     """
 
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionLocationType"] = None
+    type: "MessagesKeyboardButtonActionLocationType"
 
 
 class MessagesKeyboardButtonActionOpenAppType(enum.Enum):
@@ -5537,7 +5537,7 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     label: str
     owner_id: int
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionOpenAppType"] = None
+    type: "MessagesKeyboardButtonActionOpenAppType"
 
 
 class MessagesKeyboardButtonActionOpenLinkType(enum.Enum):
@@ -5558,7 +5558,7 @@ class MessagesKeyboardButtonActionOpenLink(BaseModel):
     label: str
     link: str
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionOpenLinkType"] = None
+    type: "MessagesKeyboardButtonActionOpenLinkType"
 
 
 class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
@@ -5570,7 +5570,7 @@ class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
 class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """VK Object MessagesKeyboardButtonActionOpenPhoto"""
 
-    type: typing.Optional["MessagesKeyboardButtonActionOpenPhotoType"] = None
+    type: "MessagesKeyboardButtonActionOpenPhotoType"
 
 
 class MessagesKeyboardButtonActionTextType(enum.Enum):
@@ -5589,7 +5589,7 @@ class MessagesKeyboardButtonActionText(BaseModel):
 
     label: str
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionTextType"] = None
+    type: "MessagesKeyboardButtonActionTextType"
 
 
 class MessagesKeyboardButtonActionVkpayType(enum.Enum):
@@ -5608,7 +5608,7 @@ class MessagesKeyboardButtonActionVkpay(BaseModel):
 
     hash: str
     payload: typing.Optional[str] = None
-    type: typing.Optional["MessagesKeyboardButtonActionVkpayType"] = None
+    type: "MessagesKeyboardButtonActionVkpayType"
 
 
 class MessagesKeyboardButtonPropertyAction(
@@ -6032,7 +6032,7 @@ class NewsfeedItemDigestFooter(BaseModel):
     """
 
     button: typing.Optional["NewsfeedItemDigestButton"] = None
-    style: typing.Optional["NewsfeedItemDigestFooterStyle"] = None
+    style: "NewsfeedItemDigestFooterStyle"
     text: str
 
 
@@ -6072,7 +6072,7 @@ class NewsfeedItemDigestHeader(BaseModel):
     """
 
     button: typing.Optional["NewsfeedItemDigestButton"] = None
-    style: typing.Optional["NewsfeedItemDigestHeaderStyle"] = None
+    style: "NewsfeedItemDigestHeaderStyle"
     subtitle: typing.Optional[str] = None
     title: str
 
@@ -6306,7 +6306,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     topic_id: typing.Optional[int] = None
 
 
-class NewsfeedItemWallpost(WallWallpostFull):
+class NewsfeedItemWallpost(WallCarouselBase, NewsfeedItemBase, WallWallpostFull):
     """VK Object NewsfeedItemWallpost"""
 
     feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = None
@@ -6861,7 +6861,7 @@ class OrdersOrder(BaseModel):
     id: str
     item: str
     receiver_id: str
-    status: typing.Optional["OrderStatus"] = None
+    status: "OrderStatus"
     transaction_id: typing.Optional[str] = None
     user_id: str
 
@@ -7949,7 +7949,7 @@ class StoreProduct(BaseModel):
     style_sticker_ids: typing.Optional[typing.List[int]] = None
     subtitle: typing.Optional[str] = None
     title: typing.Optional[str] = None
-    type: typing.Optional["ProductType"] = None
+    type: "ProductType"
 
 
 StoreProductIcon = typing.List["BaseImage"]
@@ -8088,7 +8088,7 @@ class StoriesClickableSticker(BaseModel):
     style: typing.Optional["StoriesClickableStickerStyle"] = None
     subtype: typing.Optional["StoriesClickableStickerSubtype"] = None
     tooltip_text: typing.Optional[str] = None
-    type: typing.Optional["StoriesClickableStickerType"] = None
+    type: "StoriesClickableStickerType"
 
 
 class StoriesClickableStickers(BaseModel):
@@ -8137,7 +8137,7 @@ class StoriesFeedItem(BaseModel):
     promo_data: typing.Optional["StoriesPromoBlock"] = None
     stories: typing.Optional[typing.List["StoriesStory"]] = None
     track_code: typing.Optional[str] = None
-    type: typing.Optional["FeedItemType"] = None
+    type: "FeedItemType"
 
 
 class StoriesPromoBlock(BaseModel):
@@ -8603,7 +8603,7 @@ class UsersRelative(BaseModel):
     birth_date: typing.Optional[str] = None
     id: typing.Optional[int] = None
     name: typing.Optional[str] = None
-    type: typing.Optional["RelativeType"] = None
+    type: "RelativeType"
 
 
 class UsersSchool(BaseModel):
