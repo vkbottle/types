@@ -604,7 +604,7 @@ class GroupsCategory(BaseCategory):
     async def get_by_id(
         self,
         group_ids: typing.Optional[typing.List[typing.Union[int, str]]] = None,
-        group_id: typing.Optional[typing.List[typing.Union[int, str]]] = None,
+        group_id: typing.Optional[typing.Union[int, str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
         **kwargs
     ) -> typing.List[GroupsGroupFull]:

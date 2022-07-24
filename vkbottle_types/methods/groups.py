@@ -1,17 +1,17 @@
+from typing import List, Optional, Union, overload
+
+from typing_extensions import Literal
+from vkbottle_types.codegen.methods.groups import GroupsCategory  # type: ignore
 from vkbottle_types.responses.groups import (
-    GetMembersResponse,
-    GetMembersResponseModel,
+    GetMembersFieldsFilterManagersResponse,
+    GetMembersFieldsFilterManagersResponseModel,
     GetMembersFieldsResponse,
     GetMembersFieldsResponseModel,
     GetMembersFilterManagersResponse,
     GetMembersFilterManagersResponseModel,
-    GetMembersFieldsFilterManagersResponse,
-    GetMembersFieldsFilterManagersResponseModel,
+    GetMembersResponse,
+    GetMembersResponseModel,
 )
-
-from vkbottle_types.codegen.methods.groups import GroupsCategory
-from typing_extensions import Literal
-from typing import Optional, List, overload, Union
 
 
 class GroupsCategory(GroupsCategory):
