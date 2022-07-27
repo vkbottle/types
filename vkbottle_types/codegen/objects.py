@@ -9170,6 +9170,7 @@ class WallCommentAttachmentType(enum.Enum):
     MARKET_MARKET_ALBUM = "market_market_album"
     MARKET = "market"
     STICKER = "sticker"
+    GRAFFITI = "graffiti"
 
 
 class PlaceType(enum.Enum):
