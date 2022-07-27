@@ -9437,6 +9437,7 @@ class WallWallpostAttachmentType(enum.Enum):
     GROUP = "group"
     STICKER = "sticker"
     PODCAST = "podcast"
+    PRETTY_CARDS = "pretty_cards"
 
 
 class WallWallpostCommentsDonut(BaseModel):
