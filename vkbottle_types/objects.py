@@ -3,9 +3,8 @@ import inspect
 from enum import Enum
 from typing import List, Optional
 
-from vkbottle_types.codegen.objects import *  # noqa: F403,F401
-
 from vkbottle_types.base_model import BaseModel
+from vkbottle_types.codegen.objects import *  # noqa: F403,F401
 
 
 class MessagesMessageActionStatus(Enum):
@@ -97,6 +96,17 @@ class LinkPhoto(PhotosPhoto):
     # https://github.com/VKCOM/vk-api-schema/issues/225
     has_tags: Optional[bool] = None
     date: Optional[int] = None
+
+
+class PhotosPhotoAlbumFull(PhotosPhotoAlbumFull):
+    # https://github.com/VKCOM/vk-api-schema/issues/228
+    created: Optional[int] = None
+    updated: Optional[int] = None
+
+
+class PhotosPhoto(PhotosPhoto):
+    # https://github.com/VKCOM/vk-api-schema/issues/229
+    has_tags: Optional[bool] = None
 
 
 class MessagesMessage(MessagesMessage):
