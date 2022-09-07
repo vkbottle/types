@@ -51,6 +51,7 @@ class VideoVideoType(Enum):
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
+    LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
 
 
 class BaseLinkButtonActionType(Enum):
