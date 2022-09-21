@@ -5,8 +5,6 @@ from vkbottle_types.codegen.responses.groups import *  # noqa: F403,F401
 from vkbottle_types.objects import GroupsMemberRole, GroupsUserXtrRole
 from vkbottle_types.responses.base_response import BaseResponse
 
-from .base_response import BaseResponse
-
 
 class GetMembersFilterManagersResponse(BaseResponse):
     response: "GetMembersFilterManagersResponseModel"

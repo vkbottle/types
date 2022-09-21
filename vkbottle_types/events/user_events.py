@@ -3,8 +3,6 @@ from typing import TYPE_CHECKING, Any, List, Optional, Union
 
 from pydantic import BaseModel
 
-from .enums import UserEventType
-from .events_base import EventsBase
 from .objects import BaseEventObject, user_event_objects
 
 if TYPE_CHECKING:
@@ -120,48 +118,35 @@ class OutRead(BaseUserEvent):
     object: user_event_objects.OutReadObject
 
 
-DEFAULT_EVENTS_BASE_USER = EventsBase(UserEventType)
 _locals = locals().copy()
 _locals_values = _locals.values()
 for item in _locals_values:
-    if (
-        not inspect.isclass(item)
-        or not issubclass(item, BaseUserEvent)
-        or item in (BaseUserEvent, RawUserEvent)
-    ):
-        continue
-    item.update_forward_refs(**_locals)
-    event_type = UserEventType[
-        "".join(f"_{i}" if i.isupper() else i for i in item.__name__)
-        .lstrip("_")
-        .upper()
-    ]
+    if inspect.isclass(item) and issubclass(item, BaseUserEvent):
+        item.update_forward_refs(**_locals)
 
-    DEFAULT_EVENTS_BASE_USER.register(event_type, item)
 __all__ = (
-    "DEFAULT_EVENTS_BASE_USER",
     "BaseUserEvent",
-    "ReplaceMessageFlags",
-    "InstallMessageFlags",
-    "ResetMessageFlags",
-    "MessageNew",
-    "MessagesDelete",
-    "MessagesRestore",
-    "MessageEdit",
-    "ChatVoiceMessageStates",
+    "Call",
     "ChatEdit",
     "ChatInfoEdit",
     "ChatTypingState",
-    "DialogTypingState",
-    "UsersTypingState",
-    "ResetDialogFlags",
-    "ReplaceDialogFlags",
-    "InstallDialogFlags",
-    "FriendOnline",
-    "FriendOffline",
+    "ChatVoiceMessageStates",
     "Counter",
-    "Call",
-    "NotificationsSettingsChanged",
+    "DialogTypingState",
+    "FriendOffline",
+    "FriendOnline",
     "InRead",
+    "InstallDialogFlags",
+    "InstallMessageFlags",
+    "MessageEdit",
+    "MessageNew",
+    "MessagesDelete",
+    "MessagesRestore",
+    "NotificationsSettingsChanged",
     "OutRead",
+    "ReplaceDialogFlags",
+    "ReplaceMessageFlags",
+    "ResetDialogFlags",
+    "ResetMessageFlags",
+    "UsersTypingState",
 )
