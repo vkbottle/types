@@ -44,6 +44,7 @@ class MessagesMessageAttachmentType(Enum):
     GROUP_CALL_IN_PROGRESS = (
         "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
     )
+    MINI_APP = "mini_app"
 
 
 class VideoVideoType(Enum):
@@ -85,6 +86,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
+    mini_app: Optional[dict] = None
     type: "MessagesMessageAttachmentType"
 
 

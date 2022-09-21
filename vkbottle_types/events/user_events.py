@@ -20,8 +20,8 @@ class BaseUserEvent(BaseModel):
         super().__init__(**data)
 
     @property
-    def ctx_api(self) -> Optional[Union["ABCAPI", "API"]]:
-        return getattr(self, "unprepared_ctx_api")
+    def ctx_api(self) -> Union["ABCAPI", "API"]:
+        return self.unprepared_ctx_api  # type: ignore
 
 
 class RawUserEvent(BaseUserEvent):
