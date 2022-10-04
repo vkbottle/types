@@ -9170,6 +9170,7 @@ class WallCommentAttachmentType(enum.Enum):
     MARKET_MARKET_ALBUM = "market_market_album"
     MARKET = "market"
     STICKER = "sticker"
+    GRAFFITI = "graffiti"
 
 
 class PlaceType(enum.Enum):
@@ -9437,6 +9438,7 @@ class WallWallpostAttachmentType(enum.Enum):
     GROUP = "group"
     STICKER = "sticker"
     PODCAST = "podcast"
+    PRETTY_CARDS = "pretty_cards"
 
 
 class WallWallpostCommentsDonut(BaseModel):

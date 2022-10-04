@@ -53,6 +53,54 @@ class VideoVideoType(Enum):
     MOVIE = "movie"
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
     LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
+    
+
+class WallWallpostAttachmentType(Enum):
+    """Attachment type"""
+
+    PHOTO = "photo"
+    PHOTOS_LIST = "photos_list"
+    POSTED_PHOTO = "posted_photo"
+    AUDIO = "audio"
+    AUDIO_PLAYLIST = "audio_playlist"
+    VIDEO = "video"
+    DOC = "doc"
+    LINK = "link"
+    GRAFFITI = "graffiti"
+    NOTE = "note"
+    APP = "app"
+    POLL = "poll"
+    PAGE = "page"
+    ALBUM = "album"
+    MARKET_ALBUM = "market_album"
+    MARKET = "market"
+    EVENT = "event"
+    DONUT_LINK = "donut_link"
+    ARTICLE = "article"
+    TEXTLIVE = "textlive"
+    TEXTPOST = "textpost"
+    TEXTPOST_PUBLISH = "textpost_publish"
+    SITUATIONAL_THEME = "situational_theme"
+    GROUP = "group"
+    STICKER = "sticker"
+    PODCAST = "podcast"
+    PRETTY_CARDS = "pretty_cards"  # https://github.com/VKCOM/vk-api-schema/issues/232
+
+
+class WallCommentAttachmentType(Enum):
+    """Attachment type"""
+
+    PHOTO = "photo"
+    AUDIO = "audio"
+    VIDEO = "video"
+    DOC = "doc"
+    LINK = "link"
+    NOTE = "note"
+    PAGE = "page"
+    MARKET_MARKET_ALBUM = "market_market_album"
+    MARKET = "market"
+    STICKER = "sticker"
+    GRAFFITI = "graffiti"  # https://github.com/VKCOM/vk-api-schema/issues/233
 
 
 class BaseLinkButtonActionType(Enum):
