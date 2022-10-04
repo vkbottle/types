@@ -20,7 +20,7 @@ class BaseCategory:
         exclude_params.update(params["kwargs"])
         exclude_params.pop("kwargs")
         return {
-            k if not k.startswith("_") else k[1:]: v
+            k[1:] if k.startswith("_") else k: v
             for k, v in exclude_params.items()
             if k != "self" and v is not None
         }

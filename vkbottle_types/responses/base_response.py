@@ -1,10 +1,11 @@
-from typing import Optional
+from typing import Any, Optional
 
 from vkbottle_types.base_model import BaseModel
 
 
 class BaseResponse(BaseModel):
     _raw_json: Optional[str]
+    response: Any
 
     @property
     def raw_json(self) -> str:

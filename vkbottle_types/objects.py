@@ -53,7 +53,7 @@ class VideoVideoType(Enum):
     MOVIE = "movie"
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
     LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
-
+    
 
 class WallWallpostAttachmentType(Enum):
     """Attachment type"""

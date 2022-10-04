@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING, Any, Optional, Union
 from pydantic import BaseModel
 
 from .enums import GroupEventType
-from .events_base import EventsBase
 from .objects import BaseEventObject, group_event_objects
 
 if TYPE_CHECKING:
@@ -20,8 +19,8 @@ class BaseGroupEvent(BaseModel):
     unprepared_ctx_api: Optional[Any] = None
 
     @property
-    def ctx_api(self) -> Optional[Union["ABCAPI", "API"]]:
-        return getattr(self, "unprepared_ctx_api")
+    def ctx_api(self) -> Union["ABCAPI", "API"]:
+        return self.unprepared_ctx_api  # type: ignore
 
 
 class MessageNew(BaseGroupEvent):
@@ -236,79 +235,65 @@ class DonutMoneyWithdrawError(BaseGroupEvent):
     object: group_event_objects.DonutMoneyWithdrawErrorObject
 
 
-DEFAULT_EVENTS_BASE_GROUP = EventsBase(GroupEventType)
 _locals = locals().copy()
 _locals_values = _locals.values()
 for item in _locals_values:
-    if (
-        not inspect.isclass(item)
-        or not issubclass(item, BaseGroupEvent)
-        or item is BaseGroupEvent
-    ):
-        continue
-    item.update_forward_refs(**_locals)
-    event_type = GroupEventType[
-        "".join(f"_{i}" if i.isupper() else i for i in item.__name__)
-        .lstrip("_")
-        .upper()
-    ]
-
-    DEFAULT_EVENTS_BASE_GROUP.register(event_type, item)
+    if inspect.isclass(item) and issubclass(item, BaseGroupEvent):
+        item.update_forward_refs(**_locals)
 
 __all__ = (
-    "DEFAULT_EVENTS_BASE_GROUP",
-    "BaseGroupEvent",
-    "MessageNew",
-    "MessageReply",
-    "MessageEdit",
-    "MessageAllow",
-    "MessageDeny",
-    "MessageTypingState",
-    "MessageEvent",
-    "PhotoNew",
-    "PhotoCommentNew",
-    "PhotoCommentEdit",
-    "PhotoCommentRestore",
-    "PhotoCommentDelete",
-    "AudioNew",
-    "VideoNew",
-    "VideoCommentNew",
-    "VideoCommentEdit",
-    "VideoCommentRestore",
-    "VideoCommentDelete",
-    "WallPostNew",
-    "WallRepost",
-    "WallReplyNew",
-    "WallReplyEdit",
-    "WallReplyRestore",
-    "WallReplyDelete",
-    "LikeAdd",
-    "LikeRemove",
-    "BoardPostNew",
-    "BoardPostEdit",
-    "BoardPostRestore",
-    "BoardPostDelete",
-    "MarketCommentNew",
-    "MarketCommentEdit",
-    "MarketCommentRestore",
-    "MarketCommentDelete",
-    "MarketOrderNew",
-    "MarketOrderEdit",
-    "GroupLeave",
-    "GroupJoin",
-    "UserBlock",
-    "UserUnblock",
-    "PollVoteNew",
-    "GroupOfficersEdit",
-    "GroupChangeSettings",
-    "GroupChangePhoto",
-    "VkpayTransaction",
     "AppPayload",
-    "DonutSubscriptionCreate",
-    "DonutSubscriptionProlonged",
-    "DonutSubscriptionExpired",
-    "DonutSubscriptionCancelled",
-    "DonutSubscriptionPriceChanged",
+    "AudioNew",
+    "BaseGroupEvent",
+    "BoardPostDelete",
+    "BoardPostEdit",
+    "BoardPostNew",
+    "BoardPostRestore",
     "DonutMoneyWithdraw",
     "DonutMoneyWithdrawError",
+    "DonutSubscriptionCancelled",
+    "DonutSubscriptionCreate",
+    "DonutSubscriptionExpired",
+    "DonutSubscriptionPriceChanged",
+    "DonutSubscriptionProlonged",
+    "GroupChangePhoto",
+    "GroupChangeSettings",
+    "GroupJoin",
+    "GroupLeave",
+    "GroupOfficersEdit",
+    "LikeAdd",
+    "LikeRemove",
+    "MarketCommentDelete",
+    "MarketCommentEdit",
+    "MarketCommentNew",
+    "MarketCommentRestore",
+    "MarketOrderEdit",
+    "MarketOrderNew",
+    "MessageAllow",
+    "MessageDeny",
+    "MessageEdit",
+    "MessageEvent",
+    "MessageNew",
+    "MessageReply",
+    "MessageTypingState",
+    "PhotoCommentDelete",
+    "PhotoCommentEdit",
+    "PhotoCommentNew",
+    "PhotoCommentRestore",
+    "PhotoNew",
+    "PollVoteNew",
+    "UserBlock",
+    "UserUnblock",
+    "VideoCommentDelete",
+    "VideoCommentEdit",
+    "VideoCommentNew",
+    "VideoCommentRestore",
+    "VideoNew",
+    "VkpayTransaction",
+    "WallPostNew",
+    "WallReplyDelete",
+    "WallReplyEdit",
+    "WallReplyNew",
+    "WallReplyRestore",
+    "WallRepost",
 )

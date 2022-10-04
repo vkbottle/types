@@ -52,29 +52,3 @@ class UserTypes:
     NotificationsSettingsChanged = NotificationsSettingsChanged
     InRead = InRead
     OutRead = OutRead
-    UnifiedTypes = Union[
-        BaseUserEvent,
-        ReplaceMessageFlags,
-        InstallMessageFlags,
-        ResetMessageFlags,
-        MessageNew,
-        MessagesDelete,
-        MessagesRestore,
-        MessageEdit,
-        ChatVoiceMessageStates,
-        ChatEdit,
-        ChatInfoEdit,
-        ChatTypingState,
-        DialogTypingState,
-        UsersTypingState,
-        ResetDialogFlags,
-        ReplaceDialogFlags,
-        InstallDialogFlags,
-        FriendOnline,
-        FriendOffline,
-        Counter,
-        Call,
-        NotificationsSettingsChanged,
-        InRead,
-        OutRead,
-    ]
