@@ -1,9 +1,6 @@
-from typing import Union
-
 from .bot_events import (
     AppPayload,
     AudioNew,
-    BaseGroupEvent,
     BoardPostDelete,
     BoardPostEdit,
     BoardPostNew,

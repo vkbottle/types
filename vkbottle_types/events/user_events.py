@@ -144,6 +144,7 @@ __all__ = (
     "MessagesRestore",
     "NotificationsSettingsChanged",
     "OutRead",
+    "RawUserEvent",
     "ReplaceDialogFlags",
     "ReplaceMessageFlags",
     "ResetDialogFlags",

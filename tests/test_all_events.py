@@ -1,7 +1,7 @@
-from vkbottle_types import *  # type: ignore
-from vkbottle_types.methods import *  # type: ignore
-from vkbottle_types.objects import *  # type: ignore
-from vkbottle_types.responses import *  # type: ignore
+from vkbottle_types import *  # noqa
+from vkbottle_types.methods import *  # noqa
+from vkbottle_types.objects import *  # noqa
+from vkbottle_types.responses import *  # noqa
 
 
 def test_imports():

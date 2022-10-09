@@ -1,34 +1,33 @@
-from typing import Union
-
 from .user_events import (
-    BaseUserEvent,
-    ReplaceMessageFlags,
-    InstallMessageFlags,
-    ResetMessageFlags,
-    MessageNew,
-    MessagesDelete,
-    MessagesRestore,
-    MessageEdit,
-    ChatVoiceMessageStates,
+    Call,
     ChatEdit,
     ChatInfoEdit,
     ChatTypingState,
-    DialogTypingState,
-    UsersTypingState,
-    ResetDialogFlags,
-    ReplaceDialogFlags,
-    InstallDialogFlags,
-    FriendOnline,
-    FriendOffline,
+    ChatVoiceMessageStates,
     Counter,
-    Call,
-    NotificationsSettingsChanged,
+    DialogTypingState,
+    FriendOffline,
+    FriendOnline,
     InRead,
+    InstallDialogFlags,
+    InstallMessageFlags,
+    MessageEdit,
+    MessageNew,
+    MessagesDelete,
+    MessagesRestore,
+    NotificationsSettingsChanged,
     OutRead,
+    RawUserEvent,
+    ReplaceDialogFlags,
+    ReplaceMessageFlags,
+    ResetDialogFlags,
+    ResetMessageFlags,
+    UsersTypingState,
 )
 
 
 class UserTypes:
+    RawUserEvent = RawUserEvent
     ReplaceMessageFlags = ReplaceMessageFlags
     InstallMessageFlags = InstallMessageFlags
     ResetMessageFlags = ResetMessageFlags
