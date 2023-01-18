@@ -4904,6 +4904,7 @@ class MessagesAudioMessage(BaseModel):
     link_mp3 - MP3 file URL
     link_ogg - OGG file URL
     owner_id - Audio message owner ID
+    transcript - Audio message transcript
     transcript_error -
     waveform -
     """
@@ -4914,6 +4915,7 @@ class MessagesAudioMessage(BaseModel):
     link_mp3: str
     link_ogg: str
     owner_id: int
+    transcript: typing.Optional[str] = None
     transcript_error: typing.Optional[int] = None
     waveform: typing.List[int]
 
