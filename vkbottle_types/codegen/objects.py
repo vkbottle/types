@@ -1245,24 +1245,6 @@ class AdswebGetStatisticsResponseItemsItem(BaseModel):
     site_id: typing.Optional[int] = None
 
 
-class AppWidgetsPhoto(BaseModel):
-    """VK Object AppWidgetsPhoto
-
-    id - Image ID
-    images -
-    """
-
-    id: str
-    images: typing.List["BaseImage"]
-
-
-class AppWidgetsPhotos(BaseModel):
-    """VK Object AppWidgetsPhotos"""
-
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["AppWidgetsPhoto"]] = None
-
-
 class AppsAppMin(BaseModel):
     """VK Object AppsAppMin
 
@@ -1415,6 +1397,24 @@ class AppsScope(BaseModel):
 
     name: "ScopeName"
     title: typing.Optional[str] = None
+
+
+class AppWidgetsPhoto(BaseModel):
+    """VK Object AppWidgetsPhoto
+
+    id - Image ID
+    images -
+    """
+
+    id: str
+    images: typing.List["BaseImage"]
+
+
+class AppWidgetsPhotos(BaseModel):
+    """VK Object AppWidgetsPhotos"""
+
+    count: typing.Optional[int] = None
+    items: typing.Optional[typing.List["AppWidgetsPhoto"]] = None
 
 
 class AudioAudio(BaseModel):
@@ -9170,7 +9170,6 @@ class WallCommentAttachmentType(enum.Enum):
     MARKET_MARKET_ALBUM = "market_market_album"
     MARKET = "market"
     STICKER = "sticker"
-    GRAFFITI = "graffiti"
 
 
 class PlaceType(enum.Enum):
@@ -9438,7 +9437,6 @@ class WallWallpostAttachmentType(enum.Enum):
     GROUP = "group"
     STICKER = "sticker"
     PODCAST = "podcast"
-    PRETTY_CARDS = "pretty_cards"
 
 
 class WallWallpostCommentsDonut(BaseModel):

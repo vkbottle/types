@@ -51,3 +51,6 @@ class BaseCategory:
     def construct_api(cls, api: "ABCAPI") -> typing.Type["BaseCategory"]:
         cls.api = api
         return cls
+
+
+__all__ = ("BaseCategory",)

@@ -107,3 +107,6 @@ class GroupsCategory(GroupsCategory):
             params=params,
         )
         return model(**response).response
+
+
+__all__ = ("GroupsCategory",)

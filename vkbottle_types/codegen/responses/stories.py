@@ -109,7 +109,6 @@ class GetV5113ResponseModel(BaseResponse):
     profiles: typing.Optional[typing.List["UsersUserFull"]] = None
     groups: typing.Optional[typing.List["GroupsGroup"]] = None
     need_upload_screen: typing.Optional[bool] = None
-    next_from: typing.Optional[str] = None
 
 
 class GetResponseModel(BaseResponse):

@@ -225,11 +225,11 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_ids: typing.Optional[typing.List[int]] = None,
-        order: typing.Optional[Literal[1, 2, -1, -2, 0]] = None,
+        order: typing.Optional[Literal[-2, -1, 0, 1, 2]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         extended: typing.Optional[Literal[False]] = ...,
-        preview: typing.Optional[Literal[1, 2, 0]] = None,
+        preview: typing.Optional[Literal[0, 1, 2]] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs
     ) -> GetTopicsResponseModel:
@@ -240,11 +240,11 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_ids: typing.Optional[typing.List[int]] = None,
-        order: typing.Optional[Literal[1, 2, -1, -2, 0]] = None,
+        order: typing.Optional[Literal[-2, -1, 0, 1, 2]] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         extended: Literal[True] = ...,
-        preview: typing.Optional[Literal[1, 2, 0]] = None,
+        preview: typing.Optional[Literal[0, 1, 2]] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs
     ) -> GetTopicsExtendedResponseModel:

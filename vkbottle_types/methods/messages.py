@@ -213,3 +213,6 @@ class MessagesCategory(MessagesCategory):
             params=params,
         )
         return model(**response).response
+
+
+__all__ = ("MessagesCategory",)

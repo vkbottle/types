@@ -635,7 +635,7 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: typing.Optional[Literal[1, 2, 0]] = None,
+        sort: typing.Optional[Literal[0, 1, 2]] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
         live: typing.Optional[bool] = None,
@@ -654,7 +654,7 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         q: typing.Optional[str] = None,
-        sort: typing.Optional[Literal[1, 2, 0]] = None,
+        sort: typing.Optional[Literal[0, 1, 2]] = None,
         hd: typing.Optional[int] = None,
         adult: typing.Optional[bool] = None,
         live: typing.Optional[bool] = None,
