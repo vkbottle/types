@@ -44,7 +44,7 @@ class MessagesMessageAttachmentType(Enum):
     GROUP_CALL_IN_PROGRESS = (
         "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
     )
-    MINI_APP = "mini_app"
+    MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
 
 
 class VideoVideoType(Enum):
@@ -53,7 +53,7 @@ class VideoVideoType(Enum):
     MOVIE = "movie"
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
     LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
-    
+
 
 class WallWallpostAttachmentType(Enum):
     """Attachment type"""
@@ -85,6 +85,12 @@ class WallWallpostAttachmentType(Enum):
     STICKER = "sticker"
     PODCAST = "podcast"
     PRETTY_CARDS = "pretty_cards"  # https://github.com/VKCOM/vk-api-schema/issues/232
+    MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
+
+
+class WallWallpostAttachment(WallWallpostAttachment):
+    mini_app: Optional["AppsApp"] = None
+    pretty_cards: Optional["PrettyCardsPrettyCard"] = None
 
 
 class WallCommentAttachmentType(Enum):
@@ -134,7 +140,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
-    mini_app: Optional[dict] = None
+    mini_app: Optional["AppsApp"] = None
     type: "MessagesMessageAttachmentType"
 
 
