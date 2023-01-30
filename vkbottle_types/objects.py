@@ -144,6 +144,12 @@ class MessagesMessageAttachment(MessagesMessageAttachment):
     type: "MessagesMessageAttachmentType"
 
 
+class MessagesAudioMessage(MessagesAudioMessage):
+    # https://github.com/VKCOM/vk-api-schema/issues/236
+    transcript_state: Optional[str] = None
+    transcript: Optional[str] = None
+
+
 class BaseLinkAttachment(BaseLink):
     # https://github.com/VKCOM/vk-api-schema/issues/225
     photo: Optional["LinkPhoto"] = None
