@@ -4,7 +4,7 @@ from enum import Enum
 from typing import List, Optional
 
 from vkbottle_types.base_model import BaseModel
-from vkbottle_types.codegen.objects import *  # noqa: F403,F401
+from vkbottle_types.codegen.objects import *
 
 
 class MessagesMessageActionStatus(Enum):
@@ -88,9 +88,13 @@ class WallWallpostAttachmentType(Enum):
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
 
 
+class PrettyCardsList(BaseModel):
+    cards: Optional[List["PrettyCardsPrettyCard"]] = None
+
+
 class WallWallpostAttachment(WallWallpostAttachment):
     mini_app: Optional["AppsApp"] = None
-    pretty_cards: Optional["PrettyCardsPrettyCard"] = None
+    pretty_cards: Optional["PrettyCardsList"] = None
 
 
 class WallCommentAttachmentType(Enum):
