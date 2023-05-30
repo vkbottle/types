@@ -137,6 +137,10 @@ class GroupCallInProgress(CallsCall):
     join_link: Optional[str] = None
     state: Optional["CallsEndState"] = None
 
+class AppsApp(AppsApp):
+    id: Optional[int] = None
+    type: Optional[str] = None
+
 
 class MessagesMessageAttachment(MessagesMessageAttachment):
     # https://github.com/VKCOM/vk-api-schema/issues/225
