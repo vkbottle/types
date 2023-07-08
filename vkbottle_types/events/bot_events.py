@@ -1,7 +1,10 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Optional, Union
 
-from pydantic import BaseModel
+try:
+    from pydantic.v1 import BaseModel
+except ImportError:
+    from pydantic import BaseModel  # type: ignore[assignment]
 
 from .enums import GroupEventType
 from .objects import BaseEventObject, group_event_objects
