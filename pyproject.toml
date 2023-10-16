@@ -3,7 +3,6 @@ name = "vkbottle-types"
 version = "5.131.146.16"
 description = "Types for vkbottle"
 authors = ["timoniq"]
-maintainers = ["FeeeeK"]
 license = "MIT"
 packages = [
     { include = "vkbottle_types" }
@@ -13,6 +12,9 @@ packages = [
 python = "^3.7.2"
 pydantic = ">=1.10.6,<3"
 vkbottle = "^4.3.12"
+tqdm = "^4.65.0"
+dataclass-factory = "^2.16"
+jinja2 = "^3.1.2"
 
 [tool.poetry.dev-dependencies]
 

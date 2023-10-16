@@ -1,65 +1,67 @@
 import typing
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
 
-from vkbottle_types.objects import PrettyCardsPrettyCard, PrettyCardsPrettyCardOrError
-from vkbottle_types.responses.base_response import BaseResponse
-
-
-class CreateResponse(BaseResponse):
-    response: "CreateResponseModel"
+from vkbottle_types.objects import PrettyCardsButtonOneOf, BaseImage
 
 
-class DeleteResponse(BaseResponse):
-    response: "DeleteResponseModel"
+class PrettyCardsButtonOneOfResponseModel(BaseModel):
+    pass
 
 
-class EditResponse(BaseResponse):
-    response: "EditResponseModel"
+class PrettyCardsButtonOneOfResponse(BaseResponse):
+    response: "PrettyCardsButtonOneOfResponseModel"
 
 
-class GetByIdResponse(BaseResponse):
-    response: typing.List["PrettyCardsPrettyCardOrError"]
+class PrettyCardsPrettyCardResponseModel(BaseModel):
+    card_id: str = Field(
+        description="Card ID (long int returned as string)",
+    )
+
+    link_url: str = Field(
+        description="Link URL",
+    )
+
+    photo: str = Field(
+        description='Photo ID (format "<owner_id>_<media_id>")',
+    )
+
+    title: str = Field(
+        description="Title",
+    )
+
+    button: typing.Optional["PrettyCardsButtonOneOf"] = Field(
+        default=None,
+        description="Button key",
+    )
+
+    button_text: typing.Optional[str] = Field(
+        default=None,
+        description="Button text in current language",
+    )
+
+    images: typing.Optional[typing.List[BaseImage]] = Field(
+        default=None,
+    )
+
+    price: typing.Optional[str] = Field(
+        default=None,
+        description="Price if set (decimal number returned as string)",
+    )
+
+    price_old: typing.Optional[str] = Field(
+        default=None,
+        description="Old price if set (decimal number returned as string)",
+    )
 
 
-class GetUploadURLResponse(BaseResponse):
-    response: str
+class PrettyCardsPrettyCardResponse(BaseResponse):
+    response: "PrettyCardsPrettyCardResponseModel"
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class PrettyCardsPrettyCardOrErrorResponseModel(BaseModel):
+    pass
 
 
-class CreateResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
-
-
-class DeleteResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
-    error: typing.Optional[str] = None
-
-
-class EditResponseModel(BaseResponse):
-    owner_id: typing.Optional[int] = None
-    card_id: typing.Optional[str] = None
-
-
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["PrettyCardsPrettyCard"]] = None
-
-
-__all__ = (
-    "CreateResponse",
-    "CreateResponseModel",
-    "DeleteResponse",
-    "DeleteResponseModel",
-    "EditResponse",
-    "EditResponseModel",
-    "GetByIdResponse",
-    "GetResponse",
-    "GetResponseModel",
-    "GetUploadURLResponse",
-    "PrettyCardsPrettyCard",
-    "PrettyCardsPrettyCardOrError",
-)
+class PrettyCardsPrettyCardOrErrorResponse(BaseResponse):
+    response: "PrettyCardsPrettyCardOrErrorResponseModel"

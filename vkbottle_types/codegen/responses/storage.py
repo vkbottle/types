@@ -1,19 +1,13 @@
 import typing
-
-from vkbottle_types.objects import StorageValue
-from vkbottle_types.responses.base_response import BaseResponse
-
-
-class GetKeysResponse(BaseResponse):
-    response: typing.List[str]
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
 
 
-class GetResponse(BaseResponse):
-    response: typing.List["StorageValue"]
+class StorageValueResponseModel(BaseModel):
+    key: str = Field()
+
+    value: str = Field()
 
 
-__all__ = (
-    "GetKeysResponse",
-    "GetResponse",
-    "StorageValue",
-)
+class StorageValueResponse(BaseResponse):
+    response: "StorageValueResponseModel"

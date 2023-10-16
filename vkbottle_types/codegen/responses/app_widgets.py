@@ -1,55 +1,31 @@
 import typing
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
 
-from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
-from vkbottle_types.responses.base_response import BaseResponse
-
-
-class GetAppImageUploadServerResponse(BaseResponse):
-    response: "GetAppImageUploadServerResponseModel"
+from vkbottle_types.objects import BaseImage, AppWidgetsPhoto
 
 
-class GetAppImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos
+class AppWidgetsPhotoResponseModel(BaseModel):
+    id: str = Field(
+        description="Image ID",
+    )
+
+    images: typing.List[BaseImage] = Field()
 
 
-class GetGroupImageUploadServerResponse(BaseResponse):
-    response: "GetGroupImageUploadServerResponseModel"
+class AppWidgetsPhotoResponse(BaseResponse):
+    response: "AppWidgetsPhotoResponseModel"
 
 
-class GetGroupImagesResponse(BaseResponse):
-    response: AppWidgetsPhotos
+class AppWidgetsPhotosResponseModel(BaseModel):
+    count: typing.Optional[int] = Field(
+        default=None,
+    )
+
+    items: typing.Optional[typing.List[AppWidgetsPhoto]] = Field(
+        default=None,
+    )
 
 
-class GetImagesByIdResponse(BaseResponse):
-    response: typing.List["AppWidgetsPhoto"]
-
-
-class SaveAppImageResponse(BaseResponse):
-    response: AppWidgetsPhoto
-
-
-class SaveGroupImageResponse(BaseResponse):
-    response: AppWidgetsPhoto
-
-
-class GetAppImageUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
-
-
-class GetGroupImageUploadServerResponseModel(BaseResponse):
-    upload_url: typing.Optional[str] = None
-
-
-__all__ = (
-    "AppWidgetsPhoto",
-    "AppWidgetsPhotos",
-    "GetAppImageUploadServerResponse",
-    "GetAppImageUploadServerResponseModel",
-    "GetAppImagesResponse",
-    "GetGroupImageUploadServerResponse",
-    "GetGroupImageUploadServerResponseModel",
-    "GetGroupImagesResponse",
-    "GetImagesByIdResponse",
-    "SaveAppImageResponse",
-    "SaveGroupImageResponse",
-)
+class AppWidgetsPhotosResponse(BaseResponse):
+    response: "AppWidgetsPhotosResponseModel"

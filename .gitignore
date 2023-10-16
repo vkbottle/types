@@ -141,5 +141,4 @@ dmypy.json
 poetry.lock
 
 # Generators
-vkbottle_types/generators
 *.json

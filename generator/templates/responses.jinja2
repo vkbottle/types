@@ -1,0 +1,53 @@
+import typing
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
+
+### IMPORTS
+
+{% for (name, definition) in definitions %}
+
+{% if definition.type == 'object' %}
+
+class {{camelcase(name)}}ResponseModel({{", ".join(definition.get_bases())}}):
+    {% if not definition.get_properties() %}
+    pass
+    {% else %}
+    {% for property in definition.get_properties() %}
+    {{makesafe(property.name)}}: {{property.get_type()}} = Field(
+        {% if property.is_optional %}
+        default=None,
+        {% endif %}
+        {% if property.description %}
+        description="{{instring(property.description)}}",
+        {% endif %}
+        {% if makesafe(property.name) != property.name %}
+        alias="{{property.name}}",
+        {% endif %}
+    )
+    {% endfor %}
+    {% endif %}
+
+{% elif definition.enum %}
+
+{% if is_int(definition.enum[0]) %}
+class {{camelcase(name)}}ResponseModel(enum.IntEnum):
+    {% for enumeration in definition.enum %}
+    {{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
+    {% endfor %}
+{% else %}
+class {{camelcase(name)}}ResponseModel(enum.Enum):
+    {% for enumeration in definition.enum %}
+    {{makesafe(enumeration|upper)}} = "{{enumeration}}"
+    {% endfor %}
+{% endif %}
+
+{% else %}
+
+{{camelcase(name)}}ResponseModel = {{definition.get_typehint()}}
+
+{% endif %}
+
+class {{camelcase(name)}}Response(BaseResponse):
+    response: '{{camelcase(name)}}ResponseModel'
+
+{% endfor %}

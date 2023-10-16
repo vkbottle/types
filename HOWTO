@@ -1,0 +1,32 @@
+Для того чтобы сгенерировать типы запустите CLI утилиту генератора
+
+$ python3 -m generator
+
+Генератор предложит вам выбор:
+
+1. Если у вас уже скачана схема, будет следующие варианты выбора:
+
+Existing 'schema.json' found.
+    (1) Use it [default]
+    (2) Download it once again
+    (3) Process from path and rewrite
+:
+
+2. Если нет, то варианты выбора будут следующие
+
+Should new schema be downloaded from source? (https://raw.githubusercontent.com/VKCOM/vk-api-schema/master/{}/{}.json)
+    (1) Download official schema [default]
+    (2) Process from path and save
+: 
+
+Для обновления существующей схемы вы всегда можете скачать ее снова.
+
+После загрузки, обработки и генерации кода у вас появится новая папка codegen.
+
+Запустите автоматический корректор стиля, например black
+
+$ black codegen
+
+Перетащите папку codegen в vkbottle_types, заменяя существующую
+
+Готово!

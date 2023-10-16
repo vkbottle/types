@@ -14,4 +14,7 @@ class BaseModel(pydantic.BaseModel, metaclass=ModelMetaclass):
         frozen = True
 
 
+Field = pydantic.Field
+
+
 __all__ = ("BaseModel",)

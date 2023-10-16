@@ -1,135 +1,149 @@
 import typing
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
 
-from vkbottle_types.objects import (
-    BaseCountry,
-    BaseObject,
-    DatabaseCity,
-    DatabaseCityById,
-    DatabaseFaculty,
-    DatabaseRegion,
-    DatabaseSchool,
-    DatabaseStation,
-    DatabaseUniversity,
-)
-from vkbottle_types.responses.base_response import BaseResponse
+from vkbottle_types.objects import BaseBoolInt
 
 
-class GetChairsResponse(BaseResponse):
-    response: "GetChairsResponseModel"
+class DatabaseCityResponseModel(BaseObject):
+    area: typing.Optional[str] = Field(
+        default=None,
+        description="Area title",
+    )
+
+    region: typing.Optional[str] = Field(
+        default=None,
+        description="Region title",
+    )
+
+    country: typing.Optional[str] = Field(
+        default=None,
+        description="Country title",
+    )
+
+    important: typing.Optional[bool] = Field(
+        default=None,
+        description="Information whether the city is included in important cities list",
+    )
 
 
-class GetCitiesByIdResponse(BaseResponse):
-    response: typing.List["DatabaseCityById"]
+class DatabaseCityResponse(BaseResponse):
+    response: "DatabaseCityResponseModel"
 
 
-class GetCitiesResponse(BaseResponse):
-    response: "GetCitiesResponseModel"
+class DatabaseCityByIdResponseModel(BaseModel):
+    pass
 
 
-class GetCountriesByIdResponse(BaseResponse):
-    response: typing.List["BaseCountry"]
+class DatabaseCityByIdResponse(BaseResponse):
+    response: "DatabaseCityByIdResponseModel"
 
 
-class GetCountriesResponse(BaseResponse):
-    response: "GetCountriesResponseModel"
+class DatabaseFacultyResponseModel(BaseModel):
+    id: typing.Optional[int] = Field(
+        default=None,
+        description="Faculty ID",
+    )
+
+    title: typing.Optional[str] = Field(
+        default=None,
+        description="Faculty title",
+    )
 
 
-class GetFacultiesResponse(BaseResponse):
-    response: "GetFacultiesResponseModel"
+class DatabaseFacultyResponse(BaseResponse):
+    response: "DatabaseFacultyResponseModel"
 
 
-class GetMetroStationsByIdResponse(BaseResponse):
-    response: typing.List["DatabaseStation"]
+class DatabaseLanguageFullResponseModel(BaseModel):
+    id: int = Field(
+        description="Language ID",
+    )
+
+    native_name: str = Field(
+        description="Language native name",
+    )
 
 
-class GetMetroStationsResponse(BaseResponse):
-    response: "GetMetroStationsResponseModel"
+class DatabaseLanguageFullResponse(BaseResponse):
+    response: "DatabaseLanguageFullResponseModel"
 
 
-class GetRegionsResponse(BaseResponse):
-    response: "GetRegionsResponseModel"
+class DatabaseRegionResponseModel(BaseModel):
+    id: typing.Optional[int] = Field(
+        default=None,
+        description="Region ID",
+    )
+
+    title: typing.Optional[str] = Field(
+        default=None,
+        description="Region title",
+    )
 
 
-class GetSchoolClassesResponse(BaseResponse):
-    response: typing.List[list]
+class DatabaseRegionResponse(BaseResponse):
+    response: "DatabaseRegionResponseModel"
 
 
-class GetSchoolsResponse(BaseResponse):
-    response: "GetSchoolsResponseModel"
+class DatabaseSchoolResponseModel(BaseModel):
+    id: typing.Optional[int] = Field(
+        default=None,
+        description="School ID",
+    )
+
+    title: typing.Optional[str] = Field(
+        default=None,
+        description="School title",
+    )
 
 
-class GetUniversitiesResponse(BaseResponse):
-    response: "GetUniversitiesResponseModel"
+class DatabaseSchoolResponse(BaseResponse):
+    response: "DatabaseSchoolResponseModel"
 
 
-class GetChairsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BaseObject"]] = None
+class DatabaseSchoolClassResponseModel(BaseModel):
+    pass
 
 
-class GetCitiesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseCity"]] = None
+class DatabaseSchoolClassResponse(BaseResponse):
+    response: "DatabaseSchoolClassResponseModel"
 
 
-class GetCountriesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["BaseCountry"]] = None
+class DatabaseStationResponseModel(BaseModel):
+    id: int = Field(
+        description="Station ID",
+    )
+
+    name: str = Field(
+        description="Station name",
+    )
+
+    city_id: typing.Optional[int] = Field(
+        default=None,
+        description="City ID",
+    )
+
+    color: typing.Optional[str] = Field(
+        default=None,
+        description="Hex color code without #",
+    )
 
 
-class GetFacultiesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseFaculty"]] = None
+class DatabaseStationResponse(BaseResponse):
+    response: "DatabaseStationResponseModel"
 
 
-class GetMetroStationsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseStation"]] = None
+class DatabaseUniversityResponseModel(BaseModel):
+    id: typing.Optional[int] = Field(
+        default=None,
+        description="University ID",
+    )
+
+    title: typing.Optional[str] = Field(
+        default=None,
+        description="University title",
+    )
 
 
-class GetRegionsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseRegion"]] = None
-
-
-class GetSchoolsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseSchool"]] = None
-
-
-class GetUniversitiesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["DatabaseUniversity"]] = None
-
-
-__all__ = (
-    "BaseCountry",
-    "BaseObject",
-    "DatabaseCity",
-    "DatabaseCityById",
-    "DatabaseFaculty",
-    "DatabaseRegion",
-    "DatabaseSchool",
-    "DatabaseStation",
-    "DatabaseUniversity",
-    "GetChairsResponse",
-    "GetChairsResponseModel",
-    "GetCitiesByIdResponse",
-    "GetCitiesResponse",
-    "GetCitiesResponseModel",
-    "GetCountriesByIdResponse",
-    "GetCountriesResponse",
-    "GetCountriesResponseModel",
-    "GetFacultiesResponse",
-    "GetFacultiesResponseModel",
-    "GetMetroStationsByIdResponse",
-    "GetMetroStationsResponse",
-    "GetMetroStationsResponseModel",
-    "GetRegionsResponse",
-    "GetRegionsResponseModel",
-    "GetSchoolClassesResponse",
-    "GetSchoolsResponse",
-    "GetSchoolsResponseModel",
-    "GetUniversitiesResponse",
-    "GetUniversitiesResponseModel",
-)
+class DatabaseUniversityResponse(BaseResponse):
+    response: "DatabaseUniversityResponseModel"

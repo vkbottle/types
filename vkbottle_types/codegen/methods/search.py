@@ -1,7 +1,9 @@
 import typing
 
+from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.search import GetHintsResponse, GetHintsResponseModel
+from vkbottle_types.responses.search import *
+from vkbottle_types.responses.base import OkResponse
 
 
 class SearchCategory(BaseCategory):
@@ -9,13 +11,14 @@ class SearchCategory(BaseCategory):
         self,
         q: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None,
+        limit: typing.Optional[int] = 9,
         filters: typing.Optional[typing.List[str]] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        search_global: typing.Optional[bool] = None,
-        **kwargs
-    ) -> GetHintsResponseModel:
-        """Allows the programmer to do a quick search for any substring.
+        search_global: typing.Optional[bool] = 1,
+        **kwargs,
+    ) -> SearchGetHintsResponseModel:
+        """search.getHints method
+
 
         :param q: Search query string.
         :param offset: Offset for querying specific result subset
@@ -24,10 +27,11 @@ class SearchCategory(BaseCategory):
         :param fields:
         :param search_global:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("search.getHints", params)
-        model = GetHintsResponse
+        response = await self.api.request("account.ban", params)
+
+        model = SearchGetHintsResponse
+
         return model(**response).response
 
 

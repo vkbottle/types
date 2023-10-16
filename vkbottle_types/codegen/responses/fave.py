@@ -1,70 +1,126 @@
 import typing
+from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    FaveBookmark,
-    FavePage,
-    FaveTag,
-    GroupsGroup,
+    VideoVideoFull,
+    FavePageType,
+    MarketMarketItem,
     UsersUserFull,
+    WallWallpostFull,
+    GroupsGroupFull,
+    BaseLink,
+    FaveBookmarkType,
+    FaveTag,
 )
-from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AddTagResponse(BaseResponse):
-    response: FaveTag
+class FaveBookmarkResponseModel(BaseModel):
+    added_date: int = Field(
+        description="Timestamp, when this item was bookmarked",
+    )
+
+    seen: bool = Field(
+        description="Has user seen this item",
+    )
+
+    tags: typing.List[FaveTag] = Field()
+
+    type: "FaveBookmarkType" = Field(
+        description="Item type",
+    )
+
+    link: typing.Optional["BaseLink"] = Field(
+        default=None,
+    )
+
+    post: typing.Optional["WallWallpostFull"] = Field(
+        default=None,
+    )
+
+    product: typing.Optional["MarketMarketItem"] = Field(
+        default=None,
+    )
+
+    video: typing.Optional["VideoVideoFull"] = Field(
+        default=None,
+    )
 
 
-class GetPagesResponse(BaseResponse):
-    response: "GetPagesResponseModel"
+class FaveBookmarkResponse(BaseResponse):
+    response: "FaveBookmarkResponseModel"
 
 
-class GetTagsResponse(BaseResponse):
-    response: "GetTagsResponseModel"
+class FaveBookmarkTypeResponseModel(enum.Enum):
+    POST = "post"
+
+    VIDEO = "video"
+
+    PRODUCT = "product"
+
+    ARTICLE = "article"
+
+    LINK = "link"
+
+    CLIP = "clip"
 
 
-class GetExtendedResponse(BaseResponse):
-    response: "GetExtendedResponseModel"
+class FaveBookmarkTypeResponse(BaseResponse):
+    response: "FaveBookmarkTypeResponseModel"
 
 
-class GetResponse(BaseResponse):
-    response: "GetResponseModel"
+class FavePageResponseModel(BaseModel):
+    description: str = Field(
+        description="Some info about user or group",
+    )
+
+    tags: typing.List[FaveTag] = Field()
+
+    type: "FavePageType" = Field(
+        description="Item type",
+    )
+
+    group: typing.Optional["GroupsGroupFull"] = Field(
+        default=None,
+    )
+
+    updated_date: typing.Optional[int] = Field(
+        default=None,
+        description="Timestamp, when this page was bookmarked",
+    )
+
+    user: typing.Optional["UsersUserFull"] = Field(
+        default=None,
+    )
 
 
-class GetPagesResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FavePage"]] = None
+class FavePageResponse(BaseResponse):
+    response: "FavePageResponseModel"
 
 
-class GetTagsResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveTag"]] = None
+class FavePageTypeResponseModel(enum.Enum):
+    USER = "user"
+
+    GROUP = "group"
+
+    HINTS = "hints"
 
 
-class GetExtendedResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveBookmark"]] = None
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = None
-    groups: typing.Optional[typing.List["GroupsGroup"]] = None
+class FavePageTypeResponse(BaseResponse):
+    response: "FavePageTypeResponseModel"
 
 
-class GetResponseModel(BaseResponse):
-    count: typing.Optional[int] = None
-    items: typing.Optional[typing.List["FaveBookmark"]] = None
+class FaveTagResponseModel(BaseModel):
+    id: typing.Optional[int] = Field(
+        default=None,
+        description="Tag id",
+    )
+
+    name: typing.Optional[str] = Field(
+        default=None,
+        description="Tag name",
+    )
 
 
-__all__ = (
-    "AddTagResponse",
-    "FaveBookmark",
-    "FavePage",
-    "FaveTag",
-    "GetExtendedResponse",
-    "GetExtendedResponseModel",
-    "GetPagesResponse",
-    "GetPagesResponseModel",
-    "GetResponse",
-    "GetResponseModel",
-    "GetTagsResponse",
-    "GetTagsResponseModel",
-    "GroupsGroup",
-    "UsersUserFull",
-)
+class FaveTagResponse(BaseResponse):
+    response: "FaveTagResponseModel"

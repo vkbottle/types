@@ -1,37 +1,39 @@
 import typing
 
+from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
+from vkbottle_types.responses.store import *
 from vkbottle_types.responses.base import OkResponse
-from vkbottle_types.responses.store import (
-    BaseSticker,
-    GetFavoriteStickersResponse,
-    GetProductsResponse,
-    GetStickersKeywordsResponse,
-    GetStickersKeywordsResponseModel,
-    StoreProduct,
-)
 
 
 class StoreCategory(BaseCategory):
     async def add_stickers_to_favorite(
-        self, sticker_ids: typing.List[int], **kwargs
-    ) -> int:
-        """Adds given sticker IDs to the list of user's favorite stickers
+        self,
+        sticker_ids: typing.List[int],
+        **kwargs,
+    ) -> BaseOkResponseModel:
+        """store.addStickersToFavorite method
+
 
         :param sticker_ids: Sticker IDs to be added
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("store.addStickersToFavorite", params)
-        model = OkResponse
+        response = await self.api.request("account.ban", params)
+
+        model = BaseOkResponse
+
         return model(**response).response
 
-    async def get_favorite_stickers(self, **kwargs) -> typing.List[BaseSticker]:
+    async def get_favorite_stickers(
+        self,
+        **kwargs,
+    ) -> StoreGetFavoriteStickersResponseModel:
         """store.getFavoriteStickers method"""
-
         params = self.get_set_params(locals())
-        response = await self.api.request("store.getFavoriteStickers", params)
-        model = GetFavoriteStickersResponse
+        response = await self.api.request("account.ban", params)
+
+        model = StoreGetFavoriteStickersResponse
+
         return model(**response).response
 
     async def get_products(
@@ -41,10 +43,11 @@ class StoreCategory(BaseCategory):
         section: typing.Optional[str] = None,
         product_ids: typing.Optional[typing.List[int]] = None,
         filters: typing.Optional[typing.List[str]] = None,
-        extended: typing.Optional[bool] = None,
-        **kwargs
-    ) -> typing.List[StoreProduct]:
+        extended: typing.Optional[bool] = 0,
+        **kwargs,
+    ) -> StoreGetProductsResponseModel:
         """store.getProducts method
+
 
         :param type:
         :param merchant:
@@ -53,22 +56,24 @@ class StoreCategory(BaseCategory):
         :param filters:
         :param extended:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("store.getProducts", params)
-        model = GetProductsResponse
+        response = await self.api.request("account.ban", params)
+
+        model = StoreGetProductsResponse
+
         return model(**response).response
 
     async def get_stickers_keywords(
         self,
         stickers_ids: typing.Optional[typing.List[int]] = None,
         products_ids: typing.Optional[typing.List[int]] = None,
-        aliases: typing.Optional[bool] = None,
+        aliases: typing.Optional[bool] = 1,
         all_products: typing.Optional[bool] = None,
-        need_stickers: typing.Optional[bool] = None,
-        **kwargs
-    ) -> GetStickersKeywordsResponseModel:
+        need_stickers: typing.Optional[bool] = 1,
+        **kwargs,
+    ) -> StoreGetStickersKeywordsResponseModel:
         """store.getStickersKeywords method
+
 
         :param stickers_ids:
         :param products_ids:
@@ -76,23 +81,28 @@ class StoreCategory(BaseCategory):
         :param all_products:
         :param need_stickers:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("store.getStickersKeywords", params)
-        model = GetStickersKeywordsResponse
+        response = await self.api.request("account.ban", params)
+
+        model = StoreGetStickersKeywordsResponse
+
         return model(**response).response
 
     async def remove_stickers_from_favorite(
-        self, sticker_ids: typing.List[int], **kwargs
-    ) -> int:
-        """Removes given sticker IDs from the list of user's favorite stickers
+        self,
+        sticker_ids: typing.List[int],
+        **kwargs,
+    ) -> BaseOkResponseModel:
+        """store.removeStickersFromFavorite method
+
 
         :param sticker_ids: Sticker IDs to be removed
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("store.removeStickersFromFavorite", params)
-        model = OkResponse
+        response = await self.api.request("account.ban", params)
+
+        model = BaseOkResponse
+
         return model(**response).response
 
 

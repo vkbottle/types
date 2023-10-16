@@ -2,24 +2,8 @@ import typing
 
 from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.base import (
-    BaseBoolInt,
-    BaseGetUploadServerResponse,
-    BaseUploadServer,
-    OkResponse,
-)
-from vkbottle_types.responses.polls import (
-    AddVoteResponse,
-    CreateResponse,
-    DeleteVoteResponse,
-    GetBackgroundsResponse,
-    GetByIdResponse,
-    GetVotersResponse,
-    PollsBackground,
-    PollsPoll,
-    PollsVoters,
-    SavePhotoResponse,
-)
+from vkbottle_types.responses.polls import *
+from vkbottle_types.responses.base import OkResponse
 
 
 class PollsCategory(BaseCategory):
@@ -29,19 +13,21 @@ class PollsCategory(BaseCategory):
         answer_ids: typing.List[int],
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
-        **kwargs
-    ) -> BaseBoolInt:
-        """Adds the current user's vote to the selected answer in the poll.
+        **kwargs,
+    ) -> BaseBoolResponseModel:
+        """polls.addVote method
+
 
         :param poll_id: Poll ID.
         :param answer_ids:
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         :param is_board:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.addVote", params)
-        model = AddVoteResponse
+        response = await self.api.request("account.ban", params)
+
+        model = BaseBoolResponse
+
         return model(**response).response
 
     async def create(
@@ -54,11 +40,12 @@ class PollsCategory(BaseCategory):
         app_id: typing.Optional[int] = None,
         add_answers: typing.Optional[str] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: typing.Optional[Literal[1, 2, 3, 4, 6, 8, 9]] = None,
+        background_id: typing.Optional[str] = None,
         disable_unvote: typing.Optional[bool] = None,
-        **kwargs
-    ) -> PollsPoll:
-        """Creates polls that can be attached to the users' or communities' posts.
+        **kwargs,
+    ) -> PollsCreateResponseModel:
+        """polls.create method
+
 
         :param question: question text
         :param is_anonymous: '1' - anonymous poll, participants list is hidden,, '0' - public poll, participants list is available,, Default value is '0'.
@@ -71,31 +58,32 @@ class PollsCategory(BaseCategory):
         :param background_id:
         :param disable_unvote:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.create", params)
-        model = CreateResponse
+        response = await self.api.request("account.ban", params)
+
+        model = PollsCreateResponse
+
         return model(**response).response
 
     async def delete_vote(
         self,
         poll_id: int,
-        answer_id: int,
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
-        **kwargs
-    ) -> BaseBoolInt:
-        """Deletes the current user's vote from the selected answer in the poll.
+        **kwargs,
+    ) -> BaseBoolResponseModel:
+        """polls.deleteVote method
+
 
         :param poll_id: Poll ID.
-        :param answer_id: Answer ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         :param is_board:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.deleteVote", params)
-        model = DeleteVoteResponse
+        response = await self.api.request("account.ban", params)
+
+        model = BaseBoolResponse
+
         return model(**response).response
 
     async def edit(
@@ -108,10 +96,11 @@ class PollsCategory(BaseCategory):
         delete_answers: typing.Optional[str] = None,
         end_date: typing.Optional[int] = None,
         photo_id: typing.Optional[int] = None,
-        background_id: typing.Optional[Literal[0, 1, 2, 3, 4, 6, 8, 9]] = None,
-        **kwargs
-    ) -> int:
-        """Edits created polls
+        background_id: typing.Optional[str] = None,
+        **kwargs,
+    ) -> BaseOkResponseModel:
+        """polls.edit method
+
 
         :param poll_id: edited poll's id
         :param owner_id: poll owner id
@@ -123,18 +112,23 @@ class PollsCategory(BaseCategory):
         :param photo_id:
         :param background_id:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.edit", params)
-        model = OkResponse
+        response = await self.api.request("account.ban", params)
+
+        model = BaseOkResponse
+
         return model(**response).response
 
-    async def get_backgrounds(self, **kwargs) -> typing.List[PollsBackground]:
+    async def get_backgrounds(
+        self,
+        **kwargs,
+    ) -> PollsGetBackgroundsResponseModel:
         """polls.getBackgrounds method"""
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.getBackgrounds", params)
-        model = GetBackgroundsResponse
+        response = await self.api.request("account.ban", params)
+
+        model = PollsGetBackgroundsResponse
+
         return model(**response).response
 
     async def get_by_id(
@@ -143,14 +137,13 @@ class PollsCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         is_board: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
-        friends_count: typing.Optional[int] = None,
+        friends_count: typing.Optional[int] = 3,
         fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[
-            Literal["abl", "acc", "dat", "gen", "ins", "nom"]
-        ] = None,
-        **kwargs
-    ) -> PollsPoll:
-        """Returns detailed information about a poll by its ID.
+        name_case: typing.Optional[str] = "nom",
+        **kwargs,
+    ) -> PollsGetByIdResponseModel:
+        """polls.getById method
+
 
         :param poll_id: Poll ID.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
@@ -160,24 +153,45 @@ class PollsCategory(BaseCategory):
         :param fields:
         :param name_case:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.getById", params)
-        model = GetByIdResponse
+        response = await self.api.request("account.ban", params)
+
+        model = PollsGetByIdResponse
+
         return model(**response).response
 
     async def get_photo_upload_server(
-        self, owner_id: typing.Optional[int] = None, **kwargs
-    ) -> BaseUploadServer:
+        self,
+        owner_id: typing.Optional[int] = None,
+        **kwargs,
+    ) -> BaseGetUploadServerResponseModel:
         """polls.getPhotoUploadServer method
+
 
         :param owner_id:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.getPhotoUploadServer", params)
+        response = await self.api.request("account.ban", params)
+
         model = BaseGetUploadServerResponse
+
         return model(**response).response
+
+    @typing.overload
+    async def get_voters(
+        self,
+        poll_id: int,
+        answer_ids: typing.List[int],
+        fields: typing.List[UsersFields],
+        owner_id: typing.Optional[int] = None,
+        is_board: typing.Optional[bool] = None,
+        friends_only: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        count: typing.Optional[int] = None,
+        name_case: typing.Optional[str] = None,
+        **kwargs,
+    ) -> PollsGetVotersFieldsResponseModel:
+        ...
 
     async def get_voters(
         self,
@@ -188,40 +202,51 @@ class PollsCategory(BaseCategory):
         friends_only: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[
-            Literal["nom", "gen", "dat", "acc", "ins", "abl"]
-        ] = None,
-        **kwargs
-    ) -> typing.List[PollsVoters]:
-        """Returns a list of IDs of users who selected specific answers in the poll.
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        name_case: typing.Optional[str] = None,
+        **kwargs,
+    ) -> PollsGetVotersResponseModel:
+        """polls.getVoters method
+
 
         :param poll_id: Poll ID.
         :param answer_ids: Answer IDs.
         :param owner_id: ID of the user or community that owns the poll. Use a negative value to designate a community ID.
         :param is_board:
-        :param friends_only: '1' — to return only current user's friends, '0' — to return all users (default),
-        :param offset: Offset needed to return a specific subset of voters. '0' — (default)
-        :param count: Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' — (default)
+        :param friends_only: '1' - to return only current user's friends, '0' - to return all users (default),
+        :param offset: Offset needed to return a specific subset of voters. '0' - (default)
+        :param count: Number of user IDs to return (if the 'friends_only' parameter is not set, maximum '1000', otherwise '10'). '100' - (default)
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate (birthdate)', 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online', 'counters'.
-        :param name_case: Case for declension of user name and surname: , 'nom' — nominative (default) , 'gen' — genitive , 'dat' — dative , 'acc' — accusative , 'ins' — instrumental , 'abl' — prepositional
+        :param name_case: Case for declension of user name and surname: , 'nom' - nominative (default) , 'gen' - genitive , 'dat' - dative , 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.getVoters", params)
-        model = GetVotersResponse
+        response = await self.api.request("account.ban", params)
+
+        model = self.get_model(
+            ((("fields",), PollsGetVotersFieldsResponse),),
+            default=PollsGetVotersResponse,
+            params=params,
+        )
+
         return model(**response).response
 
-    async def save_photo(self, photo: str, hash: str, **kwargs) -> PollsBackground:
+    async def save_photo(
+        self,
+        photo: str,
+        hash: str,
+        **kwargs,
+    ) -> PollsSavePhotoResponseModel:
         """polls.savePhoto method
+
 
         :param photo:
         :param hash:
         """
-
         params = self.get_set_params(locals())
-        response = await self.api.request("polls.savePhoto", params)
-        model = SavePhotoResponse
+        response = await self.api.request("account.ban", params)
+
+        model = PollsSavePhotoResponse
+
         return model(**response).response
 
 
