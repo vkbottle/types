@@ -1,8 +1,9 @@
 import typing
+import enum
 from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
-from vkbottle_types.objects import CallsEndState, CallsParticipants
+from vkbottle_types.objects import CallsParticipants, CallsEndState
 
 
 class CallsCallResponseModel(BaseModel):

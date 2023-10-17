@@ -1,34 +1,35 @@
 import typing
+import enum
 from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    BaseLinkRating,
-    BaseLinkButtonStyle,
-    BaseCropPhotoRect,
+    BaseLinkButtonAction,
+    BaseLinkApplicationStore,
     BaseLinkButtonActionType,
-    BaseRequestParam,
-    BaseImage,
+    BaseLinkButton,
     MarketPrice,
-    LinkTargetObject,
+    BaseLinkProduct,
+    BaseImage,
+    BaseStickerAnimation,
+    BaseRequestParam,
     PhotosPhoto,
-    BaseBoolInt,
-    BaseLinkApplication,
     BaseGeoCoordinates,
+    BaseLinkProductStatus,
+    BaseStickerNew,
+    BaseLinkRating,
+    BaseCropPhotoRect,
+    BaseLinkButtonStyle,
+    WallWallComment,
     BasePlace,
     BaseLinkProductCategory,
-    BaseLinkButton,
-    BaseLinkApplicationStore,
-    BaseLinkProduct,
-    BaseLinkButtonAction,
-    BaseLinkProductStatus,
-    BaseOwnerCoverCropParams,
-    WallWallComment,
-    WallWallpostCommentsDonut,
-    BaseStickerAnimation,
+    BaseLinkApplication,
+    BaseBoolInt,
+    LinkTargetObject,
     VideoVideoFull,
-    BaseStickerNew,
+    WallWallpostCommentsDonut,
     BaseCropPhotoCrop,
+    BaseOwnerCoverCropParams,
 )
 
 

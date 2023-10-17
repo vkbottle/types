@@ -1,28 +1,29 @@
 import typing
+import enum
 from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    MarketOwnerType,
-    BaseLink,
-    MarketMarketCategoryNested,
+    MarketOrderItem,
+    MarketItemOwnerInfo,
     MarketMarketItem,
-    BaseImage,
+    BaseRepostsInfo,
+    BaseCountry,
     MarketPrice,
+    BaseImage,
+    BaseCity,
     PhotosPhoto,
+    MarketMarketCategoryTree,
+    MarketMarketCategoryTreeView,
+    MarketItemPromotionInfo,
+    MarketMarketItemAvailability,
+    BaseLink,
+    MarketOwnerType,
+    MarketMarketCategoryNested,
+    BaseLikes,
     BaseBoolInt,
     MarketCurrency,
-    MarketMarketItemAvailability,
-    BaseRepostsInfo,
-    BaseCity,
-    MarketMarketCategoryTreeView,
-    MarketMarketCategoryTree,
-    MarketOrderItem,
-    BaseLikes,
-    MarketItemPromotionInfo,
-    MarketItemOwnerInfo,
     MarketMarketCategory,
-    BaseCountry,
 )
 
 
