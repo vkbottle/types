@@ -1001,9 +1001,9 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: typing.Union["int", "str"],
+        user_ids: typing.List[int],
+        extended: typing.Literal[True] = True,
         user_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
         **kwargs,
     ) -> GroupsIsMemberUserIdsExtendedResponseModel:
         ...
@@ -1031,7 +1031,13 @@ class GroupsCategory(BaseCategory):
             (
                 (("user_ids",), GroupsIsMemberUserIdsResponse),
                 (("extended",), GroupsIsMemberExtendedResponse),
-                (("user_ids__extended_",), GroupsIsMemberUserIdsExtendedResponse),
+                (
+                    (
+                        "user_ids",
+                        "extended",
+                    ),
+                    GroupsIsMemberUserIdsExtendedResponse,
+                ),
             ),
             default=BaseBoolResponse,
             params=params,

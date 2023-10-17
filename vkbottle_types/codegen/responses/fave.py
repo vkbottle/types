@@ -3,15 +3,15 @@ from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    VideoVideoFull,
-    FavePageType,
-    MarketMarketItem,
-    UsersUserFull,
-    WallWallpostFull,
-    GroupsGroupFull,
-    BaseLink,
     FaveBookmarkType,
+    BaseLink,
     FaveTag,
+    VideoVideoFull,
+    MarketMarketItem,
+    GroupsGroupFull,
+    WallWallpostFull,
+    UsersUserFull,
+    FavePageType,
 )
 
 

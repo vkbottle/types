@@ -3,14 +3,14 @@ from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    StatsCountry,
-    StatsSexAge,
-    StatsPeriodFromOneOf,
     StatsActivity,
-    StatsCity,
-    StatsReachOneOf,
+    StatsCountry,
+    StatsPeriodFromOneOf,
     StatsPeriodToOneOf,
     StatsVisitorsOneOf,
+    StatsReachOneOf,
+    StatsSexAge,
+    StatsCity,
 )
 
 

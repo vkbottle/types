@@ -365,9 +365,9 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
+        chat_ids: typing.List[int],
+        fields: typing.List[UsersFields],
         chat_id: typing.Optional[int] = None,
-        chat_ids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs,
     ) -> MessagesGetChatChatIdsFieldsResponseModel:
@@ -396,7 +396,13 @@ class MessagesCategory(BaseCategory):
             (
                 (("fields",), MessagesGetChatFieldsResponse),
                 (("chat_ids",), MessagesGetChatChatIdsResponse),
-                (("chat_ids__fields_",), MessagesGetChatChatIdsFieldsResponse),
+                (
+                    (
+                        "chat_ids",
+                        "fields",
+                    ),
+                    MessagesGetChatChatIdsFieldsResponse,
+                ),
             ),
             default=MessagesGetChatResponse,
             params=params,

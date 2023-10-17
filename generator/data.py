@@ -76,7 +76,8 @@ class Method:
             dependants = []
 
             for name, response in dependant_responses.items():
-                param_name = snake_case(name.removesuffix("Response"))
+                original_param_names = name.removesuffix("Response").removesuffix("_")
+                param_names = list(map(snake_case, original_param_names.split("_")))
 
                 dependants.append(
                     Method(
@@ -84,12 +85,12 @@ class Method:
                         self.access_token_type,
                         [
                             param
-                            if param.name != param_name
+                            if param.name not in param_names
                             else param.new_dependant(param)
                             for param in self.parameters
                         ],
                         {"response": response},
-                        dependant_parameters=[param_name],
+                        dependant_parameters=param_names,
                     )
                 )
             return dependants

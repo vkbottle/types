@@ -4,11 +4,11 @@ from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
     StoreStickersKeywordSticker,
-    BaseImage,
-    BaseBoolInt,
-    BaseStickersList,
-    StoreProductIcon,
     StoreStickersKeywordStickers,
+    BaseBoolInt,
+    StoreProductIcon,
+    BaseImage,
+    BaseStickersList,
 )
 
 

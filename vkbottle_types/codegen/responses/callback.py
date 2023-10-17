@@ -3,21 +3,21 @@ from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    CallbackMessageAllowObject,
-    CallbackGroupMarket,
-    GroupsGroupIsClosed,
     PhotosPhoto,
-    BaseBoolInt,
-    GroupsGroupAudio,
-    CallbackType,
-    GroupsGroupVideo,
-    GroupsGroupPhotos,
-    GroupsGroupFullAgeLimits,
-    GroupsGroupWall,
-    MessagesMessage,
     CallbackGroupOfficerRole,
-    ClientInfoForBots,
+    GroupsGroupWall,
     CallbackGroupJoinType,
+    CallbackGroupMarket,
+    BaseBoolInt,
+    CallbackType,
+    GroupsGroupPhotos,
+    CallbackMessageAllowObject,
+    MessagesMessage,
+    GroupsGroupVideo,
+    ClientInfoForBots,
+    GroupsGroupAudio,
+    GroupsGroupFullAgeLimits,
+    GroupsGroupIsClosed,
 )
 
 

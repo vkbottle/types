@@ -3,18 +3,18 @@ from vkbottle_types.responses.base_response import BaseResponse, BaseModel
 from vkbottle_types.base_model import Field
 
 from vkbottle_types.objects import (
-    WallPostSource,
+    BaseObjectCount,
     WidgetsCommentMediaType,
     WallCommentAttachment,
-    WidgetsWidgetLikes,
+    BaseLikesInfo,
     BaseBoolInt,
+    WidgetsCommentRepliesItem,
+    WallPostSource,
     UsersUserFull,
     WidgetsCommentReplies,
-    WidgetsCommentRepliesItem,
-    BaseObjectCount,
+    WidgetsWidgetLikes,
     BaseRepostsInfo,
     WidgetsCommentMedia,
-    BaseLikesInfo,
 )
 
 
