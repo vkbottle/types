@@ -1,28 +1,31 @@
-import inspect
-from typing import TYPE_CHECKING, Any, List, Optional, Union
+import msgspec
+from typing_extensions import TYPE_CHECKING, Any, Dict, List, Optional, Self, Union
 
-try:
-    from pydantic.v1 import BaseModel
-except ImportError:
-    from pydantic import BaseModel  # type: ignore[assignment]
-
-from .objects import BaseEventObject, user_event_objects
+from .objects import user_event_objects
 
 if TYPE_CHECKING:
-    from vkbottle import ABCAPI, API
+    from vkbottle import ABCAPI, API  # type: ignore
 
 
-class BaseUserEvent(BaseModel):
+class BaseUserEvent(msgspec.Struct, omit_defaults=True):
+    object: Optional[Any]
     unprepared_ctx_api: Optional[Any] = None
-    object: Optional["BaseEventObject"] = None
 
-    def __init__(self, *args, **data: Any) -> None:
-        data["object"] = args
-        super().__init__(**data)
+    @classmethod
+    def from_raw(cls, data: bytes) -> Self:
+        return msgspec.json.decode(data, type=cls)
+
+    @classmethod
+    def parse(cls, obj: List[Any]) -> Self:
+        return msgspec.convert({"object": obj}, type=cls)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return msgspec.structs.asdict(self)
 
     @property
     def ctx_api(self) -> Union["ABCAPI", "API"]:
-        return self.unprepared_ctx_api  # type: ignore
+        assert self.unprepared_ctx_api is not None
+        return self.unprepared_ctx_api
 
 
 class RawUserEvent(BaseUserEvent):
@@ -101,6 +104,10 @@ class FriendOffline(BaseUserEvent):
     object: user_event_objects.FriendOfflineObject
 
 
+class FriendAction(BaseUserEvent):
+    object: user_event_objects.FriendActionObject
+
+
 class Counter(BaseUserEvent):
     object: user_event_objects.CounterObject
 
@@ -121,13 +128,37 @@ class OutRead(BaseUserEvent):
     object: user_event_objects.OutReadObject
 
 
-_locals = locals().copy()
-_locals_values = _locals.values()
-for item in _locals_values:
-    if inspect.isclass(item) and issubclass(item, BaseUserEvent):
-        item.update_forward_refs(**_locals)
+class CreateFolder(BaseUserEvent):
+    object: user_event_objects.CreateFolderObject
+
+
+class DeleteFolder(BaseUserEvent):
+    object: user_event_objects.DeleteFolderObject
+
+
+class RenameFolder(BaseUserEvent):
+    object: user_event_objects.RenameFolderObject
+
+
+class AddConversationsToFolder(BaseUserEvent):
+    object: user_event_objects.AddConversationsToFolderObject
+
+
+class RemoveConversationsFromFolder(BaseUserEvent):
+    object: user_event_objects.RemoveConversationsFromFolderObject
+
+
+class ChangeFolderOrder(BaseUserEvent):
+    object: user_event_objects.ChangeFolderOrderObject
+
+
+class CounterUnreadDialogsInFolders(BaseUserEvent):
+    object: List[user_event_objects.CounterUnreadDialogsInFoldersObject]
+
 
 __all__ = (
+    "AddConversationsToFolder",
+    "RemoveConversationsFromFolder",
     "BaseUserEvent",
     "Call",
     "ChatEdit",
@@ -135,6 +166,11 @@ __all__ = (
     "ChatTypingState",
     "ChatVoiceMessageStates",
     "Counter",
+    "CreateFolder",
+    "RenameFolder",
+    "DeleteFolder",
+    "ChangeFolderOrder",
+    "CounterUnreadDialogsInFolders",
     "DialogTypingState",
     "FriendOffline",
     "FriendOnline",

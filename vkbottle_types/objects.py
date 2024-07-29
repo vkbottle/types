@@ -4,10 +4,10 @@ from enum import Enum
 from typing import List, Optional
 
 from vkbottle_types.base_model import BaseModel
-from vkbottle_types.codegen.objects import *
+from vkbottle_types.codegen.objects import *  # noqa: F403
 
 
-class MessagesMessageActionStatus(Enum):
+class MessagesMessageActionStatus(Enum):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/226
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
@@ -23,7 +23,7 @@ class MessagesMessageActionStatus(Enum):
     CONVERSATION_STYLE_UPDATE = "conversation_style_update"
 
 
-class MessagesMessageAttachmentType(Enum):
+class MessagesMessageAttachmentType(Enum):  # type: ignore
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -41,13 +41,11 @@ class MessagesMessageAttachmentType(Enum):
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = (
-        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
-    )
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
 
 
-class VideoVideoType(Enum):
+class VideoVideoType(Enum):  # type: ignore
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
@@ -55,7 +53,7 @@ class VideoVideoType(Enum):
     LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
 
 
-class WallWallpostAttachmentType(Enum):
+class WallWallpostAttachmentType(Enum):  # type: ignore
     """Attachment type"""
 
     PHOTO = "photo"
@@ -92,12 +90,12 @@ class PrettyCardsList(BaseModel):
     cards: Optional[List["PrettyCardsPrettyCard"]] = None
 
 
-class WallWallpostAttachment(WallWallpostAttachment):
+class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
     mini_app: Optional["AppsApp"] = None
     pretty_cards: Optional["PrettyCardsList"] = None
 
 
-class WallCommentAttachmentType(Enum):
+class WallCommentAttachmentType(Enum):  # type: ignore
     """Attachment type"""
 
     PHOTO = "photo"
@@ -113,18 +111,18 @@ class WallCommentAttachmentType(Enum):
     GRAFFITI = "graffiti"  # https://github.com/VKCOM/vk-api-schema/issues/233
 
 
-class BaseLinkButtonActionType(Enum):
+class BaseLinkButtonActionType(Enum):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/227
     OPEN_URL = "open_url"
     JOIN_GROUP_AND_OPEN_URL = "join_group_and_open_url"
 
 
-class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):
+class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/224
     pass
 
 
-class MessagesMessageAction(MessagesMessageAction):
+class MessagesMessageAction(MessagesMessageAction):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/226
     type: "MessagesMessageActionStatus"
     style: Optional[str] = None
@@ -132,18 +130,18 @@ class MessagesMessageAction(MessagesMessageAction):
 
 class GroupCallInProgress(CallsCall):
     # https://github.com/VKCOM/vk-api-schema/issues/225
-    receiver_id: Optional[int] = None
-    time: Optional[int] = None
+    receiver_id: Optional[int] = None  # type: ignore
+    time: Optional[int] = None  # type: ignore
     join_link: Optional[str] = None
-    state: Optional["CallsEndState"] = None
+    state: Optional["CallsEndState"] = None  # type: ignore
 
 
-class AppsApp(AppsApp):
-    id: Optional[int] = None
-    type: Optional[str] = None
+class AppsApp(AppsApp):  # type: ignore
+    id: Optional[int] = None  # type: ignore
+    type: Optional[str] = None  # type: ignore
 
 
-class MessagesMessageAttachment(MessagesMessageAttachment):
+class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/225
     story: Optional["StoriesStory"] = None
     group_call_in_progress: Optional["GroupCallInProgress"] = None
@@ -153,7 +151,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):
     type: "MessagesMessageAttachmentType"
 
 
-class MessagesAudioMessage(MessagesAudioMessage):
+class MessagesAudioMessage(MessagesAudioMessage):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/236
     transcript_state: Optional[str] = None
     transcript: Optional[str] = None
@@ -166,46 +164,46 @@ class BaseLinkAttachment(BaseLink):
 
 class LinkPhoto(PhotosPhoto):
     # https://github.com/VKCOM/vk-api-schema/issues/225
-    has_tags: Optional[bool] = None
-    date: Optional[int] = None
+    has_tags: Optional[bool] = None  # type: ignore
+    date: Optional[int] = None  # type: ignore
 
 
-class PhotosPhotoAlbumFull(PhotosPhotoAlbumFull):
+class PhotosPhotoAlbumFull(PhotosPhotoAlbumFull):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/228
     created: Optional[int] = None
     updated: Optional[int] = None
 
 
-class PhotosPhoto(PhotosPhoto):
+class PhotosPhoto(PhotosPhoto):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/229
-    has_tags: Optional[bool] = None
+    has_tags: Optional[bool] = None  # type: ignore
 
 
-class MessagesMessage(MessagesMessage):
+class MessagesMessage(MessagesMessage):  # type: ignore
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    attachments: Optional[List["MessagesMessageAttachment"]] = None
+    reply_message: Optional["MessagesForeignMessage"] = None
+    fwd_messages: Optional[List["MessagesForeignMessage"]] = None  # type: ignore
+
+
+class MessagesForeignMessage(MessagesForeignMessage):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/225
     attachments: Optional[List["MessagesMessageAttachment"]] = None
     reply_message: Optional["MessagesForeignMessage"] = None
     fwd_messages: Optional[List["MessagesForeignMessage"]] = None
 
 
-class MessagesForeignMessage(MessagesForeignMessage):
-    # https://github.com/VKCOM/vk-api-schema/issues/225
-    attachments: Optional[List["MessagesMessageAttachment"]] = None
-    reply_message: Optional["MessagesForeignMessage"] = None
-    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
-
-
-class VideoVideo(VideoVideo):
+class VideoVideo(VideoVideo):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
 
 
-class VideoVideoFull(VideoVideo, VideoVideoFull):
+class VideoVideoFull(VideoVideo, VideoVideoFull):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
 
 
-class MessagesSendUserIdsResponseItem(BaseModel):
+class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/208
     conversation_message_id: Optional[int] = None
     error: Optional["BaseMessageError"] = None

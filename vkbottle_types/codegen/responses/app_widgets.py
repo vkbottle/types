@@ -1,32 +1,33 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+
 from vkbottle_types.base_model import Field
-
-from vkbottle_types.objects import BaseImage, AppWidgetsPhoto
-
-
-class AppWidgetsPhotoResponseModel(BaseModel):
-    id: str = Field(
-        description="Image ID",
-    )
-
-    images: typing.List[BaseImage] = Field()
+from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AppWidgetsPhotoResponse(BaseResponse):
-    response: "AppWidgetsPhotoResponseModel"
+class AppWidgetsGetAppImageUploadServerResponse(BaseResponse):
+    response: typing.Dict[str, typing.Any] = Field()
 
 
-class AppWidgetsPhotosResponseModel(BaseModel):
-    count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    items: typing.Optional[typing.List[AppWidgetsPhoto]] = Field(
-        default=None,
-    )
+class AppWidgetsGetAppImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
 
 
-class AppWidgetsPhotosResponse(BaseResponse):
-    response: "AppWidgetsPhotosResponseModel"
+class AppWidgetsGetGroupImageUploadServerResponse(BaseResponse):
+    response: typing.Dict[str, typing.Any] = Field()
+
+
+class AppWidgetsGetGroupImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
+
+
+class AppWidgetsGetImagesByIdResponse(BaseResponse):
+    response: typing.List[AppWidgetsPhoto] = Field()
+
+
+class AppWidgetsSaveAppImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()
+
+
+class AppWidgetsSaveGroupImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()

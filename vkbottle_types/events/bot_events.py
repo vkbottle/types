@@ -1,21 +1,18 @@
 import inspect
 from typing import TYPE_CHECKING, Any, Optional, Union
 
-try:
-    from pydantic.v1 import BaseModel
-except ImportError:
-    from pydantic import BaseModel  # type: ignore[assignment]
+from vkbottle_types.base_model import BaseModel
 
 from .enums import GroupEventType
-from .objects import BaseEventObject, group_event_objects
+from .objects import group_event_objects
 
 if TYPE_CHECKING:
-    from vkbottle import ABCAPI, API
+    from vkbottle import ABCAPI, API  # type: ignore
 
 
 class BaseGroupEvent(BaseModel):
+    object: Optional["group_event_objects.BaseEventObject"]
     type: Optional[GroupEventType] = None
-    object: Optional["BaseEventObject"] = None
     secret: Optional[str] = None
     event_id: Optional[str] = None
     group_id: Optional[int] = None
@@ -23,7 +20,8 @@ class BaseGroupEvent(BaseModel):
 
     @property
     def ctx_api(self) -> Union["ABCAPI", "API"]:
-        return self.unprepared_ctx_api  # type: ignore
+        assert self.unprepared_ctx_api is not None
+        return self.unprepared_ctx_api
 
 
 class MessageNew(BaseGroupEvent):
@@ -243,6 +241,7 @@ _locals_values = _locals.values()
 for item in _locals_values:
     if inspect.isclass(item) and issubclass(item, BaseGroupEvent):
         item.update_forward_refs(**_locals)
+
 
 __all__ = (
     "AppPayload",

@@ -1,18 +1,13 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+
 from vkbottle_types.base_model import Field
+from vkbottle_types.objects import DonutDonatorSubscriptionInfo
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class DonutDonatorSubscriptionInfoResponseModel(BaseModel):
-    owner_id: int = Field()
-
-    next_payment_date: int = Field()
-
-    amount: int = Field()
-
-    status: typing.Literal["active", "expiring"] = Field()
+class DonutGetSubscriptionResponse(BaseResponse):
+    response: "DonutDonatorSubscriptionInfo" = Field()
 
 
-class DonutDonatorSubscriptionInfoResponse(BaseResponse):
-    response: "DonutDonatorSubscriptionInfoResponseModel"
+class DonutGetSubscriptionsResponse(BaseResponse):
+    response: typing.Dict[str, typing.Any] = Field()

@@ -1,31 +1,27 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.gifts import *
-from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.gifts import *  # noqa: F401,F403
 
 
 class GiftsCategory(BaseCategory):
     async def get(
         self,
-        user_id: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
-        **kwargs,
-    ) -> GiftsGetResponseModel:
-        """gifts.get method
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `gifts.get()`
 
-
-        :param user_id: User ID.
         :param count: Number of gifts to return.
         :param offset: Offset needed to return a specific subset of results.
+        :param user_id: User ID.
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("gifts.get", params)
         model = GiftsGetResponse
-
         return model(**response).response
 
 

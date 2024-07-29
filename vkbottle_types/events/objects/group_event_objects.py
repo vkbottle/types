@@ -1,6 +1,7 @@
 import inspect
 from typing import Any, Optional
 
+from vkbottle_types.base_model import BaseModel
 from vkbottle_types.objects import (
     AudioAudio,
     BaseBoolInt,
@@ -24,7 +25,9 @@ from vkbottle_types.objects import (
     WallWallpostFull,
 )
 
-from .base_event_object import BaseEventObject
+
+class BaseEventObject(BaseModel):
+    pass
 
 
 class MessageNewObject(BaseEventObject):
@@ -68,7 +71,7 @@ class PhotoNewObject(BaseEventObject, PhotosPhoto):
 
 
 class PhotoCommentNewObject(BaseEventObject, WallWallComment):
-    photo_id: int
+    photo_id: int  # type: ignore
     photo_owner_id: int
 
 
@@ -96,7 +99,7 @@ class VideoNewObject(BaseEventObject, VideoVideo):
 
 
 class VideoCommentNewObject(BaseEventObject, WallWallComment):
-    video_id: int
+    video_id: int  # type: ignore
     video_owner_id: int
 
 
@@ -328,3 +331,60 @@ _locals_values = _locals.values()
 for item in _locals_values:
     if inspect.isclass(item) and issubclass(item, BaseEventObject):
         item.update_forward_refs()
+
+
+__all__ = (
+    "AudioNewObject",
+    "AppPayloadObject",
+    "BoardPostDeleteObject",
+    "BoardPostEditObject",
+    "BoardPostNewObject",
+    "BoardPostRestoreObject",
+    "ClientInfoForBots",
+    "DonutMoneyWithdrawErrorObject",
+    "DonutMoneyWithdrawObject",
+    "DonutSubscriptionCancelledObject",
+    "DonutSubscriptionCreateObject",
+    "DonutSubscriptionExpiredObject",
+    "DonutSubscriptionProlongedObject",
+    "DonutSubscriptionPriceChangedObject",
+    "GroupChangePhotoObject",
+    "GroupChangeSettingsObject",
+    "GroupLeaveObject",
+    "GroupOfficersEditObject",
+    "GroupSettingsChangesObject",
+    "LikeAddObject",
+    "LikeRemoveObject",
+    "MarketCommentDeleteObject",
+    "MarketCommentEditObject",
+    "MarketCommentNewObject",
+    "MarketCommentRestoreObject",
+    "MarketOrderEditObject",
+    "MarketOrderNewObject",
+    "MessageAllowObject",
+    "MessageDenyObject",
+    "MessageEditObject",
+    "MessageEventObject",
+    "MessageNewObject",
+    "MessageReplyObject",
+    "MessageTypingStateObject",
+    "PhotoCommentDeleteObject",
+    "PhotoCommentEditObject",
+    "PhotoCommentNewObject",
+    "PhotoCommentRestoreObject",
+    "PhotoNewObject",
+    "PollVoteNewObject",
+    "UserBlockObject",
+    "UserUnblockObject",
+    "VideoCommentDeleteObject",
+    "VideoCommentEditObject",
+    "VideoCommentNewObject",
+    "VideoCommentRestoreObject",
+    "VideoNewObject",
+    "WallPostNewObject",
+    "WallReplyDeleteObject",
+    "WallReplyEditObject",
+    "WallReplyNewObject",
+    "WallReplyRestoreObject",
+    "WallRepostObject",
+)

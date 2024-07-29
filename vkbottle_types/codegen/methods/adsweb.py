@@ -1,147 +1,134 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.adsweb import *
-from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.adsweb import *  # noqa: F401,F403
 
 
 class AdswebCategory(BaseCategory):
     async def get_ad_categories(
         self,
         office_id: int,
-        **kwargs,
-    ) -> AdswebGetAdCategoriesResponseModel:
-        """adsweb.getAdCategories method
-
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getAdCategories()`
 
         :param office_id:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getAdCategories", params)
         model = AdswebGetAdCategoriesResponse
-
         return model(**response).response
 
     async def get_ad_unit_code(
         self,
-        **kwargs,
-    ) -> AdswebGetAdUnitCodeResponseModel:
-        """adsweb.getAdUnitCode method"""
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getAdUnitCode()`"""
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getAdUnitCode", params)
         model = AdswebGetAdUnitCodeResponse
-
         return model(**response).response
 
     async def get_ad_units(
         self,
         office_id: int,
-        sites_ids: typing.Optional[str] = None,
         ad_units_ids: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = 0,
-        **kwargs,
-    ) -> AdswebGetAdUnitsResponseModel:
-        """adsweb.getAdUnits method
-
+        offset: typing.Optional[int] = None,
+        sites_ids: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getAdUnits()`
 
         :param office_id:
-        :param sites_ids:
         :param ad_units_ids:
         :param fields:
         :param limit:
         :param offset:
+        :param sites_ids:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getAdUnits", params)
         model = AdswebGetAdUnitsResponse
-
         return model(**response).response
 
     async def get_fraud_history(
         self,
         office_id: int,
-        sites_ids: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = 0,
-        **kwargs,
-    ) -> AdswebGetFraudHistoryResponseModel:
-        """adsweb.getFraudHistory method
-
+        offset: typing.Optional[int] = None,
+        sites_ids: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getFraudHistory()`
 
         :param office_id:
-        :param sites_ids:
         :param limit:
         :param offset:
+        :param sites_ids:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getFraudHistory", params)
         model = AdswebGetFraudHistoryResponse
-
         return model(**response).response
 
     async def get_sites(
         self,
         office_id: int,
-        sites_ids: typing.Optional[str] = None,
         fields: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = 0,
-        **kwargs,
-    ) -> AdswebGetSitesResponseModel:
-        """adsweb.getSites method
-
+        offset: typing.Optional[int] = None,
+        sites_ids: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getSites()`
 
         :param office_id:
-        :param sites_ids:
         :param fields:
         :param limit:
         :param offset:
+        :param sites_ids:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getSites", params)
         model = AdswebGetSitesResponse
-
         return model(**response).response
 
     async def get_statistics(
         self,
-        office_id: int,
-        ids_type: str,
-        ids: str,
-        period: str,
         date_from: str,
         date_to: str,
+        ids: str,
+        ids_type: str,
+        office_id: int,
+        period: str,
         fields: typing.Optional[str] = None,
         limit: typing.Optional[int] = None,
         page_id: typing.Optional[str] = None,
-        **kwargs,
-    ) -> AdswebGetStatisticsResponseModel:
-        """adsweb.getStatistics method
+        **kwargs: typing.Any,
+    ) -> typing.Dict[str, typing.Any]:
+        """Method `adsweb.getStatistics()`
 
-
-        :param office_id:
-        :param ids_type:
-        :param ids:
-        :param period:
         :param date_from:
         :param date_to:
+        :param ids:
+        :param ids_type:
+        :param office_id:
+        :param period:
         :param fields:
         :param limit:
         :param page_id:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("adsweb.getStatistics", params)
         model = AdswebGetStatisticsResponse
-
         return model(**response).response
 
 

@@ -109,3 +109,6 @@ class GroupTypes:
     DonutSubscriptionPriceChanged = DonutSubscriptionPriceChanged
     DonutMoneyWithdraw = DonutMoneyWithdraw
     DonutMoneyWithdrawError = DonutMoneyWithdrawError
+
+
+__all__ = ("GroupTypes",)

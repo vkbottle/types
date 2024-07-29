@@ -7,8 +7,10 @@ from .methods import (
     adsweb,
     app_widgets,
     apps,
+    asr,
     auth,
     board,
+    bugtracker,
     database,
     docs,
     donut,
@@ -38,6 +40,7 @@ from .methods import (
     store,
     stories,
     streaming,
+    translations,
     users,
     utils,
     video,
@@ -46,7 +49,7 @@ from .methods import (
 )
 
 if typing.TYPE_CHECKING:
-    from vkbottle import ABCAPI
+    from vkbottle import ABCAPI  # type: ignore
 
 
 class APICategories(ABC):
@@ -63,20 +66,28 @@ class APICategories(ABC):
         return adsweb.AdswebCategory(self.api_instance)
 
     @property
-    def apps(self) -> apps.AppsCategory:
-        return apps.AppsCategory(self.api_instance)
-
-    @property
     def app_widgets(self) -> app_widgets.AppWidgetsCategory:
         return app_widgets.AppWidgetsCategory(self.api_instance)
 
     @property
+    def apps(self) -> apps.AppsCategory:
+        return apps.AppsCategory(self.api_instance)
+
+    @property
     def auth(self) -> auth.AuthCategory:
         return auth.AuthCategory(self.api_instance)
+    
+    @property
+    def asr(self) -> asr.AsrCategory:
+        return asr.AsrCategory(self.api_instance)
 
     @property
     def board(self) -> board.BoardCategory:
         return board.BoardCategory(self.api_instance)
+
+    @property
+    def bugtracker(self) -> bugtracker.BugtrackerCategory:
+        return bugtracker.BugtrackerCategory(self.api_instance)
 
     @property
     def database(self) -> database.DatabaseCategory:
@@ -159,7 +170,7 @@ class APICategories(ABC):
         return polls.PollsCategory(self.api_instance)
 
     @property
-    def prettyCards(self) -> pretty_cards.PrettyCardsCategory:
+    def pretty_cards(self) -> pretty_cards.PrettyCardsCategory:
         return pretty_cards.PrettyCardsCategory(self.api_instance)
 
     @property
@@ -193,6 +204,10 @@ class APICategories(ABC):
     @property
     def streaming(self) -> streaming.StreamingCategory:
         return streaming.StreamingCategory(self.api_instance)
+    
+    @property
+    def translations(self) -> translations.TranslationsCategory:
+        return translations.TranslationsCategory(self.api_instance)
 
     @property
     def users(self) -> users.UsersCategory:
@@ -221,3 +236,6 @@ class APICategories(ABC):
 
     async def execute(self, code: str) -> typing.Any:
         return await self.api_instance.request("execute", {"code": code})
+
+
+__all__ = ("APICategories",)
