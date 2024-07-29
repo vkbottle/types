@@ -1,26 +1,34 @@
-import requests
-from tqdm import tqdm
-import json
-from .data import Category, factory
-from .types import get_complex_type
-from .utility import camelcase, snake_case, makesafe, instring
-from .data import Definition, Objects
-from . import types
+import builtins
+import json  # type: ignore
+import os
 import pathlib
-import jinja2
+import typing
 
+import jinja2
+import requests  # type: ignore
+from tqdm import tqdm  # type: ignore
+
+from . import parse_types
+from .data import Category, Definition, Objects, factory
+from .parse_types import get_complex_type, transform_ref  # noqa: F401
+from .utility import camelcase, instring, makesafe, snake_case
+
+URL = "https://raw.githubusercontent.com/VKCOM/vk-api-schema/master/{}/{}.json"
 CATEGORIES = (
+    "base",
     "users",
     "account",
+    "address",
     "addresses",
     "ads",
     "adsweb",
     "appWidgets",
     "apps",
+    "asr",
     "audio",
     "auth",
-    "base",
     "board",
+    "bugtracker",
     "callback",
     "calls",
     "client",
@@ -58,7 +66,9 @@ CATEGORIES = (
     "store",
     "stories",
     "streaming",
+    "support",
     "tasks",
+    "translations",
     "friends",
     "utils",
     "video",
@@ -67,9 +77,7 @@ CATEGORIES = (
     "widgets",
 )
 
-
-URL = "https://raw.githubusercontent.com/VKCOM/vk-api-schema/master/{}/{}.json"
-env = jinja2.Environment(loader=jinja2.FileSystemLoader("generator/templates"))
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(pathlib.Path(__file__).parent / "templates"))
 env.globals.update(
     {
         "snake_case": snake_case,
@@ -77,21 +85,21 @@ env.globals.update(
         "is_int": lambda x: isinstance(x, int),
         "makesafe": makesafe,
         "instring": instring,
+        "unique": lambda iterable: set(iterable), 
     }
 )
 
 
 def process_downloaded_category(dct: dict) -> Category:
-    methods, objects, responses = dct["methods"], dct["objects"], dct["responses"]
-    if methods:
-        methods = methods["methods"]
+    for key in ("methods", "objects", "responses"):
+        if not dct.get(key):
+            dct.pop(key, None)
+
+    if (methods := dct.get("methods", {}).get("methods")):
         for method in methods:
             method["name"] = method["name"].split(".")[1]
         dct["methods"] = methods
-    if objects:
-        dct["objects"] = objects
-    if responses:
-        dct["responses"] = responses
+        
     category = factory.load(dct, Category)
     return category
 
@@ -100,6 +108,8 @@ def process_schema(categories_dcts: list[dict]) -> list[Category]:
     print("Processing schema...")
     categories = []
     for dct in tqdm(categories_dcts):
+        if not dct:
+            continue
         processed = process_downloaded_category(dct)
         categories.append(processed)
     return categories
@@ -184,7 +194,7 @@ def get_schema_cli() -> list[Category]:
     )
 
     if not option.strip():
-        option = 1
+        option = 1  # type: ignore
 
     match int(option):
         case 1:
@@ -208,36 +218,105 @@ def create_folders(folders: list[tuple[str, ...]]) -> None:
 
 def generate_methods(category: Category, path: str):
     if not category.methods:
+        print("        - Methods not found!", end="\n\n")
         return
-    with open(
-        pathlib.Path(path, "methods", snake_case(category.name) + ".py"), "w"
-    ) as fs:
-        template = env.get_template("methods.jinja2")
-        generated = template.render(category=category)
-        fs.write(generated)
+
+    imports = set()
+    for method in category.methods:
+        for response in typing.cast(dict, method.responses).values():
+            if "response_hint" not in response:
+                continue
+            for t in response["response_hint"]["orig_types"]:
+                if t["is_object"]:
+                    imports.add(t["type"])
+        for param in method.parameters:
+            if "$ref" in param.items and "objects.json" in param.items["$ref"]:
+                imports.add(transform_ref(param.items["$ref"]))
+
+    template = env.get_template("methods.jinja2")
+    generated = template.render(category=category)
+    generated = generated.replace(
+        "### IMPORTS",
+        ("from vkbottle_types.objects import " + ", ".join(imports)) if imports else "",
+    )
+    pathlib.Path(path, "methods", snake_case(category.name) + ".py").write_text(generated)
+    print("        + Methods successfully generated!", end="\n\n")
 
 
-def generate_responses(category: Category, path: str):
-    definitions = get_definitions(category.objects)
-    types.IMPORTS_CACHE = set()
-    with open(
-        pathlib.Path(path, "responses", snake_case(category.name) + ".py"), "w"
-    ) as fs:
-        template = env.get_template("responses.jinja2")
-        generated = template.render(definitions=definitions)
-        generated = generated.replace(
-            "### IMPORTS",
-            ("from vkbottle_types.objects import " + ", ".join(types.IMPORTS_CACHE))
-            if types.IMPORTS_CACHE
-            else "",
-        )
-        fs.write(generated)
+def generate_responses(category: Category, path: str, responses_definitions: dict[str, Definition]) -> None:
+    if not category.responses:
+        print("        - Responses not found!")
+        return
+
+    definitions = get_definitions(category.responses)
+    responses_definitions.update(definitions)
+    update_category_methods_responses(category, responses_definitions)
+    parse_types.IMPORTS_CACHE = set()
+    template = env.get_template("responses.jinja2")
+    generated = template.render(definitions=definitions)
+    generated = generated.replace(
+        "### IMPORTS",
+        ("from vkbottle_types.objects import " + ", ".join(parse_types.IMPORTS_CACHE))
+        if parse_types.IMPORTS_CACHE
+        else "",
+    )
+    pathlib.Path(path, "responses", snake_case(category.name) + ".py").write_text(generated)
+    print("        + Responses successfully generated!")
+
+
+def update_category_methods_responses(category: Category, responses_definitions: dict[str, Definition]) -> None:
+    if responses_definitions and category.methods:
+        for method in category.methods:
+            for response_name, response in typing.cast(dict[str, dict[str, str]], method.responses).copy().items():
+                if "$ref" not in response:
+                    continue
+                if (
+                    definition := responses_definitions.get(response["$ref"].split("/")[-1])
+                ) is not None:
+                    for prop in definition.properties:
+                        if prop.name == "response":
+                            if (response_definition := definition.get_response_definition()) is not None:
+                                hint = get_complex_type(response, response=True)
+                            else:
+                                hint = prop.get_type(response=True)
+                            
+                            orig_type: str | list[str]
+                            if "Literal[" in hint:
+                                orig_type = hint
+                            else:
+                                orig_type = (
+                                    hint.replace("'", "")
+                                    .removeprefix("typing.")
+                                    .replace("List", "")
+                                    .replace("[", "")
+                                    .replace("]", "")
+                                    .strip()
+                                )
+                                if "Union" in orig_type:
+                                    orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
+                                if "Dict" in orig_type:
+                                    orig_type = "dict"
+                            method.responses[response_name]["response_hint"] = {  # type: ignore
+                                "hint": hint,
+                                "orig_types": [
+                                    {
+                                        "type": t,
+                                        "is_object": is_object(t, hint),
+                                    }
+                                    for t in orig_type
+                                ] if isinstance(orig_type, list) else [
+                                    {
+                                        "type": orig_type,
+                                        "is_object": is_object(orig_type, hint),
+                                    }
+                                ],
+                            }
 
 
 def reorder_definitions(
     definitions: list[tuple[str, Definition, Category]]
-) -> list[tuple[str, Definition]]:
-    l_bases_f = lambda d: len(d[1].allOf)
+) -> list[tuple[str, Definition, Category]]:
+    l_bases_f = lambda d: len(d[1].allOf)  # noqa: E731
     s = sorted(definitions, key=l_bases_f)
     s = sorted(
         definitions,
@@ -254,44 +333,60 @@ def reorder_definitions(
 
 def generate_objects(definitions: list[tuple[str, Definition, Category]], path: str):
     definitions = reorder_definitions(definitions)
-
-    with open(pathlib.Path(path, "objects.py"), "w") as file:
-        template = env.get_template("objects.jinja2")
-        generated = template.render(definitions=[(k, v) for (k, v, _) in definitions])
-        file.write(generated)
+    template = env.get_template("objects.jinja2")
+    generated = template.render(definitions=[(k, v) for (k, v, _) in definitions])
+    pathlib.Path(path, "objects.py").write_text(generated)
 
 
-def generate_category(category: Category, path: str) -> None:
+def is_object(t: str, hint: str) -> bool:
+    return (
+        t not in builtins.__dict__
+        and "Response" not in t
+        and "Literal[" not in hint
+    )
+
+
+def generate_category(category: Category, path: str, responses_definitions: dict[str, Definition]):
+    generate_responses(category, path, responses_definitions)
     generate_methods(category, path)
-    generate_responses(category, path)
+    
+
+def parse_properties(properties: dict[str, dict]) -> list[dict]:
+    return [
+        {"name": name, **prop, "data": prop}
+        for name, prop in properties.items()
+    ]
 
 
-def parse_properties(properties: dict) -> list[dict]:
-    return [{"name": name, **v, "data": v} for name, v in properties.items()]
+def get_definition(name: str, definitions: typing.Iterable[typing.Tuple[str, Definition]]) -> typing.Optional[Definition]:
+    for definition_name, definition in definitions:
+        if definition_name == name:
+            return definition
+    return None
 
 
-def get_definitions(objects: Objects) -> list[tuple[str, Definition]]:
-    if not objects:
+def get_definitions(objects: Objects) -> typing.List[typing.Tuple[str, Definition]]:
+    if not objects.definitions:
         return []
 
-    definitions = {}
+    definitions: typing.Dict[str, Definition] = {}
+    sub_definitions: typing.Dict[str, typing.List[str]] = {}
 
-    for definition_name, definition in objects.definitions.items():
+    for definition_name, definition in typing.cast(typing.Dict[str, dict], objects.definitions).items():
         if "properties" in definition:
+            properties: typing.Dict[str, dict] = {}
+
             if isinstance(definition["properties"], dict):
-                definition["properties"] = parse_properties(
-                    definition.get("properties", {}) or {}
-                )
+                properties = definition["properties"]
             else:
-                dct = {}
                 for prop in definition["properties"]:
-                    name = prop.pop("name")
-                    dct[name] = prop
-                definition["properties"] = parse_properties(dct)
+                    properties[prop.pop("name")] = prop
+
+            definition["properties"] = parse_properties(properties)
 
         definitions.update({definition_name: factory.load(definition, Definition)})
 
-    return [(k, v) for k, v in definitions.items()]
+    return list(definitions.items())
 
 
 def generate_schema(schema: list[Category], folder: str) -> None:
@@ -299,11 +394,12 @@ def generate_schema(schema: list[Category], folder: str) -> None:
 
     print("Generating schema...")
 
+    responses_definitions: dict[str, Definition] = {}
     for category in schema:
-        print(f"Category: {category.name}")
-        generate_category(category, folder)
+        print(f"    * Generating category: {category.name!r}...")
+        generate_category(category, folder, responses_definitions)
 
-    definitions = {}
+    definitions: dict[str, tuple[Definition, Category]] = {}
     for category in schema:
         if not category.objects:
             continue
@@ -311,5 +407,45 @@ def generate_schema(schema: list[Category], folder: str) -> None:
         definitions.update(
             {k: (v, category) for k, v in get_definitions(category.objects)}
         )
+    
+    sub_definitions: typing.Dict[str, typing.List[str]] = {}
+    for def_name, (def_, _) in definitions.items():
+        for base in def_.allOf:
+            if base.ref:
+                name = base.ref.split("/")[-1]
+                if name not in sub_definitions:
+                    sub_definitions[name] = []
+                if def_name not in sub_definitions[name]:
+                    sub_definitions[name].append(def_name)
+                base.definition = get_definition(name, list((n, x[0]) for n, x in definitions.items()))
+
+    for definition_name, (def_, _) in definitions.items():
+        if (sub_defs := sub_definitions.get(definition_name)) is None:
+            continue
+        for def_name in sub_defs:
+            if (d := definitions.get(def_name)) is None:
+                continue
+            def_.sub_definitions[camelcase(def_name)] = d[0]
 
     generate_objects([(k, *v) for k, v in definitions.items()], folder)
+
+    print("Run ruff isort...")
+    os.system(f"ruff check {folder} --select I --select F401 --fix")
+
+    print("Run fuff formatter...")
+    os.system(f"ruff format {folder}")
+
+
+__all__ = (
+    "get_schema_cli",
+    "generate_schema",
+    "apply_patches",
+    "save_schema",
+    "load_schema",
+    "process_schema",
+    "download_schema",
+    "Category",
+    "Definition",
+    "Objects",
+    "factory",
+)

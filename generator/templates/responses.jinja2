@@ -1,54 +1,50 @@
 import typing
 import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
-from vkbottle_types.base_model import Field
+
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.responses.base_response import BaseResponse
 
 ### IMPORTS
 
 {% for (name, definition) in definitions %}
 
-{% if definition.type == 'object' %}
+{% if definition.get_response_definition().enum %}
+{% set response_def = definition.get_response_definition() %}
+{% if is_int(response_def.enum[0]) %}
+class {{camelcase(name)}}Model(enum.IntEnum):
+    {% for enumeration in response_def.enum %}{{makesafe(response_def.enumNames[loop.index-1])|upper}} = {{enumeration}}
+    {% endfor %}
+{% else %}
+class {{camelcase(name)}}Model(enum.Enum):
+    {% for enumeration in response_def.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
+    {% endfor %}
+{% endif %}
+{% endif %}
 
-class {{camelcase(name)}}ResponseModel({{", ".join(definition.get_bases())}}):
+{% if definition.type == 'object' %}
+class {{camelcase(name)}}({{", ".join(definition.get_bases(response=True))}}):
     {% if not definition.get_properties() %}
     pass
     {% else %}
     {% for property in definition.get_properties() %}
-    {{makesafe(property.name)}}: {{property.get_type()}} = Field(
-        {% if property.is_optional %}
-        default=None,
+    {% if property.name == 'response' and definition.get_response_definition() %}
+    response: '{{camelcase(name)}}Model' = Field(
+        {% if property.required and property.default is not none %}
+        default={{property.get_default_value(enum_name=camelcase(name) + 'Model')}}
         {% endif %}
-        {% if property.description %}
-        description="{{instring(property.description)}}",
+    ){% elif property.name == 'response' and property.get_type(response=True) == 'dict' %}
+    response: typing.Dict[str, typing.Any] = Field(){% else %}
+    {{makesafe(property.name)}}: {{property.get_type(response=True)}} = Field(
+        {% if property.is_optional %}
+        default={{property.default if property.default is not none else None}},
+        {% elif property.required and property.default is not none %}
+        default={{property.default}}
         {% endif %}
         {% if makesafe(property.name) != property.name %}
         alias="{{property.name}}",
         {% endif %}
-    )
+    ){% endif %}
     {% endfor %}
     {% endif %}
-
-{% elif definition.enum %}
-
-{% if is_int(definition.enum[0]) %}
-class {{camelcase(name)}}ResponseModel(enum.IntEnum):
-    {% for enumeration in definition.enum %}
-    {{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
-    {% endfor %}
-{% else %}
-class {{camelcase(name)}}ResponseModel(enum.Enum):
-    {% for enumeration in definition.enum %}
-    {{makesafe(enumeration|upper)}} = "{{enumeration}}"
-    {% endfor %}
 {% endif %}
-
-{% else %}
-
-{{camelcase(name)}}ResponseModel = {{definition.get_typehint()}}
-
-{% endif %}
-
-class {{camelcase(name)}}Response(BaseResponse):
-    response: '{{camelcase(name)}}ResponseModel'
-
 {% endfor %}

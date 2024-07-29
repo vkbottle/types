@@ -1,7 +1,10 @@
 import dataclasses
+import re
 import typing
+
 from .utility import camelcase
 
+PATTERN_PROPERTIES_RESPONSE = re.compile(r"^([a-zA-Z0-9_]+)?[rR]esponse$")
 
 IMPORTS_CACHE = set()
 # that line above.. ofc its shit but im too lazy rn!! sry ^^
@@ -12,6 +15,10 @@ PRIMITIVE_TYPES = {
     "string": "str",
     "boolean": "bool",
     "number": "float",
+    "Integer": "int",
+    "String": "str",
+    "Boolean": "bool",
+    "Number": "float",
 }
 
 
@@ -20,11 +27,15 @@ class Ready:
     value: str
 
 
-def get_any(dct: dict[str, typing.Any], *keys: tuple[str, ...], default=None):
-    for key in keys:
-        if value := dct.get(key):
-            return value
-    return default
+def get_responses(responses: dict[str, dict[str, str]]) -> list[dict[str, str]]:
+    if not responses:
+        return []
+    return [
+        value
+        for key, value in responses.items()
+        if PATTERN_PROPERTIES_RESPONSE.match(key) is not None
+        or (key != "response" and key.startswith("response"))
+    ]
 
 
 def transform_ref(ref_link: str) -> str:
@@ -33,11 +44,13 @@ def transform_ref(ref_link: str) -> str:
 
 
 def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False) -> str:
-    if (type_ := type_dct.get("type")) and type_dct["type"] not in ("object",):
-        return get_type(type_, type_dct.get("items"), hint=hint)
+    if (type_ := type_dct.get("type")) and type_ != "object":
+        return get_type(type_, type_dct.get("items", type_dct), hint=hint)
     elif ref := type_dct.get("$ref"):
         transformed = transform_ref(ref)
         if response:
+            if "response_hint" in type_dct:
+                return type_dct["response_hint"]["hint"]
             return transformed + "Model"
         else:
             IMPORTS_CACHE.add(transformed)
@@ -48,7 +61,7 @@ def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False)
     raise RuntimeError(f"Cannot process complex type {type_dct}")
 
 
-def get_type(type_name, items: dict, hint: bool = False) -> str:
+def get_type(type_name: str | list[str] | dict | Ready, items: dict | None = None, hint: bool = False) -> str:
     if isinstance(type_name, Ready):
         if hint:
             return repr(type_name.value)
@@ -79,3 +92,6 @@ def get_type(type_name, items: dict, hint: bool = False) -> str:
             )
 
     raise RuntimeError(f"Cannot process {type_name} (items={items})")
+
+
+__all__ = ("get_type", "get_complex_type", "Ready", "transform_ref", "get_responses")
