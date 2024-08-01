@@ -1,12 +1,19 @@
 import typing
 
 from typing_extensions import Literal
+
 from vkbottle_types.codegen.methods.messages import MessagesCategory
 from vkbottle_types.responses.messages import (
+    MessagesChat,
+    MessagesChatFull,
+    MessagesGetChatChatIdsFieldsResponse,
+    MessagesGetChatChatIdsResponse,
+    MessagesGetChatFieldsResponse,
+    MessagesGetChatResponse,
+    MessagesSendDeprecatedResponse,
+    MessagesSendPeerIdsResponse,
+    MessagesSendUserIdsResponse,
     MessagesSendUserIdsResponseItem,
-    SendPeerIdsResponse,
-    SendResponse,
-    SendUserIdsResponse,
 )
 
 
@@ -51,8 +58,7 @@ class MessagesCategory(MessagesCategory):
                 "purchase_update",
             ]
         ] = None,
-        subscribe_id: typing.Optional[int] = None,
-        **kwargs
+        subscribe_id: typing.Optional[int] = None
     ) -> int:
         ...
 
@@ -97,7 +103,6 @@ class MessagesCategory(MessagesCategory):
             ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
-        **kwargs
     ) -> typing.List[MessagesSendUserIdsResponseItem]:
         ...
 
@@ -142,7 +147,6 @@ class MessagesCategory(MessagesCategory):
             ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
-        **kwargs
     ) -> typing.List[MessagesSendUserIdsResponseItem]:
         ...
 
@@ -172,7 +176,7 @@ class MessagesCategory(MessagesCategory):
         disable_mentions=None,
         intent=None,
         subscribe_id=None,
-        **kwargs
+        **kwargs,
     ) -> typing.Union[typing.List[MessagesSendUserIdsResponseItem], int]:
         """Sends a message.
 
@@ -206,10 +210,79 @@ class MessagesCategory(MessagesCategory):
         response = await self.api.request("messages.send", params)
         model = self.get_model(
             (
-                (("user_ids",), SendUserIdsResponse),
-                (("peer_ids",), SendPeerIdsResponse),
+                (("user_ids",), MessagesSendUserIdsResponse),
+                (("peer_ids",), MessagesSendPeerIdsResponse),
             ),
-            default=SendResponse,
+            default=MessagesSendDeprecatedResponse,
+            params=params,
+        )
+        return model(**response).response
+
+    @typing.overload
+    async def get_chat(
+        self,
+        *,
+        chat_id: int,
+        name_case: typing.Optional[str] = None,
+    ) -> "MessagesChat": ...
+
+    @typing.overload
+    async def get_chat(
+        self,
+        *,
+        chat_id: int,
+        fields: typing.List[UsersFields],
+        name_case: typing.Optional[str] = None,
+    ) -> "MessagesChatFull": ...
+
+    @typing.overload
+    async def get_chat(
+        self,
+        *,
+        chat_ids: typing.List[int],
+        name_case: typing.Optional[str] = None,
+    ) -> typing.List[MessagesChat]: ...
+
+    @typing.overload
+    async def get_chat(
+        self,
+        *,
+        chat_ids: typing.List[int],
+        fields: typing.List[UsersFields],
+        name_case: typing.Optional[str] = None,
+    ) -> typing.List[MessagesChatFull]: ...
+
+    async def get_chat(
+        self,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_ids: typing.Optional[typing.List[int]] = None,
+        chat_id: typing.Optional[int] = None,
+        name_case: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Union[
+        "MessagesChat",
+        "MessagesChatFull",
+        typing.List[MessagesChat],
+        typing.List[MessagesChatFull],
+    ]:
+        """Method `messages.getChat()`
+
+        :param fields: Profile fields to return.
+        :param chat_ids: Chat IDs.
+        :param chat_id: Chat ID.
+        :param name_case: Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("messages.getChat", params)
+        model = self.get_model(
+            (
+                (("fields", "chat_id"), MessagesGetChatFieldsResponse),
+                (("fields", "chat_ids"), MessagesGetChatChatIdsFieldsResponse),
+                (("chat_id",), MessagesGetChatResponse),
+                (("chat_ids",), MessagesGetChatChatIdsResponse),
+            ),
+            default=MessagesGetChatResponse,
             params=params,
         )
         return model(**response).response

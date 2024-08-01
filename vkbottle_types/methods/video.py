@@ -1,8 +1,10 @@
 import typing
-from vkbottle_types.codegen.methods.video import VideoCategory
-from vkbottle_types.codegen.responses.base import OkResponse
-from vkbottle_types.codegen.responses.video import ChangeVideoAlbumsResponse
+
 from typing_extensions import Literal
+
+from vkbottle_types.codegen.methods.video import VideoCategory
+from vkbottle_types.codegen.responses.base import BaseOkResponse, BaseOkResponseModel
+from vkbottle_types.codegen.responses.video import VideoChangeVideoAlbumsResponse
 
 
 class VideoCategory(VideoCategory):
@@ -15,7 +17,7 @@ class VideoCategory(VideoCategory):
         album_id: typing.Optional[int] = ...,
         album_ids: typing.Optional[Literal[None]] = None,
         **kwargs
-    ) -> int:
+    ) -> BaseOkResponseModel:
         ...
 
     @typing.overload
@@ -38,7 +40,7 @@ class VideoCategory(VideoCategory):
         album_id: typing.Optional[int] = None,
         album_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> typing.Union[int, typing.List[int]]:
+    ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
         """video.addToAlbum method
 
         :param owner_id:
@@ -51,8 +53,8 @@ class VideoCategory(VideoCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.addToAlbum", params)
         model = self.get_model(
-            ((("album_ids",), ChangeVideoAlbumsResponse),),
-            default=OkResponse,
+            ((("album_ids",), VideoChangeVideoAlbumsResponse),),
+            default=BaseOkResponse,
             params=params,
         )
         return model(**response).response
@@ -66,7 +68,7 @@ class VideoCategory(VideoCategory):
         album_id: typing.Optional[int] = ...,
         album_ids: typing.Optional[Literal[None]] = None,
         **kwargs
-    ) -> int:
+    ) -> BaseOkResponseModel:
         ...
 
     @typing.overload
@@ -89,7 +91,7 @@ class VideoCategory(VideoCategory):
         album_id: typing.Optional[int] = None,
         album_ids: typing.Optional[typing.List[int]] = None,
         **kwargs
-    ) -> typing.Union[int, typing.List[int]]:
+    ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
         """video.removeFromAlbum method
 
         :param owner_id:
@@ -102,8 +104,8 @@ class VideoCategory(VideoCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.removeFromAlbum", params)
         model = self.get_model(
-            ((("album_ids",), ChangeVideoAlbumsResponse),),
-            default=OkResponse,
+            ((("album_ids",), VideoChangeVideoAlbumsResponse),),
+            default=BaseOkResponse,
             params=params,
         )
         return model(**response).response

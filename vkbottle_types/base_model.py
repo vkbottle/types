@@ -10,7 +10,6 @@ if typing.TYPE_CHECKING:
 
     @typing.dataclass_transform(
         kw_only_default=True,
-        frozen_default=True,
         field_specifiers=(pydantic.Field, pydantic.PrivateAttr),
     )
     class BaseModel(pydantic.BaseModel):

@@ -1,16 +1,14 @@
 from typing import List, Optional, Union, overload
 
 from typing_extensions import Literal
+
 from vkbottle_types.codegen.methods.groups import GroupsCategory  # type: ignore
 from vkbottle_types.responses.groups import (
     GetMembersFieldsFilterManagersResponse,
     GetMembersFieldsFilterManagersResponseModel,
-    GetMembersFieldsResponse,
-    GetMembersFieldsResponseModel,
     GetMembersFilterManagersResponse,
     GetMembersFilterManagersResponseModel,
-    GetMembersResponse,
-    GetMembersResponseModel,
+    GroupsGetMembersFieldsResponse,
 )
 
 
@@ -25,7 +23,7 @@ class GroupsCategory(GroupsCategory):
         fields: Optional[Literal[None]] = ...,
         filter: Optional[Literal["friends", "unsure", "donut"]] = ...,
         **kwargs
-    ) -> GetMembersResponseModel:
+    ) -> typing.Dict[str, typing.Any]:
         ...
 
     @overload
@@ -38,7 +36,7 @@ class GroupsCategory(GroupsCategory):
         fields: List[str] = ...,
         filter: Optional[Literal[None]] = ...,
         **kwargs
-    ) -> GetMembersFieldsResponseModel:
+    ) -> typing.Dict[str, typing.Any]:
         ...
 
     @overload
@@ -77,8 +75,7 @@ class GroupsCategory(GroupsCategory):
         filter=None,
         **kwargs
     ) -> Union[
-        GetMembersResponseModel,
-        GetMembersFieldsResponseModel,
+        typing.Dict[str, typing.Any],
         GetMembersFilterManagersResponseModel,
         GetMembersFieldsFilterManagersResponseModel,
     ]:
@@ -96,7 +93,7 @@ class GroupsCategory(GroupsCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("fields",), GetMembersFieldsResponse),
+                (("fields",), GroupsGetMembersFieldsResponse),
                 ((["filter", "managers"],), GetMembersFilterManagersResponse),
                 (
                     (["filter", "managers"], "fields"),
