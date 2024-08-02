@@ -44,6 +44,7 @@ class MessagesMessageAttachmentType(Enum):  # type: ignore
     STORY = "story"
     GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    VIDEO_PLAYLIST = "video_playlist"
 
 
 class VideoVideoType(Enum):  # type: ignore
@@ -85,18 +86,11 @@ class WallWallpostAttachmentType(Enum):  # type: ignore
     PODCAST = "podcast"
     PRETTY_CARDS = "pretty_cards"  # https://github.com/VKCOM/vk-api-schema/issues/232
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    CLIP = "clip"
+    VIDEO_PLAYLIST = "video_playlist"
 
 
-class PrettyCardsList(BaseModel):
-    cards: Optional[List["PrettyCardsPrettyCard"]] = None
-
-
-class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
-    mini_app: Optional["AppsApp"] = None
-    pretty_cards: Optional["PrettyCardsList"] = None
-
-
-class BaseSticker(BaseModel):  # type: ignore
+class BaseSticker(BaseSticker):  # type: ignore
     sticker_id: typing.Optional[int] = Field(
         default=None,
     )
@@ -133,8 +127,17 @@ class BaseSticker(BaseModel):  # type: ignore
     """Information whether the sticker is allowed."""
 
 
-class BaseStickerNew(BaseSticker):  # type: ignore
+class BaseStickerNew(BaseSticker, BaseStickerNew):  # type: ignore
     inner_type: "BaseStickerNewInnerType" = Field()
+
+
+class PrettyCardsList(BaseModel):
+    cards: Optional[List["PrettyCardsPrettyCard"]] = None
+
+
+class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
+    mini_app: Optional["AppsApp"] = None
+    pretty_cards: Optional["PrettyCardsList"] = None
 
 
 class WallCommentAttachmentType(Enum):  # type: ignore
@@ -151,6 +154,14 @@ class WallCommentAttachmentType(Enum):  # type: ignore
     MARKET = "market"
     STICKER = "sticker"
     GRAFFITI = "graffiti"  # https://github.com/VKCOM/vk-api-schema/issues/233
+    AUDIO_PLAYLIST = "audio_playlist"
+
+
+class WallCommentAttachment(WallCommentAttachment):  # type: ignore
+    sticker: typing.Optional["BaseSticker"] = Field(
+        default=None,
+    )
+    """Property `WallCommentAttachment.sticker`."""
 
 
 class BaseLinkButtonActionType(Enum):  # type: ignore
@@ -190,6 +201,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
     mini_app: Optional["AppsApp"] = None
+    sticker: typing.Optional["BaseSticker"] = None
     type: "MessagesMessageAttachmentType"
 
 
