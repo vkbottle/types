@@ -14,8 +14,8 @@ from vkbottle_types.responses.newsfeed import (
 )
 
 
-class NewsfeedCategory(NewsfeedCategory):
-    @typing.overload
+class NewsfeedCategory(NewsfeedCategory):  # type: ignore
+    @typing.overload  # type: ignore
     async def search(
         self,
         *,
@@ -28,7 +28,6 @@ class NewsfeedCategory(NewsfeedCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
-        **kwargs: typing.Any,
     ) -> NewsfeedSearchStrictResponseModel: ...
 
     @typing.overload
@@ -44,7 +43,6 @@ class NewsfeedCategory(NewsfeedCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
-        **kwargs: typing.Any,
     ) -> NewsfeedSearchExtendedResponseModel: ...
 
     @typing.overload
@@ -61,7 +59,6 @@ class NewsfeedCategory(NewsfeedCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
-        **kwargs: typing.Any,
     ) -> NewsfeedSearchExtendedStrictResponseModel: ...
 
     @typing.overload
@@ -76,7 +73,6 @@ class NewsfeedCategory(NewsfeedCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
-        **kwargs: typing.Any,
     ) -> NewsfeedSearchResponseModel: ...
 
     async def search(

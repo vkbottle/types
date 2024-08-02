@@ -27,7 +27,8 @@ from vkbottle_types.objects import (
 
 
 class BaseEventObject(BaseModel):
-    pass
+    class Config:
+        frozen = False
 
 
 class MessageNewObject(BaseEventObject):
@@ -326,6 +327,20 @@ class DonutMoneyWithdrawErrorObject(BaseEventObject):
     reason: str
 
 
+class MessageReactionEventObject(BaseEventObject):
+    reacted_id: int
+    peer_id: int
+    cmid: int
+    reaction_id: Optional[int] = None
+
+
+class MessageReadObject(BaseEventObject):
+    from_id: int
+    peer_id: int
+    read_message_id: int
+    conversation_message_id: int
+
+
 _locals = locals().copy()
 _locals_values = _locals.values()
 for item in _locals_values:
@@ -367,6 +382,8 @@ __all__ = (
     "MessageEventObject",
     "MessageNewObject",
     "MessageReplyObject",
+    "MessageReactionEventObject",
+    "MessageReadObject",
     "MessageTypingStateObject",
     "PhotoCommentDeleteObject",
     "PhotoCommentEditObject",

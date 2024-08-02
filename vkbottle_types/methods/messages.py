@@ -18,9 +18,9 @@ from vkbottle_types.responses.messages import (
 )
 
 
-class MessagesCategory(MessagesCategory):
-    @typing.overload
-    async def send(
+class MessagesCategory(MessagesCategory):  # type: ignore
+    @typing.overload  # type: ignore
+    async def send(  # type: ignore
         self,
         user_id: typing.Optional[int] = None,
         random_id: typing.Optional[int] = None,
@@ -219,7 +219,7 @@ class MessagesCategory(MessagesCategory):
         )
         return model(**response).response
 
-    @typing.overload
+    @typing.overload  # type: ignore
     async def get_chat(
         self,
         *,

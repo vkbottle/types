@@ -18,6 +18,9 @@ class BaseGroupEvent(BaseModel):
     group_id: Optional[int] = None
     unprepared_ctx_api: Optional[Any] = None
 
+    class Config:
+        frozen = False
+
     @property
     def ctx_api(self) -> Union["ABCAPI", "API"]:
         assert self.unprepared_ctx_api is not None
@@ -236,6 +239,14 @@ class DonutMoneyWithdrawError(BaseGroupEvent):
     object: group_event_objects.DonutMoneyWithdrawErrorObject
 
 
+class MessageReactionEvent(BaseGroupEvent):
+    object: group_event_objects.MessageReactionEventObject
+
+
+class MessageRead(BaseGroupEvent):
+    object: group_event_objects.MessageReadObject
+
+
 _locals = locals().copy()
 _locals_values = _locals.values()
 for item in _locals_values:
@@ -277,6 +288,8 @@ __all__ = (
     "MessageEvent",
     "MessageNew",
     "MessageReply",
+    "MessageReactionEvent",
+    "MessageRead",
     "MessageTypingState",
     "PhotoCommentDelete",
     "PhotoCommentEdit",
