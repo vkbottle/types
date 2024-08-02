@@ -21,7 +21,7 @@ if typing.TYPE_CHECKING:
 else:
 
     class ModelMetaclass(pydantic.main.ModelMetaclass):
-        def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> type[typing.Any]:
+        def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> typing.Type[typing.Any]:
             return super().__new__(cls, *args, __resolve_forward_refs__=False, **kwargs)
 
     class BaseModel(pydantic.BaseModel, metaclass=ModelMetaclass):
