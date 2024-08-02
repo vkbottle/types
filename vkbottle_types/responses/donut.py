@@ -1,13 +1,6 @@
 import inspect
-import typing
 
-from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.codegen.responses.donut import *  # noqa: F403,F401
-from vkbottle_types.codegen.responses.groups import (
-    GroupsGetMembersFieldsResponse,
-    GroupsGetMembersFieldsResponseModel,
-)
-from vkbottle_types.objects import UsersUserFull
 
 from .base_response import BaseResponse
 
