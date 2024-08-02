@@ -143,6 +143,7 @@ class AppsApp(AppsApp):  # type: ignore
 
 class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/225
+    sticker: Optional["BaseStickerNew"] = None  # type: ignore
     story: Optional["StoriesStory"] = None
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
