@@ -13,13 +13,12 @@ class BaseEventObject(msgspec.Struct, omit_defaults=True, array_like=True):
 
 class MessageObject(BaseEventObject):
     message_id: Optional[int] = None
+    mask: Optional[int] = None
     peer_id: Optional[int] = None
     timestamp: Optional[int] = None
-    text: Optional[str] = None
-    subject: Optional[str] = None
-    info: Optional[str] = None
+    chat_title: Optional[str] = ""
+    new_text: Optional[str] = ""
     attachments: Optional[Attachments] = None
-    random_id: Optional[int] = None
 
 
 class ReplaceMessageFlagsObject(MessageObject):
@@ -27,25 +26,19 @@ class ReplaceMessageFlagsObject(MessageObject):
 
 
 class InstallMessageFlagsObject(MessageObject):
-    mask: Optional[int] = None
-
-
-class ResetMessageFlagsObject(MessageObject):
-    mask: Optional[int] = None
-
-
-class  MessageNewObject(MessageObject):
-    minor_id: Optional[int] = None
     flags: Optional[int] = None
 
 
-class MessageEditObject(BaseEventObject):
-    message_id: Optional[int] = None
-    mask: Optional[int] = None
-    peer_id: Optional[int] = None
-    timestamp: Optional[int] = None
-    new_text: Optional[str] = ""
-    attachments: Optional[Attachments] = None
+class ResetMessageFlagsObject(MessageObject):
+    flags: Optional[int] = None
+
+
+class MessageNewObject(MessageObject):
+    random_id: Optional[int] = None
+
+
+class MessageEditObject(MessageObject):
+    pass
 
 
 class InReadObject(BaseEventObject):
