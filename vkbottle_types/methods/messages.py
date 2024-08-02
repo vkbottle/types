@@ -59,9 +59,8 @@ class MessagesCategory(MessagesCategory):  # type: ignore
                 "purchase_update",
             ]
         ] = None,
-        subscribe_id: typing.Optional[int] = None
-    ) -> int:
-        ...
+        subscribe_id: typing.Optional[int] = None,
+    ) -> int: ...
 
     @typing.overload
     async def send(
@@ -104,8 +103,7 @@ class MessagesCategory(MessagesCategory):  # type: ignore
             ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
-    ) -> typing.List[MessagesSendUserIdsResponseItem]:
-        ...
+    ) -> typing.List[MessagesSendUserIdsResponseItem]: ...
 
     @typing.overload
     async def send(
@@ -148,8 +146,7 @@ class MessagesCategory(MessagesCategory):  # type: ignore
             ]
         ] = None,
         subscribe_id: typing.Optional[int] = None,
-    ) -> typing.List[MessagesSendUserIdsResponseItem]:
-        ...
+    ) -> typing.List[MessagesSendUserIdsResponseItem]: ...
 
     async def send(
         self,

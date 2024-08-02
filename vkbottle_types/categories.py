@@ -76,7 +76,7 @@ class APICategories(ABC):
     @property
     def auth(self) -> auth.AuthCategory:
         return auth.AuthCategory(self.api_instance)
-    
+
     @property
     def asr(self) -> asr.AsrCategory:
         return asr.AsrCategory(self.api_instance)
@@ -204,7 +204,7 @@ class APICategories(ABC):
     @property
     def streaming(self) -> streaming.StreamingCategory:
         return streaming.StreamingCategory(self.api_instance)
-    
+
     @property
     def translations(self) -> translations.TranslationsCategory:
         return translations.TranslationsCategory(self.api_instance)

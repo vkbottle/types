@@ -77,7 +77,9 @@ CATEGORIES = (
     "widgets",
 )
 
-env = jinja2.Environment(loader=jinja2.FileSystemLoader(pathlib.Path(__file__).parent / "templates"))
+env = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(pathlib.Path(__file__).parent / "templates")
+)
 env.globals.update(
     {
         "snake_case": snake_case,
@@ -85,7 +87,7 @@ env.globals.update(
         "is_int": lambda x: isinstance(x, int),
         "makesafe": makesafe,
         "instring": instring,
-        "unique": lambda iterable: set(iterable), 
+        "unique": lambda iterable: set(iterable),
     }
 )
 
@@ -95,11 +97,11 @@ def process_downloaded_category(dct: dict) -> Category:
         if not dct.get(key):
             dct.pop(key, None)
 
-    if (methods := dct.get("methods", {}).get("methods")):
+    if methods := dct.get("methods", {}).get("methods"):
         for method in methods:
             method["name"] = method["name"].split(".")[1]
         dct["methods"] = methods
-        
+
     category = factory.load(dct, Category)
     return category
 
@@ -262,17 +264,17 @@ def generate_responses(category: Category, path: str) -> None:
     print("        + Responses successfully generated!")
 
 
-def process_responses(responses: dict[str, dict[str, str]], responses_definitions: dict[str, Definition]) -> dict[str, dict[str, str]]:
+def process_responses(
+    responses: dict[str, dict[str, str]], responses_definitions: dict[str, Definition]
+) -> dict[str, dict[str, str]]:
     for response_name, response in responses.items():
         if "$ref" not in response:
             continue
-        if (
-            definition := responses_definitions.get(response["$ref"].split("/")[-1])
-        ) is not None:
+        if (definition := responses_definitions.get(response["$ref"].split("/")[-1])) is not None:
             for prop in definition.properties:
                 if prop.name == "response":
                     if (response_definition := definition.get_response_definition()) is not None:
-                        if (response_definition.properties or response_definition.enum):
+                        if response_definition.properties or response_definition.enum:
                             hint = get_complex_type(response, response=True)
                         else:
                             hint = "typing.Dict[str, typing.Any]"
@@ -292,7 +294,9 @@ def process_responses(responses: dict[str, dict[str, str]], responses_definition
                             .strip()
                         )
                         if "Union" in orig_type:
-                            orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
+                            orig_type = list(
+                                map(str.strip, orig_type.replace("Union", "").split(","))
+                            )
                         if "Dict" in orig_type:
                             orig_type = "dict"
                     responses[response_name]["response_hint"] = {  # type: ignore
@@ -303,25 +307,29 @@ def process_responses(responses: dict[str, dict[str, str]], responses_definition
                                 "is_object": is_object(t, hint),
                             }
                             for t in orig_type
-                        ] if isinstance(orig_type, list) else [
+                        ]
+                        if isinstance(orig_type, list)
+                        else [
                             {
                                 "type": orig_type,
                                 "is_object": is_object(orig_type, hint),
                             }
                         ],
                     }
-        
+
     return responses.copy()
 
 
-def update_category_methods_responses(category: Category, responses_definitions: dict[str, Definition]) -> None:        
+def update_category_methods_responses(
+    category: Category, responses_definitions: dict[str, Definition]
+) -> None:
     for method in category.methods:
         responses = typing.cast(dict[str, dict[str, str]], method.responses)
         responses.update(process_responses(responses, responses_definitions))
 
 
 def reorder_definitions(
-    definitions: list[tuple[str, Definition, Category]]
+    definitions: list[tuple[str, Definition, Category]],
 ) -> list[tuple[str, Definition, Category]]:
     l_bases_f = lambda d: len(d[1].allOf)  # noqa: E731
     s = sorted(definitions, key=l_bases_f)
@@ -346,11 +354,7 @@ def generate_objects(definitions: list[tuple[str, Definition, Category]], path: 
 
 
 def is_object(t: str, hint: str) -> bool:
-    return (
-        t not in builtins.__dict__
-        and "Response" not in t
-        and "Literal[" not in hint
-    )
+    return t not in builtins.__dict__ and "Response" not in t and "Literal[" not in hint
 
 
 def generate_category(category: Category, path: str, responses_definitions: dict[str, Definition]):
@@ -360,13 +364,12 @@ def generate_category(category: Category, path: str, responses_definitions: dict
 
 
 def parse_properties(properties: dict[str, dict]) -> list[dict]:
-    return [
-        {"name": name, **prop, "data": prop}
-        for name, prop in properties.items()
-    ]
+    return [{"name": name, **prop, "data": prop} for name, prop in properties.items()]
 
 
-def get_definition(name: str, definitions: typing.Iterable[typing.Tuple[str, Definition]]) -> typing.Optional[Definition]:
+def get_definition(
+    name: str, definitions: typing.Iterable[typing.Tuple[str, Definition]]
+) -> typing.Optional[Definition]:
     for definition_name, definition in definitions:
         if definition_name == name:
             return definition
@@ -380,7 +383,9 @@ def get_definitions(objects: Objects) -> typing.List[typing.Tuple[str, Definitio
     definitions: typing.Dict[str, Definition] = {}
     sub_definitions: typing.Dict[str, typing.List[str]] = {}
 
-    for definition_name, definition in typing.cast(typing.Dict[str, dict], objects.definitions).items():
+    for definition_name, definition in typing.cast(
+        typing.Dict[str, dict], objects.definitions
+    ).items():
         if "properties" in definition:
             properties: typing.Dict[str, dict] = {}
 
@@ -429,7 +434,9 @@ def generate_schema(schema: list[Category], folder: str) -> None:
                     sub_definitions[name] = []
                 if def_name not in sub_definitions[name]:
                     sub_definitions[name].append(def_name)
-                base.definition = get_definition(name, list((n, x[0]) for n, x in definitions.items()))
+                base.definition = get_definition(
+                    name, list((n, x[0]) for n, x in definitions.items())
+                )
 
     for definition_name, (def_, _) in definitions.items():
         if (sub_defs := sub_definitions.get(definition_name)) is None:

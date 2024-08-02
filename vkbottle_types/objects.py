@@ -42,7 +42,9 @@ class MessagesMessageAttachmentType(Enum):  # type: ignore
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    GROUP_CALL_IN_PROGRESS = (
+        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    )
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
     VIDEO_PLAYLIST = "video_playlist"
 

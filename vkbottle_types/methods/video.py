@@ -16,9 +16,8 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = ...,
         album_ids: typing.Optional[Literal[None]] = None,
-        **kwargs
-    ) -> BaseOkResponseModel:
-        ...
+        **kwargs,
+    ) -> BaseOkResponseModel: ...
 
     @typing.overload
     async def add_to_album(
@@ -28,9 +27,8 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[Literal[None]] = None,
         album_ids: typing.Optional[typing.List[int]] = ...,
-        **kwargs
-    ) -> typing.List[int]:
-        ...
+        **kwargs,
+    ) -> typing.List[int]: ...
 
     async def add_to_album(
         self,
@@ -39,7 +37,7 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = None,
         album_ids: typing.Optional[typing.List[int]] = None,
-        **kwargs
+        **kwargs,
     ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
         """video.addToAlbum method
 
@@ -67,9 +65,8 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = ...,
         album_ids: typing.Optional[Literal[None]] = None,
-        **kwargs
-    ) -> BaseOkResponseModel:
-        ...
+        **kwargs,
+    ) -> BaseOkResponseModel: ...
 
     @typing.overload
     async def remove_from_album(
@@ -79,9 +76,8 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[Literal[None]] = None,
         album_ids: typing.Optional[typing.List[int]] = ...,
-        **kwargs
-    ) -> typing.List[int]:
-        ...
+        **kwargs,
+    ) -> typing.List[int]: ...
 
     async def remove_from_album(
         self,
@@ -90,7 +86,7 @@ class VideoCategory(VideoCategory):
         target_id: typing.Optional[int] = None,
         album_id: typing.Optional[int] = None,
         album_ids: typing.Optional[typing.List[int]] = None,
-        **kwargs
+        **kwargs,
     ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
         """video.removeFromAlbum method
 

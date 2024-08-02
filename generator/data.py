@@ -44,10 +44,10 @@ class MethodParameter:
 
         if not self.required:
             return "None"
-        
+
         if default is None and tp == "array":
             return "None"
-        
+
         if isinstance(tp, list):
             result = None
             for t in tp:
@@ -85,7 +85,7 @@ class MethodParameter:
             dependant.required = True
             dependant.default = None
             return dependant
-        
+
         if isinstance(dependant.type, Ready):
             if dependant.type.value == "typing.Literal[True]":
                 dependant.type = Ready("typing.Literal[False]")
@@ -97,7 +97,7 @@ class MethodParameter:
                 orig.required = False
                 orig.default = None
                 return orig
-        
+
         dependant.required = not dependant.required
         return dependant
 
@@ -116,7 +116,7 @@ class Method:
 
     def __post_init__(self) -> None:
         self.dependant_parameters = self.dependant_parameters or self.get_dependant_params()
-    
+
     def get_dependant_params(self) -> list[str]:
         dependant_params: set[str] = set()
 
@@ -128,12 +128,12 @@ class Method:
             if not any(self.param_exists(param) for param in dep_params):
                 continue
             dependant_params |= dep_params
-        
+
         return list(dependant_params)
-    
+
     def param_exists(self, param_name: str) -> bool:
         return any(param.name == param_name for param in self.parameters)
-    
+
     def get_dependants(self) -> list["Method"]:
         if len(self.responses) > 1:
             dependant_responses = typing.cast(dict, self.responses.copy())
@@ -149,7 +149,7 @@ class Method:
             for name, response in dependant_responses.items():
                 if response is None:
                     continue
-                
+
                 if name != "response":
                     original_param_names = (
                         name.removeprefix("response")
@@ -158,13 +158,14 @@ class Method:
                         .replace("Response", "")
                     )
                     dependant_params = dependant_params | set(
-                        x for x in map(snake_case, original_param_names.split("_"))
+                        x
+                        for x in map(snake_case, original_param_names.split("_"))
                         if x not in PRIMITIVE_TYPES
                     )
                     dependant_found = False
                 else:
                     dependant_found = bool(self.dependant_parameters)
-                
+
                 for param in list(method_params.copy().values()) or self.parameters:
                     if param.name not in dependant_params:
                         method_params[param.name] = param
@@ -172,12 +173,12 @@ class Method:
                         dependant_found = True
                         new_dep = param.new_dependant(param)
                         method_params[param.name] = new_dep
-                        
+
                         if new_dep is param:
                             dependant_params.remove(param.name)
                         else:
                             dependant_params.add(param.name)
-                
+
                 if dependant_found:
                     dependants.append(
                         Method(
@@ -190,28 +191,35 @@ class Method:
                     )
                 elif name != "response" and name in self.responses:
                     self.responses.pop(name)
-            
+
             return dependants
         return []
-    
+
     def get_dependants_dependant_parameters(self) -> dict[str, str]:
         dependant_parameters = {}
-        response_model: str | None = self.responses.get("response", {}).get("response_hint", {}).get("hint", None)  # type: ignore
+        response_model: str | None = (
+            self.responses.get("response", {}).get("response_hint", {}).get("hint", None)
+        )  # type: ignore
 
         for dependant in self.get_dependants():
             for dependant_parameter in dependant.dependant_parameters:
                 dependant_response_model = dependant.get_response_model()
-                if response_model == dependant_response_model or dependant_parameter in dependant_parameters:
+                if (
+                    response_model == dependant_response_model
+                    or dependant_parameter in dependant_parameters
+                ):
                     continue
                 dependant_parameters[dependant_parameter] = dependant_response_model
-        
+
         return dependant_parameters
 
     def get_responses_hints(self) -> list[str]:
-        return list(set(
-            get_complex_type(response, response=True)
-            for response in get_responses(self.responses)  # type: ignore
-        ))
+        return list(
+            set(
+                get_complex_type(response, response=True)
+                for response in get_responses(self.responses)  # type: ignore
+            )
+        )
 
     def get_response_hint(self) -> str:
         responses = get_responses(self.responses)  # type: ignore
@@ -244,10 +252,10 @@ class Method:
                 required.append(param)
             else:
                 optional.append(param)
-        
+
         required.sort(key=lambda param: param.name)
         optional.sort(key=lambda param: param.name)
-    
+
         if not self.dependant_parameters:
             return required + optional
 
@@ -258,7 +266,7 @@ class Method:
             for index, param in enumerate(required.copy()):
                 if param.name == param_name:
                     dependant_required.append(required.pop(index))
-            
+
             for index, param in enumerate(optional.copy()):
                 if param.name == param_name:
                     dependant_optional.append(optional.pop(index))
@@ -311,7 +319,7 @@ class Property:
                 raise LookupError("Definition name is required")
             propname = camelcase(definition_name) + camelcase(self.name)
             return repr(propname)
-        
+
         if t == "dict" and response:
             return "typing.Dict[str, typing.Any]"
         return t
@@ -319,7 +327,7 @@ class Property:
     @property
     def is_optional(self) -> bool:
         return not self.required
-    
+
     def get_default_value(self, model_name: str | None = None) -> typing.Any | None:
         if self.default is None:
             return None
@@ -388,7 +396,8 @@ class Definition:
         if self.allOf:
             base_sub_definitions: dict[str, list[str]] = {
                 transform_ref(base.ref): list(base.definition.sub_definitions.keys())
-                for base in self.allOf if base.ref and base.definition
+                for base in self.allOf
+                if base.ref and base.definition
             }
             refs = [transform_ref(base.ref) for base in self.allOf if base.ref]
 
@@ -402,7 +411,7 @@ class Definition:
                 if base.properties:
                     for propname, prop in base.properties.items():
                         self.properties.append(factory.load({"name": propname, **prop}, Property))
-                    pass   
+                    pass
 
             self._bases = refs
             return self._bases

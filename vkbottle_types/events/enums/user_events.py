@@ -25,7 +25,7 @@ class UserEventType(IntEnum):
 
     CHANGE_MAJOR_ID = 20
     CHANGE_MINOR_ID = 21
-    
+
     TRANSLATE_MESSAGE = 50
 
     CHAT_EDIT = 51

@@ -14,7 +14,7 @@ if typing.TYPE_CHECKING:
     )
     class BaseModel(pydantic.BaseModel):
         @classmethod
-        def from_raw(cls, data: bytes) -> typing.Self:  ...
+        def from_raw(cls, data: bytes) -> typing.Self: ...
 
         def to_dict(self) -> typing.Dict[str, typing.Any]: ...
 
@@ -27,7 +27,7 @@ else:
     class BaseModel(pydantic.BaseModel, metaclass=ModelMetaclass):
         class Config:
             frozen = True
-        
+
         @classmethod
         def from_raw(cls, data: bytes) -> typing.Self:
             return getattr(cls, "model_validate_json", cls.parse_raw)(data)

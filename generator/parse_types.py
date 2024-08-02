@@ -61,7 +61,9 @@ def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False)
     raise RuntimeError(f"Cannot process complex type {type_dct}")
 
 
-def get_type(type_name: str | list[str] | dict | Ready, items: dict | None = None, hint: bool = False) -> str:
+def get_type(
+    type_name: str | list[str] | dict | Ready, items: dict | None = None, hint: bool = False
+) -> str:
     if isinstance(type_name, Ready):
         if hint:
             return repr(type_name.value)
@@ -87,9 +89,7 @@ def get_type(type_name: str | list[str] | dict | Ready, items: dict | None = Non
                 raise RuntimeError(f"{type_name} not in primitive types")
             return PRIMITIVE_TYPES[type_name]
         case list(lst):
-            return "typing.Union{}".format(
-                [get_type(name, {}, hint=True) for name in lst]
-            )
+            return "typing.Union{}".format([get_type(name, {}, hint=True) for name in lst])
 
     raise RuntimeError(f"Cannot process {type_name} (items={items})")
 

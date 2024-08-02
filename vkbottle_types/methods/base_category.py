@@ -18,8 +18,7 @@ class BaseCategory:
         exclude_params.update(params["kwargs"])
         exclude_params.pop("kwargs")
         return {
-            k[1:] if k.startswith("_") else k:
-            int(v) if isinstance(v, bool) else v
+            k[1:] if k.startswith("_") else k: int(v) if isinstance(v, bool) else v
             for k, v in exclude_params.items()
             if k != "self" and v is not None
         }
@@ -27,7 +26,13 @@ class BaseCategory:
     @classmethod
     def get_model(
         cls,
-        dependent: typing.Tuple[typing.Tuple[typing.Tuple[typing.Union[str, typing.Sequence[str]], ...], typing.Type["BaseModel"]], ...],
+        dependent: typing.Tuple[
+            typing.Tuple[
+                typing.Tuple[typing.Union[str, typing.Sequence[str]], ...],
+                typing.Type["BaseModel"],
+            ],
+            ...,
+        ],
         default: Model,
         params: typing.Dict[str, typing.Any],
     ) -> Model:
@@ -35,11 +40,9 @@ class BaseCategory:
 
         for items in sorted(dependent, key=lambda x: len(x[0])):
             keys, model = items
-            
+
             for key in keys:
-                if (
-                    isinstance(key, str) and params.get(key) is None
-                ) or (
+                if (isinstance(key, str) and params.get(key) is None) or (
                     isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]
                 ):
                     break
