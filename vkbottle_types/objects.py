@@ -1,9 +1,10 @@
 # flake8: noqa: F405
 import inspect
+import typing
 from enum import Enum
 from typing import List, Optional
 
-from vkbottle_types.base_model import BaseModel
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
 
 
@@ -95,6 +96,47 @@ class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
     pretty_cards: Optional["PrettyCardsList"] = None
 
 
+class BaseSticker(BaseModel):  # type: ignore
+    sticker_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Sticker ID."""
+
+    product_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Pack ID."""
+
+    images: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
+    """Property `BaseStickerNew.images`."""
+
+    images_with_background: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
+    """Property `BaseStickerNew.images_with_background`."""
+
+    animation_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of sticker animation script."""
+
+    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = Field(
+        default=None,
+    )
+    """Array of sticker animation script objects."""
+
+    is_allowed: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the sticker is allowed."""
+
+
+class BaseStickerNew(BaseSticker):  # type: ignore
+    inner_type: "BaseStickerNewInnerType" = Field()
+
+
 class WallCommentAttachmentType(Enum):  # type: ignore
     """Attachment type"""
 
@@ -143,7 +185,6 @@ class AppsApp(AppsApp):  # type: ignore
 
 class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/225
-    sticker: Optional["BaseStickerNew"] = None  # type: ignore
     story: Optional["StoriesStory"] = None
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
