@@ -1,14 +1,13 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
+
 from vkbottle_types.base_model import Field
+from vkbottle_types.objects import StorageValue
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class StorageValueResponseModel(BaseModel):
-    key: str = Field()
-
-    value: str = Field()
+class StorageGetKeysResponse(BaseResponse):
+    response: typing.List[str] = Field()
 
 
-class StorageValueResponse(BaseResponse):
-    response: "StorageValueResponseModel"
+class StorageGetResponse(BaseResponse):
+    response: typing.List["StorageValue"] = Field()

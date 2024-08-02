@@ -1,145 +1,50 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
-from vkbottle_types.base_model import Field
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BaseLikesInfo,
-    NotificationsNotification,
-    NotificationsSendMessageError,
-    WallWallpostAttachment,
-    BaseGeo,
-    NotificationsFeedback,
-    NotificationsReply,
+    AppsApp,
+    GroupsGroup,
+    NotificationsNotificationItem,
+    NotificationsSendMessageItem,
+    PhotosPhoto,
+    UsersUser,
+    VideoVideoFull,
 )
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class NotificationsFeedbackResponseModel(BaseModel):
-    attachments: typing.Optional[typing.List[WallWallpostAttachment]] = Field(
+class NotificationsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["NotificationsNotificationItem"] = Field()
+    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
         default=None,
     )
-
-    from_id: typing.Optional[int] = Field(
-        default=None,
-        description="Reply author's ID",
-    )
-
-    geo: typing.Optional["BaseGeo"] = Field(
+    groups: typing.Optional[typing.List["GroupsGroup"]] = Field(
         default=None,
     )
-
-    id: typing.Optional[int] = Field(
-        default=None,
-        description="Item ID",
-    )
-
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    last_viewed: typing.Optional[int] = Field(
         default=None,
     )
-
-    text: typing.Optional[str] = Field(
-        default=None,
-        description="Reply text",
-    )
-
-    to_id: typing.Optional[int] = Field(
-        default=None,
-        description="Wall owner's ID",
-    )
-
-
-class NotificationsFeedbackResponse(BaseResponse):
-    response: "NotificationsFeedbackResponseModel"
-
-
-class NotificationsNotificationResponseModel(BaseModel):
-    date: typing.Optional[int] = Field(
-        default=None,
-        description="Date when the event has been occurred",
-    )
-
-    feedback: typing.Optional["NotificationsFeedback"] = Field(
+    photos: typing.Optional[typing.List["PhotosPhoto"]] = Field(
         default=None,
     )
-
-    parent: typing.Optional["NotificationsNotification"] = Field(
+    videos: typing.Optional[typing.List["VideoVideoFull"]] = Field(
         default=None,
     )
-
-    reply: typing.Optional["NotificationsReply"] = Field(
+    apps: typing.Optional[typing.List["AppsApp"]] = Field(
         default=None,
     )
-
-    type: typing.Optional[str] = Field(
+    next_from: typing.Optional[str] = Field(
         default=None,
-        description="Notification type",
     )
-
-
-class NotificationsNotificationResponse(BaseResponse):
-    response: "NotificationsNotificationResponseModel"
-
-
-class NotificationsNotificationItemResponseModel(BaseModel):
-    pass
-
-
-class NotificationsNotificationItemResponse(BaseResponse):
-    response: "NotificationsNotificationItemResponseModel"
-
-
-class NotificationsReplyResponseModel(BaseModel):
-    date: typing.Optional[int] = Field(
-        default=None,
-        description="Date when the reply has been created in Unixtime",
-    )
-
-    id: typing.Optional[int] = Field(
-        default=None,
-        description="Reply ID",
-    )
-
-    text: typing.Optional[int] = Field(
-        default=None,
-        description="Reply text",
-    )
-
-
-class NotificationsReplyResponse(BaseResponse):
-    response: "NotificationsReplyResponseModel"
-
-
-class NotificationsSendMessageErrorResponseModel(BaseModel):
-    code: typing.Optional[int] = Field(
-        default=None,
-        description="Error code",
-    )
-
-    description: typing.Optional[str] = Field(
-        default=None,
-        description="Error description",
-    )
-
-
-class NotificationsSendMessageErrorResponse(BaseResponse):
-    response: "NotificationsSendMessageErrorResponseModel"
-
-
-class NotificationsSendMessageItemResponseModel(BaseModel):
-    user_id: typing.Optional[int] = Field(
-        default=None,
-        description="User ID",
-    )
-
-    status: typing.Optional[bool] = Field(
-        default=None,
-        description="Notification status",
-    )
-
-    error: typing.Optional["NotificationsSendMessageError"] = Field(
+    ttl: typing.Optional[int] = Field(
         default=None,
     )
 
 
-class NotificationsSendMessageItemResponse(BaseResponse):
-    response: "NotificationsSendMessageItemResponseModel"
+class NotificationsGetResponse(BaseResponse):
+    response: "NotificationsGetResponseModel" = Field()
+
+
+class NotificationsSendMessageResponse(BaseResponse):
+    response: typing.List["NotificationsSendMessageItem"] = Field()

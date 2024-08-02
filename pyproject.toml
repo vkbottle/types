@@ -1,23 +1,44 @@
 [tool.poetry]
 name = "vkbottle-types"
-version = "5.131.146.16"
-description = "Types for vkbottle"
+version = "5.199.63.1"
+description = "VK API methods & types for vkbottle."
 authors = ["timoniq"]
 license = "MIT"
 packages = [
     { include = "vkbottle_types" }
 ]
 
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.5"
+
 [tool.poetry.dependencies]
-python = "^3.7.2"
-pydantic = ">=1.10.6,<3"
-vkbottle = "^4.3.12"
+python = "^3.8"
+pydantic = "<=1.10.4,<3"
+vkbottle = "^4.4.0"
+requests = "^2.20.0"
 tqdm = "^4.65.0"
 dataclass-factory = "^2.16"
 jinja2 = "^3.1.2"
+msgspec = "^0.18.6"
 
 [tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+[tool.ruff]
+line-length = 99
+target-version = "py38"
+lint.select = ["I", "N", "ANN", "COM", "YTT", "TCH", "SIM"]
+lint.ignore = [
+  "ANN001", "ANN002", "ANN003", "ANN101", "ANN102", "ANN201", "ANN202",
+  "ANN204", "ANN206", "ANN401", "COM812", "N805", "N818", "TCH001", "TCH002",
+  "TCH004", "F405"
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"

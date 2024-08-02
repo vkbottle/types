@@ -1,662 +1,336 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
-from vkbottle_types.base_model import Field
 
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
-    BasePropertyExists,
-    PhotosImageType,
-    PhotosTagsSuggestionItemButton,
-    BaseLikes,
-    BaseRepostsInfo,
-    BaseBoolInt,
+    BaseImage,
+    BaseUploadServer,
+    GroupsGroupFull,
     PhotosPhoto,
-    PhotosPhotoSizesType,
+    PhotosPhotoAlbumFull,
     PhotosPhotoTag,
-    PhotosImage,
-    BaseObjectCount,
-    PhotosPhotoSizes,
+    PhotosPhotoUpload,
+    PhotosPhotoXtrTagInfo,
+    UsersUserFull,
+    WallWallComment,
 )
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class PhotosImageResponseModel(BaseModel):
-    height: typing.Optional[int] = Field(
-        default=None,
-        description="Height of the photo in px.",
-    )
-
-    type: typing.Optional["PhotosImageType"] = Field(
-        default=None,
-    )
-
-    url: typing.Optional[str] = Field(
-        default=None,
-        description="Photo URL.",
-    )
-
-    width: typing.Optional[int] = Field(
-        default=None,
-        description="Width of the photo in px.",
-    )
+class PhotosCopyResponse(BaseResponse):
+    response: int = Field()
 
 
-class PhotosImageResponse(BaseResponse):
-    response: "PhotosImageResponseModel"
+class PhotosCreateAlbumResponse(BaseResponse):
+    response: "PhotosPhotoAlbumFull" = Field()
 
 
-class PhotosImageTypeResponseModel(enum.Enum):
-    S = "s"
-
-    M = "m"
-
-    X = "x"
-
-    L = "l"
-
-    O = "o"
-
-    P = "p"
-
-    Q = "q"
-
-    R = "r"
-
-    Y = "y"
-
-    Z = "z"
-
-    W = "w"
-
-    BASE = "base"
+class PhotosCreateCommentResponse(BaseResponse):
+    response: int = Field()
 
 
-class PhotosImageTypeResponse(BaseResponse):
-    response: "PhotosImageTypeResponseModel"
+class PhotosGetAlbumsCountResponse(BaseResponse):
+    response: int = Field()
 
 
-class PhotosPhotoResponseModel(BaseModel):
-    album_id: int = Field(
-        description="Album ID",
-    )
+class PhotosGetAlbumsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhotoAlbumFull"] = Field()
 
-    date: int = Field(
-        description="Date when uploaded",
-    )
 
-    id: int = Field(
-        description="Photo ID",
-    )
+class PhotosGetAlbumsResponse(BaseResponse):
+    response: "PhotosGetAlbumsResponseModel" = Field()
 
-    owner_id: int = Field(
-        description="Photo owner's ID",
-    )
 
-    has_tags: bool = Field(
-        description="Whether photo has attached tag links",
-    )
+class PhotosGetAllCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
 
-    access_key: typing.Optional[str] = Field(
-        default=None,
-        description="Access key for the photo",
-    )
 
-    height: typing.Optional[int] = Field(
-        default=None,
-        description="Original photo height",
-    )
+class PhotosGetAllCommentsResponse(BaseResponse):
+    response: "PhotosGetAllCommentsResponseModel" = Field()
 
-    images: typing.Optional[typing.List[PhotosImage]] = Field(
+
+class PhotosGetAllResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    more: typing.Optional[bool] = Field(
         default=None,
     )
 
-    lat: typing.Optional[float] = Field(
-        default=None,
-        description="Latitude",
-    )
 
-    long: typing.Optional[float] = Field(
-        default=None,
-        description="Longitude",
-    )
+class PhotosGetAllResponse(BaseResponse):
+    response: "PhotosGetAllResponseModel" = Field()
 
-    photo_256: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 2560 px width",
-    )
 
-    can_comment: typing.Optional[bool] = Field(
-        default=None,
-        description="Information whether current user can comment the photo",
-    )
+class PhotosGetByIdResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-    place: typing.Optional[str] = Field(
-        default=None,
-    )
 
-    post_id: typing.Optional[int] = Field(
-        default=None,
-        description="Post ID",
-    )
-
-    sizes: typing.Optional[typing.List[PhotosPhotoSizes]] = Field(
-        default=None,
-    )
-
-    square_crop: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    text: typing.Optional[str] = Field(
-        default=None,
-        description="Photo caption",
-    )
-
-    user_id: typing.Optional[int] = Field(
-        default=None,
-        description="ID of the user who have uploaded the photo",
-    )
-
-    width: typing.Optional[int] = Field(
-        default=None,
-        description="Original photo width",
-    )
-
-    likes: typing.Optional["BaseLikes"] = Field(
-        default=None,
-    )
-
-    comments: typing.Optional["BaseObjectCount"] = Field(
-        default=None,
-    )
-
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
-        default=None,
-    )
-
-    tags: typing.Optional["BaseObjectCount"] = Field(
-        default=None,
-    )
-
-    hidden: typing.Optional["BasePropertyExists"] = Field(
-        default=None,
-        description="Returns if the photo is hidden above the wall",
-    )
-
+class PhotosGetCommentsExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.List["UsersUserFull"] = Field()
+    groups: typing.List["GroupsGroupFull"] = Field()
     real_offset: typing.Optional[int] = Field(
         default=None,
-        description="Real position of the photo",
-    )
-
-    vertical_align: typing.Optional[typing.Literal["top", "middle", "bottom"]] = Field(
-        default=None,
-        description="Sets vertical alignment of a photo",
     )
 
 
-class PhotosPhotoResponse(BaseResponse):
-    response: "PhotosPhotoResponseModel"
+class PhotosGetCommentsExtendedResponse(BaseResponse):
+    response: "PhotosGetCommentsExtendedResponseModel" = Field()
 
 
-class PhotosPhotoAlbumResponseModel(BaseModel):
-    created: int = Field(
-        description="Date when the album has been created in Unixtime",
-    )
-
-    id: int = Field(
-        description="Photo album ID",
-    )
-
-    owner_id: int = Field(
-        description="Album owner's ID",
-    )
-
-    size: int = Field(
-        description="Photos number",
-    )
-
-    title: str = Field(
-        description="Photo album title",
-    )
-
-    updated: int = Field(
-        description="Date when the album has been updated last time in Unixtime",
-    )
-
-    description: typing.Optional[str] = Field(
-        default=None,
-        description="Photo album description",
-    )
-
-    thumb: typing.Optional["PhotosPhoto"] = Field(
+class PhotosGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    real_offset: typing.Optional[int] = Field(
         default=None,
     )
 
 
-class PhotosPhotoAlbumResponse(BaseResponse):
-    response: "PhotosPhotoAlbumResponseModel"
+class PhotosGetCommentsResponse(BaseResponse):
+    response: "PhotosGetCommentsResponseModel" = Field()
 
 
-class PhotosPhotoAlbumFullResponseModel(BaseModel):
-    id: int = Field(
-        description="Photo album ID",
-    )
+class PhotosGetMarketUploadServerResponse(BaseResponse):
+    response: "BaseUploadServer" = Field()
 
-    owner_id: int = Field(
-        description="Album owner's ID",
-    )
 
-    size: int = Field(
-        description="Photos number",
-    )
+class PhotosGetMessagesUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
 
-    title: str = Field(
-        description="Photo album title",
-    )
 
-    can_upload: typing.Optional[bool] = Field(
-        default=None,
-        description="Information whether current user can upload photo to the album",
-    )
+class PhotosGetNewTagsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhotoXtrTagInfo"] = Field()
 
-    comments_disabled: typing.Optional[bool] = Field(
-        default=None,
-        description="Information whether album comments are disabled",
-    )
 
-    created: typing.Optional[int] = Field(
-        default=None,
-        description="Date when the album has been created in Unixtime, not set for system albums",
-    )
+class PhotosGetNewTagsResponse(BaseResponse):
+    response: "PhotosGetNewTagsResponseModel" = Field()
 
-    description: typing.Optional[str] = Field(
-        default=None,
-        description="Photo album description",
-    )
 
-    can_delete: typing.Optional[bool] = Field(
-        default=None,
-        description="album can delete",
-    )
+class PhotosGetTagsResponse(BaseResponse):
+    response: typing.List["PhotosPhotoTag"] = Field()
 
-    can_include_to_feed: typing.Optional[bool] = Field(
-        default=None,
-        description="album can be selected to feed",
-    )
 
-    sizes: typing.Optional[typing.List[PhotosPhotoSizes]] = Field(
+class PhotosGetUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
+
+
+class PhotosGetUserPhotosResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    next_from: typing.Optional[str] = Field(
         default=None,
     )
 
-    thumb_id: typing.Optional[int] = Field(
+
+class PhotosGetUserPhotosResponse(BaseResponse):
+    response: "PhotosGetUserPhotosResponseModel" = Field()
+
+
+class PhotosGetWallUploadServerResponse(BaseResponse):
+    response: "PhotosPhotoUpload" = Field()
+
+
+class PhotosGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+    next_from: typing.Optional[str] = Field(
         default=None,
-        description="Thumb photo ID",
     )
 
-    thumb_is_last: typing.Optional[bool] = Field(
+
+class PhotosGetResponse(BaseResponse):
+    response: "PhotosGetResponseModel" = Field()
+
+
+class PhotosMarketAlbumUploadResponseModel(BaseModel):
+    gid: typing.Optional[int] = Field(
         default=None,
-        description="Information whether the album thumb is last photo",
     )
-
-    thumb_src: typing.Optional[str] = Field(
+    hash: typing.Optional[str] = Field(
         default=None,
-        description="URL of the thumb image",
     )
-
-    updated: typing.Optional[int] = Field(
+    photo: typing.Optional[str] = Field(
         default=None,
-        description="Date when the album has been updated last time in Unixtime, not set for system albums",
     )
-
-    upload_by_admins_only: typing.Optional[bool] = Field(
+    server: typing.Optional[int] = Field(
         default=None,
-        description="Information whether only community administrators can upload photos",
     )
 
 
-class PhotosPhotoAlbumFullResponse(BaseResponse):
-    response: "PhotosPhotoAlbumFullResponseModel"
+class PhotosMarketAlbumUploadResponse(BaseResponse):
+    response: "PhotosMarketAlbumUploadResponseModel" = Field()
 
 
-class PhotosPhotoFalseableResponseModel(BaseModel):
-    pass
-
-
-class PhotosPhotoFalseableResponse(BaseResponse):
-    response: "PhotosPhotoFalseableResponseModel"
-
-
-class PhotosPhotoSizesResponseModel(BaseModel):
-    height: int = Field(
-        description="Height in px",
-    )
-
-    type: "PhotosPhotoSizesType" = Field()
-
-    width: int = Field(
-        description="Width in px",
-    )
-
-    url: typing.Optional[str] = Field(
+class PhotosMarketUploadResponseModel(BaseModel):
+    crop_data: typing.Optional[str] = Field(
         default=None,
-        description="URL of the image",
     )
-
-    src: typing.Optional[str] = Field(
+    crop_hash: typing.Optional[str] = Field(
         default=None,
-        description="URL of the image",
     )
-
-
-class PhotosPhotoSizesResponse(BaseResponse):
-    response: "PhotosPhotoSizesResponseModel"
-
-
-class PhotosPhotoSizesTypeResponseModel(enum.Enum):
-    T = "t"
-
-    S = "s"
-
-    M = "m"
-
-    X = "x"
-
-    O = "o"
-
-    P = "p"
-
-    Q = "q"
-
-    R = "r"
-
-    K = "k"
-
-    L = "l"
-
-    Y = "y"
-
-    Z = "z"
-
-    C = "c"
-
-    W = "w"
-
-    A = "a"
-
-    B = "b"
-
-    E = "e"
-
-    I = "i"
-
-    D = "d"
-
-    J = "j"
-
-    TEMP = "temp"
-
-    H = "h"
-
-    G = "g"
-
-    N = "n"
-
-    F = "f"
-
-    MAX = "max"
-
-    BASE = "base"
-
-    U = "u"
-
-    V = "v"
-
-
-class PhotosPhotoSizesTypeResponse(BaseResponse):
-    response: "PhotosPhotoSizesTypeResponseModel"
-
-
-class PhotosPhotoTagResponseModel(BaseModel):
-    date: int = Field(
-        description="Date when tag has been added in Unixtime",
-    )
-
-    id: int = Field(
-        description="Tag ID",
-    )
-
-    placer_id: int = Field(
-        description="ID of the tag creator",
-    )
-
-    tagged_name: str = Field(
-        description="Tag description",
-    )
-
-    user_id: int = Field(
-        description="Tagged user ID",
-    )
-
-    viewed: bool = Field(
-        description="Information whether the tag is reviewed",
-    )
-
-    x: float = Field(
-        description="Coordinate X of the left upper corner",
-    )
-
-    x2: float = Field(
-        description="Coordinate X of the right lower corner",
-    )
-
-    y: float = Field(
-        description="Coordinate Y of the left upper corner",
-    )
-
-    y2: float = Field(
-        description="Coordinate Y of the right lower corner",
-    )
-
-    description: typing.Optional[str] = Field(
+    group_id: typing.Optional[int] = Field(
         default=None,
-        description="Tagged description.",
+    )
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
     )
 
 
-class PhotosPhotoTagResponse(BaseResponse):
-    response: "PhotosPhotoTagResponseModel"
+class PhotosMarketUploadResponse(BaseResponse):
+    response: "PhotosMarketUploadResponseModel" = Field()
+
+
+class PhotosMessageUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class PhotosMessageUploadResponse(BaseResponse):
+    response: "PhotosMessageUploadResponseModel" = Field()
+
+
+class PhotosOwnerCoverUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+
+
+class PhotosOwnerCoverUploadResponse(BaseResponse):
+    response: "PhotosOwnerCoverUploadResponseModel" = Field()
+
+
+class PhotosOwnerUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class PhotosOwnerUploadResponse(BaseResponse):
+    response: "PhotosOwnerUploadResponseModel" = Field()
 
 
 class PhotosPhotoUploadResponseModel(BaseModel):
-    album_id: int = Field(
-        description="Album ID",
-    )
-
-    upload_url: str = Field(
-        description="URL to upload photo",
-    )
-
-    user_id: int = Field(
-        description="User ID",
-    )
-
-    fallback_upload_url: typing.Optional[str] = Field(
+    aid: typing.Optional[int] = Field(
         default=None,
-        description="Fallback URL if upload_url returned error",
     )
-
-    group_id: typing.Optional[int] = Field(
+    hash: typing.Optional[str] = Field(
         default=None,
-        description="Group ID",
+    )
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    photos_list: typing.Optional[str] = Field(
+        default=None,
+    )
+    server: typing.Optional[int] = Field(
+        default=None,
     )
 
 
 class PhotosPhotoUploadResponse(BaseResponse):
-    response: "PhotosPhotoUploadResponseModel"
+    response: "PhotosPhotoUploadResponseModel" = Field()
 
 
-class PhotosPhotoXtrTagInfoResponseModel(BaseModel):
-    album_id: int = Field(
-        description="Album ID",
-    )
+class PhotosPutTagResponse(BaseResponse):
+    response: int = Field()
 
-    date: int = Field(
-        description="Date when uploaded",
-    )
 
-    id: int = Field(
-        description="Photo ID",
-    )
+class PhotosSaveMarketAlbumPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
 
-    owner_id: int = Field(
-        description="Photo owner's ID",
-    )
 
-    access_key: typing.Optional[str] = Field(
+class PhotosSaveMarketPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
+
+
+class PhotosSaveMessagesPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
+
+
+class PhotosSaveOwnerCoverPhotoResponseModel(BaseModel):
+    images: typing.Optional[typing.List["BaseImage"]] = Field(
         default=None,
-        description="Access key for the photo",
     )
 
-    height: typing.Optional[int] = Field(
+
+class PhotosSaveOwnerCoverPhotoResponse(BaseResponse):
+    response: "PhotosSaveOwnerCoverPhotoResponseModel" = Field()
+
+
+class PhotosSaveOwnerPhotoResponseModel(BaseModel):
+    photo_hash: str = Field()
+    photo_src: str = Field()
+    photo_src_big: typing.Optional[str] = Field(
         default=None,
-        description="Original photo height",
     )
-
-    lat: typing.Optional[float] = Field(
+    photo_src_small: typing.Optional[str] = Field(
         default=None,
-        description="Latitude",
     )
-
-    long: typing.Optional[float] = Field(
+    saved: typing.Optional[int] = Field(
         default=None,
-        description="Longitude",
     )
-
-    photo_1280: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 1280 px width",
-    )
-
-    photo_130: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 130 px width",
-    )
-
-    photo_2560: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 2560 px width",
-    )
-
-    photo_604: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 604 px width",
-    )
-
-    photo_75: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 75 px width",
-    )
-
-    photo_807: typing.Optional[str] = Field(
-        default=None,
-        description="URL of image with 807 px width",
-    )
-
-    placer_id: typing.Optional[int] = Field(
-        default=None,
-        description="ID of the tag creator",
-    )
-
     post_id: typing.Optional[int] = Field(
         default=None,
-        description="Post ID",
     )
 
-    sizes: typing.Optional[typing.List[PhotosPhotoSizes]] = Field(
+
+class PhotosSaveOwnerPhotoResponse(BaseResponse):
+    response: "PhotosSaveOwnerPhotoResponseModel" = Field()
+
+
+class PhotosSaveWallPhotoResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
+
+
+class PhotosSaveResponse(BaseResponse):
+    response: typing.List["PhotosPhoto"] = Field()
+
+
+class PhotosSearchResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PhotosPhoto"] = Field()
+
+
+class PhotosSearchResponse(BaseResponse):
+    response: "PhotosSearchResponseModel" = Field()
+
+
+class PhotosWallUploadResponseModel(BaseModel):
+    hash: typing.Optional[str] = Field(
         default=None,
     )
-
-    tag_created: typing.Optional[int] = Field(
-        default=None,
-        description="Date when tag has been added in Unixtime",
-    )
-
-    tag_id: typing.Optional[int] = Field(
-        default=None,
-        description="Tag ID",
-    )
-
-    text: typing.Optional[str] = Field(
-        default=None,
-        description="Photo caption",
-    )
-
-    user_id: typing.Optional[int] = Field(
-        default=None,
-        description="ID of the user who have uploaded the photo",
-    )
-
-    width: typing.Optional[int] = Field(
-        default=None,
-        description="Original photo width",
-    )
-
-    has_tags: typing.Optional[bool] = Field(
-        default=None,
-        description="Whether photo has attached tag links",
-    )
-
-
-class PhotosPhotoXtrTagInfoResponse(BaseResponse):
-    response: "PhotosPhotoXtrTagInfoResponseModel"
-
-
-class PhotosTagsSuggestionItemResponseModel(BaseModel):
-    title: typing.Optional[str] = Field(
+    photo: typing.Optional[str] = Field(
         default=None,
     )
-
-    caption: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    type: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    buttons: typing.Optional[typing.List[PhotosTagsSuggestionItemButton]] = Field(
-        default=None,
-    )
-
-    photo: typing.Optional["PhotosPhoto"] = Field(
-        default=None,
-    )
-
-    tags: typing.Optional[typing.List[PhotosPhotoTag]] = Field(
-        default=None,
-    )
-
-    track_code: typing.Optional[str] = Field(
+    server: typing.Optional[int] = Field(
         default=None,
     )
 
 
-class PhotosTagsSuggestionItemResponse(BaseResponse):
-    response: "PhotosTagsSuggestionItemResponseModel"
-
-
-class PhotosTagsSuggestionItemButtonResponseModel(BaseModel):
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    action: typing.Optional[typing.Literal["confirm", "decline", "show_tags"]] = Field(
-        default=None,
-    )
-
-    style: typing.Optional[typing.Literal["primary", "secondary"]] = Field(
-        default=None,
-    )
-
-
-class PhotosTagsSuggestionItemButtonResponse(BaseResponse):
-    response: "PhotosTagsSuggestionItemButtonResponseModel"
+class PhotosWallUploadResponse(BaseResponse):
+    response: "PhotosWallUploadResponseModel" = Field()

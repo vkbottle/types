@@ -1,112 +1,71 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
-from vkbottle_types.base_model import Field
+
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import (
+    AdswebGetAdCategoriesResponseCategoriesCategory,
+    AdswebGetAdUnitsResponseAdUnitsAdUnit,
+    AdswebGetFraudHistoryResponseEntriesEntry,
+    AdswebGetSitesResponseSitesSite,
+    AdswebGetStatisticsResponseItemsItem,
+)
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AdswebGetAdCategoriesResponseCategoriesCategoryResponseModel(BaseModel):
-    id: int = Field()
-
-    name: str = Field()
+class AdswebGetAdCategoriesResponseModel(BaseModel):
+    categories: typing.List["AdswebGetAdCategoriesResponseCategoriesCategory"] = Field()
 
 
-class AdswebGetAdCategoriesResponseCategoriesCategoryResponse(BaseResponse):
-    response: "AdswebGetAdCategoriesResponseCategoriesCategoryResponseModel"
+class AdswebGetAdCategoriesResponse(BaseResponse):
+    response: "AdswebGetAdCategoriesResponseModel" = Field()
 
 
-class AdswebGetAdUnitsResponseAdUnitsAdUnitResponseModel(BaseModel):
-    id: int = Field()
+class AdswebGetAdUnitCodeResponseModel(BaseModel):
+    html: str = Field()
 
-    site_id: int = Field()
 
-    name: typing.Optional[str] = Field(
+class AdswebGetAdUnitCodeResponse(BaseResponse):
+    response: "AdswebGetAdUnitCodeResponseModel" = Field()
+
+
+class AdswebGetAdUnitsResponseModel(BaseModel):
+    count: int = Field()
+    ad_units: typing.Optional[typing.List["AdswebGetAdUnitsResponseAdUnitsAdUnit"]] = Field(
         default=None,
     )
 
 
-class AdswebGetAdUnitsResponseAdUnitsAdUnitResponse(BaseResponse):
-    response: "AdswebGetAdUnitsResponseAdUnitsAdUnitResponseModel"
+class AdswebGetAdUnitsResponse(BaseResponse):
+    response: "AdswebGetAdUnitsResponseModel" = Field()
 
 
-class AdswebGetFraudHistoryResponseEntriesEntryResponseModel(BaseModel):
-    site_id: int = Field()
-
-    day: str = Field()
-
-
-class AdswebGetFraudHistoryResponseEntriesEntryResponse(BaseResponse):
-    response: "AdswebGetFraudHistoryResponseEntriesEntryResponseModel"
-
-
-class AdswebGetSitesResponseSitesSiteResponseModel(BaseModel):
-    id: int = Field()
-
-    status_user: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    status_moder: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    domains: typing.Optional[str] = Field(
+class AdswebGetFraudHistoryResponseModel(BaseModel):
+    count: int = Field()
+    entries: typing.Optional[typing.List["AdswebGetFraudHistoryResponseEntriesEntry"]] = Field(
         default=None,
     )
 
 
-class AdswebGetSitesResponseSitesSiteResponse(BaseResponse):
-    response: "AdswebGetSitesResponseSitesSiteResponseModel"
+class AdswebGetFraudHistoryResponse(BaseResponse):
+    response: "AdswebGetFraudHistoryResponseModel" = Field()
 
 
-class AdswebGetStatisticsResponseItemsItemResponseModel(BaseModel):
-    site_id: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    ad_unit_id: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    overall_count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    months_count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    month_min: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    month_max: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    days_count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    day_min: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    day_max: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    hours_count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    hour_min: typing.Optional[str] = Field(
-        default=None,
-    )
-
-    hour_max: typing.Optional[str] = Field(
+class AdswebGetSitesResponseModel(BaseModel):
+    count: int = Field()
+    sites: typing.Optional[typing.List["AdswebGetSitesResponseSitesSite"]] = Field(
         default=None,
     )
 
 
-class AdswebGetStatisticsResponseItemsItemResponse(BaseResponse):
-    response: "AdswebGetStatisticsResponseItemsItemResponseModel"
+class AdswebGetSitesResponse(BaseResponse):
+    response: "AdswebGetSitesResponseModel" = Field()
+
+
+class AdswebGetStatisticsResponseModel(BaseModel):
+    items: typing.List["AdswebGetStatisticsResponseItemsItem"] = Field()
+    next_page_id: typing.Optional[str] = Field(
+        default=None,
+    )
+
+
+class AdswebGetStatisticsResponse(BaseResponse):
+    response: "AdswebGetStatisticsResponseModel" = Field()

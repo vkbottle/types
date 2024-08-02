@@ -1,31 +1,27 @@
 import typing
 
-from typing_extensions import Literal
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.responses.podcasts import *
-from vkbottle_types.responses.base import OkResponse
+from vkbottle_types.responses.podcasts import *  # noqa: F401,F403
 
 
 class PodcastsCategory(BaseCategory):
     async def search_podcast(
         self,
         search_string: str,
-        offset: typing.Optional[int] = 0,
-        count: typing.Optional[int] = 20,
-        **kwargs,
+        count: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> PodcastsSearchPodcastResponseModel:
-        """podcasts.searchPodcast method
-
+        """Method `podcasts.searchPodcast()`
 
         :param search_string:
-        :param offset:
         :param count:
+        :param offset:
         """
+
         params = self.get_set_params(locals())
-        response = await self.api.request("account.ban", params)
-
+        response = await self.api.request("podcasts.searchPodcast", params)
         model = PodcastsSearchPodcastResponse
-
         return model(**response).response
 
 

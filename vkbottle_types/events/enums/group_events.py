@@ -6,8 +6,10 @@ class GroupEventType(StrEnum):
     MESSAGE_REPLY = "message_reply"
     MESSAGE_EDIT = "message_edit"
     MESSAGE_ALLOW = "message_allow"
+    MESSAGE_READ = "message_read"
     MESSAGE_DENY = "message_deny"
     MESSAGE_TYPING_STATE = "message_typing_state"
+    MESSAGE_REACTION_EVENT = "message_reaction_event"
     MESSAGE_EVENT = "message_event"
 
     PHOTO_NEW = "photo_new"
@@ -52,6 +54,8 @@ class GroupEventType(StrEnum):
 
     USER_BLOCK = "user_block"
     USER_UNBLOCK = "user_unblock"
+
+    CONFIRMATION = "confirmation"
 
     POLL_VOTE_NEW = "poll_vote_new"
 

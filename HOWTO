@@ -12,18 +12,18 @@ Existing 'schema.json' found.
     (3) Process from path and rewrite
 :
 
-2. Если нет, то варианты выбора будут следующие
+2. Если нет, то варианты выбора будут следующие:
 
 Should new schema be downloaded from source? (https://raw.githubusercontent.com/VKCOM/vk-api-schema/master/{}/{}.json)
     (1) Download official schema [default]
     (2) Process from path and save
-: 
+:
 
 Для обновления существующей схемы вы всегда можете скачать ее снова.
 
 После загрузки, обработки и генерации кода у вас появится новая папка codegen.
 
-Запустите автоматический корректор стиля, например black
+Запустите автоматический корректор стиля, например: black или ruff format
 
 $ black codegen
 

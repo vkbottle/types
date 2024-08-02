@@ -1,32 +1,45 @@
 import typing
-import enum
-from vkbottle_types.responses.base_response import BaseResponse, BaseModel
-from vkbottle_types.base_model import Field
 
-from vkbottle_types.objects import BaseImage, AppWidgetsPhoto
-
-
-class AppWidgetsPhotoResponseModel(BaseModel):
-    id: str = Field(
-        description="Image ID",
-    )
-
-    images: typing.List[BaseImage] = Field()
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
+from vkbottle_types.responses.base_response import BaseResponse
 
 
-class AppWidgetsPhotoResponse(BaseResponse):
-    response: "AppWidgetsPhotoResponseModel"
-
-
-class AppWidgetsPhotosResponseModel(BaseModel):
-    count: typing.Optional[int] = Field(
-        default=None,
-    )
-
-    items: typing.Optional[typing.List[AppWidgetsPhoto]] = Field(
+class AppWidgetsGetAppImageUploadServerResponseModel(BaseModel):
+    upload_url: typing.Optional[str] = Field(
         default=None,
     )
 
 
-class AppWidgetsPhotosResponse(BaseResponse):
-    response: "AppWidgetsPhotosResponseModel"
+class AppWidgetsGetAppImageUploadServerResponse(BaseResponse):
+    response: "AppWidgetsGetAppImageUploadServerResponseModel" = Field()
+
+
+class AppWidgetsGetAppImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
+
+
+class AppWidgetsGetGroupImageUploadServerResponseModel(BaseModel):
+    upload_url: typing.Optional[str] = Field(
+        default=None,
+    )
+
+
+class AppWidgetsGetGroupImageUploadServerResponse(BaseResponse):
+    response: "AppWidgetsGetGroupImageUploadServerResponseModel" = Field()
+
+
+class AppWidgetsGetGroupImagesResponse(BaseResponse):
+    response: "AppWidgetsPhotos" = Field()
+
+
+class AppWidgetsGetImagesByIdResponse(BaseResponse):
+    response: typing.List["AppWidgetsPhoto"] = Field()
+
+
+class AppWidgetsSaveAppImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()
+
+
+class AppWidgetsSaveGroupImageResponse(BaseResponse):
+    response: "AppWidgetsPhoto" = Field()

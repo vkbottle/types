@@ -1,11 +1,17 @@
 from .user_events import (
+    AddConversationsToFolder,
     Call,
+    ChangeFolderOrder,
     ChatEdit,
     ChatInfoEdit,
     ChatTypingState,
     ChatVoiceMessageStates,
     Counter,
+    CounterUnreadDialogsInFolders,
+    CreateFolder,
+    DeleteFolder,
     DialogTypingState,
+    FriendAction,
     FriendOffline,
     FriendOnline,
     InRead,
@@ -18,6 +24,8 @@ from .user_events import (
     NotificationsSettingsChanged,
     OutRead,
     RawUserEvent,
+    RemoveConversationsFromFolder,
+    RenameFolder,
     ReplaceDialogFlags,
     ReplaceMessageFlags,
     ResetDialogFlags,
@@ -48,6 +56,17 @@ class UserTypes:
     FriendOffline = FriendOffline
     Counter = Counter
     Call = Call
+    FriendAction = FriendAction
     NotificationsSettingsChanged = NotificationsSettingsChanged
     InRead = InRead
     OutRead = OutRead
+    CreateFolder = CreateFolder
+    RenameFolder = RenameFolder
+    DeleteFolder = DeleteFolder
+    AddConversationsToFolder = AddConversationsToFolder
+    RemoveConversationsFromFolder = RemoveConversationsFromFolder
+    ChangeFolderOrder = ChangeFolderOrder
+    CounterUnreadDialogsInFolders = CounterUnreadDialogsInFolders
+
+
+__all__ = ("UserTypes",)

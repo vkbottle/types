@@ -9,13 +9,11 @@ from vkbottle_types.base_model import BaseModel, Field
 {% if definition.enum %}
 {% if is_int(definition.enum[0]) %}
 class {{camelcase(name)}}(enum.IntEnum):
-    {% for enumeration in definition.enum %}
-    {{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
+    {% for enumeration in definition.enum %}{{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
     {% endfor %}
 {% else %}
 class {{camelcase(name)}}(enum.Enum):
-    {% for enumeration in definition.enum %}
-    {{makesafe(enumeration|upper)}} = "{{enumeration}}"
+    {% for enumeration in definition.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endif %}
 {% else %}
@@ -29,22 +27,21 @@ class {{enum_defin.name}}(enum.Enum):
 class {{camelcase(name)}}({{", ".join(definition.get_bases())}}):
     """{% if definition.description %}
     {{definition.description}}{% endif %}
-    Schema: {{name}}
+    Model: `{{camelcase(name)}}`
     """
     {% for property in definition.get_properties() %}
     {{makesafe(property.name)}}: {{property.get_type(hint=True, literal_to_enum=True, definition_name=name)}} = Field(
         {% if property.is_optional %}
         default=None,
         {% endif %}
-        {% if property.description %}
-        description="{{instring(property.description)}}",
-        {% endif %}
         {% if makesafe(property.name) != property.name %}
         alias="{{property.name}}",
         {% endif %}
     )
+    {% if property.description %}"""{{instring(property.description)}}."""
+    {% else %}"""Property `{{camelcase(name)}}.{{property.name}}`."""
+    {% endif %}
     {% endfor %}
-
 {% endif %}
 {% endfor %}
 
