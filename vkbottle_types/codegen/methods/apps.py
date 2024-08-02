@@ -23,7 +23,7 @@ class AppsCategory(BaseCategory):
         title: typing.Optional[str] = None,
         vk_ref: typing.Optional[typing.List[typing.Literal["snippet_im", "snippet_post"]]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsAddSnippetResponseModel:
         """Method `apps.addSnippet()`
 
         :param button:
@@ -96,7 +96,7 @@ class AppsCategory(BaseCategory):
         platform: typing.Optional[str] = None,
         return_friends: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsGetResponseModel:
         """Method `apps.get()`
 
         :param app_fields: List of app fields to return. Fields 'id', 'type' and 'title' will always be in response. Leave this field empty to get all fields
@@ -159,7 +159,7 @@ class AppsCategory(BaseCategory):
         query: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> AppsGetFriendsListExtendedResponseModel: ...
 
     @typing.overload
     async def get_friends_list(
@@ -171,7 +171,7 @@ class AppsCategory(BaseCategory):
         query: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> AppsGetFriendsListResponseModel: ...
 
     async def get_friends_list(
         self,
@@ -182,7 +182,7 @@ class AppsCategory(BaseCategory):
         query: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[AppsGetFriendsListExtendedResponseModel, AppsGetFriendsListResponseModel]:
         """Method `apps.getFriendsList()`
 
         :param extended:
@@ -209,7 +209,7 @@ class AppsCategory(BaseCategory):
         extended: typing.Literal[True],
         _global: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> AppsGetLeaderboardExtendedResponseModel: ...
 
     @typing.overload
     async def get_leaderboard(
@@ -218,7 +218,7 @@ class AppsCategory(BaseCategory):
         extended: typing.Optional[typing.Literal[False]] = None,
         _global: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> AppsGetLeaderboardResponseModel: ...
 
     async def get_leaderboard(
         self,
@@ -226,7 +226,7 @@ class AppsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         _global: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[AppsGetLeaderboardResponseModel, AppsGetLeaderboardExtendedResponseModel]:
         """Method `apps.getLeaderboard()`
 
         :param type: Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().
@@ -247,7 +247,7 @@ class AppsCategory(BaseCategory):
         self,
         app_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsGetMiniAppPoliciesResponseModel:
         """Method `apps.getMiniAppPolicies()`
 
         :param app_id: Mini App ID
@@ -262,7 +262,7 @@ class AppsCategory(BaseCategory):
         self,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsGetScopesResponseModel:
         """Method `apps.getScopes()`
 
         :param type:
@@ -291,7 +291,7 @@ class AppsCategory(BaseCategory):
     async def get_snippets(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsGetSnippetsResponseModel:
         """Method `apps.getSnippets()`"""
 
         params = self.get_set_params(locals())
@@ -318,7 +318,7 @@ class AppsCategory(BaseCategory):
         self,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsIsNotificationsAllowedResponseModel:
         """Method `apps.isNotificationsAllowed()`
 
         :param user_id:
@@ -426,7 +426,7 @@ class AppsCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppsCreatedGroupResponseModel:
         """Method `apps.updateMetaForTestingGroup()`
 
         :param name:

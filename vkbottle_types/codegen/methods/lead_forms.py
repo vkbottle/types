@@ -23,7 +23,7 @@ class LeadFormsCategory(BaseCategory):
         pixel_code: typing.Optional[str] = None,
         site_link_url: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LeadFormsCreateResponseModel:
         """Method `leadForms.create()`
 
         :param description:
@@ -52,7 +52,7 @@ class LeadFormsCategory(BaseCategory):
         form_id: int,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LeadFormsDeleteResponseModel:
         """Method `leadForms.delete()`
 
         :param form_id:
@@ -88,7 +88,7 @@ class LeadFormsCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         next_page_token: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LeadFormsGetLeadsResponseModel:
         """Method `leadForms.getLeads()`
 
         :param form_id:
@@ -146,7 +146,7 @@ class LeadFormsCategory(BaseCategory):
         pixel_code: typing.Optional[str] = None,
         site_link_url: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LeadFormsCreateResponseModel:
         """Method `leadForms.update()`
 
         :param description:

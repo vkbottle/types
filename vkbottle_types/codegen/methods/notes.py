@@ -136,7 +136,7 @@ class NotesCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NotesGetResponseModel:
         """Method `notes.get()`
 
         :param count: Number of notes to return.
@@ -178,7 +178,7 @@ class NotesCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NotesGetCommentsResponseModel:
         """Method `notes.getComments()`
 
         :param note_id: Note ID.

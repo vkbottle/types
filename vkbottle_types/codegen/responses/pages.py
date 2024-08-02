@@ -6,11 +6,11 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 
 class PagesGetHistoryResponse(BaseResponse):
-    response: typing.List[PagesWikipageHistory] = Field()
+    response: typing.List["PagesWikipageHistory"] = Field()
 
 
 class PagesGetTitlesResponse(BaseResponse):
-    response: typing.List[PagesWikipage] = Field()
+    response: typing.List["PagesWikipage"] = Field()
 
 
 class PagesGetVersionResponse(BaseResponse):

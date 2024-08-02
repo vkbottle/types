@@ -1,8 +1,9 @@
 import typing
 
-from vkbottle_types.base_model import Field
+from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     UtilsDomainResolved,
+    UtilsLastShortenedLink,
     UtilsLinkChecked,
     UtilsLinkStats,
     UtilsLinkStatsExtended,
@@ -15,8 +16,13 @@ class UtilsCheckLinkResponse(BaseResponse):
     response: "UtilsLinkChecked" = Field()
 
 
+class UtilsGetLastShortenedLinksResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["UtilsLastShortenedLink"] = Field()
+
+
 class UtilsGetLastShortenedLinksResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "UtilsGetLastShortenedLinksResponseModel" = Field()
 
 
 class UtilsGetLinkStatsExtendedResponse(BaseResponse):

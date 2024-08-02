@@ -70,7 +70,7 @@ class GroupsCategory(BaseCategory):
         url: str,
         secret_key: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsAddCallbackServerResponseModel:
         """Method `groups.addCallbackServer()`
 
         :param group_id:
@@ -480,7 +480,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetObjectExtendedResponseModel: ...
 
     @typing.overload
     async def get(
@@ -492,7 +492,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetResponseModel: ...
 
     async def get(
         self,
@@ -503,7 +503,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[GroupsGetObjectExtendedResponseModel, GroupsGetResponseModel]:
         """Method `groups.get()`
 
         :param extended: '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
@@ -533,7 +533,7 @@ class GroupsCategory(BaseCategory):
         longitude: typing.Optional[float] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetAddressesResponseModel:
         """Method `groups.getAddresses()`
 
         :param group_id: ID or screen name of the community.
@@ -558,7 +558,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetBannedResponseModel:
         """Method `groups.getBanned()`
 
         :param group_id: Community ID.
@@ -579,7 +579,7 @@ class GroupsCategory(BaseCategory):
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         group_ids: typing.Optional[typing.List[typing.Union["int", "str"]]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetByIdObjectResponseModel:
         """Method `groups.getById()`
 
         :param fields: Group fields to return.
@@ -596,7 +596,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetCallbackConfirmationCodeResponseModel:
         """Method `groups.getCallbackConfirmationCode()`
 
         :param group_id: Community ID.
@@ -612,7 +612,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         server_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetCallbackServersResponseModel:
         """Method `groups.getCallbackServers()`
 
         :param group_id:
@@ -647,7 +647,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Literal[True],
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetCatalogInfoExtendedResponseModel: ...
 
     @typing.overload
     async def get_catalog_info(
@@ -655,14 +655,16 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[typing.Literal[False]] = None,
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetCatalogInfoResponseModel: ...
 
     async def get_catalog_info(
         self,
         extended: typing.Optional[bool] = None,
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        GroupsGetCatalogInfoResponseModel, GroupsGetCatalogInfoExtendedResponseModel
+    ]:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -686,7 +688,7 @@ class GroupsCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetInvitedUsersResponseModel:
         """Method `groups.getInvitedUsers()`
 
         :param group_id: Group ID to return invited users for.
@@ -708,7 +710,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetInvitesExtendedResponseModel: ...
 
     @typing.overload
     async def get_invites(
@@ -717,7 +719,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetInvitesResponseModel: ...
 
     async def get_invites(
         self,
@@ -725,7 +727,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[GroupsGetInvitesResponseModel, GroupsGetInvitesExtendedResponseModel]:
         """Method `groups.getInvites()`
 
         :param extended: '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
@@ -775,53 +777,57 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
         filter: str,
+        fields: typing.List[UsersFields],
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetMembersFieldsResponseModel: ...
 
     @typing.overload
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         filter: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetMembersFilterResponseModel: ...
 
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
         filter: str,
+        fields: typing.List[UsersFields],
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetMembersResponseModel: ...
 
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         filter: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        GroupsGetMembersResponseModel,
+        GroupsGetMembersFieldsResponseModel,
+        GroupsGetMembersFilterResponseModel,
+    ]:
         """Method `groups.getMembers()`
 
-        :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
         :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
+        :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
         :param count: Number of community members to return.
         :param group_id: ID or screen name of the community.
         :param offset: Offset needed to return a specific subset of community members.
@@ -832,8 +838,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("fields",), GroupsGetMembersFieldsResponse),
                 (("filter",), GroupsGetMembersFieldsResponse),
+                (("fields",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -844,7 +850,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetOnlineStatusResponseModel:
         """Method `groups.getOnlineStatus()`
 
         :param group_id:
@@ -863,7 +869,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetRequestsFieldsResponseModel: ...
 
     @typing.overload
     async def get_requests(
@@ -873,7 +879,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> GroupsGetRequestsResponseModel: ...
 
     async def get_requests(
         self,
@@ -882,7 +888,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[GroupsGetRequestsFieldsResponseModel, GroupsGetRequestsResponseModel]:
         """Method `groups.getRequests()`
 
         :param group_id: Community ID.
@@ -904,7 +910,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: typing.Union["int", "str"],
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetSettingsResponseModel:
         """Method `groups.getSettings()`
 
         :param group_id: Community ID.
@@ -933,7 +939,7 @@ class GroupsCategory(BaseCategory):
     async def get_token_permissions(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsGetTokenPermissionsResponseModel:
         """Method `groups.getTokenPermissions()`"""
 
         params = self.get_set_params(locals())
@@ -963,61 +969,56 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
+        *,
+        group_id: typing.Union[int, str],
         user_ids: typing.List[int],
         extended: typing.Literal[True],
-        user_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
-    ) -> typing.List[GroupsMemberStatus]: ...
-
-    @typing.overload
-    async def is_member(
-        self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
-
-    @typing.overload
-    async def is_member(
-        self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.List[int],
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
     ) -> typing.List[GroupsMemberStatusFull]: ...
 
     @typing.overload
     async def is_member(
         self,
+        *,
+        group_id: typing.Union[int, str],
+        user_id: int,
+        extended: typing.Literal[True],
+    ) -> GroupsIsMemberExtendedResponseModel: ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        *,
+        group_id: typing.Union[int, str],
+        user_ids: typing.List[int],
+    ) -> typing.List[GroupsMemberStatus]: ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        *,
         group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
+        user_id: int,
     ) -> bool: ...
 
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
+        *,
+        group_id: typing.Union[int, str],
         extended: typing.Optional[bool] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[GroupsMemberStatusFull],
         typing.List[GroupsMemberStatus],
-        typing.Dict[str, typing.Any],
         bool,
+        GroupsIsMemberExtendedResponseModel,
+        typing.List[GroupsMemberStatusFull],
     ]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.
-        :param user_ids: User IDs.
         :param extended: '1' - to return an extended response with additional fields. By default: '0'.
+        :param user_ids: User IDs.
         :param user_id: User ID.
         """
 
@@ -1025,8 +1026,9 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
             (
+                (("user_id", "extended"), GroupsIsMemberExtendedResponse),
+                (("user_ids", "extended"), GroupsIsMemberUserIdsExtendedResponse),
                 (("user_ids",), GroupsIsMemberUserIdsResponse),
-                (("extended",), GroupsIsMemberUserIdsResponse),
             ),
             default=BaseBoolResponse,
             params=params,
@@ -1113,7 +1115,7 @@ class GroupsCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GroupsSearchResponseModel:
         """Method `groups.search()`
 
         :param q: Search query string.

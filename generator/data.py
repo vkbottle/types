@@ -4,7 +4,14 @@ from collections import OrderedDict
 
 import dataclass_factory
 
-from .parse_types import PRIMITIVE_TYPES, Ready, get_complex_type, get_responses, get_type, transform_ref
+from .parse_types import (
+    PRIMITIVE_TYPES,
+    Ready,
+    get_complex_type,
+    get_responses,
+    get_type,
+    transform_ref,
+)
 from .utility import camelcase, snake_case
 
 
@@ -313,13 +320,13 @@ class Property:
     def is_optional(self) -> bool:
         return not self.required
     
-    def get_default_value(self, enum_name: str | None = None) -> typing.Any | None:
+    def get_default_value(self, model_name: str | None = None) -> typing.Any | None:
         if self.default is None:
             return None
-        if self.enum and enum_name:
+        if self.enum and model_name:
             for i, enum in enumerate(self.enum):
                 if enum == self.default:
-                    return enum_name + "." + self.enumNames[i].replace(" ", "_").upper()
+                    return model_name + "." + self.enumNames[i].replace(" ", "_").upper()
         if self.type == "boolean":
             return bool(self.default)
         return self.default
@@ -342,12 +349,20 @@ class Definition:
 
     def get_response_definition(self) -> "Definition | None":
         for prop in self.properties:
-            if prop.name == "response" and prop.data.get("enum"):
+            if prop.name != "response":
+                continue
+            if prop.data.get("enum"):
                 return Definition(
                     type="enum",
                     enum=prop.data["enum"],
                     enumNames=prop.data.get("enumNames", []),
                 )
+            if prop.data.get("type") == "object":
+                properties = [
+                    factory.load({"name": pname, **p}, Property)
+                    for pname, p in prop.data.get("properties", {}).items()
+                ]
+                return Definition(type="object", allOf=self.allOf, properties=properties)
         return None
 
     def get_properties(self) -> typing.List[Property]:

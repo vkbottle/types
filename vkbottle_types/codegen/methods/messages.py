@@ -47,7 +47,7 @@ class MessagesCategory(BaseCategory):
         chat_id: typing.Optional[int] = None,
         visible_messages_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesAddChatUsersResponseModel:
         """Method `messages.addChatUsers()`
 
         :param chat_id:
@@ -82,7 +82,7 @@ class MessagesCategory(BaseCategory):
         title: typing.Optional[str] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesCreateChatWithPeerIdsResponseModel:
         """Method `messages.createChat()`
 
         :param group_id:
@@ -127,7 +127,7 @@ class MessagesCategory(BaseCategory):
         chat_id: int,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesDeleteChatPhotoResponseModel:
         """Method `messages.deleteChatPhoto()`
 
         :param chat_id: Chat ID.
@@ -145,7 +145,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesDeleteConversationResponseModel:
         """Method `messages.deleteConversation()`
 
         :param group_id: Group ID (for group messages with user access token)
@@ -257,7 +257,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetByConversationMessageIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_conversation_message_id(
@@ -268,7 +268,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetByConversationMessageIdResponseModel: ...
 
     async def get_by_conversation_message_id(
         self,
@@ -278,7 +278,10 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        MessagesGetByConversationMessageIdExtendedResponseModel,
+        MessagesGetByConversationMessageIdResponseModel,
+    ]:
         """Method `messages.getByConversationMessageId()`
 
         :param conversation_message_ids: Conversation message IDs.
@@ -308,7 +311,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetByIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_id(
@@ -321,7 +324,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
@@ -333,7 +336,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MessagesGetByIdResponseModel, MessagesGetByIdExtendedResponseModel]:
         """Method `messages.getById()`
 
         :param extended: Information whether the response should be extended
@@ -357,54 +360,60 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        *,
-        chat_id: int,
-        name_case: typing.Optional[str] = None,
-    ) -> "MessagesChat": ...
-
-    @typing.overload
-    async def get_chat(
-        self,
-        *,
-        chat_id: int,
+        chat_ids: typing.List[int],
         fields: typing.List[UsersFields],
+        chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
+        **kwargs: typing.Any,
     ) -> "MessagesChatFull": ...
 
     @typing.overload
     async def get_chat(
         self,
-        *,
-        chat_ids: typing.List[int],
+        chat_ids: typing.Optional[typing.List[int]] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[MessagesChat]: ...
 
     @typing.overload
     async def get_chat(
         self,
-        *,
         chat_ids: typing.List[int],
         fields: typing.List[UsersFields],
+        chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[MessagesChatFull]: ...
+
+    @typing.overload
+    async def get_chat(
+        self,
+        chat_ids: typing.Optional[typing.List[int]] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_id: typing.Optional[int] = None,
+        name_case: typing.Optional[str] = None,
+        **kwargs: typing.Any,
+    ) -> "MessagesChat": ...
 
     async def get_chat(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         chat_ids: typing.Optional[typing.List[int]] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[MessagesChat],
-        "MessagesChatFull",
         typing.List[MessagesChatFull],
+        typing.List[MessagesChat],
         "MessagesChat",
+        "MessagesChatFull",
     ]:
         """Method `messages.getChat()`
 
-        :param fields: Profile fields to return.
         :param chat_ids: Chat IDs.
+        :param fields: Profile fields to return.
         :param chat_id: Chat ID.
         :param name_case: Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
         """
@@ -413,10 +422,8 @@ class MessagesCategory(BaseCategory):
         response = await self.api.request("messages.getChat", params)
         model = self.get_model(
             (
-                (("fields", "chat_ids"), MessagesGetChatChatIdsFieldsResponse),
-                (("fields", "chat_id"), MessagesGetChatChatIdsFieldsResponse),
+                (("chat_ids",), MessagesGetChatFieldsResponse),
                 (("fields",), MessagesGetChatFieldsResponse),
-                (("chat_ids",), MessagesGetChatChatIdsResponse),
             ),
             default=MessagesGetChatResponse,
             params=params,
@@ -429,7 +436,7 @@ class MessagesCategory(BaseCategory):
         link: typing.Optional[str] = None,
         peer_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetChatPreviewResponseModel:
         """Method `messages.getChatPreview()`
 
         :param fields: Profile fields to return.
@@ -479,7 +486,7 @@ class MessagesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetConversationsResponseModel:
         """Method `messages.getConversations()`
 
         :param count: Number of conversations to return.
@@ -523,7 +530,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesGetConversationByIdExtended", "MessagesGetConversationById"]:
+    ) -> typing.Union["MessagesGetConversationById", "MessagesGetConversationByIdExtended"]:
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -554,7 +561,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetHistoryExtendedResponseModel: ...
 
     @typing.overload
     async def get_history(
@@ -569,7 +576,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetHistoryResponseModel: ...
 
     async def get_history(
         self,
@@ -583,7 +590,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MessagesGetHistoryResponseModel, MessagesGetHistoryExtendedResponseModel]:
         """Method `messages.getHistory()`
 
         :param extended: Information whether the response should be extended
@@ -642,7 +649,7 @@ class MessagesCategory(BaseCategory):
         preserve_order: typing.Optional[bool] = None,
         start_from: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetHistoryAttachmentsResponseModel:
         """Method `messages.getHistoryAttachments()`
 
         :param attachment_position:
@@ -678,7 +685,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetImportantMessagesExtendedResponseModel: ...
 
     @typing.overload
     async def get_important_messages(
@@ -691,7 +698,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesGetImportantMessagesResponseModel: ...
 
     async def get_important_messages(
         self,
@@ -703,7 +710,10 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        MessagesGetImportantMessagesResponseModel,
+        MessagesGetImportantMessagesExtendedResponseModel,
+    ]:
         """Method `messages.getImportantMessages()`
 
         :param extended: Return extended properties
@@ -734,7 +744,7 @@ class MessagesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         subscribe_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetIntentUsersResponseModel:
         """Method `messages.getIntentUsers()`
 
         :param intent:
@@ -757,7 +767,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         reset: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetInviteLinkResponseModel:
         """Method `messages.getInviteLink()`
 
         :param peer_id: Destination ID.
@@ -801,7 +811,7 @@ class MessagesCategory(BaseCategory):
         pts: typing.Optional[int] = None,
         ts: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetLongPollHistoryResponseModel:
         """Method `messages.getLongPollHistory()`
 
         :param credentials:
@@ -848,7 +858,7 @@ class MessagesCategory(BaseCategory):
         cmids: typing.List[int],
         peer_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetMessagesReactionsResponseModel:
         """Method `messages.getMessagesReactions()`
 
         :param cmids:
@@ -866,7 +876,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int,
         reaction_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetReactedPeersResponseModel:
         """Method `messages.getReactedPeers()`
 
         :param cmid:
@@ -883,7 +893,7 @@ class MessagesCategory(BaseCategory):
         self,
         client_version: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesGetReactionsAssetsResponseModel:
         """Method `messages.getReactionsAssets()`
 
         :param client_version:
@@ -899,7 +909,7 @@ class MessagesCategory(BaseCategory):
         group_id: int,
         user_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesIsMessagesFromGroupAllowedResponseModel:
         """Method `messages.isMessagesFromGroupAllowed()`
 
         :param group_id: Group ID.
@@ -915,7 +925,7 @@ class MessagesCategory(BaseCategory):
         self,
         link: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesJoinChatByInviteLinkResponseModel:
         """Method `messages.joinChatByInviteLink()`
 
         :param link: Invitation link.
@@ -1095,7 +1105,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
@@ -1110,7 +1120,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesSearchResponseModel: ...
 
     async def search(
         self,
@@ -1124,7 +1134,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MessagesSearchResponseModel, MessagesSearchExtendedResponseModel]:
         """Method `messages.search()`
 
         :param extended:
@@ -1156,7 +1166,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesSearchConversationsExtendedResponseModel: ...
 
     @typing.overload
     async def search_conversations(
@@ -1167,7 +1177,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MessagesSearchConversationsResponseModel: ...
 
     async def search_conversations(
         self,
@@ -1177,7 +1187,9 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        MessagesSearchConversationsResponseModel, MessagesSearchConversationsExtendedResponseModel
+    ]:
         """Method `messages.searchConversations()`
 
         :param extended: '1' - return extra information about users and communities
@@ -1320,7 +1332,7 @@ class MessagesCategory(BaseCategory):
         self,
         file: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MessagesSetChatPhotoResponseModel:
         """Method `messages.setChatPhoto()`
 
         :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.

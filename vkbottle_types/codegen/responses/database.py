@@ -1,53 +1,104 @@
 import typing
 
-from vkbottle_types.base_model import Field
-from vkbottle_types.objects import BaseCountry, DatabaseCityById, DatabaseSchoolClass, DatabaseStation
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import (
+    BaseCountry,
+    BaseObject,
+    DatabaseCity,
+    DatabaseCityById,
+    DatabaseFaculty,
+    DatabaseRegion,
+    DatabaseSchool,
+    DatabaseSchoolClass,
+    DatabaseStation,
+    DatabaseUniversity,
+)
 from vkbottle_types.responses.base_response import BaseResponse
 
 
+class DatabaseGetChairsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BaseObject"] = Field()
+
+
 class DatabaseGetChairsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetChairsResponseModel" = Field()
 
 
 class DatabaseGetCitiesByIdResponse(BaseResponse):
-    response: typing.List[DatabaseCityById] = Field()
+    response: typing.List["DatabaseCityById"] = Field()
+
+
+class DatabaseGetCitiesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseCity"] = Field()
 
 
 class DatabaseGetCitiesResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetCitiesResponseModel" = Field()
 
 
 class DatabaseGetCountriesByIdResponse(BaseResponse):
-    response: typing.List[BaseCountry] = Field()
+    response: typing.List["BaseCountry"] = Field()
+
+
+class DatabaseGetCountriesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["BaseCountry"] = Field()
 
 
 class DatabaseGetCountriesResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetCountriesResponseModel" = Field()
+
+
+class DatabaseGetFacultiesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseFaculty"] = Field()
 
 
 class DatabaseGetFacultiesResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetFacultiesResponseModel" = Field()
 
 
 class DatabaseGetMetroStationsByIdResponse(BaseResponse):
-    response: typing.List[DatabaseStation] = Field()
+    response: typing.List["DatabaseStation"] = Field()
+
+
+class DatabaseGetMetroStationsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseStation"] = Field()
 
 
 class DatabaseGetMetroStationsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetMetroStationsResponseModel" = Field()
+
+
+class DatabaseGetRegionsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseRegion"] = Field()
 
 
 class DatabaseGetRegionsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetRegionsResponseModel" = Field()
 
 
 class DatabaseGetSchoolClassesNewResponse(BaseResponse):
-    response: typing.List[DatabaseSchoolClass] = Field()
+    response: typing.List["DatabaseSchoolClass"] = Field()
+
+
+class DatabaseGetSchoolsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseSchool"] = Field()
 
 
 class DatabaseGetSchoolsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetSchoolsResponseModel" = Field()
+
+
+class DatabaseGetUniversitiesResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["DatabaseUniversity"] = Field()
 
 
 class DatabaseGetUniversitiesResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "DatabaseGetUniversitiesResponseModel" = Field()

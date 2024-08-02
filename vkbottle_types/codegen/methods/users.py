@@ -40,7 +40,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> UsersGetFollowersFieldsResponseModel: ...
 
     @typing.overload
     async def get_followers(
@@ -51,7 +51,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> UsersGetFollowersResponseModel: ...
 
     async def get_followers(
         self,
@@ -61,7 +61,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[UsersGetFollowersResponseModel, UsersGetFollowersFieldsResponseModel]:
         """Method `users.getFollowers()`
 
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.
@@ -89,7 +89,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> UsersGetSubscriptionsExtendedResponseModel: ...
 
     @typing.overload
     async def get_subscriptions(
@@ -100,7 +100,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> UsersGetSubscriptionsResponseModel: ...
 
     async def get_subscriptions(
         self,
@@ -110,7 +110,9 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        UsersGetSubscriptionsResponseModel, UsersGetSubscriptionsExtendedResponseModel
+    ]:
         """Method `users.getSubscriptions()`
 
         :param extended: '1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)
@@ -187,7 +189,7 @@ class UsersCategory(BaseCategory):
         university_faculty: typing.Optional[int] = None,
         university_year: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> UsersSearchResponseModel:
         """Method `users.search()`
 
         :param age_from: Minimum age.

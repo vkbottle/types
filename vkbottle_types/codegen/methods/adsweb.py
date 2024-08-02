@@ -9,7 +9,7 @@ class AdswebCategory(BaseCategory):
         self,
         office_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetAdCategoriesResponseModel:
         """Method `adsweb.getAdCategories()`
 
         :param office_id:
@@ -23,7 +23,7 @@ class AdswebCategory(BaseCategory):
     async def get_ad_unit_code(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetAdUnitCodeResponseModel:
         """Method `adsweb.getAdUnitCode()`"""
 
         params = self.get_set_params(locals())
@@ -40,7 +40,7 @@ class AdswebCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         sites_ids: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetAdUnitsResponseModel:
         """Method `adsweb.getAdUnits()`
 
         :param office_id:
@@ -63,7 +63,7 @@ class AdswebCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         sites_ids: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetFraudHistoryResponseModel:
         """Method `adsweb.getFraudHistory()`
 
         :param office_id:
@@ -85,7 +85,7 @@ class AdswebCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         sites_ids: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetSitesResponseModel:
         """Method `adsweb.getSites()`
 
         :param office_id:
@@ -112,7 +112,7 @@ class AdswebCategory(BaseCategory):
         limit: typing.Optional[int] = None,
         page_id: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdswebGetStatisticsResponseModel:
         """Method `adsweb.getStatistics()`
 
         :param date_from:

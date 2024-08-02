@@ -16,7 +16,7 @@ class PrettyCardsCategory(BaseCategory):
         price: typing.Optional[str] = None,
         price_old: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PrettyCardsCreateResponseModel:
         """Method `prettyCards.create()`
 
         :param link:
@@ -38,7 +38,7 @@ class PrettyCardsCategory(BaseCategory):
         card_id: int,
         owner_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PrettyCardsDeleteResponseModel:
         """Method `prettyCards.delete()`
 
         :param card_id:
@@ -61,7 +61,7 @@ class PrettyCardsCategory(BaseCategory):
         price_old: typing.Optional[str] = None,
         title: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PrettyCardsEditResponseModel:
         """Method `prettyCards.edit()`
 
         :param card_id:
@@ -85,7 +85,7 @@ class PrettyCardsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PrettyCardsGetResponseModel:
         """Method `prettyCards.get()`
 
         :param owner_id:

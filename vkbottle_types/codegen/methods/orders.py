@@ -125,7 +125,7 @@ class OrdersCategory(BaseCategory):
         self,
         user_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> OrdersGetUserSubscriptionsResponseModel:
         """Method `orders.getUserSubscriptions()`
 
         :param user_id:

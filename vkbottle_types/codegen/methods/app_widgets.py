@@ -14,7 +14,7 @@ class AppWidgetsCategory(BaseCategory):
         self,
         image_type: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppWidgetsGetAppImageUploadServerResponseModel:
         """Method `appWidgets.getAppImageUploadServer()`
 
         :param image_type:
@@ -48,7 +48,7 @@ class AppWidgetsCategory(BaseCategory):
         self,
         image_type: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AppWidgetsGetGroupImageUploadServerResponseModel:
         """Method `appWidgets.getGroupImageUploadServer()`
 
         :param image_type:

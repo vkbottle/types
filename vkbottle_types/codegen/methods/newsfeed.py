@@ -78,7 +78,7 @@ class NewsfeedCategory(BaseCategory):
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedGenericResponseModel:
         """Method `newsfeed.get()`
 
         :param count: Number of news items to return (default 50, maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.
@@ -105,7 +105,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> NewsfeedGetBannedExtendedResponseModel: ...
 
     @typing.overload
     async def get_banned(
@@ -114,7 +114,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> NewsfeedGetBannedResponseModel: ...
 
     async def get_banned(
         self,
@@ -122,7 +122,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[NewsfeedGetBannedResponseModel, NewsfeedGetBannedExtendedResponseModel]:
         """Method `newsfeed.getBanned()`
 
         :param extended: '1' - return extra information about users and communities
@@ -150,7 +150,7 @@ class NewsfeedCategory(BaseCategory):
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedGetCommentsResponseModel:
         """Method `newsfeed.getComments()`
 
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
@@ -174,7 +174,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Literal[True],
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> NewsfeedGetListsExtendedResponseModel: ...
 
     @typing.overload
     async def get_lists(
@@ -182,14 +182,14 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[typing.Literal[False]] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> NewsfeedGetListsResponseModel: ...
 
     async def get_lists(
         self,
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -213,7 +213,7 @@ class NewsfeedCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedGetMentionsResponseModel:
         """Method `newsfeed.getMentions()`
 
         :param count: Number of posts to return.
@@ -237,7 +237,7 @@ class NewsfeedCategory(BaseCategory):
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedGenericResponseModel:
         """Method `newsfeed.getRecommended()`
 
         :param count: Number of news items to return.
@@ -260,7 +260,7 @@ class NewsfeedCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         shuffle: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedGetSuggestedSourcesResponseModel:
         """Method `newsfeed.getSuggestedSources()`
 
         :param count: amount of communities or users to return.
@@ -280,7 +280,7 @@ class NewsfeedCategory(BaseCategory):
         item_id: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedIgnoreItemResponseModel:
         """Method `newsfeed.ignoreItem()`
 
         :param type: Item type. Possible values: *'wall' - post on the wall,, *'tag' - tag on a photo,, *'profilephoto' - profile photo,, *'video' - video,, *'audio' - audio.
@@ -314,8 +314,10 @@ class NewsfeedCategory(BaseCategory):
         model = NewsfeedSaveListResponse
         return model(**response).response
 
+    @typing.overload
     async def search(
         self,
+        extended: typing.Literal[True],
         count: typing.Optional[int] = None,
         end_time: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
@@ -324,11 +326,71 @@ class NewsfeedCategory(BaseCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        strict: typing.Optional[bool] = None,
-        extended_strict: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> NewsfeedSearchStrictResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        extended: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchExtendedResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchExtendedStrictResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchResponseModel: ...
+
+    async def search(
+        self,
+        extended: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Union[
+        NewsfeedSearchResponseModel,
+        NewsfeedSearchExtendedResponseModel,
+        NewsfeedSearchStrictResponseModel,
+    ]:
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.
@@ -346,8 +408,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("extended",), NewsfeedSearchExtendedResponse),
                 (("strict",), NewsfeedSearchStrictResponse),
+                (("extended",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,

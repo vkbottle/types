@@ -38,7 +38,7 @@ class AccountCategory(BaseCategory):
         old_password: typing.Optional[str] = None,
         restore_sid: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AccountChangePasswordResponseModel:
         """Method `account.changePassword()`
 
         :param new_password: New password that will be set as a current
@@ -57,7 +57,7 @@ class AccountCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AccountGetActiveOffersResponseModel:
         """Method `account.getActiveOffers()`
 
         :param count: Number of results to return.
@@ -90,7 +90,7 @@ class AccountCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AccountGetBannedResponseModel:
         """Method `account.getBanned()`
 
         :param count: Number of results to return.
@@ -215,7 +215,7 @@ class AccountCategory(BaseCategory):
         sex: typing.Optional[int] = None,
         status: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AccountSaveProfileInfoResponseModel:
         """Method `account.saveProfileInfo()`
 
         :param bdate: User birth date, format: DD.MM.YYYY.

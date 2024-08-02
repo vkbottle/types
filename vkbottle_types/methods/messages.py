@@ -2,7 +2,8 @@ import typing
 
 from typing_extensions import Literal
 
-from vkbottle_types.codegen.methods.messages import MessagesCategory
+from vkbottle_types.codegen.methods.messages import MessagesCategory  # type: ignore
+from vkbottle_types.objects import UsersFields
 from vkbottle_types.responses.messages import (
     MessagesChat,
     MessagesChatFull,

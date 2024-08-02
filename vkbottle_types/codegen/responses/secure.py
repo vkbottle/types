@@ -21,19 +21,19 @@ class SecureGetAppBalanceResponse(BaseResponse):
 
 
 class SecureGetSMSHistoryResponse(BaseResponse):
-    response: typing.List[SecureSmsNotification] = Field()
+    response: typing.List["SecureSmsNotification"] = Field()
 
 
 class SecureGetTransactionsHistoryResponse(BaseResponse):
-    response: typing.List[SecureTransaction] = Field()
+    response: typing.List["SecureTransaction"] = Field()
 
 
 class SecureGetUserLevelResponse(BaseResponse):
-    response: typing.List[SecureLevel] = Field()
+    response: typing.List["SecureLevel"] = Field()
 
 
 class SecureGiveEventStickerResponse(BaseResponse):
-    response: typing.List[SecureGiveEventStickerItem] = Field()
+    response: typing.List["SecureGiveEventStickerItem"] = Field()
 
 
 class SecureSendNotificationResponse(BaseResponse):
@@ -41,4 +41,4 @@ class SecureSendNotificationResponse(BaseResponse):
 
 
 class SecureSetCounterArrayResponse(BaseResponse):
-    response: typing.List[SecureSetCounterItem] = Field()
+    response: typing.List["SecureSetCounterItem"] = Field()

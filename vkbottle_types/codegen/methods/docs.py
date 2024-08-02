@@ -76,7 +76,7 @@ class DocsCategory(BaseCategory):
         return_tags: typing.Optional[bool] = None,
         type: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DocsGetResponseModel:
         """Method `docs.get()`
 
         :param count: Number of documents to return. By default, all documents.
@@ -129,7 +129,7 @@ class DocsCategory(BaseCategory):
         self,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DocsGetTypesResponseModel:
         """Method `docs.getTypes()`
 
         :param owner_id: ID of the user or community that owns the documents. Use a negative value to designate a community ID.
@@ -194,7 +194,7 @@ class DocsCategory(BaseCategory):
         tags: typing.Optional[str] = None,
         title: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DocsSaveResponseModel:
         """Method `docs.save()`
 
         :param file: This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
@@ -216,7 +216,7 @@ class DocsCategory(BaseCategory):
         return_tags: typing.Optional[bool] = None,
         search_own: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DocsSearchResponseModel:
         """Method `docs.search()`
 
         :param count: Number of results to return.

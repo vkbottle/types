@@ -243,14 +243,12 @@ def generate_methods(category: Category, path: str):
     print("        + Methods successfully generated!", end="\n\n")
 
 
-def generate_responses(category: Category, path: str, responses_definitions: dict[str, Definition]) -> None:
+def generate_responses(category: Category, path: str) -> None:
     if not category.responses:
         print("        - Responses not found!")
         return
 
     definitions = get_definitions(category.responses)
-    responses_definitions.update(definitions)
-    update_category_methods_responses(category, responses_definitions)
     parse_types.IMPORTS_CACHE = set()
     template = env.get_template("responses.jinja2")
     generated = template.render(definitions=definitions)
@@ -264,53 +262,62 @@ def generate_responses(category: Category, path: str, responses_definitions: dic
     print("        + Responses successfully generated!")
 
 
-def update_category_methods_responses(category: Category, responses_definitions: dict[str, Definition]) -> None:
-    if responses_definitions and category.methods:
-        for method in category.methods:
-            for response_name, response in typing.cast(dict[str, dict[str, str]], method.responses).copy().items():
-                if "$ref" not in response:
-                    continue
-                if (
-                    definition := responses_definitions.get(response["$ref"].split("/")[-1])
-                ) is not None:
-                    for prop in definition.properties:
-                        if prop.name == "response":
-                            if (response_definition := definition.get_response_definition()) is not None:
-                                hint = get_complex_type(response, response=True)
-                            else:
-                                hint = prop.get_type(response=True)
-                            
-                            orig_type: str | list[str]
-                            if "Literal[" in hint:
-                                orig_type = hint
-                            else:
-                                orig_type = (
-                                    hint.replace("'", "")
-                                    .removeprefix("typing.")
-                                    .replace("List", "")
-                                    .replace("[", "")
-                                    .replace("]", "")
-                                    .strip()
-                                )
-                                if "Union" in orig_type:
-                                    orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
-                                if "Dict" in orig_type:
-                                    orig_type = "dict"
-                            method.responses[response_name]["response_hint"] = {  # type: ignore
-                                "hint": hint,
-                                "orig_types": [
-                                    {
-                                        "type": t,
-                                        "is_object": is_object(t, hint),
-                                    }
-                                    for t in orig_type
-                                ] if isinstance(orig_type, list) else [
-                                    {
-                                        "type": orig_type,
-                                        "is_object": is_object(orig_type, hint),
-                                    }
-                                ],
+def process_responses(responses: dict[str, dict[str, str]], responses_definitions: dict[str, Definition]) -> dict[str, dict[str, str]]:
+    for response_name, response in responses.items():
+        if "$ref" not in response:
+            continue
+        if (
+            definition := responses_definitions.get(response["$ref"].split("/")[-1])
+        ) is not None:
+            for prop in definition.properties:
+                if prop.name == "response":
+                    if (response_definition := definition.get_response_definition()) is not None:
+                        if (response_definition.properties or response_definition.enum):
+                            hint = get_complex_type(response, response=True)
+                        else:
+                            hint = "typing.Dict[str, typing.Any]"
+                    else:
+                        hint = prop.get_type(response=True)
+
+                    orig_type: str | list[str]
+                    if "Literal[" in hint:
+                        orig_type = hint
+                    else:
+                        orig_type = (
+                            hint.replace("'", "")
+                            .removeprefix("typing.")
+                            .replace("List", "")
+                            .replace("[", "")
+                            .replace("]", "")
+                            .strip()
+                        )
+                        if "Union" in orig_type:
+                            orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
+                        if "Dict" in orig_type:
+                            orig_type = "dict"
+                    responses[response_name]["response_hint"] = {  # type: ignore
+                        "hint": hint,
+                        "orig_types": [
+                            {
+                                "type": t,
+                                "is_object": is_object(t, hint),
                             }
+                            for t in orig_type
+                        ] if isinstance(orig_type, list) else [
+                            {
+                                "type": orig_type,
+                                "is_object": is_object(orig_type, hint),
+                            }
+                        ],
+                    }
+        
+    return responses.copy()
+
+
+def update_category_methods_responses(category: Category, responses_definitions: dict[str, Definition]) -> None:        
+    for method in category.methods:
+        responses = typing.cast(dict[str, dict[str, str]], method.responses)
+        responses.update(process_responses(responses, responses_definitions))
 
 
 def reorder_definitions(
@@ -347,9 +354,10 @@ def is_object(t: str, hint: str) -> bool:
 
 
 def generate_category(category: Category, path: str, responses_definitions: dict[str, Definition]):
-    generate_responses(category, path, responses_definitions)
+    generate_responses(category, path)
+    update_category_methods_responses(category, responses_definitions)
     generate_methods(category, path)
-    
+
 
 def parse_properties(properties: dict[str, dict]) -> list[dict]:
     return [
@@ -395,6 +403,10 @@ def generate_schema(schema: list[Category], folder: str) -> None:
     print("Generating schema...")
 
     responses_definitions: dict[str, Definition] = {}
+    for c in schema:
+        if c.responses and c.responses.definitions:
+            responses_definitions.update(get_definitions(c.responses))
+
     for category in schema:
         print(f"    * Generating category: {category.name!r}...")
         generate_category(category, folder, responses_definitions)
@@ -405,9 +417,9 @@ def generate_schema(schema: list[Category], folder: str) -> None:
             continue
 
         definitions.update(
-            {k: (v, category) for k, v in get_definitions(category.objects)}
+            {k: (v, category) for k, v in get_definitions(category.objects)},
         )
-    
+
     sub_definitions: typing.Dict[str, typing.List[str]] = {}
     for def_name, (def_, _) in definitions.items():
         for base in def_.allOf:

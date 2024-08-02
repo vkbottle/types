@@ -134,7 +134,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         retargeting_group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsCreateLookalikeRequestResponseModel:
         """Method `ads.createLookalikeRequest()`
 
         :param account_id:
@@ -157,7 +157,7 @@ class AdsCategory(BaseCategory):
         target_pixel_id: typing.Optional[int] = None,
         target_pixel_rules: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsCreateTargetGroupResponseModel:
         """Method `ads.createTargetGroup()`
 
         :param account_id: Advertising account ID.
@@ -181,7 +181,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         domain: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsCreateTargetPixelResponseModel:
         """Method `ads.createTargetPixel()`
 
         :param account_id:
@@ -425,7 +425,7 @@ class AdsCategory(BaseCategory):
         self,
         lang: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsGetCategoriesResponseModel:
         """Method `ads.getCategories()`
 
         :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
@@ -500,7 +500,7 @@ class AdsCategory(BaseCategory):
         requests_ids: typing.Optional[str] = None,
         sort_by: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsGetLookalikeRequestsResponseModel:
         """Method `ads.getLookalikeRequests()`
 
         :param account_id:
@@ -520,7 +520,7 @@ class AdsCategory(BaseCategory):
         self,
         artist_name: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsGetMusiciansResponseModel:
         """Method `ads.getMusicians()`
 
         :param artist_name:
@@ -535,7 +535,7 @@ class AdsCategory(BaseCategory):
         self,
         ids: typing.List[int],
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsGetMusiciansResponseModel:
         """Method `ads.getMusiciansByIds()`
 
         :param ids:
@@ -682,10 +682,10 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[AdsTargSuggestions],
-        typing.List[AdsTargSuggestionsRegions],
-        typing.List[AdsTargSuggestionsCities],
         typing.List[AdsTargSuggestionsSchools],
+        typing.List[AdsTargSuggestionsCities],
+        typing.List[AdsTargSuggestionsRegions],
+        typing.List[AdsTargSuggestions],
     ]:
         """Method `ads.getSuggestions()`
 
@@ -701,8 +701,8 @@ class AdsCategory(BaseCategory):
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
             (
-                (("regions",), AdsGetSuggestionsRegionsResponse),
                 (("cities",), AdsGetSuggestionsRegionsResponse),
+                (("regions",), AdsGetSuggestionsRegionsResponse),
                 (("schools",), AdsGetSuggestionsSchoolsResponse),
             ),
             default=AdsGetSuggestionsResponse,
@@ -858,7 +858,7 @@ class AdsCategory(BaseCategory):
         target_group_id: int,
         client_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsRemoveTargetContactsResponseModel:
         """Method `ads.removeTargetContacts()`
 
         :param account_id:
@@ -879,7 +879,7 @@ class AdsCategory(BaseCategory):
         request_id: int,
         client_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsSaveLookalikeRequestResultResponseModel:
         """Method `ads.saveLookalikeRequestResult()`
 
         :param account_id:
@@ -900,7 +900,7 @@ class AdsCategory(BaseCategory):
         client_id: typing.Optional[int] = None,
         share_with_client_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AdsShareTargetGroupResponseModel:
         """Method `ads.shareTargetGroup()`
 
         :param account_id:

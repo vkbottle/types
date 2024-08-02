@@ -1,100 +1,266 @@
 import typing
 
-from vkbottle_types.base_model import Field
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import (
+    GroupsGroupFull,
+    MarketGlobalSearchFilters,
+    MarketMarketAlbum,
+    MarketMarketCategoryTree,
+    MarketMarketItem,
+    MarketMarketItemBasicWithGroup,
+    MarketMarketItemFull,
+    MarketOrder,
+    MarketOrderItem,
+    MarketProperty,
+    MarketServicesViewType,
+    PhotosPhoto,
+    UsersUserFull,
+    WallWallComment,
+)
 from vkbottle_types.responses.base_response import BaseResponse
 
 
+class MarketAddAlbumResponseModel(BaseModel):
+    market_album_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    albums_count: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
 class MarketAddAlbumResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketAddAlbumResponseModel" = Field()
+
+
+class MarketAddPropertyVariantResponseModel(BaseModel):
+    variant_id: int = Field()
 
 
 class MarketAddPropertyVariantResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketAddPropertyVariantResponseModel" = Field()
+
+
+class MarketAddPropertyResponseModel(BaseModel):
+    property_id: int = Field()
 
 
 class MarketAddPropertyResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketAddPropertyResponseModel" = Field()
+
+
+class MarketAddResponseModel(BaseModel):
+    market_item_id: int = Field()
 
 
 class MarketAddResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketAddResponseModel" = Field()
 
 
 class MarketCreateCommentResponse(BaseResponse):
     response: int = Field()
 
 
+class MarketGetAlbumByIdResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketAlbum"] = Field()
+
+
 class MarketGetAlbumByIdResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetAlbumByIdResponseModel" = Field()
+
+
+class MarketGetAlbumsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketAlbum"] = Field()
 
 
 class MarketGetAlbumsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetAlbumsResponseModel" = Field()
+
+
+class MarketGetByIdExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
 
 
 class MarketGetByIdExtendedResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetByIdExtendedResponseModel" = Field()
+
+
+class MarketGetByIdResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItem"] = Field()
 
 
 class MarketGetByIdResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetByIdResponseModel" = Field()
+
+
+class MarketGetCategoriesNewResponseModel(BaseModel):
+    items: typing.List["MarketMarketCategoryTree"] = Field()
 
 
 class MarketGetCategoriesNewResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetCategoriesNewResponseModel" = Field()
+
+
+class MarketGetCommentsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["WallWallComment"] = Field()
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
 
 
 class MarketGetCommentsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetCommentsResponseModel" = Field()
+
+
+class MarketGetGroupOrdersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
 
 
 class MarketGetGroupOrdersResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetGroupOrdersResponseModel" = Field()
+
+
+class MarketGetOrderByIdResponseModel(BaseModel):
+    order: typing.Optional["MarketOrder"] = Field(
+        default=None,
+    )
 
 
 class MarketGetOrderByIdResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetOrderByIdResponseModel" = Field()
+
+
+class MarketGetOrderItemsResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrderItem"] = Field()
 
 
 class MarketGetOrderItemsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetOrderItemsResponseModel" = Field()
+
+
+class MarketGetOrdersExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
 
 
 class MarketGetOrdersExtendedResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetOrdersExtendedResponseModel" = Field()
+
+
+class MarketGetOrdersResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketOrder"] = Field()
 
 
 class MarketGetOrdersResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetOrdersResponseModel" = Field()
+
+
+class MarketGetPropertiesResponseModel(BaseModel):
+    items: typing.List["MarketProperty"] = Field()
+    count: int = Field()
 
 
 class MarketGetPropertiesResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetPropertiesResponseModel" = Field()
+
+
+class MarketGetExtendedResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = Field(
+        default=None,
+    )
 
 
 class MarketGetExtendedResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetExtendedResponseModel" = Field()
+
+
+class MarketGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["MarketMarketItem"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = Field(
+        default=None,
+    )
 
 
 class MarketGetResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGetResponseModel" = Field()
+
+
+class MarketGroupItemsResponseModel(BaseModel):
+    item_group_id: int = Field()
 
 
 class MarketGroupItemsResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketGroupItemsResponseModel" = Field()
+
+
+class MarketPhotoIdResponseModel(BaseModel):
+    photo_id: int = Field()
+    photo: typing.Optional["PhotosPhoto"] = Field(
+        default=None,
+    )
 
 
 class MarketPhotoIdResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketPhotoIdResponseModel" = Field()
+
+
+class MarketSearchBasicResponseModel(BaseModel):
+    count: int = Field()
+    total: int = Field()
+    items: typing.List["MarketMarketItemBasicWithGroup"] = Field()
+    has_more: typing.Optional[bool] = Field(
+        default=None,
+    )
 
 
 class MarketSearchBasicResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketSearchBasicResponseModel" = Field()
+
+
+class MarketSearchExtendedResponseModel(BaseModel):
+    count: int = Field()
+    view_type: "MarketServicesViewType" = Field()
+    items: typing.List["MarketMarketItemFull"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItemFull"]] = Field(
+        default=None,
+    )
 
 
 class MarketSearchExtendedResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketSearchExtendedResponseModel" = Field()
+
+
+class MarketSearchResponseModel(BaseModel):
+    count: int = Field()
+    view_type: "MarketServicesViewType" = Field()
+    items: typing.List["MarketMarketItem"] = Field()
+    variants: typing.Optional[typing.List["MarketMarketItem"]] = Field(
+        default=None,
+    )
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    filters: typing.Optional["MarketGlobalSearchFilters"] = Field(
+        default=None,
+    )
 
 
 class MarketSearchResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "MarketSearchResponseModel" = Field()

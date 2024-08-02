@@ -10,7 +10,7 @@ class AuthCategory(BaseCategory):
         last_name: str,
         phone: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AuthRestoreResponseModel:
         """Method `auth.restore()`
 
         :param last_name: User last name.

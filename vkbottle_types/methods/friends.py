@@ -1,9 +1,7 @@
 import typing
 
-from vkbottle_types.codegen.methods.friends import FriendsCategory
+from vkbottle_types.codegen.methods.friends import FriendsCategory  # type: ignore
 from vkbottle_types.objects import (
-    FriendsFriendExtendedStatus,
-    FriendsFriendStatus,
     FriendsMutualFriend,
     FriendsOnlineUsers,
     FriendsOnlineUsersWithMobile,
@@ -16,11 +14,14 @@ from vkbottle_types.responses.friends import (
     FriendsGetOnlineExtendedResponse,
     FriendsGetOnlineOnlineMobileExtendedResponse,
     FriendsGetOnlineOnlineMobileResponse,
+    FriendsGetOnlineOnlineMobileResponseModel,
     FriendsGetOnlineResponse,
     FriendsGetRequestsExtendedResponse,
+    FriendsGetRequestsExtendedResponseModel,
     FriendsGetRequestsNeedMutualResponse,
+    FriendsGetRequestsNeedMutualResponseModel,
     FriendsGetRequestsResponse,
-    FriendsGetResponse,
+    FriendsGetRequestsResponseModel,
     FriendsMutualFriend,
     FriendsOnlineUsers,
     FriendsOnlineUsersWithMobile,
@@ -112,7 +113,7 @@ class FriendsCategory(FriendsCategory):
         offset: typing.Optional[int] = None,
         order: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> FriendsGetOnlineOnlineMobileResponseModel: ...
 
     @typing.overload
     async def get_online(
@@ -165,7 +166,7 @@ class FriendsCategory(FriendsCategory):
     ) -> typing.Union[
         "FriendsOnlineUsersWithMobile",
         typing.List[int],
-        typing.Dict[str, typing.Any],
+        FriendsGetOnlineOnlineMobileResponseModel,
         "FriendsOnlineUsers",
     ]:
         """Method `friends.getOnline()`
@@ -191,8 +192,53 @@ class FriendsCategory(FriendsCategory):
         )
         return model(**response).response
 
+    @typing.overload
     async def get_requests(
         self,
+        *,
+        need_mutual: typing.Literal[True],
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+    ) -> FriendsGetRequestsNeedMutualResponseModel: ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        *,
+        extended: typing.Literal[True],
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+    ) -> FriendsGetRequestsExtendedResponseModel: ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        *,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+    ) -> FriendsGetRequestsResponseModel: ...
+
+    async def get_requests(
+        self,
+        *,
         need_mutual: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
@@ -204,7 +250,11 @@ class FriendsCategory(FriendsCategory):
         sort: typing.Optional[int] = None,
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        FriendsGetRequestsNeedMutualResponseModel,
+        FriendsGetRequestsResponseModel,
+        FriendsGetRequestsExtendedResponseModel,
+    ]:
         """Method `friends.getRequests()`
 
         :param need_mutual: '1' - to return a list of mutual friends (up to 20), if any

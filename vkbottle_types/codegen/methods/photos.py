@@ -260,7 +260,7 @@ class PhotosCategory(BaseCategory):
         photo_sizes: typing.Optional[bool] = None,
         rev: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetResponseModel:
         """Method `photos.get()`
 
         :param album_id: Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
@@ -290,7 +290,7 @@ class PhotosCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         photo_sizes: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetAlbumsResponseModel:
         """Method `photos.getAlbums()`
 
         :param album_ids: Album IDs.
@@ -337,7 +337,7 @@ class PhotosCategory(BaseCategory):
         photo_sizes: typing.Optional[bool] = None,
         skip_hidden: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetAllResponseModel:
         """Method `photos.getAll()`
 
         :param count: Number of photos to return.
@@ -363,7 +363,7 @@ class PhotosCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetAllCommentsResponseModel:
         """Method `photos.getAllComments()`
 
         :param album_id: Album ID. If the parameter is not set, comments on all of the user's albums will be returned.
@@ -432,7 +432,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> PhotosGetCommentsExtendedResponseModel: ...
 
     @typing.overload
     async def get_comments(
@@ -448,7 +448,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> PhotosGetCommentsResponseModel: ...
 
     async def get_comments(
         self,
@@ -463,7 +463,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[PhotosGetCommentsResponseModel, PhotosGetCommentsExtendedResponseModel]:
         """Method `photos.getComments()`
 
         :param photo_id: Photo ID.
@@ -545,7 +545,7 @@ class PhotosCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetNewTagsResponseModel:
         """Method `photos.getNewTags()`
 
         :param count: Number of photos to return.
@@ -641,7 +641,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosGetUserPhotosResponseModel:
         """Method `photos.getUserPhotos()`
 
         :param count: Number of photos to return. Maximum value is 1000.
@@ -974,7 +974,7 @@ class PhotosCategory(BaseCategory):
         photo: typing.Optional[str] = None,
         response_json: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosSaveOwnerCoverPhotoResponseModel:
         """Method `photos.saveOwnerCoverPhoto()`
 
         :param crop_height:
@@ -998,7 +998,7 @@ class PhotosCategory(BaseCategory):
         photo: typing.Optional[str] = None,
         server: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosSaveOwnerPhotoResponseModel:
         """Method `photos.saveOwnerPhoto()`
 
         :param hash: parameter returned after [vk.com/dev/upload_files|photo upload].
@@ -1052,7 +1052,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         start_time: typing.Optional[float] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PhotosSearchResponseModel:
         """Method `photos.search()`
 
         :param count: Number of photos to return.

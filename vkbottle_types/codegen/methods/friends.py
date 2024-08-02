@@ -41,7 +41,7 @@ class FriendsCategory(BaseCategory):
         name: str,
         user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsAddListResponseModel:
         """Method `friends.addList()`
 
         :param name: Name of the friend list.
@@ -77,7 +77,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         need_sign: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[FriendsFriendExtendedStatus], typing.List[FriendsFriendStatus]]:
+    ) -> typing.Union[typing.List[FriendsFriendStatus], typing.List[FriendsFriendExtendedStatus]]:
         """Method `friends.areFriends()`
 
         :param user_ids: IDs of the users whose friendship status to check.
@@ -98,7 +98,7 @@ class FriendsCategory(BaseCategory):
         self,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsDeleteResponseModel:
         """Method `friends.delete()`
 
         :param user_id: ID of the user whose friend request is to be declined or who is to be deleted from the current user's friend list.
@@ -186,7 +186,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> FriendsGetFieldsResponseModel: ...
 
     @typing.overload
     async def get(
@@ -199,7 +199,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> FriendsGetResponseModel: ...
 
     async def get(
         self,
@@ -211,7 +211,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[FriendsGetResponseModel, FriendsGetFieldsResponseModel]:
         """Method `friends.get()`
 
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
@@ -248,7 +248,7 @@ class FriendsCategory(BaseCategory):
         return_system: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsGetListsResponseModel:
         """Method `friends.getLists()`
 
         :param return_system: '1' - to return system friend lists. By default: '0'.
@@ -263,20 +263,6 @@ class FriendsCategory(BaseCategory):
     @typing.overload
     async def get_mutual(
         self,
-        *,
-        total_count: int,
-        count: typing.Optional[int] = None,
-        need_common_count: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[str] = None,
-        source_uid: typing.Optional[int] = None,
-        target_uid: typing.Optional[int] = None,
-    ) -> "FriendsMutualFriend": ...
-
-    @typing.overload
-    async def get_mutual(
-        self,
-        *,
         target_uids: typing.List[int],
         count: typing.Optional[int] = None,
         need_common_count: typing.Optional[bool] = None,
@@ -284,25 +270,13 @@ class FriendsCategory(BaseCategory):
         order: typing.Optional[str] = None,
         source_uid: typing.Optional[int] = None,
         target_uid: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[FriendsMutualFriend]: ...
 
     @typing.overload
     async def get_mutual(
         self,
-        *,
-        count: typing.Optional[int] = None,
-        need_common_count: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[str] = None,
-        source_uid: typing.Optional[int] = None,
-        target_uid: typing.Optional[int] = None,
-    ) -> typing.List[int]: ...
-
-    async def get_mutual(
-        self,
-        *,
         target_uids: typing.Optional[typing.List[int]] = None,
-        total_count: typing.Optional[int] = None,
         count: typing.Optional[int] = None,
         need_common_count: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
@@ -310,7 +284,32 @@ class FriendsCategory(BaseCategory):
         source_uid: typing.Optional[int] = None,
         target_uid: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["FriendsMutualFriend", typing.List[int], typing.List[FriendsMutualFriend]]:
+    ) -> "FriendsMutualFriend": ...
+
+    @typing.overload
+    async def get_mutual(
+        self,
+        target_uids: typing.List[int],
+        count: typing.Optional[int] = None,
+        need_common_count: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        order: typing.Optional[str] = None,
+        source_uid: typing.Optional[int] = None,
+        target_uid: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> typing.List[int]: ...
+
+    async def get_mutual(
+        self,
+        target_uids: typing.Optional[typing.List[int]] = None,
+        count: typing.Optional[int] = None,
+        need_common_count: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        order: typing.Optional[str] = None,
+        source_uid: typing.Optional[int] = None,
+        target_uid: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Union[typing.List[int], typing.List[FriendsMutualFriend], "FriendsMutualFriend"]:
         """Method `friends.getMutual()`
 
         :param target_uids: IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -337,57 +336,54 @@ class FriendsCategory(BaseCategory):
     @typing.overload
     async def get_online(
         self,
-        *,
         online_mobile: typing.Literal[True],
         count: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         order: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
-    ) -> typing.Dict[str, typing.Any]: ...
+        **kwargs: typing.Any,
+    ) -> FriendsGetOnlineOnlineMobileResponseModel: ...
 
     @typing.overload
     async def get_online(
         self,
-        *,
-        extended: typing.Literal[True],
+        online_mobile: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         order: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> "FriendsOnlineUsers": ...
 
     @typing.overload
     async def get_online(
         self,
-        *,
-        online_mobile_extended: typing.Literal[True],
         count: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         online_mobile: typing.Optional[bool] = None,
         order: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> "FriendsOnlineUsersWithMobile": ...
 
     @typing.overload
     async def get_online(
         self,
-        *,
         count: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
+        online_mobile: typing.Optional[bool] = None,
         order: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[int]: ...
 
     async def get_online(
         self,
-        *,
         online_mobile: typing.Optional[bool] = None,
-        extended: typing.Optional[bool] = None,
-        online_mobile_extended: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         list_id: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
@@ -395,9 +391,9 @@ class FriendsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        "FriendsOnlineUsersWithMobile",
         typing.List[int],
-        typing.Dict[str, typing.Any],
+        "FriendsOnlineUsersWithMobile",
+        FriendsGetOnlineOnlineMobileResponseModel,
         "FriendsOnlineUsers",
     ]:
         """Method `friends.getOnline()`
@@ -438,6 +434,23 @@ class FriendsCategory(BaseCategory):
         model = FriendsGetRecentResponse
         return model(**response).response
 
+    @typing.overload
+    async def get_requests(
+        self,
+        need_mutual: typing.Literal[True],
+        extended: typing.Literal[True],
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+        **kwargs: typing.Any,
+    ) -> FriendsGetRequestsNeedMutualResponseModel: ...
+
+    @typing.overload
     async def get_requests(
         self,
         need_mutual: typing.Optional[bool] = None,
@@ -451,7 +464,42 @@ class FriendsCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsGetRequestsExtendedResponseModel: ...
+
+    @typing.overload
+    async def get_requests(
+        self,
+        count: typing.Optional[int] = None,
+        extended: typing.Optional[bool] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_mutual: typing.Optional[bool] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+        **kwargs: typing.Any,
+    ) -> FriendsGetRequestsResponseModel: ...
+
+    async def get_requests(
+        self,
+        need_mutual: typing.Optional[bool] = None,
+        extended: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
+        need_viewed: typing.Optional[bool] = None,
+        offset: typing.Optional[int] = None,
+        out: typing.Optional[bool] = None,
+        ref: typing.Optional[str] = None,
+        sort: typing.Optional[int] = None,
+        suggested: typing.Optional[bool] = None,
+        **kwargs: typing.Any,
+    ) -> typing.Union[
+        FriendsGetRequestsNeedMutualResponseModel,
+        FriendsGetRequestsResponseModel,
+        FriendsGetRequestsExtendedResponseModel,
+    ]:
         """Method `friends.getRequests()`
 
         :param need_mutual: '1' - to return a list of mutual friends (up to 20), if any
@@ -471,7 +519,7 @@ class FriendsCategory(BaseCategory):
         model = self.get_model(
             (
                 (("need_mutual",), FriendsGetRequestsNeedMutualResponse),
-                (("extended",), FriendsGetRequestsExtendedResponse),
+                (("extended",), FriendsGetRequestsNeedMutualResponse),
             ),
             default=FriendsGetRequestsResponse,
             params=params,
@@ -482,11 +530,13 @@ class FriendsCategory(BaseCategory):
         self,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
-        filter: typing.Optional[typing.List[typing.Literal["mutual", "contacts", "mutual_contacts"]]] = None,
+        filter: typing.Optional[
+            typing.List[typing.Literal["mutual", "contacts", "mutual_contacts"]]
+        ] = None,
         name_case: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsGetSuggestionsResponseModel:
         """Method `friends.getSuggestions()`
 
         :param count: Number of suggestions to return.
@@ -510,7 +560,7 @@ class FriendsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FriendsSearchResponseModel:
         """Method `friends.search()`
 
         :param count: Number of friends to return.

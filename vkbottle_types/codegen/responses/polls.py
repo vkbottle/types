@@ -16,7 +16,7 @@ class PollsCreateResponse(BaseResponse):
 
 
 class PollsGetBackgroundsResponse(BaseResponse):
-    response: typing.List[PollsBackground] = Field()
+    response: typing.List["PollsBackground"] = Field()
 
 
 class PollsGetByIdResponse(BaseResponse):
@@ -24,11 +24,11 @@ class PollsGetByIdResponse(BaseResponse):
 
 
 class PollsGetVotersFieldsResponse(BaseResponse):
-    response: typing.List[PollsFieldsVoters] = Field()
+    response: typing.List["PollsFieldsVoters"] = Field()
 
 
 class PollsGetVotersResponse(BaseResponse):
-    response: typing.List[PollsVoters] = Field()
+    response: typing.List["PollsVoters"] = Field()
 
 
 class PollsSavePhotoResponse(BaseResponse):

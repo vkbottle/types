@@ -34,7 +34,7 @@ class MarketCategory(BaseCategory):
         video_ids: typing.Optional[typing.List[int]] = None,
         weight: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketAddResponseModel:
         """Method `market.add()`
 
         :param category_id: Item category ID.
@@ -71,7 +71,7 @@ class MarketCategory(BaseCategory):
         main_album: typing.Optional[bool] = None,
         photo_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketAddAlbumResponseModel:
         """Method `market.addAlbum()`
 
         :param owner_id: ID of an item owner community.
@@ -91,7 +91,7 @@ class MarketCategory(BaseCategory):
         group_id: int,
         title: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketAddPropertyResponseModel:
         """Method `market.addProperty()`
 
         :param group_id: Group id.
@@ -109,7 +109,7 @@ class MarketCategory(BaseCategory):
         property_id: int,
         title: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketAddPropertyVariantResponseModel:
         """Method `market.addPropertyVariant()`
 
         :param group_id: Group id.
@@ -437,7 +437,7 @@ class MarketCategory(BaseCategory):
         count: typing.Optional[int] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetCategoriesNewResponseModel:
         """Method `market.filterCategories()`
 
         :param category_id: Category_id filter categories
@@ -464,7 +464,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         with_disabled: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetExtendedResponseModel: ...
 
     @typing.overload
     async def get(
@@ -480,7 +480,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         with_disabled: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetResponseModel: ...
 
     async def get(
         self,
@@ -495,7 +495,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         with_disabled: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MarketGetResponseModel, MarketGetExtendedResponseModel]:
         """Method `market.get()`
 
         :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
@@ -524,7 +524,7 @@ class MarketCategory(BaseCategory):
         album_ids: typing.List[int],
         owner_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetAlbumByIdResponseModel:
         """Method `market.getAlbumById()`
 
         :param album_ids: collections identifiers to obtain data from
@@ -542,7 +542,7 @@ class MarketCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetAlbumsResponseModel:
         """Method `market.getAlbums()`
 
         :param owner_id: ID of an items owner community.
@@ -561,7 +561,7 @@ class MarketCategory(BaseCategory):
         item_ids: typing.List[str],
         extended: typing.Literal[True],
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetByIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_id(
@@ -569,14 +569,14 @@ class MarketCategory(BaseCategory):
         item_ids: typing.List[str],
         extended: typing.Optional[typing.Literal[False]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
         item_ids: typing.List[str],
         extended: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MarketGetByIdResponseModel, MarketGetByIdExtendedResponseModel]:
         """Method `market.getById()`
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
@@ -597,7 +597,7 @@ class MarketCategory(BaseCategory):
         album_id: typing.Optional[int] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetCategoriesNewResponseModel:
         """Method `market.getCategories()`
 
         :param album_id:
@@ -621,7 +621,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetCommentsResponseModel:
         """Method `market.getComments()`
 
         :param item_id: Item ID.
@@ -646,7 +646,7 @@ class MarketCategory(BaseCategory):
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetGroupOrdersResponseModel:
         """Method `market.getGroupOrders()`
 
         :param count:
@@ -665,7 +665,7 @@ class MarketCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetOrderByIdResponseModel:
         """Method `market.getOrderById()`
 
         :param order_id:
@@ -685,7 +685,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetOrderItemsResponseModel:
         """Method `market.getOrderItems()`
 
         :param order_id:
@@ -708,7 +708,7 @@ class MarketCategory(BaseCategory):
         date_to: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetOrdersExtendedResponseModel: ...
 
     @typing.overload
     async def get_orders(
@@ -719,7 +719,7 @@ class MarketCategory(BaseCategory):
         date_to: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketGetOrdersResponseModel: ...
 
     async def get_orders(
         self,
@@ -729,7 +729,7 @@ class MarketCategory(BaseCategory):
         date_to: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MarketGetOrdersExtendedResponseModel, MarketGetOrdersResponseModel]:
         """Method `market.getOrders()`
 
         :param extended:
@@ -767,7 +767,7 @@ class MarketCategory(BaseCategory):
         self,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGetPropertiesResponseModel:
         """Method `market.getProperties()`
 
         :param group_id:
@@ -784,7 +784,7 @@ class MarketCategory(BaseCategory):
         item_ids: typing.List[int],
         item_group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketGroupItemsResponseModel:
         """Method `market.groupItems()`
 
         :param group_id: Group id.
@@ -936,7 +936,7 @@ class MarketCategory(BaseCategory):
         self,
         upload_response: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketPhotoIdResponseModel:
         """Method `market.saveProductPhoto()`
 
         :param upload_response: Upload response
@@ -963,7 +963,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
@@ -981,7 +981,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> MarketSearchResponseModel: ...
 
     async def search(
         self,
@@ -998,7 +998,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.
@@ -1037,7 +1037,7 @@ class MarketCategory(BaseCategory):
         sort_by: typing.Optional[int] = None,
         sort_direction: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketSearchResponseModel:
         """Method `market.searchItems()`
 
         :param q:
@@ -1071,7 +1071,7 @@ class MarketCategory(BaseCategory):
         sort_by: typing.Optional[int] = None,
         sort_direction: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> MarketSearchBasicResponseModel:
         """Method `market.searchItemsBasic()`
 
         :param q:

@@ -40,7 +40,7 @@ class AsrCategory(BaseCategory):
         audio: str,
         _model: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> AsrProcessResponseModel:
         """Method `asr.process()`
 
         :param audio: This parameter is a JSON response returned from [vk.com/dev/upload_files_2|file uploading server].

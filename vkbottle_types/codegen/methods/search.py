@@ -14,7 +14,7 @@ class SearchCategory(BaseCategory):
         q: typing.Optional[str] = None,
         search_global: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> SearchGetHintsResponseModel:
         """Method `search.getHints()`
 
         :param fields:

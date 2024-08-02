@@ -183,7 +183,7 @@ class BoardCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> BoardGetCommentsExtendedResponseModel: ...
 
     @typing.overload
     async def get_comments(
@@ -197,7 +197,7 @@ class BoardCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> BoardGetCommentsResponseModel: ...
 
     async def get_comments(
         self,
@@ -210,7 +210,7 @@ class BoardCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[BoardGetCommentsExtendedResponseModel, BoardGetCommentsResponseModel]:
         """Method `board.getComments()`
 
         :param group_id: ID of the community that owns the discussion board.
@@ -244,7 +244,7 @@ class BoardCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         topic_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> BoardGetTopicsExtendedResponseModel: ...
 
     @typing.overload
     async def get_topics(
@@ -258,7 +258,7 @@ class BoardCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         topic_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> BoardGetTopicsResponseModel: ...
 
     async def get_topics(
         self,
@@ -271,7 +271,7 @@ class BoardCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         topic_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[BoardGetTopicsExtendedResponseModel, BoardGetTopicsResponseModel]:
         """Method `board.getTopics()`
 
         :param group_id: ID of the community that owns the discussion board.

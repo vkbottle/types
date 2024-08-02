@@ -10,4 +10,4 @@ class StorageGetKeysResponse(BaseResponse):
 
 
 class StorageGetResponse(BaseResponse):
-    response: typing.List[StorageValue] = Field()
+    response: typing.List["StorageValue"] = Field()

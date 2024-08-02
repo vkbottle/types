@@ -13,7 +13,7 @@ class LikesCategory(BaseCategory):
         from_group: typing.Optional[bool] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LikesAddResponseModel:
         """Method `likes.add()`
 
         :param item_id: Object ID.
@@ -36,7 +36,7 @@ class LikesCategory(BaseCategory):
         from_group: typing.Optional[bool] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LikesDeleteResponseModel:
         """Method `likes.delete()`
 
         :param item_id: Object ID.
@@ -66,7 +66,7 @@ class LikesCategory(BaseCategory):
         page_url: typing.Optional[str] = None,
         skip_own: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> LikesGetListExtendedResponseModel: ...
 
     @typing.overload
     async def get_list(
@@ -83,7 +83,7 @@ class LikesCategory(BaseCategory):
         page_url: typing.Optional[str] = None,
         skip_own: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> LikesGetListResponseModel: ...
 
     async def get_list(
         self,
@@ -99,7 +99,7 @@ class LikesCategory(BaseCategory):
         page_url: typing.Optional[str] = None,
         skip_own: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[LikesGetListResponseModel, LikesGetListExtendedResponseModel]:
         """Method `likes.getList()`
 
         :param type: , Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed
@@ -131,7 +131,7 @@ class LikesCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> LikesIsLikedResponseModel:
         """Method `likes.isLiked()`
 
         :param item_id: Object ID.

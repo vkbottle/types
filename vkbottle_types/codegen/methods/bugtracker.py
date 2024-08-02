@@ -18,7 +18,7 @@ class BugtrackerCategory(BaseCategory):
         company_id: int,
         user_ids: typing.List[int],
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerAddCompanyGroupsMembersResponseModel:
         """Method `bugtracker.addCompanyGroupsMembers()`
 
         :param company_group_ids:
@@ -36,7 +36,7 @@ class BugtrackerCategory(BaseCategory):
         company_id: int,
         user_ids: typing.List[int],
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerAddCompanyMembersResponseModel:
         """Method `bugtracker.addCompanyMembers()`
 
         :param company_id:
@@ -78,7 +78,7 @@ class BugtrackerCategory(BaseCategory):
         hidden: typing.Optional[bool] = None,
         text: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerCreateCommentResponseModel:
         """Method `bugtracker.createComment()`
 
         :param bugreport_id:
@@ -98,7 +98,7 @@ class BugtrackerCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerGetBugreportByIdResponseModel:
         """Method `bugtracker.getBugreportById()`
 
         :param bugreport_id:
@@ -121,7 +121,7 @@ class BugtrackerCategory(BaseCategory):
         filter_name: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerGetCompanyGroupMembersResponseModel:
         """Method `bugtracker.getCompanyGroupMembers()`
 
         :param company_group_id:
@@ -151,7 +151,7 @@ class BugtrackerCategory(BaseCategory):
         filter_role: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerGetCompanyMembersResponseModel:
         """Method `bugtracker.getCompanyMembers()`
 
         :param company_id:
@@ -177,7 +177,7 @@ class BugtrackerCategory(BaseCategory):
         version_id: int,
         ttl: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> BugtrackerGetDownloadVersionUrlResponseModel:
         """Method `bugtracker.getDownloadVersionUrl()`
 
         :param product_id:

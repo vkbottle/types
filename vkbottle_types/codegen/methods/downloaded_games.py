@@ -9,7 +9,7 @@ class DownloadedGamesCategory(BaseCategory):
         self,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DownloadedGamesPaidStatusResponseModel:
         """Method `downloadedGames.getPaidStatus()`
 
         :param user_id:

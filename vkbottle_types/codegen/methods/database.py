@@ -1,7 +1,12 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseCountry, DatabaseCityById, DatabaseSchoolClass, DatabaseStation
+from vkbottle_types.objects import (
+    BaseCountry,
+    DatabaseCityById,
+    DatabaseSchoolClass,
+    DatabaseStation,
+)
 from vkbottle_types.responses.database import *  # noqa: F401,F403
 
 
@@ -12,7 +17,7 @@ class DatabaseCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetChairsResponseModel:
         """Method `database.getChairs()`
 
         :param faculty_id: id of the faculty to get chairs from
@@ -33,7 +38,7 @@ class DatabaseCategory(BaseCategory):
         q: typing.Optional[str] = None,
         region_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetCitiesResponseModel:
         """Method `database.getCities()`
 
         :param count: Number of cities to return.
@@ -70,7 +75,7 @@ class DatabaseCategory(BaseCategory):
         need_all: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetCountriesResponseModel:
         """Method `database.getCountries()`
 
         :param code: Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
@@ -105,7 +110,7 @@ class DatabaseCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetFacultiesResponseModel:
         """Method `database.getFaculties()`
 
         :param university_id: University ID.
@@ -125,7 +130,7 @@ class DatabaseCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetMetroStationsResponseModel:
         """Method `database.getMetroStations()`
 
         :param city_id:
@@ -160,7 +165,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetRegionsResponseModel:
         """Method `database.getRegions()`
 
         :param count: Number of regions to return.
@@ -195,7 +200,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetSchoolsResponseModel:
         """Method `database.getSchools()`
 
         :param city_id: City ID.
@@ -216,7 +221,7 @@ class DatabaseCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DatabaseGetUniversitiesResponseModel:
         """Method `database.getUniversities()`
 
         :param city_id: City ID.

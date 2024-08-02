@@ -11,7 +11,7 @@ class GiftsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> GiftsGetResponseModel:
         """Method `gifts.get()`
 
         :param count: Number of gifts to return.

@@ -4,7 +4,7 @@ from enum import Enum
 from typing import List, Optional
 
 from vkbottle_types.base_model import BaseModel
-from vkbottle_types.codegen.objects import *  # noqa: F403
+from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
 
 
 class MessagesMessageActionStatus(Enum):  # type: ignore

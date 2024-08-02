@@ -54,7 +54,7 @@ class WallCategory(BaseCategory):
         reply_to_comment: typing.Optional[int] = None,
         sticker_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallCreateCommentResponseModel:
         """Method `wall.createComment()`
 
         :param post_id: Post ID.
@@ -128,7 +128,7 @@ class WallCategory(BaseCategory):
         signed: typing.Optional[bool] = None,
         topic_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallEditResponseModel:
         """Method `wall.edit()`
 
         :param post_id:
@@ -225,7 +225,7 @@ class WallCategory(BaseCategory):
         filter: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetExtendedResponseModel: ...
 
     @typing.overload
     async def get(
@@ -237,7 +237,7 @@ class WallCategory(BaseCategory):
         filter: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetResponseModel: ...
 
     async def get(
         self,
@@ -248,7 +248,7 @@ class WallCategory(BaseCategory):
         filter: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[WallGetResponseModel, WallGetExtendedResponseModel]:
         """Method `wall.get()`
 
         :param extended: '1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)
@@ -276,7 +276,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetByIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_id(
@@ -286,7 +286,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
@@ -295,7 +295,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[WallGetByIdResponseModel, WallGetByIdExtendedResponseModel]:
         """Method `wall.getById()`
 
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
@@ -321,7 +321,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetCommentExtendedResponseModel: ...
 
     @typing.overload
     async def get_comment(
@@ -331,7 +331,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetCommentResponseModel: ...
 
     async def get_comment(
         self,
@@ -340,7 +340,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[WallGetCommentExtendedResponseModel, WallGetCommentResponseModel]:
         """Method `wall.getComment()`
 
         :param comment_id: Comment ID.
@@ -374,7 +374,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetCommentsExtendedResponseModel: ...
 
     @typing.overload
     async def get_comments(
@@ -392,7 +392,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallGetCommentsResponseModel: ...
 
     async def get_comments(
         self,
@@ -409,7 +409,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[WallGetCommentsResponseModel, WallGetCommentsExtendedResponseModel]:
         """Method `wall.getComments()`
 
         :param extended:
@@ -442,7 +442,7 @@ class WallCategory(BaseCategory):
         owner_id: typing.Optional[int] = None,
         post_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallGetRepostsResponseModel:
         """Method `wall.getReposts()`
 
         :param count: Number of reposts to return.
@@ -480,7 +480,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[str]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallParseAttachedLinkResponseModel:
         """Method `wall.parseAttachedLink()`
 
         :param links:
@@ -534,7 +534,7 @@ class WallCategory(BaseCategory):
         services: typing.Optional[str] = None,
         signed: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallPostResponseModel:
         """Method `wall.post()`
 
         :param attachments: (Required if 'message' is not set.) List of objects attached to the post, in the following format: "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'page' - wiki-page, 'note' - note, 'poll' - poll, 'album' - photo album, '<owner_id>' - ID of the media application owner. '<media_id>' - Media application ID. Example: "photo100172_166443618,photo66748_265827614", May contain a link to an external page to include in the post. Example: "photo66748_265827614,http://habrahabr.ru", "NOTE: If more than one link is being attached, an error will be thrown."
@@ -579,7 +579,7 @@ class WallCategory(BaseCategory):
         place_id: typing.Optional[int] = None,
         signed: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallPostAdsStealthResponseModel:
         """Method `wall.postAdsStealth()`
 
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
@@ -647,7 +647,7 @@ class WallCategory(BaseCategory):
         message: typing.Optional[str] = None,
         mute_notifications: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WallRepostResponseModel:
         """Method `wall.repost()`
 
         :param object: ID of the object to be reposted on the wall. Example: "wall66748_3675"
@@ -707,7 +707,7 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
@@ -720,7 +720,7 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> WallSearchResponseModel: ...
 
     async def search(
         self,
@@ -732,7 +732,7 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[WallSearchExtendedResponseModel, WallSearchResponseModel]:
         """Method `wall.search()`
 
         :param extended: show extended post info.

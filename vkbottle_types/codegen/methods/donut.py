@@ -51,7 +51,7 @@ class DonutCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> DonutGetSubscriptionsResponseModel:
         """Method `donut.getSubscriptions()`
 
         :param count:

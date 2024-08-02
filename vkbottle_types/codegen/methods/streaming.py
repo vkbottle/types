@@ -9,7 +9,7 @@ class StreamingCategory(BaseCategory):
     async def get_server_url(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StreamingGetServerUrlResponseModel:
         """Method `streaming.getServerUrl()`"""
 
         params = self.get_set_params(locals())
@@ -42,7 +42,7 @@ class StreamingCategory(BaseCategory):
         self,
         word: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StreamingGetStemResponseModel:
         """Method `streaming.getStem()`
 
         :param word:

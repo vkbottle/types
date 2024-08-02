@@ -27,7 +27,7 @@ class StoreCategory(BaseCategory):
     async def get_favorite_stickers(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoreGetFavoriteStickersResponseModel:
         """Method `store.getFavoriteStickers()`"""
 
         params = self.get_set_params(locals())
@@ -44,7 +44,7 @@ class StoreCategory(BaseCategory):
         section: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoreGetProductsResponseModel:
         """Method `store.getProducts()`
 
         :param extended:
@@ -68,7 +68,7 @@ class StoreCategory(BaseCategory):
         products_ids: typing.Optional[typing.List[int]] = None,
         stickers_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoreGetStickersKeywordsResponseModel:
         """Method `store.getStickersKeywords()`
 
         :param aliases:

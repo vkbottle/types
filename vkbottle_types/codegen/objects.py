@@ -3682,8 +3682,10 @@ class AdsLookalikeRequest(BaseModel):
     )
     """Lookalike request seed audience size."""
 
-    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = Field(
-        default=None,
+    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = (
+        Field(
+            default=None,
+        )
     )
     """Property `AdsLookalikeRequest.save_audience_levels`."""
 
@@ -15295,12 +15297,12 @@ class SupportUnblockScreenStepperQuestions(BaseModel):
     target_screen: str = Field()
     """Экран, на который происходит переход; обычно содержимое другого экрана - просто заголовок с текстом и кнопкой."""
 
-    yes_desc: typing.Optional[str] = Field(
+    yes_desc: typing.Optional[typing.Union["str"]] = Field(
         default=None,
     )
     """Текст, отображаемый при нажатии на да."""
 
-    no_desc: typing.Optional[str] = Field(
+    no_desc: typing.Optional[typing.Union["str"]] = Field(
         default=None,
     )
     """Текст, отображаемый при нажатии на нет."""

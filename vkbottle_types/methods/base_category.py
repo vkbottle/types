@@ -3,11 +3,13 @@ import typing
 if typing.TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
 
+    from vkbottle_types.base_model import BaseModel
+
 Model = typing.TypeVar("Model")
 
 
 class BaseCategory:
-    def __init__(self, api: "ABCAPI"):
+    def __init__(self, api: "ABCAPI") -> None:
         self.api = api
 
     @classmethod
@@ -25,7 +27,7 @@ class BaseCategory:
     @classmethod
     def get_model(
         cls,
-        dependent: typing.Tuple[typing.Tuple[typing.Tuple[typing.Union[str, typing.List[str]], ...], Model], ...],
+        dependent: typing.Tuple[typing.Tuple[typing.Tuple[typing.Union[str, typing.Sequence[str]], ...], typing.Type["BaseModel"]], ...],
         default: Model,
         params: typing.Dict[str, typing.Any],
     ) -> Model:
@@ -38,18 +40,17 @@ class BaseCategory:
                 if (
                     isinstance(key, str) and params.get(key) is None
                 ) or (
-                    isinstance(key, list) and params.get(key[0]) not in key[1:]
+                    isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]
                 ):
                     break
             else:
-                return model
+                return model  # type: ignore
 
         return default
 
     @classmethod
-    def construct_api(cls, api: "ABCAPI") -> typing.Type["BaseCategory"]:
-        cls.api = api
-        return cls
+    def construct_api(cls, api: "ABCAPI") -> "BaseCategory":
+        return cls(api)
 
 
 __all__ = ("BaseCategory",)

@@ -11,7 +11,7 @@ class PodcastsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> PodcastsSearchPodcastResponseModel:
         """Method `podcasts.searchPodcast()`
 
         :param search_string:

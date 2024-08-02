@@ -1,6 +1,6 @@
 from typing import List, Optional, Union
 
-from vkbottle_types.codegen.methods.secure import SecureCategory
+from vkbottle_types.codegen.methods.secure import SecureCategory  # type: ignore
 from vkbottle_types.responses.secure import (
     SecureSetCounterArrayResponse,
     SecureSetCounterIntegerResponse,

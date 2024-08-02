@@ -160,7 +160,7 @@ class FaveCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> FaveGetExtendedResponseModel: ...
 
     @typing.overload
     async def get(
@@ -173,7 +173,7 @@ class FaveCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> FaveGetResponseModel: ...
 
     async def get(
         self,
@@ -185,7 +185,7 @@ class FaveCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[FaveGetExtendedResponseModel, FaveGetResponseModel]:
         """Method `fave.get()`
 
         :param extended: '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.
@@ -214,7 +214,7 @@ class FaveCategory(BaseCategory):
         tag_id: typing.Optional[int] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FaveGetPagesResponseModel:
         """Method `fave.getPages()`
 
         :param count:
@@ -232,7 +232,7 @@ class FaveCategory(BaseCategory):
     async def get_tags(
         self,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> FaveGetTagsResponseModel:
         """Method `fave.getTags()`"""
 
         params = self.get_set_params(locals())

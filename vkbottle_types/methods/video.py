@@ -2,7 +2,7 @@ import typing
 
 from typing_extensions import Literal
 
-from vkbottle_types.codegen.methods.video import VideoCategory
+from vkbottle_types.codegen.methods.video import VideoCategory  # type: ignore
 from vkbottle_types.codegen.responses.base import BaseOkResponse, BaseOkResponseModel
 from vkbottle_types.codegen.responses.video import VideoChangeVideoAlbumsResponse
 

@@ -1,29 +1,52 @@
 import typing
 
-from vkbottle_types.base_model import Field
-from vkbottle_types.objects import PrettyCardsPrettyCardOrError
+from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.objects import PrettyCardsPrettyCard, PrettyCardsPrettyCardOrError
 from vkbottle_types.responses.base_response import BaseResponse
 
 
+class PrettyCardsCreateResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
+
+
 class PrettyCardsCreateResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "PrettyCardsCreateResponseModel" = Field()
+
+
+class PrettyCardsDeleteResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
+    error: typing.Optional[str] = Field(
+        default=None,
+    )
 
 
 class PrettyCardsDeleteResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "PrettyCardsDeleteResponseModel" = Field()
+
+
+class PrettyCardsEditResponseModel(BaseModel):
+    owner_id: int = Field()
+    card_id: str = Field()
 
 
 class PrettyCardsEditResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "PrettyCardsEditResponseModel" = Field()
 
 
 class PrettyCardsGetByIdResponse(BaseResponse):
-    response: typing.List[PrettyCardsPrettyCardOrError] = Field()
+    response: typing.List["PrettyCardsPrettyCardOrError"] = Field()
 
 
 class PrettyCardsGetUploadURLResponse(BaseResponse):
     response: str = Field()
 
 
+class PrettyCardsGetResponseModel(BaseModel):
+    count: int = Field()
+    items: typing.List["PrettyCardsPrettyCard"] = Field()
+
+
 class PrettyCardsGetResponse(BaseResponse):
-    response: typing.Dict[str, typing.Any] = Field()
+    response: "PrettyCardsGetResponseModel" = Field()

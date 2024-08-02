@@ -50,7 +50,7 @@ class StoriesCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetV5113ResponseModel:
         """Method `stories.get()`
 
         :param extended: '1' - to return additional fields for users and communities. Default value is 0.
@@ -69,7 +69,7 @@ class StoriesCategory(BaseCategory):
         extended: typing.Literal[True],
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> StoriesGetBannedExtendedResponseModel: ...
 
     @typing.overload
     async def get_banned(
@@ -77,14 +77,14 @@ class StoriesCategory(BaseCategory):
         extended: typing.Optional[typing.Literal[False]] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> StoriesGetBannedResponseModel: ...
 
     async def get_banned(
         self,
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[StoriesGetBannedExtendedResponseModel, StoriesGetBannedResponseModel]:
         """Method `stories.getBanned()`
 
         :param extended: '1' - to return additional fields for users and communities. Default value is 0.
@@ -106,7 +106,7 @@ class StoriesCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetByIdExtendedResponseModel:
         """Method `stories.getById()`
 
         :param stories: Stories IDs separated by commas. Use format {owner_id}+'_'+{story_id}, for example, 12345_54331.
@@ -124,7 +124,7 @@ class StoriesCategory(BaseCategory):
         owner_id: int,
         story_id: int,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetStatsV5200ResponseModel:
         """Method `stories.getDetailedStats()`
 
         :param owner_id:
@@ -146,7 +146,7 @@ class StoriesCategory(BaseCategory):
         reply_to_story: typing.Optional[str] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetPhotoUploadServerResponseModel:
         """Method `stories.getPhotoUploadServer()`
 
         :param add_to_news: 1 - to add the story to friend's feed.
@@ -171,7 +171,7 @@ class StoriesCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetV5113ResponseModel:
         """Method `stories.getReplies()`
 
         :param owner_id: Story owner ID.
@@ -213,7 +213,7 @@ class StoriesCategory(BaseCategory):
         reply_to_story: typing.Optional[str] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetVideoUploadServerResponseModel:
         """Method `stories.getVideoUploadServer()`
 
         :param add_to_news: 1 - to add the story to friend's feed.
@@ -240,7 +240,7 @@ class StoriesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> StoriesGetViewersExtendedV5115ResponseModel: ...
 
     @typing.overload
     async def get_viewers(
@@ -252,7 +252,7 @@ class StoriesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]: ...
+    ) -> StoriesGetViewersExtendedV5115ResponseModel: ...
 
     async def get_viewers(
         self,
@@ -263,7 +263,7 @@ class StoriesCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetViewersExtendedV5115ResponseModel:
         """Method `stories.getViewers()`
 
         :param story_id: Story ID.
@@ -324,7 +324,7 @@ class StoriesCategory(BaseCategory):
         upload_results: typing.Optional[typing.List[str]] = None,
         upload_results_json: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesSaveResponseModel:
         """Method `stories.save()`
 
         :param extended:
@@ -350,7 +350,7 @@ class StoriesCategory(BaseCategory):
         q: typing.Optional[str] = None,
         radius: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> StoriesGetV5113ResponseModel:
         """Method `stories.search()`
 
         :param count:

@@ -1,12 +1,12 @@
 import json
 from typing import Any, Dict, Optional
 
-from vkbottle_types.base_model import BaseModel
+from vkbottle_types.base_model import BaseModel, Field
 
 
 class BaseResponse(BaseModel):
-    _raw_json: Optional[str]
     response: Any
+    _raw_json: Optional[str] = Field(default=None)
 
     @property
     def raw_json(self) -> str:
@@ -32,4 +32,3 @@ class DictResponse(BaseResponse):
 
 
 __all__ = ("BaseResponse", "DictResponse")
- 

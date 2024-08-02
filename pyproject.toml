@@ -14,7 +14,7 @@ ruff = "^0.5.0"
 [tool.poetry.dependencies]
 python = "^3.8"
 pydantic = "<=1.10.4,<3"
-# vkbottle = "^4.3.12"
+# vkbottle = "^4.4.0"
 requests = "^2.20.0"
 tqdm = "^4.65.0"
 dataclass-factory = "^2.16"

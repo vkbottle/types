@@ -28,7 +28,7 @@ class CallsCategory(BaseCategory):
         self,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> CallsStartResponseModel:
         """Method `calls.start()`
 
         :param group_id:

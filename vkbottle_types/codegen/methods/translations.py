@@ -10,7 +10,7 @@ class TranslationsCategory(BaseCategory):
         texts: typing.List[str],
         translation_language: str,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> TranslationsTranslateResponseModel:
         """Method `translations.translate()`
 
         :param texts:

@@ -16,7 +16,7 @@ class WidgetsCategory(BaseCategory):
         url: typing.Optional[str] = None,
         widget_api_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WidgetsGetCommentsResponseModel:
         """Method `widgets.getComments()`
 
         :param count:
@@ -41,7 +41,7 @@ class WidgetsCategory(BaseCategory):
         period: typing.Optional[str] = None,
         widget_api_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> WidgetsGetPagesResponseModel:
         """Method `widgets.getPages()`
 
         :param count:

@@ -1,18 +1,25 @@
 import typing
 
-from vkbottle_types.codegen.methods.newsfeed import NewsfeedCategory
+from vkbottle_types.codegen.methods.newsfeed import NewsfeedCategory  # type: ignore
 from vkbottle_types.objects import BaseUserGroupFields
 from vkbottle_types.responses.newsfeed import (
     NewsfeedSearchExtendedResponse,
+    NewsfeedSearchExtendedResponseModel,
     NewsfeedSearchExtendedStrictResponse,
+    NewsfeedSearchExtendedStrictResponseModel,
     NewsfeedSearchResponse,
+    NewsfeedSearchResponseModel,
     NewsfeedSearchStrictResponse,
+    NewsfeedSearchStrictResponseModel,
 )
 
 
 class NewsfeedCategory(NewsfeedCategory):
+    @typing.overload
     async def search(
         self,
+        *,
+        strict: typing.Literal[True],
         count: typing.Optional[int] = None,
         end_time: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
@@ -21,11 +28,77 @@ class NewsfeedCategory(NewsfeedCategory):
         q: typing.Optional[str] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchStrictResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        *,
+        extended: typing.Literal[True],
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchExtendedResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        *,
+        strict: typing.Literal[True],
+        extended: typing.Literal[True],
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchExtendedStrictResponseModel: ...
+
+    @typing.overload
+    async def search(
+        self,
+        *,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> NewsfeedSearchResponseModel: ...
+
+    async def search(
+        self,
+        *,
         extended: typing.Optional[bool] = None,
         strict: typing.Optional[bool] = None,
-        extended_strict: typing.Optional[bool] = None,
+        count: typing.Optional[int] = None,
+        end_time: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        latitude: typing.Optional[float] = None,
+        longitude: typing.Optional[float] = None,
+        q: typing.Optional[str] = None,
+        start_from: typing.Optional[str] = None,
+        start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> typing.Union[
+        NewsfeedSearchResponseModel,
+        NewsfeedSearchExtendedResponseModel,
+        NewsfeedSearchExtendedStrictResponseModel,
+        NewsfeedSearchStrictResponseModel,
+    ]:
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.
@@ -43,9 +116,9 @@ class NewsfeedCategory(NewsfeedCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("extended",), NewsfeedSearchExtendedResponse),
                 (("strict",), NewsfeedSearchStrictResponse),
-                (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
+                (("extended",), NewsfeedSearchExtendedResponse),
+                (("extended", "strict"), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,
             params=params,
