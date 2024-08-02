@@ -22,7 +22,7 @@ else:
 
     class ModelMetaclass(pydantic.main.ModelMetaclass):
         def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> typing.Type[typing.Any]:
-            return super().__new__(cls, *args, __resolve_forward_refs__=False, **kwargs)
+            return super().__new__(cls, *args, __resolve_forward_refs__=False, **kwargs)  # type: ignore
 
     class BaseModel(pydantic.BaseModel, metaclass=ModelMetaclass):
         class Config:
@@ -30,10 +30,10 @@ else:
 
         @classmethod
         def from_raw(cls, data: bytes) -> typing.Self:
-            return getattr(cls, "model_validate_json", cls.parse_raw)(data)
+            return getattr(cls, "model_validate_json", cls.parse_raw)(data)  # type: ignore
 
         def to_dict(self) -> typing.Dict[str, typing.Any]:
-            return getattr(self, "model_dump", self.dict)()
+            return getattr(self, "model_dump", self.dict)()  # type: ignore
 
 
 Field = pydantic.Field
