@@ -7,7 +7,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.video import *  # noqa: F401,F403
+from vkbottle_types.responses.video import *  # noqa: F401,F403  # type: ignore
 
 
 class VideoCategory(BaseCategory):
@@ -421,7 +421,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetCommentsResponseModel, VideoGetCommentsExtendedResponseModel]:
+    ) -> typing.Union[VideoGetCommentsExtendedResponseModel, VideoGetCommentsResponseModel]:
         """Method `video.getComments()`
 
         :param video_id: Video ID.
@@ -725,7 +725,7 @@ class VideoCategory(BaseCategory):
         shorter: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoSearchExtendedResponseModel, VideoSearchResponseModel]:
+    ) -> typing.Union[VideoSearchResponseModel, VideoSearchExtendedResponseModel]:
         """Method `video.search()`
 
         :param extended:

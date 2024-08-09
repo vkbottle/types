@@ -839,10 +839,52 @@ class BaseSex(enum.IntEnum):
     MALE = 2
 
 
+class BaseStickerInnerType(enum.Enum):
+    BASE_STICKER_NEW = "base_sticker_new"
+
+
 class BaseSticker(BaseModel):
     """
     Model: `BaseSticker`
     """
+
+    inner_type: "BaseStickerInnerType" = Field()
+    """Property `BaseSticker.inner_type`."""
+
+    sticker_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Sticker ID."""
+
+    product_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Pack ID."""
+
+    images: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
+    """Property `BaseSticker.images`."""
+
+    images_with_background: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
+    """Property `BaseSticker.images_with_background`."""
+
+    animation_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of sticker animation script."""
+
+    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = Field(
+        default=None,
+    )
+    """Array of sticker animation script objects."""
+
+    is_allowed: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the sticker is allowed."""
 
 
 class BaseStickerAnimationType(enum.Enum):
@@ -6222,6 +6264,51 @@ class CallbackAudioNew(BaseModel):
     Model: `CallbackAudioNew`
     """
 
+    artist: str = Field()
+    """Artist name."""
+
+    id: int = Field()
+    """Audio ID."""
+
+    owner_id: int = Field()
+    """Audio owner\'s ID."""
+
+    title: str = Field()
+    """Title."""
+
+    duration: int = Field()
+    """Duration in seconds."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key for the audio."""
+
+    url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of mp3 file."""
+
+    stream_duration: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Stream duration in seconds."""
+
+    date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when uploaded."""
+
+    album_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Album ID."""
+
+    performer: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Performer name."""
+
 
 class CallbackBase(BaseModel):
     """
@@ -6271,17 +6358,113 @@ class CallbackBoardPostEdit(BaseModel):
     Model: `CallbackBoardPostEdit`
     """
 
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    id: int = Field()
+    """Comment ID."""
+
+    text: str = Field()
+    """Comment text."""
+
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostEdit.attachments`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can edit the comment."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostEdit.likes`."""
+
 
 class CallbackBoardPostNew(BaseModel):
     """
     Model: `CallbackBoardPostNew`
     """
 
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    id: int = Field()
+    """Comment ID."""
+
+    text: str = Field()
+    """Comment text."""
+
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostNew.attachments`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can edit the comment."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostNew.likes`."""
+
 
 class CallbackBoardPostRestore(BaseModel):
     """
     Model: `CallbackBoardPostRestore`
     """
+
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    id: int = Field()
+    """Comment ID."""
+
+    text: str = Field()
+    """Comment text."""
+
+    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostRestore.attachments`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can edit the comment."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackBoardPostRestore.likes`."""
 
 
 class CallbackDonutMoneyWithdraw(BaseModel):
@@ -6869,10 +7052,141 @@ class CallbackPhotoCommentDelete(BaseModel):
     """Property `CallbackPhotoCommentDelete.deleter_id`."""
 
 
+class CallbackPhotoNewVerticalAlign(enum.Enum):
+    TOP = "top"
+    MIDDLE = "middle"
+    BOTTOM = "bottom"
+
+
 class CallbackPhotoNew(BaseModel):
     """
     Model: `CallbackPhotoNew`
     """
+
+    album_id: int = Field()
+    """Album ID."""
+
+    date: int = Field()
+    """Date when uploaded."""
+
+    id: int = Field()
+    """Photo ID."""
+
+    owner_id: int = Field()
+    """Photo owner\'s ID."""
+
+    has_tags: bool = Field()
+    """Whether photo has attached tag links."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key for the photo."""
+
+    height: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Original photo height."""
+
+    images: typing.Optional[typing.List["PhotosImage"]] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.images`."""
+
+    lat: typing.Optional[float] = Field(
+        default=None,
+    )
+    """Latitude."""
+
+    long: typing.Optional[float] = Field(
+        default=None,
+    )
+    """Longitude."""
+
+    photo_256: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of image with 2560 px width."""
+
+    thumb_hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Thumb Hash."""
+
+    can_comment: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can comment the photo."""
+
+    place: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.place`."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post ID."""
+
+    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.sizes`."""
+
+    square_crop: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.square_crop`."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Photo caption."""
+
+    user_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """ID of the user who have uploaded the photo."""
+
+    width: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Original photo width."""
+
+    likes: typing.Optional["BaseLikes"] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.likes`."""
+
+    comments: typing.Optional["BaseObjectCount"] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.comments`."""
+
+    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.reposts`."""
+
+    tags: typing.Optional["BaseObjectCount"] = Field(
+        default=None,
+    )
+    """Property `CallbackPhotoNew.tags`."""
+
+    hidden: typing.Optional["BasePropertyExists"] = Field(
+        default=None,
+    )
+    """Returns if the photo is hidden above the wall."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the photo."""
+
+    vertical_align: typing.Optional["CallbackPhotoNewVerticalAlign"] = Field(
+        default=None,
+    )
+    """Sets vertical alignment of a photo."""
 
 
 class CallbackPollVoteNew(BaseModel):
@@ -7005,6 +7319,51 @@ class CallbackVideoNew(BaseModel):
     Model: `CallbackVideoNew`
     """
 
+    artist: str = Field()
+    """Artist name."""
+
+    id: int = Field()
+    """Audio ID."""
+
+    owner_id: int = Field()
+    """Audio owner\'s ID."""
+
+    title: str = Field()
+    """Title."""
+
+    duration: int = Field()
+    """Duration in seconds."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key for the audio."""
+
+    url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of mp3 file."""
+
+    stream_duration: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Stream duration in seconds."""
+
+    date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when uploaded."""
+
+    album_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Album ID."""
+
+    performer: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Performer name."""
+
 
 class CallbackVkpayTransaction(BaseModel):
     """
@@ -7047,10 +7406,137 @@ class CallbackWallCommentDelete(BaseModel):
     """Property `CallbackWallCommentDelete.post_id`."""
 
 
+class CallbackWallPostNewInnerType(enum.Enum):
+    WALL_WALLPOST = "wall_wallpost"
+
+
 class CallbackWallPostNew(BaseModel):
     """
     Model: `CallbackWallPostNew`
     """
+
+    inner_type: "CallbackWallPostNewInnerType" = Field()
+    """Property `CallbackWallPostNew.inner_type`."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key to private object."""
+
+    is_deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.is_deleted`."""
+
+    deleted_reason: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.deleted_reason`."""
+
+    deleted_details: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.deleted_details`."""
+
+    donut_miniapp_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.donut_miniapp_url`."""
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.attachments`."""
+
+    copyright: typing.Optional["WallPostCopyright"] = Field(
+        default=None,
+    )
+    """Information about the source of the post."""
+
+    date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date of publishing in Unixtime."""
+
+    edited: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date of editing in Unixtime."""
+
+    from_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post author ID."""
+
+    geo: typing.Optional["WallGeo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.geo`."""
+
+    id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post ID."""
+
+    is_archived: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is post archived, only for post owners."""
+
+    is_favorite: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the post in favorites list."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Count of likes."""
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Wall owner\'s ID."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """If post type \'reply\', contains original post ID."""
+
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """If post type \'reply\', contains original parent IDs stack."""
+
+    post_source: typing.Optional["WallPostSource"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.post_source`."""
+
+    post_type: typing.Optional["WallPostType"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.post_type`."""
+
+    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallPostNew.reposts`."""
+
+    signer_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post signer ID."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Post text."""
+
+    views: typing.Optional["WallViews"] = Field(
+        default=None,
+    )
+    """Count of views."""
 
 
 class CallbackWallReplyEdit(BaseModel):
@@ -7058,11 +7544,195 @@ class CallbackWallReplyEdit(BaseModel):
     Model: `CallbackWallReplyEdit`
     """
 
+    id: int = Field()
+    """Comment ID."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    text: str = Field()
+    """Comment text."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.can_edit`."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.post_id`."""
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.owner_id`."""
+
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.parents_stack`."""
+
+    photo_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.photo_id`."""
+
+    video_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.video_id`."""
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.attachments`."""
+
+    donut: typing.Optional["WallWallCommentDonut"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.donut`."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.likes`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    reply_to_user: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied user ID."""
+
+    reply_to_comment: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied comment ID."""
+
+    thread: typing.Optional["CommentThread"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.thread`."""
+
+    is_from_post_author: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Whether post is by author of the post or not."""
+
+    deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyEdit.deleted`."""
+
+    pid: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Photo ID."""
+
 
 class CallbackWallReplyNew(BaseModel):
     """
     Model: `CallbackWallReplyNew`
     """
+
+    id: int = Field()
+    """Comment ID."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    text: str = Field()
+    """Comment text."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.can_edit`."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.post_id`."""
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.owner_id`."""
+
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.parents_stack`."""
+
+    photo_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.photo_id`."""
+
+    video_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.video_id`."""
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.attachments`."""
+
+    donut: typing.Optional["WallWallCommentDonut"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.donut`."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.likes`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    reply_to_user: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied user ID."""
+
+    reply_to_comment: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied comment ID."""
+
+    thread: typing.Optional["CommentThread"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.thread`."""
+
+    is_from_post_author: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Whether post is by author of the post or not."""
+
+    deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyNew.deleted`."""
+
+    pid: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Photo ID."""
 
 
 class CallbackWallReplyRestore(BaseModel):
@@ -7070,11 +7740,230 @@ class CallbackWallReplyRestore(BaseModel):
     Model: `CallbackWallReplyRestore`
     """
 
+    id: int = Field()
+    """Comment ID."""
+
+    from_id: int = Field()
+    """Author ID."""
+
+    date: int = Field()
+    """Date when the comment has been added in Unixtime."""
+
+    text: str = Field()
+    """Comment text."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.can_edit`."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.post_id`."""
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.owner_id`."""
+
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.parents_stack`."""
+
+    photo_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.photo_id`."""
+
+    video_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.video_id`."""
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.attachments`."""
+
+    donut: typing.Optional["WallWallCommentDonut"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.donut`."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.likes`."""
+
+    real_offset: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Real position of the comment."""
+
+    reply_to_user: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied user ID."""
+
+    reply_to_comment: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Replied comment ID."""
+
+    thread: typing.Optional["CommentThread"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.thread`."""
+
+    is_from_post_author: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Whether post is by author of the post or not."""
+
+    deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallReplyRestore.deleted`."""
+
+    pid: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Photo ID."""
+
+
+class CallbackWallRepostInnerType(enum.Enum):
+    WALL_WALLPOST = "wall_wallpost"
+
 
 class CallbackWallRepost(BaseModel):
     """
     Model: `CallbackWallRepost`
     """
+
+    inner_type: "CallbackWallRepostInnerType" = Field()
+    """Property `CallbackWallRepost.inner_type`."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key to private object."""
+
+    is_deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.is_deleted`."""
+
+    deleted_reason: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.deleted_reason`."""
+
+    deleted_details: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.deleted_details`."""
+
+    donut_miniapp_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.donut_miniapp_url`."""
+
+    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.attachments`."""
+
+    copyright: typing.Optional["WallPostCopyright"] = Field(
+        default=None,
+    )
+    """Information about the source of the post."""
+
+    date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date of publishing in Unixtime."""
+
+    edited: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date of editing in Unixtime."""
+
+    from_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post author ID."""
+
+    geo: typing.Optional["WallGeo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.geo`."""
+
+    id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post ID."""
+
+    is_archived: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is post archived, only for post owners."""
+
+    is_favorite: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the post in favorites list."""
+
+    likes: typing.Optional["BaseLikesInfo"] = Field(
+        default=None,
+    )
+    """Count of likes."""
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Wall owner\'s ID."""
+
+    post_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """If post type \'reply\', contains original post ID."""
+
+    parents_stack: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """If post type \'reply\', contains original parent IDs stack."""
+
+    post_source: typing.Optional["WallPostSource"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.post_source`."""
+
+    post_type: typing.Optional["WallPostType"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.post_type`."""
+
+    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+        default=None,
+    )
+    """Property `CallbackWallRepost.reposts`."""
+
+    signer_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post signer ID."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Post text."""
+
+    views: typing.Optional["WallViews"] = Field(
+        default=None,
+    )
+    """Count of views."""
 
 
 class CallsCall(BaseModel):
@@ -7202,6 +8091,12 @@ class DatabaseCityById(BaseModel):
     Model: `DatabaseCityById`
     """
 
+    id: int = Field()
+    """Object ID."""
+
+    title: str = Field()
+    """Object title."""
+
 
 class DatabaseFaculty(BaseModel):
     """
@@ -7267,6 +8162,12 @@ class DatabaseSchoolClass(BaseModel):
     """
     Model: `DatabaseSchoolClass`
     """
+
+    id: int = Field()
+    """Object ID."""
+
+    title: str = Field()
+    """Object title."""
 
 
 class DatabaseStation(BaseModel):
@@ -9298,6 +10199,12 @@ class GroupsSectionsListItem(BaseModel):
     Model: `GroupsSectionsListItem`
     """
 
+    id: int = Field()
+    """Object ID."""
+
+    title: str = Field()
+    """Object title."""
+
 
 class GroupsSettingsTwitterStatus(enum.Enum):
     LOADING = "loading"
@@ -9688,10 +10595,33 @@ class MarketMarketAlbum(BaseModel):
     """Is album needed to be blurred (18+) or not."""
 
 
+class MarketMarketCategoryInnerType(enum.Enum):
+    MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
+
+
 class MarketMarketCategory(BaseModel):
     """
     Model: `MarketMarketCategory`
     """
+
+    inner_type: "MarketMarketCategoryInnerType" = Field()
+    """Property `MarketMarketCategory.inner_type`."""
+
+    id: int = Field()
+    """Category ID."""
+
+    name: str = Field()
+    """Category name."""
+
+    is_v2: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is v2 category."""
+
+    parent: typing.Optional["MarketMarketCategoryNested"] = Field(
+        default=None,
+    )
+    """Property `MarketMarketCategory.parent`."""
 
 
 class MarketMarketCategoryNestedInnerType(enum.Enum):
@@ -10176,6 +11106,39 @@ class MessagesActionOneOf(BaseModel):
     """
     Model: `MessagesActionOneOf`
     """
+
+    type: "MessagesMessageActionStatus" = Field()
+    """Property `MessagesActionOneOf.type`."""
+
+    conversation_message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message ID."""
+
+    email: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Email address for chat_invite_user or chat_kick_user actions."""
+
+    member_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """User or email peer ID."""
+
+    message: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Message body of related message."""
+
+    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesActionOneOf.photo`."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """New chat title for chat_create and chat_title_update actions."""
 
 
 class MessagesAudioMessage(BaseModel):
@@ -12194,10 +13157,42 @@ class NotificationsNotification(BaseModel):
     """Notification type."""
 
 
+class NotificationsNotificationItemInnerType(enum.Enum):
+    NOTIFICATIONS_NOTIFICATION = "notifications_notification"
+
+
 class NotificationsNotificationItem(BaseModel):
     """
     Model: `NotificationsNotificationItem`
     """
+
+    inner_type: "NotificationsNotificationItemInnerType" = Field()
+    """Property `NotificationsNotificationItem.inner_type`."""
+
+    date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when the event has been occurred."""
+
+    feedback: typing.Optional["NotificationsFeedback"] = Field(
+        default=None,
+    )
+    """Property `NotificationsNotificationItem.feedback`."""
+
+    parent: typing.Optional["NotificationsNotification"] = Field(
+        default=None,
+    )
+    """Property `NotificationsNotificationItem.parent`."""
+
+    reply: typing.Optional["NotificationsReply"] = Field(
+        default=None,
+    )
+    """Property `NotificationsNotificationItem.reply`."""
+
+    type: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Notification type."""
 
 
 class NotificationsReply(BaseModel):
@@ -14267,6 +15262,19 @@ class StoreProductIcon(BaseModel):
     """
     Model: `StoreProductIcon`
     """
+
+    base_url: str = Field()
+    """Base URL for images in set."""
+
+    version: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Version number to be appended to the image URL."""
+
+    images: typing.Optional[typing.List["BaseImage"]] = Field(
+        default=None,
+    )
+    """Property `StoreProductIcon.images`."""
 
 
 class StoreStickersKeyword(BaseModel):
@@ -16746,6 +17754,81 @@ class WallWallItem(BaseModel):
     Model: `WallWallItem`
     """
 
+    copy_history: typing.Optional[typing.List["WallWallpostFull"]] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.copy_history`."""
+
+    can_edit: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can edit the post."""
+
+    created_by: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Post creator ID (if post still can be edited)."""
+
+    can_delete: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can delete the post."""
+
+    can_pin: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can pin the post."""
+
+    donut: typing.Optional["WallWallpostDonut"] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.donut`."""
+
+    is_pinned: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the post is pinned."""
+
+    comments: typing.Optional["BaseCommentsInfo"] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.comments`."""
+
+    marked_as_ads: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the post is marked as ads."""
+
+    topic_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method."""
+
+    short_text_rate: typing.Optional[float] = Field(
+        default=None,
+    )
+    """Preview length control parameter."""
+
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Hash for sharing."""
+
+    type: typing.Optional["WallPostType"] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.type`."""
+
+    feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.feedback`."""
+
+    to_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `WallWallItem.to_id`."""
+
 
 class WallWallpostInnerType(enum.Enum):
     WALL_WALLPOST = "wall_wallpost"
@@ -17247,6 +18330,42 @@ class NewsfeedItemDigestItem(BaseModel):
     """
     Model: `NewsfeedItemDigestItem`
     """
+
+    inner_type: str = Field()
+    """Property `NewsfeedItemDigestItem.inner_type`."""
+
+    post: "NewsfeedItemWallpost" = Field()
+    """Property `NewsfeedItemDigestItem.post`."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `NewsfeedItemDigestItem.text`."""
+
+    source_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `NewsfeedItemDigestItem.source_name`."""
+
+    attachment_index: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `NewsfeedItemDigestItem.attachment_index`."""
+
+    attachment: typing.Optional["WallWallpostAttachment"] = Field(
+        default=None,
+    )
+    """Property `NewsfeedItemDigestItem.attachment`."""
+
+    style: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `NewsfeedItemDigestItem.style`."""
+
+    badge_text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Optional red badge for posts in digest block."""
 
 
 class NewsfeedItemFriendFriends(BaseModel):
@@ -19842,6 +20961,7 @@ __all__ = (
     "BaseRequestParam",
     "BaseSex",
     "BaseSticker",
+    "BaseStickerInnerType",
     "BaseStickerAnimation",
     "BaseStickerAnimationType",
     "BaseStickerNew",
@@ -20034,6 +21154,7 @@ __all__ = (
     "CallbackMessageObject",
     "CallbackPhotoCommentDelete",
     "CallbackPhotoNew",
+    "CallbackPhotoNewVerticalAlign",
     "CallbackPollVoteNew",
     "CallbackType",
     "CallbackUserBlock",
@@ -20043,10 +21164,12 @@ __all__ = (
     "CallbackVkpayTransaction",
     "CallbackWallCommentDelete",
     "CallbackWallPostNew",
+    "CallbackWallPostNewInnerType",
     "CallbackWallReplyEdit",
     "CallbackWallReplyNew",
     "CallbackWallReplyRestore",
     "CallbackWallRepost",
+    "CallbackWallRepostInnerType",
     "CallsCall",
     "CallsEndState",
     "CallsParticipants",
@@ -20165,6 +21288,7 @@ __all__ = (
     "MarketItemPromotionInfo",
     "MarketMarketAlbum",
     "MarketMarketCategory",
+    "MarketMarketCategoryInnerType",
     "MarketMarketCategoryNested",
     "MarketMarketCategoryNestedInnerType",
     "MarketMarketCategoryTree",
@@ -20265,6 +21389,7 @@ __all__ = (
     "NotificationsNotification",
     "NotificationsNotificationInnerType",
     "NotificationsNotificationItem",
+    "NotificationsNotificationItemInnerType",
     "NotificationsReply",
     "NotificationsSendMessageError",
     "NotificationsSendMessageItem",

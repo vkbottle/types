@@ -15,7 +15,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.photos import *  # noqa: F401,F403
+from vkbottle_types.responses.photos import *  # noqa: F401,F403  # type: ignore
 
 
 class PhotosCategory(BaseCategory):

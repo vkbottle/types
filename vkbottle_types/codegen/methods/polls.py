@@ -16,7 +16,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.polls import *  # noqa: F401,F403
+from vkbottle_types.responses.polls import *  # noqa: F401,F403  # type: ignore
 
 
 class PollsCategory(BaseCategory):
@@ -219,7 +219,7 @@ class PollsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[PollsFieldsVoters], typing.List[PollsVoters]]:
+    ) -> typing.Union[typing.List[PollsVoters], typing.List[PollsFieldsVoters]]:
         """Method `polls.getVoters()`
 
         :param answer_ids: Answer IDs.

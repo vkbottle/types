@@ -22,7 +22,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.groups import *  # noqa: F401,F403
+from vkbottle_types.responses.groups import *  # noqa: F401,F403  # type: ignore
 
 
 class GroupsCategory(BaseCategory):
@@ -777,8 +777,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -789,8 +789,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        filter: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -801,8 +801,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -812,22 +812,22 @@ class GroupsCategory(BaseCategory):
 
     async def get_members(
         self,
-        filter: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        filter: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
+        GroupsGetMembersFilterResponseModel,
         GroupsGetMembersResponseModel,
         GroupsGetMembersFieldsResponseModel,
-        GroupsGetMembersFilterResponseModel,
     ]:
         """Method `groups.getMembers()`
 
-        :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
         :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
+        :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
         :param count: Number of community members to return.
         :param group_id: ID or screen name of the community.
         :param offset: Offset needed to return a specific subset of community members.
@@ -838,8 +838,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("filter",), GroupsGetMembersFieldsResponse),
                 (("fields",), GroupsGetMembersFieldsResponse),
+                (("filter",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -969,43 +969,48 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def is_member(
         self,
-        *,
-        group_id: typing.Union[int, str],
-        user_ids: typing.List[int],
+        group_id: typing.Union["int", "str"],
         extended: typing.Literal[True],
-    ) -> typing.List[GroupsMemberStatusFull]: ...
-
-    @typing.overload
-    async def is_member(
-        self,
-        *,
-        group_id: typing.Union[int, str],
-        user_id: int,
-        extended: typing.Literal[True],
-    ) -> GroupsIsMemberExtendedResponseModel: ...
-
-    @typing.overload
-    async def is_member(
-        self,
-        *,
-        group_id: typing.Union[int, str],
         user_ids: typing.List[int],
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> typing.List[GroupsMemberStatus]: ...
 
     @typing.overload
     async def is_member(
         self,
-        *,
         group_id: typing.Union["int", "str"],
-        user_id: int,
+        extended: typing.Optional[bool] = None,
+        user_ids: typing.Optional[typing.List[int]] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> GroupsIsMemberExtendedResponseModel: ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: typing.Union["int", "str"],
+        user_ids: typing.List[int],
+        extended: typing.Optional[bool] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> typing.List[GroupsMemberStatusFull]: ...
+
+    @typing.overload
+    async def is_member(
+        self,
+        group_id: typing.Union["int", "str"],
+        user_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Optional[bool] = None,
+        user_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
     ) -> bool: ...
 
     async def is_member(
         self,
-        *,
-        group_id: typing.Union[int, str],
-        extended: typing.Optional[bool] = None,
+        group_id: typing.Union["int", "str"],
         user_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
@@ -1017,8 +1022,8 @@ class GroupsCategory(BaseCategory):
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.
-        :param extended: '1' - to return an extended response with additional fields. By default: '0'.
         :param user_ids: User IDs.
+        :param extended: '1' - to return an extended response with additional fields. By default: '0'.
         :param user_id: User ID.
         """
 
@@ -1026,8 +1031,7 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
             (
-                (("user_id", "extended"), GroupsIsMemberExtendedResponse),
-                (("user_ids", "extended"), GroupsIsMemberUserIdsExtendedResponse),
+                (("extended",), GroupsIsMemberUserIdsResponse),
                 (("user_ids",), GroupsIsMemberUserIdsResponse),
             ),
             default=BaseBoolResponse,

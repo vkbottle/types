@@ -5,7 +5,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.calls import *  # noqa: F401,F403
+from vkbottle_types.responses.calls import *  # noqa: F401,F403  # type: ignore
 
 
 class CallsCategory(BaseCategory):

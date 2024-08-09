@@ -8,7 +8,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.market import *  # noqa: F401,F403
+from vkbottle_types.responses.market import *  # noqa: F401,F403  # type: ignore
 
 
 class MarketCategory(BaseCategory):
@@ -576,7 +576,7 @@ class MarketCategory(BaseCategory):
         item_ids: typing.List[str],
         extended: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetByIdResponseModel, MarketGetByIdExtendedResponseModel]:
+    ) -> typing.Union[MarketGetByIdExtendedResponseModel, MarketGetByIdResponseModel]:
         """Method `market.getById()`
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
@@ -998,7 +998,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
+    ) -> typing.Union[MarketSearchExtendedResponseModel, MarketSearchResponseModel]:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.

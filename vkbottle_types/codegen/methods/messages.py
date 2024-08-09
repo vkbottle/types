@@ -19,7 +19,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponseModel,
 )
 from vkbottle_types.responses.base_response import DictResponse
-from vkbottle_types.responses.messages import *  # noqa: F401,F403
+from vkbottle_types.responses.messages import *  # noqa: F401,F403  # type: ignore
 
 
 class MessagesCategory(BaseCategory):
@@ -360,8 +360,8 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.List[int],
         fields: typing.List[UsersFields],
+        chat_ids: typing.List[int],
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
@@ -370,8 +370,8 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_ids: typing.Optional[typing.List[int]] = None,
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
@@ -380,8 +380,8 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.List[int],
         fields: typing.List[UsersFields],
+        chat_ids: typing.List[int],
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
@@ -390,8 +390,8 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_ids: typing.Optional[typing.List[int]] = None,
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
@@ -406,8 +406,8 @@ class MessagesCategory(BaseCategory):
         **kwargs: typing.Any,
     ) -> typing.Union[
         typing.List[MessagesChatFull],
-        typing.List[MessagesChat],
         "MessagesChat",
+        typing.List[MessagesChat],
         "MessagesChatFull",
     ]:
         """Method `messages.getChat()`
@@ -422,8 +422,8 @@ class MessagesCategory(BaseCategory):
         response = await self.api.request("messages.getChat", params)
         model = self.get_model(
             (
-                (("chat_ids",), MessagesGetChatFieldsResponse),
                 (("fields",), MessagesGetChatFieldsResponse),
+                (("chat_ids",), MessagesGetChatFieldsResponse),
             ),
             default=MessagesGetChatResponse,
             params=params,

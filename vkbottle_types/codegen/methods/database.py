@@ -7,7 +7,7 @@ from vkbottle_types.objects import (
     DatabaseSchoolClass,
     DatabaseStation,
 )
-from vkbottle_types.responses.database import *  # noqa: F401,F403
+from vkbottle_types.responses.database import *  # noqa: F401,F403  # type: ignore
 
 
 class DatabaseCategory(BaseCategory):

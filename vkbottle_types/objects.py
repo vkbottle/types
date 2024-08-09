@@ -42,9 +42,7 @@ class MessagesMessageAttachmentType(Enum):  # type: ignore
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = (
-        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
-    )
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
     VIDEO_PLAYLIST = "video_playlist"
 
@@ -92,47 +90,6 @@ class WallWallpostAttachmentType(Enum):  # type: ignore
     VIDEO_PLAYLIST = "video_playlist"
 
 
-class BaseSticker(BaseSticker):  # type: ignore
-    sticker_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Sticker ID."""
-
-    product_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Pack ID."""
-
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
-        default=None,
-    )
-    """Property `BaseStickerNew.images`."""
-
-    images_with_background: typing.Optional[typing.List["BaseImage"]] = Field(
-        default=None,
-    )
-    """Property `BaseStickerNew.images_with_background`."""
-
-    animation_url: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of sticker animation script."""
-
-    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = Field(
-        default=None,
-    )
-    """Array of sticker animation script objects."""
-
-    is_allowed: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Information whether the sticker is allowed."""
-
-
-class BaseStickerNew(BaseSticker, BaseStickerNew):  # type: ignore
-    inner_type: "BaseStickerNewInnerType" = Field()
-
-
 class PrettyCardsList(BaseModel):
     cards: Optional[List["PrettyCardsPrettyCard"]] = None
 
@@ -157,13 +114,6 @@ class WallCommentAttachmentType(Enum):  # type: ignore
     STICKER = "sticker"
     GRAFFITI = "graffiti"  # https://github.com/VKCOM/vk-api-schema/issues/233
     AUDIO_PLAYLIST = "audio_playlist"
-
-
-class WallCommentAttachment(WallCommentAttachment):  # type: ignore
-    sticker: typing.Optional["BaseSticker"] = Field(
-        default=None,
-    )
-    """Property `WallCommentAttachment.sticker`."""
 
 
 class BaseLinkButtonActionType(Enum):  # type: ignore

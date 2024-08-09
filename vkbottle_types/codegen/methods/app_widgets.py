@@ -2,7 +2,7 @@ import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
-from vkbottle_types.responses.app_widgets import *  # noqa: F401,F403
+from vkbottle_types.responses.app_widgets import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,

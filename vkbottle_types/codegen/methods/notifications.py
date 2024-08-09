@@ -5,7 +5,7 @@ from vkbottle_types.objects import NotificationsSendMessageItem
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
 )
-from vkbottle_types.responses.notifications import *  # noqa: F401,F403
+from vkbottle_types.responses.notifications import *  # noqa: F401,F403  # type: ignore
 
 
 class NotificationsCategory(BaseCategory):

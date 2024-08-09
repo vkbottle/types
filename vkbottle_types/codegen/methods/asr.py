@@ -2,7 +2,7 @@ import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.objects import AsrTask, BaseUploadServer
-from vkbottle_types.responses.asr import *  # noqa: F401,F403
+from vkbottle_types.responses.asr import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseGetUploadServerResponse,
 )

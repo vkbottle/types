@@ -2,7 +2,7 @@ import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.objects import LeadFormsForm
-from vkbottle_types.responses.lead_forms import *  # noqa: F401,F403
+from vkbottle_types.responses.lead_forms import *  # noqa: F401,F403  # type: ignore
 
 
 class LeadFormsCategory(BaseCategory):

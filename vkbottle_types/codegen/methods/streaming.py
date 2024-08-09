@@ -2,7 +2,7 @@ import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.objects import StreamingStats
-from vkbottle_types.responses.streaming import *  # noqa: F401,F403
+from vkbottle_types.responses.streaming import *  # noqa: F401,F403  # type: ignore
 
 
 class StreamingCategory(BaseCategory):

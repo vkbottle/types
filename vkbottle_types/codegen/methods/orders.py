@@ -5,7 +5,7 @@ from vkbottle_types.objects import OrdersAmount, OrdersOrder, OrdersSubscription
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
 )
-from vkbottle_types.responses.orders import *  # noqa: F401,F403
+from vkbottle_types.responses.orders import *  # noqa: F401,F403  # type: ignore
 
 
 class OrdersCategory(BaseCategory):

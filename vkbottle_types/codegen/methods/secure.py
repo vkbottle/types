@@ -13,7 +13,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponseModel,
 )
 from vkbottle_types.responses.base_response import DictResponse
-from vkbottle_types.responses.secure import *  # noqa: F401,F403
+from vkbottle_types.responses.secure import *  # noqa: F401,F403  # type: ignore
 
 
 class SecureCategory(BaseCategory):

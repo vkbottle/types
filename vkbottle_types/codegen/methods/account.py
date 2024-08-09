@@ -8,7 +8,7 @@ from vkbottle_types.objects import (
     AccountUserSettings,
     BaseUserGroupFields,
 )
-from vkbottle_types.responses.account import *  # noqa: F401,F403
+from vkbottle_types.responses.account import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,

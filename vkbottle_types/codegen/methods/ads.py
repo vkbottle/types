@@ -29,7 +29,7 @@ from vkbottle_types.objects import (
     AdsUpdateOfficeUsersResult,
     AdsUsers,
 )
-from vkbottle_types.responses.ads import *  # noqa: F401,F403
+from vkbottle_types.responses.ads import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -682,10 +682,10 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[AdsTargSuggestionsSchools],
-        typing.List[AdsTargSuggestionsCities],
-        typing.List[AdsTargSuggestionsRegions],
         typing.List[AdsTargSuggestions],
+        typing.List[AdsTargSuggestionsCities],
+        typing.List[AdsTargSuggestionsSchools],
+        typing.List[AdsTargSuggestionsRegions],
     ]:
         """Method `ads.getSuggestions()`
 

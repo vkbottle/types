@@ -13,7 +13,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.friends import *  # noqa: F401,F403
+from vkbottle_types.responses.friends import *  # noqa: F401,F403  # type: ignore
 
 
 class FriendsCategory(BaseCategory):
@@ -77,7 +77,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         need_sign: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[FriendsFriendStatus], typing.List[FriendsFriendExtendedStatus]]:
+    ) -> typing.Union[typing.List[FriendsFriendExtendedStatus], typing.List[FriendsFriendStatus]]:
         """Method `friends.areFriends()`
 
         :param user_ids: IDs of the users whose friendship status to check.
@@ -211,7 +211,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FriendsGetResponseModel, FriendsGetFieldsResponseModel]:
+    ) -> typing.Union[FriendsGetFieldsResponseModel, FriendsGetResponseModel]:
         """Method `friends.get()`
 
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
@@ -391,10 +391,10 @@ class FriendsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[int],
         "FriendsOnlineUsersWithMobile",
-        FriendsGetOnlineOnlineMobileResponseModel,
+        typing.List[int],
         "FriendsOnlineUsers",
+        FriendsGetOnlineOnlineMobileResponseModel,
     ]:
         """Method `friends.getOnline()`
 
@@ -496,9 +496,9 @@ class FriendsCategory(BaseCategory):
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        FriendsGetRequestsNeedMutualResponseModel,
         FriendsGetRequestsResponseModel,
         FriendsGetRequestsExtendedResponseModel,
+        FriendsGetRequestsNeedMutualResponseModel,
     ]:
         """Method `friends.getRequests()`
 

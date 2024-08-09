@@ -7,7 +7,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.fave import *  # noqa: F401,F403
+from vkbottle_types.responses.fave import *  # noqa: F401,F403  # type: ignore
 
 
 class FaveCategory(BaseCategory):
@@ -185,7 +185,7 @@ class FaveCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FaveGetExtendedResponseModel, FaveGetResponseModel]:
+    ) -> typing.Union[FaveGetResponseModel, FaveGetExtendedResponseModel]:
         """Method `fave.get()`
 
         :param extended: '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.

@@ -5,7 +5,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.board import *  # noqa: F401,F403
+from vkbottle_types.responses.board import *  # noqa: F401,F403  # type: ignore
 
 
 class BoardCategory(BaseCategory):
@@ -210,7 +210,7 @@ class BoardCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetCommentsExtendedResponseModel, BoardGetCommentsResponseModel]:
+    ) -> typing.Union[BoardGetCommentsResponseModel, BoardGetCommentsExtendedResponseModel]:
         """Method `board.getComments()`
 
         :param group_id: ID of the community that owns the discussion board.
@@ -271,7 +271,7 @@ class BoardCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         topic_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetTopicsExtendedResponseModel, BoardGetTopicsResponseModel]:
+    ) -> typing.Union[BoardGetTopicsResponseModel, BoardGetTopicsExtendedResponseModel]:
         """Method `board.getTopics()`
 
         :param group_id: ID of the community that owns the discussion board.

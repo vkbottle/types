@@ -12,7 +12,7 @@ from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
 )
-from vkbottle_types.responses.newsfeed import *  # noqa: F401,F403
+from vkbottle_types.responses.newsfeed import *  # noqa: F401,F403  # type: ignore
 
 
 class NewsfeedCategory(BaseCategory):
@@ -189,7 +189,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
+    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -387,9 +387,9 @@ class NewsfeedCategory(BaseCategory):
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        NewsfeedSearchResponseModel,
         NewsfeedSearchExtendedResponseModel,
         NewsfeedSearchStrictResponseModel,
+        NewsfeedSearchResponseModel,
     ]:
         """Method `newsfeed.search()`
 
