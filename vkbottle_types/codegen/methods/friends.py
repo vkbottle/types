@@ -77,7 +77,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         need_sign: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[FriendsFriendExtendedStatus], typing.List[FriendsFriendStatus]]:
+    ) -> typing.Union[typing.List[FriendsFriendStatus], typing.List[FriendsFriendExtendedStatus]]:
         """Method `friends.areFriends()`
 
         :param user_ids: IDs of the users whose friendship status to check.
@@ -391,10 +391,10 @@ class FriendsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        "FriendsOnlineUsersWithMobile",
         typing.List[int],
-        "FriendsOnlineUsers",
         FriendsGetOnlineOnlineMobileResponseModel,
+        "FriendsOnlineUsers",
+        "FriendsOnlineUsersWithMobile",
     ]:
         """Method `friends.getOnline()`
 
@@ -437,8 +437,8 @@ class FriendsCategory(BaseCategory):
     @typing.overload
     async def get_requests(
         self,
-        need_mutual: typing.Literal[True],
         extended: typing.Literal[True],
+        need_mutual: typing.Literal[True],
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
         need_viewed: typing.Optional[bool] = None,
@@ -453,8 +453,8 @@ class FriendsCategory(BaseCategory):
     @typing.overload
     async def get_requests(
         self,
-        need_mutual: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
+        need_mutual: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
         need_viewed: typing.Optional[bool] = None,
@@ -496,8 +496,8 @@ class FriendsCategory(BaseCategory):
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        FriendsGetRequestsResponseModel,
         FriendsGetRequestsExtendedResponseModel,
+        FriendsGetRequestsResponseModel,
         FriendsGetRequestsNeedMutualResponseModel,
     ]:
         """Method `friends.getRequests()`
@@ -518,8 +518,8 @@ class FriendsCategory(BaseCategory):
         response = await self.api.request("friends.getRequests", params)
         model = self.get_model(
             (
-                (("need_mutual",), FriendsGetRequestsNeedMutualResponse),
                 (("extended",), FriendsGetRequestsNeedMutualResponse),
+                (("need_mutual",), FriendsGetRequestsNeedMutualResponse),
             ),
             default=FriendsGetRequestsResponse,
             params=params,

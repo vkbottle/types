@@ -99,7 +99,7 @@ class LikesCategory(BaseCategory):
         page_url: typing.Optional[str] = None,
         skip_own: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[LikesGetListResponseModel, LikesGetListExtendedResponseModel]:
+    ) -> typing.Union[LikesGetListExtendedResponseModel, LikesGetListResponseModel]:
         """Method `likes.getList()`
 
         :param type: , Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed

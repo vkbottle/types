@@ -576,7 +576,7 @@ class MarketCategory(BaseCategory):
         item_ids: typing.List[str],
         extended: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetByIdExtendedResponseModel, MarketGetByIdResponseModel]:
+    ) -> typing.Union[MarketGetByIdResponseModel, MarketGetByIdExtendedResponseModel]:
         """Method `market.getById()`
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
@@ -729,7 +729,7 @@ class MarketCategory(BaseCategory):
         date_to: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetOrdersExtendedResponseModel, MarketGetOrdersResponseModel]:
+    ) -> typing.Union[MarketGetOrdersResponseModel, MarketGetOrdersExtendedResponseModel]:
         """Method `market.getOrders()`
 
         :param extended:
@@ -998,7 +998,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketSearchExtendedResponseModel, MarketSearchResponseModel]:
+    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.

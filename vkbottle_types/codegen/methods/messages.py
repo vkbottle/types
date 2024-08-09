@@ -405,10 +405,10 @@ class MessagesCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
+        "MessagesChatFull",
         typing.List[MessagesChatFull],
         "MessagesChat",
         typing.List[MessagesChat],
-        "MessagesChatFull",
     ]:
         """Method `messages.getChat()`
 
@@ -530,7 +530,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesGetConversationById", "MessagesGetConversationByIdExtended"]:
+    ) -> typing.Union["MessagesGetConversationByIdExtended", "MessagesGetConversationById"]:
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -711,8 +711,8 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        MessagesGetImportantMessagesResponseModel,
         MessagesGetImportantMessagesExtendedResponseModel,
+        MessagesGetImportantMessagesResponseModel,
     ]:
         """Method `messages.getImportantMessages()`
 

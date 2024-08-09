@@ -61,7 +61,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[UsersGetFollowersResponseModel, UsersGetFollowersFieldsResponseModel]:
+    ) -> typing.Union[UsersGetFollowersFieldsResponseModel, UsersGetFollowersResponseModel]:
         """Method `users.getFollowers()`
 
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.
@@ -111,7 +111,7 @@ class UsersCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        UsersGetSubscriptionsResponseModel, UsersGetSubscriptionsExtendedResponseModel
+        UsersGetSubscriptionsExtendedResponseModel, UsersGetSubscriptionsResponseModel
     ]:
         """Method `users.getSubscriptions()`
 

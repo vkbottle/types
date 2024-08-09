@@ -271,7 +271,7 @@ class BoardCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         topic_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetTopicsResponseModel, BoardGetTopicsExtendedResponseModel]:
+    ) -> typing.Union[BoardGetTopicsExtendedResponseModel, BoardGetTopicsResponseModel]:
         """Method `board.getTopics()`
 
         :param group_id: ID of the community that owns the discussion board.

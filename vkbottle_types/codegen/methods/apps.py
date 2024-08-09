@@ -182,7 +182,7 @@ class AppsCategory(BaseCategory):
         query: typing.Optional[str] = None,
         type: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[AppsGetFriendsListExtendedResponseModel, AppsGetFriendsListResponseModel]:
+    ) -> typing.Union[AppsGetFriendsListResponseModel, AppsGetFriendsListExtendedResponseModel]:
         """Method `apps.getFriendsList()`
 
         :param extended:
@@ -226,7 +226,7 @@ class AppsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         _global: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[AppsGetLeaderboardExtendedResponseModel, AppsGetLeaderboardResponseModel]:
+    ) -> typing.Union[AppsGetLeaderboardResponseModel, AppsGetLeaderboardExtendedResponseModel]:
         """Method `apps.getLeaderboard()`
 
         :param type: Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().

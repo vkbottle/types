@@ -122,7 +122,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetBannedResponseModel, NewsfeedGetBannedExtendedResponseModel]:
+    ) -> typing.Union[NewsfeedGetBannedExtendedResponseModel, NewsfeedGetBannedResponseModel]:
         """Method `newsfeed.getBanned()`
 
         :param extended: '1' - return extra information about users and communities
@@ -189,7 +189,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
+    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -387,9 +387,9 @@ class NewsfeedCategory(BaseCategory):
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
+        NewsfeedSearchResponseModel,
         NewsfeedSearchExtendedResponseModel,
         NewsfeedSearchStrictResponseModel,
-        NewsfeedSearchResponseModel,
     ]:
         """Method `newsfeed.search()`
 
@@ -408,8 +408,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended",), NewsfeedSearchStrictResponse),
+                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,

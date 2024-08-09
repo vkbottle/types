@@ -683,9 +683,9 @@ class AdsCategory(BaseCategory):
         **kwargs: typing.Any,
     ) -> typing.Union[
         typing.List[AdsTargSuggestions],
-        typing.List[AdsTargSuggestionsCities],
         typing.List[AdsTargSuggestionsSchools],
         typing.List[AdsTargSuggestionsRegions],
+        typing.List[AdsTargSuggestionsCities],
     ]:
         """Method `ads.getSuggestions()`
 

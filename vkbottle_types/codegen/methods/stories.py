@@ -84,7 +84,7 @@ class StoriesCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[StoriesGetBannedExtendedResponseModel, StoriesGetBannedResponseModel]:
+    ) -> typing.Union[StoriesGetBannedResponseModel, StoriesGetBannedExtendedResponseModel]:
         """Method `stories.getBanned()`
 
         :param extended: '1' - to return additional fields for users and communities. Default value is 0.

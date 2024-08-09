@@ -725,7 +725,7 @@ class VideoCategory(BaseCategory):
         shorter: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoSearchResponseModel, VideoSearchExtendedResponseModel]:
+    ) -> typing.Union[VideoSearchExtendedResponseModel, VideoSearchResponseModel]:
         """Method `video.search()`
 
         :param extended:

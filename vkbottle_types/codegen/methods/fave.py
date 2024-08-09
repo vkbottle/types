@@ -185,7 +185,7 @@ class FaveCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         tag_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FaveGetResponseModel, FaveGetExtendedResponseModel]:
+    ) -> typing.Union[FaveGetExtendedResponseModel, FaveGetResponseModel]:
         """Method `fave.get()`
 
         :param extended: '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.

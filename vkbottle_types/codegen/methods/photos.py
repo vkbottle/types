@@ -463,7 +463,7 @@ class PhotosCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[PhotosGetCommentsResponseModel, PhotosGetCommentsExtendedResponseModel]:
+    ) -> typing.Union[PhotosGetCommentsExtendedResponseModel, PhotosGetCommentsResponseModel]:
         """Method `photos.getComments()`
 
         :param photo_id: Photo ID.
