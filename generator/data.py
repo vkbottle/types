@@ -198,8 +198,8 @@ class Method:
     def get_dependants_dependant_parameters(self) -> dict[str, str]:
         dependant_parameters = {}
         response_model: str | None = (
-            self.responses.get("response", {}).get("response_hint", {}).get("hint", None)
-        )  # type: ignore
+            self.responses.get("response", {}).get("response_hint", {}).get("hint", None)  # type: ignore
+        )
 
         for dependant in self.get_dependants():
             for dependant_parameter in dependant.dependant_parameters:
@@ -349,6 +349,7 @@ class Definition:
     enumNames: list[str] = dataclasses.field(default_factory=lambda: [])  # noqa: N815
     sub_definitions: dict[str, "Definition"] = dataclasses.field(default_factory=lambda: {})
     items: typing.Any | None = None
+    ref: str | None = None
     name: str | None = None
 
     _bases: list[str] = dataclasses.field(default_factory=lambda: [])
@@ -437,7 +438,9 @@ class Category:
 
 
 ref_schema: dataclass_factory.Schema = dataclass_factory.Schema(name_mapping={"ref": "$ref"})
-factory = dataclass_factory.Factory(schemas={WithRef: ref_schema, Property: ref_schema})
+factory = dataclass_factory.Factory(
+    schemas={WithRef: ref_schema, Property: ref_schema, Definition: ref_schema},
+)
 
 
 __all__ = (

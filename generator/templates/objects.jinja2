@@ -4,7 +4,7 @@ import typing
 from vkbottle_types.base_model import BaseModel, Field
 
 
-{% for (name, definition) in definitions %}
+{% for name, definition in definitions.items() %}
 
 {% if definition.enum %}
 {% if is_int(definition.enum[0]) %}
@@ -47,7 +47,7 @@ class {{camelcase(name)}}({{", ".join(definition.get_bases())}}):
 
 
 __all__ = (
-    {% for (name, definition) in definitions %}
+    {% for name, definition in definitions.items() %}
     "{{camelcase(name)}}",
     {% for enum in definition.get_enums(name) %}
     "{{enum.name}}",

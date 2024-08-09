@@ -122,7 +122,7 @@ def download_schema() -> list[Category]:
 
     categories_dcts = []
     for category_name in tqdm(CATEGORIES):
-        dct = {"name": category_name}
+        dct: dict[str, typing.Any] = {"name": category_name}
         for file in ("methods", "objects", "responses"):
             result = requests.get(URL.format(category_name, file))
             if result.status_code == 200:
@@ -139,7 +139,7 @@ def download_schema() -> list[Category]:
 
 def save_schema(schema: list[Category], filename: str = "schema.json") -> None:
     with open(filename, "w") as fp:
-        json.dump([factory.dump(c) for c in schema], fp)
+        json.dump([factory.dump(c) for c in schema], fp)  # type: ignore
 
 
 def load_schema(filename: str = "schema.json") -> list[Category]:
@@ -346,10 +346,15 @@ def reorder_definitions(
     return s
 
 
-def generate_objects(definitions: list[tuple[str, Definition, Category]], path: str):
-    definitions = reorder_definitions(definitions)
+def generate_objects(definitions: list[tuple[str, Definition, Category]], path: str) -> None:
+    definitions_dct = dict([(k, v) for (k, v, _) in reorder_definitions(definitions)])
+
+    for definition in definitions_dct.values():
+        if definition.type == "object" and not definition.properties and definition.ref:
+            definition.properties.extend(definitions_dct[definition.ref.split("/")[-1]].properties)
+
     template = env.get_template("objects.jinja2")
-    generated = template.render(definitions=[(k, v) for (k, v, _) in definitions])
+    generated = template.render(definitions=definitions_dct)
     pathlib.Path(path, "objects.py").write_text(generated)
 
 
@@ -368,7 +373,8 @@ def parse_properties(properties: dict[str, dict]) -> list[dict]:
 
 
 def get_definition(
-    name: str, definitions: typing.Iterable[typing.Tuple[str, Definition]]
+    name: str,
+    definitions: typing.Iterable[typing.Tuple[str, Definition]],
 ) -> typing.Optional[Definition]:
     for definition_name, definition in definitions:
         if definition_name == name:
@@ -381,8 +387,6 @@ def get_definitions(objects: Objects) -> typing.List[typing.Tuple[str, Definitio
         return []
 
     definitions: typing.Dict[str, Definition] = {}
-    sub_definitions: typing.Dict[str, typing.List[str]] = {}
-
     for definition_name, definition in typing.cast(
         typing.Dict[str, dict], objects.definitions
     ).items():
