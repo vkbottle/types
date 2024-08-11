@@ -1,5 +1,5 @@
 import inspect
-from typing import Any, Optional
+from typing import Any, List, Optional
 
 from vkbottle_types.base_model import BaseModel
 from vkbottle_types.objects import (
@@ -159,6 +159,21 @@ class LikeAddObject(BaseEventObject):
 
 class LikeRemoveObject(LikeAddObject):
     pass
+
+
+class LeadFormAnswerModel(BaseModel):
+    key: str
+    question: str
+    answer: Optional[str] = None
+
+
+class LeadFormsNewObject(BaseEventObject):
+    lead_id: int
+    group_id: int
+    form_id: int
+    user_id: int
+    form_name: str
+    answers: Optional[List["LeadFormAnswerModel"]] = None
 
 
 class BoardPostNewObject(BaseEventObject, BoardTopicComment):
@@ -368,6 +383,7 @@ __all__ = (
     "GroupLeaveObject",
     "GroupOfficersEditObject",
     "GroupSettingsChangesObject",
+    "LeadFormsNewObject",
     "LikeAddObject",
     "LikeRemoveObject",
     "MarketCommentDeleteObject",

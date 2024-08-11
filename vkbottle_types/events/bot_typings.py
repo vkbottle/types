@@ -17,6 +17,7 @@ from .bot_events import (
     GroupJoin,
     GroupLeave,
     GroupOfficersEdit,
+    LeadFormsNew,
     LikeAdd,
     LikeRemove,
     MarketCommentDelete,
@@ -84,6 +85,7 @@ class GroupTypes:
     WallReplyEdit = WallReplyEdit
     WallReplyRestore = WallReplyRestore
     WallReplyDelete = WallReplyDelete
+    LeadFormsNew = LeadFormsNew
     LikeAdd = LikeAdd
     LikeRemove = LikeRemove
     BoardPostNew = BoardPostNew

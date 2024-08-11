@@ -41,6 +41,8 @@ class GroupEventType(StrEnum):
     BOARD_POST_RESTORE = "board_post_restore"
     BOARD_POST_DELETE = "board_post_delete"
 
+    LEAD_FORMS_NEW = "lead_forms_new"
+
     MARKET_COMMENT_NEW = "market_comment_new"
     MARKET_COMMENT_EDIT = "market_comment_edit"
     MARKET_COMMENT_RESTORE = "market_comment_restore"

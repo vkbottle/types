@@ -95,6 +95,10 @@ class VideoCommentRestore(BaseGroupEvent):
     object: group_event_objects.VideoCommentRestoreObject
 
 
+class LeadFormsNew(BaseGroupEvent):
+    object: group_event_objects.LeadFormsNewObject
+
+
 class VideoCommentDelete(BaseGroupEvent):
     object: group_event_objects.VideoCommentDeleteObject
 
@@ -274,6 +278,7 @@ __all__ = (
     "GroupJoin",
     "GroupLeave",
     "GroupOfficersEdit",
+    "LeadFormsNew",
     "LikeAdd",
     "LikeRemove",
     "MarketCommentDelete",
