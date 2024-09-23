@@ -153,7 +153,8 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
     mini_app: Optional["AppsApp"] = None
-    sticker: typing.Optional["BaseSticker"] = None
+    sticker: Optional["BaseSticker"] = None
+    video: Optional["VideoVideoFull"] = None
     type: "MessagesMessageAttachmentType"
 
 
