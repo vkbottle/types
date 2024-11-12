@@ -12385,6 +12385,9 @@ class MessagesKeyboardButtonPropertyAction(BaseModel):
     """
     Model: `MessagesKeyboardButtonPropertyAction`
     """
+    label: str = Field()
+    type: str = Field()
+    payload: str = Field()
 
 
 class MessagesLastActivity(BaseModel):
