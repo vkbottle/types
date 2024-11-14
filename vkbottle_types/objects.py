@@ -90,6 +90,10 @@ class WallWallpostAttachmentType(Enum):  # type: ignore
     VIDEO_PLAYLIST = "video_playlist"
 
 
+class PhotosPhoto(PhotosPhoto):  # type: ignore
+    orig_photo: typing.Optional["PhotosPhotoSizes"] = None
+
+
 class PrettyCardsList(BaseModel):
     cards: Optional[List["PrettyCardsPrettyCard"]] = None
 
@@ -152,6 +156,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
     mini_app: Optional["AppsApp"] = None
     sticker: Optional["BaseSticker"] = None
     video: Optional["VideoVideoFull"] = None
@@ -216,6 +221,66 @@ class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
     error: Optional["BaseMessageError"] = None
     message_id: Optional[int]
     peer_id: int
+
+
+class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class BaseCropPhoto(BaseCropPhoto):  # type: ignore
+    photo: "PhotosPhoto" = Field()
+
+
+class BugtrackerAttachment(BugtrackerAttachment):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class CallbackGroupChangePhoto(CallbackGroupChangePhoto):  # type: ignore
+    photo: "PhotosPhoto" = Field()
+
+
+class MarketMarketAlbum(MarketMarketAlbum):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class MarketOrderItem(MarketOrderItem):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class MessagesHistoryMessageAttachment(MessagesHistoryMessageAttachment):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class PhotosPhotoAlbum(PhotosPhotoAlbum):  # type: ignore
+    thumb: typing.Optional["PhotosPhoto"] = None
+
+
+class StoriesStory(StoriesStory):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class WallCommentAttachment(WallCommentAttachment):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
+    photo: typing.Optional["PhotosPhoto"] = None
+
+
+class NewsfeedItemPhotoPhotos(NewsfeedItemPhotoPhotos):  # type: ignore
+    items: typing.Optional[typing.List["PhotosPhoto"]] = None
+
+
+class NewsfeedItemPhotoTagPhotoTags(NewsfeedItemPhotoTagPhotoTags):  # type: ignore
+    items: typing.Optional[typing.List["PhotosPhoto"]] = None
+
+
+class UsersUserFull(UsersUserFull):  # type: ignore
+    photo_max_size: typing.Optional["PhotosPhoto"] = None
+
+
+class MarketMarketItemFull(MarketMarketItemFull):  # type: ignore
+    photos: typing.Optional[typing.List["PhotosPhoto"]] = None
 
 
 class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction):  # type: ignore
