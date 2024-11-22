@@ -151,19 +151,6 @@ class AppsApp(AppsApp):  # type: ignore
     type: Optional[str] = None  # type: ignore
 
 
-class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/225
-    story: Optional["StoriesStory"] = None
-    group_call_in_progress: Optional["GroupCallInProgress"] = None
-    link: Optional["BaseLinkAttachment"] = None
-    wall: Optional["WallWallpostFull"] = None
-    photo: typing.Optional["PhotosPhoto"] = None
-    mini_app: Optional["AppsApp"] = None
-    sticker: Optional["BaseSticker"] = None
-    video: Optional["VideoVideoFull"] = None
-    type: "MessagesMessageAttachmentType"
-
-
 class MessagesAudioMessage(MessagesAudioMessage):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/236
     transcript_state: Optional[str] = None
@@ -222,6 +209,20 @@ class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
     error: Optional["BaseMessageError"] = None
     message_id: Optional[int]
     peer_id: int
+
+
+class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
+    # https://github.com/VKCOM/vk-api-schema/issues/225
+    audio_message: Optional["MessagesAudioMessage"] = None
+    story: Optional["StoriesStory"] = None
+    group_call_in_progress: Optional["GroupCallInProgress"] = None
+    link: Optional["BaseLinkAttachment"] = None
+    wall: Optional["WallWallpostFull"] = None
+    photo: typing.Optional["PhotosPhoto"] = None
+    mini_app: Optional["AppsApp"] = None
+    sticker: Optional["BaseSticker"] = None
+    video: Optional["VideoVideoFull"] = None
+    type: "MessagesMessageAttachmentType"
 
 
 class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
