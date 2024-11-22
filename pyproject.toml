@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vkbottle-types"
-version = "5.199.63.2.post1"
+version = "5.199.63.2.post2"
 description = "VK API methods & types for vkbottle."
 authors = ["timoniq"]
 license = "MIT"
@@ -16,20 +16,20 @@ python = "^3.8"
 pydantic = "<3 || <=1.10.8"
 vkbottle = "^4.4.0"
 typing-extensions = "^4.4.0"
+msgspec = "^0.18.6"
+
+[tool.poetry.dev-dependencies]
 requests = "^2.20.0"
 tqdm = "^4.65.0"
 dataclass-factory = "^2.16"
 jinja2 = "^3.1.2"
-msgspec = "^0.18.6"
-
-[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.ruff]
-line-length = 99
+line-length = 105
 target-version = "py38"
 lint.select = ["I", "N", "ANN", "COM", "YTT", "TCH", "SIM"]
 lint.ignore = [
