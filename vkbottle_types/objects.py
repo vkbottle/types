@@ -42,7 +42,9 @@ class MessagesMessageAttachmentType(Enum):  # type: ignore
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    GROUP_CALL_IN_PROGRESS = (
+        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    )
     MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
     VIDEO_PLAYLIST = "video_playlist"
 
@@ -51,7 +53,7 @@ class VideoVideoType(Enum):  # type: ignore
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
-    VIDEO_MESSAGE = "video_message"    
+    VIDEO_MESSAGE = "video_message"
     SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
     LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
 
@@ -99,9 +101,18 @@ class PrettyCardsList(BaseModel):
     cards: Optional[List["PrettyCardsPrettyCard"]] = None
 
 
+class PollsPoll(PollsPoll):  # type: ignore[no-redef]
+    anonymous: typing.Optional[bool] = None  # type: ignore[assignment]
+
+
 class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
     mini_app: Optional["AppsApp"] = None
     pretty_cards: Optional["PrettyCardsList"] = None
+    poll: typing.Optional["PollsPoll"] = None
+
+
+class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
+    pass
 
 
 class WallCommentAttachmentType(Enum):  # type: ignore
@@ -223,6 +234,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     sticker: Optional["BaseSticker"] = None
     video: Optional["VideoVideoFull"] = None
     type: "MessagesMessageAttachmentType"
+    poll: typing.Optional["PollsPoll"] = None
 
 
 class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
@@ -289,6 +301,10 @@ class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction)
     label: str = Field()
     type: str = Field()
     payload: str = Field()
+
+
+class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef]
+    poll: typing.Optional["PollsPoll"] = None
 
 
 _locals = locals().copy()
