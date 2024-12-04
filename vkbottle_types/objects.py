@@ -2,7 +2,7 @@
 import inspect
 import typing
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
@@ -305,6 +305,9 @@ class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction)
 
 class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef]
     poll: typing.Optional["PollsPoll"] = None
+
+
+UsersSubscriptionsItem = Union[GroupsGroupFull, UsersUserFull]  # type: ignore[misc, assignment]
 
 
 _locals = locals().copy()
