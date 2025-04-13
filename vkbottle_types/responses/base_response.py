@@ -12,7 +12,7 @@ class BaseResponse(BaseModel):
     def raw_json(self) -> str:
         if not self._raw_json:
             raise AttributeError(
-                "You cannot get raw_json from here. " "Get a full raw_json from unnested response."
+                "You cannot get raw_json from here. Get a full raw_json from unnested response."
             )
         return self._raw_json
 

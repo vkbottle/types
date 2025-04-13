@@ -356,13 +356,6 @@ class MessageReadObject(BaseEventObject):
     conversation_message_id: int
 
 
-_locals = locals().copy()
-_locals_values = _locals.values()
-for item in _locals_values:
-    if inspect.isclass(item) and issubclass(item, BaseEventObject):
-        item.update_forward_refs()
-
-
 __all__ = (
     "AudioNewObject",
     "AppPayloadObject",

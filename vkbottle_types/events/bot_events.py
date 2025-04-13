@@ -251,13 +251,6 @@ class MessageRead(BaseGroupEvent):
     object: group_event_objects.MessageReadObject
 
 
-_locals = locals().copy()
-_locals_values = _locals.values()
-for item in _locals_values:
-    if inspect.isclass(item) and issubclass(item, BaseGroupEvent):
-        item.update_forward_refs(**_locals)
-
-
 __all__ = (
     "AppPayload",
     "AudioNew",

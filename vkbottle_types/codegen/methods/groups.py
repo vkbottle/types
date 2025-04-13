@@ -662,9 +662,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        GroupsGetCatalogInfoExtendedResponseModel, GroupsGetCatalogInfoResponseModel
-    ]:
+    ) -> typing.Union[GroupsGetCatalogInfoExtendedResponseModel, GroupsGetCatalogInfoResponseModel]:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.

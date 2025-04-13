@@ -74,9 +74,7 @@ def get_type(
     match type_name:
         case "string":
             if literals := items.get("enum"):
-                return "typing.Literal[{}]".format(
-                    ", ".join(repr(literal) for literal in literals)
-                )
+                return "typing.Literal[{}]".format(", ".join(repr(literal) for literal in literals))
             return "str"
         case "array":
             return "typing.List[{}]".format(get_complex_type(items, hint=hint))

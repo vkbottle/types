@@ -308,15 +308,3 @@ class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef
 
 
 UsersSubscriptionsItem = Union[GroupsGroupFull, UsersUserFull]  # type: ignore[misc, assignment]
-
-
-_locals = locals().copy()
-_locals_values = _locals.values()
-for item in _locals_values:
-    if not (inspect.isclass(item) and issubclass(item, BaseModel)):
-        continue
-    item.update_forward_refs(**_locals)
-    for parent in item.__bases__:
-        if parent.__name__ == item.__name__:
-            parent.__fields__.update(item.__fields__)  # type: ignore
-            parent.update_forward_refs(**_locals)  # type: ignore

@@ -77,9 +77,7 @@ CATEGORIES = (
     "widgets",
 )
 
-env = jinja2.Environment(
-    loader=jinja2.FileSystemLoader(pathlib.Path(__file__).parent / "templates")
-)
+env = jinja2.Environment(loader=jinja2.FileSystemLoader(pathlib.Path(__file__).parent / "templates"))
 env.globals.update(
     {
         "snake_case": snake_case,
@@ -294,9 +292,7 @@ def process_responses(
                             .strip()
                         )
                         if "Union" in orig_type:
-                            orig_type = list(
-                                map(str.strip, orig_type.replace("Union", "").split(","))
-                            )
+                            orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
                         if "Dict" in orig_type:
                             orig_type = "dict"
                     responses[response_name]["response_hint"] = {  # type: ignore
@@ -387,9 +383,7 @@ def get_definitions(objects: Objects) -> typing.List[typing.Tuple[str, Definitio
         return []
 
     definitions: typing.Dict[str, Definition] = {}
-    for definition_name, definition in typing.cast(
-        typing.Dict[str, dict], objects.definitions
-    ).items():
+    for definition_name, definition in typing.cast(typing.Dict[str, dict], objects.definitions).items():
         if "properties" in definition:
             properties: typing.Dict[str, dict] = {}
 
@@ -438,9 +432,7 @@ def generate_schema(schema: list[Category], folder: str) -> None:
                     sub_definitions[name] = []
                 if def_name not in sub_definitions[name]:
                     sub_definitions[name].append(def_name)
-                base.definition = get_definition(
-                    name, list((n, x[0]) for n, x in definitions.items())
-                )
+                base.definition = get_definition(name, list((n, x[0]) for n, x in definitions.items()))
 
     for definition_name, (def_, _) in definitions.items():
         if (sub_defs := sub_definitions.get(definition_name)) is None:

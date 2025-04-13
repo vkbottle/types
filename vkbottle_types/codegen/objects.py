@@ -1117,7 +1117,7 @@ class UsersCareer(BaseModel):
     )
     """Company name."""
 
-    _from: typing.Optional[int] = Field(
+    from_: typing.Optional[int] = Field(
         default=None,
         alias="from",
     )
@@ -1317,7 +1317,7 @@ class UsersMilitary(BaseModel):
     unit_id: int = Field()
     """Unit ID."""
 
-    _from: typing.Optional[int] = Field(
+    from_: typing.Optional[int] = Field(
         default=None,
         alias="from",
     )
@@ -1511,7 +1511,7 @@ class UsersSchool(BaseModel):
     )
     """City ID."""
 
-    _class: typing.Optional[str] = Field(
+    class_: typing.Optional[str] = Field(
         default=None,
         alias="class",
     )
@@ -2080,7 +2080,7 @@ class AccountInfo(BaseModel):
     Model: `AccountInfo`
     """
 
-    _2fa_required: typing.Optional[bool] = Field(
+    f__2fa_required: typing.Optional[bool] = Field(
         default=None,
         alias="2fa_required",
     )
@@ -3724,10 +3724,8 @@ class AdsLookalikeRequest(BaseModel):
     )
     """Lookalike request seed audience size."""
 
-    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = (
-        Field(
-            default=None,
-        )
+    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = Field(
+        default=None,
     )
     """Property `AdsLookalikeRequest.save_audience_levels`."""
 
@@ -12385,6 +12383,7 @@ class MessagesKeyboardButtonPropertyAction(BaseModel):
     """
     Model: `MessagesKeyboardButtonPropertyAction`
     """
+
     label: str = Field()
     type: str = Field()
     payload: str = Field()
@@ -14593,7 +14592,7 @@ class SearchHint(BaseModel):
     )
     """Property `SearchHint.app`."""
 
-    _global: typing.Optional[bool] = Field(
+    global_: typing.Optional[bool] = Field(
         default=None,
         alias="global",
     )
@@ -20351,7 +20350,7 @@ class FriendsRequestsXtrMutual(UsersUserFull):
     )
     """User ID."""
 
-    _from: typing.Optional[str] = Field(
+    from_: typing.Optional[str] = Field(
         default=None,
         alias="from",
     )

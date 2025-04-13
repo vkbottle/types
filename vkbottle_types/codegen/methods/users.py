@@ -110,9 +110,7 @@ class UsersCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        UsersGetSubscriptionsExtendedResponseModel, UsersGetSubscriptionsResponseModel
-    ]:
+    ) -> typing.Union[UsersGetSubscriptionsExtendedResponseModel, UsersGetSubscriptionsResponseModel]:
         """Method `users.getSubscriptions()`
 
         :param extended: '1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)
