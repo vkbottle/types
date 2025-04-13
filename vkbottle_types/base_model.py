@@ -1,11 +1,5 @@
-# type: ignore
+import pydantic
 import typing_extensions as typing
-
-try:
-    import pydantic.v1 as pydantic  # type: ignore
-except ImportError:
-    import pydantic  # type: ignore  # noqa: F401
-
 
 if typing.TYPE_CHECKING:
 
@@ -15,29 +9,25 @@ if typing.TYPE_CHECKING:
     )
     class BaseModel(pydantic.BaseModel):
         @classmethod
-        def from_raw(cls, data: bytes) -> typing.Self: ...
+        def from_raw(cls, data: bytes, /, *, strict: bool = False) -> typing.Self: ...
 
         def to_dict(self) -> typing.Dict[str, typing.Any]: ...
 
 else:
 
-    class ModelMetaclass(pydantic.main.ModelMetaclass):
-        def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> typing.Type[typing.Any]:
-            return super().__new__(cls, *args, __resolve_forward_refs__=False, **kwargs)
-
-    class BaseModel(pydantic.BaseModel, metaclass=ModelMetaclass):
+    class BaseModel(pydantic.BaseModel):
         class Config:
             frozen = True
 
         @classmethod
-        def from_raw(cls, data: bytes) -> typing.Self:
-            return getattr(cls, "model_validate_json", cls.parse_raw)(data)
+        def from_raw(cls, data, /, *, strict=False):
+            return cls.model_validate_json(data, strict=strict)
 
-        def to_dict(self) -> typing.Dict[str, typing.Any]:
-            return getattr(self, "model_dump", self.dict)()
+        def to_dict(self):
+            return cls.model_dump()
 
 
 Field = pydantic.Field
 
 
-__all__ = ("BaseModel",)
+__all__ = ("BaseModel", "Field")
