@@ -1,6 +1,3 @@
-# flake8: noqa: F405
-import inspect
-import typing
 from enum import Enum
 from typing import List, Optional, Union
 
@@ -94,7 +91,7 @@ class WallWallpostAttachmentType(Enum):  # type: ignore
 
 
 class PhotosPhoto(PhotosPhoto):  # type: ignore
-    orig_photo: typing.Optional["PhotosPhotoSizes"] = None
+    orig_photo: Optional["PhotosPhotoSizes"] = None
 
 
 class PrettyCardsList(BaseModel):
@@ -102,13 +99,13 @@ class PrettyCardsList(BaseModel):
 
 
 class PollsPoll(PollsPoll):  # type: ignore[no-redef]
-    anonymous: typing.Optional[bool] = None  # type: ignore[assignment]
+    anonymous: Optional[bool] = None  # type: ignore[assignment]
 
 
 class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
     mini_app: Optional["AppsApp"] = None
     pretty_cards: Optional["PrettyCardsList"] = None
-    poll: typing.Optional["PollsPoll"] = None
+    poll: Optional["PollsPoll"] = None
 
 
 class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
@@ -229,16 +226,16 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     group_call_in_progress: Optional["GroupCallInProgress"] = None
     link: Optional["BaseLinkAttachment"] = None
     wall: Optional["WallWallpostFull"] = None
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
     mini_app: Optional["AppsApp"] = None
     sticker: Optional["BaseSticker"] = None
     video: Optional["VideoVideoFull"] = None
     type: "MessagesMessageAttachmentType"
-    poll: typing.Optional["PollsPoll"] = None
+    poll: Optional["PollsPoll"] = None
 
 
 class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class BaseCropPhoto(BaseCropPhoto):  # type: ignore
@@ -246,7 +243,7 @@ class BaseCropPhoto(BaseCropPhoto):  # type: ignore
 
 
 class BugtrackerAttachment(BugtrackerAttachment):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class CallbackGroupChangePhoto(CallbackGroupChangePhoto):  # type: ignore
@@ -254,47 +251,47 @@ class CallbackGroupChangePhoto(CallbackGroupChangePhoto):  # type: ignore
 
 
 class MarketMarketAlbum(MarketMarketAlbum):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class MarketOrderItem(MarketOrderItem):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class MessagesHistoryMessageAttachment(MessagesHistoryMessageAttachment):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class PhotosPhotoAlbum(PhotosPhotoAlbum):  # type: ignore
-    thumb: typing.Optional["PhotosPhoto"] = None
+    thumb: Optional["PhotosPhoto"] = None
 
 
 class StoriesStory(StoriesStory):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class WallCommentAttachment(WallCommentAttachment):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
-    photo: typing.Optional["PhotosPhoto"] = None
+    photo: Optional["PhotosPhoto"] = None
 
 
 class NewsfeedItemPhotoPhotos(NewsfeedItemPhotoPhotos):  # type: ignore
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
+    items: Optional[List["PhotosPhoto"]] = None
 
 
 class NewsfeedItemPhotoTagPhotoTags(NewsfeedItemPhotoTagPhotoTags):  # type: ignore
-    items: typing.Optional[typing.List["PhotosPhoto"]] = None
+    items: Optional[List["PhotosPhoto"]] = None
 
 
 class UsersUserFull(UsersUserFull):  # type: ignore
-    photo_max_size: typing.Optional["PhotosPhoto"] = None
+    photo_max_size: Optional["PhotosPhoto"] = None
 
 
 class MarketMarketItemFull(MarketMarketItemFull):  # type: ignore
-    photos: typing.Optional[typing.List["PhotosPhoto"]] = None
+    photos: Optional[List["PhotosPhoto"]] = None
 
 
 class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction):  # type: ignore
@@ -304,7 +301,19 @@ class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction)
 
 
 class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef]
-    poll: typing.Optional["PollsPoll"] = None
+    poll: Optional["PollsPoll"] = None
 
 
 UsersSubscriptionsItem = Union[GroupsGroupFull, UsersUserFull]  # type: ignore[misc, assignment]
+
+
+localns = locals().copy()
+for item in localns.values():
+    if not (isinstance(item, type) and issubclass(item, BaseModel)):
+        continue
+    
+    for base in item.__bases__:
+        if base is not BaseModel and issubclass(base, BaseModel):
+            item.model_rebuild(force=True)
+
+    item.model_rebuild(force=True, _types_namespace=localns)
