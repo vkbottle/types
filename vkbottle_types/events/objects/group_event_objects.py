@@ -1,5 +1,6 @@
-import inspect
 from typing import Any, List, Optional
+
+import pydantic
 
 from vkbottle_types.base_model import BaseModel
 from vkbottle_types.objects import (
@@ -27,8 +28,7 @@ from vkbottle_types.objects import (
 
 
 class BaseEventObject(BaseModel):
-    class Config:
-        frozen = False
+    model_config = pydantic.ConfigDict(frozen=False)
 
 
 class MessageNewObject(BaseEventObject):

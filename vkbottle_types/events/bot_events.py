@@ -1,5 +1,7 @@
 from typing import TYPE_CHECKING, Any, Optional, Union
 
+import pydantic
+
 from vkbottle_types.base_model import BaseModel
 
 from .enums import GroupEventType
@@ -17,8 +19,7 @@ class BaseGroupEvent(BaseModel):
     group_id: Optional[int] = None
     unprepared_ctx_api: Optional[Any] = None
 
-    class Config:
-        frozen = False
+    model_config = pydantic.ConfigDict(frozen=False)
 
     @property
     def ctx_api(self) -> Union["ABCAPI", "API"]:
