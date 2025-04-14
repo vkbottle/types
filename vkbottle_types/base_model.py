@@ -16,8 +16,7 @@ if typing.TYPE_CHECKING:
 else:
 
     class BaseModel(pydantic.BaseModel):
-        class Config:
-            frozen = True
+        model_config = pydantic.ConfigDict(frozen=True)
 
         @classmethod
         def from_raw(cls, data, /, *, strict=False):
