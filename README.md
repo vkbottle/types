@@ -2,6 +2,17 @@
 
 Библиотека [VK API](https://dev.vk.com/ru/method) типов и методов для фреймворка [**vkbottle**](https://github.com/vkbottle/vkbottle)
 
+[![vk-api](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FVKCOM%2Fvk-api-schema%2Frefs%2Fheads%2Fmaster%2Fpackage.json&query=%24.version&label=vk%20api%20schema
+)](https://dev.vk.com/en/reference/versions#5.199)
+
+Установить с pypi:
+
+[![pypi](https://img.shields.io/pypi/v/vkbottle-types.svg)](https://pypi.org/project/vkbottle-types/)
+
+```console
+pip install vkbottle-types
+```
+
 Самую новую версию можно поставить с мастера:
 
 ```console
@@ -10,7 +21,7 @@ pip install -U https://github.com/vkbottle/vkbottle-types/archive/master.zip
 
 Если вы обнаружили баг в типах - не создавайте issue здесь, создайте его в разделе [основного репозитория](https://github.com/vkbottle/vkbottle), добавив тег `vkbottle-types`.
 
-Если вы в состоянии исправить эту проблему сами, то сделайте пулл реквест сами, пожалуйста. Можете упомянуть issue в [основном репозитории](https://github.com/vkbottle/vkbottle)
+Если вы в состоянии исправить эту проблему сами, то сделайте пулл реквест сами, пожалуйста. Можете упомянуть issue в [основном репозитории](https://github.com/vkbottle/vkbottle).
 
 
 ## Оригинальная схема
@@ -29,10 +40,10 @@ python3 -m patcher -m "Add users.get missing param_name"
 
 ## Генерация типов
 
-Генератор написан `>=Python 3.10`, но типы, которые он генерирует, не используют новые тайп-хинты `>=Python 3.9` и поддерживаются на более старых версиях питона `<= Python 3.8`
+Генератор написан `>=Python 3.10`, но типы, которые он генерирует, не используют новые тайп-хинты `>Python 3.9`.
 
 ```console
-python3 -m generator
+python -m generator
 ```
 
 Подробнее как самому сгенерировать типы в [HOWTO](/HOWTO)
