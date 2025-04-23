@@ -201,6 +201,12 @@ class MessagesForeignMessage(MessagesForeignMessage):  # type: ignore
     fwd_messages: Optional[List["MessagesForeignMessage"]] = None
 
 
+class MessagesPinnedMessage(MessagesPinnedMessage):  # type: ignore
+    attachments: Optional[List["MessagesMessageAttachment"]] = None
+    reply_message: Optional["MessagesForeignMessage"] = None
+    fwd_messages: Optional[List["MessagesForeignMessage"]] = None
+
+
 class VideoVideo(VideoVideo):  # type: ignore
     # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
@@ -311,9 +317,5 @@ localns = locals().copy()
 for item in localns.values():
     if not (isinstance(item, type) and issubclass(item, BaseModel)):
         continue
-    
-    for base in item.__bases__:
-        if base is not BaseModel and issubclass(base, BaseModel):
-            item.model_rebuild(force=True)
 
     item.model_rebuild(force=True, _types_namespace=localns)

@@ -363,7 +363,7 @@ for item in localns.values():
     
     for base in item.__bases__:
         if base is not BaseModel and issubclass(base, BaseModel):
-            item.model_rebuild(force=True)
+            item.model_rebuild(force=True, _types_namespace=localns)
 
     item.model_rebuild(force=True, _types_namespace=localns)
 
