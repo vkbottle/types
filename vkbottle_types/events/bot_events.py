@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class BaseGroupEvent(BaseModel):
-    object: Optional["group_event_objects.BaseEventObject"]
+    object: Optional[group_event_objects.BaseEventObject]
     type: Optional[GroupEventType] = None
     secret: Optional[str] = None
     event_id: Optional[str] = None
@@ -253,7 +253,7 @@ class MessageRead(BaseGroupEvent):
 
 localns = locals().copy()
 for item in localns.values():
-    if not (isinstance(item, type) and issubclass(item, BaseModel)):
+    if not (isinstance(item, type) and issubclass(item, BaseGroupEvent)):
         continue
 
     item.model_rebuild(force=True, _types_namespace=localns)
