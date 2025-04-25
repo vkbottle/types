@@ -112,7 +112,7 @@ class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
     pass
 
 
-class CallbackLikeAddRemoveObjectType(enum.Enum):
+class CallbackLikeAddRemoveObjectType(Enum):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
