@@ -112,6 +112,20 @@ class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
     pass
 
 
+class CallbackLikeAddRemoveObjectType(Enum):
+    VIDEO = "video"
+    PHOTO = "photo"
+    POST = "post"
+    COMMENT = "comment"
+    NOTE = "note"
+    TOPIC_COMMENT = "topic_comment"
+    PHOTO_COMMENT = "photo_comment"
+    VIDEO_COMMENT = "video_comment"
+    MARKET = "market"
+    MARKET_COMMENT = "market_comment"
+    CLIP = "clip"
+
+
 class WallCommentAttachmentType(Enum):  # type: ignore
     """Attachment type"""
 

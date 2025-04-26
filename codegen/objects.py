@@ -6873,6 +6873,7 @@ class CallbackLikeAddRemoveObjectType(enum.Enum):
     VIDEO_COMMENT = "video_comment"
     MARKET = "market"
     MARKET_COMMENT = "market_comment"
+    CLIP = "clip"
 
 
 class CallbackLikeAddRemove(BaseModel):
