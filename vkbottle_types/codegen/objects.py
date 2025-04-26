@@ -1,10 +1,10 @@
 import enum
 import typing
 
-from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 
 
-class BaseBoolInt(enum.IntEnum):
+class BaseBoolInt(enum.IntEnum, metaclass=BaseEnumMeta):
     NO = 0
     YES = 1
 
@@ -130,7 +130,7 @@ class BaseCropPhotoRect(BaseModel):
     """Coordinate Y of the right lower corner."""
 
 
-class BaseErrorInnerType(enum.Enum):
+class BaseErrorInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     BASE_ERROR = "base_error"
 
 
@@ -216,7 +216,7 @@ class BaseGradientPoint(BaseModel):
     """Point position."""
 
 
-class BaseImageTheme(enum.Enum):
+class BaseImageTheme(enum.StrEnum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -246,7 +246,7 @@ class BaseImage(BaseModel):
     """Property `BaseImage.theme`."""
 
 
-class BaseLang(enum.Enum):
+class BaseLang(enum.StrEnum, metaclass=BaseEnumMeta):
     RU = "ru"
     UA = "ua"
     BE = "be"
@@ -435,20 +435,34 @@ class BaseLinkButtonAction(BaseModel):
     """Property `BaseLinkButtonAction.consume_reason`."""
 
 
-class BaseLinkButtonActionType(enum.Enum):
+class BaseLinkButtonActionType(enum.StrEnum, metaclass=BaseEnumMeta):
     OPEN_URL = "open_url"
     MARKET_CLEAR_RECENT_QUERIES = "market_clear_recent_queries"
     CLOSE_WEB_APP = "close_web_app"
+    ADD_PLAYLIST = "add_playlist"
     OPEN_SEARCH_TAB = "open_search_tab"
+    OPEN_SEARCH_FILTERS = "open_search_filters"
     IMPORT_CONTACTS = "import_contacts"
     ADD_FRIENDS = "add_friends"
     ONBOARDING = "onboarding"
     SHOW_FILTERS = "show_filters"
 
 
-class BaseLinkButtonStyle(enum.Enum):
+class BaseLinkButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+    UPDATES = "updates"
+    DEFAULT = "default"
     PRIMARY = "primary"
     SECONDARY = "secondary"
+    TERTIARY = "tertiary"
+    FLOAT_BOTTOM = "float_bottom"
+    CELL_BUTTON_CENTERED_ICON = "cell_button_centered_icon"
+    BORDERLESS_WITH_ICON = "borderless_with_icon"
+    GRAY = "gray"
+    FLAT = "flat"
+    OUTLINE_WITH_CHEVRON = "outline_with_chevron"
+    INLINE = "inline"
+    MODAL = "modal"
+    RIGHT_BUTTON = "right_button"
 
 
 class BaseLinkNoProduct(BaseModel):
@@ -530,7 +544,7 @@ class BaseLinkNoProduct(BaseModel):
     """Video from link."""
 
 
-class BaseLinkProductType(enum.Enum):
+class BaseLinkProductType(enum.StrEnum, metaclass=BaseEnumMeta):
     PRODUCT = "product"
 
 
@@ -589,7 +603,7 @@ class BaseLinkProductCategory(BaseModel):
     """
 
 
-class BaseLinkProductStatus(enum.Enum):
+class BaseLinkProductStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     BLOCKED = "blocked"
     SOLD = "sold"
@@ -597,7 +611,7 @@ class BaseLinkProductStatus(enum.Enum):
     ARCHIVED = "archived"
 
 
-class BaseLinkRatingType(enum.Enum):
+class BaseLinkRatingType(enum.StrEnum, metaclass=BaseEnumMeta):
     RATING = "rating"
 
 
@@ -638,7 +652,7 @@ class BaseMessageError(BaseModel):
     """Error message."""
 
 
-class BaseNameCase(enum.Enum):
+class BaseNameCase(enum.StrEnum, metaclass=BaseEnumMeta):
     NOM = "Nom"
     GEN = "Gen"
     DAT = "Dat"
@@ -752,10 +766,10 @@ class BasePlace(BaseModel):
     )
     """Checkins number."""
 
-    country: typing.Optional[str] = Field(
+    city: typing.Optional[str] = Field(
         default=None,
     )
-    """Country name."""
+    """City name."""
 
     created: typing.Optional[int] = Field(
         default=None,
@@ -793,7 +807,7 @@ class BasePlace(BaseModel):
     """Place type."""
 
 
-class BasePropertyExists(enum.IntEnum):
+class BasePropertyExists(enum.IntEnum, metaclass=BaseEnumMeta):
     PROPERTY_EXISTS = 1
 
 
@@ -833,13 +847,13 @@ class BaseRequestParam(BaseModel):
     """Parameter value."""
 
 
-class BaseSex(enum.IntEnum):
+class BaseSex(enum.IntEnum, metaclass=BaseEnumMeta):
     UNKNOWN = 0
     FEMALE = 1
     MALE = 2
 
 
-class BaseStickerInnerType(enum.Enum):
+class BaseStickerInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -887,7 +901,7 @@ class BaseSticker(BaseModel):
     """Information whether the sticker is allowed."""
 
 
-class BaseStickerAnimationType(enum.Enum):
+class BaseStickerAnimationType(enum.StrEnum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -908,7 +922,7 @@ class BaseStickerAnimation(BaseModel):
     """URL of animation script."""
 
 
-class BaseStickerNewInnerType(enum.Enum):
+class BaseStickerNewInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -965,7 +979,7 @@ class BaseUploadServer(BaseModel):
     """Upload URL."""
 
 
-class BaseUserGroupFields(enum.Enum):
+class BaseUserGroupFields(enum.StrEnum, metaclass=BaseEnumMeta):
     ABOUT = "about"
     ACTION_BUTTON = "action_button"
     ACTIVITIES = "activities"
@@ -1165,7 +1179,7 @@ class UsersExports(BaseModel):
     """Property `UsersExports.twitter`."""
 
 
-class UsersFields(enum.Enum):
+class UsersFields(enum.StrEnum, metaclass=BaseEnumMeta):
     FIRST_NAME_NOM = "first_name_nom"
     FIRST_NAME_GEN = "first_name_gen"
     FIRST_NAME_DAT = "first_name_dat"
@@ -1279,15 +1293,10 @@ class UsersFields(enum.Enum):
     CAN_SUBSCRIBE_PODCASTS = "can_subscribe_podcasts"
     ANIMATED_AVATAR = "animated_avatar"
     OWNER_STATE = "owner_state"
-    IS_ESIA_VERIFIED = "is_esia_verified"
-    IS_ESIA_LINKED = "is_esia_linked"
-    IS_TINKOFF_LINKED = "is_tinkoff_linked"
-    IS_TINKOFF_VERIFIED = "is_tinkoff_verified"
-    IS_SBER_VERIFIED = "is_sber_verified"
     IS_VERIFIED = "is_verified"
     OAUTH_LINKED = "oauth_linked"
     OAUTH_VERIFICATION = "oauth_verification"
-    IS_SBER_LINKED = "is_sber_linked"
+    PROMOTION_ALLOWANCE = "promotion_allowance"
 
 
 class UsersLastSeen(BaseModel):
@@ -1334,7 +1343,7 @@ class UsersMilitary(BaseModel):
     """Till year."""
 
 
-class UsersOccupationType(enum.Enum):
+class UsersOccupationType(enum.StrEnum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     WORK = "work"
@@ -1371,7 +1380,7 @@ class UsersOccupation(BaseModel):
     """Property `UsersOccupation.city_id`."""
 
 
-class UsersOnlineInfoStatus(enum.Enum):
+class UsersOnlineInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     RECENTLY = "recently"
     LAST_WEEK = "last_week"
     LAST_MONTH = "last_month"
@@ -1469,7 +1478,7 @@ class UsersPersonal(BaseModel):
     """User\'s views on smoking."""
 
 
-class UsersRelativeType(enum.Enum):
+class UsersRelativeType(enum.StrEnum, metaclass=BaseEnumMeta):
     PARENT = "parent"
     CHILD = "child"
     GRANDPARENT = "grandparent"
@@ -1858,7 +1867,7 @@ class UsersUserMin(BaseModel):
     """Property `UsersUserMin.is_closed`."""
 
 
-class UsersUserRelation(enum.IntEnum):
+class UsersUserRelation(enum.IntEnum, metaclass=BaseEnumMeta):
     NOT_SPECIFIED = 0
     SINGLE = 1
     IN_A_RELATIONSHIP = 2
@@ -1977,7 +1986,7 @@ class UsersUserSettingsXtr(BaseModel):
     """Property `UsersUserSettingsXtr.languages`."""
 
 
-class UsersUserType(enum.Enum):
+class UsersUserType(enum.StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
 
 
@@ -2059,7 +2068,7 @@ class AccountAccountCounters(BaseModel):
     """New photo tags number."""
 
 
-class AccountCountersFilter(enum.Enum):
+class AccountCountersFilter(enum.StrEnum, metaclass=BaseEnumMeta):
     APP_REQUESTS = "app_requests"
     EVENTS = "events"
     FRIENDS = "friends"
@@ -2153,7 +2162,7 @@ class AccountNameRequest(BaseModel):
     """label to display for link in lang field."""
 
 
-class AccountNameRequestStatus(enum.Enum):
+class AccountNameRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     SUCCESS = "success"
     PROCESSING = "processing"
     DECLINED = "declined"
@@ -2164,7 +2173,7 @@ class AccountNameRequestStatus(enum.Enum):
     RESPONSE_WITH_LINK = "response_with_link"
 
 
-class AccountOfferLinkType(enum.Enum):
+class AccountOfferLinkType(enum.StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
     APP = "app"
@@ -2378,22 +2387,24 @@ class AccountPushParams(BaseModel):
     """Property `AccountPushParams.sdk_open`."""
 
 
-class AccountPushParamsMode(enum.Enum):
+class AccountPushParamsMode(enum.StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     NO_SOUND = "no_sound"
     NO_TEXT = "no_text"
 
 
-class AccountPushParamsOnoff(enum.Enum):
+class AccountPushParamsOnoff(enum.StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
+    NO_SOUND = "no_sound"
 
 
-class AccountPushParamsSettings(enum.Enum):
+class AccountPushParamsSettings(enum.StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     FR_OF_FR = "fr_of_fr"
+    NO_SOUND = "no_sound"
 
 
 class AccountPushSettings(BaseModel):
@@ -2485,7 +2496,7 @@ class AccountUserSettingsInterests(BaseModel):
     """Property `AccountUserSettingsInterests.about`."""
 
 
-class AddressFields(enum.Enum):
+class AddressFields(enum.StrEnum, metaclass=BaseEnumMeta):
     ID = "id"
     TITLE = "title"
     ADDRESS = "address"
@@ -2504,30 +2515,13 @@ class AddressFields(enum.Enum):
     TIME_OFFSET = "time_offset"
 
 
-class AddressesFields(enum.Enum):
-    ID = "id"
-    TITLE = "title"
-    ADDRESS = "address"
-    ADDITIONAL_ADDRESS = "additional_address"
-    COUNTRY_ID = "country_id"
-    CITY_ID = "city_id"
-    METRO_STATION_ID = "metro_station_id"
-    LATITUDE = "latitude"
-    LONGITUDE = "longitude"
-    DISTANCE = "distance"
-    WORK_INFO_STATUS = "work_info_status"
-    TIMETABLE = "timetable"
-    PHONE = "phone"
-    TIME_OFFSET = "time_offset"
-
-
-class AdsAccessRole(enum.Enum):
+class AdsAccessRole(enum.StrEnum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     MANAGER = "manager"
     REPORTS = "reports"
 
 
-class AdsAccessRolePublic(enum.Enum):
+class AdsAccessRolePublic(enum.StrEnum, metaclass=BaseEnumMeta):
     MANAGER = "manager"
     REPORTS = "reports"
 
@@ -2572,7 +2566,7 @@ class AdsAccount(BaseModel):
     """Can user view account budget."""
 
 
-class AdsAccountType(enum.Enum):
+class AdsAccountType(enum.StrEnum, metaclass=BaseEnumMeta):
     GENERAL = "general"
     AGENCY = "agency"
 
@@ -2820,14 +2814,14 @@ class AdsAd(BaseModel):
     """Link type."""
 
 
-class AdsAdApproved(enum.IntEnum):
+class AdsAdApproved(enum.IntEnum, metaclass=BaseEnumMeta):
     NOT_MODERATED = 0
     PENDING_MODERATION = 1
     APPROVED = 2
     REJECTED = 3
 
 
-class AdsAdCostType(enum.IntEnum):
+class AdsAdCostType(enum.IntEnum, metaclass=BaseEnumMeta):
     PER_CLICKS = 0
     PER_IMPRESSIONS = 1
     PER_ACTIONS = 2
@@ -2997,7 +2991,7 @@ class AdsAdLayout(BaseModel):
     """Property `AdsAdLayout.clips_list`."""
 
 
-class AdsAdStatus(enum.IntEnum):
+class AdsAdStatus(enum.IntEnum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
@@ -3068,13 +3062,13 @@ class AdsCampaign(BaseModel):
     """Limit of views per user per campaign."""
 
 
-class AdsCampaignStatus(enum.IntEnum):
+class AdsCampaignStatus(enum.IntEnum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
 
 
-class AdsCampaignType(enum.Enum):
+class AdsCampaignType(enum.StrEnum, metaclass=BaseEnumMeta):
     NORMAL = "normal"
     VK_APPS_MANAGED = "vk_apps_managed"
     MOBILE_APPS = "mobile_apps"
@@ -3513,10 +3507,10 @@ class AdsCriteria(BaseModel):
     """mobile_manufacturers."""
 
 
-class AdsCriteriaSex(enum.Enum):
-    _0 = "0"
-    _1 = "1"
-    _2 = "2"
+class AdsCriteriaSex(enum.StrEnum, metaclass=BaseEnumMeta):
+    f__0 = "0"
+    f__1 = "1"
+    f__2 = "2"
 
 
 class AdsDemoStats(BaseModel):
@@ -3671,7 +3665,7 @@ class AdsLinkStatus(BaseModel):
     """URL."""
 
 
-class AdsLookalikeRequestStatus(enum.Enum):
+class AdsLookalikeRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     SEARCH_IN_PROGRESS = "search_in_progress"
     SEARCH_FAILED = "search_failed"
     SEARCH_DONE = "search_done"
@@ -3680,7 +3674,7 @@ class AdsLookalikeRequestStatus(enum.Enum):
     SAVE_DONE = "save_done"
 
 
-class AdsLookalikeRequestSourceType(enum.Enum):
+class AdsLookalikeRequestSourceType(enum.StrEnum, metaclass=BaseEnumMeta):
     RETARGETING_GROUP = "retargeting_group"
 
 
@@ -3782,14 +3776,14 @@ class AdsMusician(BaseModel):
     """Music artist photo."""
 
 
-class AdsObjectType(enum.Enum):
+class AdsObjectType(enum.StrEnum, metaclass=BaseEnumMeta):
     AD = "ad"
     CAMPAIGN = "campaign"
     CLIENT = "client"
     OFFICE = "office"
 
 
-class AdsOrdClientType(enum.Enum):
+class AdsOrdClientType(enum.StrEnum, metaclass=BaseEnumMeta):
     PERSON = "person"
     INDIVIDUAL = "individual"
     LEGAL = "legal"
@@ -3830,6 +3824,11 @@ class AdsOrdData(BaseModel):
         default=None,
     )
     """Property `AdsOrdData.inn`."""
+
+    agency_phone: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `AdsOrdData.agency_phone`."""
 
     subagent: typing.Optional["AdsOrdSubagent"] = Field(
         default=None,
@@ -4260,7 +4259,7 @@ class AdsRules(BaseModel):
     """Help chat."""
 
 
-class AdsStatisticClickActionType(enum.Enum):
+class AdsStatisticClickActionType(enum.StrEnum, metaclass=BaseEnumMeta):
     LOAD = "load"
     IMPRESSION = "impression"
     CLICK_DEEPLINK = "click_deeplink"
@@ -4490,7 +4489,7 @@ class AdsStatsFormat(BaseModel):
     """Mobile app stat."""
 
 
-class AdsStatsSexValue(enum.Enum):
+class AdsStatsSexValue(enum.StrEnum, metaclass=BaseEnumMeta):
     F = "f"
     M = "m"
 
@@ -5007,7 +5006,7 @@ class AdsTargSuggestionsSchools(BaseModel):
     """Property `AdsTargSuggestionsSchools.type`."""
 
 
-class AdsTargSuggestionsSchoolsType(enum.Enum):
+class AdsTargSuggestionsSchoolsType(enum.StrEnum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     FACULTY = "faculty"
@@ -5266,137 +5265,6 @@ class AdsUsers(BaseModel):
     """User ID."""
 
 
-class AdswebGetAdCategoriesResponseCategoriesCategory(BaseModel):
-    """
-    Model: `AdswebGetAdCategoriesResponseCategoriesCategory`
-    """
-
-    id: int = Field()
-    """Property `AdswebGetAdCategoriesResponseCategoriesCategory.id`."""
-
-    name: str = Field()
-    """Property `AdswebGetAdCategoriesResponseCategoriesCategory.name`."""
-
-
-class AdswebGetAdUnitsResponseAdUnitsAdUnit(BaseModel):
-    """
-    Model: `AdswebGetAdUnitsResponseAdUnitsAdUnit`
-    """
-
-    id: int = Field()
-    """Property `AdswebGetAdUnitsResponseAdUnitsAdUnit.id`."""
-
-    site_id: int = Field()
-    """Property `AdswebGetAdUnitsResponseAdUnitsAdUnit.site_id`."""
-
-    name: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetAdUnitsResponseAdUnitsAdUnit.name`."""
-
-
-class AdswebGetFraudHistoryResponseEntriesEntry(BaseModel):
-    """
-    Model: `AdswebGetFraudHistoryResponseEntriesEntry`
-    """
-
-    site_id: int = Field()
-    """Property `AdswebGetFraudHistoryResponseEntriesEntry.site_id`."""
-
-    day: str = Field()
-    """Property `AdswebGetFraudHistoryResponseEntriesEntry.day`."""
-
-
-class AdswebGetSitesResponseSitesSite(BaseModel):
-    """
-    Model: `AdswebGetSitesResponseSitesSite`
-    """
-
-    id: int = Field()
-    """Property `AdswebGetSitesResponseSitesSite.id`."""
-
-    status_user: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetSitesResponseSitesSite.status_user`."""
-
-    status_moder: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetSitesResponseSitesSite.status_moder`."""
-
-    domains: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetSitesResponseSitesSite.domains`."""
-
-
-class AdswebGetStatisticsResponseItemsItem(BaseModel):
-    """
-    Model: `AdswebGetStatisticsResponseItemsItem`
-    """
-
-    site_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.site_id`."""
-
-    ad_unit_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.ad_unit_id`."""
-
-    overall_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.overall_count`."""
-
-    months_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.months_count`."""
-
-    month_min: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.month_min`."""
-
-    month_max: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.month_max`."""
-
-    days_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.days_count`."""
-
-    day_min: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.day_min`."""
-
-    day_max: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.day_max`."""
-
-    hours_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.hours_count`."""
-
-    hour_min: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.hour_min`."""
-
-    hour_max: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `AdswebGetStatisticsResponseItemsItem.hour_max`."""
-
-
 class AppWidgetsPhoto(BaseModel):
     """
     Model: `AppWidgetsPhoto`
@@ -5425,7 +5293,7 @@ class AppWidgetsPhotos(BaseModel):
     """Property `AppWidgetsPhotos.items`."""
 
 
-class AppsAppFields(enum.Enum):
+class AppsAppFields(enum.StrEnum, metaclass=BaseEnumMeta):
     AUTHOR_GROUP = "author_group"
     AUTHOR_ID = "author_id"
     AUTHOR_URL = "author_url"
@@ -5476,7 +5344,7 @@ class AppsAppFields(enum.Enum):
     SCREEN_ORIENTATION = "screen_orientation"
 
 
-class AppsAppLeaderboardType(enum.IntEnum):
+class AppsAppLeaderboardType(enum.IntEnum, metaclass=BaseEnumMeta):
     NOT_SUPPORTED = 0
     LEVELS = 1
     POINTS = 2
@@ -5547,7 +5415,7 @@ class AppsAppMin(BaseModel):
     """Screen orientation."""
 
 
-class AppsAppType(enum.Enum):
+class AppsAppType(enum.StrEnum, metaclass=BaseEnumMeta):
     APP = "app"
     GAME = "game"
     SITE = "site"
@@ -5575,7 +5443,7 @@ class AppsCatalogList(BaseModel):
     """Property `AppsCatalogList.profiles`."""
 
 
-class AppsCustomSnippetButton(enum.Enum):
+class AppsCustomSnippetButton(enum.StrEnum, metaclass=BaseEnumMeta):
     BUY = "buy"
     BUY_TICKET = "buy_ticket"
     CONTACT = "contact"
@@ -5667,7 +5535,7 @@ class AppsLeaderboard(BaseModel):
     """Score number."""
 
 
-class AppsScopeName(enum.Enum):
+class AppsScopeName(enum.StrEnum, metaclass=BaseEnumMeta):
     FRIENDS = "friends"
     PHOTOS = "photos"
     VIDEO = "video"
@@ -5740,29 +5608,6 @@ class AppsTestingGroup(BaseModel):
     """Property `AppsTestingGroup.platforms`."""
 
 
-class AsrTaskStatus(enum.Enum):
-    PROCESSING = "processing"
-    FINISHED = "finished"
-    INTERNAL_ERROR = "internal_error"
-    TRANSCODING_ERROR = "transcoding_error"
-    RECOGNITION_ERROR = "recognition_error"
-
-
-class AsrTask(BaseModel):
-    """
-    Model: `AsrTask`
-    """
-
-    id: str = Field()
-    """Task ID in UUID format.."""
-
-    status: "AsrTaskStatus" = Field()
-    """Status of the task.."""
-
-    text: str = Field()
-    """Recognised text, if task is `finished`.."""
-
-
 class AudioAudio(BaseModel):
     """
     Model: `AudioAudio`
@@ -5813,8 +5658,13 @@ class AudioAudio(BaseModel):
     )
     """Performer name."""
 
+    file_size: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
 
-class BoardDefaultOrder(enum.IntEnum):
+
+class BoardDefaultOrder(enum.IntEnum, metaclass=BaseEnumMeta):
     DESC_UPDATED = 1
     DESC_CREATED = 2
     ASC_UPDATED = -1
@@ -5932,7 +5782,7 @@ class BugtrackerAddCompanyGroupsMembersError(BaseModel):
     """Property `BugtrackerAddCompanyGroupsMembersError.user_id`."""
 
 
-class BugtrackerAttachmentType(enum.Enum):
+class BugtrackerAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     DOC = "doc"
 
@@ -6039,6 +5889,31 @@ class BugtrackerBugreport(BaseModel):
     )
     """Property `BugtrackerBugreport.can_edit`."""
 
+    can_export_to_trackers: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.can_export_to_trackers`."""
+
+    can_export_to_csv: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.can_export_to_csv`."""
+
+    can_add_moder_comment: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.can_add_moder_comment`."""
+
+    can_add_hidden_comment: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.can_add_hidden_comment`."""
+
+    can_view_history: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.can_view_history`."""
+
     is_deleted: typing.Optional[bool] = Field(
         default=None,
     )
@@ -6064,6 +5939,11 @@ class BugtrackerBugreport(BaseModel):
     )
     """Property `BugtrackerBugreport.hidden_docs`."""
 
+    is_confidential: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.is_confidential`."""
+
     private_comment: typing.Optional[str] = Field(
         default=None,
     )
@@ -6088,6 +5968,26 @@ class BugtrackerBugreport(BaseModel):
         default=None,
     )
     """Property `BugtrackerBugreport.moderated`."""
+
+    screen_reader: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.screen_reader`."""
+
+    status_auto_update_ts: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.status_auto_update_ts`."""
+
+    status_auto_update_reason: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.status_auto_update_reason`."""
+
+    product_has_wishes: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerBugreport.product_has_wishes`."""
 
 
 class BugtrackerBugreportSubscribeState(BaseModel):
@@ -6170,6 +6070,52 @@ class BugtrackerComment(BaseModel):
         default=None,
     )
     """Property `BugtrackerComment.is_unread`."""
+
+    author: typing.Optional["BugtrackerCommentAuthor"] = Field(
+        default=None,
+    )
+    """Property `BugtrackerComment.author`."""
+
+    is_attachments_hidden: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `BugtrackerComment.is_attachments_hidden`."""
+
+
+class BugtrackerCommentAuthor(BaseModel):
+    """
+    Model: `BugtrackerCommentAuthor`
+    """
+
+    author_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.author_id`."""
+
+    name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.name`."""
+
+    photo: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.photo`."""
+
+    moder_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.moder_name`."""
+
+    moder_number: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.moder_number`."""
+
+    link: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `BugtrackerCommentAuthor.link`."""
 
 
 class BugtrackerCompanyMember(BaseModel):
@@ -6306,6 +6252,11 @@ class CallbackAudioNew(BaseModel):
         default=None,
     )
     """Performer name."""
+
+    file_size: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
 
 
 class CallbackBase(BaseModel):
@@ -6569,6 +6520,12 @@ class CallbackDonutSubscriptionProlonged(BaseModel):
     """Property `CallbackDonutSubscriptionProlonged.user_id`."""
 
 
+class CallbackFwdMessages(BaseModel):
+    """
+    Model: `CallbackFwdMessages`
+    """
+
+
 class CallbackGroupChangePhoto(BaseModel):
     """
     Model: `CallbackGroupChangePhoto`
@@ -6607,7 +6564,7 @@ class CallbackGroupJoin(BaseModel):
     """Property `CallbackGroupJoin.join_type`."""
 
 
-class CallbackGroupJoinType(enum.Enum):
+class CallbackGroupJoinType(enum.StrEnum, metaclass=BaseEnumMeta):
     JOIN = "join"
     UNSURE = "unsure"
     ACCEPTED = "accepted"
@@ -6631,12 +6588,12 @@ class CallbackGroupLeave(BaseModel):
     """Property `CallbackGroupLeave.self`."""
 
 
-class CallbackGroupMarket(enum.IntEnum):
+class CallbackGroupMarket(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
 
 
-class CallbackGroupOfficerRole(enum.IntEnum):
+class CallbackGroupOfficerRole(enum.IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     MODERATOR = 1
     EDITOR = 2
@@ -6905,7 +6862,7 @@ class CallbackInfoForBots(BaseModel):
     """client or user language id."""
 
 
-class CallbackLikeAddRemoveObjectType(enum.Enum):
+class CallbackLikeAddRemoveObjectType(enum.StrEnum, metaclass=BaseEnumMeta):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -6992,16 +6949,16 @@ class CallbackMarketCommentDelete(BaseModel):
     """Property `CallbackMarketCommentDelete.item_id`."""
 
 
-class CallbackMessageAllowObject(BaseModel):
+class CallbackMessageAllow(BaseModel):
     """
-    Model: `CallbackMessageAllowObject`
+    Model: `CallbackMessageAllow`
     """
 
     user_id: int = Field()
-    """Property `CallbackMessageAllowObject.user_id`."""
+    """Property `CallbackMessageAllow.user_id`."""
 
     key: str = Field()
-    """Property `CallbackMessageAllowObject.key`."""
+    """Property `CallbackMessageAllow.key`."""
 
 
 class CallbackMessageDeny(BaseModel):
@@ -7011,6 +6968,45 @@ class CallbackMessageDeny(BaseModel):
 
     user_id: int = Field()
     """Property `CallbackMessageDeny.user_id`."""
+
+
+class CallbackMessageEvent(BaseModel):
+    """
+    Model: `CallbackMessageEvent`
+    """
+
+    user_id: int = Field()
+    """Property `CallbackMessageEvent.user_id`."""
+
+    peer_id: int = Field()
+    """Property `CallbackMessageEvent.peer_id`."""
+
+    event_id: str = Field()
+    """Property `CallbackMessageEvent.event_id`."""
+
+    payload: str = Field()
+    """Property `CallbackMessageEvent.payload`."""
+
+    conversation_message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackMessageEvent.conversation_message_id`."""
+
+
+class CallbackMessageNew(BaseModel):
+    """
+    Model: `CallbackMessageNew`
+    """
+
+    client_info: typing.Optional["CallbackInfoForBots"] = Field(
+        default=None,
+    )
+    """Property `CallbackMessageNew.client_info`."""
+
+    message: typing.Optional["CallbackMessage"] = Field(
+        default=None,
+    )
+    """Property `CallbackMessageNew.message`."""
 
 
 class CallbackMessageObject(BaseModel):
@@ -7023,10 +7019,73 @@ class CallbackMessageObject(BaseModel):
     )
     """Property `CallbackMessageObject.client_info`."""
 
-    message: typing.Optional["MessagesMessage"] = Field(
+    message: typing.Optional["CallbackMessage"] = Field(
         default=None,
     )
     """Property `CallbackMessageObject.message`."""
+
+
+class CallbackMessageReactionEvent(BaseModel):
+    """
+    Model: `CallbackMessageReactionEvent`
+    """
+
+    reacted_id: int = Field()
+    """Property `CallbackMessageReactionEvent.reacted_id`."""
+
+    peer_id: int = Field()
+    """Property `CallbackMessageReactionEvent.peer_id`."""
+
+    cmid: int = Field()
+    """Property `CallbackMessageReactionEvent.cmid`."""
+
+    reaction_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `CallbackMessageReactionEvent.reaction_id`."""
+
+
+class CallbackMessageRead(BaseModel):
+    """
+    Model: `CallbackMessageRead`
+    """
+
+    from_id: int = Field()
+    """Property `CallbackMessageRead.from_id`."""
+
+    peer_id: int = Field()
+    """Property `CallbackMessageRead.peer_id`."""
+
+    read_message_id: int = Field()
+    """Property `CallbackMessageRead.read_message_id`."""
+
+    conversation_message_id: int = Field()
+    """Property `CallbackMessageRead.conversation_message_id`."""
+
+
+class CallbackMessageTypingStateState(enum.StrEnum, metaclass=BaseEnumMeta):
+    MESSAGE_TYPING_STATE = "message_typing_state"
+    f__0 = "0"
+    f__1 = "1"
+    f__2 = "2"
+    f__3 = "3"
+    f__4 = "4"
+    f__5 = "5"
+
+
+class CallbackMessageTypingState(BaseModel):
+    """
+    Model: `CallbackMessageTypingState`
+    """
+
+    from_id: int = Field()
+    """Property `CallbackMessageTypingState.from_id`."""
+
+    to_id: int = Field()
+    """Property `CallbackMessageTypingState.to_id`."""
+
+    state: "CallbackMessageTypingStateState" = Field()
+    """Property `CallbackMessageTypingState.state`."""
 
 
 class CallbackPhotoCommentDelete(BaseModel):
@@ -7050,7 +7109,7 @@ class CallbackPhotoCommentDelete(BaseModel):
     """Property `CallbackPhotoCommentDelete.deleter_id`."""
 
 
-class CallbackPhotoNewVerticalAlign(enum.Enum):
+class CallbackPhotoNewVerticalAlign(enum.StrEnum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -7205,7 +7264,7 @@ class CallbackPollVoteNew(BaseModel):
     """Property `CallbackPollVoteNew.user_id`."""
 
 
-class CallbackType(enum.Enum):
+class CallbackType(enum.StrEnum, metaclass=BaseEnumMeta):
     AUDIO_NEW = "audio_new"
     BOARD_POST_NEW = "board_post_new"
     BOARD_POST_EDIT = "board_post_edit"
@@ -7362,6 +7421,11 @@ class CallbackVideoNew(BaseModel):
     )
     """Performer name."""
 
+    file_size: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
+
 
 class CallbackVkpayTransaction(BaseModel):
     """
@@ -7404,7 +7468,7 @@ class CallbackWallCommentDelete(BaseModel):
     """Property `CallbackWallCommentDelete.post_id`."""
 
 
-class CallbackWallPostNewInnerType(enum.Enum):
+class CallbackWallPostNewInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -7831,7 +7895,7 @@ class CallbackWallReplyRestore(BaseModel):
     """Photo ID."""
 
 
-class CallbackWallRepostInnerType(enum.Enum):
+class CallbackWallRepostInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -7997,7 +8061,7 @@ class CallsCall(BaseModel):
     """Property `CallsCall.participants`."""
 
 
-class CallsEndState(enum.Enum):
+class CallsEndState(enum.StrEnum, metaclass=BaseEnumMeta):
     CANCELED_BY_INITIATOR = "canceled_by_initiator"
     CANCELED_BY_RECEIVER = "canceled_by_receiver"
     REACHED = "reached"
@@ -8019,35 +8083,22 @@ class CallsParticipants(BaseModel):
     """Participants count."""
 
 
-class ClientInfoForBots(BaseModel):
+class CallsShortCredentials(BaseModel):
     """
-    Model: `ClientInfoForBots`
+    Model: `CallsShortCredentials`
     """
 
-    button_actions: typing.Optional[typing.List["MessagesTemplateActionTypeNames"]] = Field(
-        default=None,
-    )
-    """Property `ClientInfoForBots.button_actions`."""
+    id: str = Field()
+    """Short numeric ID of a call."""
 
-    keyboard: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """client has support keyboard."""
+    password: str = Field()
+    """Password that can be used to join a call by short numeric ID."""
 
-    inline_keyboard: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """client has support inline keyboard."""
+    link_without_password: str = Field()
+    """Link without a password."""
 
-    carousel: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """client has support carousel."""
-
-    lang_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """client or user language id."""
+    link_with_password: str = Field()
+    """Link with a password."""
 
 
 class CommentThread(BaseModel):
@@ -8082,6 +8133,12 @@ class CommentThread(BaseModel):
         default=None,
     )
     """Information whether author commented the thread."""
+
+
+class DatabaseCitiesFields(BaseModel):
+    """
+    Model: `DatabaseCitiesFields`
+    """
 
 
 class DatabaseCityById(BaseModel):
@@ -8258,7 +8315,7 @@ class DocsDoc(BaseModel):
     """Document tags."""
 
 
-class DocsDocAttachmentType(enum.Enum):
+class DocsDocAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     DOC = "doc"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
@@ -8385,7 +8442,7 @@ class DocsDocTypes(BaseModel):
     """Number of docs."""
 
 
-class DonutDonatorSubscriptionInfoStatus(enum.Enum):
+class DonutDonatorSubscriptionInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     EXPIRING = "expiring"
 
@@ -8471,7 +8528,7 @@ class FaveBookmark(BaseModel):
     )
     """Property `FaveBookmark.post`."""
 
-    product: typing.Optional["MarketMarketItem"] = Field(
+    product: typing.Optional["MarketMarketItemFull"] = Field(
         default=None,
     )
     """Property `FaveBookmark.product`."""
@@ -8482,13 +8539,15 @@ class FaveBookmark(BaseModel):
     """Property `FaveBookmark.video`."""
 
 
-class FaveBookmarkType(enum.Enum):
+class FaveBookmarkType(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     VIDEO = "video"
     PRODUCT = "product"
     ARTICLE = "article"
     LINK = "link"
     CLIP = "clip"
+    GAME = "game"
+    MINI_APP = "mini_app"
 
 
 class FavePage(BaseModel):
@@ -8521,7 +8580,7 @@ class FavePage(BaseModel):
     """Property `FavePage.user`."""
 
 
-class FavePageType(enum.Enum):
+class FavePageType(enum.StrEnum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     HINTS = "hints"
@@ -8584,7 +8643,7 @@ class GiftsGift(BaseModel):
     """Property `GiftsGift.privacy`."""
 
 
-class GiftsGiftPrivacy(enum.IntEnum):
+class GiftsGiftPrivacy(enum.IntEnum, metaclass=BaseEnumMeta):
     NAME_AND_MESSAGE_FOR_ALL = 0
     NAME_FOR_ALL = 1
     NAME_AND_MESSAGE_FOR_RECIPIENT_ONLY = 2
@@ -8595,9 +8654,7 @@ class GiftsLayout(BaseModel):
     Model: `GiftsLayout`
     """
 
-    id: typing.Optional[int] = Field(
-        default=None,
-    )
+    id: int = Field()
     """Gift ID."""
 
     thumb_512: typing.Optional[str] = Field(
@@ -8793,7 +8850,7 @@ class GroupsAddressTimetableDay(BaseModel):
     """Start time of the break in minutes."""
 
 
-class GroupsAddressWorkInfoStatus(enum.Enum):
+class GroupsAddressWorkInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     NO_INFORMATION = "no_information"
     TEMPORARILY_CLOSED = "temporarily_closed"
     ALWAYS_OPENED = "always_opened"
@@ -8866,7 +8923,7 @@ class GroupsBanInfo(BaseModel):
     """Property `GroupsBanInfo.reason`."""
 
 
-class GroupsBanInfoReason(enum.IntEnum):
+class GroupsBanInfoReason(enum.IntEnum, metaclass=BaseEnumMeta):
     OTHER = 0
     SPAM = 1
     VERBAL_ABUSE = 2
@@ -8874,7 +8931,7 @@ class GroupsBanInfoReason(enum.IntEnum):
     FLOOD = 4
 
 
-class GroupsCallbackServerStatus(enum.Enum):
+class GroupsCallbackServerStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     UNCONFIGURED = "unconfigured"
     FAILED = "failed"
     WAIT = "wait"
@@ -9048,7 +9105,7 @@ class GroupsCountersGroup(BaseModel):
     """Clips likes number."""
 
 
-class GroupsFields(enum.Enum):
+class GroupsFields(enum.StrEnum, metaclass=BaseEnumMeta):
     ID = "id"
     NAME = "name"
     SCREEN_NAME = "screen_name"
@@ -9126,16 +9183,25 @@ class GroupsFields(enum.Enum):
     USING_VKPAY_MARKET_APP = "using_vkpay_market_app"
     HAS_GROUP_CHANNEL = "has_group_channel"
     ADDRESSES = "addresses"
+    MESSAGES = "messages"
+    BUSINESS_RATING = "business_rating"
     IS_SUBSCRIBED_PODCASTS = "is_subscribed_podcasts"
     CAN_SUBSCRIBE_PODCASTS = "can_subscribe_podcasts"
     CAN_SUBSCRIBE_POSTS = "can_subscribe_posts"
     LIVE_COVERS = "live_covers"
     STORIES_ARCHIVE_COUNT = "stories_archive_count"
     HAS_UNSEEN_STORIES = "has_unseen_stories"
+    CATEGORY = "category"
+    CATEGORY0 = "category0"
+    CATEGORY1 = "category1"
     RATING = "rating"
+    IS_MARKET_MARKET_LINK_ATTACHMENT_ENABLED = "is_market_market_link_attachment_enabled"
+    IS_MARKET_MESSAGE_TO_BC_ATTACHMENT_ENABLED = "is_market_message_to_bc_attachment_enabled"
+    UNREAD_COUNT = "unread_count"
+    VIDEOS_COUNT = "videos_count"
 
 
-class GroupsFilter(enum.Enum):
+class GroupsFilter(enum.StrEnum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     EDITOR = "editor"
     MODER = "moder"
@@ -9280,22 +9346,22 @@ class GroupsGroup(BaseModel):
     """Property `GroupsGroup.video_live`."""
 
 
-class GroupsGroupAccess(enum.IntEnum):
+class GroupsGroupAccess(enum.IntEnum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupAdminLevel(enum.IntEnum):
+class GroupsGroupAdminLevel(enum.IntEnum, metaclass=BaseEnumMeta):
     MODERATOR = 1
     EDITOR = 2
     ADMINISTRATOR = 3
 
 
-class GroupsGroupAgeLimits(enum.IntEnum):
+class GroupsGroupAgeLimits(enum.IntEnum, metaclass=BaseEnumMeta):
     UNLIMITED = 1
-    _16_PLUS = 2
-    _18_PLUS = 3
+    F__16_PLUS = 2
+    F__18_PLUS = 3
 
 
 class GroupsGroupAttach(BaseModel):
@@ -9319,7 +9385,7 @@ class GroupsGroupAttach(BaseModel):
     """is favorite."""
 
 
-class GroupsGroupAudio(enum.IntEnum):
+class GroupsGroupAudio(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -9398,19 +9464,19 @@ class GroupsGroupCategoryType(BaseModel):
     """Property `GroupsGroupCategoryType.name`."""
 
 
-class GroupsGroupDocs(enum.IntEnum):
+class GroupsGroupDocs(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupFullAgeLimits(enum.IntEnum):
+class GroupsGroupFullAgeLimits(enum.IntEnum, metaclass=BaseEnumMeta):
     NO = 1
     OVER_16 = 2
     OVER_18 = 3
 
 
-class GroupsGroupFullMemberStatus(enum.IntEnum):
+class GroupsGroupFullMemberStatus(enum.IntEnum, metaclass=BaseEnumMeta):
     NOT_A_MEMBER = 0
     MEMBER = 1
     NOT_SURE = 2
@@ -9419,7 +9485,7 @@ class GroupsGroupFullMemberStatus(enum.IntEnum):
     INVITED = 5
 
 
-class GroupsGroupFullSection(enum.IntEnum):
+class GroupsGroupFullSection(enum.IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     PHOTOS = 1
     TOPICS = 2
@@ -9471,13 +9537,13 @@ class GroupsGroupFullSection(enum.IntEnum):
     RECOMMENDED_TIPS_WIDGET = 62
 
 
-class GroupsGroupIsClosed(enum.IntEnum):
+class GroupsGroupIsClosed(enum.IntEnum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupMarketCurrency(enum.IntEnum):
+class GroupsGroupMarketCurrency(enum.IntEnum, metaclass=BaseEnumMeta):
     RUSSIAN_RUBLES = 643
     UKRAINIAN_HRYVNIA = 980
     KAZAKH_TENGE = 398
@@ -9485,7 +9551,7 @@ class GroupsGroupMarketCurrency(enum.IntEnum):
     US_DOLLARS = 840
 
 
-class GroupsGroupPhotos(enum.IntEnum):
+class GroupsGroupPhotos(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -9512,7 +9578,7 @@ class GroupsGroupPublicCategoryList(BaseModel):
     """Property `GroupsGroupPublicCategoryList.subcategories`."""
 
 
-class GroupsGroupRole(enum.Enum):
+class GroupsGroupRole(enum.StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -9536,7 +9602,7 @@ class GroupsGroupSubcategory(BaseModel):
     """Property `GroupsGroupSubcategory.genders`."""
 
 
-class GroupsGroupSubject(enum.IntEnum):
+class GroupsGroupSubject(enum.IntEnum, metaclass=BaseEnumMeta):
     AUTO = 1
     ACTIVITY_HOLIDAYS = 2
     BUSINESS = 3
@@ -9581,26 +9647,26 @@ class GroupsGroupSubject(enum.IntEnum):
     DESIGN_AND_GRAPHICS = 42
 
 
-class GroupsGroupSuggestedPrivacy(enum.IntEnum):
+class GroupsGroupSuggestedPrivacy(enum.IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     ALL = 1
     SUBSCRIBERS = 2
 
 
-class GroupsGroupTagColor(enum.Enum):
-    _454647 = "454647"
-    _45678F = "45678f"
-    _4BB34B = "4bb34b"
-    _5181B8 = "5181b8"
-    _539B9C = "539b9c"
-    _5C9CE6 = "5c9ce6"
-    _63B9BA = "63b9ba"
-    _6BC76B = "6bc76b"
-    _76787A = "76787a"
-    _792EC0 = "792ec0"
-    _7A6C4F = "7a6c4f"
-    _7ECECF = "7ececf"
-    _9E8D6B = "9e8d6b"
+class GroupsGroupTagColor(enum.StrEnum, metaclass=BaseEnumMeta):
+    f__454647 = "454647"
+    f__45678f = "45678f"
+    f__4bb34b = "4bb34b"
+    f__5181b8 = "5181b8"
+    f__539b9c = "539b9c"
+    f__5c9ce6 = "5c9ce6"
+    f__63b9ba = "63b9ba"
+    f__6bc76b = "6bc76b"
+    f__76787a = "76787a"
+    f__792ec0 = "792ec0"
+    f__7a6c4f = "7a6c4f"
+    f__7ececf = "7ececf"
+    f__9e8d6b = "9e8d6b"
     A162DE = "a162de"
     AAAEB3 = "aaaeb3"
     BBAA84 = "bbaa84"
@@ -9630,32 +9696,32 @@ class GroupsGroupTag(BaseModel):
     """Property `GroupsGroupTag.uses`."""
 
 
-class GroupsGroupTopics(enum.IntEnum):
+class GroupsGroupTopics(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupType(enum.Enum):
+class GroupsGroupType(enum.StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PAGE = "page"
     EVENT = "event"
 
 
-class GroupsGroupVideo(enum.IntEnum):
+class GroupsGroupVideo(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupWall(enum.IntEnum):
+class GroupsGroupWall(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
     CLOSED = 3
 
 
-class GroupsGroupWiki(enum.IntEnum):
+class GroupsGroupWiki(enum.IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -9966,11 +10032,6 @@ class GroupsMarketInfo(BaseModel):
     )
     """Currency name."""
 
-    is_show_header_items_link: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Shop header items link is enabled."""
-
     enabled: typing.Optional[bool] = Field(
         default=None,
     )
@@ -10018,7 +10079,7 @@ class GroupsMarketProperties(BaseModel):
     """Property `GroupsMarketProperties.using_vkpay_market_app`."""
 
 
-class GroupsMarketState(enum.Enum):
+class GroupsMarketState(enum.StrEnum, metaclass=BaseEnumMeta):
     NONE = "none"
     BASIC = "basic"
     ADVANCED = "advanced"
@@ -10048,11 +10109,11 @@ class GroupsMemberRole(BaseModel):
     """Property `GroupsMemberRole.role`."""
 
 
-class GroupsMemberRolePermission(enum.Enum):
+class GroupsMemberRolePermission(enum.StrEnum, metaclass=BaseEnumMeta):
     ADS = "ads"
 
 
-class GroupsMemberRoleStatus(enum.Enum):
+class GroupsMemberRoleStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -10118,13 +10179,13 @@ class GroupsOnlineStatus(BaseModel):
     """Estimated time of answer (for status = answer_mark)."""
 
 
-class GroupsOnlineStatusType(enum.Enum):
+class GroupsOnlineStatusType(enum.StrEnum, metaclass=BaseEnumMeta):
     NONE = "none"
     ONLINE = "online"
     ANSWER_MARK = "answer_mark"
 
 
-class GroupsOwnerXtrBanInfoType(enum.Enum):
+class GroupsOwnerXtrBanInfoType(enum.StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
 
@@ -10185,7 +10246,7 @@ class GroupsProfileItem(BaseModel):
     """User first name."""
 
 
-class GroupsRoleOptions(enum.Enum):
+class GroupsRoleOptions(enum.StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -10204,7 +10265,7 @@ class GroupsSectionsListItem(BaseModel):
     """Object title."""
 
 
-class GroupsSettingsTwitterStatus(enum.Enum):
+class GroupsSettingsTwitterStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     LOADING = "loading"
     SYNC = "sync"
 
@@ -10385,7 +10446,7 @@ class LeadFormsLead(BaseModel):
     """Property `LeadFormsLead.ad_id`."""
 
 
-class LeadFormsQuestionItemType(enum.Enum):
+class LeadFormsQuestionItemType(enum.StrEnum, metaclass=BaseEnumMeta):
     INPUT = "input"
     TEXTAREA = "textarea"
     RADIO = "radio"
@@ -10429,7 +10490,7 @@ class LeadFormsQuestionItemOption(BaseModel):
     """Property `LeadFormsQuestionItemOption.key`."""
 
 
-class LikesType(enum.Enum):
+class LikesType(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     PHOTO = "photo"
@@ -10593,7 +10654,7 @@ class MarketMarketAlbum(BaseModel):
     """Is album needed to be blurred (18+) or not."""
 
 
-class MarketMarketCategoryInnerType(enum.Enum):
+class MarketMarketCategoryInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -10622,7 +10683,7 @@ class MarketMarketCategory(BaseModel):
     """Property `MarketMarketCategory.parent`."""
 
 
-class MarketMarketCategoryNestedInnerType(enum.Enum):
+class MarketMarketCategoryNestedInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -10698,7 +10759,7 @@ class MarketMarketCategoryTree(BaseModel):
     """Description for category\'s page. Used for SEO."""
 
 
-class MarketMarketCategoryTreeViewType(enum.Enum):
+class MarketMarketCategoryTreeViewType(enum.StrEnum, metaclass=BaseEnumMeta):
     TAB_ROOT = "tab_root"
 
 
@@ -10830,7 +10891,7 @@ class MarketMarketItem(BaseModel):
     """Attach for post owner id."""
 
 
-class MarketMarketItemAvailability(enum.IntEnum):
+class MarketMarketItemAvailability(enum.IntEnum, metaclass=BaseEnumMeta):
     AVAILABLE = 0
     REMOVED = 1
     UNAVAILABLE = 2
@@ -11002,7 +11063,7 @@ class MarketOrderItem(BaseModel):
     """Extended field. Can current viewer add review for this ordered item."""
 
 
-class MarketOwnerType(enum.Enum):
+class MarketOwnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     BASE = "base"
     PRO = "pro"
     DISABLED = "disabled"
@@ -11053,7 +11114,7 @@ class MarketPrice(BaseModel):
     """Textual representation of old price."""
 
 
-class MarketPropertyType(enum.Enum):
+class MarketPropertyType(enum.StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     COLOR = "color"
 
@@ -11095,9 +11156,23 @@ class MarketPropertyVariant(BaseModel):
     """Property value corresponding to property type."""
 
 
-class MarketServicesViewType(enum.IntEnum):
+class MarketServicesViewType(enum.IntEnum, metaclass=BaseEnumMeta):
     CARDS = 1
     ROWS = 2
+
+
+class MarketUploadPhotoData(BaseModel):
+    """
+    Model: `MarketUploadPhotoData`
+    """
+
+    photo_id: int = Field()
+    """Photo ID."""
+
+    photo: typing.Optional["PhotosPhoto"] = Field(
+        default=None,
+    )
+    """Property `MarketUploadPhotoData.photo`."""
 
 
 class MessagesActionOneOf(BaseModel):
@@ -11171,6 +11246,111 @@ class MessagesAudioMessage(BaseModel):
         default=None,
     )
     """Property `MessagesAudioMessage.transcript_error`."""
+
+
+class MessagesBaseMessage(BaseModel):
+    """
+    Model: `MessagesBaseMessage`
+    """
+
+    conversation_message_id: int = Field()
+    """Unique auto-incremented number for all messages with this peer."""
+
+    date: int = Field()
+    """Date when the message has been sent in Unixtime."""
+
+    from_id: int = Field()
+    """Message author\'s ID."""
+
+    id: int = Field()
+    """Message ID."""
+
+    text: str = Field()
+    """Message text."""
+
+    version: int = Field()
+    """Property `MessagesBaseMessage.version`."""
+
+    out: bool = Field()
+    """Information whether the message is outcoming."""
+
+    peer_id: int = Field()
+    """Peer ID."""
+
+    action: typing.Optional["MessagesActionOneOf"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.action`."""
+
+    admin_author_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Only for messages from community. Contains user ID of community admin, who sent this message.."""
+
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.attachments`."""
+
+    deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is it an deleted message."""
+
+    fwd_messages: typing.Optional["MessagesFwdMessages"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.fwd_messages`."""
+
+    geo: typing.Optional["BaseGeo"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.geo`."""
+
+    is_cropped: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """this message is cropped for bot."""
+
+    keyboard: typing.Optional["MessagesKeyboard"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.keyboard`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.payload`."""
+
+    update_time: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when the message has been updated in Unixtime."""
+
+    is_silent: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is silent message, push without sound."""
+
+    is_unavailable: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is message unavailable for some reason, including its id equals 0."""
+
+    random_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """ID used for sending messages. It returned only for outgoing messages."""
+
+    ref: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.ref`."""
+
+    ref_source: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.ref_source`."""
 
 
 class MessagesChat(BaseModel):
@@ -11310,10 +11490,14 @@ class MessagesChatPreview(BaseModel):
     Model: `MessagesChatPreview`
     """
 
-    admin_id: typing.Optional[int] = Field(
-        default=None,
-    )
+    admin_id: int = Field()
     """Property `MessagesChatPreview.admin_id`."""
+
+    members: typing.List[int] = Field()
+    """Property `MessagesChatPreview.members`."""
+
+    title: str = Field()
+    """Property `MessagesChatPreview.title`."""
 
     joined: typing.Optional[bool] = Field(
         default=None,
@@ -11325,20 +11509,10 @@ class MessagesChatPreview(BaseModel):
     )
     """Property `MessagesChatPreview.local_id`."""
 
-    members: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.members`."""
-
     members_count: typing.Optional[int] = Field(
         default=None,
     )
     """Property `MessagesChatPreview.members_count`."""
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.title`."""
 
     is_member: typing.Optional[bool] = Field(
         default=None,
@@ -11542,43 +11716,43 @@ class MessagesChatSettingsAcl(BaseModel):
     """Can you change chat service type."""
 
 
-class MessagesChatSettingsPermissionsInvite(enum.Enum):
+class MessagesChatSettingsPermissionsInvite(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeInfo(enum.Enum):
+class MessagesChatSettingsPermissionsChangeInfo(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangePin(enum.Enum):
+class MessagesChatSettingsPermissionsChangePin(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsUseMassMentions(enum.Enum):
+class MessagesChatSettingsPermissionsUseMassMentions(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsSeeInviteLink(enum.Enum):
+class MessagesChatSettingsPermissionsSeeInviteLink(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsCall(enum.Enum):
+class MessagesChatSettingsPermissionsCall(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeAdmins(enum.Enum):
+class MessagesChatSettingsPermissionsChangeAdmins(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
 
@@ -11655,14 +11829,14 @@ class MessagesChatSettingsPhoto(BaseModel):
     """If provided photo is default call photo."""
 
 
-class MessagesChatSettingsState(enum.Enum):
+class MessagesChatSettingsState(enum.StrEnum, metaclass=BaseEnumMeta):
     IN = "in"
     KICKED = "kicked"
     LEFT = "left"
     OUT = "out"
 
 
-class MessagesConversationSpecialServiceType(enum.Enum):
+class MessagesConversationSpecialServiceType(enum.StrEnum, metaclass=BaseEnumMeta):
     BUSINESS_NOTIFY = "business_notify"
 
 
@@ -11840,7 +12014,7 @@ class MessagesConversationPeer(BaseModel):
     """Property `MessagesConversationPeer.local_id`."""
 
 
-class MessagesConversationPeerType(enum.Enum):
+class MessagesConversationPeerType(enum.StrEnum, metaclass=BaseEnumMeta):
     CHAT = "chat"
     EMAIL = "email"
     USER = "user"
@@ -12173,7 +12347,7 @@ class MessagesHistoryMessageAttachment(BaseModel):
     """Property `MessagesHistoryMessageAttachment.photo`."""
 
 
-class MessagesHistoryMessageAttachmentType(enum.Enum):
+class MessagesHistoryMessageAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     APP_ACTION = "app_action"
     AUDIO = "audio"
     DOC = "doc"
@@ -12208,7 +12382,7 @@ class MessagesKeyboard(BaseModel):
     """Property `MessagesKeyboard.inline`."""
 
 
-class MessagesKeyboardButtonColor(enum.Enum):
+class MessagesKeyboardButtonColor(enum.StrEnum, metaclass=BaseEnumMeta):
     DEFAULT = "default"
     POSITIVE = "positive"
     NEGATIVE = "negative"
@@ -12229,7 +12403,7 @@ class MessagesKeyboardButton(BaseModel):
     """Button color."""
 
 
-class MessagesKeyboardButtonActionCallbackType(enum.Enum):
+class MessagesKeyboardButtonActionCallbackType(enum.StrEnum, metaclass=BaseEnumMeta):
     CALLBACK = "callback"
 
 
@@ -12250,7 +12424,7 @@ class MessagesKeyboardButtonActionCallback(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionLocationType(enum.Enum):
+class MessagesKeyboardButtonActionLocationType(enum.StrEnum, metaclass=BaseEnumMeta):
     LOCATION = "location"
 
 
@@ -12268,7 +12442,7 @@ class MessagesKeyboardButtonActionLocation(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenAppType(enum.Enum):
+class MessagesKeyboardButtonActionOpenAppType(enum.StrEnum, metaclass=BaseEnumMeta):
     OPEN_APP = "open_app"
 
 
@@ -12300,7 +12474,7 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenLinkType(enum.Enum):
+class MessagesKeyboardButtonActionOpenLinkType(enum.StrEnum, metaclass=BaseEnumMeta):
     OPEN_LINK = "open_link"
 
 
@@ -12324,7 +12498,7 @@ class MessagesKeyboardButtonActionOpenLink(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenPhotoType(enum.Enum):
+class MessagesKeyboardButtonActionOpenPhotoType(enum.StrEnum, metaclass=BaseEnumMeta):
     OPEN_PHOTO = "open_photo"
 
 
@@ -12337,7 +12511,7 @@ class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """Property `MessagesKeyboardButtonActionOpenPhoto.type`."""
 
 
-class MessagesKeyboardButtonActionTextType(enum.Enum):
+class MessagesKeyboardButtonActionTextType(enum.StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
 
 
@@ -12358,7 +12532,7 @@ class MessagesKeyboardButtonActionText(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionVkpayType(enum.Enum):
+class MessagesKeyboardButtonActionVkpayType(enum.StrEnum, metaclass=BaseEnumMeta):
     VKPAY = "vkpay"
 
 
@@ -12383,10 +12557,6 @@ class MessagesKeyboardButtonPropertyAction(BaseModel):
     """
     Model: `MessagesKeyboardButtonPropertyAction`
     """
-
-    label: str = Field()
-    type: str = Field()
-    payload: str = Field()
 
 
 class MessagesLastActivity(BaseModel):
@@ -12435,161 +12605,6 @@ class MessagesLongpollParams(BaseModel):
         default=None,
     )
     """Persistent timestamp."""
-
-
-class MessagesMessage(BaseModel):
-    """
-    Model: `MessagesMessage`
-    """
-
-    conversation_message_id: int = Field()
-    """Unique auto-incremented number for all messages with this peer."""
-
-    date: int = Field()
-    """Date when the message has been sent in Unixtime."""
-
-    from_id: int = Field()
-    """Message author\'s ID."""
-
-    id: int = Field()
-    """Message ID."""
-
-    out: bool = Field()
-    """Information whether the message is outcoming."""
-
-    peer_id: int = Field()
-    """Peer ID."""
-
-    text: str = Field()
-    """Message text."""
-
-    version: int = Field()
-    """Property `MessagesMessage.version`."""
-
-    action: typing.Optional["MessagesActionOneOf"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.action`."""
-
-    admin_author_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Only for messages from community. Contains user ID of community admin, who sent this message.."""
-
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.attachments`."""
-
-    deleted: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is it an deleted message."""
-
-    fwd_messages: typing.Optional["MessagesFwdMessages"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.fwd_messages`."""
-
-    geo: typing.Optional["BaseGeo"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.geo`."""
-
-    important: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is it an important message."""
-
-    is_hidden: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.is_hidden`."""
-
-    is_cropped: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """this message is cropped for bot."""
-
-    keyboard: typing.Optional["MessagesKeyboard"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.keyboard`."""
-
-    members_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Members number."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.payload`."""
-
-    random_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """ID used for sending messages. It returned only for outgoing messages."""
-
-    ref: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.ref`."""
-
-    ref_source: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.ref_source`."""
-
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessage.reply_message`."""
-
-    reaction_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Reaction id set on message."""
-
-    reactions: typing.Optional[typing.List["MessagesReactionCounterResponseItem"]] = Field(
-        default=None,
-    )
-    """Actual reactions counters on this message."""
-
-    last_reaction_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Last reaction id set on this message."""
-
-    is_pinned: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is message pinned in its conversation."""
-
-    update_time: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Date when the message has been updated in Unixtime."""
-
-    was_listened: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Was the audio message inside already listened by you."""
-
-    pinned_at: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Date when the message has been pinned in Unixtime."""
-
-    is_silent: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is silent message, push without sound."""
-
-    is_unavailable: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is message unavailable for some reason, including its id equals 0."""
 
 
 class MessagesMessageAction(BaseModel):
@@ -12646,7 +12661,7 @@ class MessagesMessageActionPhoto(BaseModel):
     """URL of the preview image with 200px in width."""
 
 
-class MessagesMessageActionStatus(enum.Enum):
+class MessagesMessageActionStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -12734,7 +12749,7 @@ class MessagesMessageAttachment(BaseModel):
     """Property `MessagesMessageAttachment.poll`."""
 
 
-class MessagesMessageAttachmentType(enum.Enum):
+class MessagesMessageAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -12748,6 +12763,7 @@ class MessagesMessageAttachmentType(enum.Enum):
     WALL_REPLY = "wall_reply"
     ARTICLE = "article"
     POLL = "poll"
+    PODCASTS = "podcasts"
     CALL = "call"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
@@ -12978,7 +12994,7 @@ class MessagesSendUserIdsResponseItem(BaseModel):
     """Property `MessagesSendUserIdsResponseItem.error`."""
 
 
-class MessagesTemplateActionTypeNames(enum.Enum):
+class MessagesTemplateActionTypeNames(enum.StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     START = "start"
     LOCATION = "location"
@@ -12992,7 +13008,7 @@ class MessagesTemplateActionTypeNames(enum.Enum):
     OPEN_MODAL_VIEW = "open_modal_view"
 
 
-class MessagesUserTypeForXtrInvitedBy(enum.Enum):
+class MessagesUserTypeForXtrInvitedBy(enum.StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
 
@@ -13121,7 +13137,7 @@ class NotificationsFeedback(BaseModel):
     """Wall owner\'s ID."""
 
 
-class NotificationsNotificationInnerType(enum.Enum):
+class NotificationsNotificationInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13159,7 +13175,7 @@ class NotificationsNotification(BaseModel):
     """Notification type."""
 
 
-class NotificationsNotificationItemInnerType(enum.Enum):
+class NotificationsNotificationItemInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13309,7 +13325,7 @@ class OrdersAmountItem(BaseModel):
     """Votes number."""
 
 
-class OrdersOrderStatus(enum.Enum):
+class OrdersOrderStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     CREATED = "created"
     CHARGED = "charged"
     REFUNDED = "refunded"
@@ -13459,7 +13475,7 @@ class OwnerState(BaseModel):
     """wiki text to describe user state."""
 
 
-class PagesPrivacySettings(enum.IntEnum):
+class PagesPrivacySettings(enum.IntEnum, metaclass=BaseEnumMeta):
     COMMUNITY_MANAGERS_ONLY = 0
     COMMUNITY_MEMBERS_ONLY = 1
     EVERYONE = 2
@@ -13487,6 +13503,12 @@ class PagesWikipage(BaseModel):
 
     who_can_view: "PagesPrivacySettings" = Field()
     """View settings of the page."""
+
+    created: int = Field()
+    """Property `PagesWikipage.created`."""
+
+    edited: int = Field()
+    """Property `PagesWikipage.edited`."""
 
     creator_id: typing.Optional[int] = Field(
         default=None,
@@ -13639,7 +13661,7 @@ class PhotosImage(BaseModel):
     """Width of the photo in px.."""
 
 
-class PhotosImageType(enum.Enum):
+class PhotosImageType(enum.StrEnum, metaclass=BaseEnumMeta):
     S = "s"
     M = "m"
     X = "x"
@@ -13654,7 +13676,7 @@ class PhotosImageType(enum.Enum):
     BASE = "base"
 
 
-class PhotosPhotoVerticalAlign(enum.Enum):
+class PhotosPhotoVerticalAlign(enum.StrEnum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -13933,7 +13955,7 @@ class PhotosPhotoSizes(BaseModel):
     """URL of the image."""
 
 
-class PhotosPhotoSizesType(enum.Enum):
+class PhotosPhotoSizesType(enum.StrEnum, metaclass=BaseEnumMeta):
     T = "t"
     S = "s"
     M = "m"
@@ -14186,13 +14208,13 @@ class PhotosTagsSuggestionItem(BaseModel):
     """Property `PhotosTagsSuggestionItem.track_code`."""
 
 
-class PhotosTagsSuggestionItemButtonAction(enum.Enum):
+class PhotosTagsSuggestionItemButtonAction(enum.StrEnum, metaclass=BaseEnumMeta):
     CONFIRM = "confirm"
     DECLINE = "decline"
     SHOW_TAGS = "show_tags"
 
 
-class PhotosTagsSuggestionItemButtonStyle(enum.Enum):
+class PhotosTagsSuggestionItemButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
     SECONDARY = "secondary"
 
@@ -14278,7 +14300,7 @@ class PollsAnswer(BaseModel):
     """Votes number."""
 
 
-class PollsBackgroundType(enum.Enum):
+class PollsBackgroundType(enum.StrEnum, metaclass=BaseEnumMeta):
     GRADIENT = "gradient"
     TILE = "tile"
 
@@ -14520,7 +14542,7 @@ class PrettyCardsButtonOneOf(BaseModel):
     """
 
 
-class PrettyCardsPrettyCardInnerType(enum.Enum):
+class PrettyCardsPrettyCardInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     PRETTYCARDS_PRETTYCARD = "prettyCards_prettyCard"
 
 
@@ -14619,7 +14641,7 @@ class SearchHint(BaseModel):
     """Property `SearchHint.link`."""
 
 
-class SearchHintSection(enum.Enum):
+class SearchHintSection(enum.StrEnum, metaclass=BaseEnumMeta):
     GROUPS = "groups"
     EVENTS = "events"
     PUBLICS = "publics"
@@ -14630,7 +14652,7 @@ class SearchHintSection(enum.Enum):
     PROMO = "promo"
 
 
-class SearchHintType(enum.Enum):
+class SearchHintType(enum.StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
     VK_APP = "vk_app"
@@ -15139,7 +15161,7 @@ class StorageValue(BaseModel):
     """Property `StorageValue.value`."""
 
 
-class StoreProductType(enum.Enum):
+class StoreProductType(enum.StrEnum, metaclass=BaseEnumMeta):
     STICKERS = "stickers"
 
 
@@ -15327,7 +15349,7 @@ class StoriesClickableArea(BaseModel):
     """Property `StoriesClickableArea.y`."""
 
 
-class StoriesClickableStickerType(enum.Enum):
+class StoriesClickableStickerType(enum.StrEnum, metaclass=BaseEnumMeta):
     HASHTAG = "hashtag"
     MENTION = "mention"
     LINK = "link"
@@ -15344,10 +15366,12 @@ class StoriesClickableStickerType(enum.Enum):
     SITUATIONAL_THEME = "situational_theme"
     PLAYLIST = "playlist"
     CLIP = "clip"
+    VK_VIDEO = "vk_video"
     SITUATIONAL_TEMPLATE = "situational_template"
+    SPOILER = "spoiler"
 
 
-class StoriesClickableStickerStyle(enum.Enum):
+class StoriesClickableStickerStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     TRANSPARENT = "transparent"
     BLUE_GRADIENT = "blue_gradient"
     RED_GRADIENT = "red_gradient"
@@ -15373,9 +15397,16 @@ class StoriesClickableStickerStyle(enum.Enum):
     POOP = "poop"
     HEART = "heart"
     STAR = "star"
+    ALBUM = "album"
+    HORIZONTAL = "horizontal"
+    EQUALIZER = "equalizer"
+    HEADER_META = "header_meta"
+    PREVIEW = "preview"
+    MINIATURE = "miniature"
+    FULLVIEW = "fullview"
 
 
-class StoriesClickableStickerSubtype(enum.Enum):
+class StoriesClickableStickerSubtype(enum.StrEnum, metaclass=BaseEnumMeta):
     MARKET_ITEM = "market_item"
     ALIEXPRESS_PRODUCT = "aliexpress_product"
 
@@ -15428,6 +15459,11 @@ class StoriesClickableSticker(BaseModel):
         default=None,
     )
     """Property `StoriesClickableSticker.clip_id`."""
+
+    video_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `StoriesClickableSticker.video_id`."""
 
     question: typing.Optional[str] = Field(
         default=None,
@@ -15545,7 +15581,7 @@ class StoriesClickableStickers(BaseModel):
     """Property `StoriesClickableStickers.original_width`."""
 
 
-class StoriesFeedItemType(enum.Enum):
+class StoriesFeedItemType(enum.StrEnum, metaclass=BaseEnumMeta):
     PROMO_STORIES = "promo_stories"
     STORIES = "stories"
     LIVE_ACTIVE = "live_active"
@@ -15651,6 +15687,9 @@ class StoriesStatCategory(BaseModel):
     header: str = Field()
     """Property `StoriesStatCategory.header`."""
 
+    type: str = Field()
+    """Property `StoriesStatCategory.type`."""
+
     lines: typing.List["StoriesStatLine"] = Field()
     """Property `StoriesStatCategory.lines`."""
 
@@ -15662,6 +15701,9 @@ class StoriesStatLine(BaseModel):
 
     name: str = Field()
     """Property `StoriesStatLine.name`."""
+
+    type: str = Field()
+    """Property `StoriesStatLine.type`."""
 
     counter: typing.Optional[int] = Field(
         default=None,
@@ -15770,6 +15812,11 @@ class StoriesStory(BaseModel):
     )
     """Property `StoriesStory.photo`."""
 
+    blurred_preview: typing.Optional[str] = Field(
+        default=None,
+    )
+    """url with blured preview image.."""
+
     replies: typing.Optional["StoriesReplies"] = Field(
         default=None,
     )
@@ -15819,6 +15866,11 @@ class StoriesStory(BaseModel):
         default=None,
     )
     """Property `StoriesStory.first_narrative_title`."""
+
+    first_narrative_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `StoriesStory.first_narrative_id`."""
 
     can_use_in_narrative: typing.Optional[bool] = Field(
         default=None,
@@ -15887,20 +15939,20 @@ class StoriesStoryStatsStat(BaseModel):
     """Stat value."""
 
 
-class StoriesStoryStatsState(enum.Enum):
+class StoriesStoryStatsState(enum.StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     HIDDEN = "hidden"
 
 
-class StoriesStoryType(enum.Enum):
+class StoriesStoryType(enum.StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     VIDEO = "video"
     LIVE_ACTIVE = "live_active"
     LIVE_FINISHED = "live_finished"
 
 
-class StoriesUploadLinkText(enum.Enum):
+class StoriesUploadLinkText(enum.StrEnum, metaclass=BaseEnumMeta):
     TO_STORE = "to_store"
     VOTE = "vote"
     MORE = "more"
@@ -15952,7 +16004,7 @@ class StoriesViewersItem(BaseModel):
     """Property `StoriesViewersItem.user`."""
 
 
-class StreamingStatsEventType(enum.Enum):
+class StreamingStatsEventType(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     SHARE = "share"
@@ -15982,463 +16034,6 @@ class StreamingStatsPoint(BaseModel):
     """Property `StreamingStatsPoint.value`."""
 
 
-class SupportUnblockScreenButtonFieldsType(enum.Enum):
-    BUTTON = "button"
-
-
-class SupportUnblockScreenButtonFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenButtonFields`
-    """
-
-    type: "SupportUnblockScreenButtonFieldsType" = Field()
-    """Property `SupportUnblockScreenButtonFields.type`."""
-
-    id: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonFields.id`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Надпись на кнопке."""
-
-
-class SupportUnblockScreenButtonSubmitFieldsType(enum.Enum):
-    BUTTON_SUBMIT = "button_submit"
-
-
-class SupportUnblockScreenButtonSubmitFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenButtonSubmitFields`
-    """
-
-    type: "SupportUnblockScreenButtonSubmitFieldsType" = Field()
-    """Property `SupportUnblockScreenButtonSubmitFields.type`."""
-
-    id: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonSubmitFields.id`."""
-
-    disabled: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonSubmitFields.disabled`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Надпись на кнопке."""
-
-    target_screen: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Индекс экрана для перехода."""
-
-
-class SupportUnblockScreenButtonSupportFieldsType(enum.Enum):
-    SUPPORT_BUTTON = "support_button"
-
-
-class SupportUnblockScreenButtonSupportFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenButtonSupportFields`
-    """
-
-    type: "SupportUnblockScreenButtonSupportFieldsType" = Field()
-    """Property `SupportUnblockScreenButtonSupportFields.type`."""
-
-    id: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonSupportFields.id`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonSupportFields.text`."""
-
-
-class SupportUnblockScreenButtonUnblockFieldsType(enum.Enum):
-    UNBLOCK_BUTTON = "unblock_button"
-
-
-class SupportUnblockScreenButtonUnblockFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenButtonUnblockFields`
-    """
-
-    type: "SupportUnblockScreenButtonUnblockFieldsType" = Field()
-    """Property `SupportUnblockScreenButtonUnblockFields.type`."""
-
-    id: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenButtonUnblockFields.id`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Надпись на кнопке."""
-
-
-class SupportUnblockScreenContentBlockFieldsType(enum.Enum):
-    BAN_REASON_CONTENT = "ban_reason_content"
-
-
-class SupportUnblockScreenContentBlockFieldsContentType(enum.Enum):
-    POST = "post"
-    MESSAGE = "message"
-
-
-class SupportUnblockScreenContentBlockFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenContentBlockFields`
-    """
-
-    type: "SupportUnblockScreenContentBlockFieldsType" = Field()
-    """Property `SupportUnblockScreenContentBlockFields.type`."""
-
-    content_type: typing.Optional["SupportUnblockScreenContentBlockFieldsContentType"] = Field(
-        default=None,
-    )
-    """Тип контента."""
-
-
-class SupportUnblockScreenEventsListFieldsType(enum.Enum):
-    EVENTS_LIST = "events_list"
-
-
-class SupportUnblockScreenEventsListFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenEventsListFields`
-    """
-
-    type: "SupportUnblockScreenEventsListFieldsType" = Field()
-    """Property `SupportUnblockScreenEventsListFields.type`."""
-
-    header: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Заголовок над пунктами."""
-
-    items: typing.Optional[typing.List["SupportUnblockScreenEventsListFieldsItem"]] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenEventsListFields.items`."""
-
-
-class SupportUnblockScreenEventsListFieldsItem(BaseModel):
-    """
-    Model: `SupportUnblockScreenEventsListFieldsItem`
-    """
-
-    date: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Дата блокировки."""
-
-    reason: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Причина блокировки."""
-
-
-class SupportUnblockScreenHeaderFieldsType(enum.Enum):
-    HEADER = "header"
-
-
-class SupportUnblockScreenHeaderFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenHeaderFields`
-    """
-
-    type: "SupportUnblockScreenHeaderFieldsType" = Field()
-    """Property `SupportUnblockScreenHeaderFields.type`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст заголовка."""
-
-    subheader: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст подзаголовка."""
-
-    image: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Картинка над текстом."""
-
-    gradient: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Нужен ли градиент  на фоне заголовка."""
-
-    exit_btn: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Нужна ли кнопка выхода."""
-
-
-class SupportUnblockScreenItem(BaseModel):
-    """
-    Model: `SupportUnblockScreenItem`
-    """
-
-
-class SupportUnblockScreenModalButtonFieldsType(enum.Enum):
-    MODAL_BUTTON = "modal_button"
-
-
-class SupportUnblockScreenModalButtonFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenModalButtonFields`
-    """
-
-    type: "SupportUnblockScreenModalButtonFieldsType" = Field()
-    """Property `SupportUnblockScreenModalButtonFields.type`."""
-
-    id: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenModalButtonFields.id`."""
-
-    label: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Надпись на кнопке."""
-
-    modal: typing.Optional["SupportUnblockScreenModalButtonModalContent"] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenModalButtonFields.modal`."""
-
-
-class SupportUnblockScreenModalButtonModalContent(BaseModel):
-    """
-    Model: `SupportUnblockScreenModalButtonModalContent`
-    """
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenModalButtonModalContent.title`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenModalButtonModalContent.text`."""
-
-
-class SupportUnblockScreenSlidersFieldsType(enum.Enum):
-    SLIDERS = "sliders"
-
-
-class SupportUnblockScreenSlidersFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenSlidersFields`
-    """
-
-    type: "SupportUnblockScreenSlidersFieldsType" = Field()
-    """Property `SupportUnblockScreenSlidersFields.type`."""
-
-    items: typing.Optional[typing.List["SupportUnblockScreenSlidersFieldsItem"]] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenSlidersFields.items`."""
-
-
-class SupportUnblockScreenSlidersFieldsItem(BaseModel):
-    """
-    Model: `SupportUnblockScreenSlidersFieldsItem`
-    """
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenSlidersFieldsItem.title`."""
-
-    short_desc: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Краткое описание, выпадающее при нажатии."""
-
-    target_screen: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Экран, на который происходит переход; обычно содержимое другого экрана - просто заголовок с текстом и кнопкой."""
-
-
-class SupportUnblockScreenStepperFieldsType(enum.Enum):
-    STEPPER = "stepper"
-
-
-class SupportUnblockScreenStepperFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenStepperFields`
-    """
-
-    type: "SupportUnblockScreenStepperFieldsType" = Field()
-    """Property `SupportUnblockScreenStepperFields.type`."""
-
-    target: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Экран, на который происходит переход после ответа на все вопросы."""
-
-    questions: typing.Optional[typing.List["SupportUnblockScreenStepperQuestions"]] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenStepperFields.questions`."""
-
-
-class SupportUnblockScreenStepperQuestions(BaseModel):
-    """
-    Model: `SupportUnblockScreenStepperQuestions`
-    """
-
-    title: str = Field()
-    """Текст вопроса."""
-
-    target_screen: str = Field()
-    """Экран, на который происходит переход; обычно содержимое другого экрана - просто заголовок с текстом и кнопкой."""
-
-    yes_desc: typing.Optional[typing.Union["str"]] = Field(
-        default=None,
-    )
-    """Текст, отображаемый при нажатии на да."""
-
-    no_desc: typing.Optional[typing.Union["str"]] = Field(
-        default=None,
-    )
-    """Текст, отображаемый при нажатии на нет."""
-
-    step: typing.Optional[float] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenStepperQuestions.step`."""
-
-
-class SupportUnblockScreenTextBackgroundFieldsType(enum.Enum):
-    TEXT_BACKGROUND = "text_background"
-
-
-class SupportUnblockScreenTextBackgroundFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenTextBackgroundFields`
-    """
-
-    type: "SupportUnblockScreenTextBackgroundFieldsType" = Field()
-    """Property `SupportUnblockScreenTextBackgroundFields.type`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст."""
-
-    bg_image: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Полный URL фонового изображения."""
-
-
-class SupportUnblockScreenTextBorderedFieldsType(enum.Enum):
-    TEXT_BORDERED = "text_bordered"
-
-
-class SupportUnblockScreenTextBorderedFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenTextBorderedFields`
-    """
-
-    type: "SupportUnblockScreenTextBorderedFieldsType" = Field()
-    """Property `SupportUnblockScreenTextBorderedFields.type`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст."""
-
-    notify_btn: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Нужна ли кнопка \'Получить уведомление\'."""
-
-
-class SupportUnblockScreenTutorialAnswers(BaseModel):
-    """
-    Model: `SupportUnblockScreenTutorialAnswers`
-    """
-
-    id: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenTutorialAnswers.id`."""
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст ответа."""
-
-    is_right: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Является ли вариант ответа правильным."""
-
-    explanation: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст, который отображается при выборе этого варианта."""
-
-
-class SupportUnblockScreenTutorialFieldsType(enum.Enum):
-    TUTORIAL = "tutorial"
-
-
-class SupportUnblockScreenTutorialFields(BaseModel):
-    """
-    Model: `SupportUnblockScreenTutorialFields`
-    """
-
-    type: "SupportUnblockScreenTutorialFieldsType" = Field()
-    """Property `SupportUnblockScreenTutorialFields.type`."""
-
-    target: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Экран, на который происходит переход после ответа на все вопросы."""
-
-    questions: typing.Optional[typing.List["SupportUnblockScreenTutorialQuestions"]] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenTutorialFields.questions`."""
-
-
-class SupportUnblockScreenTutorialQuestions(BaseModel):
-    """
-    Model: `SupportUnblockScreenTutorialQuestions`
-    """
-
-    id: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenTutorialQuestions.id`."""
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Текст вопроса."""
-
-    answers: typing.Optional[typing.List["SupportUnblockScreenTutorialAnswers"]] = Field(
-        default=None,
-    )
-    """Property `SupportUnblockScreenTutorialQuestions.answers`."""
-
-
 class FriendsFriendStatus(BaseModel):
     """
     Model: `FriendsFriendStatus`
@@ -16456,7 +16051,7 @@ class FriendsFriendStatus(BaseModel):
     """MD5 hash for the result validation."""
 
 
-class FriendsFriendStatusStatus(enum.IntEnum):
+class FriendsFriendStatusStatus(enum.IntEnum, metaclass=BaseEnumMeta):
     NOT_A_FRIEND = 0
     OUTCOMING_REQUEST = 1
     INCOMING_REQUEST = 2
@@ -16564,10 +16159,11 @@ class UtilsDomainResolved(BaseModel):
     """Property `UtilsDomainResolved.type`."""
 
 
-class UtilsDomainResolvedType(enum.Enum):
+class UtilsDomainResolvedType(enum.StrEnum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     APPLICATION = "application"
+    EVENT = "event"
     PAGE = "page"
     VK_APP = "vk_app"
     COMMUNITY_APPLICATION = "community_application"
@@ -16625,7 +16221,7 @@ class UtilsLinkChecked(BaseModel):
     """Property `UtilsLinkChecked.status`."""
 
 
-class UtilsLinkCheckedStatus(enum.Enum):
+class UtilsLinkCheckedStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     NOT_BANNED = "not_banned"
     BANNED = "banned"
     PROCESSING = "processing"
@@ -16924,17 +16520,20 @@ class VideoStreamInputParams(BaseModel):
     """Property `VideoStreamInputParams.webrtc_url`."""
 
 
-class VideoVideoResponseType(enum.Enum):
+class VideoVideoResponseType(enum.StrEnum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
 
-class VideoVideoType(enum.Enum):
+class VideoVideoType(enum.StrEnum, metaclass=BaseEnumMeta):
+    INTERACTIVE = "interactive"
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
     LIVE = "live"
     SHORT_VIDEO = "short_video"
+    STORY = "story"
+    VIDEO_MESSAGE = "video_message"
 
 
 class VideoVideo(BaseModel):
@@ -16986,6 +16585,11 @@ class VideoVideo(BaseModel):
         default=None,
     )
     """Information whether current user can subscribe to author of the video."""
+
+    can_be_promoted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether current user can promote the video."""
 
     can_add_to_faves: typing.Optional[bool] = Field(
         default=None,
@@ -17183,7 +16787,7 @@ class VideoVideo(BaseModel):
     """Property `VideoVideo.reposts`."""
 
 
-class VideoVideoAlbumResponseType(enum.Enum):
+class VideoVideoAlbumResponseType(enum.StrEnum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
@@ -17422,7 +17026,7 @@ class WallCommentAttachment(BaseModel):
     """Property `WallCommentAttachment.graffiti`."""
 
 
-class WallCommentAttachmentType(enum.Enum):
+class WallCommentAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     AUDIO_PLAYLIST = "audio_playlist"
@@ -17437,7 +17041,7 @@ class WallCommentAttachmentType(enum.Enum):
     GRAFFITI = "graffiti"
 
 
-class WallGeoType(enum.Enum):
+class WallGeoType(enum.StrEnum, metaclass=BaseEnumMeta):
     PLACE = "place"
     POINT = "point"
 
@@ -17463,7 +17067,7 @@ class WallGeo(BaseModel):
     """Place type."""
 
 
-class WallGetFilter(enum.Enum):
+class WallGetFilter(enum.StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OTHERS = "others"
     ALL = "all"
@@ -17570,7 +17174,7 @@ class WallPostSource(BaseModel):
     """Property `WallPostSource.link`."""
 
 
-class WallPostSourceType(enum.Enum):
+class WallPostSourceType(enum.StrEnum, metaclass=BaseEnumMeta):
     VK = "vk"
     WIDGET = "widget"
     API = "api"
@@ -17579,7 +17183,7 @@ class WallPostSourceType(enum.Enum):
     MVK = "mvk"
 
 
-class WallPostType(enum.Enum):
+class WallPostType(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COPY = "copy"
     REPLY = "reply"
@@ -17832,7 +17436,7 @@ class WallWallItem(BaseModel):
     """Property `WallWallItem.to_id`."""
 
 
-class WallWallpostInnerType(enum.Enum):
+class WallWallpostInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -18069,7 +17673,7 @@ class WallWallpostAttachment(BaseModel):
     """Property `WallWallpostAttachment.video_playlist`."""
 
 
-class WallWallpostAttachmentType(enum.Enum):
+class WallWallpostAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     PHOTOS_LIST = "photos_list"
     POSTED_PHOTO = "posted_photo"
@@ -18120,7 +17724,7 @@ class WallWallpostCommentsDonutPlaceholder(BaseModel):
     """Property `WallWallpostCommentsDonutPlaceholder.text`."""
 
 
-class WallWallpostDonutEditMode(enum.Enum):
+class WallWallpostDonutEditMode(enum.StrEnum, metaclass=BaseEnumMeta):
     ALL = "all"
     DURATION = "duration"
 
@@ -18163,7 +17767,7 @@ class WallWallpostDonutPlaceholder(BaseModel):
     """Property `WallWallpostDonutPlaceholder.text`."""
 
 
-class NewsfeedCommentsFilters(enum.Enum):
+class NewsfeedCommentsFilters(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     VIDEO = "video"
@@ -18201,7 +17805,7 @@ class NewsfeedCommentsItemBase(BaseModel):
     """Property `NewsfeedCommentsItemBase.post_id`."""
 
 
-class NewsfeedIgnoreItemType(enum.Enum):
+class NewsfeedIgnoreItemType(enum.StrEnum, metaclass=BaseEnumMeta):
     WALL = "wall"
     TAG = "tag"
     PROFILEPHOTO = "profilephoto"
@@ -18251,7 +17855,7 @@ class NewsfeedItemBase(BaseModel):
     """Property `NewsfeedItemBase.feedback`."""
 
 
-class NewsfeedItemDigestButtonStyle(enum.Enum):
+class NewsfeedItemDigestButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
 
 
@@ -18269,7 +17873,7 @@ class NewsfeedItemDigestButton(BaseModel):
     """Property `NewsfeedItemDigestButton.style`."""
 
 
-class NewsfeedItemDigestFooterStyle(enum.Enum):
+class NewsfeedItemDigestFooterStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     BUTTON = "button"
 
@@ -18296,7 +17900,7 @@ class NewsfeedItemDigestFooter(BaseModel):
     """Property `NewsfeedItemDigestFooter.feed_id`."""
 
 
-class NewsfeedItemDigestHeaderStyle(enum.Enum):
+class NewsfeedItemDigestHeaderStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     SINGLELINE = "singleline"
     MULTILINE = "multiline"
 
@@ -18551,7 +18155,7 @@ class NewsfeedItemWallpostFeedbackAnswer(BaseModel):
     """Property `NewsfeedItemWallpostFeedbackAnswer.id`."""
 
 
-class NewsfeedItemWallpostFeedbackType(enum.Enum):
+class NewsfeedItemWallpostFeedbackType(enum.StrEnum, metaclass=BaseEnumMeta):
     BUTTONS = "buttons"
     STARS = "stars"
 
@@ -18574,7 +18178,7 @@ class NewsfeedNewsfeedItem(BaseModel):
     """
 
 
-class NewsfeedNewsfeedItemType(enum.Enum):
+class NewsfeedNewsfeedItemType(enum.StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     PHOTO_TAG = "photo_tag"
@@ -18617,7 +18221,7 @@ class WidgetsCommentMedia(BaseModel):
     """Property `WidgetsCommentMedia.type`."""
 
 
-class WidgetsCommentMediaType(enum.Enum):
+class WidgetsCommentMediaType(enum.StrEnum, metaclass=BaseEnumMeta):
     AUDIO = "audio"
     PHOTO = "photo"
     VIDEO = "video"
@@ -19555,6 +19159,27 @@ class UsersUserXtrType(UsersUserFull):
     """Property `UsersUserXtrType.type`."""
 
 
+class MessagesUserXtrInvitedBy(UsersUserXtrType):
+    """
+    Model: `MessagesUserXtrInvitedBy`
+    """
+
+    invited_by: typing.Optional[int] = Field(
+        default=None,
+    )
+    """ID of the inviter."""
+
+    name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Name of group."""
+
+    type: typing.Optional["MessagesUserTypeForXtrInvitedBy"] = Field(
+        default=None,
+    )
+    """Property `MessagesUserXtrInvitedBy.type`."""
+
+
 class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
     """
     Model: `AccountUserSettings`
@@ -19569,6 +19194,78 @@ class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
         default=None,
     )
     """flag about service account."""
+
+
+class MessagesGetConversationByIdExtended(MessagesGetConversationById):
+    """
+    Model: `MessagesGetConversationByIdExtended`
+    """
+
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    """Property `MessagesGetConversationByIdExtended.profiles`."""
+
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    """Property `MessagesGetConversationByIdExtended.groups`."""
+
+
+class MessagesMessage(MessagesBaseMessage):
+    """
+    Model: `MessagesMessage`
+    """
+
+    important: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is it an important message."""
+
+    is_hidden: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesMessage.is_hidden`."""
+
+    members_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Members number."""
+
+    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessage.reply_message`."""
+
+    reaction_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Reaction id set on message."""
+
+    reactions: typing.Optional[typing.List["MessagesReactionCounterResponseItem"]] = Field(
+        default=None,
+    )
+    """Actual reactions counters on this message."""
+
+    last_reaction_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Last reaction id set on this message."""
+
+    is_pinned: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is message pinned in its conversation."""
+
+    was_listened: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Was the audio message inside already listened by you."""
+
+    pinned_at: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when the message has been pinned in Unixtime."""
 
 
 class AdsStatsAge(AdsDemographicStatsPeriodItemBase):
@@ -19737,6 +19434,48 @@ class AppsApp(AppsAppMin):
     """Application section name."""
 
 
+class CallbackForeignMessage(MessagesForeignMessage):
+    """
+    Model: `CallbackForeignMessage`
+    """
+
+    is_cropped: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `CallbackForeignMessage.is_cropped`."""
+
+    fwd_messages: typing.Optional[typing.List["CallbackForeignMessage"]] = Field(
+        default=None,
+    )
+    """Property `CallbackForeignMessage.fwd_messages`."""
+
+    reply_message: typing.Optional["CallbackForeignMessage"] = Field(
+        default=None,
+    )
+    """Property `CallbackForeignMessage.reply_message`."""
+
+
+class CallbackMessage(MessagesMessage):
+    """
+    Model: `CallbackMessage`
+    """
+
+    influence_score: typing.Optional[float] = Field(
+        default=None,
+    )
+    """Property `CallbackMessage.influence_score`."""
+
+    reply_message: typing.Optional["CallbackForeignMessage"] = Field(
+        default=None,
+    )
+    """Property `CallbackMessage.reply_message`."""
+
+    fwd_messages: typing.Optional["CallbackFwdMessages"] = Field(
+        default=None,
+    )
+    """Property `CallbackMessage.fwd_messages`."""
+
+
 class CallbackPhotoComment(WallWallComment):
     """
     Model: `CallbackPhotoComment`
@@ -19766,62 +19505,6 @@ class CallbackConfirmation(CallbackBase):
         default=None,
     )
     """Property `CallbackConfirmation.type`."""
-
-
-class CallbackMessageAllow(CallbackBase):
-    """
-    Model: `CallbackMessageAllow`
-    """
-
-    object: "CallbackMessageAllowObject" = Field()
-    """Property `CallbackMessageAllow.object`."""
-
-    type: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `CallbackMessageAllow.type`."""
-
-
-class CallbackMessageEdit(CallbackBase):
-    """
-    Model: `CallbackMessageEdit`
-    """
-
-    object: "MessagesMessage" = Field()
-    """Property `CallbackMessageEdit.object`."""
-
-    type: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `CallbackMessageEdit.type`."""
-
-
-class CallbackMessageNew(CallbackBase):
-    """
-    Model: `CallbackMessageNew`
-    """
-
-    object: dict = Field()
-    """Property `CallbackMessageNew.object`."""
-
-    type: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `CallbackMessageNew.type`."""
-
-
-class CallbackMessageReply(CallbackBase):
-    """
-    Model: `CallbackMessageReply`
-    """
-
-    object: "MessagesMessage" = Field()
-    """Property `CallbackMessageReply.object`."""
-
-    type: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `CallbackMessageReply.type`."""
 
 
 class DatabaseCity(BaseObject):
@@ -20151,6 +19834,11 @@ class GroupsGroupFull(GroupsGroup, GroupsMarketProperties):
     )
     """Information about the status of video notifications for the current user.."""
 
+    videos_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Community videos number."""
+
 
 class MarketMarketItemBasicWithGroup(MarketMarketItemBasic):
     """
@@ -20287,43 +19975,6 @@ class MarketMarketItemFull(MarketMarketItem):
         default=None,
     )
     """The amount of the discount if VK Pay is used for payment."""
-
-
-class MessagesUserXtrInvitedBy(UsersUserXtrType):
-    """
-    Model: `MessagesUserXtrInvitedBy`
-    """
-
-    invited_by: typing.Optional[int] = Field(
-        default=None,
-    )
-    """ID of the inviter."""
-
-    name: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Name of group."""
-
-    type: typing.Optional["MessagesUserTypeForXtrInvitedBy"] = Field(
-        default=None,
-    )
-    """Property `MessagesUserXtrInvitedBy.type`."""
-
-
-class MessagesGetConversationByIdExtended(MessagesGetConversationById):
-    """
-    Model: `MessagesGetConversationByIdExtended`
-    """
-
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
-        default=None,
-    )
-    """Property `MessagesGetConversationByIdExtended.profiles`."""
-
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
-        default=None,
-    )
-    """Property `MessagesGetConversationByIdExtended.groups`."""
 
 
 class PollsPollExtended(PollsPoll):
@@ -21010,7 +20661,6 @@ __all__ = (
     "AccountUserSettingsInterest",
     "AccountUserSettingsInterests",
     "AddressFields",
-    "AddressesFields",
     "AdsAccessRole",
     "AdsAccessRolePublic",
     "AdsAccesses",
@@ -21089,11 +20739,6 @@ __all__ = (
     "AdsUserSpecification",
     "AdsUserSpecificationCutted",
     "AdsUsers",
-    "AdswebGetAdCategoriesResponseCategoriesCategory",
-    "AdswebGetAdUnitsResponseAdUnitsAdUnit",
-    "AdswebGetFraudHistoryResponseEntriesEntry",
-    "AdswebGetSitesResponseSitesSite",
-    "AdswebGetStatisticsResponseItemsItem",
     "AppWidgetsPhoto",
     "AppWidgetsPhotos",
     "AppsAppFields",
@@ -21107,8 +20752,6 @@ __all__ = (
     "AppsScope",
     "AppsScopeName",
     "AppsTestingGroup",
-    "AsrTask",
-    "AsrTaskStatus",
     "AudioAudio",
     "BoardDefaultOrder",
     "BoardTopic",
@@ -21119,6 +20762,7 @@ __all__ = (
     "BugtrackerBugreport",
     "BugtrackerBugreportSubscribeState",
     "BugtrackerComment",
+    "BugtrackerCommentAuthor",
     "BugtrackerCompanyMember",
     "BugtrackerCompanyMemberProduct",
     "CallbackAppPayload",
@@ -21135,6 +20779,7 @@ __all__ = (
     "CallbackDonutSubscriptionExpired",
     "CallbackDonutSubscriptionPriceChanged",
     "CallbackDonutSubscriptionProlonged",
+    "CallbackFwdMessages",
     "CallbackGroupChangePhoto",
     "CallbackGroupChangeSettings",
     "CallbackGroupJoin",
@@ -21151,9 +20796,15 @@ __all__ = (
     "CallbackLikeAddRemoveObjectType",
     "CallbackMarketComment",
     "CallbackMarketCommentDelete",
-    "CallbackMessageAllowObject",
+    "CallbackMessageAllow",
     "CallbackMessageDeny",
+    "CallbackMessageEvent",
+    "CallbackMessageNew",
     "CallbackMessageObject",
+    "CallbackMessageReactionEvent",
+    "CallbackMessageRead",
+    "CallbackMessageTypingState",
+    "CallbackMessageTypingStateState",
     "CallbackPhotoCommentDelete",
     "CallbackPhotoNew",
     "CallbackPhotoNewVerticalAlign",
@@ -21175,8 +20826,9 @@ __all__ = (
     "CallsCall",
     "CallsEndState",
     "CallsParticipants",
-    "ClientInfoForBots",
+    "CallsShortCredentials",
     "CommentThread",
+    "DatabaseCitiesFields",
     "DatabaseCityById",
     "DatabaseFaculty",
     "DatabaseLanguageFull",
@@ -21307,8 +20959,10 @@ __all__ = (
     "MarketPropertyType",
     "MarketPropertyVariant",
     "MarketServicesViewType",
+    "MarketUploadPhotoData",
     "MessagesActionOneOf",
     "MessagesAudioMessage",
+    "MessagesBaseMessage",
     "MessagesChat",
     "MessagesChatFull",
     "MessagesChatPreview",
@@ -21366,7 +21020,6 @@ __all__ = (
     "MessagesLastActivity",
     "MessagesLongpollMessages",
     "MessagesLongpollParams",
-    "MessagesMessage",
     "MessagesMessageAction",
     "MessagesMessageActionPhoto",
     "MessagesMessageActionStatus",
@@ -21488,40 +21141,6 @@ __all__ = (
     "StreamingStats",
     "StreamingStatsEventType",
     "StreamingStatsPoint",
-    "SupportUnblockScreenButtonFields",
-    "SupportUnblockScreenButtonFieldsType",
-    "SupportUnblockScreenButtonSubmitFields",
-    "SupportUnblockScreenButtonSubmitFieldsType",
-    "SupportUnblockScreenButtonSupportFields",
-    "SupportUnblockScreenButtonSupportFieldsType",
-    "SupportUnblockScreenButtonUnblockFields",
-    "SupportUnblockScreenButtonUnblockFieldsType",
-    "SupportUnblockScreenContentBlockFields",
-    "SupportUnblockScreenContentBlockFieldsType",
-    "SupportUnblockScreenContentBlockFieldsContentType",
-    "SupportUnblockScreenEventsListFields",
-    "SupportUnblockScreenEventsListFieldsType",
-    "SupportUnblockScreenEventsListFieldsItem",
-    "SupportUnblockScreenHeaderFields",
-    "SupportUnblockScreenHeaderFieldsType",
-    "SupportUnblockScreenItem",
-    "SupportUnblockScreenModalButtonFields",
-    "SupportUnblockScreenModalButtonFieldsType",
-    "SupportUnblockScreenModalButtonModalContent",
-    "SupportUnblockScreenSlidersFields",
-    "SupportUnblockScreenSlidersFieldsType",
-    "SupportUnblockScreenSlidersFieldsItem",
-    "SupportUnblockScreenStepperFields",
-    "SupportUnblockScreenStepperFieldsType",
-    "SupportUnblockScreenStepperQuestions",
-    "SupportUnblockScreenTextBackgroundFields",
-    "SupportUnblockScreenTextBackgroundFieldsType",
-    "SupportUnblockScreenTextBorderedFields",
-    "SupportUnblockScreenTextBorderedFieldsType",
-    "SupportUnblockScreenTutorialAnswers",
-    "SupportUnblockScreenTutorialFields",
-    "SupportUnblockScreenTutorialFieldsType",
-    "SupportUnblockScreenTutorialQuestions",
     "FriendsFriendStatus",
     "FriendsFriendStatusStatus",
     "FriendsFriendsList",
@@ -21619,27 +21238,26 @@ __all__ = (
     "UsersUser",
     "UsersUserFull",
     "UsersUserXtrType",
+    "MessagesUserXtrInvitedBy",
     "AccountUserSettings",
+    "MessagesGetConversationByIdExtended",
+    "MessagesMessage",
     "AdsStatsAge",
     "AdsStatsCities",
     "AdsStatsSex",
     "AdsStatsSexAge",
     "AdsTargSettings",
     "AppsApp",
+    "CallbackForeignMessage",
+    "CallbackMessage",
     "CallbackPhotoComment",
     "CallbackVideoComment",
     "CallbackConfirmation",
-    "CallbackMessageAllow",
-    "CallbackMessageEdit",
-    "CallbackMessageNew",
-    "CallbackMessageReply",
     "DatabaseCity",
     "GroupsUserXtrRole",
     "GroupsGroupFull",
     "MarketMarketItemBasicWithGroup",
     "MarketMarketItemFull",
-    "MessagesUserXtrInvitedBy",
-    "MessagesGetConversationByIdExtended",
     "PollsPollExtended",
     "FriendsRequestsXtrMutual",
     "FriendsFriendExtendedStatus",

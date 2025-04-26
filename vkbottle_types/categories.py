@@ -4,10 +4,8 @@ from abc import ABC, abstractmethod
 from .methods import (
     account,
     ads,
-    adsweb,
     app_widgets,
     apps,
-    asr,
     auth,
     board,
     bugtracker,
@@ -62,10 +60,6 @@ class APICategories(ABC):
         return ads.AdsCategory(self.api_instance)
 
     @property
-    def adsweb(self) -> adsweb.AdswebCategory:
-        return adsweb.AdswebCategory(self.api_instance)
-
-    @property
     def app_widgets(self) -> app_widgets.AppWidgetsCategory:
         return app_widgets.AppWidgetsCategory(self.api_instance)
 
@@ -76,10 +70,6 @@ class APICategories(ABC):
     @property
     def auth(self) -> auth.AuthCategory:
         return auth.AuthCategory(self.api_instance)
-
-    @property
-    def asr(self) -> asr.AsrCategory:
-        return asr.AsrCategory(self.api_instance)
 
     @property
     def board(self) -> board.BoardCategory:

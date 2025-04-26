@@ -3,7 +3,6 @@ import typing
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     BaseImage,
-    BaseUploadServer,
     GroupsGroupFull,
     PhotosPhoto,
     PhotosPhotoAlbumFull,
@@ -90,10 +89,6 @@ class PhotosGetCommentsResponseModel(BaseModel):
 
 class PhotosGetCommentsResponse(BaseResponse):
     response: "PhotosGetCommentsResponseModel" = Field()
-
-
-class PhotosGetMarketUploadServerResponse(BaseResponse):
-    response: "BaseUploadServer" = Field()
 
 
 class PhotosGetMessagesUploadServerResponse(BaseResponse):
@@ -261,10 +256,6 @@ class PhotosPutTagResponse(BaseResponse):
 
 
 class PhotosSaveMarketAlbumPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
-
-
-class PhotosSaveMarketPhotoResponse(BaseResponse):
     response: typing.List["PhotosPhoto"] = Field()
 
 

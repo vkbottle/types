@@ -301,6 +301,9 @@ class GroupsGetSettingsResponseModel(BaseModel):
     bots_add_to_chat: typing.Optional[bool] = Field(
         default=None,
     )
+    bot_online_booking_enabled: typing.Optional[bool] = Field(
+        default=None,
+    )
     event_group_id: typing.Optional[int] = Field(
         default=None,
     )

@@ -207,7 +207,7 @@ class AppsCategory(BaseCategory):
         self,
         type: str,
         extended: typing.Literal[True],
-        _global: typing.Optional[bool] = None,
+        global_: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> AppsGetLeaderboardExtendedResponseModel: ...
 
@@ -216,7 +216,7 @@ class AppsCategory(BaseCategory):
         self,
         type: str,
         extended: typing.Optional[typing.Literal[False]] = None,
-        _global: typing.Optional[bool] = None,
+        global_: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> AppsGetLeaderboardResponseModel: ...
 
@@ -224,9 +224,9 @@ class AppsCategory(BaseCategory):
         self,
         type: str,
         extended: typing.Optional[bool] = None,
-        _global: typing.Optional[bool] = None,
+        global_: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[AppsGetLeaderboardResponseModel, AppsGetLeaderboardExtendedResponseModel]:
+    ) -> typing.Union[AppsGetLeaderboardExtendedResponseModel, AppsGetLeaderboardResponseModel]:
         """Method `apps.getLeaderboard()`
 
         :param type: Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().

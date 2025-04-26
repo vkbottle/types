@@ -76,6 +76,7 @@ class BugtrackerCategory(BaseCategory):
         bugreport_id: int,
         force: typing.Optional[bool] = None,
         hidden: typing.Optional[bool] = None,
+        hidden_attachments: typing.Optional[bool] = None,
         text: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> BugtrackerCreateCommentResponseModel:
@@ -84,6 +85,7 @@ class BugtrackerCategory(BaseCategory):
         :param bugreport_id:
         :param force:
         :param hidden:
+        :param hidden_attachments:
         :param text:
         """
 

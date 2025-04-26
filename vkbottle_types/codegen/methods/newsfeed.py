@@ -189,7 +189,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
+    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -387,8 +387,8 @@ class NewsfeedCategory(BaseCategory):
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        NewsfeedSearchResponseModel,
         NewsfeedSearchExtendedResponseModel,
+        NewsfeedSearchResponseModel,
         NewsfeedSearchStrictResponseModel,
     ]:
         """Method `newsfeed.search()`

@@ -1,12 +1,12 @@
-from enum import Enum
-from typing import List, Optional, Union
+from enum import StrEnum
 
-from vkbottle_types.base_model import BaseModel, Field
+from typing_extensions import List, Optional, TypeAlias, Union
+
+from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
 
 
-class MessagesMessageActionStatus(Enum):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/226
+class MessagesMessageActionStatus(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -21,7 +21,7 @@ class MessagesMessageActionStatus(Enum):  # type: ignore
     CONVERSATION_STYLE_UPDATE = "conversation_style_update"
 
 
-class MessagesMessageAttachmentType(Enum):  # type: ignore
+class MessagesMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -39,23 +39,21 @@ class MessagesMessageAttachmentType(Enum):  # type: ignore
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
     STORY = "story"
-    GROUP_CALL_IN_PROGRESS = (
-        "group_call_in_progress"  # https://github.com/VKCOM/vk-api-schema/issues/225
-    )
-    MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
+    MINI_APP = "mini_app"
     VIDEO_PLAYLIST = "video_playlist"
 
 
-class VideoVideoType(Enum):  # type: ignore
+class VideoVideoType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
     VIDEO_MESSAGE = "video_message"
-    SHORT_VIDEO = "short_video"  # https://github.com/VKCOM/vk-api-schema/issues/212
-    LIVE = "live"  # https://github.com/VKCOM/vk-api-schema/issues/230
+    SHORT_VIDEO = "short_video"
+    LIVE = "live"
 
 
-class WallWallpostAttachmentType(Enum):  # type: ignore
+class WallWallpostAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     """Attachment type"""
 
     PHOTO = "photo"
@@ -84,8 +82,8 @@ class WallWallpostAttachmentType(Enum):  # type: ignore
     GROUP = "group"
     STICKER = "sticker"
     PODCAST = "podcast"
-    PRETTY_CARDS = "pretty_cards"  # https://github.com/VKCOM/vk-api-schema/issues/232
-    MINI_APP = "mini_app"  # https://github.com/VKCOM/vk-api-schema/issues/225
+    PRETTY_CARDS = "pretty_cards"
+    MINI_APP = "mini_app"
     CLIP = "clip"
     VIDEO_PLAYLIST = "video_playlist"
 
@@ -112,7 +110,7 @@ class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
     pass
 
 
-class CallbackLikeAddRemoveObjectType(Enum):
+class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -126,42 +124,30 @@ class CallbackLikeAddRemoveObjectType(Enum):
     CLIP = "clip"
 
 
-class WallCommentAttachmentType(Enum):  # type: ignore
-    """Attachment type"""
-
-    PHOTO = "photo"
-    AUDIO = "audio"
-    VIDEO = "video"
-    DOC = "doc"
-    LINK = "link"
-    NOTE = "note"
-    PAGE = "page"
-    MARKET_MARKET_ALBUM = "market_market_album"
-    MARKET = "market"
-    STICKER = "sticker"
-    GRAFFITI = "graffiti"  # https://github.com/VKCOM/vk-api-schema/issues/233
-    AUDIO_PLAYLIST = "audio_playlist"
-
-
-class BaseLinkButtonActionType(Enum):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/227
+class BaseLinkButtonActionType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     OPEN_URL = "open_url"
     JOIN_GROUP_AND_OPEN_URL = "join_group_and_open_url"
+    MARKET_CLEAR_RECENT_QUERIES = "market_clear_recent_queries"
+    CLOSE_WEB_APP = "close_web_app"
+    ADD_PLAYLIST = "add_playlist"
+    OPEN_SEARCH_TAB = "open_search_tab"
+    OPEN_SEARCH_FILTERS = "open_search_filters"
+    IMPORT_CONTACTS = "import_contacts"
+    ADD_FRIENDS = "add_friends"
+    ONBOARDING = "onboarding"
+    SHOW_FILTERS = "show_filters"
 
 
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/224
     pass
 
 
 class MessagesMessageAction(MessagesMessageAction):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/226
     type: "MessagesMessageActionStatus"
     style: Optional[str] = None
 
 
 class GroupCallInProgress(CallsCall):
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     receiver_id: Optional[int] = None  # type: ignore
     time: Optional[int] = None  # type: ignore
     join_link: Optional[str] = None
@@ -174,42 +160,35 @@ class AppsApp(AppsApp):  # type: ignore
 
 
 class MessagesAudioMessage(MessagesAudioMessage):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/236
     transcript_state: Optional[str] = None
     transcript: Optional[str] = None
 
 
 class BaseLinkAttachment(BaseLink):
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     photo: Optional["LinkPhoto"] = None
 
 
 class LinkPhoto(PhotosPhoto):
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     has_tags: Optional[bool] = None  # type: ignore
     date: Optional[int] = None  # type: ignore
 
 
 class PhotosPhotoAlbumFull(PhotosPhotoAlbumFull):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/228
     created: Optional[int] = None
     updated: Optional[int] = None
 
 
 class PhotosPhoto(PhotosPhoto):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/229
     has_tags: Optional[bool] = None  # type: ignore
 
 
 class MessagesMessage(MessagesMessage):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     attachments: Optional[List["MessagesMessageAttachment"]] = None
     reply_message: Optional["MessagesForeignMessage"] = None
     fwd_messages: Optional[List["MessagesForeignMessage"]] = None  # type: ignore
 
 
 class MessagesForeignMessage(MessagesForeignMessage):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     attachments: Optional[List["MessagesMessageAttachment"]] = None
     reply_message: Optional["MessagesForeignMessage"] = None
     fwd_messages: Optional[List["MessagesForeignMessage"]] = None
@@ -222,17 +201,14 @@ class MessagesPinnedMessage(MessagesPinnedMessage):  # type: ignore
 
 
 class VideoVideo(VideoVideo):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
 
 
 class VideoVideoFull(VideoVideo, VideoVideoFull):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/212
     type: Optional["VideoVideoType"] = None
 
 
 class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/208
     conversation_message_id: Optional[int] = None
     error: Optional["BaseMessageError"] = None
     message_id: Optional[int]
@@ -240,7 +216,6 @@ class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
 
 
 class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
-    # https://github.com/VKCOM/vk-api-schema/issues/225
     audio_message: Optional["MessagesAudioMessage"] = None
     story: Optional["StoriesStory"] = None
     group_call_in_progress: Optional["GroupCallInProgress"] = None
@@ -324,17 +299,24 @@ class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef
     poll: Optional["PollsPoll"] = None
 
 
-UsersSubscriptionsItem = Union[GroupsGroupFull, UsersUserFull]  # type: ignore[misc, assignment]
+UsersSubscriptionsItem: TypeAlias = Union[GroupsGroupFull, UsersUserFull]
 
 
 localns = locals().copy()
 for item in localns.values():
-    if not (isinstance(item, type) and issubclass(item, BaseModel)):
+    if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
         continue
+
+    for field in item.__pydantic_fields__.copy().values():
+        if (
+            isinstance(field.annotation, type)
+            and localns.get(field.annotation.__name__, field.annotation) is not field.annotation
+        ):
+            field.annotation = localns[field.annotation.__name__]
 
     item.model_rebuild(force=True, _types_namespace=localns)
 
     for parent in item.__bases__:
         if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
             parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            item.model_rebuild(force=True, _types_namespace=localns)
+            parent.model_rebuild(_types_namespace=localns)

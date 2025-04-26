@@ -662,7 +662,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetCatalogInfoExtendedResponseModel, GroupsGetCatalogInfoResponseModel]:
+    ) -> typing.Union[GroupsGetCatalogInfoResponseModel, GroupsGetCatalogInfoExtendedResponseModel]:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -725,7 +725,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetInvitesResponseModel, GroupsGetInvitesExtendedResponseModel]:
+    ) -> typing.Union[GroupsGetInvitesExtendedResponseModel, GroupsGetInvitesResponseModel]:
         """Method `groups.getInvites()`
 
         :param extended: '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
@@ -775,8 +775,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -787,8 +787,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        filter: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -799,8 +799,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -810,22 +810,22 @@ class GroupsCategory(BaseCategory):
 
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         filter: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        GroupsGetMembersFieldsResponseModel,
-        GroupsGetMembersFilterResponseModel,
         GroupsGetMembersResponseModel,
+        GroupsGetMembersFilterResponseModel,
+        GroupsGetMembersFieldsResponseModel,
     ]:
         """Method `groups.getMembers()`
 
-        :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
         :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
+        :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
         :param count: Number of community members to return.
         :param group_id: ID or screen name of the community.
         :param offset: Offset needed to return a specific subset of community members.
@@ -836,8 +836,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("filter",), GroupsGetMembersFieldsResponse),
                 (("fields",), GroupsGetMembersFieldsResponse),
+                (("filter",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -1012,10 +1012,10 @@ class GroupsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        GroupsIsMemberExtendedResponseModel,
         bool,
-        typing.List[GroupsMemberStatus],
+        GroupsIsMemberExtendedResponseModel,
         typing.List[GroupsMemberStatusFull],
+        typing.List[GroupsMemberStatus],
     ]:
         """Method `groups.isMember()`
 
@@ -1391,6 +1391,7 @@ class GroupsCategory(BaseCategory):
     async def set_settings(
         self,
         group_id: int,
+        bot_online_booking_enabled: typing.Optional[bool] = None,
         bots_add_to_chat: typing.Optional[bool] = None,
         bots_capabilities: typing.Optional[bool] = None,
         bots_start_button: typing.Optional[bool] = None,
@@ -1400,6 +1401,7 @@ class GroupsCategory(BaseCategory):
         """Method `groups.setSettings()`
 
         :param group_id:
+        :param bot_online_booking_enabled: If this setting is enabled then online booking chatbot add in your community chats
         :param bots_add_to_chat: If this setting is enabled then users can add your community to a chat
         :param bots_capabilities: By enabling bot abilities, you can send users messages with a customized keyboard attached as well as use other promotional abilities
         :param bots_start_button: If this setting is enabled, users will see a Start button when they start a chat with your community for the first time

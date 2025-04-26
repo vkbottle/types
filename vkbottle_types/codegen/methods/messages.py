@@ -405,10 +405,7 @@ class MessagesCategory(BaseCategory):
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        "MessagesChatFull",
-        typing.List[MessagesChatFull],
-        "MessagesChat",
-        typing.List[MessagesChat],
+        typing.List[MessagesChat], "MessagesChatFull", "MessagesChat", typing.List[MessagesChatFull]
     ]:
         """Method `messages.getChat()`
 
@@ -530,7 +527,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesGetConversationByIdExtended", "MessagesGetConversationById"]:
+    ) -> typing.Union["MessagesGetConversationById", "MessagesGetConversationByIdExtended"]:
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -590,7 +587,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetHistoryResponseModel, MessagesGetHistoryExtendedResponseModel]:
+    ) -> typing.Union[MessagesGetHistoryExtendedResponseModel, MessagesGetHistoryResponseModel]:
         """Method `messages.getHistory()`
 
         :param extended: Information whether the response should be extended
@@ -711,8 +708,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        MessagesGetImportantMessagesExtendedResponseModel,
-        MessagesGetImportantMessagesResponseModel,
+        MessagesGetImportantMessagesExtendedResponseModel, MessagesGetImportantMessagesResponseModel
     ]:
         """Method `messages.getImportantMessages()`
 
@@ -1031,6 +1027,23 @@ class MessagesCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("messages.markReactionsAsRead", params)
         model = BaseBoolResponse
+        return model(**response).response
+
+    async def mute_chat_mentions(
+        self,
+        mention_status: str,
+        peer_id: int,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `messages.muteChatMentions()`
+
+        :param mention_status:
+        :param peer_id: Chat id
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("messages.muteChatMentions", params)
+        model = BaseOkResponse
         return model(**response).response
 
     async def pin(

@@ -309,7 +309,7 @@ class VideoCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetAlbumsExtendedResponseModel, VideoGetAlbumsResponseModel]:
+    ) -> typing.Union[VideoGetAlbumsResponseModel, VideoGetAlbumsExtendedResponseModel]:
         """Method `video.getAlbums()`
 
         :param extended: '1' - to return additional information about album privacy settings for the current user
@@ -461,6 +461,21 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getLongPollServer", params)
         model = VideoGetLongPollServerResponse
+        return model(**response).response
+
+    async def get_thumb_upload_url(
+        self,
+        owner_id: int,
+        **kwargs: typing.Any,
+    ) -> VideoGetThumbUploadUrlResponseModel:
+        """Method `video.getThumbUploadUrl()`
+
+        :param owner_id:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("video.getThumbUploadUrl", params)
+        model = VideoGetThumbUploadUrlResponse
         return model(**response).response
 
     async def live_get_categories(
@@ -626,6 +641,7 @@ class VideoCategory(BaseCategory):
     async def save(
         self,
         album_id: typing.Optional[int] = None,
+        auto_publish: typing.Optional[bool] = None,
         compression: typing.Optional[bool] = None,
         description: typing.Optional[str] = None,
         group_id: typing.Optional[int] = None,
@@ -643,6 +659,7 @@ class VideoCategory(BaseCategory):
         """Method `video.save()`
 
         :param album_id: ID of the album to which the saved video will be added.
+        :param auto_publish:
         :param compression:
         :param description: Description of the video.
         :param group_id: ID of the community in which the video will be saved. By default, the current user's page.
@@ -660,6 +677,31 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.save", params)
         model = VideoSaveResponse
+        return model(**response).response
+
+    async def save_uploaded_thumb(
+        self,
+        owner_id: int,
+        thumb_json: str,
+        random_tag: typing.Optional[str] = None,
+        set_thumb: typing.Optional[bool] = None,
+        thumb_size: typing.Optional[str] = None,
+        video_id: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> VideoSaveUploadedThumbResponseModel:
+        """Method `video.saveUploadedThumb()`
+
+        :param owner_id:
+        :param thumb_json:
+        :param random_tag:
+        :param set_thumb: If flag passed uploaded thumb will automatically set to passed video. Work only with video_id.
+        :param thumb_size:
+        :param video_id: Video ID.
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("video.saveUploadedThumb", params)
+        model = VideoSaveUploadedThumbResponse
         return model(**response).response
 
     @typing.overload
@@ -725,7 +767,7 @@ class VideoCategory(BaseCategory):
         shorter: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoSearchExtendedResponseModel, VideoSearchResponseModel]:
+    ) -> typing.Union[VideoSearchResponseModel, VideoSearchExtendedResponseModel]:
         """Method `video.search()`
 
         :param extended:

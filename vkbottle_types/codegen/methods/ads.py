@@ -682,10 +682,10 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[AdsTargSuggestions],
+        typing.List[AdsTargSuggestionsCities],
         typing.List[AdsTargSuggestionsSchools],
         typing.List[AdsTargSuggestionsRegions],
-        typing.List[AdsTargSuggestionsCities],
+        typing.List[AdsTargSuggestions],
     ]:
         """Method `ads.getSuggestions()`
 

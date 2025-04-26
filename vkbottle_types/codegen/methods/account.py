@@ -177,6 +177,7 @@ class AccountCategory(BaseCategory):
         token: str,
         device_model: typing.Optional[str] = None,
         device_year: typing.Optional[int] = None,
+        pushes_granted: typing.Optional[bool] = None,
         sandbox: typing.Optional[bool] = None,
         settings: typing.Optional[str] = None,
         system_version: typing.Optional[str] = None,
@@ -188,6 +189,7 @@ class AccountCategory(BaseCategory):
         :param token: Device token used to send notifications. (for mpns, the token shall be URL for sending of notifications)
         :param device_model: String name of device model.
         :param device_year: Device year.
+        :param pushes_granted:
         :param sandbox:
         :param settings: Push settings in a [vk.com/dev/push_settings|special format].
         :param system_version: String version of device operating system.

@@ -30,8 +30,8 @@ class DictResponse(BaseResponse):
         return json.dumps(self.response)
 
 
-BaseResponse.model_rebuild(force=True)
-DictResponse.model_rebuild(force=True)
+BaseResponse.model_rebuild()
+DictResponse.model_rebuild()
 
 
 __all__ = ("BaseResponse", "DictResponse")

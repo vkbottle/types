@@ -3,28 +3,7 @@ from typing import Any, List, Optional
 import pydantic
 
 from vkbottle_types.base_model import BaseModel
-from vkbottle_types.objects import (
-    AudioAudio,
-    BaseBoolInt,
-    BoardTopicComment,
-    CallbackGroupJoinType,
-    CallbackGroupMarket,
-    CallbackGroupOfficerRole,
-    CallbackLikeAddRemoveObjectType,
-    ClientInfoForBots,
-    GroupsGroupAudio,
-    GroupsGroupFullAgeLimits,
-    GroupsGroupIsClosed,
-    GroupsGroupPhotos,
-    GroupsGroupVideo,
-    GroupsGroupWall,
-    MarketOrder,
-    MessagesMessage,
-    PhotosPhoto,
-    VideoVideo,
-    WallWallComment,
-    WallWallpostFull,
-)
+from vkbottle_types.objects import *
 
 
 class BaseEventObject(BaseModel):
@@ -32,7 +11,6 @@ class BaseEventObject(BaseModel):
 
 
 class MessageNewObject(BaseEventObject):
-    client_info: Optional["ClientInfoForBots"] = None
     message: Optional["MessagesMessage"] = None
 
 
@@ -356,12 +334,11 @@ class MessageReadObject(BaseEventObject):
     conversation_message_id: int
 
 
-localns = locals().copy()
-for item in localns.values():
+for item in locals().copy().values():
     if not (isinstance(item, type) and issubclass(item, BaseEventObject)):
         continue
 
-    item.model_rebuild(force=True, _types_namespace=localns)
+    item.model_rebuild()
 
 
 __all__ = (
@@ -371,7 +348,6 @@ __all__ = (
     "BoardPostEditObject",
     "BoardPostNewObject",
     "BoardPostRestoreObject",
-    "ClientInfoForBots",
     "DonutMoneyWithdrawErrorObject",
     "DonutMoneyWithdrawObject",
     "DonutSubscriptionCancelledObject",

@@ -3,6 +3,7 @@ import typing
 from vkbottle_types.methods.base_category import BaseCategory
 from vkbottle_types.objects import (
     BaseCountry,
+    DatabaseCitiesFields,
     DatabaseCityById,
     DatabaseSchoolClass,
     DatabaseStation,
@@ -33,6 +34,7 @@ class DatabaseCategory(BaseCategory):
     async def get_cities(
         self,
         count: typing.Optional[int] = None,
+        fields: typing.Optional[typing.List[DatabaseCitiesFields]] = None,
         need_all: typing.Optional[bool] = None,
         offset: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
@@ -42,6 +44,7 @@ class DatabaseCategory(BaseCategory):
         """Method `database.getCities()`
 
         :param count: Number of cities to return.
+        :param fields: Cities fields to return. Sample values: 'fias_guid'
         :param need_all: '1' - to return all cities in the country, '0' - to return major cities in the country (default),
         :param offset: Offset needed to return a specific subset of cities.
         :param q: Search query.
@@ -56,11 +59,13 @@ class DatabaseCategory(BaseCategory):
     async def get_cities_by_id(
         self,
         city_ids: typing.Optional[typing.List[int]] = None,
+        fields: typing.Optional[typing.List[DatabaseCitiesFields]] = None,
         **kwargs: typing.Any,
     ) -> typing.List[DatabaseCityById]:
         """Method `database.getCitiesById()`
 
         :param city_ids: City IDs.
+        :param fields: Cities fields to return. Sample values: 'fias_guid'
         """
 
         params = self.get_set_params(locals())

@@ -27,7 +27,7 @@ class PagesCategory(BaseCategory):
 
     async def get(
         self,
-        _global: typing.Optional[bool] = None,
+        global_: typing.Optional[bool] = None,
         need_html: typing.Optional[bool] = None,
         need_source: typing.Optional[bool] = None,
         owner_id: typing.Optional[int] = None,
@@ -93,7 +93,7 @@ class PagesCategory(BaseCategory):
         need_html: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> "PagesWikipageFull":
+    ) -> PagesGetVersionResponseModel:
         """Method `pages.getVersion()`
 
         :param version_id:

@@ -230,35 +230,11 @@ class StoriesCategory(BaseCategory):
         model = StoriesGetVideoUploadServerResponse
         return model(**response).response
 
-    @typing.overload
     async def get_viewers(
         self,
         story_id: int,
-        extended: typing.Literal[True],
         count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
-    ) -> StoriesGetViewersExtendedV5115ResponseModel: ...
-
-    @typing.overload
-    async def get_viewers(
-        self,
-        story_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
-    ) -> StoriesGetViewersExtendedV5115ResponseModel: ...
-
-    async def get_viewers(
-        self,
-        story_id: int,
         extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
@@ -267,8 +243,8 @@ class StoriesCategory(BaseCategory):
         """Method `stories.getViewers()`
 
         :param story_id: Story ID.
-        :param extended: '1' - to return detailed information about photos
         :param count: Maximum number of results.
+        :param extended: '1' - to return detailed information about photos
         :param fields:
         :param offset: Offset needed to return a specific subset of results.
         :param owner_id: Story owner ID.
@@ -276,11 +252,7 @@ class StoriesCategory(BaseCategory):
 
         params = self.get_set_params(locals())
         response = await self.api.request("stories.getViewers", params)
-        model = self.get_model(
-            ((("extended",), StoriesGetViewersExtendedV5115Response),),
-            default=StoriesGetViewersExtendedV5115Response,
-            params=params,
-        )
+        model = StoriesGetViewersExtendedV5115Response
         return model(**response).response
 
     async def hide_all_replies(

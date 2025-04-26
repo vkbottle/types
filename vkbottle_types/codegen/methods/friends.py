@@ -211,7 +211,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FriendsGetFieldsResponseModel, FriendsGetResponseModel]:
+    ) -> typing.Union[FriendsGetResponseModel, FriendsGetFieldsResponseModel]:
         """Method `friends.get()`
 
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
@@ -309,7 +309,7 @@ class FriendsCategory(BaseCategory):
         source_uid: typing.Optional[int] = None,
         target_uid: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[int], typing.List[FriendsMutualFriend], "FriendsMutualFriend"]:
+    ) -> typing.Union[typing.List[int], "FriendsMutualFriend", typing.List[FriendsMutualFriend]]:
         """Method `friends.getMutual()`
 
         :param target_uids: IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -392,9 +392,9 @@ class FriendsCategory(BaseCategory):
         **kwargs: typing.Any,
     ) -> typing.Union[
         typing.List[int],
+        "FriendsOnlineUsersWithMobile",
         FriendsGetOnlineOnlineMobileResponseModel,
         "FriendsOnlineUsers",
-        "FriendsOnlineUsersWithMobile",
     ]:
         """Method `friends.getOnline()`
 
@@ -496,8 +496,8 @@ class FriendsCategory(BaseCategory):
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        FriendsGetRequestsExtendedResponseModel,
         FriendsGetRequestsResponseModel,
+        FriendsGetRequestsExtendedResponseModel,
         FriendsGetRequestsNeedMutualResponseModel,
     ]:
         """Method `friends.getRequests()`
@@ -531,7 +531,7 @@ class FriendsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
         filter: typing.Optional[
-            typing.List[typing.Literal["mutual", "contacts", "mutual_contacts"]]
+            typing.List[typing.Literal["contacts", "mutual", "mutual_contacts"]]
         ] = None,
         name_case: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,

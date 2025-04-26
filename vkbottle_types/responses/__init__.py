@@ -1,9 +1,7 @@
 from .account import *
 from .ads import *
-from .adsweb import *
 from .app_widgets import *
 from .apps import *
-from .asr import *
 from .auth import *
 from .base import *
 from .base_response import *
@@ -48,12 +46,12 @@ from .widgets import *
 
 localns = locals().copy()
 for item in localns.values():
-    if not (isinstance(item, type) and issubclass(item, BaseResponse)):
+    if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
         continue
 
     item.model_rebuild(force=True, _types_namespace=localns)
 
     for parent in item.__bases__:
-        if parent.__name__ == item.__name__ and issubclass(parent, BaseResponse):
+        if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
             parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            item.model_rebuild(force=True, _types_namespace=localns)
+            parent.model_rebuild(_types_namespace=localns)

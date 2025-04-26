@@ -502,29 +502,6 @@ class PhotosCategory(BaseCategory):
         model = BaseGetUploadServerResponse
         return model(**response).response
 
-    async def get_market_upload_server(
-        self,
-        group_id: int,
-        crop_width: typing.Optional[int] = None,
-        crop_x: typing.Optional[int] = None,
-        crop_y: typing.Optional[int] = None,
-        main_photo: typing.Optional[bool] = None,
-        **kwargs: typing.Any,
-    ) -> "BaseUploadServer":
-        """Method `photos.getMarketUploadServer()`
-
-        :param group_id: Community ID.
-        :param crop_width: Width of the cropped photo in px.
-        :param crop_x: X coordinate of the crop left upper corner.
-        :param crop_y: Y coordinate of the crop left upper corner.
-        :param main_photo: '1' if you want to upload the main item photo.
-        """
-
-        params = self.get_set_params(locals())
-        response = await self.api.request("photos.getMarketUploadServer", params)
-        model = PhotosGetMarketUploadServerResponse
-        return model(**response).response
-
     async def get_messages_upload_server(
         self,
         peer_id: typing.Optional[int] = None,
@@ -917,31 +894,6 @@ class PhotosCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("photos.saveMarketAlbumPhoto", params)
         model = PhotosSaveMarketAlbumPhotoResponse
-        return model(**response).response
-
-    async def save_market_photo(
-        self,
-        hash: str,
-        photo: str,
-        server: int,
-        crop_data: typing.Optional[str] = None,
-        crop_hash: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        **kwargs: typing.Any,
-    ) -> typing.List[PhotosPhoto]:
-        """Method `photos.saveMarketPhoto()`
-
-        :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param crop_data: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param crop_hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param group_id: Community ID.
-        """
-
-        params = self.get_set_params(locals())
-        response = await self.api.request("photos.saveMarketPhoto", params)
-        model = PhotosSaveMarketPhotoResponse
         return model(**response).response
 
     async def save_messages_photo(

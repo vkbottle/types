@@ -128,9 +128,7 @@ class MessagesGetByIdResponse(BaseResponse):
 
 
 class MessagesGetChatPreviewResponseModel(BaseModel):
-    preview: typing.Optional["MessagesChatPreview"] = Field(
-        default=None,
-    )
+    preview: "MessagesChatPreview" = Field()
     profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
         default=None,
     )
@@ -375,6 +373,7 @@ class MessagesGetReactedPeersResponse(BaseResponse):
 class MessagesGetReactionsAssetsResponseModel(BaseModel):
     version: int = Field()
     assets: typing.List["MessagesReactionAssetItem"] = Field()
+    reaction_ids: typing.List[int] = Field()
     override_assets: typing.Optional[typing.List["MessagesReactionAssetItem"]] = Field(
         default=None,
     )

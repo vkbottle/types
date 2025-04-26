@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUploadServer, UsersFields
+from vkbottle_types.objects import BaseUploadServer, MarketUploadPhotoData, UsersFields
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseGetUploadServerResponse,
@@ -495,7 +495,7 @@ class MarketCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         with_disabled: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetResponseModel, MarketGetExtendedResponseModel]:
+    ) -> typing.Union[MarketGetExtendedResponseModel, MarketGetResponseModel]:
         """Method `market.get()`
 
         :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
@@ -751,11 +751,13 @@ class MarketCategory(BaseCategory):
     async def get_product_photo_upload_server(
         self,
         group_id: int,
+        bulk: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `market.getProductPhotoUploadServer()`
 
         :param group_id: Community ID.
+        :param bulk:
         """
 
         params = self.get_set_params(locals())
@@ -947,6 +949,21 @@ class MarketCategory(BaseCategory):
         model = MarketPhotoIdResponse
         return model(**response).response
 
+    async def save_product_photo_bulk(
+        self,
+        upload_response: str,
+        **kwargs: typing.Any,
+    ) -> typing.List[MarketUploadPhotoData]:
+        """Method `market.saveProductPhotoBulk()`
+
+        :param upload_response: Upload response
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.saveProductPhotoBulk", params)
+        model = MarketPhotoIdBulkResponse
+        return model(**response).response
+
     @typing.overload
     async def search(
         self,
@@ -998,7 +1015,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
+    ) -> typing.Union[MarketSearchExtendedResponseModel, MarketSearchResponseModel]:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.

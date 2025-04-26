@@ -251,12 +251,11 @@ class MessageRead(BaseGroupEvent):
     object: group_event_objects.MessageReadObject
 
 
-localns = locals().copy()
-for item in localns.values():
+for item in locals().copy().values():
     if not (isinstance(item, type) and issubclass(item, BaseGroupEvent)):
         continue
 
-    item.model_rebuild(force=True, _types_namespace=localns)
+    item.model_rebuild()
 
 
 __all__ = (

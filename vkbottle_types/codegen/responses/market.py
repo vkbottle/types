@@ -13,6 +13,7 @@ from vkbottle_types.objects import (
     MarketOrderItem,
     MarketProperty,
     MarketServicesViewType,
+    MarketUploadPhotoData,
     PhotosPhoto,
     UsersUserFull,
     WallWallComment,
@@ -208,6 +209,10 @@ class MarketGroupItemsResponseModel(BaseModel):
 
 class MarketGroupItemsResponse(BaseResponse):
     response: "MarketGroupItemsResponseModel" = Field()
+
+
+class MarketPhotoIdBulkResponse(BaseResponse):
+    response: typing.List["MarketUploadPhotoData"] = Field()
 
 
 class MarketPhotoIdResponseModel(BaseModel):

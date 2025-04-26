@@ -93,12 +93,14 @@ class WallCategory(BaseCategory):
         self,
         comment_id: int,
         owner_id: typing.Optional[int] = None,
+        post_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.deleteComment()`
 
         :param comment_id: Comment ID.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
+        :param post_id: Post ID.
         """
 
         params = self.get_set_params(locals())
@@ -200,6 +202,7 @@ class WallCategory(BaseCategory):
         attachments: typing.Optional[typing.List[str]] = None,
         message: typing.Optional[str] = None,
         owner_id: typing.Optional[int] = None,
+        post_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.editComment()`
@@ -208,6 +211,7 @@ class WallCategory(BaseCategory):
         :param attachments: List of objects attached to the comment, in the following format: , "<owner_id>_<media_id>,<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, '<owner_id>' - ID of the media attachment owner. '<media_id>' - Media attachment ID. For example: "photo100172_166443618,photo66748_265827614"
         :param message: New comment text.
         :param owner_id: User ID or community ID. Use a negative value to designate a community ID.
+        :param post_id: Post ID.
         """
 
         params = self.get_set_params(locals())
@@ -340,7 +344,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentResponseModel, WallGetCommentExtendedResponseModel]:
+    ) -> typing.Union[WallGetCommentExtendedResponseModel, WallGetCommentResponseModel]:
         """Method `wall.getComment()`
 
         :param comment_id: Comment ID.
@@ -409,7 +413,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentsResponseModel, WallGetCommentsExtendedResponseModel]:
+    ) -> typing.Union[WallGetCommentsExtendedResponseModel, WallGetCommentsResponseModel]:
         """Method `wall.getComments()`
 
         :param extended:
@@ -732,7 +736,7 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallSearchResponseModel, WallSearchExtendedResponseModel]:
+    ) -> typing.Union[WallSearchExtendedResponseModel, WallSearchResponseModel]:
         """Method `wall.search()`
 
         :param extended: show extended post info.

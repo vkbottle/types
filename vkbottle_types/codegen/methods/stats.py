@@ -19,8 +19,8 @@ class StatsCategory(BaseCategory):
         interval: typing.Optional[str] = None,
         intervals_count: typing.Optional[int] = None,
         stats_groups: typing.Optional[typing.List[str]] = None,
-        timestamp_from: typing.Optional[int] = None,
-        timestamp_to: typing.Optional[int] = None,
+        timestamp_from: typing.Optional[float] = None,
+        timestamp_to: typing.Optional[float] = None,
         **kwargs: typing.Any,
     ) -> typing.List[StatsPeriod]:
         """Method `stats.get()`

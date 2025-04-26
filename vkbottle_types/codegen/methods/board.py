@@ -210,7 +210,7 @@ class BoardCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         start_comment_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetCommentsResponseModel, BoardGetCommentsExtendedResponseModel]:
+    ) -> typing.Union[BoardGetCommentsExtendedResponseModel, BoardGetCommentsResponseModel]:
         """Method `board.getComments()`
 
         :param group_id: ID of the community that owns the discussion board.

@@ -11,6 +11,7 @@ from vkbottle_types.objects import (
     VideoVideoAlbum,
     VideoVideoAlbumFull,
     VideoVideoFull,
+    VideoVideoImage,
     WallWallComment,
 )
 from vkbottle_types.responses.base_response import BaseResponse
@@ -136,6 +137,14 @@ class VideoGetLongPollServerResponse(BaseResponse):
     response: "VideoGetLongPollServerResponseModel" = Field()
 
 
+class VideoGetThumbUploadUrlResponseModel(BaseModel):
+    upload_url: str = Field()
+
+
+class VideoGetThumbUploadUrlResponse(BaseResponse):
+    response: "VideoGetThumbUploadUrlResponseModel" = Field()
+
+
 class VideoGetResponseModel(BaseModel):
     count: int = Field()
     items: typing.List["VideoVideoFull"] = Field()
@@ -143,6 +152,9 @@ class VideoGetResponseModel(BaseModel):
         default=None,
     )
     groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    max_attached_short_videos: typing.Optional[int] = Field(
         default=None,
     )
 
@@ -153,6 +165,21 @@ class VideoGetResponse(BaseResponse):
 
 class VideoLiveGetCategoriesResponse(BaseResponse):
     response: typing.List["VideoLiveCategory"] = Field()
+
+
+class VideoSaveUploadedThumbResponseModel(BaseModel):
+    photo_id: int = Field()
+    photo_hash: str = Field()
+    image: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+        default=None,
+    )
+    photo_owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoSaveUploadedThumbResponse(BaseResponse):
+    response: "VideoSaveUploadedThumbResponseModel" = Field()
 
 
 class VideoSaveResponse(BaseResponse):

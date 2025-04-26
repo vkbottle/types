@@ -67,6 +67,7 @@ class StoreCategory(BaseCategory):
         need_stickers: typing.Optional[bool] = None,
         products_ids: typing.Optional[typing.List[int]] = None,
         stickers_ids: typing.Optional[typing.List[int]] = None,
+        vmoji_promo: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> StoreGetStickersKeywordsResponseModel:
         """Method `store.getStickersKeywords()`
@@ -76,6 +77,7 @@ class StoreCategory(BaseCategory):
         :param need_stickers:
         :param products_ids:
         :param stickers_ids:
+        :param vmoji_promo:
         """
 
         params = self.get_set_params(locals())

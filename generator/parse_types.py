@@ -1,6 +1,5 @@
 import dataclasses
 import re
-import typing
 
 from .utility import camelcase
 
@@ -62,12 +61,12 @@ def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False)
 
 
 def get_type(
-    type_name: str | list[str] | dict | Ready, items: dict | None = None, hint: bool = False
+    type_name: str | list[str] | dict | Ready,
+    items: dict | None = None,
+    hint: bool = False,
 ) -> str:
     if isinstance(type_name, Ready):
-        if hint:
-            return repr(type_name.value)
-        return type_name.value
+        return repr(type_name.value) if hint else type_name.value
 
     items = items or {}
 
