@@ -8,18 +8,18 @@ from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta
 
 {% if definition.enum %}
 {% if is_int(definition.enum[0]) %}
-class {{camelcase(name)}}(enum.IntEnum, metaclass=BaseEnumMeta):
+class {{camelcase(name)}}(int, enum.Enum, metaclass=BaseEnumMeta):
     {% for enumeration in definition.enum %}{{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
     {% endfor %}
 {% else %}
-class {{camelcase(name)}}(enum.StrEnum, metaclass=BaseEnumMeta):
+class {{camelcase(name)}}(str, enum.Enum, metaclass=BaseEnumMeta):
     {% for enumeration in definition.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endif %}
 {% else %}
 
 {% for enum_defin in definition.get_enums(name) %}
-class {{enum_defin.name}}(enum.StrEnum, metaclass=BaseEnumMeta):
+class {{enum_defin.name}}(str, enum.Enum, metaclass=BaseEnumMeta):
     {% for enumeration in enum_defin.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endfor %}

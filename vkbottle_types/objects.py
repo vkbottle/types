@@ -1,4 +1,4 @@
-from enum import StrEnum
+from enum import Enum
 
 from typing_extensions import List, Optional, TypeAlias, Union
 
@@ -6,7 +6,7 @@ from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
 
 
-class MessagesMessageActionStatus(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
+class MessagesMessageActionStatus(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -21,7 +21,7 @@ class MessagesMessageActionStatus(StrEnum, metaclass=BaseEnumMeta):  # type: ign
     CONVERSATION_STYLE_UPDATE = "conversation_style_update"
 
 
-class MessagesMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
+class MessagesMessageAttachmentType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -44,7 +44,7 @@ class MessagesMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: i
     VIDEO_PLAYLIST = "video_playlist"
 
 
-class VideoVideoType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
+class VideoVideoType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
@@ -53,7 +53,7 @@ class VideoVideoType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     LIVE = "live"
 
 
-class WallWallpostAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
+class WallWallpostAttachmentType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
     """Attachment type"""
 
     PHOTO = "photo"
@@ -110,7 +110,7 @@ class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
     pass
 
 
-class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):
+class CallbackLikeAddRemoveObjectType(str, Enum, metaclass=BaseEnumMeta):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -124,7 +124,7 @@ class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):
     CLIP = "clip"
 
 
-class BaseLinkButtonActionType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
+class BaseLinkButtonActionType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
     OPEN_URL = "open_url"
     JOIN_GROUP_AND_OPEN_URL = "join_group_and_open_url"
     MARKET_CLEAR_RECENT_QUERIES = "market_clear_recent_queries"

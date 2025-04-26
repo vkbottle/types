@@ -4,7 +4,7 @@ import typing
 from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 
 
-class BaseBoolInt(enum.IntEnum, metaclass=BaseEnumMeta):
+class BaseBoolInt(int, enum.Enum, metaclass=BaseEnumMeta):
     NO = 0
     YES = 1
 
@@ -130,7 +130,7 @@ class BaseCropPhotoRect(BaseModel):
     """Coordinate Y of the right lower corner."""
 
 
-class BaseErrorInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseErrorInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     BASE_ERROR = "base_error"
 
 
@@ -216,7 +216,7 @@ class BaseGradientPoint(BaseModel):
     """Point position."""
 
 
-class BaseImageTheme(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseImageTheme(str, enum.Enum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -246,7 +246,7 @@ class BaseImage(BaseModel):
     """Property `BaseImage.theme`."""
 
 
-class BaseLang(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLang(str, enum.Enum, metaclass=BaseEnumMeta):
     RU = "ru"
     UA = "ua"
     BE = "be"
@@ -435,7 +435,7 @@ class BaseLinkButtonAction(BaseModel):
     """Property `BaseLinkButtonAction.consume_reason`."""
 
 
-class BaseLinkButtonActionType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLinkButtonActionType(str, enum.Enum, metaclass=BaseEnumMeta):
     OPEN_URL = "open_url"
     MARKET_CLEAR_RECENT_QUERIES = "market_clear_recent_queries"
     CLOSE_WEB_APP = "close_web_app"
@@ -448,7 +448,7 @@ class BaseLinkButtonActionType(enum.StrEnum, metaclass=BaseEnumMeta):
     SHOW_FILTERS = "show_filters"
 
 
-class BaseLinkButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLinkButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     UPDATES = "updates"
     DEFAULT = "default"
     PRIMARY = "primary"
@@ -544,7 +544,7 @@ class BaseLinkNoProduct(BaseModel):
     """Video from link."""
 
 
-class BaseLinkProductType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLinkProductType(str, enum.Enum, metaclass=BaseEnumMeta):
     PRODUCT = "product"
 
 
@@ -603,7 +603,7 @@ class BaseLinkProductCategory(BaseModel):
     """
 
 
-class BaseLinkProductStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLinkProductStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     BLOCKED = "blocked"
     SOLD = "sold"
@@ -611,7 +611,7 @@ class BaseLinkProductStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     ARCHIVED = "archived"
 
 
-class BaseLinkRatingType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseLinkRatingType(str, enum.Enum, metaclass=BaseEnumMeta):
     RATING = "rating"
 
 
@@ -652,7 +652,7 @@ class BaseMessageError(BaseModel):
     """Error message."""
 
 
-class BaseNameCase(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseNameCase(str, enum.Enum, metaclass=BaseEnumMeta):
     NOM = "Nom"
     GEN = "Gen"
     DAT = "Dat"
@@ -807,7 +807,7 @@ class BasePlace(BaseModel):
     """Place type."""
 
 
-class BasePropertyExists(enum.IntEnum, metaclass=BaseEnumMeta):
+class BasePropertyExists(int, enum.Enum, metaclass=BaseEnumMeta):
     PROPERTY_EXISTS = 1
 
 
@@ -847,13 +847,13 @@ class BaseRequestParam(BaseModel):
     """Parameter value."""
 
 
-class BaseSex(enum.IntEnum, metaclass=BaseEnumMeta):
+class BaseSex(int, enum.Enum, metaclass=BaseEnumMeta):
     UNKNOWN = 0
     FEMALE = 1
     MALE = 2
 
 
-class BaseStickerInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseStickerInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -901,7 +901,7 @@ class BaseSticker(BaseModel):
     """Information whether the sticker is allowed."""
 
 
-class BaseStickerAnimationType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseStickerAnimationType(str, enum.Enum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -922,7 +922,7 @@ class BaseStickerAnimation(BaseModel):
     """URL of animation script."""
 
 
-class BaseStickerNewInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseStickerNewInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -979,7 +979,7 @@ class BaseUploadServer(BaseModel):
     """Upload URL."""
 
 
-class BaseUserGroupFields(enum.StrEnum, metaclass=BaseEnumMeta):
+class BaseUserGroupFields(str, enum.Enum, metaclass=BaseEnumMeta):
     ABOUT = "about"
     ACTION_BUTTON = "action_button"
     ACTIVITIES = "activities"
@@ -1179,7 +1179,7 @@ class UsersExports(BaseModel):
     """Property `UsersExports.twitter`."""
 
 
-class UsersFields(enum.StrEnum, metaclass=BaseEnumMeta):
+class UsersFields(str, enum.Enum, metaclass=BaseEnumMeta):
     FIRST_NAME_NOM = "first_name_nom"
     FIRST_NAME_GEN = "first_name_gen"
     FIRST_NAME_DAT = "first_name_dat"
@@ -1343,7 +1343,7 @@ class UsersMilitary(BaseModel):
     """Till year."""
 
 
-class UsersOccupationType(enum.StrEnum, metaclass=BaseEnumMeta):
+class UsersOccupationType(str, enum.Enum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     WORK = "work"
@@ -1380,7 +1380,7 @@ class UsersOccupation(BaseModel):
     """Property `UsersOccupation.city_id`."""
 
 
-class UsersOnlineInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class UsersOnlineInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     RECENTLY = "recently"
     LAST_WEEK = "last_week"
     LAST_MONTH = "last_month"
@@ -1478,7 +1478,7 @@ class UsersPersonal(BaseModel):
     """User\'s views on smoking."""
 
 
-class UsersRelativeType(enum.StrEnum, metaclass=BaseEnumMeta):
+class UsersRelativeType(str, enum.Enum, metaclass=BaseEnumMeta):
     PARENT = "parent"
     CHILD = "child"
     GRANDPARENT = "grandparent"
@@ -1867,7 +1867,7 @@ class UsersUserMin(BaseModel):
     """Property `UsersUserMin.is_closed`."""
 
 
-class UsersUserRelation(enum.IntEnum, metaclass=BaseEnumMeta):
+class UsersUserRelation(int, enum.Enum, metaclass=BaseEnumMeta):
     NOT_SPECIFIED = 0
     SINGLE = 1
     IN_A_RELATIONSHIP = 2
@@ -1986,7 +1986,7 @@ class UsersUserSettingsXtr(BaseModel):
     """Property `UsersUserSettingsXtr.languages`."""
 
 
-class UsersUserType(enum.StrEnum, metaclass=BaseEnumMeta):
+class UsersUserType(str, enum.Enum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
 
 
@@ -2068,7 +2068,7 @@ class AccountAccountCounters(BaseModel):
     """New photo tags number."""
 
 
-class AccountCountersFilter(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountCountersFilter(str, enum.Enum, metaclass=BaseEnumMeta):
     APP_REQUESTS = "app_requests"
     EVENTS = "events"
     FRIENDS = "friends"
@@ -2162,7 +2162,7 @@ class AccountNameRequest(BaseModel):
     """label to display for link in lang field."""
 
 
-class AccountNameRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountNameRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     SUCCESS = "success"
     PROCESSING = "processing"
     DECLINED = "declined"
@@ -2173,7 +2173,7 @@ class AccountNameRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     RESPONSE_WITH_LINK = "response_with_link"
 
 
-class AccountOfferLinkType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountOfferLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
     APP = "app"
@@ -2387,20 +2387,20 @@ class AccountPushParams(BaseModel):
     """Property `AccountPushParams.sdk_open`."""
 
 
-class AccountPushParamsMode(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountPushParamsMode(str, enum.Enum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     NO_SOUND = "no_sound"
     NO_TEXT = "no_text"
 
 
-class AccountPushParamsOnoff(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountPushParamsOnoff(str, enum.Enum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     NO_SOUND = "no_sound"
 
 
-class AccountPushParamsSettings(enum.StrEnum, metaclass=BaseEnumMeta):
+class AccountPushParamsSettings(str, enum.Enum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     FR_OF_FR = "fr_of_fr"
@@ -2496,7 +2496,7 @@ class AccountUserSettingsInterests(BaseModel):
     """Property `AccountUserSettingsInterests.about`."""
 
 
-class AddressFields(enum.StrEnum, metaclass=BaseEnumMeta):
+class AddressFields(str, enum.Enum, metaclass=BaseEnumMeta):
     ID = "id"
     TITLE = "title"
     ADDRESS = "address"
@@ -2515,13 +2515,13 @@ class AddressFields(enum.StrEnum, metaclass=BaseEnumMeta):
     TIME_OFFSET = "time_offset"
 
 
-class AdsAccessRole(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsAccessRole(str, enum.Enum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     MANAGER = "manager"
     REPORTS = "reports"
 
 
-class AdsAccessRolePublic(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsAccessRolePublic(str, enum.Enum, metaclass=BaseEnumMeta):
     MANAGER = "manager"
     REPORTS = "reports"
 
@@ -2566,7 +2566,7 @@ class AdsAccount(BaseModel):
     """Can user view account budget."""
 
 
-class AdsAccountType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsAccountType(str, enum.Enum, metaclass=BaseEnumMeta):
     GENERAL = "general"
     AGENCY = "agency"
 
@@ -2814,14 +2814,14 @@ class AdsAd(BaseModel):
     """Link type."""
 
 
-class AdsAdApproved(enum.IntEnum, metaclass=BaseEnumMeta):
+class AdsAdApproved(int, enum.Enum, metaclass=BaseEnumMeta):
     NOT_MODERATED = 0
     PENDING_MODERATION = 1
     APPROVED = 2
     REJECTED = 3
 
 
-class AdsAdCostType(enum.IntEnum, metaclass=BaseEnumMeta):
+class AdsAdCostType(int, enum.Enum, metaclass=BaseEnumMeta):
     PER_CLICKS = 0
     PER_IMPRESSIONS = 1
     PER_ACTIONS = 2
@@ -2991,7 +2991,7 @@ class AdsAdLayout(BaseModel):
     """Property `AdsAdLayout.clips_list`."""
 
 
-class AdsAdStatus(enum.IntEnum, metaclass=BaseEnumMeta):
+class AdsAdStatus(int, enum.Enum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
@@ -3062,13 +3062,13 @@ class AdsCampaign(BaseModel):
     """Limit of views per user per campaign."""
 
 
-class AdsCampaignStatus(enum.IntEnum, metaclass=BaseEnumMeta):
+class AdsCampaignStatus(int, enum.Enum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
 
 
-class AdsCampaignType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsCampaignType(str, enum.Enum, metaclass=BaseEnumMeta):
     NORMAL = "normal"
     VK_APPS_MANAGED = "vk_apps_managed"
     MOBILE_APPS = "mobile_apps"
@@ -3507,7 +3507,7 @@ class AdsCriteria(BaseModel):
     """mobile_manufacturers."""
 
 
-class AdsCriteriaSex(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsCriteriaSex(str, enum.Enum, metaclass=BaseEnumMeta):
     f__0 = "0"
     f__1 = "1"
     f__2 = "2"
@@ -3665,7 +3665,7 @@ class AdsLinkStatus(BaseModel):
     """URL."""
 
 
-class AdsLookalikeRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsLookalikeRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     SEARCH_IN_PROGRESS = "search_in_progress"
     SEARCH_FAILED = "search_failed"
     SEARCH_DONE = "search_done"
@@ -3674,7 +3674,7 @@ class AdsLookalikeRequestStatus(enum.StrEnum, metaclass=BaseEnumMeta):
     SAVE_DONE = "save_done"
 
 
-class AdsLookalikeRequestSourceType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsLookalikeRequestSourceType(str, enum.Enum, metaclass=BaseEnumMeta):
     RETARGETING_GROUP = "retargeting_group"
 
 
@@ -3776,14 +3776,14 @@ class AdsMusician(BaseModel):
     """Music artist photo."""
 
 
-class AdsObjectType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsObjectType(str, enum.Enum, metaclass=BaseEnumMeta):
     AD = "ad"
     CAMPAIGN = "campaign"
     CLIENT = "client"
     OFFICE = "office"
 
 
-class AdsOrdClientType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsOrdClientType(str, enum.Enum, metaclass=BaseEnumMeta):
     PERSON = "person"
     INDIVIDUAL = "individual"
     LEGAL = "legal"
@@ -4259,7 +4259,7 @@ class AdsRules(BaseModel):
     """Help chat."""
 
 
-class AdsStatisticClickActionType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsStatisticClickActionType(str, enum.Enum, metaclass=BaseEnumMeta):
     LOAD = "load"
     IMPRESSION = "impression"
     CLICK_DEEPLINK = "click_deeplink"
@@ -4489,7 +4489,7 @@ class AdsStatsFormat(BaseModel):
     """Mobile app stat."""
 
 
-class AdsStatsSexValue(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsStatsSexValue(str, enum.Enum, metaclass=BaseEnumMeta):
     F = "f"
     M = "m"
 
@@ -5006,7 +5006,7 @@ class AdsTargSuggestionsSchools(BaseModel):
     """Property `AdsTargSuggestionsSchools.type`."""
 
 
-class AdsTargSuggestionsSchoolsType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AdsTargSuggestionsSchoolsType(str, enum.Enum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     FACULTY = "faculty"
@@ -5293,7 +5293,7 @@ class AppWidgetsPhotos(BaseModel):
     """Property `AppWidgetsPhotos.items`."""
 
 
-class AppsAppFields(enum.StrEnum, metaclass=BaseEnumMeta):
+class AppsAppFields(str, enum.Enum, metaclass=BaseEnumMeta):
     AUTHOR_GROUP = "author_group"
     AUTHOR_ID = "author_id"
     AUTHOR_URL = "author_url"
@@ -5344,7 +5344,7 @@ class AppsAppFields(enum.StrEnum, metaclass=BaseEnumMeta):
     SCREEN_ORIENTATION = "screen_orientation"
 
 
-class AppsAppLeaderboardType(enum.IntEnum, metaclass=BaseEnumMeta):
+class AppsAppLeaderboardType(int, enum.Enum, metaclass=BaseEnumMeta):
     NOT_SUPPORTED = 0
     LEVELS = 1
     POINTS = 2
@@ -5415,7 +5415,7 @@ class AppsAppMin(BaseModel):
     """Screen orientation."""
 
 
-class AppsAppType(enum.StrEnum, metaclass=BaseEnumMeta):
+class AppsAppType(str, enum.Enum, metaclass=BaseEnumMeta):
     APP = "app"
     GAME = "game"
     SITE = "site"
@@ -5443,7 +5443,7 @@ class AppsCatalogList(BaseModel):
     """Property `AppsCatalogList.profiles`."""
 
 
-class AppsCustomSnippetButton(enum.StrEnum, metaclass=BaseEnumMeta):
+class AppsCustomSnippetButton(str, enum.Enum, metaclass=BaseEnumMeta):
     BUY = "buy"
     BUY_TICKET = "buy_ticket"
     CONTACT = "contact"
@@ -5535,7 +5535,7 @@ class AppsLeaderboard(BaseModel):
     """Score number."""
 
 
-class AppsScopeName(enum.StrEnum, metaclass=BaseEnumMeta):
+class AppsScopeName(str, enum.Enum, metaclass=BaseEnumMeta):
     FRIENDS = "friends"
     PHOTOS = "photos"
     VIDEO = "video"
@@ -5664,7 +5664,7 @@ class AudioAudio(BaseModel):
     """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
 
 
-class BoardDefaultOrder(enum.IntEnum, metaclass=BaseEnumMeta):
+class BoardDefaultOrder(int, enum.Enum, metaclass=BaseEnumMeta):
     DESC_UPDATED = 1
     DESC_CREATED = 2
     ASC_UPDATED = -1
@@ -5782,7 +5782,7 @@ class BugtrackerAddCompanyGroupsMembersError(BaseModel):
     """Property `BugtrackerAddCompanyGroupsMembersError.user_id`."""
 
 
-class BugtrackerAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class BugtrackerAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     DOC = "doc"
 
@@ -6564,7 +6564,7 @@ class CallbackGroupJoin(BaseModel):
     """Property `CallbackGroupJoin.join_type`."""
 
 
-class CallbackGroupJoinType(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackGroupJoinType(str, enum.Enum, metaclass=BaseEnumMeta):
     JOIN = "join"
     UNSURE = "unsure"
     ACCEPTED = "accepted"
@@ -6588,12 +6588,12 @@ class CallbackGroupLeave(BaseModel):
     """Property `CallbackGroupLeave.self`."""
 
 
-class CallbackGroupMarket(enum.IntEnum, metaclass=BaseEnumMeta):
+class CallbackGroupMarket(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
 
 
-class CallbackGroupOfficerRole(enum.IntEnum, metaclass=BaseEnumMeta):
+class CallbackGroupOfficerRole(int, enum.Enum, metaclass=BaseEnumMeta):
     NONE = 0
     MODERATOR = 1
     EDITOR = 2
@@ -6862,7 +6862,7 @@ class CallbackInfoForBots(BaseModel):
     """client or user language id."""
 
 
-class CallbackLikeAddRemoveObjectType(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackLikeAddRemoveObjectType(str, enum.Enum, metaclass=BaseEnumMeta):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -7063,7 +7063,7 @@ class CallbackMessageRead(BaseModel):
     """Property `CallbackMessageRead.conversation_message_id`."""
 
 
-class CallbackMessageTypingStateState(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackMessageTypingStateState(str, enum.Enum, metaclass=BaseEnumMeta):
     MESSAGE_TYPING_STATE = "message_typing_state"
     f__0 = "0"
     f__1 = "1"
@@ -7109,7 +7109,7 @@ class CallbackPhotoCommentDelete(BaseModel):
     """Property `CallbackPhotoCommentDelete.deleter_id`."""
 
 
-class CallbackPhotoNewVerticalAlign(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackPhotoNewVerticalAlign(str, enum.Enum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -7264,7 +7264,7 @@ class CallbackPollVoteNew(BaseModel):
     """Property `CallbackPollVoteNew.user_id`."""
 
 
-class CallbackType(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
     AUDIO_NEW = "audio_new"
     BOARD_POST_NEW = "board_post_new"
     BOARD_POST_EDIT = "board_post_edit"
@@ -7468,7 +7468,7 @@ class CallbackWallCommentDelete(BaseModel):
     """Property `CallbackWallCommentDelete.post_id`."""
 
 
-class CallbackWallPostNewInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackWallPostNewInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -7895,7 +7895,7 @@ class CallbackWallReplyRestore(BaseModel):
     """Photo ID."""
 
 
-class CallbackWallRepostInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallbackWallRepostInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -8061,7 +8061,7 @@ class CallsCall(BaseModel):
     """Property `CallsCall.participants`."""
 
 
-class CallsEndState(enum.StrEnum, metaclass=BaseEnumMeta):
+class CallsEndState(str, enum.Enum, metaclass=BaseEnumMeta):
     CANCELED_BY_INITIATOR = "canceled_by_initiator"
     CANCELED_BY_RECEIVER = "canceled_by_receiver"
     REACHED = "reached"
@@ -8315,7 +8315,7 @@ class DocsDoc(BaseModel):
     """Document tags."""
 
 
-class DocsDocAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class DocsDocAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     DOC = "doc"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
@@ -8442,7 +8442,7 @@ class DocsDocTypes(BaseModel):
     """Number of docs."""
 
 
-class DonutDonatorSubscriptionInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class DonutDonatorSubscriptionInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     EXPIRING = "expiring"
 
@@ -8539,7 +8539,7 @@ class FaveBookmark(BaseModel):
     """Property `FaveBookmark.video`."""
 
 
-class FaveBookmarkType(enum.StrEnum, metaclass=BaseEnumMeta):
+class FaveBookmarkType(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     VIDEO = "video"
     PRODUCT = "product"
@@ -8580,7 +8580,7 @@ class FavePage(BaseModel):
     """Property `FavePage.user`."""
 
 
-class FavePageType(enum.StrEnum, metaclass=BaseEnumMeta):
+class FavePageType(str, enum.Enum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     HINTS = "hints"
@@ -8643,7 +8643,7 @@ class GiftsGift(BaseModel):
     """Property `GiftsGift.privacy`."""
 
 
-class GiftsGiftPrivacy(enum.IntEnum, metaclass=BaseEnumMeta):
+class GiftsGiftPrivacy(int, enum.Enum, metaclass=BaseEnumMeta):
     NAME_AND_MESSAGE_FOR_ALL = 0
     NAME_FOR_ALL = 1
     NAME_AND_MESSAGE_FOR_RECIPIENT_ONLY = 2
@@ -8850,7 +8850,7 @@ class GroupsAddressTimetableDay(BaseModel):
     """Start time of the break in minutes."""
 
 
-class GroupsAddressWorkInfoStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsAddressWorkInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     NO_INFORMATION = "no_information"
     TEMPORARILY_CLOSED = "temporarily_closed"
     ALWAYS_OPENED = "always_opened"
@@ -8923,7 +8923,7 @@ class GroupsBanInfo(BaseModel):
     """Property `GroupsBanInfo.reason`."""
 
 
-class GroupsBanInfoReason(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsBanInfoReason(int, enum.Enum, metaclass=BaseEnumMeta):
     OTHER = 0
     SPAM = 1
     VERBAL_ABUSE = 2
@@ -8931,7 +8931,7 @@ class GroupsBanInfoReason(enum.IntEnum, metaclass=BaseEnumMeta):
     FLOOD = 4
 
 
-class GroupsCallbackServerStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsCallbackServerStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     UNCONFIGURED = "unconfigured"
     FAILED = "failed"
     WAIT = "wait"
@@ -9105,7 +9105,7 @@ class GroupsCountersGroup(BaseModel):
     """Clips likes number."""
 
 
-class GroupsFields(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsFields(str, enum.Enum, metaclass=BaseEnumMeta):
     ID = "id"
     NAME = "name"
     SCREEN_NAME = "screen_name"
@@ -9201,7 +9201,7 @@ class GroupsFields(enum.StrEnum, metaclass=BaseEnumMeta):
     VIDEOS_COUNT = "videos_count"
 
 
-class GroupsFilter(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsFilter(str, enum.Enum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     EDITOR = "editor"
     MODER = "moder"
@@ -9346,19 +9346,19 @@ class GroupsGroup(BaseModel):
     """Property `GroupsGroup.video_live`."""
 
 
-class GroupsGroupAccess(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupAccess(int, enum.Enum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupAdminLevel(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupAdminLevel(int, enum.Enum, metaclass=BaseEnumMeta):
     MODERATOR = 1
     EDITOR = 2
     ADMINISTRATOR = 3
 
 
-class GroupsGroupAgeLimits(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupAgeLimits(int, enum.Enum, metaclass=BaseEnumMeta):
     UNLIMITED = 1
     F__16_PLUS = 2
     F__18_PLUS = 3
@@ -9385,7 +9385,7 @@ class GroupsGroupAttach(BaseModel):
     """is favorite."""
 
 
-class GroupsGroupAudio(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupAudio(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -9464,19 +9464,19 @@ class GroupsGroupCategoryType(BaseModel):
     """Property `GroupsGroupCategoryType.name`."""
 
 
-class GroupsGroupDocs(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupDocs(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupFullAgeLimits(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupFullAgeLimits(int, enum.Enum, metaclass=BaseEnumMeta):
     NO = 1
     OVER_16 = 2
     OVER_18 = 3
 
 
-class GroupsGroupFullMemberStatus(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupFullMemberStatus(int, enum.Enum, metaclass=BaseEnumMeta):
     NOT_A_MEMBER = 0
     MEMBER = 1
     NOT_SURE = 2
@@ -9485,7 +9485,7 @@ class GroupsGroupFullMemberStatus(enum.IntEnum, metaclass=BaseEnumMeta):
     INVITED = 5
 
 
-class GroupsGroupFullSection(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupFullSection(int, enum.Enum, metaclass=BaseEnumMeta):
     NONE = 0
     PHOTOS = 1
     TOPICS = 2
@@ -9537,13 +9537,13 @@ class GroupsGroupFullSection(enum.IntEnum, metaclass=BaseEnumMeta):
     RECOMMENDED_TIPS_WIDGET = 62
 
 
-class GroupsGroupIsClosed(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupIsClosed(int, enum.Enum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupMarketCurrency(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupMarketCurrency(int, enum.Enum, metaclass=BaseEnumMeta):
     RUSSIAN_RUBLES = 643
     UKRAINIAN_HRYVNIA = 980
     KAZAKH_TENGE = 398
@@ -9551,7 +9551,7 @@ class GroupsGroupMarketCurrency(enum.IntEnum, metaclass=BaseEnumMeta):
     US_DOLLARS = 840
 
 
-class GroupsGroupPhotos(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupPhotos(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -9578,7 +9578,7 @@ class GroupsGroupPublicCategoryList(BaseModel):
     """Property `GroupsGroupPublicCategoryList.subcategories`."""
 
 
-class GroupsGroupRole(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsGroupRole(str, enum.Enum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -9602,7 +9602,7 @@ class GroupsGroupSubcategory(BaseModel):
     """Property `GroupsGroupSubcategory.genders`."""
 
 
-class GroupsGroupSubject(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupSubject(int, enum.Enum, metaclass=BaseEnumMeta):
     AUTO = 1
     ACTIVITY_HOLIDAYS = 2
     BUSINESS = 3
@@ -9647,13 +9647,13 @@ class GroupsGroupSubject(enum.IntEnum, metaclass=BaseEnumMeta):
     DESIGN_AND_GRAPHICS = 42
 
 
-class GroupsGroupSuggestedPrivacy(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupSuggestedPrivacy(int, enum.Enum, metaclass=BaseEnumMeta):
     NONE = 0
     ALL = 1
     SUBSCRIBERS = 2
 
 
-class GroupsGroupTagColor(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsGroupTagColor(str, enum.Enum, metaclass=BaseEnumMeta):
     f__454647 = "454647"
     f__45678f = "45678f"
     f__4bb34b = "4bb34b"
@@ -9696,32 +9696,32 @@ class GroupsGroupTag(BaseModel):
     """Property `GroupsGroupTag.uses`."""
 
 
-class GroupsGroupTopics(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupTopics(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupType(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsGroupType(str, enum.Enum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PAGE = "page"
     EVENT = "event"
 
 
-class GroupsGroupVideo(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupVideo(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupWall(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupWall(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
     CLOSED = 3
 
 
-class GroupsGroupWiki(enum.IntEnum, metaclass=BaseEnumMeta):
+class GroupsGroupWiki(int, enum.Enum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -10079,7 +10079,7 @@ class GroupsMarketProperties(BaseModel):
     """Property `GroupsMarketProperties.using_vkpay_market_app`."""
 
 
-class GroupsMarketState(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsMarketState(str, enum.Enum, metaclass=BaseEnumMeta):
     NONE = "none"
     BASIC = "basic"
     ADVANCED = "advanced"
@@ -10109,11 +10109,11 @@ class GroupsMemberRole(BaseModel):
     """Property `GroupsMemberRole.role`."""
 
 
-class GroupsMemberRolePermission(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsMemberRolePermission(str, enum.Enum, metaclass=BaseEnumMeta):
     ADS = "ads"
 
 
-class GroupsMemberRoleStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsMemberRoleStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -10179,13 +10179,13 @@ class GroupsOnlineStatus(BaseModel):
     """Estimated time of answer (for status = answer_mark)."""
 
 
-class GroupsOnlineStatusType(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsOnlineStatusType(str, enum.Enum, metaclass=BaseEnumMeta):
     NONE = "none"
     ONLINE = "online"
     ANSWER_MARK = "answer_mark"
 
 
-class GroupsOwnerXtrBanInfoType(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsOwnerXtrBanInfoType(str, enum.Enum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
 
@@ -10246,7 +10246,7 @@ class GroupsProfileItem(BaseModel):
     """User first name."""
 
 
-class GroupsRoleOptions(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsRoleOptions(str, enum.Enum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -10265,7 +10265,7 @@ class GroupsSectionsListItem(BaseModel):
     """Object title."""
 
 
-class GroupsSettingsTwitterStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupsSettingsTwitterStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     LOADING = "loading"
     SYNC = "sync"
 
@@ -10446,7 +10446,7 @@ class LeadFormsLead(BaseModel):
     """Property `LeadFormsLead.ad_id`."""
 
 
-class LeadFormsQuestionItemType(enum.StrEnum, metaclass=BaseEnumMeta):
+class LeadFormsQuestionItemType(str, enum.Enum, metaclass=BaseEnumMeta):
     INPUT = "input"
     TEXTAREA = "textarea"
     RADIO = "radio"
@@ -10490,7 +10490,7 @@ class LeadFormsQuestionItemOption(BaseModel):
     """Property `LeadFormsQuestionItemOption.key`."""
 
 
-class LikesType(enum.StrEnum, metaclass=BaseEnumMeta):
+class LikesType(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     PHOTO = "photo"
@@ -10654,7 +10654,7 @@ class MarketMarketAlbum(BaseModel):
     """Is album needed to be blurred (18+) or not."""
 
 
-class MarketMarketCategoryInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -10683,7 +10683,7 @@ class MarketMarketCategory(BaseModel):
     """Property `MarketMarketCategory.parent`."""
 
 
-class MarketMarketCategoryNestedInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryNestedInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -10759,7 +10759,7 @@ class MarketMarketCategoryTree(BaseModel):
     """Description for category\'s page. Used for SEO."""
 
 
-class MarketMarketCategoryTreeViewType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryTreeViewType(str, enum.Enum, metaclass=BaseEnumMeta):
     TAB_ROOT = "tab_root"
 
 
@@ -10891,7 +10891,7 @@ class MarketMarketItem(BaseModel):
     """Attach for post owner id."""
 
 
-class MarketMarketItemAvailability(enum.IntEnum, metaclass=BaseEnumMeta):
+class MarketMarketItemAvailability(int, enum.Enum, metaclass=BaseEnumMeta):
     AVAILABLE = 0
     REMOVED = 1
     UNAVAILABLE = 2
@@ -11063,7 +11063,7 @@ class MarketOrderItem(BaseModel):
     """Extended field. Can current viewer add review for this ordered item."""
 
 
-class MarketOwnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MarketOwnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     BASE = "base"
     PRO = "pro"
     DISABLED = "disabled"
@@ -11114,7 +11114,7 @@ class MarketPrice(BaseModel):
     """Textual representation of old price."""
 
 
-class MarketPropertyType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MarketPropertyType(str, enum.Enum, metaclass=BaseEnumMeta):
     TEXT = "text"
     COLOR = "color"
 
@@ -11156,7 +11156,7 @@ class MarketPropertyVariant(BaseModel):
     """Property value corresponding to property type."""
 
 
-class MarketServicesViewType(enum.IntEnum, metaclass=BaseEnumMeta):
+class MarketServicesViewType(int, enum.Enum, metaclass=BaseEnumMeta):
     CARDS = 1
     ROWS = 2
 
@@ -11716,43 +11716,43 @@ class MessagesChatSettingsAcl(BaseModel):
     """Can you change chat service type."""
 
 
-class MessagesChatSettingsPermissionsInvite(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsInvite(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeInfo(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangeInfo(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangePin(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangePin(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsUseMassMentions(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsUseMassMentions(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsSeeInviteLink(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsSeeInviteLink(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsCall(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsCall(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeAdmins(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangeAdmins(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
 
@@ -11829,14 +11829,14 @@ class MessagesChatSettingsPhoto(BaseModel):
     """If provided photo is default call photo."""
 
 
-class MessagesChatSettingsState(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsState(str, enum.Enum, metaclass=BaseEnumMeta):
     IN = "in"
     KICKED = "kicked"
     LEFT = "left"
     OUT = "out"
 
 
-class MessagesConversationSpecialServiceType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesConversationSpecialServiceType(str, enum.Enum, metaclass=BaseEnumMeta):
     BUSINESS_NOTIFY = "business_notify"
 
 
@@ -12014,7 +12014,7 @@ class MessagesConversationPeer(BaseModel):
     """Property `MessagesConversationPeer.local_id`."""
 
 
-class MessagesConversationPeerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesConversationPeerType(str, enum.Enum, metaclass=BaseEnumMeta):
     CHAT = "chat"
     EMAIL = "email"
     USER = "user"
@@ -12347,7 +12347,7 @@ class MessagesHistoryMessageAttachment(BaseModel):
     """Property `MessagesHistoryMessageAttachment.photo`."""
 
 
-class MessagesHistoryMessageAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesHistoryMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     APP_ACTION = "app_action"
     AUDIO = "audio"
     DOC = "doc"
@@ -12382,7 +12382,7 @@ class MessagesKeyboard(BaseModel):
     """Property `MessagesKeyboard.inline`."""
 
 
-class MessagesKeyboardButtonColor(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonColor(str, enum.Enum, metaclass=BaseEnumMeta):
     DEFAULT = "default"
     POSITIVE = "positive"
     NEGATIVE = "negative"
@@ -12403,7 +12403,7 @@ class MessagesKeyboardButton(BaseModel):
     """Button color."""
 
 
-class MessagesKeyboardButtonActionCallbackType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
     CALLBACK = "callback"
 
 
@@ -12424,7 +12424,7 @@ class MessagesKeyboardButtonActionCallback(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionLocationType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnumMeta):
     LOCATION = "location"
 
 
@@ -12442,7 +12442,7 @@ class MessagesKeyboardButtonActionLocation(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenAppType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnumMeta):
     OPEN_APP = "open_app"
 
 
@@ -12474,7 +12474,7 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenLinkType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
     OPEN_LINK = "open_link"
 
 
@@ -12498,7 +12498,7 @@ class MessagesKeyboardButtonActionOpenLink(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenPhotoType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEnumMeta):
     OPEN_PHOTO = "open_photo"
 
 
@@ -12511,7 +12511,7 @@ class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """Property `MessagesKeyboardButtonActionOpenPhoto.type`."""
 
 
-class MessagesKeyboardButtonActionTextType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMeta):
     TEXT = "text"
 
 
@@ -12532,7 +12532,7 @@ class MessagesKeyboardButtonActionText(BaseModel):
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionVkpayType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMeta):
     VKPAY = "vkpay"
 
 
@@ -12661,7 +12661,7 @@ class MessagesMessageActionPhoto(BaseModel):
     """URL of the preview image with 200px in width."""
 
 
-class MessagesMessageActionStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesMessageActionStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -12749,7 +12749,7 @@ class MessagesMessageAttachment(BaseModel):
     """Property `MessagesMessageAttachment.poll`."""
 
 
-class MessagesMessageAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -12994,7 +12994,7 @@ class MessagesSendUserIdsResponseItem(BaseModel):
     """Property `MessagesSendUserIdsResponseItem.error`."""
 
 
-class MessagesTemplateActionTypeNames(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesTemplateActionTypeNames(str, enum.Enum, metaclass=BaseEnumMeta):
     TEXT = "text"
     START = "start"
     LOCATION = "location"
@@ -13008,7 +13008,7 @@ class MessagesTemplateActionTypeNames(enum.StrEnum, metaclass=BaseEnumMeta):
     OPEN_MODAL_VIEW = "open_modal_view"
 
 
-class MessagesUserTypeForXtrInvitedBy(enum.StrEnum, metaclass=BaseEnumMeta):
+class MessagesUserTypeForXtrInvitedBy(str, enum.Enum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
 
@@ -13137,7 +13137,7 @@ class NotificationsFeedback(BaseModel):
     """Wall owner\'s ID."""
 
 
-class NotificationsNotificationInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class NotificationsNotificationInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13175,7 +13175,7 @@ class NotificationsNotification(BaseModel):
     """Notification type."""
 
 
-class NotificationsNotificationItemInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class NotificationsNotificationItemInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13325,7 +13325,7 @@ class OrdersAmountItem(BaseModel):
     """Votes number."""
 
 
-class OrdersOrderStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class OrdersOrderStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     CREATED = "created"
     CHARGED = "charged"
     REFUNDED = "refunded"
@@ -13475,7 +13475,7 @@ class OwnerState(BaseModel):
     """wiki text to describe user state."""
 
 
-class PagesPrivacySettings(enum.IntEnum, metaclass=BaseEnumMeta):
+class PagesPrivacySettings(int, enum.Enum, metaclass=BaseEnumMeta):
     COMMUNITY_MANAGERS_ONLY = 0
     COMMUNITY_MEMBERS_ONLY = 1
     EVERYONE = 2
@@ -13661,7 +13661,7 @@ class PhotosImage(BaseModel):
     """Width of the photo in px.."""
 
 
-class PhotosImageType(enum.StrEnum, metaclass=BaseEnumMeta):
+class PhotosImageType(str, enum.Enum, metaclass=BaseEnumMeta):
     S = "s"
     M = "m"
     X = "x"
@@ -13676,7 +13676,7 @@ class PhotosImageType(enum.StrEnum, metaclass=BaseEnumMeta):
     BASE = "base"
 
 
-class PhotosPhotoVerticalAlign(enum.StrEnum, metaclass=BaseEnumMeta):
+class PhotosPhotoVerticalAlign(str, enum.Enum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -13955,7 +13955,7 @@ class PhotosPhotoSizes(BaseModel):
     """URL of the image."""
 
 
-class PhotosPhotoSizesType(enum.StrEnum, metaclass=BaseEnumMeta):
+class PhotosPhotoSizesType(str, enum.Enum, metaclass=BaseEnumMeta):
     T = "t"
     S = "s"
     M = "m"
@@ -14208,13 +14208,13 @@ class PhotosTagsSuggestionItem(BaseModel):
     """Property `PhotosTagsSuggestionItem.track_code`."""
 
 
-class PhotosTagsSuggestionItemButtonAction(enum.StrEnum, metaclass=BaseEnumMeta):
+class PhotosTagsSuggestionItemButtonAction(str, enum.Enum, metaclass=BaseEnumMeta):
     CONFIRM = "confirm"
     DECLINE = "decline"
     SHOW_TAGS = "show_tags"
 
 
-class PhotosTagsSuggestionItemButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class PhotosTagsSuggestionItemButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
     SECONDARY = "secondary"
 
@@ -14300,7 +14300,7 @@ class PollsAnswer(BaseModel):
     """Votes number."""
 
 
-class PollsBackgroundType(enum.StrEnum, metaclass=BaseEnumMeta):
+class PollsBackgroundType(str, enum.Enum, metaclass=BaseEnumMeta):
     GRADIENT = "gradient"
     TILE = "tile"
 
@@ -14542,7 +14542,7 @@ class PrettyCardsButtonOneOf(BaseModel):
     """
 
 
-class PrettyCardsPrettyCardInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class PrettyCardsPrettyCardInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     PRETTYCARDS_PRETTYCARD = "prettyCards_prettyCard"
 
 
@@ -14641,7 +14641,7 @@ class SearchHint(BaseModel):
     """Property `SearchHint.link`."""
 
 
-class SearchHintSection(enum.StrEnum, metaclass=BaseEnumMeta):
+class SearchHintSection(str, enum.Enum, metaclass=BaseEnumMeta):
     GROUPS = "groups"
     EVENTS = "events"
     PUBLICS = "publics"
@@ -14652,7 +14652,7 @@ class SearchHintSection(enum.StrEnum, metaclass=BaseEnumMeta):
     PROMO = "promo"
 
 
-class SearchHintType(enum.StrEnum, metaclass=BaseEnumMeta):
+class SearchHintType(str, enum.Enum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
     VK_APP = "vk_app"
@@ -15161,7 +15161,7 @@ class StorageValue(BaseModel):
     """Property `StorageValue.value`."""
 
 
-class StoreProductType(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoreProductType(str, enum.Enum, metaclass=BaseEnumMeta):
     STICKERS = "stickers"
 
 
@@ -15349,7 +15349,7 @@ class StoriesClickableArea(BaseModel):
     """Property `StoriesClickableArea.y`."""
 
 
-class StoriesClickableStickerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerType(str, enum.Enum, metaclass=BaseEnumMeta):
     HASHTAG = "hashtag"
     MENTION = "mention"
     LINK = "link"
@@ -15371,7 +15371,7 @@ class StoriesClickableStickerType(enum.StrEnum, metaclass=BaseEnumMeta):
     SPOILER = "spoiler"
 
 
-class StoriesClickableStickerStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     TRANSPARENT = "transparent"
     BLUE_GRADIENT = "blue_gradient"
     RED_GRADIENT = "red_gradient"
@@ -15406,7 +15406,7 @@ class StoriesClickableStickerStyle(enum.StrEnum, metaclass=BaseEnumMeta):
     FULLVIEW = "fullview"
 
 
-class StoriesClickableStickerSubtype(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerSubtype(str, enum.Enum, metaclass=BaseEnumMeta):
     MARKET_ITEM = "market_item"
     ALIEXPRESS_PRODUCT = "aliexpress_product"
 
@@ -15581,7 +15581,7 @@ class StoriesClickableStickers(BaseModel):
     """Property `StoriesClickableStickers.original_width`."""
 
 
-class StoriesFeedItemType(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesFeedItemType(str, enum.Enum, metaclass=BaseEnumMeta):
     PROMO_STORIES = "promo_stories"
     STORIES = "stories"
     LIVE_ACTIVE = "live_active"
@@ -15939,20 +15939,20 @@ class StoriesStoryStatsStat(BaseModel):
     """Stat value."""
 
 
-class StoriesStoryStatsState(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesStoryStatsState(str, enum.Enum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     HIDDEN = "hidden"
 
 
-class StoriesStoryType(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesStoryType(str, enum.Enum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     VIDEO = "video"
     LIVE_ACTIVE = "live_active"
     LIVE_FINISHED = "live_finished"
 
 
-class StoriesUploadLinkText(enum.StrEnum, metaclass=BaseEnumMeta):
+class StoriesUploadLinkText(str, enum.Enum, metaclass=BaseEnumMeta):
     TO_STORE = "to_store"
     VOTE = "vote"
     MORE = "more"
@@ -16004,7 +16004,7 @@ class StoriesViewersItem(BaseModel):
     """Property `StoriesViewersItem.user`."""
 
 
-class StreamingStatsEventType(enum.StrEnum, metaclass=BaseEnumMeta):
+class StreamingStatsEventType(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     SHARE = "share"
@@ -16051,7 +16051,7 @@ class FriendsFriendStatus(BaseModel):
     """MD5 hash for the result validation."""
 
 
-class FriendsFriendStatusStatus(enum.IntEnum, metaclass=BaseEnumMeta):
+class FriendsFriendStatusStatus(int, enum.Enum, metaclass=BaseEnumMeta):
     NOT_A_FRIEND = 0
     OUTCOMING_REQUEST = 1
     INCOMING_REQUEST = 2
@@ -16159,7 +16159,7 @@ class UtilsDomainResolved(BaseModel):
     """Property `UtilsDomainResolved.type`."""
 
 
-class UtilsDomainResolvedType(enum.StrEnum, metaclass=BaseEnumMeta):
+class UtilsDomainResolvedType(str, enum.Enum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     APPLICATION = "application"
@@ -16221,7 +16221,7 @@ class UtilsLinkChecked(BaseModel):
     """Property `UtilsLinkChecked.status`."""
 
 
-class UtilsLinkCheckedStatus(enum.StrEnum, metaclass=BaseEnumMeta):
+class UtilsLinkCheckedStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     NOT_BANNED = "not_banned"
     BANNED = "banned"
     PROCESSING = "processing"
@@ -16520,12 +16520,12 @@ class VideoStreamInputParams(BaseModel):
     """Property `VideoStreamInputParams.webrtc_url`."""
 
 
-class VideoVideoResponseType(enum.StrEnum, metaclass=BaseEnumMeta):
+class VideoVideoResponseType(str, enum.Enum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
 
-class VideoVideoType(enum.StrEnum, metaclass=BaseEnumMeta):
+class VideoVideoType(str, enum.Enum, metaclass=BaseEnumMeta):
     INTERACTIVE = "interactive"
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
@@ -16787,7 +16787,7 @@ class VideoVideo(BaseModel):
     """Property `VideoVideo.reposts`."""
 
 
-class VideoVideoAlbumResponseType(enum.StrEnum, metaclass=BaseEnumMeta):
+class VideoVideoAlbumResponseType(str, enum.Enum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
@@ -17026,7 +17026,7 @@ class WallCommentAttachment(BaseModel):
     """Property `WallCommentAttachment.graffiti`."""
 
 
-class WallCommentAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallCommentAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     AUDIO_PLAYLIST = "audio_playlist"
@@ -17041,7 +17041,7 @@ class WallCommentAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
     GRAFFITI = "graffiti"
 
 
-class WallGeoType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallGeoType(str, enum.Enum, metaclass=BaseEnumMeta):
     PLACE = "place"
     POINT = "point"
 
@@ -17067,7 +17067,7 @@ class WallGeo(BaseModel):
     """Place type."""
 
 
-class WallGetFilter(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallGetFilter(str, enum.Enum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OTHERS = "others"
     ALL = "all"
@@ -17174,7 +17174,7 @@ class WallPostSource(BaseModel):
     """Property `WallPostSource.link`."""
 
 
-class WallPostSourceType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallPostSourceType(str, enum.Enum, metaclass=BaseEnumMeta):
     VK = "vk"
     WIDGET = "widget"
     API = "api"
@@ -17183,7 +17183,7 @@ class WallPostSourceType(enum.StrEnum, metaclass=BaseEnumMeta):
     MVK = "mvk"
 
 
-class WallPostType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallPostType(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     COPY = "copy"
     REPLY = "reply"
@@ -17436,7 +17436,7 @@ class WallWallItem(BaseModel):
     """Property `WallWallItem.to_id`."""
 
 
-class WallWallpostInnerType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallWallpostInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -17673,7 +17673,7 @@ class WallWallpostAttachment(BaseModel):
     """Property `WallWallpostAttachment.video_playlist`."""
 
 
-class WallWallpostAttachmentType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallWallpostAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     PHOTOS_LIST = "photos_list"
     POSTED_PHOTO = "posted_photo"
@@ -17724,7 +17724,7 @@ class WallWallpostCommentsDonutPlaceholder(BaseModel):
     """Property `WallWallpostCommentsDonutPlaceholder.text`."""
 
 
-class WallWallpostDonutEditMode(enum.StrEnum, metaclass=BaseEnumMeta):
+class WallWallpostDonutEditMode(str, enum.Enum, metaclass=BaseEnumMeta):
     ALL = "all"
     DURATION = "duration"
 
@@ -17767,7 +17767,7 @@ class WallWallpostDonutPlaceholder(BaseModel):
     """Property `WallWallpostDonutPlaceholder.text`."""
 
 
-class NewsfeedCommentsFilters(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedCommentsFilters(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     VIDEO = "video"
@@ -17805,7 +17805,7 @@ class NewsfeedCommentsItemBase(BaseModel):
     """Property `NewsfeedCommentsItemBase.post_id`."""
 
 
-class NewsfeedIgnoreItemType(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedIgnoreItemType(str, enum.Enum, metaclass=BaseEnumMeta):
     WALL = "wall"
     TAG = "tag"
     PROFILEPHOTO = "profilephoto"
@@ -17855,7 +17855,7 @@ class NewsfeedItemBase(BaseModel):
     """Property `NewsfeedItemBase.feedback`."""
 
 
-class NewsfeedItemDigestButtonStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
 
 
@@ -17873,7 +17873,7 @@ class NewsfeedItemDigestButton(BaseModel):
     """Property `NewsfeedItemDigestButton.style`."""
 
 
-class NewsfeedItemDigestFooterStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestFooterStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     TEXT = "text"
     BUTTON = "button"
 
@@ -17900,7 +17900,7 @@ class NewsfeedItemDigestFooter(BaseModel):
     """Property `NewsfeedItemDigestFooter.feed_id`."""
 
 
-class NewsfeedItemDigestHeaderStyle(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestHeaderStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     SINGLELINE = "singleline"
     MULTILINE = "multiline"
 
@@ -18155,7 +18155,7 @@ class NewsfeedItemWallpostFeedbackAnswer(BaseModel):
     """Property `NewsfeedItemWallpostFeedbackAnswer.id`."""
 
 
-class NewsfeedItemWallpostFeedbackType(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedItemWallpostFeedbackType(str, enum.Enum, metaclass=BaseEnumMeta):
     BUTTONS = "buttons"
     STARS = "stars"
 
@@ -18178,7 +18178,7 @@ class NewsfeedNewsfeedItem(BaseModel):
     """
 
 
-class NewsfeedNewsfeedItemType(enum.StrEnum, metaclass=BaseEnumMeta):
+class NewsfeedNewsfeedItemType(str, enum.Enum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     PHOTO_TAG = "photo_tag"
@@ -18221,7 +18221,7 @@ class WidgetsCommentMedia(BaseModel):
     """Property `WidgetsCommentMedia.type`."""
 
 
-class WidgetsCommentMediaType(enum.StrEnum, metaclass=BaseEnumMeta):
+class WidgetsCommentMediaType(str, enum.Enum, metaclass=BaseEnumMeta):
     AUDIO = "audio"
     PHOTO = "photo"
     VIDEO = "video"
