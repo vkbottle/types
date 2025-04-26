@@ -3,7 +3,7 @@ import enum
 from ...base_model import BaseEnumMeta
 
 
-class GroupEventType(enum.StrEnum, metaclass=BaseEnumMeta):
+class GroupEventType(str, enum.Enum, metaclass=BaseEnumMeta):
     MESSAGE_NEW = "message_new"
     MESSAGE_REPLY = "message_reply"
     MESSAGE_EDIT = "message_edit"
