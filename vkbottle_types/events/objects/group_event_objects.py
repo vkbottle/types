@@ -11,6 +11,7 @@ class BaseEventObject(BaseModel):
 
 
 class MessageNewObject(BaseEventObject):
+    client_info: Optional["ClientInfoForBots"] = None
     message: Optional["MessagesMessage"] = None
 
 
@@ -348,6 +349,7 @@ __all__ = (
     "BoardPostEditObject",
     "BoardPostNewObject",
     "BoardPostRestoreObject",
+    "ClientInfoForBots",
     "DonutMoneyWithdrawErrorObject",
     "DonutMoneyWithdrawObject",
     "DonutSubscriptionCancelledObject",

@@ -299,6 +299,37 @@ class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef
     poll: Optional["PollsPoll"] = None
 
 
+class ClientInfoForBots(BaseModel):
+    """
+    Model: `ClientInfoForBots`
+    """
+
+    button_actions: Optional[List["MessagesTemplateActionTypeNames"]] = Field(
+        default=None,
+    )
+    """Property `ClientInfoForBots.button_actions`."""
+
+    keyboard: Optional[bool] = Field(
+        default=None,
+    )
+    """client has support keyboard."""
+
+    inline_keyboard: Optional[bool] = Field(
+        default=None,
+    )
+    """client has support inline keyboard."""
+
+    carousel: Optional[bool] = Field(
+        default=None,
+    )
+    """client has support carousel."""
+
+    lang_id: Optional[int] = Field(
+        default=None,
+    )
+    """client or user language id."""
+
+
 UsersSubscriptionsItem: TypeAlias = Union[GroupsGroupFull, UsersUserFull]
 
 
