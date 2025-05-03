@@ -67,7 +67,8 @@ class BaseEnumMeta(enum.EnumMeta, type):
             _simple=False,
             **kwds,
         ):
-            classdict["NOT_SUPPORTED_MEMBER"] = "NOT_SUPPORTED" if any(x in bases for x in (str, enum.StrEnum)) else -1234567890
+            enum_bases = (str, enum.StrEnum) if hasattr(enum, "StrEnum") else (str,)
+            classdict["NOT_SUPPORTED_MEMBER"] = "NOT_SUPPORTED" if any(x in bases for x in enum_bases) else -1234567890
             classdict["_missing_"] = classmethod(lambda cls, _: cls._member_map_["NOT_SUPPORTED_MEMBER"])
             classdict["__get_pydantic_core_schema__"] = classmethod(BaseEnumMeta.__get_pydantic_core_schema__)
             return super().__new__(metacls, cls, bases, classdict, boundary=boundary, _simple=_simple, **kwds)
