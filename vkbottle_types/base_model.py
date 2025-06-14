@@ -18,12 +18,14 @@ if typing.TYPE_CHECKING:
     )
     class BaseModel(pydantic.BaseModel):
         @classmethod
-        def from_raw(cls, data: bytes, /, *, strict: bool = False) -> typing.Self: ...
+        def from_raw(cls, data: str | bytes, /, *, strict: bool = False) -> typing.Self: ...
 
         @classmethod
         def from_dict(cls, data: typing.Dict[str, typing.Any], /) -> typing.Self: ...
 
-        def to_dict(self) -> typing.Dict[str, typing.Any]: ...
+        def to_dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]: ...
+
+        def to_raw(self, **kwargs: typing.Any) -> str: ...
 
 else:
 
@@ -38,8 +40,11 @@ else:
         def from_dict(cls, data, /):
             return cls(**data)
 
-        def to_dict(self):
-            return self.model_dump()
+        def to_dict(self, **kwargs):
+            return self.model_dump(**kwargs)
+
+        def to_raw(self, **kwargs):
+            return self.model_dump_json(**kwargs)
 
 
 class BaseEnumMeta(enum.EnumMeta, type):
@@ -48,8 +53,8 @@ class BaseEnumMeta(enum.EnumMeta, type):
         _cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler
     ) -> CoreSchema:
         return core_schema.no_info_after_validator_function(
-            lambda x: _cls(x),  # type: ignore
-            core_schema.str_schema(),
+            function=lambda x: _cls(x),  # type: ignore
+            schema=core_schema.str_schema(),
         )
 
     if typing.TYPE_CHECKING:
