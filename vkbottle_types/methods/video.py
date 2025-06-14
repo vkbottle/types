@@ -6,9 +6,15 @@ from vkbottle_types.codegen.methods.video import VideoCategory  # type: ignore
 from vkbottle_types.codegen.responses.base import BaseOkResponse, BaseOkResponseModel
 from vkbottle_types.codegen.responses.video import VideoChangeVideoAlbumsResponse
 
+if typing.TYPE_CHECKING:
+    from vkbottle import ABCAPI  # type: ignore
 
-class VideoCategory(VideoCategory):
-    @typing.overload
+
+class VideoCategory(VideoCategory):  # type: ignore
+    def __init__(self, api: "ABCAPI") -> None:
+        super().__init__(api)
+
+    @typing.overload  # type: ignore
     async def add_to_album(
         self,
         owner_id: int,
@@ -57,7 +63,7 @@ class VideoCategory(VideoCategory):
         )
         return model(**response).response
 
-    @typing.overload
+    @typing.overload  # type: ignore
     async def remove_from_album(
         self,
         owner_id: int,

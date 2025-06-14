@@ -4,22 +4,27 @@ description = "VK API methods & types for vkbottle."
 license = "MIT"
 dynamic = ["version"]
 authors = [{name = "timoniq"}]
-requires-python = '>=3.9,<4.0'
-dependencies = ['pydantic (>1,<3)', 'vkbottle (>=4.5.0,<5.0.0)', 'typing-extensions (>=4.4.0,<5.0.0)', 'msgspec (>=0.19.0,<0.20.0)']
+requires-python = ">=3.9,<4.0"
+dependencies = [
+  "pydantic (>=2.11.7,<3.0.0)",
+  "vkbottle (>=4.5.0,<5.0.0)",
+  "typing-extensions (>=4.14.0,<5.0.0)",
+  "msgspec (>=0.19.0,<0.20.0)",
+]
 
 [tool.poetry]
 version = "5.199.93.4.post1"
 packages = [
     { include = "vkbottle_types" }
 ]
-requires-poetry = '>=2.0.0,<3.0.0'
+requires-poetry = ">=2.0.0,<3.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.11.5"
-requests = "^2.20.0"
-tqdm = "^4.65.0"
+ruff = "^0.11.13"
+requests = "^2.32.4"
+tqdm = "^4.67.1"
 dataclass-factory = "^2.16"
-jinja2 = "^3.1.2"
+jinja2 = "^3.1.6"
 
 [build-system]
 requires = ["poetry>=0.12"]

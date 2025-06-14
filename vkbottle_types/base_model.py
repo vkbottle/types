@@ -1,8 +1,14 @@
 import enum
+import math
+import sys
 
 import pydantic
 import typing_extensions as typing
 from pydantic_core import CoreSchema, core_schema
+
+_NOT_SUPPORTED: typing.Final = "NOT_SUPPORTED"
+_ENUM_FRIENDS: typing.Final = (str, int, float)
+
 
 if typing.TYPE_CHECKING:
 
@@ -39,9 +45,7 @@ else:
 class BaseEnumMeta(enum.EnumMeta, type):
     @staticmethod
     def __get_pydantic_core_schema__(
-        _cls: typing.Any,
-        _source_type: typing.Any,
-        _handler: pydantic.GetCoreSchemaHandler
+        _cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler
     ) -> CoreSchema:
         return core_schema.no_info_after_validator_function(
             lambda x: _cls(x),  # type: ignore
@@ -67,11 +71,31 @@ class BaseEnumMeta(enum.EnumMeta, type):
             _simple=False,
             **kwds,
         ):
-            enum_bases = (str, enum.StrEnum) if hasattr(enum, "StrEnum") else (str,)
-            classdict["NOT_SUPPORTED_MEMBER"] = "NOT_SUPPORTED" if any(x in bases for x in enum_bases) else -1234567890
+            if any(friend in bases for friend in _ENUM_FRIENDS):
+                classdict["NOT_SUPPORTED_MEMBER"] = (
+                    _NOT_SUPPORTED if str in bases else math.inf if float in bases else sys.maxsize
+                )
+
             classdict["_missing_"] = classmethod(lambda cls, _: cls._member_map_["NOT_SUPPORTED_MEMBER"])
-            classdict["__get_pydantic_core_schema__"] = classmethod(BaseEnumMeta.__get_pydantic_core_schema__)
-            return super().__new__(metacls, cls, bases, classdict, boundary=boundary, _simple=_simple, **kwds)
+            classdict["__get_pydantic_core_schema__"] = classmethod(
+                BaseEnumMeta.__get_pydantic_core_schema__
+            )
+            kwargs = dict(
+                metacls=metacls,
+                cls=cls,
+                bases=bases,
+                classdict=classdict,
+            )
+
+            if sys.version_info >= (3, 10, 0):
+                kwargs.update(
+                    dict(
+                        boundary=boundary,
+                        _simple=_simple,
+                    ),
+                )
+
+            return super().__new__(**kwargs, **kwds)
 
 
 Field = pydantic.Field

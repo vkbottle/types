@@ -1,4 +1,4 @@
-from typing import Any, List, Optional, Union, overload
+from typing import TYPE_CHECKING, Any, List, Optional, Union, overload
 
 from typing_extensions import Literal
 
@@ -22,9 +22,15 @@ from vkbottle_types.responses.groups import (
     GroupsIsMemberUserIdsResponse,
 )
 
+if TYPE_CHECKING:
+    from vkbottle import ABCAPI  # type: ignore
 
-class GroupsCategory(GroupsCategory):
-    @overload
+
+class GroupsCategory(GroupsCategory):  # type: ignore
+    def __init__(self, api: "ABCAPI") -> None:
+        super().__init__(api)
+
+    @overload  # type: ignore
     async def get_members(
         self,
         group_id: Optional[Union[str, int]],
@@ -111,7 +117,7 @@ class GroupsCategory(GroupsCategory):
         )
         return model(**response).response
 
-    @overload
+    @overload  # type: ignore
     async def is_member(
         self,
         *,

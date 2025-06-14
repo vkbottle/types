@@ -27,8 +27,14 @@ from vkbottle_types.responses.friends import (
     FriendsOnlineUsersWithMobile,
 )
 
+if typing.TYPE_CHECKING:
+    from vkbottle import ABCAPI  # type: ignore
 
-class FriendsCategory(FriendsCategory):
+
+class FriendsCategory(FriendsCategory):  # type: ignore
+    def __init__(self, api: "ABCAPI") -> None:
+        super().__init__(api)
+
     @typing.overload
     async def get_mutual(
         self,

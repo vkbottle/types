@@ -110,7 +110,7 @@ class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
     pass
 
 
-class CallbackLikeAddRemoveObjectType(str, Enum, metaclass=BaseEnumMeta):
+class CallbackLikeAddRemoveObjectType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore[no-redef]
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -143,7 +143,7 @@ class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):  # type: ignore
 
 
 class MessagesMessageAction(MessagesMessageAction):  # type: ignore
-    type: "MessagesMessageActionStatus"
+    type: "MessagesMessageActionStatus"  # type: ignore
     style: Optional[str] = None
 
 
@@ -225,7 +225,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     mini_app: Optional["AppsApp"] = None
     sticker: Optional["BaseSticker"] = None
     video: Optional["VideoVideoFull"] = None
-    type: "MessagesMessageAttachmentType"
+    type: "MessagesMessageAttachmentType"  # type: ignore
     poll: Optional["PollsPoll"] = None
 
 
@@ -330,7 +330,7 @@ class ClientInfoForBots(BaseModel):
     """client or user language id."""
 
 
-UsersSubscriptionsItem: TypeAlias = Union[GroupsGroupFull, UsersUserFull]
+UsersSubscriptionsItem: TypeAlias = Union[GroupsGroupFull, UsersUserFull]  # type: ignore
 
 
 localns = locals().copy()

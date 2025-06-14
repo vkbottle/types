@@ -1,4 +1,4 @@
-from typing import List, Optional, Union
+from typing import TYPE_CHECKING, List, Optional, Union
 
 from vkbottle_types.codegen.methods.secure import SecureCategory  # type: ignore
 from vkbottle_types.responses.secure import (
@@ -7,9 +7,15 @@ from vkbottle_types.responses.secure import (
     SecureSetCounterItem,
 )
 
+if TYPE_CHECKING:
+    from vkbottle import ABCAPI  # type: ignore
 
-class SecureCategory(SecureCategory):
-    async def set_counter(
+
+class SecureCategory(SecureCategory):  # type: ignore
+    def __init__(self, api: "ABCAPI") -> None:
+        super().__init__(api)
+
+    async def set_counter(  # type: ignore
         self,
         counters: Optional[List[str]] = None,
         user_id: Optional[int] = None,

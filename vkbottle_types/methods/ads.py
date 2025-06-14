@@ -13,7 +13,7 @@ from vkbottle_types.responses.ads import (
 )
 
 
-class AdsCategory(AdsCategory):
+class AdsCategory(AdsCategory):  # type: ignore
     @typing.overload
     async def get_suggestions(
         self,
@@ -89,9 +89,9 @@ class AdsCategory(AdsCategory):
         :param q: Filter-line of the request (for countries, regions, cities, streets, schools, interests, positions).
         """
 
-        params = self.get_set_params(locals())
-        response = await self.api.request("ads.getSuggestions", params)
-        model = self.get_model(
+        params = self.get_set_params(locals())  # type: ignore
+        response = await self.api.request("ads.getSuggestions", params)  # type: ignore
+        model = self.get_model(  # type: ignore
             (
                 (("cities",), AdsGetSuggestionsCitiesResponse),
                 (("regions",), AdsGetSuggestionsRegionsResponse),

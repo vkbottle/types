@@ -237,7 +237,9 @@ def generate_methods(category: Category, path: str):
         "### IMPORTS",
         ("from vkbottle_types.objects import " + ", ".join(imports)) if imports else "",
     )
-    pathlib.Path(path, "methods", snake_case(category.name) + ".py").write_text(generated, encoding="UTF-8")
+    pathlib.Path(path, "methods", snake_case(category.name) + ".py").write_text(
+        generated, encoding="UTF-8"
+    )
     print("        + Methods successfully generated!", end="\n\n")
 
 
@@ -256,7 +258,9 @@ def generate_responses(category: Category, path: str) -> None:
         if parse_types.IMPORTS_CACHE
         else "",
     )
-    pathlib.Path(path, "responses", snake_case(category.name) + ".py").write_text(generated, encoding="UTF-8")
+    pathlib.Path(path, "responses", snake_case(category.name) + ".py").write_text(
+        generated, encoding="UTF-8"
+    )
     print("        + Responses successfully generated!")
 
 
