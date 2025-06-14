@@ -92,7 +92,7 @@ class BaseEnumMeta(enum.EnumMeta, type):
                 classdict=classdict,
             )
 
-            if sys.version_info >= (3, 10, 0):
+            if sys.version_info > (3, 10):
                 kwargs.update(
                     dict(
                         boundary=boundary,
