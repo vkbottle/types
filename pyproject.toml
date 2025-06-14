@@ -7,13 +7,13 @@ authors = [{name = "timoniq"}]
 requires-python = ">=3.9,<4.0"
 dependencies = [
   "pydantic (>=2.11.7,<3.0.0)",
-  "vkbottle (>=4.5.0,<5.0.0)",
+  "vkbottle (>=4.5.2,<5.0.0)",
   "typing-extensions (>=4.14.0,<5.0.0)",
   "msgspec (>=0.19.0,<0.20.0)",
 ]
 
 [tool.poetry]
-version = "5.199.99.0"
+version = "5.199.99.1"
 packages = [
     { include = "vkbottle_types" }
 ]
