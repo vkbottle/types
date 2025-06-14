@@ -39,7 +39,7 @@ else:
             return cls(**data)
 
         def to_dict(self):
-            return cls.model_dump()
+            return self.model_dump()
 
 
 class BaseEnumMeta(enum.EnumMeta, type):

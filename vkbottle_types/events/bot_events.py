@@ -251,13 +251,6 @@ class MessageRead(BaseGroupEvent):
     object: group_event_objects.MessageReadObject
 
 
-for item in locals().copy().values():
-    if not (isinstance(item, type) and issubclass(item, BaseGroupEvent)):
-        continue
-
-    item.model_rebuild()
-
-
 __all__ = (
     "AppPayload",
     "AudioNew",

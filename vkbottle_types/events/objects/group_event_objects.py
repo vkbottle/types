@@ -11,8 +11,8 @@ class BaseEventObject(BaseModel):
 
 
 class MessageNewObject(BaseEventObject):
-    client_info: Optional["ClientInfoForBots"] = None
-    message: Optional["MessagesMessage"] = None
+    client_info: Optional[ClientInfoForBots] = None
+    message: Optional[MessagesMessage] = None
 
 
 class MessageReplyObject(BaseEventObject, MessagesMessage):
@@ -131,7 +131,7 @@ class LikeAddObject(BaseEventObject):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: Optional["CallbackLikeAddRemoveObjectType"] = None
+    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
     post_id: int
     thread_reply_id: Optional[int] = None
 
@@ -152,7 +152,7 @@ class LeadFormsNewObject(BaseEventObject):
     form_id: int
     user_id: int
     form_name: str
-    answers: Optional[List["LeadFormAnswerModel"]] = None
+    answers: Optional[List[LeadFormAnswerModel]] = None
 
 
 class BoardPostNewObject(BaseEventObject, BoardTopicComment):
@@ -207,12 +207,12 @@ class MarketOrderEditObject(MarketOrderNewObject):
 
 
 class GroupLeaveObject(BaseEventObject):
-    self: Optional["BaseBoolInt"] = None
+    self: Optional[BaseBoolInt] = None
     user_id: Optional[int] = None
 
 
 class GroupJoinObject(BaseEventObject):
-    join_type: "CallbackGroupJoinType"
+    join_type: CallbackGroupJoinType
     user_id: int
 
 
@@ -239,20 +239,20 @@ class PollVoteNewObject(BaseEventObject):
 
 class GroupOfficersEditObject(BaseEventObject):
     admin_id: int
-    level_new: "CallbackGroupOfficerRole"
-    level_old: "CallbackGroupOfficerRole"
+    level_new: CallbackGroupOfficerRole
+    level_old: CallbackGroupOfficerRole
     user_id: int
 
 
 class GroupSettingsChangesObject(BaseEventObject):
-    access: Optional["GroupsGroupIsClosed"] = None
-    age_limits: Optional["GroupsGroupFullAgeLimits"] = None
+    access: Optional[GroupsGroupIsClosed] = None
+    age_limits: Optional[GroupsGroupFullAgeLimits] = None
     description: Optional[str] = None
-    enable_audio: Optional["GroupsGroupAudio"] = None
-    enable_market: Optional["CallbackGroupMarket"] = None
-    enable_photo: Optional["GroupsGroupPhotos"] = None
-    enable_status_default: Optional["GroupsGroupWall"] = None
-    enable_video: Optional["GroupsGroupVideo"] = None
+    enable_audio: Optional[GroupsGroupAudio] = None
+    enable_market: Optional[CallbackGroupMarket] = None
+    enable_photo: Optional[GroupsGroupPhotos] = None
+    enable_status_default: Optional[GroupsGroupWall] = None
+    enable_video: Optional[GroupsGroupVideo] = None
     public_category: Optional[int] = None
     public_subcategory: Optional[int] = None
     screen_name: Optional[str] = None
@@ -268,7 +268,7 @@ class GroupChangeSettingsObject(BaseEventObject):
 
 
 class GroupChangePhotoObject(BaseEventObject):
-    photo: "PhotosPhoto"
+    photo: PhotosPhoto
     user_id: int
 
 
@@ -333,13 +333,6 @@ class MessageReadObject(BaseEventObject):
     peer_id: int
     read_message_id: int
     conversation_message_id: int
-
-
-for item in locals().copy().values():
-    if not (isinstance(item, type) and issubclass(item, BaseEventObject)):
-        continue
-
-    item.model_rebuild()
 
 
 __all__ = (
