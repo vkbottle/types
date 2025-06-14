@@ -119,23 +119,6 @@ class StoriesCategory(BaseCategory):
         model = StoriesGetByIdExtendedResponse
         return model(**response).response
 
-    async def get_detailed_stats(
-        self,
-        owner_id: int,
-        story_id: int,
-        **kwargs: typing.Any,
-    ) -> StoriesGetStatsV5200ResponseModel:
-        """Method `stories.getDetailedStats()`
-
-        :param owner_id:
-        :param story_id:
-        """
-
-        params = self.get_set_params(locals())
-        response = await self.api.request("stories.getDetailedStats", params)
-        model = StoriesGetStatsV5200Response
-        return model(**response).response
-
     async def get_photo_upload_server(
         self,
         add_to_news: typing.Optional[bool] = None,

@@ -78,7 +78,7 @@ class BaseEnumMeta(enum.EnumMeta, type):
 
             classdict["_missing_"] = classmethod(lambda cls, _: cls._member_map_["NOT_SUPPORTED_MEMBER"])
             classdict["__get_pydantic_core_schema__"] = classmethod(
-                BaseEnumMeta.__get_pydantic_core_schema__
+                BaseEnumMeta.__get_pydantic_core_schema__,
             )
             kwargs = dict(
                 metacls=metacls,

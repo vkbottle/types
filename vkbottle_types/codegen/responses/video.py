@@ -137,6 +137,43 @@ class VideoGetLongPollServerResponse(BaseResponse):
     response: "VideoGetLongPollServerResponseModel" = Field()
 
 
+class VideoGetOembedResponseModel(BaseModel):
+    version: str = Field()
+    type: str = Field()
+    html: str = Field()
+    title: typing.Optional[str] = Field(
+        default=None,
+    )
+    author_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    width: typing.Optional[int] = Field(
+        default=None,
+    )
+    height: typing.Optional[int] = Field(
+        default=None,
+    )
+    provider_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    provider_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    thumbnail_url: typing.Optional[str] = Field(
+        default=None,
+    )
+    thumbnail_width: typing.Optional[int] = Field(
+        default=None,
+    )
+    thumbnail_height: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class VideoGetOembedResponse(BaseResponse):
+    response: "VideoGetOembedResponseModel" = Field()
+
+
 class VideoGetThumbUploadUrlResponseModel(BaseModel):
     upload_url: str = Field()
 

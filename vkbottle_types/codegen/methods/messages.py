@@ -279,8 +279,8 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        MessagesGetByConversationMessageIdExtendedResponseModel,
         MessagesGetByConversationMessageIdResponseModel,
+        MessagesGetByConversationMessageIdExtendedResponseModel,
     ]:
         """Method `messages.getByConversationMessageId()`
 
@@ -336,7 +336,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetByIdResponseModel, MessagesGetByIdExtendedResponseModel]:
+    ) -> typing.Union[MessagesGetByIdExtendedResponseModel, MessagesGetByIdResponseModel]:
         """Method `messages.getById()`
 
         :param extended: Information whether the response should be extended
@@ -399,18 +399,18 @@ class MessagesCategory(BaseCategory):
 
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        chat_ids: typing.Optional[typing.List[int]] = None,
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[MessagesChat], "MessagesChatFull", "MessagesChat", typing.List[MessagesChatFull]
+        "MessagesChat", typing.List[MessagesChatFull], typing.List[MessagesChat], "MessagesChatFull"
     ]:
         """Method `messages.getChat()`
 
-        :param chat_ids: Chat IDs.
         :param fields: Profile fields to return.
+        :param chat_ids: Chat IDs.
         :param chat_id: Chat ID.
         :param name_case: Case for declension of user name and surname: 'nom' - nominative (default), 'gen' - genitive , 'dat' - dative, 'acc' - accusative , 'ins' - instrumental , 'abl' - prepositional
         """
@@ -1147,7 +1147,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesSearchResponseModel, MessagesSearchExtendedResponseModel]:
+    ) -> typing.Union[MessagesSearchExtendedResponseModel, MessagesSearchResponseModel]:
         """Method `messages.search()`
 
         :param extended:
@@ -1201,7 +1201,7 @@ class MessagesCategory(BaseCategory):
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        MessagesSearchConversationsResponseModel, MessagesSearchConversationsExtendedResponseModel
+        MessagesSearchConversationsExtendedResponseModel, MessagesSearchConversationsResponseModel
     ]:
         """Method `messages.searchConversations()`
 

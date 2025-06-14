@@ -503,7 +503,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetResponseModel, GroupsGetObjectExtendedResponseModel]:
+    ) -> typing.Union[GroupsGetObjectExtendedResponseModel, GroupsGetResponseModel]:
         """Method `groups.get()`
 
         :param extended: '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
@@ -775,8 +775,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
         filter: str,
+        fields: typing.List[UsersFields],
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -787,8 +787,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
         filter: typing.Optional[str] = None,
+        fields: typing.Optional[typing.List[UsersFields]] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -799,8 +799,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
         filter: str,
+        fields: typing.List[UsersFields],
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -818,9 +818,9 @@ class GroupsCategory(BaseCategory):
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        GroupsGetMembersResponseModel,
-        GroupsGetMembersFilterResponseModel,
         GroupsGetMembersFieldsResponseModel,
+        GroupsGetMembersFilterResponseModel,
+        GroupsGetMembersResponseModel,
     ]:
         """Method `groups.getMembers()`
 
@@ -836,8 +836,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("fields",), GroupsGetMembersFieldsResponse),
                 (("filter",), GroupsGetMembersFieldsResponse),
+                (("fields",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -968,8 +968,8 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: typing.Union["int", "str"],
-        extended: typing.Literal[True],
         user_ids: typing.List[int],
+        extended: typing.Literal[True],
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.List[GroupsMemberStatus]: ...
@@ -978,8 +978,8 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: typing.Union["int", "str"],
-        extended: typing.Optional[bool] = None,
         user_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> GroupsIsMemberExtendedResponseModel: ...
@@ -1012,10 +1012,10 @@ class GroupsCategory(BaseCategory):
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        bool,
-        GroupsIsMemberExtendedResponseModel,
         typing.List[GroupsMemberStatusFull],
         typing.List[GroupsMemberStatus],
+        bool,
+        GroupsIsMemberExtendedResponseModel,
     ]:
         """Method `groups.isMember()`
 
@@ -1029,8 +1029,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
             (
-                (("extended",), GroupsIsMemberUserIdsResponse),
                 (("user_ids",), GroupsIsMemberUserIdsResponse),
+                (("extended",), GroupsIsMemberUserIdsResponse),
             ),
             default=BaseBoolResponse,
             params=params,

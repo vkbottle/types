@@ -77,7 +77,7 @@ class FriendsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         need_sign: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[FriendsFriendStatus], typing.List[FriendsFriendExtendedStatus]]:
+    ) -> typing.Union[typing.List[FriendsFriendExtendedStatus], typing.List[FriendsFriendStatus]]:
         """Method `friends.areFriends()`
 
         :param user_ids: IDs of the users whose friendship status to check.
@@ -211,7 +211,7 @@ class FriendsCategory(BaseCategory):
         ref: typing.Optional[str] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FriendsGetResponseModel, FriendsGetFieldsResponseModel]:
+    ) -> typing.Union[FriendsGetFieldsResponseModel, FriendsGetResponseModel]:
         """Method `friends.get()`
 
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
@@ -309,7 +309,7 @@ class FriendsCategory(BaseCategory):
         source_uid: typing.Optional[int] = None,
         target_uid: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[int], "FriendsMutualFriend", typing.List[FriendsMutualFriend]]:
+    ) -> typing.Union[typing.List[int], typing.List[FriendsMutualFriend], "FriendsMutualFriend"]:
         """Method `friends.getMutual()`
 
         :param target_uids: IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -392,8 +392,8 @@ class FriendsCategory(BaseCategory):
         **kwargs: typing.Any,
     ) -> typing.Union[
         typing.List[int],
-        "FriendsOnlineUsersWithMobile",
         FriendsGetOnlineOnlineMobileResponseModel,
+        "FriendsOnlineUsersWithMobile",
         "FriendsOnlineUsers",
     ]:
         """Method `friends.getOnline()`
@@ -484,8 +484,8 @@ class FriendsCategory(BaseCategory):
 
     async def get_requests(
         self,
-        need_mutual: typing.Optional[bool] = None,
         extended: typing.Optional[bool] = None,
+        need_mutual: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
         need_viewed: typing.Optional[bool] = None,
@@ -496,14 +496,14 @@ class FriendsCategory(BaseCategory):
         suggested: typing.Optional[bool] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        FriendsGetRequestsResponseModel,
         FriendsGetRequestsExtendedResponseModel,
         FriendsGetRequestsNeedMutualResponseModel,
+        FriendsGetRequestsResponseModel,
     ]:
         """Method `friends.getRequests()`
 
-        :param need_mutual: '1' - to return a list of mutual friends (up to 20), if any
         :param extended: '1' - to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends
+        :param need_mutual: '1' - to return a list of mutual friends (up to 20), if any
         :param count: Number of friend requests to return (default 100, maximum 1000).
         :param fields:
         :param need_viewed:

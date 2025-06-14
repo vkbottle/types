@@ -1,7 +1,12 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import VideoLiveCategory, VideoSaveResult, VideoVideoAlbumFull
+from vkbottle_types.objects import (
+    VideoLiveCategory,
+    VideoPlaylistPrivacyCategory,
+    VideoSaveResult,
+    VideoVideoAlbumFull,
+)
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -33,7 +38,7 @@ class VideoCategory(BaseCategory):
     async def add_album(
         self,
         group_id: typing.Optional[int] = None,
-        privacy: typing.Optional[typing.List[typing.Literal["0", "1", "2", "3"]]] = None,
+        privacy: typing.Optional[typing.List[VideoPlaylistPrivacyCategory]] = None,
         title: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> VideoAddAlbumResponseModel:
@@ -158,6 +163,23 @@ class VideoCategory(BaseCategory):
         model = BaseOkResponse
         return model(**response).response
 
+    async def delete_thread(
+        self,
+        owner_id: int,
+        thread_id: int,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `video.deleteThread()`
+
+        :param owner_id: ID of the user or community that owns the video.
+        :param thread_id: ID of the main comment to be deleted as thread.
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("video.deleteThread", params)
+        model = BaseOkResponse
+        return model(**response).response
+
     async def edit(
         self,
         video_id: int,
@@ -194,7 +216,7 @@ class VideoCategory(BaseCategory):
         album_id: int,
         group_id: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
-        privacy: typing.Optional[typing.List[typing.Literal["0", "1", "2", "3"]]] = None,
+        privacy: typing.Optional[typing.List[VideoPlaylistPrivacyCategory]] = None,
         title: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
@@ -309,7 +331,7 @@ class VideoCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetAlbumsResponseModel, VideoGetAlbumsExtendedResponseModel]:
+    ) -> typing.Union[VideoGetAlbumsExtendedResponseModel, VideoGetAlbumsResponseModel]:
         """Method `video.getAlbums()`
 
         :param extended: '1' - to return additional information about album privacy settings for the current user
@@ -421,7 +443,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetCommentsExtendedResponseModel, VideoGetCommentsResponseModel]:
+    ) -> typing.Union[VideoGetCommentsResponseModel, VideoGetCommentsExtendedResponseModel]:
         """Method `video.getComments()`
 
         :param video_id: Video ID.
@@ -461,6 +483,25 @@ class VideoCategory(BaseCategory):
         params = self.get_set_params(locals())
         response = await self.api.request("video.getLongPollServer", params)
         model = VideoGetLongPollServerResponse
+        return model(**response).response
+
+    async def get_oembed(
+        self,
+        url: str,
+        maxheight: typing.Optional[int] = None,
+        maxwidth: typing.Optional[int] = None,
+        **kwargs: typing.Any,
+    ) -> VideoGetOembedResponseModel:
+        """Method `video.getOembed()`
+
+        :param url: Link to video
+        :param maxheight: Maximum width of player
+        :param maxwidth: Maximum width of player
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("video.getOembed", params)
+        model = VideoGetOembedResponse
         return model(**response).response
 
     async def get_thumb_upload_url(
@@ -638,6 +679,23 @@ class VideoCategory(BaseCategory):
         model = BaseBoolResponse
         return model(**response).response
 
+    async def restore_thread(
+        self,
+        owner_id: int,
+        thread_id: int,
+        **kwargs: typing.Any,
+    ) -> BaseOkResponseModel:
+        """Method `video.restoreThread()`
+
+        :param owner_id: ID of the user or community that owns the video.
+        :param thread_id: ID of the main comment to be deleted as thread.
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("video.restoreThread", params)
+        model = BaseOkResponse
+        return model(**response).response
+
     async def save(
         self,
         album_id: typing.Optional[int] = None,
@@ -767,7 +825,7 @@ class VideoCategory(BaseCategory):
         shorter: typing.Optional[int] = None,
         sort: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoSearchResponseModel, VideoSearchExtendedResponseModel]:
+    ) -> typing.Union[VideoSearchExtendedResponseModel, VideoSearchResponseModel]:
         """Method `video.search()`
 
         :param extended:

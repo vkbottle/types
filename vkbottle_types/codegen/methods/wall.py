@@ -299,7 +299,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetByIdExtendedResponseModel, WallGetByIdResponseModel]:
+    ) -> typing.Union[WallGetByIdResponseModel, WallGetByIdExtendedResponseModel]:
         """Method `wall.getById()`
 
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"

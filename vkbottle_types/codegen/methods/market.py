@@ -640,6 +640,27 @@ class MarketCategory(BaseCategory):
         model = MarketGetCommentsResponse
         return model(**response).response
 
+    async def get_faves_for_attach(
+        self,
+        count: typing.Optional[int] = None,
+        current_group_id: typing.Optional[int] = None,
+        offset: typing.Optional[int] = None,
+        public_only: typing.Optional[bool] = None,
+        **kwargs: typing.Any,
+    ) -> MarketGetFavesForAttachResponseModel:
+        """Method `market.getFavesForAttach()`
+
+        :param count: Number of users to return.
+        :param current_group_id: Group which represents content
+        :param offset: Offset needed to return a specific subset of users.
+        :param public_only:
+        """
+
+        params = self.get_set_params(locals())
+        response = await self.api.request("market.getFavesForAttach", params)
+        model = MarketGetFavesForAttachResponse
+        return model(**response).response
+
     async def get_group_orders(
         self,
         count: typing.Optional[int] = None,
@@ -729,7 +750,7 @@ class MarketCategory(BaseCategory):
         date_to: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetOrdersResponseModel, MarketGetOrdersExtendedResponseModel]:
+    ) -> typing.Union[MarketGetOrdersExtendedResponseModel, MarketGetOrdersResponseModel]:
         """Method `market.getOrders()`
 
         :param extended:

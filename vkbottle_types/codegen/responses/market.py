@@ -121,6 +121,17 @@ class MarketGetCommentsResponse(BaseResponse):
     response: "MarketGetCommentsResponseModel" = Field()
 
 
+class MarketGetFavesForAttachResponseModel(BaseModel):
+    market_items: typing.List["MarketMarketItem"] = Field()
+    next_from: typing.Optional[int] = Field(
+        default=None,
+    )
+
+
+class MarketGetFavesForAttachResponse(BaseResponse):
+    response: "MarketGetFavesForAttachResponseModel" = Field()
+
+
 class MarketGetGroupOrdersResponseModel(BaseModel):
     count: int = Field()
     items: typing.List["MarketOrder"] = Field()

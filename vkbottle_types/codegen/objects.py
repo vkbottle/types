@@ -442,6 +442,7 @@ class BaseLinkButtonActionType(str, enum.Enum, metaclass=BaseEnumMeta):
     ADD_PLAYLIST = "add_playlist"
     OPEN_SEARCH_TAB = "open_search_tab"
     OPEN_SEARCH_FILTERS = "open_search_filters"
+    RESET_SEARCH_FILTERS = "reset_search_filters"
     IMPORT_CONTACTS = "import_contacts"
     ADD_FRIENDS = "add_friends"
     ONBOARDING = "onboarding"
@@ -453,6 +454,7 @@ class BaseLinkButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     DEFAULT = "default"
     PRIMARY = "primary"
     SECONDARY = "secondary"
+    NEGATIVE = "negative"
     TERTIARY = "tertiary"
     FLOAT_BOTTOM = "float_bottom"
     CELL_BUTTON_CENTERED_ICON = "cell_button_centered_icon"
@@ -463,6 +465,7 @@ class BaseLinkButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     INLINE = "inline"
     MODAL = "modal"
     RIGHT_BUTTON = "right_button"
+    AFTER_TOOLBAR = "after_toolbar"
 
 
 class BaseLinkNoProduct(BaseModel):
@@ -1098,6 +1101,7 @@ class BaseUserGroupFields(str, enum.Enum, metaclass=BaseEnumMeta):
     IS_NFT = "is_nft"
     IS_NFT_PHOTO = "is_nft_photo"
     IS_VERIFIED = "is_verified"
+    URL = "url"
 
 
 class BaseUserId(BaseModel):
@@ -2002,6 +2006,1834 @@ class UsersUsersArray(BaseModel):
     """Property `UsersUsersArray.items`."""
 
 
+class MessagesActionOneOf(BaseModel):
+    """
+    Model: `MessagesActionOneOf`
+    """
+
+    type: "MessagesMessageActionStatus" = Field()
+    """Property `MessagesActionOneOf.type`."""
+
+    conversation_message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message ID."""
+
+    email: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Email address for chat_invite_user or chat_kick_user actions."""
+
+    member_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """User or email peer ID."""
+
+    message: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Message body of related message."""
+
+    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesActionOneOf.photo`."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """New chat title for chat_create and chat_title_update actions."""
+
+
+class MessagesAudioMessage(BaseModel):
+    """
+    Model: `MessagesAudioMessage`
+    """
+
+    duration: int = Field()
+    """Audio message duration in seconds."""
+
+    id: int = Field()
+    """Audio message ID."""
+
+    link_mp3: str = Field()
+    """MP3 file URL."""
+
+    link_ogg: str = Field()
+    """OGG file URL."""
+
+    owner_id: int = Field()
+    """Audio message owner ID."""
+
+    waveform: typing.List[int] = Field()
+    """Property `MessagesAudioMessage.waveform`."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key for audio message."""
+
+    transcript_error: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesAudioMessage.transcript_error`."""
+
+
+class MessagesBaseMessage(BaseModel):
+    """
+    Model: `MessagesBaseMessage`
+    """
+
+    conversation_message_id: int = Field()
+    """Unique auto-incremented number for all messages with this peer."""
+
+    date: int = Field()
+    """Date when the message has been sent in Unixtime."""
+
+    from_id: int = Field()
+    """Message author\'s ID."""
+
+    id: int = Field()
+    """Message ID."""
+
+    text: str = Field()
+    """Message text."""
+
+    version: int = Field()
+    """Property `MessagesBaseMessage.version`."""
+
+    out: bool = Field()
+    """Information whether the message is outcoming."""
+
+    peer_id: int = Field()
+    """Peer ID."""
+
+    action: typing.Optional["MessagesActionOneOf"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.action`."""
+
+    admin_author_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Only for messages from community. Contains user ID of community admin, who sent this message.."""
+
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.attachments`."""
+
+    deleted: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is it an deleted message."""
+
+    fwd_messages: typing.Optional["MessagesFwdMessages"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.fwd_messages`."""
+
+    geo: typing.Optional["BaseGeo"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.geo`."""
+
+    is_cropped: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """this message is cropped for bot."""
+
+    keyboard: typing.Optional["MessagesKeyboard"] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.keyboard`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.payload`."""
+
+    update_time: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when the message has been updated in Unixtime."""
+
+    is_silent: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is silent message, push without sound."""
+
+    is_unavailable: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is message unavailable for some reason, including its id equals 0."""
+
+    random_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """ID used for sending messages. It returned only for outgoing messages."""
+
+    ref: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.ref`."""
+
+    ref_source: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesBaseMessage.ref_source`."""
+
+
+class MessagesChat(BaseModel):
+    """
+    Model: `MessagesChat`
+    """
+
+    admin_id: int = Field()
+    """Chat creator ID."""
+
+    id: int = Field()
+    """Chat ID."""
+
+    type: str = Field()
+    """Chat type."""
+
+    users: typing.List[int] = Field()
+    """Property `MessagesChat.users`."""
+
+    members_count: int = Field()
+    """Count members in a chat."""
+
+    kicked: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Shows that user has been kicked from the chat."""
+
+    left: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Shows that user has been left the chat."""
+
+    photo_100: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 100 px in width."""
+
+    photo_200: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 200 px in width."""
+
+    photo_50: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 50 px in width."""
+
+    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
+        default=None,
+    )
+    """Property `MessagesChat.push_settings`."""
+
+    title: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Chat title."""
+
+    is_default_photo: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If provided photo is default."""
+
+    is_group_channel: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If chat is group channel."""
+
+
+class MessagesChatFull(BaseModel):
+    """
+    Model: `MessagesChatFull`
+    """
+
+    admin_id: int = Field()
+    """Chat creator ID."""
+
+    id: int = Field()
+    """Chat ID."""
+
+    type: str = Field()
+    """Chat type."""
+
+    users: typing.List["MessagesUserXtrInvitedBy"] = Field()
+    """Property `MessagesChatFull.users`."""
+
+    members_count: int = Field()
+    """Count members in a chat."""
+
+    kicked: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Shows that user has been kicked from the chat."""
+
+    left: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Shows that user has been left the chat."""
+
+    photo_100: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 100 px in width."""
+
+    photo_200: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 200 px in width."""
+
+    photo_50: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 50 px in width."""
+
+    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatFull.push_settings`."""
+
+    title: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Chat title."""
+
+    is_default_photo: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If provided photo is default."""
+
+    is_group_channel: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If chat is group channel."""
+
+
+class MessagesChatPreview(BaseModel):
+    """
+    Model: `MessagesChatPreview`
+    """
+
+    admin_id: int = Field()
+    """Property `MessagesChatPreview.admin_id`."""
+
+    members: typing.List[int] = Field()
+    """Property `MessagesChatPreview.members`."""
+
+    title: str = Field()
+    """Property `MessagesChatPreview.title`."""
+
+    joined: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.joined`."""
+
+    local_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.local_id`."""
+
+    members_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.members_count`."""
+
+    is_member: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.is_member`."""
+
+    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.photo`."""
+
+    is_don: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.is_don`."""
+
+    is_nft: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.is_nft`."""
+
+    is_group_channel: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.is_group_channel`."""
+
+    button: typing.Optional["BaseLinkButton"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatPreview.button`."""
+
+
+class MessagesChatPushSettings(BaseModel):
+    """
+    Model: `MessagesChatPushSettings`
+    """
+
+    disabled_until: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Time until that notifications are disabled."""
+
+    sound: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the sound is on."""
+
+
+class MessagesChatRestrictions(BaseModel):
+    """
+    Model: `MessagesChatRestrictions`
+    """
+
+    admins_promote_users: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Only admins can promote users to admins."""
+
+    only_admins_edit_info: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Only admins can change chat info."""
+
+    only_admins_edit_pin: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Only admins can edit pinned message."""
+
+    only_admins_invite: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Only admins can invite users to this chat."""
+
+    only_admins_kick: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Only admins can kick users from this chat."""
+
+
+class MessagesChatSettings(BaseModel):
+    """
+    Model: `MessagesChatSettings`
+    """
+
+    owner_id: int = Field()
+    """Property `MessagesChatSettings.owner_id`."""
+
+    title: str = Field()
+    """Chat title."""
+
+    state: "MessagesChatSettingsState" = Field()
+    """Property `MessagesChatSettings.state`."""
+
+    acl: "MessagesChatSettingsAcl" = Field()
+    """Property `MessagesChatSettings.acl`."""
+
+    members_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.members_count`."""
+
+    friends_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.friends_count`."""
+
+    pinned_messages_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.pinned_messages_count`."""
+
+    pinned_message: typing.Optional["MessagesPinnedMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.pinned_message`."""
+
+    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.photo`."""
+
+    admin_ids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Ids of chat admins."""
+
+    active_ids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.active_ids`."""
+
+    is_group_channel: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.is_group_channel`."""
+
+    permissions: typing.Optional["MessagesChatSettingsPermissions"] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.permissions`."""
+
+    is_disappearing: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.is_disappearing`."""
+
+    theme: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.theme`."""
+
+    disappearing_chat_link: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.disappearing_chat_link`."""
+
+    is_service: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesChatSettings.is_service`."""
+
+
+class MessagesChatSettingsAcl(BaseModel):
+    """
+    Model: `MessagesChatSettingsAcl`
+    """
+
+    can_change_info: bool = Field()
+    """Can you change photo, description and name."""
+
+    can_change_invite_link: bool = Field()
+    """Can you change invite link for this chat."""
+
+    can_change_pin: bool = Field()
+    """Can you pin/unpin message for this chat."""
+
+    can_invite: bool = Field()
+    """Can you invite other peers in chat."""
+
+    can_promote_users: bool = Field()
+    """Can you promote simple users to chat admins."""
+
+    can_see_invite_link: bool = Field()
+    """Can you see invite link for this chat."""
+
+    can_moderate: bool = Field()
+    """Can you moderate (delete) other users\' messages."""
+
+    can_copy_chat: bool = Field()
+    """Can you copy chat."""
+
+    can_call: bool = Field()
+    """Can you init group call in the chat."""
+
+    can_use_mass_mentions: bool = Field()
+    """Can you use mass mentions."""
+
+    can_change_service_type: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Can you change chat service type."""
+
+
+class MessagesChatSettingsPermissionsInvite(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsChangeInfo(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsChangePin(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsUseMassMentions(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsSeeInviteLink(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsCall(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+    ALL = "all"
+
+
+class MessagesChatSettingsPermissionsChangeAdmins(str, enum.Enum, metaclass=BaseEnumMeta):
+    OWNER = "owner"
+    OWNER_AND_ADMINS = "owner_and_admins"
+
+
+class MessagesChatSettingsPermissions(BaseModel):
+    """
+    Model: `MessagesChatSettingsPermissions`
+    """
+
+    invite: typing.Optional["MessagesChatSettingsPermissionsInvite"] = Field(
+        default=None,
+    )
+    """Who can invite users to chat."""
+
+    change_info: typing.Optional["MessagesChatSettingsPermissionsChangeInfo"] = Field(
+        default=None,
+    )
+    """Who can change chat info."""
+
+    change_pin: typing.Optional["MessagesChatSettingsPermissionsChangePin"] = Field(
+        default=None,
+    )
+    """Who can change pinned message."""
+
+    use_mass_mentions: typing.Optional["MessagesChatSettingsPermissionsUseMassMentions"] = Field(
+        default=None,
+    )
+    """Who can use mass mentions."""
+
+    see_invite_link: typing.Optional["MessagesChatSettingsPermissionsSeeInviteLink"] = Field(
+        default=None,
+    )
+    """Who can see invite link."""
+
+    call: typing.Optional["MessagesChatSettingsPermissionsCall"] = Field(
+        default=None,
+    )
+    """Who can make calls."""
+
+    change_admins: typing.Optional["MessagesChatSettingsPermissionsChangeAdmins"] = Field(
+        default=None,
+    )
+    """Who can change admins."""
+
+
+class MessagesChatSettingsPhoto(BaseModel):
+    """
+    Model: `MessagesChatSettingsPhoto`
+    """
+
+    photo_50: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 50px in width."""
+
+    photo_100: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 100px in width."""
+
+    photo_200: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of the preview image with 200px in width."""
+
+    is_default_photo: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If provided photo is default."""
+
+    is_default_call_photo: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If provided photo is default call photo."""
+
+
+class MessagesChatSettingsState(str, enum.Enum, metaclass=BaseEnumMeta):
+    IN = "in"
+    KICKED = "kicked"
+    LEFT = "left"
+    OUT = "out"
+
+
+class MessagesConversationSpecialServiceType(str, enum.Enum, metaclass=BaseEnumMeta):
+    BUSINESS_NOTIFY = "business_notify"
+
+
+class MessagesConversation(BaseModel):
+    """
+    Model: `MessagesConversation`
+    """
+
+    peer: "MessagesConversationPeer" = Field()
+    """Property `MessagesConversation.peer`."""
+
+    last_message_id: int = Field()
+    """ID of the last message in conversation."""
+
+    last_conversation_message_id: int = Field()
+    """Conversation message ID of the last message in conversation."""
+
+    in_read: int = Field()
+    """Last message user have read."""
+
+    out_read: int = Field()
+    """Last outcoming message have been read by the opponent."""
+
+    version: int = Field()
+    """Property `MessagesConversation.version`."""
+
+    sort_id: typing.Optional["MessagesConversationSortId"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.sort_id`."""
+
+    unread_count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Unread messages number."""
+
+    is_marked_unread: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is this conversation unread."""
+
+    out_read_by: typing.Optional["MessagesOutReadBy"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.out_read_by`."""
+
+    important: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.important`."""
+
+    unanswered: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.unanswered`."""
+
+    special_service_type: typing.Optional["MessagesConversationSpecialServiceType"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.special_service_type`."""
+
+    message_request_data: typing.Optional["MessagesMessageRequestData"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.message_request_data`."""
+
+    mentions: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Ids of messages with mentions."""
+
+    current_keyboard: typing.Optional["MessagesKeyboard"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.current_keyboard`."""
+
+    push_settings: typing.Optional["MessagesPushSettings"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.push_settings`."""
+
+    can_write: typing.Optional["MessagesConversationCanWrite"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.can_write`."""
+
+    chat_settings: typing.Optional["MessagesChatSettings"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.chat_settings`."""
+
+
+class MessagesConversationCanWrite(BaseModel):
+    """
+    Model: `MessagesConversationCanWrite`
+    """
+
+    allowed: bool = Field()
+    """Property `MessagesConversationCanWrite.allowed`."""
+
+    reason: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationCanWrite.reason`."""
+
+    until: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationCanWrite.until`."""
+
+
+class MessagesConversationMember(BaseModel):
+    """
+    Model: `MessagesConversationMember`
+    """
+
+    member_id: int = Field()
+    """Property `MessagesConversationMember.member_id`."""
+
+    can_kick: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is it possible for user to kick this member."""
+
+    is_restricted_to_write: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Does this member have write permission."""
+
+    invited_by: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationMember.invited_by`."""
+
+    is_admin: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationMember.is_admin`."""
+
+    is_owner: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationMember.is_owner`."""
+
+    is_message_request: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationMember.is_message_request`."""
+
+    join_date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationMember.join_date`."""
+
+    request_date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message request date."""
+
+
+class MessagesConversationPeer(BaseModel):
+    """
+    Model: `MessagesConversationPeer`
+    """
+
+    id: int = Field()
+    """Property `MessagesConversationPeer.id`."""
+
+    type: "MessagesConversationPeerType" = Field()
+    """Property `MessagesConversationPeer.type`."""
+
+    local_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationPeer.local_id`."""
+
+
+class MessagesConversationPeerType(str, enum.Enum, metaclass=BaseEnumMeta):
+    CHAT = "chat"
+    EMAIL = "email"
+    USER = "user"
+    GROUP = "group"
+
+
+class MessagesConversationSortId(BaseModel):
+    """
+    Model: `MessagesConversationSortId`
+    """
+
+    major_id: int = Field()
+    """Major id for sorting conversations."""
+
+    minor_id: int = Field()
+    """Minor id for sorting conversations."""
+
+
+class MessagesConversationWithMessage(BaseModel):
+    """
+    Model: `MessagesConversationWithMessage`
+    """
+
+    conversation: "MessagesConversation" = Field()
+    """Property `MessagesConversationWithMessage.conversation`."""
+
+    last_message: typing.Optional["MessagesMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesConversationWithMessage.last_message`."""
+
+
+class MessagesDeleteFullResponseItem(BaseModel):
+    """
+    Model: `MessagesDeleteFullResponseItem`
+    """
+
+    peer_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesDeleteFullResponseItem.peer_id`."""
+
+    message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesDeleteFullResponseItem.message_id`."""
+
+    conversation_message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesDeleteFullResponseItem.conversation_message_id`."""
+
+    response: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesDeleteFullResponseItem.response`."""
+
+    error: typing.Optional["BaseMessageError"] = Field(
+        default=None,
+    )
+    """Property `MessagesDeleteFullResponseItem.error`."""
+
+
+class MessagesForeignMessage(BaseModel):
+    """
+    Model: `MessagesForeignMessage`
+    """
+
+    conversation_message_id: int = Field()
+    """Conversation message ID."""
+
+    date: int = Field()
+    """Date when the message was created."""
+
+    from_id: int = Field()
+    """Message author\'s ID."""
+
+    text: str = Field()
+    """Message text."""
+
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+        default=None,
+    )
+    """Property `MessagesForeignMessage.attachments`."""
+
+    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
+        default=None,
+    )
+    """Property `MessagesForeignMessage.fwd_messages`."""
+
+    geo: typing.Optional["BaseGeo"] = Field(
+        default=None,
+    )
+    """Property `MessagesForeignMessage.geo`."""
+
+    id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message ID."""
+
+    peer_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Peer ID."""
+
+    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesForeignMessage.reply_message`."""
+
+    update_time: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Date when the message has been updated in Unixtime."""
+
+    was_listened: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Was the audio message inside already listened by you."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesForward(BaseModel):
+    """
+    Model: `MessagesForward`
+    """
+
+    owner_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Messages owner_id."""
+
+    peer_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Messages peer_id."""
+
+    conversation_message_ids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `MessagesForward.conversation_message_ids`."""
+
+    cmids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `MessagesForward.cmids`."""
+
+    message_ids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `MessagesForward.message_ids`."""
+
+    is_reply: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """If you need to reply to a message."""
+
+
+class MessagesFwdMessages(BaseModel):
+    """
+    Model: `MessagesFwdMessages`
+    """
+
+
+class MessagesGetConversationById(BaseModel):
+    """
+    Model: `MessagesGetConversationById`
+    """
+
+    count: int = Field()
+    """Total number."""
+
+    items: typing.List["MessagesConversation"] = Field()
+    """Property `MessagesGetConversationById.items`."""
+
+
+class MessagesGetConversationMembers(BaseModel):
+    """
+    Model: `MessagesGetConversationMembers`
+    """
+
+    items: typing.List["MessagesConversationMember"] = Field()
+    """Property `MessagesGetConversationMembers.items`."""
+
+    count: int = Field()
+    """Chat members count."""
+
+    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = Field(
+        default=None,
+    )
+    """Property `MessagesGetConversationMembers.chat_restrictions`."""
+
+    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+        default=None,
+    )
+    """Property `MessagesGetConversationMembers.profiles`."""
+
+    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+        default=None,
+    )
+    """Property `MessagesGetConversationMembers.groups`."""
+
+
+class MessagesGetInviteLinkByOwnerResponseItem(BaseModel):
+    """
+    Model: `MessagesGetInviteLinkByOwnerResponseItem`
+    """
+
+    owner_id: int = Field()
+    """Property `MessagesGetInviteLinkByOwnerResponseItem.owner_id`."""
+
+    link: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Property `MessagesGetInviteLinkByOwnerResponseItem.link`."""
+
+    error: typing.Optional["BaseMessageError"] = Field(
+        default=None,
+    )
+    """Property `MessagesGetInviteLinkByOwnerResponseItem.error`."""
+
+
+class MessagesGraffiti(BaseModel):
+    """
+    Model: `MessagesGraffiti`
+    """
+
+    id: int = Field()
+    """Graffiti ID."""
+
+    owner_id: int = Field()
+    """Graffiti owner ID."""
+
+    url: str = Field()
+    """Graffiti URL."""
+
+    width: int = Field()
+    """Graffiti width."""
+
+    height: int = Field()
+    """Graffiti height."""
+
+    access_key: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Access key for graffiti."""
+
+
+class MessagesHistoryAttachment(BaseModel):
+    """
+    Model: `MessagesHistoryAttachment`
+    """
+
+    attachment: "MessagesHistoryMessageAttachment" = Field()
+    """Property `MessagesHistoryAttachment.attachment`."""
+
+    date: int = Field()
+    """Message sending time."""
+
+    message_id: int = Field()
+    """Message ID."""
+
+    cmid: int = Field()
+    """Conversation Message ID."""
+
+    from_id: int = Field()
+    """Message author\'s ID."""
+
+    message_expire_ttl: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message Exipire ttl."""
+
+    forward_level: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Forward level (optional)."""
+
+    was_listened: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryAttachment.was_listened`."""
+
+    position: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Attachment position in the Message."""
+
+
+class MessagesHistoryMessageAttachment(BaseModel):
+    """
+    Model: `MessagesHistoryMessageAttachment`
+    """
+
+    type: "MessagesHistoryMessageAttachmentType" = Field()
+    """Property `MessagesHistoryMessageAttachment.type`."""
+
+    audio: typing.Optional["AudioAudio"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.audio`."""
+
+    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.audio_message`."""
+
+    doc: typing.Optional["DocsDoc"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.doc`."""
+
+    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.graffiti`."""
+
+    market: typing.Optional["MarketMarketItem"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.market`."""
+
+    photo: typing.Optional["PhotosPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesHistoryMessageAttachment.photo`."""
+
+
+class MessagesHistoryMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+    APP_ACTION = "app_action"
+    AUDIO = "audio"
+    DOC = "doc"
+    LINK = "link"
+    MARKET = "market"
+    PHOTO = "photo"
+    VIDEO = "video"
+    WALL = "wall"
+    GRAFFITI = "graffiti"
+    AUDIO_MESSAGE = "audio_message"
+
+
+class MessagesKeyboard(BaseModel):
+    """
+    Model: `MessagesKeyboard`
+    """
+
+    one_time: bool = Field()
+    """Should this keyboard disappear on first use."""
+
+    buttons: typing.List[typing.List["MessagesKeyboardButton"]] = Field()
+    """Property `MessagesKeyboard.buttons`."""
+
+    author_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Community or bot, which set this keyboard."""
+
+    inline: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Property `MessagesKeyboard.inline`."""
+
+
+class MessagesKeyboardButtonColor(str, enum.Enum, metaclass=BaseEnumMeta):
+    DEFAULT = "default"
+    POSITIVE = "positive"
+    NEGATIVE = "negative"
+    PRIMARY = "primary"
+
+
+class MessagesKeyboardButton(BaseModel):
+    """
+    Model: `MessagesKeyboardButton`
+    """
+
+    action: "MessagesKeyboardButtonPropertyAction" = Field()
+    """Property `MessagesKeyboardButton.action`."""
+
+    color: typing.Optional["MessagesKeyboardButtonColor"] = Field(
+        default=None,
+    )
+    """Button color."""
+
+
+class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
+    CALLBACK = "callback"
+
+
+class MessagesKeyboardButtonActionCallback(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionCallback`
+    """
+
+    label: str = Field()
+    """Label for button."""
+
+    type: "MessagesKeyboardButtonActionCallbackType" = Field()
+    """Property `MessagesKeyboardButtonActionCallback.type`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnumMeta):
+    LOCATION = "location"
+
+
+class MessagesKeyboardButtonActionLocation(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionLocation`
+    """
+
+    type: "MessagesKeyboardButtonActionLocationType" = Field()
+    """Property `MessagesKeyboardButtonActionLocation.type`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnumMeta):
+    OPEN_APP = "open_app"
+
+
+class MessagesKeyboardButtonActionOpenApp(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionOpenApp`
+    """
+
+    app_id: int = Field()
+    """Fragment value in app link like vk.com/app{app_id}_-654321#hash."""
+
+    label: str = Field()
+    """Label for button."""
+
+    owner_id: int = Field()
+    """Fragment value in app link like vk.com/app123456_{owner_id}#hash."""
+
+    type: "MessagesKeyboardButtonActionOpenAppType" = Field()
+    """Property `MessagesKeyboardButtonActionOpenApp.type`."""
+
+    hash: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
+    OPEN_LINK = "open_link"
+
+
+class MessagesKeyboardButtonActionOpenLink(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionOpenLink`
+    """
+
+    label: str = Field()
+    """Label for button."""
+
+    link: str = Field()
+    """link for button."""
+
+    type: "MessagesKeyboardButtonActionOpenLinkType" = Field()
+    """Property `MessagesKeyboardButtonActionOpenLink.type`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEnumMeta):
+    OPEN_PHOTO = "open_photo"
+
+
+class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionOpenPhoto`
+    """
+
+    type: "MessagesKeyboardButtonActionOpenPhotoType" = Field()
+    """Property `MessagesKeyboardButtonActionOpenPhoto.type`."""
+
+
+class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMeta):
+    TEXT = "text"
+
+
+class MessagesKeyboardButtonActionText(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionText`
+    """
+
+    label: str = Field()
+    """Label for button."""
+
+    type: "MessagesKeyboardButtonActionTextType" = Field()
+    """Property `MessagesKeyboardButtonActionText.type`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMeta):
+    VKPAY = "vkpay"
+
+
+class MessagesKeyboardButtonActionVkpay(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonActionVkpay`
+    """
+
+    hash: str = Field()
+    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
+
+    type: "MessagesKeyboardButtonActionVkpayType" = Field()
+    """Property `MessagesKeyboardButtonActionVkpay.type`."""
+
+    payload: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Additional data sent along with message for developer convenience."""
+
+
+class MessagesKeyboardButtonPropertyAction(BaseModel):
+    """
+    Model: `MessagesKeyboardButtonPropertyAction`
+    """
+
+
+class MessagesLastActivity(BaseModel):
+    """
+    Model: `MessagesLastActivity`
+    """
+
+    online: bool = Field()
+    """Information whether user is online."""
+
+    time: int = Field()
+    """Time when user was online in Unixtime."""
+
+
+class MessagesLongpollMessages(BaseModel):
+    """
+    Model: `MessagesLongpollMessages`
+    """
+
+
+class MessagesLongpollParams(BaseModel):
+    """
+    Model: `MessagesLongpollParams`
+    """
+
+    server: str = Field()
+    """Server URL."""
+
+    key: str = Field()
+    """Key."""
+
+    ts: int = Field()
+    """Timestamp."""
+
+    pts: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Persistent timestamp."""
+
+
+class MessagesMessageAction(BaseModel):
+    """
+    Model: `MessagesMessageAction`
+    """
+
+    type: "MessagesMessageActionStatus" = Field()
+    """Property `MessagesMessageAction.type`."""
+
+    conversation_message_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message ID."""
+
+    email: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Email address for chat_invite_user or chat_kick_user actions."""
+
+    member_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """User or email peer ID."""
+
+    message: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Message body of related message."""
+
+    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAction.photo`."""
+
+    text: typing.Optional[str] = Field(
+        default=None,
+    )
+    """New chat title for chat_create and chat_title_update actions."""
+
+
+class MessagesMessageActionPhoto(BaseModel):
+    """
+    Model: `MessagesMessageActionPhoto`
+    """
+
+    photo_50: str = Field()
+    """URL of the preview image with 50px in width."""
+
+    photo_100: str = Field()
+    """URL of the preview image with 100px in width."""
+
+    photo_200: str = Field()
+    """URL of the preview image with 200px in width."""
+
+
+class MessagesMessageActionStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+    CHAT_PHOTO_UPDATE = "chat_photo_update"
+    CHAT_PHOTO_REMOVE = "chat_photo_remove"
+    CHAT_CREATE = "chat_create"
+    CHAT_TITLE_UPDATE = "chat_title_update"
+    CHAT_INVITE_USER = "chat_invite_user"
+    CHAT_KICK_USER = "chat_kick_user"
+    CHAT_PIN_MESSAGE = "chat_pin_message"
+    CHAT_UNPIN_MESSAGE = "chat_unpin_message"
+    CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
+    CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
+    CHAT_SCREENSHOT = "chat_screenshot"
+
+
+class MessagesMessageAttachment(BaseModel):
+    """
+    Model: `MessagesMessageAttachment`
+    """
+
+    type: "MessagesMessageAttachmentType" = Field()
+    """Property `MessagesMessageAttachment.type`."""
+
+    audio: typing.Optional["AudioAudio"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.audio`."""
+
+    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.audio_message`."""
+
+    call: typing.Optional["CallsCall"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.call`."""
+
+    doc: typing.Optional["DocsDoc"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.doc`."""
+
+    gift: typing.Optional["GiftsLayout"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.gift`."""
+
+    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.graffiti`."""
+
+    market: typing.Optional["MarketMarketItem"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.market`."""
+
+    market_market_album: typing.Optional["MarketMarketAlbum"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.market_market_album`."""
+
+    photo: typing.Optional["PhotosPhoto"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.photo`."""
+
+    sticker: typing.Optional["BaseSticker"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.sticker`."""
+
+    story: typing.Optional["StoriesStory"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.story`."""
+
+    wall_reply: typing.Optional["WallWallComment"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.wall_reply`."""
+
+    poll: typing.Optional["PollsPoll"] = Field(
+        default=None,
+    )
+    """Property `MessagesMessageAttachment.poll`."""
+
+
+class MessagesMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+    PHOTO = "photo"
+    AUDIO = "audio"
+    VIDEO = "video"
+    VIDEO_PLAYLIST = "video_playlist"
+    DOC = "doc"
+    LINK = "link"
+    MARKET = "market"
+    GIFT = "gift"
+    STICKER = "sticker"
+    WALL = "wall"
+    WALL_REPLY = "wall_reply"
+    ARTICLE = "article"
+    POLL = "poll"
+    PODCASTS = "podcasts"
+    CALL = "call"
+    GRAFFITI = "graffiti"
+    AUDIO_MESSAGE = "audio_message"
+
+
+class MessagesMessageRequestData(BaseModel):
+    """
+    Model: `MessagesMessageRequestData`
+    """
+
+    status: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Status of message request."""
+
+    inviter_id: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message request sender id."""
+
+    request_date: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Message request date."""
+
+
+class MessagesMessagesArray(BaseModel):
+    """
+    Model: `MessagesMessagesArray`
+    """
+
+    count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesMessagesArray.count`."""
+
+    items: typing.Optional[typing.List["MessagesMessage"]] = Field(
+        default=None,
+    )
+    """Property `MessagesMessagesArray.items`."""
+
+
+class MessagesOutReadBy(BaseModel):
+    """
+    Model: `MessagesOutReadBy`
+    """
+
+    count: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Property `MessagesOutReadBy.count`."""
+
+    member_ids: typing.Optional[typing.List[int]] = Field(
+        default=None,
+    )
+    """Property `MessagesOutReadBy.member_ids`."""
+
+
+class MessagesPinnedMessage(BaseModel):
+    """
+    Model: `MessagesPinnedMessage`
+    """
+
+    conversation_message_id: int = Field()
+    """Unique auto-incremented number for all messages with this peer."""
+
+    id: int = Field()
+    """Message ID."""
+
+    date: int = Field()
+    """Date when the message has been sent in Unixtime."""
+
+    from_id: int = Field()
+    """Message author\'s ID."""
+
+    peer_id: int = Field()
+    """Peer ID."""
+
+    text: str = Field()
+    """Message text."""
+
+    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+        default=None,
+    )
+    """Property `MessagesPinnedMessage.attachments`."""
+
+    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
+        default=None,
+    )
+    """Forwarded messages."""
+
+    geo: typing.Optional["BaseGeo"] = Field(
+        default=None,
+    )
+    """Property `MessagesPinnedMessage.geo`."""
+
+    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+        default=None,
+    )
+    """Property `MessagesPinnedMessage.reply_message`."""
+
+    keyboard: typing.Optional["MessagesKeyboard"] = Field(
+        default=None,
+    )
+    """Property `MessagesPinnedMessage.keyboard`."""
+
+    out: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the message is outcoming."""
+
+    important: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Is it an important message."""
+
+
+class MessagesPushSettings(BaseModel):
+    """
+    Model: `MessagesPushSettings`
+    """
+
+    disabled_forever: bool = Field()
+    """Information whether push notifications are disabled forever."""
+
+    no_sound: bool = Field()
+    """Information whether the sound is on."""
+
+    disabled_until: typing.Optional[int] = Field(
+        default=None,
+    )
+    """Time until what notifications are disabled."""
+
+    disabled_mentions: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the mentions are disabled."""
+
+    disabled_mass_mentions: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether the mass mentions (like \'@all\', \'@online\') are disabled."""
+
+
+class MessagesReactionAssetItem(BaseModel):
+    """
+    Model: `MessagesReactionAssetItem`
+    """
+
+    reaction_id: int = Field()
+    """Property `MessagesReactionAssetItem.reaction_id`."""
+
+    links: "MessagesReactionAssetItemLinks" = Field()
+    """Liks to reactions assets for each asset type."""
+
+
+class MessagesReactionAssetItemLinks(BaseModel):
+    """
+    Model: `MessagesReactionAssetItemLinks`
+    """
+
+    big_animation: str = Field()
+    """Big reaction animation json file."""
+
+    small_animation: str = Field()
+    """Small reaction animation json file."""
+
+    static: str = Field()
+    """Reaction image file."""
+
+
+class MessagesReactionCounterResponseItem(BaseModel):
+    """
+    Model: `MessagesReactionCounterResponseItem`
+    """
+
+    reaction_id: int = Field()
+    """Property `MessagesReactionCounterResponseItem.reaction_id`."""
+
+    count: int = Field()
+    """Property `MessagesReactionCounterResponseItem.count`."""
+
+    user_ids: typing.List[int] = Field()
+    """Property `MessagesReactionCounterResponseItem.user_ids`."""
+
+
+class MessagesReactionCountersResponseItem(BaseModel):
+    """
+    Model: `MessagesReactionCountersResponseItem`
+    """
+
+    cmid: int = Field()
+    """Property `MessagesReactionCountersResponseItem.cmid`."""
+
+    counters: typing.List["MessagesReactionCounterResponseItem"] = Field()
+    """Property `MessagesReactionCountersResponseItem.counters`."""
+
+
+class MessagesReactionResponseItem(BaseModel):
+    """
+    Model: `MessagesReactionResponseItem`
+    """
+
+    user_id: int = Field()
+    """Property `MessagesReactionResponseItem.user_id`."""
+
+    reaction_id: int = Field()
+    """Property `MessagesReactionResponseItem.reaction_id`."""
+
+
+class MessagesSendUserIdsResponseItem(BaseModel):
+    """
+    Model: `MessagesSendUserIdsResponseItem`
+    """
+
+    peer_id: int = Field()
+    """Property `MessagesSendUserIdsResponseItem.peer_id`."""
+
+    message_id: int = Field()
+    """Property `MessagesSendUserIdsResponseItem.message_id`."""
+
+    conversation_message_id: int = Field()
+    """Property `MessagesSendUserIdsResponseItem.conversation_message_id`."""
+
+    error: typing.Optional["BaseMessageError"] = Field(
+        default=None,
+    )
+    """Property `MessagesSendUserIdsResponseItem.error`."""
+
+
+class MessagesTemplateActionTypeNames(str, enum.Enum, metaclass=BaseEnumMeta):
+    TEXT = "text"
+    START = "start"
+    LOCATION = "location"
+    VKPAY = "vkpay"
+    OPEN_APP = "open_app"
+    OPEN_PHOTO = "open_photo"
+    OPEN_LINK = "open_link"
+    CALLBACK = "callback"
+    INTENT_SUBSCRIBE = "intent_subscribe"
+    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
+    OPEN_MODAL_VIEW = "open_modal_view"
+
+
+class MessagesUserTypeForXtrInvitedBy(str, enum.Enum, metaclass=BaseEnumMeta):
+    PROFILE = "profile"
+    GROUP = "group"
+
+
 class AccountAccountCounters(BaseModel):
     """
     Model: `AccountAccountCounters`
@@ -2654,6 +4486,11 @@ class AdsAd(BaseModel):
     """Information whether disclaimer is enabled."""
 
     disclaimer_supplements: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information whether disclaimer is enabled."""
+
+    disclaimer_credits: typing.Optional[bool] = Field(
         default=None,
     )
     """Information whether disclaimer is enabled."""
@@ -10245,6 +12082,16 @@ class GroupsProfileItem(BaseModel):
     first_name: str = Field()
     """User first name."""
 
+    last_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """User last name."""
+
+    screen_name: typing.Optional[str] = Field(
+        default=None,
+    )
+    """Domain of the user page."""
+
 
 class GroupsRoleOptions(str, enum.Enum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
@@ -11173,1844 +13020,6 @@ class MarketUploadPhotoData(BaseModel):
         default=None,
     )
     """Property `MarketUploadPhotoData.photo`."""
-
-
-class MessagesActionOneOf(BaseModel):
-    """
-    Model: `MessagesActionOneOf`
-    """
-
-    type: "MessagesMessageActionStatus" = Field()
-    """Property `MessagesActionOneOf.type`."""
-
-    conversation_message_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message ID."""
-
-    email: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Email address for chat_invite_user or chat_kick_user actions."""
-
-    member_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """User or email peer ID."""
-
-    message: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Message body of related message."""
-
-    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesActionOneOf.photo`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """New chat title for chat_create and chat_title_update actions."""
-
-
-class MessagesAudioMessage(BaseModel):
-    """
-    Model: `MessagesAudioMessage`
-    """
-
-    duration: int = Field()
-    """Audio message duration in seconds."""
-
-    id: int = Field()
-    """Audio message ID."""
-
-    link_mp3: str = Field()
-    """MP3 file URL."""
-
-    link_ogg: str = Field()
-    """OGG file URL."""
-
-    owner_id: int = Field()
-    """Audio message owner ID."""
-
-    waveform: typing.List[int] = Field()
-    """Property `MessagesAudioMessage.waveform`."""
-
-    access_key: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Access key for audio message."""
-
-    transcript_error: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesAudioMessage.transcript_error`."""
-
-
-class MessagesBaseMessage(BaseModel):
-    """
-    Model: `MessagesBaseMessage`
-    """
-
-    conversation_message_id: int = Field()
-    """Unique auto-incremented number for all messages with this peer."""
-
-    date: int = Field()
-    """Date when the message has been sent in Unixtime."""
-
-    from_id: int = Field()
-    """Message author\'s ID."""
-
-    id: int = Field()
-    """Message ID."""
-
-    text: str = Field()
-    """Message text."""
-
-    version: int = Field()
-    """Property `MessagesBaseMessage.version`."""
-
-    out: bool = Field()
-    """Information whether the message is outcoming."""
-
-    peer_id: int = Field()
-    """Peer ID."""
-
-    action: typing.Optional["MessagesActionOneOf"] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.action`."""
-
-    admin_author_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Only for messages from community. Contains user ID of community admin, who sent this message.."""
-
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.attachments`."""
-
-    deleted: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is it an deleted message."""
-
-    fwd_messages: typing.Optional["MessagesFwdMessages"] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.fwd_messages`."""
-
-    geo: typing.Optional["BaseGeo"] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.geo`."""
-
-    is_cropped: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """this message is cropped for bot."""
-
-    keyboard: typing.Optional["MessagesKeyboard"] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.keyboard`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.payload`."""
-
-    update_time: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Date when the message has been updated in Unixtime."""
-
-    is_silent: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is silent message, push without sound."""
-
-    is_unavailable: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is message unavailable for some reason, including its id equals 0."""
-
-    random_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """ID used for sending messages. It returned only for outgoing messages."""
-
-    ref: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.ref`."""
-
-    ref_source: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesBaseMessage.ref_source`."""
-
-
-class MessagesChat(BaseModel):
-    """
-    Model: `MessagesChat`
-    """
-
-    admin_id: int = Field()
-    """Chat creator ID."""
-
-    id: int = Field()
-    """Chat ID."""
-
-    type: str = Field()
-    """Chat type."""
-
-    users: typing.List[int] = Field()
-    """Property `MessagesChat.users`."""
-
-    members_count: int = Field()
-    """Count members in a chat."""
-
-    kicked: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Shows that user has been kicked from the chat."""
-
-    left: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Shows that user has been left the chat."""
-
-    photo_100: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 100 px in width."""
-
-    photo_200: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 200 px in width."""
-
-    photo_50: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 50 px in width."""
-
-    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
-        default=None,
-    )
-    """Property `MessagesChat.push_settings`."""
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Chat title."""
-
-    is_default_photo: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If provided photo is default."""
-
-    is_group_channel: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If chat is group channel."""
-
-
-class MessagesChatFull(BaseModel):
-    """
-    Model: `MessagesChatFull`
-    """
-
-    admin_id: int = Field()
-    """Chat creator ID."""
-
-    id: int = Field()
-    """Chat ID."""
-
-    type: str = Field()
-    """Chat type."""
-
-    users: typing.List["MessagesUserXtrInvitedBy"] = Field()
-    """Property `MessagesChatFull.users`."""
-
-    members_count: int = Field()
-    """Count members in a chat."""
-
-    kicked: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Shows that user has been kicked from the chat."""
-
-    left: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Shows that user has been left the chat."""
-
-    photo_100: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 100 px in width."""
-
-    photo_200: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 200 px in width."""
-
-    photo_50: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 50 px in width."""
-
-    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatFull.push_settings`."""
-
-    title: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Chat title."""
-
-    is_default_photo: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If provided photo is default."""
-
-    is_group_channel: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If chat is group channel."""
-
-
-class MessagesChatPreview(BaseModel):
-    """
-    Model: `MessagesChatPreview`
-    """
-
-    admin_id: int = Field()
-    """Property `MessagesChatPreview.admin_id`."""
-
-    members: typing.List[int] = Field()
-    """Property `MessagesChatPreview.members`."""
-
-    title: str = Field()
-    """Property `MessagesChatPreview.title`."""
-
-    joined: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.joined`."""
-
-    local_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.local_id`."""
-
-    members_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.members_count`."""
-
-    is_member: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.is_member`."""
-
-    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.photo`."""
-
-    is_don: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.is_don`."""
-
-    is_nft: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.is_nft`."""
-
-    is_group_channel: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.is_group_channel`."""
-
-    button: typing.Optional["BaseLinkButton"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatPreview.button`."""
-
-
-class MessagesChatPushSettings(BaseModel):
-    """
-    Model: `MessagesChatPushSettings`
-    """
-
-    disabled_until: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Time until that notifications are disabled."""
-
-    sound: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Information whether the sound is on."""
-
-
-class MessagesChatRestrictions(BaseModel):
-    """
-    Model: `MessagesChatRestrictions`
-    """
-
-    admins_promote_users: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Only admins can promote users to admins."""
-
-    only_admins_edit_info: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Only admins can change chat info."""
-
-    only_admins_edit_pin: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Only admins can edit pinned message."""
-
-    only_admins_invite: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Only admins can invite users to this chat."""
-
-    only_admins_kick: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Only admins can kick users from this chat."""
-
-
-class MessagesChatSettings(BaseModel):
-    """
-    Model: `MessagesChatSettings`
-    """
-
-    owner_id: int = Field()
-    """Property `MessagesChatSettings.owner_id`."""
-
-    title: str = Field()
-    """Chat title."""
-
-    state: "MessagesChatSettingsState" = Field()
-    """Property `MessagesChatSettings.state`."""
-
-    acl: "MessagesChatSettingsAcl" = Field()
-    """Property `MessagesChatSettings.acl`."""
-
-    members_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.members_count`."""
-
-    friends_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.friends_count`."""
-
-    pinned_messages_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.pinned_messages_count`."""
-
-    pinned_message: typing.Optional["MessagesPinnedMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.pinned_message`."""
-
-    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.photo`."""
-
-    admin_ids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Ids of chat admins."""
-
-    active_ids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.active_ids`."""
-
-    is_group_channel: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.is_group_channel`."""
-
-    permissions: typing.Optional["MessagesChatSettingsPermissions"] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.permissions`."""
-
-    is_disappearing: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.is_disappearing`."""
-
-    theme: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.theme`."""
-
-    disappearing_chat_link: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.disappearing_chat_link`."""
-
-    is_service: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesChatSettings.is_service`."""
-
-
-class MessagesChatSettingsAcl(BaseModel):
-    """
-    Model: `MessagesChatSettingsAcl`
-    """
-
-    can_change_info: bool = Field()
-    """Can you change photo, description and name."""
-
-    can_change_invite_link: bool = Field()
-    """Can you change invite link for this chat."""
-
-    can_change_pin: bool = Field()
-    """Can you pin/unpin message for this chat."""
-
-    can_invite: bool = Field()
-    """Can you invite other peers in chat."""
-
-    can_promote_users: bool = Field()
-    """Can you promote simple users to chat admins."""
-
-    can_see_invite_link: bool = Field()
-    """Can you see invite link for this chat."""
-
-    can_moderate: bool = Field()
-    """Can you moderate (delete) other users\' messages."""
-
-    can_copy_chat: bool = Field()
-    """Can you copy chat."""
-
-    can_call: bool = Field()
-    """Can you init group call in the chat."""
-
-    can_use_mass_mentions: bool = Field()
-    """Can you use mass mentions."""
-
-    can_change_service_type: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Can you change chat service type."""
-
-
-class MessagesChatSettingsPermissionsInvite(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsChangeInfo(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsChangePin(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsUseMassMentions(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsSeeInviteLink(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsCall(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-    ALL = "all"
-
-
-class MessagesChatSettingsPermissionsChangeAdmins(str, enum.Enum, metaclass=BaseEnumMeta):
-    OWNER = "owner"
-    OWNER_AND_ADMINS = "owner_and_admins"
-
-
-class MessagesChatSettingsPermissions(BaseModel):
-    """
-    Model: `MessagesChatSettingsPermissions`
-    """
-
-    invite: typing.Optional["MessagesChatSettingsPermissionsInvite"] = Field(
-        default=None,
-    )
-    """Who can invite users to chat."""
-
-    change_info: typing.Optional["MessagesChatSettingsPermissionsChangeInfo"] = Field(
-        default=None,
-    )
-    """Who can change chat info."""
-
-    change_pin: typing.Optional["MessagesChatSettingsPermissionsChangePin"] = Field(
-        default=None,
-    )
-    """Who can change pinned message."""
-
-    use_mass_mentions: typing.Optional["MessagesChatSettingsPermissionsUseMassMentions"] = Field(
-        default=None,
-    )
-    """Who can use mass mentions."""
-
-    see_invite_link: typing.Optional["MessagesChatSettingsPermissionsSeeInviteLink"] = Field(
-        default=None,
-    )
-    """Who can see invite link."""
-
-    call: typing.Optional["MessagesChatSettingsPermissionsCall"] = Field(
-        default=None,
-    )
-    """Who can make calls."""
-
-    change_admins: typing.Optional["MessagesChatSettingsPermissionsChangeAdmins"] = Field(
-        default=None,
-    )
-    """Who can change admins."""
-
-
-class MessagesChatSettingsPhoto(BaseModel):
-    """
-    Model: `MessagesChatSettingsPhoto`
-    """
-
-    photo_50: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 50px in width."""
-
-    photo_100: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 100px in width."""
-
-    photo_200: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of the preview image with 200px in width."""
-
-    is_default_photo: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If provided photo is default."""
-
-    is_default_call_photo: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If provided photo is default call photo."""
-
-
-class MessagesChatSettingsState(str, enum.Enum, metaclass=BaseEnumMeta):
-    IN = "in"
-    KICKED = "kicked"
-    LEFT = "left"
-    OUT = "out"
-
-
-class MessagesConversationSpecialServiceType(str, enum.Enum, metaclass=BaseEnumMeta):
-    BUSINESS_NOTIFY = "business_notify"
-
-
-class MessagesConversation(BaseModel):
-    """
-    Model: `MessagesConversation`
-    """
-
-    peer: "MessagesConversationPeer" = Field()
-    """Property `MessagesConversation.peer`."""
-
-    last_message_id: int = Field()
-    """ID of the last message in conversation."""
-
-    last_conversation_message_id: int = Field()
-    """Conversation message ID of the last message in conversation."""
-
-    in_read: int = Field()
-    """Last message user have read."""
-
-    out_read: int = Field()
-    """Last outcoming message have been read by the opponent."""
-
-    version: int = Field()
-    """Property `MessagesConversation.version`."""
-
-    sort_id: typing.Optional["MessagesConversationSortId"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.sort_id`."""
-
-    unread_count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Unread messages number."""
-
-    is_marked_unread: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is this conversation unread."""
-
-    out_read_by: typing.Optional["MessagesOutReadBy"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.out_read_by`."""
-
-    important: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.important`."""
-
-    unanswered: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.unanswered`."""
-
-    special_service_type: typing.Optional["MessagesConversationSpecialServiceType"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.special_service_type`."""
-
-    message_request_data: typing.Optional["MessagesMessageRequestData"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.message_request_data`."""
-
-    mentions: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Ids of messages with mentions."""
-
-    current_keyboard: typing.Optional["MessagesKeyboard"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.current_keyboard`."""
-
-    push_settings: typing.Optional["MessagesPushSettings"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.push_settings`."""
-
-    can_write: typing.Optional["MessagesConversationCanWrite"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.can_write`."""
-
-    chat_settings: typing.Optional["MessagesChatSettings"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversation.chat_settings`."""
-
-
-class MessagesConversationCanWrite(BaseModel):
-    """
-    Model: `MessagesConversationCanWrite`
-    """
-
-    allowed: bool = Field()
-    """Property `MessagesConversationCanWrite.allowed`."""
-
-    reason: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationCanWrite.reason`."""
-
-    until: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationCanWrite.until`."""
-
-
-class MessagesConversationMember(BaseModel):
-    """
-    Model: `MessagesConversationMember`
-    """
-
-    member_id: int = Field()
-    """Property `MessagesConversationMember.member_id`."""
-
-    can_kick: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is it possible for user to kick this member."""
-
-    is_restricted_to_write: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Does this member have write permission."""
-
-    invited_by: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationMember.invited_by`."""
-
-    is_admin: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationMember.is_admin`."""
-
-    is_owner: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationMember.is_owner`."""
-
-    is_message_request: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationMember.is_message_request`."""
-
-    join_date: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationMember.join_date`."""
-
-    request_date: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message request date."""
-
-
-class MessagesConversationPeer(BaseModel):
-    """
-    Model: `MessagesConversationPeer`
-    """
-
-    id: int = Field()
-    """Property `MessagesConversationPeer.id`."""
-
-    type: "MessagesConversationPeerType" = Field()
-    """Property `MessagesConversationPeer.type`."""
-
-    local_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationPeer.local_id`."""
-
-
-class MessagesConversationPeerType(str, enum.Enum, metaclass=BaseEnumMeta):
-    CHAT = "chat"
-    EMAIL = "email"
-    USER = "user"
-    GROUP = "group"
-
-
-class MessagesConversationSortId(BaseModel):
-    """
-    Model: `MessagesConversationSortId`
-    """
-
-    major_id: int = Field()
-    """Major id for sorting conversations."""
-
-    minor_id: int = Field()
-    """Minor id for sorting conversations."""
-
-
-class MessagesConversationWithMessage(BaseModel):
-    """
-    Model: `MessagesConversationWithMessage`
-    """
-
-    conversation: "MessagesConversation" = Field()
-    """Property `MessagesConversationWithMessage.conversation`."""
-
-    last_message: typing.Optional["MessagesMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesConversationWithMessage.last_message`."""
-
-
-class MessagesDeleteFullResponseItem(BaseModel):
-    """
-    Model: `MessagesDeleteFullResponseItem`
-    """
-
-    peer_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesDeleteFullResponseItem.peer_id`."""
-
-    message_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesDeleteFullResponseItem.message_id`."""
-
-    conversation_message_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesDeleteFullResponseItem.conversation_message_id`."""
-
-    response: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesDeleteFullResponseItem.response`."""
-
-    error: typing.Optional["BaseMessageError"] = Field(
-        default=None,
-    )
-    """Property `MessagesDeleteFullResponseItem.error`."""
-
-
-class MessagesForeignMessage(BaseModel):
-    """
-    Model: `MessagesForeignMessage`
-    """
-
-    conversation_message_id: int = Field()
-    """Conversation message ID."""
-
-    date: int = Field()
-    """Date when the message was created."""
-
-    from_id: int = Field()
-    """Message author\'s ID."""
-
-    text: str = Field()
-    """Message text."""
-
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
-        default=None,
-    )
-    """Property `MessagesForeignMessage.attachments`."""
-
-    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
-        default=None,
-    )
-    """Property `MessagesForeignMessage.fwd_messages`."""
-
-    geo: typing.Optional["BaseGeo"] = Field(
-        default=None,
-    )
-    """Property `MessagesForeignMessage.geo`."""
-
-    id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message ID."""
-
-    peer_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Peer ID."""
-
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesForeignMessage.reply_message`."""
-
-    update_time: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Date when the message has been updated in Unixtime."""
-
-    was_listened: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Was the audio message inside already listened by you."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesForward(BaseModel):
-    """
-    Model: `MessagesForward`
-    """
-
-    owner_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Messages owner_id."""
-
-    peer_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Messages peer_id."""
-
-    conversation_message_ids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesForward.conversation_message_ids`."""
-
-    cmids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesForward.cmids`."""
-
-    message_ids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesForward.message_ids`."""
-
-    is_reply: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """If you need to reply to a message."""
-
-
-class MessagesFwdMessages(BaseModel):
-    """
-    Model: `MessagesFwdMessages`
-    """
-
-
-class MessagesGetConversationById(BaseModel):
-    """
-    Model: `MessagesGetConversationById`
-    """
-
-    count: int = Field()
-    """Total number."""
-
-    items: typing.List["MessagesConversation"] = Field()
-    """Property `MessagesGetConversationById.items`."""
-
-
-class MessagesGetConversationMembers(BaseModel):
-    """
-    Model: `MessagesGetConversationMembers`
-    """
-
-    items: typing.List["MessagesConversationMember"] = Field()
-    """Property `MessagesGetConversationMembers.items`."""
-
-    count: int = Field()
-    """Chat members count."""
-
-    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = Field(
-        default=None,
-    )
-    """Property `MessagesGetConversationMembers.chat_restrictions`."""
-
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
-        default=None,
-    )
-    """Property `MessagesGetConversationMembers.profiles`."""
-
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
-        default=None,
-    )
-    """Property `MessagesGetConversationMembers.groups`."""
-
-
-class MessagesGetInviteLinkByOwnerResponseItem(BaseModel):
-    """
-    Model: `MessagesGetInviteLinkByOwnerResponseItem`
-    """
-
-    owner_id: int = Field()
-    """Property `MessagesGetInviteLinkByOwnerResponseItem.owner_id`."""
-
-    link: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Property `MessagesGetInviteLinkByOwnerResponseItem.link`."""
-
-    error: typing.Optional["BaseMessageError"] = Field(
-        default=None,
-    )
-    """Property `MessagesGetInviteLinkByOwnerResponseItem.error`."""
-
-
-class MessagesGraffiti(BaseModel):
-    """
-    Model: `MessagesGraffiti`
-    """
-
-    id: int = Field()
-    """Graffiti ID."""
-
-    owner_id: int = Field()
-    """Graffiti owner ID."""
-
-    url: str = Field()
-    """Graffiti URL."""
-
-    width: int = Field()
-    """Graffiti width."""
-
-    height: int = Field()
-    """Graffiti height."""
-
-    access_key: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Access key for graffiti."""
-
-
-class MessagesHistoryAttachment(BaseModel):
-    """
-    Model: `MessagesHistoryAttachment`
-    """
-
-    attachment: "MessagesHistoryMessageAttachment" = Field()
-    """Property `MessagesHistoryAttachment.attachment`."""
-
-    date: int = Field()
-    """Message sending time."""
-
-    message_id: int = Field()
-    """Message ID."""
-
-    cmid: int = Field()
-    """Conversation Message ID."""
-
-    from_id: int = Field()
-    """Message author\'s ID."""
-
-    message_expire_ttl: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message Exipire ttl."""
-
-    forward_level: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Forward level (optional)."""
-
-    was_listened: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryAttachment.was_listened`."""
-
-    position: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Attachment position in the Message."""
-
-
-class MessagesHistoryMessageAttachment(BaseModel):
-    """
-    Model: `MessagesHistoryMessageAttachment`
-    """
-
-    type: "MessagesHistoryMessageAttachmentType" = Field()
-    """Property `MessagesHistoryMessageAttachment.type`."""
-
-    audio: typing.Optional["AudioAudio"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.audio`."""
-
-    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.audio_message`."""
-
-    doc: typing.Optional["DocsDoc"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.doc`."""
-
-    graffiti: typing.Optional["MessagesGraffiti"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.graffiti`."""
-
-    market: typing.Optional["MarketMarketItem"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.market`."""
-
-    photo: typing.Optional["PhotosPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesHistoryMessageAttachment.photo`."""
-
-
-class MessagesHistoryMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
-    APP_ACTION = "app_action"
-    AUDIO = "audio"
-    DOC = "doc"
-    LINK = "link"
-    MARKET = "market"
-    PHOTO = "photo"
-    VIDEO = "video"
-    WALL = "wall"
-    GRAFFITI = "graffiti"
-    AUDIO_MESSAGE = "audio_message"
-
-
-class MessagesKeyboard(BaseModel):
-    """
-    Model: `MessagesKeyboard`
-    """
-
-    one_time: bool = Field()
-    """Should this keyboard disappear on first use."""
-
-    buttons: typing.List[typing.List["MessagesKeyboardButton"]] = Field()
-    """Property `MessagesKeyboard.buttons`."""
-
-    author_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Community or bot, which set this keyboard."""
-
-    inline: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `MessagesKeyboard.inline`."""
-
-
-class MessagesKeyboardButtonColor(str, enum.Enum, metaclass=BaseEnumMeta):
-    DEFAULT = "default"
-    POSITIVE = "positive"
-    NEGATIVE = "negative"
-    PRIMARY = "primary"
-
-
-class MessagesKeyboardButton(BaseModel):
-    """
-    Model: `MessagesKeyboardButton`
-    """
-
-    action: "MessagesKeyboardButtonPropertyAction" = Field()
-    """Property `MessagesKeyboardButton.action`."""
-
-    color: typing.Optional["MessagesKeyboardButtonColor"] = Field(
-        default=None,
-    )
-    """Button color."""
-
-
-class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
-    CALLBACK = "callback"
-
-
-class MessagesKeyboardButtonActionCallback(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionCallback`
-    """
-
-    label: str = Field()
-    """Label for button."""
-
-    type: "MessagesKeyboardButtonActionCallbackType" = Field()
-    """Property `MessagesKeyboardButtonActionCallback.type`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnumMeta):
-    LOCATION = "location"
-
-
-class MessagesKeyboardButtonActionLocation(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionLocation`
-    """
-
-    type: "MessagesKeyboardButtonActionLocationType" = Field()
-    """Property `MessagesKeyboardButtonActionLocation.type`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnumMeta):
-    OPEN_APP = "open_app"
-
-
-class MessagesKeyboardButtonActionOpenApp(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionOpenApp`
-    """
-
-    app_id: int = Field()
-    """Fragment value in app link like vk.com/app{app_id}_-654321#hash."""
-
-    label: str = Field()
-    """Label for button."""
-
-    owner_id: int = Field()
-    """Fragment value in app link like vk.com/app123456_{owner_id}#hash."""
-
-    type: "MessagesKeyboardButtonActionOpenAppType" = Field()
-    """Property `MessagesKeyboardButtonActionOpenApp.type`."""
-
-    hash: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
-    OPEN_LINK = "open_link"
-
-
-class MessagesKeyboardButtonActionOpenLink(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionOpenLink`
-    """
-
-    label: str = Field()
-    """Label for button."""
-
-    link: str = Field()
-    """link for button."""
-
-    type: "MessagesKeyboardButtonActionOpenLinkType" = Field()
-    """Property `MessagesKeyboardButtonActionOpenLink.type`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEnumMeta):
-    OPEN_PHOTO = "open_photo"
-
-
-class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionOpenPhoto`
-    """
-
-    type: "MessagesKeyboardButtonActionOpenPhotoType" = Field()
-    """Property `MessagesKeyboardButtonActionOpenPhoto.type`."""
-
-
-class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMeta):
-    TEXT = "text"
-
-
-class MessagesKeyboardButtonActionText(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionText`
-    """
-
-    label: str = Field()
-    """Label for button."""
-
-    type: "MessagesKeyboardButtonActionTextType" = Field()
-    """Property `MessagesKeyboardButtonActionText.type`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMeta):
-    VKPAY = "vkpay"
-
-
-class MessagesKeyboardButtonActionVkpay(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonActionVkpay`
-    """
-
-    hash: str = Field()
-    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
-
-    type: "MessagesKeyboardButtonActionVkpayType" = Field()
-    """Property `MessagesKeyboardButtonActionVkpay.type`."""
-
-    payload: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Additional data sent along with message for developer convenience."""
-
-
-class MessagesKeyboardButtonPropertyAction(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonPropertyAction`
-    """
-
-
-class MessagesLastActivity(BaseModel):
-    """
-    Model: `MessagesLastActivity`
-    """
-
-    online: bool = Field()
-    """Information whether user is online."""
-
-    time: int = Field()
-    """Time when user was online in Unixtime."""
-
-
-class MessagesLongpollMessages(BaseModel):
-    """
-    Model: `MessagesLongpollMessages`
-    """
-
-    count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Total number."""
-
-    items: typing.Optional[typing.List["MessagesMessage"]] = Field(
-        default=None,
-    )
-    """Property `MessagesLongpollMessages.items`."""
-
-
-class MessagesLongpollParams(BaseModel):
-    """
-    Model: `MessagesLongpollParams`
-    """
-
-    server: str = Field()
-    """Server URL."""
-
-    key: str = Field()
-    """Key."""
-
-    ts: int = Field()
-    """Timestamp."""
-
-    pts: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Persistent timestamp."""
-
-
-class MessagesMessageAction(BaseModel):
-    """
-    Model: `MessagesMessageAction`
-    """
-
-    type: "MessagesMessageActionStatus" = Field()
-    """Property `MessagesMessageAction.type`."""
-
-    conversation_message_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message ID."""
-
-    email: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Email address for chat_invite_user or chat_kick_user actions."""
-
-    member_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """User or email peer ID."""
-
-    message: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Message body of related message."""
-
-    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAction.photo`."""
-
-    text: typing.Optional[str] = Field(
-        default=None,
-    )
-    """New chat title for chat_create and chat_title_update actions."""
-
-
-class MessagesMessageActionPhoto(BaseModel):
-    """
-    Model: `MessagesMessageActionPhoto`
-    """
-
-    photo_50: str = Field()
-    """URL of the preview image with 50px in width."""
-
-    photo_100: str = Field()
-    """URL of the preview image with 100px in width."""
-
-    photo_200: str = Field()
-    """URL of the preview image with 200px in width."""
-
-
-class MessagesMessageActionStatus(str, enum.Enum, metaclass=BaseEnumMeta):
-    CHAT_PHOTO_UPDATE = "chat_photo_update"
-    CHAT_PHOTO_REMOVE = "chat_photo_remove"
-    CHAT_CREATE = "chat_create"
-    CHAT_TITLE_UPDATE = "chat_title_update"
-    CHAT_INVITE_USER = "chat_invite_user"
-    CHAT_KICK_USER = "chat_kick_user"
-    CHAT_PIN_MESSAGE = "chat_pin_message"
-    CHAT_UNPIN_MESSAGE = "chat_unpin_message"
-    CHAT_INVITE_USER_BY_LINK = "chat_invite_user_by_link"
-    CHAT_INVITE_USER_BY_MESSAGE_REQUEST = "chat_invite_user_by_message_request"
-    CHAT_SCREENSHOT = "chat_screenshot"
-
-
-class MessagesMessageAttachment(BaseModel):
-    """
-    Model: `MessagesMessageAttachment`
-    """
-
-    type: "MessagesMessageAttachmentType" = Field()
-    """Property `MessagesMessageAttachment.type`."""
-
-    audio: typing.Optional["AudioAudio"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.audio`."""
-
-    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.audio_message`."""
-
-    call: typing.Optional["CallsCall"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.call`."""
-
-    doc: typing.Optional["DocsDoc"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.doc`."""
-
-    gift: typing.Optional["GiftsLayout"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.gift`."""
-
-    graffiti: typing.Optional["MessagesGraffiti"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.graffiti`."""
-
-    market: typing.Optional["MarketMarketItem"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.market`."""
-
-    market_market_album: typing.Optional["MarketMarketAlbum"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.market_market_album`."""
-
-    photo: typing.Optional["PhotosPhoto"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.photo`."""
-
-    sticker: typing.Optional["BaseSticker"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.sticker`."""
-
-    story: typing.Optional["StoriesStory"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.story`."""
-
-    wall_reply: typing.Optional["WallWallComment"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.wall_reply`."""
-
-    poll: typing.Optional["PollsPoll"] = Field(
-        default=None,
-    )
-    """Property `MessagesMessageAttachment.poll`."""
-
-
-class MessagesMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
-    PHOTO = "photo"
-    AUDIO = "audio"
-    VIDEO = "video"
-    VIDEO_PLAYLIST = "video_playlist"
-    DOC = "doc"
-    LINK = "link"
-    MARKET = "market"
-    GIFT = "gift"
-    STICKER = "sticker"
-    WALL = "wall"
-    WALL_REPLY = "wall_reply"
-    ARTICLE = "article"
-    POLL = "poll"
-    PODCASTS = "podcasts"
-    CALL = "call"
-    GRAFFITI = "graffiti"
-    AUDIO_MESSAGE = "audio_message"
-
-
-class MessagesMessageRequestData(BaseModel):
-    """
-    Model: `MessagesMessageRequestData`
-    """
-
-    status: typing.Optional[str] = Field(
-        default=None,
-    )
-    """Status of message request."""
-
-    inviter_id: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message request sender id."""
-
-    request_date: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Message request date."""
-
-
-class MessagesMessagesArray(BaseModel):
-    """
-    Model: `MessagesMessagesArray`
-    """
-
-    count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesMessagesArray.count`."""
-
-    items: typing.Optional[typing.List["MessagesMessage"]] = Field(
-        default=None,
-    )
-    """Property `MessagesMessagesArray.items`."""
-
-
-class MessagesOutReadBy(BaseModel):
-    """
-    Model: `MessagesOutReadBy`
-    """
-
-    count: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `MessagesOutReadBy.count`."""
-
-    member_ids: typing.Optional[typing.List[int]] = Field(
-        default=None,
-    )
-    """Property `MessagesOutReadBy.member_ids`."""
-
-
-class MessagesPinnedMessage(BaseModel):
-    """
-    Model: `MessagesPinnedMessage`
-    """
-
-    conversation_message_id: int = Field()
-    """Unique auto-incremented number for all messages with this peer."""
-
-    id: int = Field()
-    """Message ID."""
-
-    date: int = Field()
-    """Date when the message has been sent in Unixtime."""
-
-    from_id: int = Field()
-    """Message author\'s ID."""
-
-    peer_id: int = Field()
-    """Peer ID."""
-
-    text: str = Field()
-    """Message text."""
-
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
-        default=None,
-    )
-    """Property `MessagesPinnedMessage.attachments`."""
-
-    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
-        default=None,
-    )
-    """Forwarded messages."""
-
-    geo: typing.Optional["BaseGeo"] = Field(
-        default=None,
-    )
-    """Property `MessagesPinnedMessage.geo`."""
-
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
-        default=None,
-    )
-    """Property `MessagesPinnedMessage.reply_message`."""
-
-    keyboard: typing.Optional["MessagesKeyboard"] = Field(
-        default=None,
-    )
-    """Property `MessagesPinnedMessage.keyboard`."""
-
-    out: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Information whether the message is outcoming."""
-
-    important: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Is it an important message."""
-
-
-class MessagesPushSettings(BaseModel):
-    """
-    Model: `MessagesPushSettings`
-    """
-
-    disabled_forever: bool = Field()
-    """Information whether push notifications are disabled forever."""
-
-    no_sound: bool = Field()
-    """Information whether the sound is on."""
-
-    disabled_until: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Time until what notifications are disabled."""
-
-    disabled_mentions: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Information whether the mentions are disabled."""
-
-    disabled_mass_mentions: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Information whether the mass mentions (like \'@all\', \'@online\') are disabled."""
-
-
-class MessagesReactionAssetItem(BaseModel):
-    """
-    Model: `MessagesReactionAssetItem`
-    """
-
-    reaction_id: int = Field()
-    """Property `MessagesReactionAssetItem.reaction_id`."""
-
-    links: "MessagesReactionAssetItemLinks" = Field()
-    """Liks to reactions assets for each asset type."""
-
-
-class MessagesReactionAssetItemLinks(BaseModel):
-    """
-    Model: `MessagesReactionAssetItemLinks`
-    """
-
-    big_animation: str = Field()
-    """Big reaction animation json file."""
-
-    small_animation: str = Field()
-    """Small reaction animation json file."""
-
-    static: str = Field()
-    """Reaction image file."""
-
-
-class MessagesReactionCounterResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionCounterResponseItem`
-    """
-
-    reaction_id: int = Field()
-    """Property `MessagesReactionCounterResponseItem.reaction_id`."""
-
-    count: int = Field()
-    """Property `MessagesReactionCounterResponseItem.count`."""
-
-    user_ids: typing.List[int] = Field()
-    """Property `MessagesReactionCounterResponseItem.user_ids`."""
-
-
-class MessagesReactionCountersResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionCountersResponseItem`
-    """
-
-    cmid: int = Field()
-    """Property `MessagesReactionCountersResponseItem.cmid`."""
-
-    counters: typing.List["MessagesReactionCounterResponseItem"] = Field()
-    """Property `MessagesReactionCountersResponseItem.counters`."""
-
-
-class MessagesReactionResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionResponseItem`
-    """
-
-    user_id: int = Field()
-    """Property `MessagesReactionResponseItem.user_id`."""
-
-    reaction_id: int = Field()
-    """Property `MessagesReactionResponseItem.reaction_id`."""
-
-
-class MessagesSendUserIdsResponseItem(BaseModel):
-    """
-    Model: `MessagesSendUserIdsResponseItem`
-    """
-
-    peer_id: int = Field()
-    """Property `MessagesSendUserIdsResponseItem.peer_id`."""
-
-    message_id: int = Field()
-    """Property `MessagesSendUserIdsResponseItem.message_id`."""
-
-    conversation_message_id: int = Field()
-    """Property `MessagesSendUserIdsResponseItem.conversation_message_id`."""
-
-    error: typing.Optional["BaseMessageError"] = Field(
-        default=None,
-    )
-    """Property `MessagesSendUserIdsResponseItem.error`."""
-
-
-class MessagesTemplateActionTypeNames(str, enum.Enum, metaclass=BaseEnumMeta):
-    TEXT = "text"
-    START = "start"
-    LOCATION = "location"
-    VKPAY = "vkpay"
-    OPEN_APP = "open_app"
-    OPEN_PHOTO = "open_photo"
-    OPEN_LINK = "open_link"
-    CALLBACK = "callback"
-    INTENT_SUBSCRIBE = "intent_subscribe"
-    INTENT_UNSUBSCRIBE = "intent_unsubscribe"
-    OPEN_MODAL_VIEW = "open_modal_view"
-
-
-class MessagesUserTypeForXtrInvitedBy(str, enum.Enum, metaclass=BaseEnumMeta):
-    PROFILE = "profile"
-    GROUP = "group"
 
 
 class NotesNote(BaseModel):
@@ -14303,6 +14312,7 @@ class PollsAnswer(BaseModel):
 class PollsBackgroundType(str, enum.Enum, metaclass=BaseEnumMeta):
     GRADIENT = "gradient"
     TILE = "tile"
+    COLOR = "color"
 
 
 class PollsBackground(BaseModel):
@@ -15369,6 +15379,7 @@ class StoriesClickableStickerType(str, enum.Enum, metaclass=BaseEnumMeta):
     VK_VIDEO = "vk_video"
     SITUATIONAL_TEMPLATE = "situational_template"
     SPOILER = "spoiler"
+    SERVICE_YC_ITEM = "service_yc_item"
 
 
 class StoriesClickableStickerStyle(str, enum.Enum, metaclass=BaseEnumMeta):
@@ -15404,6 +15415,10 @@ class StoriesClickableStickerStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     PREVIEW = "preview"
     MINIATURE = "miniature"
     FULLVIEW = "fullview"
+    CTA = "cta"
+    STICKER = "sticker"
+    STICKER_AND_CTA = "sticker_and_cta"
+    ACCENT = "accent"
 
 
 class StoriesClickableStickerSubtype(str, enum.Enum, metaclass=BaseEnumMeta):
@@ -15679,43 +15694,6 @@ class StoriesReplies(BaseModel):
     """New replies number.."""
 
 
-class StoriesStatCategory(BaseModel):
-    """
-    Model: `StoriesStatCategory`
-    """
-
-    header: str = Field()
-    """Property `StoriesStatCategory.header`."""
-
-    type: str = Field()
-    """Property `StoriesStatCategory.type`."""
-
-    lines: typing.List["StoriesStatLine"] = Field()
-    """Property `StoriesStatCategory.lines`."""
-
-
-class StoriesStatLine(BaseModel):
-    """
-    Model: `StoriesStatLine`
-    """
-
-    name: str = Field()
-    """Property `StoriesStatLine.name`."""
-
-    type: str = Field()
-    """Property `StoriesStatLine.type`."""
-
-    counter: typing.Optional[int] = Field(
-        default=None,
-    )
-    """Property `StoriesStatLine.counter`."""
-
-    is_unavailable: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """Property `StoriesStatLine.is_unavailable`."""
-
-
 class StoriesStory(BaseModel):
     """
     Model: `StoriesStory`
@@ -15974,6 +15952,9 @@ class StoriesUploadLinkText(str, enum.Enum, metaclass=BaseEnumMeta):
     INSTALL = "install"
     READ = "read"
     CALENDAR = "calendar"
+    MARKET_ONLINE_BOOKING = "market_online_booking"
+    MARKET_LINK = "market_link"
+    MESSAGE_TO_BC = "message_to_bc"
 
 
 class StoriesUploadResult(BaseModel):
@@ -16456,6 +16437,14 @@ class VideoLiveSettings(BaseModel):
         default=None,
     )
     """If live in clips apps."""
+
+
+class VideoPlaylistPrivacyCategory(str, enum.Enum, metaclass=BaseEnumMeta):
+    ALL = "all"
+    FRIENDS = "friends"
+    FRIENDS_OF_FRIENDS = "friends_of_friends"
+    FRIENDS_OF_FRIENDS_ONLY = "friends_of_friends_only"
+    ONLY_ME = "only_me"
 
 
 class VideoSaveResult(BaseModel):
@@ -19180,22 +19169,6 @@ class MessagesUserXtrInvitedBy(UsersUserXtrType):
     """Property `MessagesUserXtrInvitedBy.type`."""
 
 
-class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
-    """
-    Model: `AccountUserSettings`
-    """
-
-    photo_200: typing.Optional[str] = Field(
-        default=None,
-    )
-    """URL of square photo of the user with 200 pixels in width."""
-
-    is_service_account: typing.Optional[bool] = Field(
-        default=None,
-    )
-    """flag about service account."""
-
-
 class MessagesGetConversationByIdExtended(MessagesGetConversationById):
     """
     Model: `MessagesGetConversationByIdExtended`
@@ -19266,6 +19239,22 @@ class MessagesMessage(MessagesBaseMessage):
         default=None,
     )
     """Date when the message has been pinned in Unixtime."""
+
+
+class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
+    """
+    Model: `AccountUserSettings`
+    """
+
+    photo_200: typing.Optional[str] = Field(
+        default=None,
+    )
+    """URL of square photo of the user with 200 pixels in width."""
+
+    is_service_account: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """flag about service account."""
 
 
 class AdsStatsAge(AdsDemographicStatsPeriodItemBase):
@@ -19890,6 +19879,11 @@ class MarketMarketItemFull(MarketMarketItem):
         default=None,
     )
     """Information whether current use can comment the item."""
+
+    show_comments: typing.Optional[bool] = Field(
+        default=None,
+    )
+    """Information about whether to show the comments tab."""
 
     can_repost: typing.Optional[bool] = Field(
         default=None,
@@ -20644,6 +20638,84 @@ __all__ = (
     "UsersUserSettingsXtr",
     "UsersUserType",
     "UsersUsersArray",
+    "MessagesActionOneOf",
+    "MessagesAudioMessage",
+    "MessagesBaseMessage",
+    "MessagesChat",
+    "MessagesChatFull",
+    "MessagesChatPreview",
+    "MessagesChatPushSettings",
+    "MessagesChatRestrictions",
+    "MessagesChatSettings",
+    "MessagesChatSettingsAcl",
+    "MessagesChatSettingsPermissions",
+    "MessagesChatSettingsPermissionsInvite",
+    "MessagesChatSettingsPermissionsChangeInfo",
+    "MessagesChatSettingsPermissionsChangePin",
+    "MessagesChatSettingsPermissionsUseMassMentions",
+    "MessagesChatSettingsPermissionsSeeInviteLink",
+    "MessagesChatSettingsPermissionsCall",
+    "MessagesChatSettingsPermissionsChangeAdmins",
+    "MessagesChatSettingsPhoto",
+    "MessagesChatSettingsState",
+    "MessagesConversation",
+    "MessagesConversationSpecialServiceType",
+    "MessagesConversationCanWrite",
+    "MessagesConversationMember",
+    "MessagesConversationPeer",
+    "MessagesConversationPeerType",
+    "MessagesConversationSortId",
+    "MessagesConversationWithMessage",
+    "MessagesDeleteFullResponseItem",
+    "MessagesForeignMessage",
+    "MessagesForward",
+    "MessagesFwdMessages",
+    "MessagesGetConversationById",
+    "MessagesGetConversationMembers",
+    "MessagesGetInviteLinkByOwnerResponseItem",
+    "MessagesGraffiti",
+    "MessagesHistoryAttachment",
+    "MessagesHistoryMessageAttachment",
+    "MessagesHistoryMessageAttachmentType",
+    "MessagesKeyboard",
+    "MessagesKeyboardButton",
+    "MessagesKeyboardButtonColor",
+    "MessagesKeyboardButtonActionCallback",
+    "MessagesKeyboardButtonActionCallbackType",
+    "MessagesKeyboardButtonActionLocation",
+    "MessagesKeyboardButtonActionLocationType",
+    "MessagesKeyboardButtonActionOpenApp",
+    "MessagesKeyboardButtonActionOpenAppType",
+    "MessagesKeyboardButtonActionOpenLink",
+    "MessagesKeyboardButtonActionOpenLinkType",
+    "MessagesKeyboardButtonActionOpenPhoto",
+    "MessagesKeyboardButtonActionOpenPhotoType",
+    "MessagesKeyboardButtonActionText",
+    "MessagesKeyboardButtonActionTextType",
+    "MessagesKeyboardButtonActionVkpay",
+    "MessagesKeyboardButtonActionVkpayType",
+    "MessagesKeyboardButtonPropertyAction",
+    "MessagesLastActivity",
+    "MessagesLongpollMessages",
+    "MessagesLongpollParams",
+    "MessagesMessageAction",
+    "MessagesMessageActionPhoto",
+    "MessagesMessageActionStatus",
+    "MessagesMessageAttachment",
+    "MessagesMessageAttachmentType",
+    "MessagesMessageRequestData",
+    "MessagesMessagesArray",
+    "MessagesOutReadBy",
+    "MessagesPinnedMessage",
+    "MessagesPushSettings",
+    "MessagesReactionAssetItem",
+    "MessagesReactionAssetItemLinks",
+    "MessagesReactionCounterResponseItem",
+    "MessagesReactionCountersResponseItem",
+    "MessagesReactionResponseItem",
+    "MessagesSendUserIdsResponseItem",
+    "MessagesTemplateActionTypeNames",
+    "MessagesUserTypeForXtrInvitedBy",
     "AccountAccountCounters",
     "AccountCountersFilter",
     "AccountInfo",
@@ -20960,84 +21032,6 @@ __all__ = (
     "MarketPropertyVariant",
     "MarketServicesViewType",
     "MarketUploadPhotoData",
-    "MessagesActionOneOf",
-    "MessagesAudioMessage",
-    "MessagesBaseMessage",
-    "MessagesChat",
-    "MessagesChatFull",
-    "MessagesChatPreview",
-    "MessagesChatPushSettings",
-    "MessagesChatRestrictions",
-    "MessagesChatSettings",
-    "MessagesChatSettingsAcl",
-    "MessagesChatSettingsPermissions",
-    "MessagesChatSettingsPermissionsInvite",
-    "MessagesChatSettingsPermissionsChangeInfo",
-    "MessagesChatSettingsPermissionsChangePin",
-    "MessagesChatSettingsPermissionsUseMassMentions",
-    "MessagesChatSettingsPermissionsSeeInviteLink",
-    "MessagesChatSettingsPermissionsCall",
-    "MessagesChatSettingsPermissionsChangeAdmins",
-    "MessagesChatSettingsPhoto",
-    "MessagesChatSettingsState",
-    "MessagesConversation",
-    "MessagesConversationSpecialServiceType",
-    "MessagesConversationCanWrite",
-    "MessagesConversationMember",
-    "MessagesConversationPeer",
-    "MessagesConversationPeerType",
-    "MessagesConversationSortId",
-    "MessagesConversationWithMessage",
-    "MessagesDeleteFullResponseItem",
-    "MessagesForeignMessage",
-    "MessagesForward",
-    "MessagesFwdMessages",
-    "MessagesGetConversationById",
-    "MessagesGetConversationMembers",
-    "MessagesGetInviteLinkByOwnerResponseItem",
-    "MessagesGraffiti",
-    "MessagesHistoryAttachment",
-    "MessagesHistoryMessageAttachment",
-    "MessagesHistoryMessageAttachmentType",
-    "MessagesKeyboard",
-    "MessagesKeyboardButton",
-    "MessagesKeyboardButtonColor",
-    "MessagesKeyboardButtonActionCallback",
-    "MessagesKeyboardButtonActionCallbackType",
-    "MessagesKeyboardButtonActionLocation",
-    "MessagesKeyboardButtonActionLocationType",
-    "MessagesKeyboardButtonActionOpenApp",
-    "MessagesKeyboardButtonActionOpenAppType",
-    "MessagesKeyboardButtonActionOpenLink",
-    "MessagesKeyboardButtonActionOpenLinkType",
-    "MessagesKeyboardButtonActionOpenPhoto",
-    "MessagesKeyboardButtonActionOpenPhotoType",
-    "MessagesKeyboardButtonActionText",
-    "MessagesKeyboardButtonActionTextType",
-    "MessagesKeyboardButtonActionVkpay",
-    "MessagesKeyboardButtonActionVkpayType",
-    "MessagesKeyboardButtonPropertyAction",
-    "MessagesLastActivity",
-    "MessagesLongpollMessages",
-    "MessagesLongpollParams",
-    "MessagesMessageAction",
-    "MessagesMessageActionPhoto",
-    "MessagesMessageActionStatus",
-    "MessagesMessageAttachment",
-    "MessagesMessageAttachmentType",
-    "MessagesMessageRequestData",
-    "MessagesMessagesArray",
-    "MessagesOutReadBy",
-    "MessagesPinnedMessage",
-    "MessagesPushSettings",
-    "MessagesReactionAssetItem",
-    "MessagesReactionAssetItemLinks",
-    "MessagesReactionCounterResponseItem",
-    "MessagesReactionCountersResponseItem",
-    "MessagesReactionResponseItem",
-    "MessagesSendUserIdsResponseItem",
-    "MessagesTemplateActionTypeNames",
-    "MessagesUserTypeForXtrInvitedBy",
     "NotesNote",
     "NotesNoteComment",
     "NotificationsFeedback",
@@ -21127,8 +21121,6 @@ __all__ = (
     "StoriesFeedItemType",
     "StoriesPromoBlock",
     "StoriesReplies",
-    "StoriesStatCategory",
-    "StoriesStatLine",
     "StoriesStory",
     "StoriesStoryLink",
     "StoriesStoryStats",
@@ -21165,6 +21157,7 @@ __all__ = (
     "VideoLiveCategory",
     "VideoLiveInfo",
     "VideoLiveSettings",
+    "VideoPlaylistPrivacyCategory",
     "VideoSaveResult",
     "VideoStreamInputParams",
     "VideoVideo",
@@ -21239,9 +21232,9 @@ __all__ = (
     "UsersUserFull",
     "UsersUserXtrType",
     "MessagesUserXtrInvitedBy",
-    "AccountUserSettings",
     "MessagesGetConversationByIdExtended",
     "MessagesMessage",
+    "AccountUserSettings",
     "AdsStatsAge",
     "AdsStatsCities",
     "AdsStatsSex",

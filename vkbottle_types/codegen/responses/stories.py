@@ -4,7 +4,6 @@ from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsGroupFull,
     StoriesFeedItem,
-    StoriesStatCategory,
     StoriesStory,
     StoriesStoryStats,
     StoriesViewersItem,
@@ -52,28 +51,6 @@ class StoriesGetPhotoUploadServerResponseModel(BaseModel):
 
 class StoriesGetPhotoUploadServerResponse(BaseResponse):
     response: "StoriesGetPhotoUploadServerResponseModel" = Field()
-
-
-class StoriesGetStatsV5200ResponseModel(BaseModel):
-    preview: typing.Optional[str] = Field(
-        default=None,
-    )
-    achievement: typing.Optional[str] = Field(
-        default=None,
-    )
-    achievement_subtitle: typing.Optional[str] = Field(
-        default=None,
-    )
-    categories: typing.Optional[typing.List["StoriesStatCategory"]] = Field(
-        default=None,
-    )
-    need_privacy_block: typing.Optional[bool] = Field(
-        default=None,
-    )
-
-
-class StoriesGetStatsV5200Response(BaseResponse):
-    response: "StoriesGetStatsV5200ResponseModel" = Field()
 
 
 class StoriesGetStatsResponse(BaseResponse):

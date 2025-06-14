@@ -387,8 +387,8 @@ class NewsfeedCategory(BaseCategory):
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        NewsfeedSearchExtendedResponseModel,
         NewsfeedSearchResponseModel,
+        NewsfeedSearchExtendedResponseModel,
         NewsfeedSearchStrictResponseModel,
     ]:
         """Method `newsfeed.search()`
@@ -408,8 +408,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("extended",), NewsfeedSearchStrictResponse),
                 (("strict",), NewsfeedSearchStrictResponse),
+                (("extended",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,

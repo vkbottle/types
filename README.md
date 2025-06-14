@@ -21,7 +21,7 @@ pip install -U https://github.com/vkbottle/vkbottle-types/archive/master.zip
 
 Если вы обнаружили баг в типах - не создавайте issue здесь, создайте его в разделе [основного репозитория](https://github.com/vkbottle/vkbottle), добавив тег `vkbottle-types`.
 
-Если вы в состоянии исправить эту проблему сами, то сделайте пулл реквест сами, пожалуйста. Можете упомянуть issue в [основном репозитории](https://github.com/vkbottle/vkbottle).
+Если вы в состоянии исправить эту проблему сами, то сделайте pull request сами, пожалуйста. Можете упомянуть issue в [основном репозитории](https://github.com/vkbottle/vkbottle).
 
 
 ## Оригинальная схема
@@ -40,7 +40,7 @@ python3 -m patcher -m "Add users.get missing param_name"
 
 ## Генерация типов
 
-Генератор написан `>=Python 3.10`, но типы, которые он генерирует, не используют новые тайп-хинты `>Python 3.9`.
+Генератор написан `>=Python 3.10`, но типы, которые он генерирует, но не используют новые тайп-хинты для поддержки `Python 3.9`.
 
 ```console
 python -m generator

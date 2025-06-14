@@ -219,7 +219,7 @@ class PollsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[PollsVoters], typing.List[PollsFieldsVoters]]:
+    ) -> typing.Union[typing.List[PollsFieldsVoters], typing.List[PollsVoters]]:
         """Method `polls.getVoters()`
 
         :param answer_ids: Answer IDs.
