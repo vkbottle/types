@@ -530,9 +530,7 @@ class FriendsCategory(BaseCategory):
         self,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
-        filter: typing.Optional[
-            typing.List[typing.Literal["contacts", "mutual", "mutual_contacts"]]
-        ] = None,
+        filter: typing.Optional[typing.List[typing.Literal["contacts", "mutual", "mutual_contacts"]]] = None,
         name_case: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,

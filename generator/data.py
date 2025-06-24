@@ -151,17 +151,8 @@ class Method:
                     continue
 
                 if name != "response":
-                    original_param_names = (
-                        name.removeprefix("response")
-                        .removesuffix("Response")
-                        .removesuffix("_")
-                        .replace("Response", "")
-                    )
-                    dependant_params = dependant_params | set(
-                        x
-                        for x in map(snake_case, original_param_names.split("_"))
-                        if x not in PRIMITIVE_TYPES
-                    )
+                    original_param_names = name.removeprefix("response").removesuffix("Response").removesuffix("_").replace("Response", "")
+                    dependant_params = dependant_params | set(x for x in map(snake_case, original_param_names.split("_")) if x not in PRIMITIVE_TYPES)
                     dependant_found = False
                 else:
                     dependant_found = bool(self.dependant_parameters)
@@ -204,10 +195,7 @@ class Method:
         for dependant in self.get_dependants():
             for dependant_parameter in dependant.dependant_parameters:
                 dependant_response_model = dependant.get_response_model()
-                if (
-                    response_model == dependant_response_model
-                    or dependant_parameter in dependant_parameters
-                ):
+                if response_model == dependant_response_model or dependant_parameter in dependant_parameters:
                     continue
                 dependant_parameters[dependant_parameter] = dependant_response_model
 
@@ -367,10 +355,7 @@ class Definition:
                     enumNames=prop.data.get("enumNames", []),
                 )
             if prop.data.get("type") == "object":
-                properties = [
-                    factory.load({"name": pname, **p}, Property)
-                    for pname, p in prop.data.get("properties", {}).items()
-                ]
+                properties = [factory.load({"name": pname, **p}, Property) for pname, p in prop.data.get("properties", {}).items()]
                 return Definition(type="object", allOf=self.allOf, properties=properties)
         return None
 
@@ -396,9 +381,7 @@ class Definition:
 
         if self.allOf:
             base_sub_definitions: dict[str, list[str]] = {
-                transform_ref(base.ref): list(base.definition.sub_definitions.keys())
-                for base in self.allOf
-                if base.ref and base.definition
+                transform_ref(base.ref): list(base.definition.sub_definitions.keys()) for base in self.allOf if base.ref and base.definition
             }
             refs = [transform_ref(base.ref) for base in self.allOf if base.ref]
 

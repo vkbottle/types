@@ -13,13 +13,7 @@ class NotificationsCategory(BaseCategory):
         self,
         count: typing.Optional[int] = None,
         end_time: typing.Optional[int] = None,
-        filters: typing.Optional[
-            typing.List[
-                typing.Literal[
-                    "wall", "mentions", "comments", "likes", "reposted", "followers", "friends"
-                ]
-            ]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["wall", "mentions", "comments", "likes", "reposted", "followers", "friends"]]] = None,
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,

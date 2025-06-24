@@ -20,7 +20,7 @@ packages = [
 requires-poetry = ">=2.0.0,<3.0.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.11.13"
+ruff = "^0.12.0"
 requests = "^2.32.4"
 tqdm = "^4.67.1"
 dataclass-factory = "^2.16"
@@ -31,7 +31,7 @@ requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
 
 [tool.ruff]
-line-length = 105
+line-length = 150
 target-version = "py39"
 lint.select = ["I", "N", "ANN", "COM", "YTT", "SIM"]
 lint.ignore = [

@@ -32,8 +32,7 @@ def get_responses(responses: dict[str, dict[str, str]]) -> list[dict[str, str]]:
     return [
         value
         for key, value in responses.items()
-        if PATTERN_PROPERTIES_RESPONSE.match(key) is not None
-        or (key != "response" and key.startswith("response"))
+        if PATTERN_PROPERTIES_RESPONSE.match(key) is not None or (key != "response" and key.startswith("response"))
     ]
 
 

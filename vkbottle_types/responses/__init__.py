@@ -49,9 +49,12 @@ for item in localns.values():
     if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
         continue
 
-    item.model_rebuild(force=True, _types_namespace=localns)
-
     for parent in item.__bases__:
         if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
+            parent.model_rebuild(force=True, _types_namespace=localns)
+            item.__pydantic_fields__.update(
+                {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
+            )
             parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            parent.model_rebuild(_types_namespace=localns)
+
+    item.model_rebuild(_types_namespace=localns)

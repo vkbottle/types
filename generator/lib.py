@@ -163,11 +163,7 @@ def get_schema_cli() -> list[Category]:
         3: "Process from path and rewrite",
     }
     if pathlib.Path("schema.json").exists():
-        option = input(
-            "Existing 'schema.json' found.\n    "
-            + "\n    ".join(["({}) {}".format(i, s) for i, s in commands.items()])
-            + "\n: "
-        )
+        option = input("Existing 'schema.json' found.\n    " + "\n    ".join(["({}) {}".format(i, s) for i, s in commands.items()]) + "\n: ")
 
         if not option.strip() or int(option) == 1:
             return load_schema()
@@ -186,9 +182,7 @@ def get_schema_cli() -> list[Category]:
     }
 
     option = input(
-        "Should new schema be downloaded from source?\n    "
-        + "\n    ".join(["({}) {}".format(i, s) for i, s in commands.items()])
-        + "\n: "
+        "Should new schema be downloaded from source?\n    " + "\n    ".join(["({}) {}".format(i, s) for i, s in commands.items()]) + "\n: "
     )
 
     if not option.strip():
@@ -237,9 +231,7 @@ def generate_methods(category: Category, path: str):
         "### IMPORTS",
         ("from vkbottle_types.objects import " + ", ".join(imports)) if imports else "",
     )
-    pathlib.Path(path, "methods", snake_case(category.name) + ".py").write_text(
-        generated, encoding="UTF-8"
-    )
+    pathlib.Path(path, "methods", snake_case(category.name) + ".py").write_text(generated, encoding="UTF-8")
     print("        + Methods successfully generated!", end="\n\n")
 
 
@@ -254,19 +246,13 @@ def generate_responses(category: Category, path: str) -> None:
     generated = template.render(definitions=definitions)
     generated = generated.replace(
         "### IMPORTS",
-        ("from vkbottle_types.objects import " + ", ".join(parse_types.IMPORTS_CACHE))
-        if parse_types.IMPORTS_CACHE
-        else "",
+        ("from vkbottle_types.objects import " + ", ".join(parse_types.IMPORTS_CACHE)) if parse_types.IMPORTS_CACHE else "",
     )
-    pathlib.Path(path, "responses", snake_case(category.name) + ".py").write_text(
-        generated, encoding="UTF-8"
-    )
+    pathlib.Path(path, "responses", snake_case(category.name) + ".py").write_text(generated, encoding="UTF-8")
     print("        + Responses successfully generated!")
 
 
-def process_responses(
-    responses: dict[str, dict[str, str]], responses_definitions: dict[str, Definition]
-) -> dict[str, dict[str, str]]:
+def process_responses(responses: dict[str, dict[str, str]], responses_definitions: dict[str, Definition]) -> dict[str, dict[str, str]]:
     for response_name, response in responses.items():
         if "$ref" not in response:
             continue
@@ -285,14 +271,7 @@ def process_responses(
                     if "Literal[" in hint:
                         orig_type = hint
                     else:
-                        orig_type = (
-                            hint.replace("'", "")
-                            .removeprefix("typing.")
-                            .replace("List", "")
-                            .replace("[", "")
-                            .replace("]", "")
-                            .strip()
-                        )
+                        orig_type = hint.replace("'", "").removeprefix("typing.").replace("List", "").replace("[", "").replace("]", "").strip()
                         if "Union" in orig_type:
                             orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
                         if "Dict" in orig_type:
@@ -318,9 +297,7 @@ def process_responses(
     return responses.copy()
 
 
-def update_category_methods_responses(
-    category: Category, responses_definitions: dict[str, Definition]
-) -> None:
+def update_category_methods_responses(category: Category, responses_definitions: dict[str, Definition]) -> None:
     for method in category.methods:
         responses = typing.cast(dict[str, dict[str, str]], method.responses)
         responses.update(process_responses(responses, responses_definitions))
@@ -335,11 +312,7 @@ def reorder_definitions(
         definitions,
         key=lambda d: 0
         if not l_bases_f(d)
-        else (
-            1
-            + CATEGORIES.index(d[2].name)
-            + any(b.lower().startswith(d[2].name.lower()) for b in d[1].get_bases())
-        ),
+        else (1 + CATEGORIES.index(d[2].name) + any(b.lower().startswith(d[2].name.lower()) for b in d[1].get_bases())),
     )
     return s
 

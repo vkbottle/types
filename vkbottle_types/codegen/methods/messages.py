@@ -404,9 +404,7 @@ class MessagesCategory(BaseCategory):
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        "MessagesChat", typing.List[MessagesChatFull], typing.List[MessagesChat], "MessagesChatFull"
-    ]:
+    ) -> typing.Union["MessagesChat", typing.List[MessagesChatFull], typing.List[MessagesChat], "MessagesChatFull"]:
         """Method `messages.getChat()`
 
         :param fields: Profile fields to return.
@@ -707,9 +705,7 @@ class MessagesCategory(BaseCategory):
         preview_length: typing.Optional[int] = None,
         start_message_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        MessagesGetImportantMessagesExtendedResponseModel, MessagesGetImportantMessagesResponseModel
-    ]:
+    ) -> typing.Union[MessagesGetImportantMessagesExtendedResponseModel, MessagesGetImportantMessagesResponseModel]:
         """Method `messages.getImportantMessages()`
 
         :param extended: Return extended properties
@@ -1200,9 +1196,7 @@ class MessagesCategory(BaseCategory):
         group_id: typing.Optional[int] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        MessagesSearchConversationsExtendedResponseModel, MessagesSearchConversationsResponseModel
-    ]:
+    ) -> typing.Union[MessagesSearchConversationsExtendedResponseModel, MessagesSearchConversationsResponseModel]:
         """Method `messages.searchConversations()`
 
         :param extended: '1' - return extra information about users and communities

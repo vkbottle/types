@@ -42,9 +42,7 @@ class BaseCategory:
             keys, model = items
 
             for key in keys:
-                if (isinstance(key, str) and params.get(key) is None) or (
-                    isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]
-                ):
+                if (isinstance(key, str) and params.get(key) is None) or (isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]):
                     break
             else:
                 return model  # type: ignore

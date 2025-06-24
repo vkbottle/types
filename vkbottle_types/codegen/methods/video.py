@@ -769,9 +769,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,
@@ -791,9 +789,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,
@@ -812,9 +808,7 @@ class VideoCategory(BaseCategory):
         adult: typing.Optional[bool] = None,
         count: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[
-            typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]
-        ] = None,
+        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
         hd: typing.Optional[int] = None,
         live: typing.Optional[bool] = None,
         longer: typing.Optional[int] = None,

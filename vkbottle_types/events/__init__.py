@@ -7,4 +7,4 @@ from .user_typings import UserTypes
 Event = Union[UserEventType, GroupEventType]
 
 
-__all__ = ("GroupTypes", "GroupEventType", "UserEventType", "UserTypes", "Event")
+__all__ = ("Event", "GroupEventType", "GroupTypes", "UserEventType", "UserTypes")

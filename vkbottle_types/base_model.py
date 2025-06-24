@@ -49,9 +49,7 @@ else:
 
 class BaseEnumMeta(enum.EnumMeta, type):
     @staticmethod
-    def __get_pydantic_core_schema__(
-        _cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler
-    ) -> CoreSchema:
+    def __get_pydantic_core_schema__(_cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler) -> CoreSchema:
         return core_schema.no_info_after_validator_function(
             function=lambda x: _cls(x),  # type: ignore
             schema=core_schema.str_schema(),
@@ -77,14 +75,10 @@ class BaseEnumMeta(enum.EnumMeta, type):
             **kwds,
         ):
             if any(friend in bases for friend in _ENUM_FRIENDS):
-                classdict["NOT_SUPPORTED_MEMBER"] = (
-                    _NOT_SUPPORTED if str in bases else math.inf if float in bases else sys.maxsize
-                )
+                classdict["NOT_SUPPORTED_MEMBER"] = _NOT_SUPPORTED if str in bases else math.inf if float in bases else sys.maxsize
 
             classdict["_missing_"] = classmethod(lambda cls, _: cls._member_map_["NOT_SUPPORTED_MEMBER"])
-            classdict["__get_pydantic_core_schema__"] = classmethod(
-                BaseEnumMeta.__get_pydantic_core_schema__,
-            )
+            classdict["__get_pydantic_core_schema__"] = classmethod(BaseEnumMeta.__get_pydantic_core_schema__)
             kwargs = dict(
                 metacls=metacls,
                 cls=cls,
@@ -106,4 +100,4 @@ class BaseEnumMeta(enum.EnumMeta, type):
 Field = pydantic.Field
 
 
-__all__ = ("BaseModel", "BaseEnumMeta", "Field")
+__all__ = ("BaseEnumMeta", "BaseModel", "Field")

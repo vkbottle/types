@@ -33,11 +33,7 @@ class SecureCategory(SecureCategory):  # type: ignore
 
         params = self.get_set_params(locals())
         response = await self.api.request("secure.setCounter", params)
-        model = (
-            SecureSetCounterArrayResponse
-            if counters and counters.count(",") > 0
-            else SecureSetCounterIntegerResponse
-        )
+        model = SecureSetCounterArrayResponse if counters and counters.count(",") > 0 else SecureSetCounterIntegerResponse
         return model(**response).response
 
 

@@ -336,8 +336,8 @@ class MessageReadObject(BaseEventObject):
 
 
 __all__ = (
-    "AudioNewObject",
     "AppPayloadObject",
+    "AudioNewObject",
     "BoardPostDeleteObject",
     "BoardPostEditObject",
     "BoardPostNewObject",
@@ -348,8 +348,8 @@ __all__ = (
     "DonutSubscriptionCancelledObject",
     "DonutSubscriptionCreateObject",
     "DonutSubscriptionExpiredObject",
-    "DonutSubscriptionProlongedObject",
     "DonutSubscriptionPriceChangedObject",
+    "DonutSubscriptionProlongedObject",
     "GroupChangePhotoObject",
     "GroupChangeSettingsObject",
     "GroupLeaveObject",
@@ -369,9 +369,9 @@ __all__ = (
     "MessageEditObject",
     "MessageEventObject",
     "MessageNewObject",
-    "MessageReplyObject",
     "MessageReactionEventObject",
     "MessageReadObject",
+    "MessageReplyObject",
     "MessageTypingStateObject",
     "PhotoCommentDeleteObject",
     "PhotoCommentEditObject",
