@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [tool.poetry]
-version = "5.199.99.2"
+version = "5.199.99.3"
 packages = [
     { include = "vkbottle_types" }
 ]
