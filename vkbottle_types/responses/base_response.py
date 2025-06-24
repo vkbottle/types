@@ -28,8 +28,4 @@ class DictResponse(BaseResponse):
         return json.dumps(self.response)
 
 
-BaseResponse.model_rebuild()
-DictResponse.model_rebuild()
-
-
 __all__ = ("BaseResponse", "DictResponse")
