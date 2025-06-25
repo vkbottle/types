@@ -1,13 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    BaseCountry,
-    DatabaseCitiesFields,
-    DatabaseCityById,
-    DatabaseSchoolClass,
-    DatabaseStation,
-)
+from vkbottle_types.objects import BaseCountry, DatabaseCitiesFields, DatabaseCityById, DatabaseSchoolClass, DatabaseStation
 from vkbottle_types.responses.database import *  # noqa: F401,F403  # type: ignore
 
 

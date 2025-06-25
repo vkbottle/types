@@ -1,12 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    VideoLiveCategory,
-    VideoPlaylistPrivacyCategory,
-    VideoSaveResult,
-    VideoVideoAlbumFull,
-)
+from vkbottle_types.objects import VideoLiveCategory, VideoPlaylistPrivacyCategory, VideoSaveResult, VideoVideoAlbumFull
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -377,7 +372,7 @@ class VideoCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         target_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[int], VideoGetAlbumsByVideoExtendedResponseModel]:
+    ) -> typing.Union[VideoGetAlbumsByVideoExtendedResponseModel, typing.List[int]]:
         """Method `video.getAlbumsByVideo()`
 
         :param owner_id:

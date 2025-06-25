@@ -6,6 +6,7 @@ import dataclass_factory
 
 from .parse_types import (
     PRIMITIVE_TYPES,
+    UNIX_TIMESTAMP_DESCRIPTION_TEXT,
     Ready,
     get_complex_type,
     get_responses,
@@ -332,17 +333,26 @@ class Property:
 class Definition:
     type: str
     allOf: list[WithRef] = dataclasses.field(default_factory=lambda: [])  # noqa: N815
-    properties: list[Property] = dataclasses.field(default_factory=lambda: [])  # why list?
+    properties: list[Property] = dataclasses.field(default_factory=lambda: [])
     enum: list[str | int] = dataclasses.field(default_factory=lambda: [])
     enumNames: list[str] = dataclasses.field(default_factory=lambda: [])  # noqa: N815
     sub_definitions: dict[str, "Definition"] = dataclasses.field(default_factory=lambda: {})
     items: typing.Any | None = None
     ref: str | None = None
     name: str | None = None
+    description: str | None = None
 
     _bases: list[str] = dataclasses.field(default_factory=lambda: [])
     _default_base: str = "BaseModel"
     _default_base_response: str = "BaseResponse"
+
+    @property
+    def is_typealias(self) -> bool:
+        return bool(self.type == "integer" and UNIX_TIMESTAMP_DESCRIPTION_TEXT in (self.description or ""))
+
+    @property
+    def typealias_value(self) -> str | None:
+        return None if not self.is_typealias else get_type(self.type, dataclasses.asdict(self))
 
     def get_response_definition(self) -> "Definition | None":
         for prop in self.properties:

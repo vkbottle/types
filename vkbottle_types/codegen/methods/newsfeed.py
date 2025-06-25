@@ -1,12 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    BaseUserGroupFields,
-    NewsfeedCommentsFilters,
-    NewsfeedNewsfeedItemType,
-    UsersFields,
-)
+from vkbottle_types.objects import BaseUserGroupFields, NewsfeedCommentsFilters, NewsfeedNewsfeedItemType, UsersFields
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -122,7 +117,7 @@ class NewsfeedCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetBannedExtendedResponseModel, NewsfeedGetBannedResponseModel]:
+    ) -> typing.Union[NewsfeedGetBannedResponseModel, NewsfeedGetBannedExtendedResponseModel]:
         """Method `newsfeed.getBanned()`
 
         :param extended: '1' - return extra information about users and communities
@@ -189,7 +184,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
+    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -386,11 +381,7 @@ class NewsfeedCategory(BaseCategory):
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        NewsfeedSearchResponseModel,
-        NewsfeedSearchExtendedResponseModel,
-        NewsfeedSearchStrictResponseModel,
-    ]:
+    ) -> typing.Union[NewsfeedSearchExtendedResponseModel, NewsfeedSearchStrictResponseModel, NewsfeedSearchResponseModel]:
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.

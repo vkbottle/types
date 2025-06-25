@@ -6,9 +6,7 @@ from .utility import camelcase
 PATTERN_PROPERTIES_RESPONSE = re.compile(r"^([a-zA-Z0-9_]+)?[rR]esponse$")
 
 IMPORTS_CACHE = set()
-# that line above.. ofc its shit but im too lazy rn!! sry ^^
-# i hate shitingletons but generator lib is not rly in uz rn but ok FIXME
-
+UNIX_TIMESTAMP_DESCRIPTION_TEXT = "Unix timestamp"
 PRIMITIVE_TYPES = {
     "integer": "int",
     "string": "str",
@@ -80,6 +78,8 @@ def get_type(
             if "$ref" in items:
                 return get_complex_type(items, hint=True)
             return "dict"
+        case "integer" if UNIX_TIMESTAMP_DESCRIPTION_TEXT in items.get("description", ""):
+            return "datetime.datetime"
         case str(type_name):
             if type_name not in PRIMITIVE_TYPES:
                 raise RuntimeError(f"{type_name} not in primitive types")

@@ -1036,7 +1036,7 @@ class MarketCategory(BaseCategory):
         sort: typing.Optional[int] = None,
         status: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketSearchExtendedResponseModel, MarketSearchResponseModel]:
+    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.

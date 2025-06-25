@@ -1,5 +1,7 @@
+import datetime
 import enum
-import typing
+
+import typing_extensions as typing
 
 from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
 
@@ -816,6 +818,7 @@ class BasePropertyExists(int, enum.Enum, metaclass=BaseEnumMeta):
 
 class BaseRepostsInfo(BaseModel):
     """
+    Count of views
     Model: `BaseRepostsInfo`
     """
 
@@ -3010,6 +3013,7 @@ class MessagesForward(BaseModel):
 
 class MessagesFwdMessages(BaseModel):
     """
+    Forwarded messages
     Model: `MessagesFwdMessages`
     """
 
@@ -3240,6 +3244,7 @@ class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionCallback(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionCallback`
     """
 
@@ -3261,6 +3266,7 @@ class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionLocation(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionLocation`
     """
 
@@ -3279,6 +3285,7 @@ class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnum
 
 class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenApp`
     """
 
@@ -3311,6 +3318,7 @@ class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnu
 
 class MessagesKeyboardButtonActionOpenLink(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenLink`
     """
 
@@ -3335,6 +3343,7 @@ class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEn
 
 class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenPhoto`
     """
 
@@ -3348,6 +3357,7 @@ class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMet
 
 class MessagesKeyboardButtonActionText(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionText`
     """
 
@@ -3369,6 +3379,7 @@ class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMe
 
 class MessagesKeyboardButtonActionVkpay(BaseModel):
     """
+    Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionVkpay`
     """
 
@@ -4977,6 +4988,7 @@ class AdsClipItem(BaseModel):
 
 class AdsClipItemLink(BaseModel):
     """
+    Link
     Model: `AdsClipItemLink`
     """
 
@@ -5841,6 +5853,7 @@ class AdsPost(BaseModel):
 
 class AdsPostComments(BaseModel):
     """
+    Comments
     Model: `AdsPostComments`
     """
 
@@ -5852,6 +5865,7 @@ class AdsPostComments(BaseModel):
 
 class AdsPostDonut(BaseModel):
     """
+    Donut
     Model: `AdsPostDonut`
     """
 
@@ -5863,6 +5877,7 @@ class AdsPostDonut(BaseModel):
 
 class AdsPostEasyPromote(BaseModel):
     """
+    Ads easy promote
     Model: `AdsPostEasyPromote`
     """
 
@@ -5904,6 +5919,7 @@ class AdsPostEasyPromote(BaseModel):
 
 class AdsPostLikes(BaseModel):
     """
+    Likes
     Model: `AdsPostLikes`
     """
 
@@ -5925,6 +5941,7 @@ class AdsPostLikes(BaseModel):
 
 class AdsPostOwner(BaseModel):
     """
+    Owner
     Model: `AdsPostOwner`
     """
 
@@ -5951,6 +5968,7 @@ class AdsPostOwner(BaseModel):
 
 class AdsPostReposts(BaseModel):
     """
+    Reposts
     Model: `AdsPostReposts`
     """
 
@@ -5972,6 +5990,7 @@ class AdsPostReposts(BaseModel):
 
 class AdsPostViews(BaseModel):
     """
+    Views
     Model: `AdsPostViews`
     """
 
@@ -6660,6 +6679,7 @@ class AdsStoryItemStats(BaseModel):
 
 class AdsStoryItemStatsFollow(BaseModel):
     """
+    Follow event stats
     Model: `AdsStoryItemStatsFollow`
     """
 
@@ -6676,6 +6696,7 @@ class AdsStoryItemStatsFollow(BaseModel):
 
 class AdsStoryItemStatsUrlView(BaseModel):
     """
+    Url view event stats
     Model: `AdsStoryItemStatsUrlView`
     """
 
@@ -7406,6 +7427,7 @@ class AppsScopeName(str, enum.Enum, metaclass=BaseEnumMeta):
 
 class AppsScope(BaseModel):
     """
+    Scope description
     Model: `AppsScope`
     """
 
@@ -8359,6 +8381,7 @@ class CallbackDonutSubscriptionProlonged(BaseModel):
 
 class CallbackFwdMessages(BaseModel):
     """
+    Forwarded messages
     Model: `CallbackFwdMessages`
     """
 
@@ -9922,6 +9945,7 @@ class CallsParticipants(BaseModel):
 
 class CallsShortCredentials(BaseModel):
     """
+    These credentials may be used to join a call without knowing a VK Join Link
     Model: `CallsShortCredentials`
     """
 
@@ -10286,6 +10310,7 @@ class DonutDonatorSubscriptionInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta)
 
 class DonutDonatorSubscriptionInfo(BaseModel):
     """
+    Info about user VK Donut subscription
     Model: `DonutDonatorSubscriptionInfo`
     """
 
@@ -10626,6 +10651,7 @@ class GroupsAddress(BaseModel):
 
 class GroupsAddressTimetable(BaseModel):
     """
+    Timetable for a week
     Model: `GroupsAddressTimetable`
     """
 
@@ -10667,6 +10693,7 @@ class GroupsAddressTimetable(BaseModel):
 
 class GroupsAddressTimetableDay(BaseModel):
     """
+    Timetable for one day
     Model: `GroupsAddressTimetableDay`
     """
 
@@ -12004,6 +12031,7 @@ class GroupsMemberStatusFull(BaseModel):
 
 class GroupsOnlineStatus(BaseModel):
     """
+    Online status of group
     Model: `GroupsOnlineStatus`
     """
 
@@ -12410,6 +12438,7 @@ class MarketGlobalSearchFilters(BaseModel):
 
 class MarketItemOwnerInfo(BaseModel):
     """
+    Information about the group where the item is placed
     Model: `MarketItemOwnerInfo`
     """
 
@@ -12446,6 +12475,7 @@ class MarketItemOwnerInfo(BaseModel):
 
 class MarketItemPromotionInfo(BaseModel):
     """
+    Information about promotion of the market item
     Model: `MarketItemPromotionInfo`
     """
 
@@ -14489,6 +14519,7 @@ class PollsPoll(BaseModel):
 
 class PollsPollAnonymous(BaseModel):
     """
+    Information whether the field is anonymous
     Model: `PollsPollAnonymous`
     """
 
@@ -14805,6 +14836,7 @@ class SecureTransaction(BaseModel):
 
 class StatsActivity(BaseModel):
     """
+    Activity stats
     Model: `StatsActivity`
     """
 
@@ -14917,20 +14949,15 @@ class StatsPeriod(BaseModel):
     """Property `StatsPeriod.visitors`."""
 
 
-class StatsPeriodFromOneOf(BaseModel):
-    """
-    Model: `StatsPeriodFromOneOf`
-    """
+StatsPeriodFromOneOf: typing.TypeAlias = datetime.datetime
 
 
-class StatsPeriodToOneOf(BaseModel):
-    """
-    Model: `StatsPeriodToOneOf`
-    """
+StatsPeriodToOneOf: typing.TypeAlias = datetime.datetime
 
 
 class StatsReach(BaseModel):
     """
+    Reach stats
     Model: `StatsReach`
     """
 
@@ -15006,6 +15033,7 @@ class StatsSexAge(BaseModel):
 
 class StatsViews(BaseModel):
     """
+    Views stats
     Model: `StatsViews`
     """
 
@@ -15661,6 +15689,7 @@ class StoriesFeedItem(BaseModel):
 
 class StoriesPromoBlock(BaseModel):
     """
+    Additional data for promo stories
     Model: `StoriesPromoBlock`
     """
 
@@ -16415,6 +16444,7 @@ class VideoLiveInfo(BaseModel):
 
 class VideoLiveSettings(BaseModel):
     """
+    Video live settings
     Model: `VideoLiveSettings`
     """
 
@@ -17706,6 +17736,7 @@ class WallWallpostCommentsDonut(BaseModel):
 
 class WallWallpostCommentsDonutPlaceholder(BaseModel):
     """
+    Info about paid comments feature
     Model: `WallWallpostCommentsDonutPlaceholder`
     """
 
@@ -17720,6 +17751,7 @@ class WallWallpostDonutEditMode(str, enum.Enum, metaclass=BaseEnumMeta):
 
 class WallWallpostDonut(BaseModel):
     """
+    Info about paid wall post
     Model: `WallWallpostDonut`
     """
 

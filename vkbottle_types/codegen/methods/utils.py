@@ -1,13 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    UtilsDomainResolved,
-    UtilsLinkChecked,
-    UtilsLinkStats,
-    UtilsLinkStatsExtended,
-    UtilsShortLink,
-)
+from vkbottle_types.objects import UtilsDomainResolved, UtilsLinkChecked, UtilsLinkStats, UtilsLinkStatsExtended, UtilsShortLink
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -96,7 +90,7 @@ class UtilsCategory(BaseCategory):
         intervals_count: typing.Optional[int] = None,
         source: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["UtilsLinkStatsExtended", "UtilsLinkStats"]:
+    ) -> typing.Union["UtilsLinkStats", "UtilsLinkStatsExtended"]:
         """Method `utils.getLinkStats()`
 
         :param key: Link key (characters after vk.cc/).

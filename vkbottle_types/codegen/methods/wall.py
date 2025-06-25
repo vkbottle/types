@@ -344,7 +344,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentExtendedResponseModel, WallGetCommentResponseModel]:
+    ) -> typing.Union[WallGetCommentResponseModel, WallGetCommentExtendedResponseModel]:
         """Method `wall.getComment()`
 
         :param comment_id: Comment ID.
@@ -736,7 +736,7 @@ class WallCategory(BaseCategory):
         owners_only: typing.Optional[bool] = None,
         query: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallSearchExtendedResponseModel, WallSearchResponseModel]:
+    ) -> typing.Union[WallSearchResponseModel, WallSearchExtendedResponseModel]:
         """Method `wall.search()`
 
         :param extended: show extended post info.

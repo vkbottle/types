@@ -682,10 +682,10 @@ class AdsCategory(BaseCategory):
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
     ) -> typing.Union[
-        typing.List[AdsTargSuggestionsSchools],
-        typing.List[AdsTargSuggestionsCities],
         typing.List[AdsTargSuggestions],
         typing.List[AdsTargSuggestionsRegions],
+        typing.List[AdsTargSuggestionsSchools],
+        typing.List[AdsTargSuggestionsCities],
     ]:
         """Method `ads.getSuggestions()`
 
@@ -701,8 +701,8 @@ class AdsCategory(BaseCategory):
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
             (
-                (("cities",), AdsGetSuggestionsRegionsResponse),
                 (("regions",), AdsGetSuggestionsRegionsResponse),
+                (("cities",), AdsGetSuggestionsRegionsResponse),
                 (("schools",), AdsGetSuggestionsSchoolsResponse),
             ),
             default=AdsGetSuggestionsResponse,

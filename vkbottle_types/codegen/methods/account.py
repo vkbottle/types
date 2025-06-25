@@ -121,17 +121,7 @@ class AccountCategory(BaseCategory):
     async def get_info(
         self,
         fields: typing.Optional[
-            typing.List[
-                typing.Literal[
-                    "country",
-                    "https_required",
-                    "own_posts_default",
-                    "no_wall_replies",
-                    "intro",
-                    "lang",
-                    "audio_autoplay",
-                ]
-            ]
+            typing.List[typing.Literal["country", "https_required", "own_posts_default", "no_wall_replies", "intro", "lang", "audio_autoplay"]]
         ] = None,
         **kwargs: typing.Any,
     ) -> "AccountInfo":

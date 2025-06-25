@@ -503,7 +503,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetObjectExtendedResponseModel, GroupsGetResponseModel]:
+    ) -> typing.Union[GroupsGetResponseModel, GroupsGetObjectExtendedResponseModel]:
         """Method `groups.get()`
 
         :param extended: '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
@@ -817,11 +817,7 @@ class GroupsCategory(BaseCategory):
         offset: typing.Optional[int] = None,
         sort: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        GroupsGetMembersFieldsResponseModel,
-        GroupsGetMembersFilterResponseModel,
-        GroupsGetMembersResponseModel,
-    ]:
+    ) -> typing.Union[GroupsGetMembersFieldsResponseModel, GroupsGetMembersFilterResponseModel, GroupsGetMembersResponseModel]:
         """Method `groups.getMembers()`
 
         :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
@@ -1011,12 +1007,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        typing.List[GroupsMemberStatusFull],
-        typing.List[GroupsMemberStatus],
-        bool,
-        GroupsIsMemberExtendedResponseModel,
-    ]:
+    ) -> typing.Union[typing.List[GroupsMemberStatus], GroupsIsMemberExtendedResponseModel, typing.List[GroupsMemberStatusFull], bool]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.

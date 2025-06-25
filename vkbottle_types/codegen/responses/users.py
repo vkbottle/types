@@ -1,12 +1,7 @@
 import typing
 
 from vkbottle_types.base_model import BaseModel, Field
-from vkbottle_types.objects import (
-    GroupsGroupsArray,
-    UsersSubscriptionsItem,
-    UsersUserFull,
-    UsersUsersArray,
-)
+from vkbottle_types.objects import GroupsGroupsArray, UsersSubscriptionsItem, UsersUserFull, UsersUsersArray
 from vkbottle_types.responses.base_response import BaseResponse
 
 

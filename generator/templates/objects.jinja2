@@ -1,5 +1,7 @@
+import datetime
 import enum
-import typing
+
+import typing_extensions as typing
 
 from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta
 
@@ -24,6 +26,9 @@ class {{enum_defin.name}}(str, enum.Enum, metaclass=BaseEnumMeta):
     {% endfor %}
 {% endfor %}
 
+{% if definition.is_typealias %}
+{{camelcase(name)}}: typing.TypeAlias = {{definition.typealias_value}}
+{% else %}
 class {{camelcase(name)}}({{", ".join(definition.get_bases())}}):
     """{% if definition.description %}
     {{definition.description}}{% endif %}
@@ -42,6 +47,7 @@ class {{camelcase(name)}}({{", ".join(definition.get_bases())}}):
     {% else %}"""Property `{{camelcase(name)}}.{{property.name}}`."""
     {% endif %}
     {% endfor %}
+{% endif %}
 {% endif %}
 {% endfor %}
 
