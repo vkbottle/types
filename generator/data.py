@@ -206,7 +206,7 @@ class Method:
             set(
                 get_complex_type(response, response=True)
                 for response in get_responses(self.responses)  # type: ignore
-            )
+            ),
         )
 
     def get_response_hint(self) -> str:

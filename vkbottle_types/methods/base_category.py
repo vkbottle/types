@@ -27,9 +27,12 @@ class BaseCategory:
     def get_model(
         cls,
         dependent: typing.Tuple[
-            typing.Tuple[
-                typing.Tuple[typing.Union[str, typing.Sequence[str]], ...],
-                typing.Type["BaseModel"],
+            typing.Union[
+                typing.Tuple[
+                    typing.Tuple[typing.Union[str, typing.Sequence[str]], ...],
+                    typing.Type["BaseModel"],
+                ],
+                typing.Dict[str, typing.Dict[str, typing.Type["BaseModel"]]],
             ],
             ...,
         ],
@@ -38,14 +41,19 @@ class BaseCategory:
     ) -> Model:
         """Choices model depending on params."""
 
-        for items in sorted(dependent, key=lambda x: len(x[0])):
-            keys, model = items
-
-            for key in keys:
-                if (isinstance(key, str) and params.get(key) is None) or (isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]):
-                    break
+        for items in sorted(dependent, key=lambda x: len(x[0]) if isinstance(x, tuple) else bool(x)):
+            if isinstance(items, dict):
+                for key, models in items.items():
+                    if isinstance(string_value := params.get(key), str) and (model := models.get(string_value)) is not None:
+                        return model  # type: ignore
             else:
-                return model  # type: ignore
+                keys, model = items
+
+                for key in keys:
+                    if (isinstance(key, str) and params.get(key) in (None, False)) or (isinstance(key, (tuple, list)) and params.get(key[0]) not in key[1:]):
+                        break
+                else:
+                    return model  # type: ignore
 
         return default
 

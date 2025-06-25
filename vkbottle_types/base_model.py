@@ -52,7 +52,7 @@ class BaseEnumMeta(enum.EnumMeta, type):
     def __get_pydantic_core_schema__(_cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler) -> CoreSchema:
         return core_schema.no_info_after_validator_function(
             function=lambda x: _cls(x),  # type: ignore
-            schema=getattr(core_schema, f"{_cls.__bases__[0].__name__}_schema", core_schema.str_schema)(),
+            schema=getattr(core_schema, f"{_cls.__bases__[0].__name__}_schema", core_schema.any_schema)(),
         )
 
     if typing.TYPE_CHECKING:

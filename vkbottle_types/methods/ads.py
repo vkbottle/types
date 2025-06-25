@@ -19,23 +19,10 @@ class AdsCategory(AdsCategory):  # type: ignore
         self,
         section: str,
         *,
-        cities: str,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
+        q: typing.Literal["regions"],
+        country: int,
+        ids: typing.Optional[typing.List[str]] = None,
         lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
-    ) -> typing.List[AdsTargSuggestionsCities]: ...
-
-    @typing.overload
-    async def get_suggestions(
-        self,
-        section: str,
-        *,
-        regions: str,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
     ) -> typing.List[AdsTargSuggestionsRegions]: ...
 
     @typing.overload
@@ -43,11 +30,11 @@ class AdsCategory(AdsCategory):  # type: ignore
         self,
         section: str,
         *,
-        schools: str,
+        q: typing.Literal["schools"],
+        cities: typing.List[str],
         country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
+        ids: typing.Optional[typing.List[str]] = None,
         lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
     ) -> typing.List[AdsTargSuggestionsSchools]: ...
 
     @typing.overload
@@ -56,20 +43,30 @@ class AdsCategory(AdsCategory):  # type: ignore
         section: str,
         *,
         country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
+        ids: typing.Optional[typing.List[str]] = None,
         lang: typing.Optional[str] = None,
         q: typing.Optional[str] = None,
     ) -> typing.List[AdsTargSuggestions]: ...
+
+    @typing.overload
+    async def get_suggestions(
+        self,
+        section: str,
+        *,
+        cities: typing.List[str],
+        country: typing.Optional[int] = None,
+        ids: typing.Optional[typing.List[str]] = None,
+        lang: typing.Optional[str] = None,
+        q: typing.Optional[str] = None,
+    ) -> typing.List[AdsTargSuggestionsCities]: ...
 
     async def get_suggestions(
         self,
         section: str,
         *,
-        cities: typing.Optional[str] = None,
-        regions: typing.Optional[str] = None,
-        schools: typing.Optional[str] = None,
+        cities: typing.Optional[typing.List[str]] = None,
         country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
+        ids: typing.Optional[typing.List[str]] = None,
         lang: typing.Optional[str] = None,
         q: typing.Optional[str] = None,
         **kwargs: typing.Any,
@@ -93,9 +90,8 @@ class AdsCategory(AdsCategory):  # type: ignore
         response = await self.api.request("ads.getSuggestions", params)  # type: ignore
         model = self.get_model(  # type: ignore
             (
+                dict(q=dict(regions=AdsGetSuggestionsRegionsResponse, schools=AdsGetSuggestionsSchoolsResponse)),
                 (("cities",), AdsGetSuggestionsCitiesResponse),
-                (("regions",), AdsGetSuggestionsRegionsResponse),
-                (("schools",), AdsGetSuggestionsSchoolsResponse),
             ),
             default=AdsGetSuggestionsResponse,
             params=params,
