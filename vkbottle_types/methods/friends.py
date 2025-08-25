@@ -1,6 +1,6 @@
 import typing
 
-from vkbottle_types.codegen.methods.friends import FriendsCategory  # type: ignore
+from vkbottle_types.codegen.methods.friends import FriendsCategory as _FriendsCategory  # type: ignore
 from vkbottle_types.objects import (
     FriendsMutualFriend,
     FriendsOnlineUsers,
@@ -31,7 +31,7 @@ if typing.TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
 
 
-class FriendsCategory(FriendsCategory):  # type: ignore
+class FriendsCategory(_FriendsCategory):  # type: ignore
     def __init__(self, api: "ABCAPI") -> None:
         super().__init__(api)
 

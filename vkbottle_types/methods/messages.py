@@ -2,7 +2,7 @@ import typing
 
 from typing_extensions import Literal
 
-from vkbottle_types.codegen.methods.messages import MessagesCategory  # type: ignore
+from vkbottle_types.codegen.methods.messages import MessagesCategory as _MessagesCategory  # type: ignore
 from vkbottle_types.objects import UsersFields
 from vkbottle_types.responses.messages import (
     MessagesChat,
@@ -18,7 +18,7 @@ from vkbottle_types.responses.messages import (
 )
 
 
-class MessagesCategory(MessagesCategory):  # type: ignore
+class MessagesCategory(_MessagesCategory):  # type: ignore
     @typing.overload  # type: ignore
     async def send(  # type: ignore
         self,

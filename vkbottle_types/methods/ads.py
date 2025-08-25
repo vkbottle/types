@@ -1,6 +1,6 @@
 import typing
 
-from vkbottle_types.codegen.methods.ads import AdsCategory  # type: ignore
+from vkbottle_types.codegen.methods.ads import AdsCategory as _AdsCategory  # type: ignore
 from vkbottle_types.responses.ads import (
     AdsGetSuggestionsCitiesResponse,
     AdsGetSuggestionsRegionsResponse,
@@ -13,7 +13,7 @@ from vkbottle_types.responses.ads import (
 )
 
 
-class AdsCategory(AdsCategory):  # type: ignore
+class AdsCategory(_AdsCategory):  # type: ignore
     @typing.overload
     async def get_suggestions(
         self,

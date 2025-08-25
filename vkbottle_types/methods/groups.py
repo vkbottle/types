@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING, Any, List, Optional, Union, overload
 
 from typing_extensions import Literal
 
-from vkbottle_types.codegen.methods.groups import GroupsCategory  # type: ignore
+from vkbottle_types.codegen.methods.groups import GroupsCategory as _GroupsCategory  # type: ignore
 from vkbottle_types.objects import GroupsMemberStatus, GroupsMemberStatusFull
 from vkbottle_types.responses.base import BaseBoolResponse
 from vkbottle_types.responses.groups import (
@@ -26,7 +26,7 @@ if TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
 
 
-class GroupsCategory(GroupsCategory):  # type: ignore
+class GroupsCategory(_GroupsCategory):  # type: ignore
     def __init__(self, api: "ABCAPI") -> None:
         super().__init__(api)
 

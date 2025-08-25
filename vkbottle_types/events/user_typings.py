@@ -10,48 +10,48 @@ from .user_events import (
     CounterUnreadDialogsInFolders,
     CreateFolder,
     DeleteFolder,
+    DialogFlagsReplace,
+    DialogResetFlags,
+    DialogSetFlags,
     DialogTypingState,
     FriendAction,
     FriendOffline,
     FriendOnline,
     InRead,
-    InstallDialogFlags,
-    InstallMessageFlags,
     MessageEdit,
+    MessageFlagsReplace,
     MessageNew,
+    MessageResetFlags,
     MessagesDelete,
+    MessageSetFlags,
     MessagesRestore,
     NotificationsSettingsChanged,
     OutRead,
     RawUserEvent,
     RemoveConversationsFromFolder,
     RenameFolder,
-    ReplaceDialogFlags,
-    ReplaceMessageFlags,
-    ResetDialogFlags,
-    ResetMessageFlags,
     UsersTypingState,
 )
 
 
 class UserTypes:
     RawUserEvent = RawUserEvent
-    ReplaceMessageFlags = ReplaceMessageFlags
-    InstallMessageFlags = InstallMessageFlags
-    ResetMessageFlags = ResetMessageFlags
+    MessageFlagsReplace = MessageFlagsReplace
+    MessageSetFlags = MessageSetFlags
+    MessageResetFlags = MessageResetFlags
     MessageNew = MessageNew
+    MessageEdit = MessageEdit
     MessagesDelete = MessagesDelete
     MessagesRestore = MessagesRestore
-    MessageEdit = MessageEdit
     ChatVoiceMessageStates = ChatVoiceMessageStates
     ChatEdit = ChatEdit
     ChatInfoEdit = ChatInfoEdit
     ChatTypingState = ChatTypingState
     DialogTypingState = DialogTypingState
     UsersTypingState = UsersTypingState
-    ResetDialogFlags = ResetDialogFlags
-    ReplaceDialogFlags = ReplaceDialogFlags
-    InstallDialogFlags = InstallDialogFlags
+    DialogResetFlags = DialogResetFlags
+    DialogFlagsReplace = DialogFlagsReplace
+    DialogSetFlags = DialogSetFlags
     FriendOnline = FriendOnline
     FriendOffline = FriendOffline
     Counter = Counter

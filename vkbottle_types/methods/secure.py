@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING, List, Optional, Union
 
-from vkbottle_types.codegen.methods.secure import SecureCategory  # type: ignore
+from vkbottle_types.codegen.methods.secure import SecureCategory as _SecureCategory  # type: ignore
 from vkbottle_types.responses.secure import (
     SecureSetCounterArrayResponse,
     SecureSetCounterIntegerResponse,
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
 
 
-class SecureCategory(SecureCategory):  # type: ignore
+class SecureCategory(_SecureCategory):  # type: ignore
     def __init__(self, api: "ABCAPI") -> None:
         super().__init__(api)
 

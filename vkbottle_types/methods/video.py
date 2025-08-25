@@ -2,7 +2,7 @@ import typing
 
 from typing_extensions import Literal
 
-from vkbottle_types.codegen.methods.video import VideoCategory  # type: ignore
+from vkbottle_types.codegen.methods.video import VideoCategory as _VideoCategory  # type: ignore
 from vkbottle_types.codegen.responses.base import BaseOkResponse, BaseOkResponseModel
 from vkbottle_types.codegen.responses.video import VideoChangeVideoAlbumsResponse
 
@@ -10,7 +10,7 @@ if typing.TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
 
 
-class VideoCategory(VideoCategory):  # type: ignore
+class VideoCategory(_VideoCategory):  # type: ignore
     def __init__(self, api: "ABCAPI") -> None:
         super().__init__(api)
 

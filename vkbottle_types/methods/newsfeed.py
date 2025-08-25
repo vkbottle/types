@@ -1,6 +1,6 @@
 import typing
 
-from vkbottle_types.codegen.methods.newsfeed import NewsfeedCategory  # type: ignore
+from vkbottle_types.codegen.methods.newsfeed import NewsfeedCategory as _NewsfeedCategory  # type: ignore
 from vkbottle_types.objects import BaseUserGroupFields
 from vkbottle_types.responses.newsfeed import (
     NewsfeedSearchExtendedResponse,
@@ -14,7 +14,7 @@ from vkbottle_types.responses.newsfeed import (
 )
 
 
-class NewsfeedCategory(NewsfeedCategory):  # type: ignore
+class NewsfeedCategory(_NewsfeedCategory):  # type: ignore
     @typing.overload  # type: ignore
     async def search(
         self,

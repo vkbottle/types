@@ -32,16 +32,16 @@ class RawUserEvent(BaseUserEvent):
     object: List[Any]
 
 
-class ReplaceMessageFlags(BaseUserEvent):
-    object: user_event_objects.ReplaceMessageFlagsObject
+class MessageFlagsReplace(BaseUserEvent):
+    object: user_event_objects.MessageFlagsReplaceObject
 
 
-class InstallMessageFlags(BaseUserEvent):
-    object: user_event_objects.InstallMessageFlagsObject
+class MessageSetFlags(BaseUserEvent):
+    object: user_event_objects.MessageSetFlagsObject
 
 
-class ResetMessageFlags(BaseUserEvent):
-    object: user_event_objects.ResetMessageFlagsObject
+class MessageResetFlags(BaseUserEvent):
+    object: user_event_objects.MessageResetFlagsObject
 
 
 class MessageNew(BaseUserEvent):
@@ -84,16 +84,16 @@ class UsersTypingState(BaseUserEvent):
     object: user_event_objects.UsersTypingStateObject
 
 
-class ResetDialogFlags(BaseUserEvent):
-    object: user_event_objects.ResetDialogFlagsObject
+class DialogResetFlags(BaseUserEvent):
+    object: user_event_objects.DialogResetFlagsObject
 
 
-class ReplaceDialogFlags(BaseUserEvent):
-    object: user_event_objects.ReplaceDialogFlagsObject
+class DialogFlagsReplace(BaseUserEvent):
+    object: user_event_objects.DialogFlagsReplaceObject
 
 
-class InstallDialogFlags(BaseUserEvent):
-    object: user_event_objects.InstallDialogFlagsObject
+class DialogSetFlags(BaseUserEvent):
+    object: user_event_objects.DialogSetFlagsObject
 
 
 class FriendOnline(BaseUserEvent):
@@ -173,8 +173,9 @@ __all__ = (
     "FriendOffline",
     "FriendOnline",
     "InRead",
-    "InstallDialogFlags",
-    "InstallMessageFlags",
+    "MessageFlagsReplace",
+    "MessageSetFlags",
+    "MessageResetFlags",
     "MessageEdit",
     "MessageNew",
     "MessagesDelete",
@@ -184,9 +185,8 @@ __all__ = (
     "RawUserEvent",
     "RemoveConversationsFromFolder",
     "RenameFolder",
-    "ReplaceDialogFlags",
-    "ReplaceMessageFlags",
-    "ResetDialogFlags",
-    "ResetMessageFlags",
+    "DialogFlagsReplace",
+    "DialogResetFlags",
+    "DialogSetFlags",
     "UsersTypingState",
 )
