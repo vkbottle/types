@@ -19,7 +19,6 @@ class MessageObject(BaseEventObject):
     flags: Optional[int] = None
     peer_id: Optional[int] = None
     timestamp: Optional[int] = None
-    chat_title: Optional[str] = None
     text: Optional[str] = None
     extra_values: Optional[ExtraValues] = None
     attachments: Optional[Attachments] = None
