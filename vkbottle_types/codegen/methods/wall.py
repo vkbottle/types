@@ -252,7 +252,7 @@ class WallCategory(BaseCategory):
         filter: typing.Optional[str] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetResponseModel, WallGetExtendedResponseModel]:
+    ) -> typing.Union[WallGetExtendedResponseModel, WallGetResponseModel]:
         """Method `wall.get()`
 
         :param extended: '1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)
@@ -299,7 +299,7 @@ class WallCategory(BaseCategory):
         copy_history_depth: typing.Optional[int] = None,
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetByIdResponseModel, WallGetByIdExtendedResponseModel]:
+    ) -> typing.Union[WallGetByIdExtendedResponseModel, WallGetByIdResponseModel]:
         """Method `wall.getById()`
 
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
@@ -344,7 +344,7 @@ class WallCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         owner_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentResponseModel, WallGetCommentExtendedResponseModel]:
+    ) -> typing.Union[WallGetCommentExtendedResponseModel, WallGetCommentResponseModel]:
         """Method `wall.getComment()`
 
         :param comment_id: Comment ID.
@@ -413,7 +413,7 @@ class WallCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentsExtendedResponseModel, WallGetCommentsResponseModel]:
+    ) -> typing.Union[WallGetCommentsResponseModel, WallGetCommentsExtendedResponseModel]:
         """Method `wall.getComments()`
 
         :param extended:

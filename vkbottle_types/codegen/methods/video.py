@@ -438,7 +438,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: typing.Optional[int] = None,
         thread_items_count: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetCommentsResponseModel, VideoGetCommentsExtendedResponseModel]:
+    ) -> typing.Union[VideoGetCommentsExtendedResponseModel, VideoGetCommentsResponseModel]:
         """Method `video.getComments()`
 
         :param video_id: Video ID.

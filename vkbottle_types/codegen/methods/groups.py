@@ -662,7 +662,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         subcategories: typing.Optional[bool] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetCatalogInfoResponseModel, GroupsGetCatalogInfoExtendedResponseModel]:
+    ) -> typing.Union[GroupsGetCatalogInfoExtendedResponseModel, GroupsGetCatalogInfoResponseModel]:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -725,7 +725,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetInvitesExtendedResponseModel, GroupsGetInvitesResponseModel]:
+    ) -> typing.Union[GroupsGetInvitesResponseModel, GroupsGetInvitesExtendedResponseModel]:
         """Method `groups.getInvites()`
 
         :param extended: '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
@@ -775,8 +775,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -787,8 +787,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        filter: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -799,8 +799,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        filter: str,
         fields: typing.List[UsersFields],
+        filter: str,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -810,8 +810,8 @@ class GroupsCategory(BaseCategory):
 
     async def get_members(
         self,
-        filter: typing.Optional[str] = None,
         fields: typing.Optional[typing.List[UsersFields]] = None,
+        filter: typing.Optional[str] = None,
         count: typing.Optional[int] = None,
         group_id: typing.Optional[typing.Union["int", "str"]] = None,
         offset: typing.Optional[int] = None,
@@ -820,8 +820,8 @@ class GroupsCategory(BaseCategory):
     ) -> typing.Union[GroupsGetMembersFieldsResponseModel, GroupsGetMembersFilterResponseModel, GroupsGetMembersResponseModel]:
         """Method `groups.getMembers()`
 
-        :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
         :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
+        :param filter: *'friends' - only friends in this community will be returned,, *'unsure' - only those who pressed 'I may attend' will be returned (if it's an event).
         :param count: Number of community members to return.
         :param group_id: ID or screen name of the community.
         :param offset: Offset needed to return a specific subset of community members.
@@ -832,8 +832,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("filter",), GroupsGetMembersFieldsResponse),
                 (("fields",), GroupsGetMembersFieldsResponse),
+                (("filter",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -882,7 +882,7 @@ class GroupsCategory(BaseCategory):
         count: typing.Optional[int] = None,
         offset: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetRequestsFieldsResponseModel, GroupsGetRequestsResponseModel]:
+    ) -> typing.Union[GroupsGetRequestsResponseModel, GroupsGetRequestsFieldsResponseModel]:
         """Method `groups.getRequests()`
 
         :param group_id: Community ID.
@@ -1007,7 +1007,7 @@ class GroupsCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[GroupsMemberStatus], GroupsIsMemberExtendedResponseModel, typing.List[GroupsMemberStatusFull], bool]:
+    ) -> typing.Union[bool, typing.List[GroupsMemberStatusFull], GroupsIsMemberExtendedResponseModel, typing.List[GroupsMemberStatus]]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.

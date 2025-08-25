@@ -348,11 +348,14 @@ class Definition:
 
     @property
     def is_typealias(self) -> bool:
-        return bool(self.type == "integer" and UNIX_TIMESTAMP_DESCRIPTION_TEXT in (self.description or ""))
+        return (
+            bool(self.type == "integer" and UNIX_TIMESTAMP_DESCRIPTION_TEXT in (self.description or ""))
+            or (self.type != "object" and not any((self.properties, self.allOf, self.enum, self.sub_definitions)))
+        )
 
     @property
     def typealias_value(self) -> str | None:
-        return None if not self.is_typealias else get_type(self.type, dataclasses.asdict(self))
+        return None if not self.is_typealias else get_type(self.type, dataclasses.asdict(self), hint=True)
 
     def get_response_definition(self) -> "Definition | None":
         for prop in self.properties:

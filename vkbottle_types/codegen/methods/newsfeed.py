@@ -184,7 +184,7 @@ class NewsfeedCategory(BaseCategory):
         extended: typing.Optional[bool] = None,
         list_ids: typing.Optional[typing.List[int]] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsExtendedResponseModel, NewsfeedGetListsResponseModel]:
+    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -381,7 +381,7 @@ class NewsfeedCategory(BaseCategory):
         start_from: typing.Optional[str] = None,
         start_time: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedSearchExtendedResponseModel, NewsfeedSearchStrictResponseModel, NewsfeedSearchResponseModel]:
+    ) -> typing.Union[NewsfeedSearchResponseModel, NewsfeedSearchStrictResponseModel, NewsfeedSearchExtendedResponseModel]:
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.
@@ -399,8 +399,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended",), NewsfeedSearchStrictResponse),
+                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,

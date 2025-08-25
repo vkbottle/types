@@ -278,7 +278,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[UsersFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetByConversationMessageIdResponseModel, MessagesGetByConversationMessageIdExtendedResponseModel]:
+    ) -> typing.Union[MessagesGetByConversationMessageIdExtendedResponseModel, MessagesGetByConversationMessageIdResponseModel]:
         """Method `messages.getByConversationMessageId()`
 
         :param conversation_message_ids: Conversation message IDs.
@@ -333,7 +333,7 @@ class MessagesCategory(BaseCategory):
         peer_id: typing.Optional[int] = None,
         preview_length: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetByIdExtendedResponseModel, MessagesGetByIdResponseModel]:
+    ) -> typing.Union[MessagesGetByIdResponseModel, MessagesGetByIdExtendedResponseModel]:
         """Method `messages.getById()`
 
         :param extended: Information whether the response should be extended
@@ -401,7 +401,7 @@ class MessagesCategory(BaseCategory):
         chat_id: typing.Optional[int] = None,
         name_case: typing.Optional[str] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[MessagesChatFull], "MessagesChatFull", typing.List[MessagesChat], "MessagesChat"]:
+    ) -> typing.Union["MessagesChatFull", typing.List[MessagesChatFull], "MessagesChat", typing.List[MessagesChat]]:
         """Method `messages.getChat()`
 
         :param chat_ids: Chat IDs.
@@ -522,7 +522,7 @@ class MessagesCategory(BaseCategory):
         fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
         group_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesGetConversationByIdExtended", "MessagesGetConversationById"]:
+    ) -> typing.Union["MessagesGetConversationById", "MessagesGetConversationByIdExtended"]:
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -582,7 +582,7 @@ class MessagesCategory(BaseCategory):
         start_message_id: typing.Optional[int] = None,
         user_id: typing.Optional[int] = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetHistoryResponseModel, MessagesGetHistoryExtendedResponseModel]:
+    ) -> typing.Union[MessagesGetHistoryExtendedResponseModel, MessagesGetHistoryResponseModel]:
         """Method `messages.getHistory()`
 
         :param extended: Information whether the response should be extended
