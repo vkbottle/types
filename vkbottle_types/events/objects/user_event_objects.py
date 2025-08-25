@@ -1,4 +1,6 @@
 import enum
+from datetime import datetime, timezone
+from functools import cached_property
 from typing import Any, Dict, List, Optional, Union
 
 import msgspec
@@ -8,7 +10,7 @@ Attachments = JsonObject
 ExtraValues = JsonObject
 
 
-class BaseEventObject(msgspec.Struct, omit_defaults=True, array_like=True):
+class BaseEventObject(msgspec.Struct, omit_defaults=True, array_like=True, dict=True):
     pass
 
 
@@ -22,6 +24,24 @@ class MessageObject(BaseEventObject):
     extra_values: Optional[ExtraValues] = None
     attachments: Optional[Attachments] = None
     random_id: Optional[int] = None
+
+    @cached_property
+    def date(self) -> Optional[datetime]:
+        if not self.timestamp:
+            return None
+        return datetime.fromtimestamp(timestamp=self.timestamp, tz=timezone.utc)
+
+    @property
+    def message(self) -> Optional[str]:
+        if not self.text:
+            return None
+        return (
+            self.text.replace("<br>", "\n")
+            .replace("&lt;", "<")
+            .replace("&gt;", ">")
+            .replace("&quot;", '"')
+            .replace("&amp;", "&")
+        )
 
 
 class MessageFlagsReplaceObject(MessageObject):
