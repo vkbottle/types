@@ -42,15 +42,18 @@ class MessagesMessageAttachmentType(str, Enum, metaclass=BaseEnumMeta):  # type:
     GROUP_CALL_IN_PROGRESS = "group_call_in_progress"
     MINI_APP = "mini_app"
     VIDEO_PLAYLIST = "video_playlist"
+    NARRATIVE = "narrative"
 
 
 class VideoVideoType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
+    INTERACTIVE = "interactive"
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
     MOVIE = "movie"
     VIDEO_MESSAGE = "video_message"
-    SHORT_VIDEO = "short_video"
     LIVE = "live"
+    SHORT_VIDEO = "short_video"
+    STORY = "story"
 
 
 class WallWallpostAttachmentType(str, Enum, metaclass=BaseEnumMeta):  # type: ignore
@@ -132,6 +135,7 @@ class BaseLinkButtonActionType(str, Enum, metaclass=BaseEnumMeta):  # type: igno
     ADD_PLAYLIST = "add_playlist"
     OPEN_SEARCH_TAB = "open_search_tab"
     OPEN_SEARCH_FILTERS = "open_search_filters"
+    RESET_SEARCH_FILTERS = "reset_search_filters"
     IMPORT_CONTACTS = "import_contacts"
     ADD_FRIENDS = "add_friends"
     ONBOARDING = "onboarding"
@@ -227,6 +231,7 @@ class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
     video: Optional["VideoVideoFull"] = None
     type: "MessagesMessageAttachmentType"  # type: ignore
     poll: Optional["PollsPoll"] = None
+    # NOTE: Add `narrative` field. Now, we've no docs and schema about this attachment.
 
 
 class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
@@ -338,14 +343,12 @@ for item in localns.values():
     if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
         continue
 
+    item.model_rebuild(force=True, _types_namespace=localns)
+
     for parent in item.__bases__:
         if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
+            parent.__pydantic_fields__.update(item.__pydantic_fields__)
             parent.model_rebuild(force=True, _types_namespace=localns)
-            parent.__pydantic_fields__.update(
-                {name: field for name, field in item.__pydantic_fields__.items() if name in parent.__pydantic_fields__},
-            )
             item.__pydantic_fields__.update(
                 {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
             )
-
-    item.model_rebuild(_types_namespace=localns)
