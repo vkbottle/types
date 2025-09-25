@@ -78,12 +78,12 @@ class NewsfeedCategory(BaseCategory):
 
         :param count: Number of news items to return (default 50, maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param filters: Filters to apply: 'post' - new wall posts, 'photo' - new photos, 'photo_tag' - new photo tags, 'wall_photo' - new wall photos, 'friend' - new friends
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param return_banned: '1' - to return news items from banned sources
         :param section:
-        :param source_ids: Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.
+        :param source_ids: Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.ru/dev/newsfeed.getBanned|newsfeed.getBanned] method.
         :param start_from: identifier required to get the next page of results. Value for this parameter is returned in 'next_from' field in a reply.
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
         """
@@ -150,7 +150,7 @@ class NewsfeedCategory(BaseCategory):
 
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param end_time: Latest timestamp (in Unix time) of a comment to return. By default, the current time.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param filters: Filters to apply: 'post' - new comments on wall posts, 'photo' - new comments on photos, 'video' - new comments on videos, 'topic' - new comments on discussions, 'note' - new comments on notes,
         :param last_comments_count:
         :param reposts: Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),
@@ -237,7 +237,7 @@ class NewsfeedCategory(BaseCategory):
 
         :param count: Number of news items to return.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param start_from: 'new_from' value obtained in previous call.
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
@@ -259,7 +259,7 @@ class NewsfeedCategory(BaseCategory):
         """Method `newsfeed.getSuggestedSources()`
 
         :param count: amount of communities or users to return.
-        :param fields: list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].
+        :param fields: list of extra fields to be returned. See available fields for [vk.ru/dev/fields|users] and [vk.ru/dev/fields_groups|communities].
         :param offset: offset required to choose a particular subset of communities or users.
         :param shuffle: shuffle the returned list or not.
         """
@@ -387,7 +387,7 @@ class NewsfeedCategory(BaseCategory):
         :param extended: '1' - to return additional information about the user or community that placed the post.
         :param count: Number of posts to return.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param latitude: Geographical latitude point (in degrees, -90 to 90) within which to search.
         :param longitude: Geographical longitude point (in degrees, -180 to 180) within which to search.
         :param q: Search query string (e.g., 'New Year').

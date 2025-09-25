@@ -196,8 +196,8 @@ class VideoCategory(BaseCategory):
         :param no_comments: Disable comments for the group video.
         :param ord_info:
         :param owner_id: ID of the user or community that owns the video.
-        :param privacy_comment: Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].
-        :param privacy_view: Privacy settings in a [vk.com/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.
+        :param privacy_comment: Privacy settings for comments in a [vk.ru/dev/privacy_setting|special format].
+        :param privacy_view: Privacy settings in a [vk.ru/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.
         :param repeat: '1' - to repeat the playback of the video, '0' - to play the video once,
         """
 

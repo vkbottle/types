@@ -197,7 +197,7 @@ class DocsCategory(BaseCategory):
     ) -> DocsSaveResponseModel:
         """Method `docs.save()`
 
-        :param file: This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
+        :param file: This parameter is returned when the file is [vk.ru/dev/upload_files_2|uploaded to the server].
         :param return_tags:
         :param tags: Document tags.
         :param title: Document title.

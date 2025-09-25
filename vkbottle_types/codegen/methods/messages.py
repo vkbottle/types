@@ -649,7 +649,7 @@ class MessagesCategory(BaseCategory):
         :param cmid:
         :param count: Number of objects to return.
         :param extended:
-        :param fields: Additional profile [vk.com/dev/fields|fields] to return.
+        :param fields: Additional profile [vk.ru/dev/fields|fields] to return.
         :param group_id: Group ID (for group messages with group access token)
         :param max_forwards_level:
         :param media_type: Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'
@@ -806,7 +806,7 @@ class MessagesCategory(BaseCategory):
         :param credentials:
         :param events_limit: Maximum number of events to return.
         :param extended:
-        :param fields: Additional profile [vk.com/dev/fields|fields] to return.
+        :param fields: Additional profile [vk.ru/dev/fields|fields] to return.
         :param group_id: Group ID (for group messages with user access token)
         :param last_n:
         :param lp_version:
@@ -814,8 +814,8 @@ class MessagesCategory(BaseCategory):
         :param msgs_limit: Maximum number of messages to return.
         :param onlines: '1' - to return history with online users only.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
-        :param pts: Last value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
-        :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param pts: Last value of 'pts' parameter returned from the Long Poll server or by using [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         """
 
         params = self.get_set_params(locals())
@@ -834,7 +834,7 @@ class MessagesCategory(BaseCategory):
 
         :param group_id: Group ID (for group messages with user access token)
         :param lp_version: Long poll version
-        :param need_pts: '1' - to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param need_pts: '1' - to return the 'pts' field, needed for the [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         """
 
         params = self.get_set_params(locals())
@@ -1339,7 +1339,7 @@ class MessagesCategory(BaseCategory):
     ) -> MessagesSetChatPhotoResponseModel:
         """Method `messages.setChatPhoto()`
 
-        :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
+        :param file: Upload URL from the 'response' field returned by the [vk.ru/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """
 
         params = self.get_set_params(locals())

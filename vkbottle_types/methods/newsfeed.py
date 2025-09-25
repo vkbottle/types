@@ -100,7 +100,7 @@ class NewsfeedCategory(_NewsfeedCategory):  # type: ignore
         :param extended: '1' - to return additional information about the user or community that placed the post.
         :param count: Number of posts to return.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param latitude: Geographical latitude point (in degrees, -90 to 90) within which to search.
         :param longitude: Geographical longitude point (in degrees, -180 to 180) within which to search.
         :param q: Search query string (e.g., 'New Year').

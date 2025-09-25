@@ -44,7 +44,7 @@ class AccountCategory(BaseCategory):
         :param new_password: New password that will be set as a current
         :param change_password_hash: Hash received after a successful OAuth authorization with a code got by SMS. (If the password is changed right after the access was restored)
         :param old_password: Current user password.
-        :param restore_sid: Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
+        :param restore_sid: Session id received after the [vk.ru/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
         """
 
         params = self.get_set_params(locals())
@@ -94,7 +94,7 @@ class AccountCategory(BaseCategory):
         """Method `account.getBanned()`
 
         :param count: Number of results to return.
-        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
         :param offset: Offset needed to return a specific subset of results.
         """
 
@@ -181,7 +181,7 @@ class AccountCategory(BaseCategory):
         :param device_year: Device year.
         :param pushes_granted:
         :param sandbox:
-        :param settings: Push settings in a [vk.com/dev/push_settings|special format].
+        :param settings: Push settings in a [vk.ru/dev/push_settings|special format].
         :param system_version: String version of device operating system.
         """
 
@@ -286,8 +286,8 @@ class AccountCategory(BaseCategory):
 
         :param device_id: Unique device ID.
         :param key: Notification key.
-        :param settings: Push settings in a [vk.com/dev/push_settings|special format].
-        :param value: New value for the key in a [vk.com/dev/push_settings|special format].
+        :param settings: Push settings in a [vk.ru/dev/push_settings|special format].
+        :param value: New value for the key in a [vk.ru/dev/push_settings|special format].
         """
 
         params = self.get_set_params(locals())

@@ -1,3 +1,4 @@
+import dataclasses
 import typing
 from abc import ABC, abstractmethod
 
@@ -45,9 +46,15 @@ from .methods import (
     wall,
     widgets,
 )
+from .responses.execute import ExecuteResponse, Response
 
 if typing.TYPE_CHECKING:
     from vkbottle import ABCAPI  # type: ignore
+
+
+@dataclasses.dataclass(frozen=True)
+class ExecutableCode(typing.Generic[Response]):
+    code: str
 
 
 class APICategories(ABC):
@@ -224,8 +231,16 @@ class APICategories(ABC):
     def api_instance(self) -> "ABCAPI":
         pass
 
-    async def execute(self, code: str) -> typing.Any:
-        return await self.api_instance.request("execute", {"code": code})
+    async def execute(self, code: ExecutableCode[Response]) -> ExecuteResponse[Response]:
+        pass
+
+    async def execute(self, code: str) -> ExecuteResponse[typing.Any]:
+        pass
+
+    async def execute(self, code: str | ExecutableCode[typing.Any]) -> ExecuteResponse[typing.Any]:
+        data = code.__dict__ if isinstance(code, ExecutableCode) else {"code": code}
+        response = await self.api_instance.request("execute", data)
+        return ExecuteResponse(response=response)
 
 
 __all__ = ("APICategories",)

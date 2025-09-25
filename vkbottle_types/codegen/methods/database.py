@@ -77,7 +77,7 @@ class DatabaseCategory(BaseCategory):
     ) -> DatabaseGetCountriesResponseModel:
         """Method `database.getCountries()`
 
-        :param code: Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
+        :param code: Country codes in [vk.ru/dev/country_codes|ISO 3166-1 alpha-2] standard.
         :param count: Number of countries to return.
         :param need_all: '1' - to return a full list of all countries, '0' - to return a list of countries near the current user's country (default).
         :param offset: Offset needed to return a specific subset of countries.

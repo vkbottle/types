@@ -428,7 +428,7 @@ class AdsCategory(BaseCategory):
     ) -> AdsGetCategoriesResponseModel:
         """Method `ads.getCategories()`
 
-        :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
+        :param lang: Language. The full list of supported languages is [vk.ru/dev/api_requests|here].
         """
 
         params = self.get_set_params(locals())

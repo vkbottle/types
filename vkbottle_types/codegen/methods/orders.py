@@ -38,7 +38,7 @@ class OrdersCategory(BaseCategory):
     ) -> str:
         """Method `orders.changeState()`
 
-        :param action: action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.
+        :param action: action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.ru/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.
         :param order_id: order ID.
         :param app_order_id: internal ID of the order in the application.
         :param test_mode: if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.

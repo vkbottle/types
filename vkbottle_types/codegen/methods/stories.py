@@ -136,7 +136,7 @@ class StoriesCategory(BaseCategory):
         :param clickable_stickers:
         :param group_id: ID of the community to upload the story (should be verified or with the "fire" icon).
         :param link_text: Link text (for community's stories only).
-        :param link_url: Link URL. Internal links on https://vk.com only.
+        :param link_url: Link URL. Internal links on https://vk.ru only.
         :param reply_to_story: ID of the story to reply with the current.
         :param user_ids: List of users IDs who can see the story.
         """
@@ -203,7 +203,7 @@ class StoriesCategory(BaseCategory):
         :param clickable_stickers:
         :param group_id: ID of the community to upload the story (should be verified or with the "fire" icon).
         :param link_text: Link text (for community's stories only).
-        :param link_url: Link URL. Internal links on https://vk.com only.
+        :param link_url: Link URL. Internal links on https://vk.ru only.
         :param reply_to_story: ID of the story to reply with the current.
         :param user_ids: List of users IDs who can see the story.
         """

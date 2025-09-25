@@ -213,7 +213,7 @@ class MarketCategory(BaseCategory):
         """Method `market.deleteComment()`
 
         :param comment_id: comment id
-        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())
@@ -498,7 +498,7 @@ class MarketCategory(BaseCategory):
     ) -> typing.Union[MarketGetResponseModel, MarketGetExtendedResponseModel]:
         """Method `market.get()`
 
-        :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
         :param extended: '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
         :param album_id:
         :param count: Number of items to return.
@@ -528,7 +528,7 @@ class MarketCategory(BaseCategory):
         """Method `market.getAlbumById()`
 
         :param album_ids: collections identifiers to obtain data from
-        :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())
@@ -628,7 +628,7 @@ class MarketCategory(BaseCategory):
         :param owner_id: ID of an item owner community
         :param count: Number of results to return.
         :param extended: '1' - comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.
-        :param fields: List of additional profile fields to return. See the [vk.com/dev/fields|details]
+        :param fields: List of additional profile fields to return. See the [vk.ru/dev/fields|details]
         :param need_likes: '1' - to return likes info.
         :param offset:
         :param sort: Sort order ('asc' - from old to new, 'desc' - from new to old)
@@ -947,7 +947,7 @@ class MarketCategory(BaseCategory):
         """Method `market.restoreComment()`
 
         :param comment_id: deleted comment id
-        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
+        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())

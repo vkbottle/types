@@ -105,7 +105,7 @@ class AppsCategory(BaseCategory):
         :param extended:
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', (only if return_friends - 1)
         :param name_case: Case for declension of user name and surname: 'nom' - nominative (default),, 'gen' - genitive,, 'dat' - dative,, 'acc' - accusative,, 'ins' - instrumental,, 'abl' - prepositional. (only if 'return_friends' = '1')
-        :param platform: platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.com. By default: 'web'.
+        :param platform: platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.ru. By default: 'web'.
         :param return_friends:
         """
 
@@ -187,7 +187,7 @@ class AppsCategory(BaseCategory):
 
         :param extended:
         :param count: List size.
-        :param fields: Additional profile fields, see [vk.com/dev/fields|description].
+        :param fields: Additional profile fields, see [vk.ru/dev/fields|description].
         :param offset:
         :param query: Search query string (e.g., 'Vasya Babich').
         :param type: List type. Possible values: * 'invite' - available for invites (don't play the game),, * 'request' - available for request (play the game). By default: 'invite'.

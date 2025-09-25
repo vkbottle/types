@@ -3286,13 +3286,13 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """
 
     app_id: int = Field()
-    """Fragment value in app link like vk.com/app{app_id}_-654321#hash."""
+    """Fragment value in app link like vk.ru/app{app_id}_-654321#hash."""
 
     label: str = Field()
     """Label for button."""
 
     owner_id: int = Field()
-    """Fragment value in app link like vk.com/app123456_{owner_id}#hash."""
+    """Fragment value in app link like vk.ru/app123456_{owner_id}#hash."""
 
     type: "MessagesKeyboardButtonActionOpenAppType" = Field()
     """Property `MessagesKeyboardButtonActionOpenApp.type`."""
@@ -3300,7 +3300,7 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     hash: typing.Optional[str] = Field(
         default=None,
     )
-    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
+    """Fragment value in app link like vk.ru/app123456_-654321#{hash}."""
 
     payload: typing.Optional[str] = Field(
         default=None,
@@ -3380,7 +3380,7 @@ class MessagesKeyboardButtonActionVkpay(BaseModel):
     """
 
     hash: str = Field()
-    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
+    """Fragment value in app link like vk.ru/app123456_-654321#{hash}."""
 
     type: "MessagesKeyboardButtonActionVkpayType" = Field()
     """Property `MessagesKeyboardButtonActionVkpay.type`."""

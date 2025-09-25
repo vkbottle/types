@@ -1,9 +1,6 @@
 # vkbottle-types
 
-Библиотека [VK API](https://dev.vk.com/ru/method) типов и методов для фреймворка [**vkbottle**](https://github.com/vkbottle/vkbottle)
-
-[![vk-api](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FVKCOM%2Fvk-api-schema%2Frefs%2Fheads%2Fmaster%2Fpackage.json&query=%24.version&label=vk%20api%20schema
-)](https://dev.vk.com/en/reference/versions#5.199)
+Библиотека [VK API](https://dev.vk.ru/ru/method) типов и методов для фреймворка [**vkbottle**](https://github.com/vkbottle/vkbottle)
 
 Установить с pypi:
 
@@ -26,7 +23,9 @@ pip install -U https://github.com/vkbottle/vkbottle-types/archive/master.zip
 
 ## Оригинальная схема
 
-https://github.com/VKCOM/vk-api-schema
+
+[![vk-api](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FVKCOM%2Fvk-api-schema%2Frefs%2Fheads%2Fmaster%2Fpackage.json&query=%24.version&label=vk%20api%20schema
+)](https://github.com/VKCOM/vk-api-schema)
 
 ## Добавление патча для схемы (WIP)
 

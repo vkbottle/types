@@ -277,7 +277,7 @@ class FaveCategory(BaseCategory):
         """Method `fave.removeLink()`
 
         :param link: Link URL
-        :param link_id: Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).
+        :param link_id: Link ID (can be obtained by [vk.ru/dev/faves.getLinks|faves.getLinks] method).
         """
 
         params = self.get_set_params(locals())

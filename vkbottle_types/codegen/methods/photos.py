@@ -259,12 +259,12 @@ class PhotosCategory(BaseCategory):
         :param album_id: Photo album ID. To return information about photos from service albums, use the following string values: 'profile, wall, saved'.
         :param count:
         :param extended: '1' - to return additional 'likes', 'comments', and 'tags' fields, '0' - (default)
-        :param feed: unixtime, that can be obtained with [vk.com/dev/newsfeed.get|newsfeed.get] method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.
+        :param feed: unixtime, that can be obtained with [vk.ru/dev/newsfeed.get|newsfeed.get] method in date field to get all photos uploaded by the user on a specific day, or photos the user has been tagged on. Also, 'uid' parameter of the user the event happened with shall be specified.
         :param feed_type: Type of feed obtained in 'feed' field of the method.
         :param offset:
         :param owner_id: ID of the user or community that owns the photos. Use a negative value to designate a community ID.
         :param photo_ids: Photo IDs.
-        :param photo_sizes: '1' - to return photo sizes in a [vk.com/dev/photo_sizes|special format]
+        :param photo_sizes: '1' - to return photo sizes in a [vk.ru/dev/photo_sizes|special format]
         :param rev: Sort order: '1' - reverse chronological, '0' - chronological
         """
 
@@ -339,7 +339,7 @@ class PhotosCategory(BaseCategory):
         :param no_service_albums: '1' - to return photos only from standard albums, '0' - to return all photos including those in service albums, e.g., 'My wall photos' (default)
         :param offset: Offset needed to return a specific subset of photos. By default, '0'.
         :param owner_id: ID of a user or community that owns the photos. Use a negative value to designate a community ID.
-        :param photo_sizes: '1' - to return image sizes in [vk.com/dev/photo_sizes|special format].
+        :param photo_sizes: '1' - to return image sizes in [vk.ru/dev/photo_sizes|special format].
         :param skip_hidden: '1' - not to return photos being hidden from the block above the wall. Works only with owner_id>0, no_service_albums is ignored.
         """
 
@@ -856,11 +856,11 @@ class PhotosCategory(BaseCategory):
         :param album_id: ID of the album to save photos to.
         :param caption: Text describing the photo. 2048 digits max.
         :param group_id: ID of the community to save photos to.
-        :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+        :param hash: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
         :param latitude: Geographical latitude, in degrees (from '-90' to '90').
         :param longitude: Geographical longitude, in degrees (from '-180' to '180').
-        :param photos_list: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+        :param photos_list: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
+        :param server: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
         """
 
         params = self.get_set_params(locals())
@@ -879,9 +879,9 @@ class PhotosCategory(BaseCategory):
         """Method `photos.saveMarketAlbumPhoto()`
 
         :param group_id: Community ID.
-        :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
-        :param server: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+        :param hash: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
+        :param photo: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
+        :param server: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
         """
 
         params = self.get_set_params(locals())
@@ -898,7 +898,7 @@ class PhotosCategory(BaseCategory):
     ) -> typing.List[PhotosPhoto]:
         """Method `photos.saveMessagesPhoto()`
 
-        :param photo: Parameter returned when the photo is [vk.com/dev/upload_files|uploaded to the server].
+        :param photo: Parameter returned when the photo is [vk.ru/dev/upload_files|uploaded to the server].
         :param hash:
         :param server:
         """
@@ -926,9 +926,9 @@ class PhotosCategory(BaseCategory):
         :param crop_width:
         :param crop_x:
         :param crop_y:
-        :param hash: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+        :param hash: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
         :param is_video_cover:
-        :param photo: Parameter returned when photos are [vk.com/dev/upload_files|uploaded to server].
+        :param photo: Parameter returned when photos are [vk.ru/dev/upload_files|uploaded to server].
         :param response_json:
         """
 
@@ -946,9 +946,9 @@ class PhotosCategory(BaseCategory):
     ) -> PhotosSaveOwnerPhotoResponseModel:
         """Method `photos.saveOwnerPhoto()`
 
-        :param hash: parameter returned after [vk.com/dev/upload_files|photo upload].
-        :param photo: parameter returned after [vk.com/dev/upload_files|photo upload].
-        :param server: parameter returned after [vk.com/dev/upload_files|photo upload].
+        :param hash: parameter returned after [vk.ru/dev/upload_files|photo upload].
+        :param photo: parameter returned after [vk.ru/dev/upload_files|photo upload].
+        :param server: parameter returned after [vk.ru/dev/upload_files|photo upload].
         """
 
         params = self.get_set_params(locals())
@@ -970,7 +970,7 @@ class PhotosCategory(BaseCategory):
     ) -> typing.List[PhotosPhoto]:
         """Method `photos.saveWallPhoto()`
 
-        :param photo: Parameter returned when the the photo is [vk.com/dev/upload_files|uploaded to the server].
+        :param photo: Parameter returned when the the photo is [vk.ru/dev/upload_files|uploaded to the server].
         :param caption: Text describing the photo. 2048 digits max.
         :param group_id: ID of community on whose wall the photo will be saved.
         :param hash:
