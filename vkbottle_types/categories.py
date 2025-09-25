@@ -239,7 +239,7 @@ class APICategories(ABC):
     async def execute(self, code: str) -> ExecuteResponse[typing.Any]:
         pass
 
-    async def execute(self, code: str | ExecutableCode[typing.Any]) -> ExecuteResponse[typing.Any]:
+    async def execute(self, code: typing.Union[str, ExecutableCode[Response]]) -> ExecuteResponse[typing.Any]:
         data = code.__dict__ if isinstance(code, ExecutableCode) else {"code": code}
         response = await self.api_instance.request("execute", data)
         return ExecuteResponse(response=response)
