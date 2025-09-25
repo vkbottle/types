@@ -231,9 +231,11 @@ class APICategories(ABC):
     def api_instance(self) -> "ABCAPI":
         pass
 
+    @typing.overload
     async def execute(self, code: ExecutableCode[Response]) -> ExecuteResponse[Response]:
         pass
 
+    @typing.overload
     async def execute(self, code: str) -> ExecuteResponse[typing.Any]:
         pass
 
