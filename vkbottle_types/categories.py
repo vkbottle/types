@@ -1,54 +1,57 @@
+import importlib
 import dataclasses
 import typing
 from abc import ABC, abstractmethod
 
-from .methods import (
-    account,
-    ads,
-    app_widgets,
-    apps,
-    auth,
-    board,
-    bugtracker,
-    database,
-    docs,
-    donut,
-    downloaded_games,
-    fave,
-    friends,
-    gifts,
-    groups,
-    lead_forms,
-    likes,
-    market,
-    messages,
-    newsfeed,
-    notes,
-    notifications,
-    orders,
-    pages,
-    photos,
-    podcasts,
-    polls,
-    pretty_cards,
-    search,
-    secure,
-    stats,
-    status,
-    storage,
-    store,
-    stories,
-    streaming,
-    translations,
-    users,
-    utils,
-    video,
-    wall,
-    widgets,
-)
 from .responses.execute import ExecuteResponse, Response
 
 if typing.TYPE_CHECKING:
+    from .methods.base_category import BaseCategory
+    from .methods import (
+        account,
+        ads,
+        app_widgets,
+        apps,
+        auth,
+        board,
+        bugtracker,
+        database,
+        docs,
+        donut,
+        downloaded_games,
+        fave,
+        friends,
+        gifts,
+        groups,
+        lead_forms,
+        likes,
+        market,
+        messages,
+        newsfeed,
+        notes,
+        notifications,
+        orders,
+        pages,
+        photos,
+        podcasts,
+        polls,
+        pretty_cards,
+        search,
+        secure,
+        stats,
+        status,
+        storage,
+        store,
+        stories,
+        streaming,
+        translations,
+        users,
+        utils,
+        video,
+        wall,
+        widgets,
+    )
+
     from vkbottle import ABCAPI  # type: ignore
 
 
@@ -57,174 +60,231 @@ class ExecutableCode(typing.Generic[Response]):
     code: str
 
 
+CATEGORIES = {
+    "account": "AccountCategory",
+    "ads": "AdsCategory",
+    "app_widgets": "AppWidgetsCategory",
+    "apps": "AppsCategory",
+    "auth": "AuthCategory",
+    "board": "BoardCategory",
+    "bugtracker": "BugtrackerCategory",
+    "database": "DatabaseCategory",
+    "docs": "DocsCategory",
+    "donut": "DonutCategory",
+    "downloaded_games": "DownloadedGamesCategory",
+    "fave": "FaveCategory",
+    "friends": "FriendsCategory",
+    "gifts": "GiftsCategory",
+    "groups": "GroupsCategory",
+    "lead_forms": "LeadFormsCategory",
+    "likes": "LikesCategory",
+    "market": "MarketCategory",
+    "messages": "MessagesCategory",
+    "newsfeed": "NewsfeedCategory",
+    "notes": "NotesCategory",
+    "notifications": "NotificationsCategory",
+    "orders": "OrdersCategory",
+    "pages": "PagesCategory",
+    "photos": "PhotosCategory",
+    "podcasts": "PodcastsCategory",
+    "polls": "PollsCategory",
+    "pretty_cards": "PrettyCardsCategory",
+    "search": "SearchCategory",
+    "secure": "SecureCategory",
+    "stats": "StatsCategory",
+    "status": "StatusCategory",
+    "storage": "StorageCategory",
+    "store": "StoreCategory",
+    "stories": "StoriesCategory",
+    "streaming": "StreamingCategory",
+    "translations": "TranslationsCategory",
+    "users": "UsersCategory",
+    "utils": "UtilsCategory",
+    "video": "VideoCategory",
+    "wall": "WallCategory",
+    "widgets": "WidgetsCategory",
+}
+
+
 class APICategories(ABC):
-    @property
-    def account(self) -> account.AccountCategory:
-        return account.AccountCategory(self.api_instance)
 
-    @property
-    def ads(self) -> ads.AdsCategory:
-        return ads.AdsCategory(self.api_instance)
+    if typing.TYPE_CHECKING:
+        @typing.overload
+        @property
+        def account(self) -> "account.AccountCategory": ...
 
-    @property
-    def app_widgets(self) -> app_widgets.AppWidgetsCategory:
-        return app_widgets.AppWidgetsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def ads(self) -> "ads.AdsCategory": ...
 
-    @property
-    def apps(self) -> apps.AppsCategory:
-        return apps.AppsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def app_widgets(self) -> "app_widgets.AppWidgetsCategory": ...
 
-    @property
-    def auth(self) -> auth.AuthCategory:
-        return auth.AuthCategory(self.api_instance)
+        @typing.overload
+        @property
+        def apps(self) -> "apps.AppsCategory": ...
 
-    @property
-    def board(self) -> board.BoardCategory:
-        return board.BoardCategory(self.api_instance)
+        @typing.overload
+        @property
+        def auth(self) -> "auth.AuthCategory": ...
 
-    @property
-    def bugtracker(self) -> bugtracker.BugtrackerCategory:
-        return bugtracker.BugtrackerCategory(self.api_instance)
+        @typing.overload
+        @property
+        def board(self) -> "board.BoardCategory": ...
 
-    @property
-    def database(self) -> database.DatabaseCategory:
-        return database.DatabaseCategory(self.api_instance)
+        @typing.overload
+        @property
+        def bugtracker(self) -> "bugtracker.BugtrackerCategory": ...
 
-    @property
-    def docs(self) -> docs.DocsCategory:
-        return docs.DocsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def database(self) -> "database.DatabaseCategory": ...
 
-    @property
-    def donut(self) -> donut.DonutCategory:
-        return donut.DonutCategory(self.api_instance)
+        @typing.overload
+        @property
+        def docs(self) -> "docs.DocsCategory": ...
 
-    @property
-    def downloaded_games(self) -> downloaded_games.DownloadedGamesCategory:
-        return downloaded_games.DownloadedGamesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def donut(self) -> "donut.DonutCategory": ...
 
-    @property
-    def fave(self) -> fave.FaveCategory:
-        return fave.FaveCategory(self.api_instance)
+        @typing.overload
+        @property
+        def downloaded_games(self) -> "downloaded_games.DownloadedGamesCategory": ...
 
-    @property
-    def friends(self) -> friends.FriendsCategory:
-        return friends.FriendsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def fave(self) -> "fave.FaveCategory": ...
 
-    @property
-    def gifts(self) -> gifts.GiftsCategory:
-        return gifts.GiftsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def friends(self) -> "friends.FriendsCategory": ...
 
-    @property
-    def groups(self) -> groups.GroupsCategory:
-        return groups.GroupsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def gifts(self) -> "gifts.GiftsCategory": ...
 
-    @property
-    def lead_forms(self) -> lead_forms.LeadFormsCategory:
-        return lead_forms.LeadFormsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def groups(self) -> "groups.GroupsCategory": ...
 
-    @property
-    def likes(self) -> likes.LikesCategory:
-        return likes.LikesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def lead_forms(self) -> "lead_forms.LeadFormsCategory": ...
 
-    @property
-    def market(self) -> market.MarketCategory:
-        return market.MarketCategory(self.api_instance)
+        @typing.overload
+        @property
+        def likes(self) -> "likes.LikesCategory": ...
 
-    @property
-    def messages(self) -> messages.MessagesCategory:
-        return messages.MessagesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def market(self) -> "market.MarketCategory": ...
 
-    @property
-    def newsfeed(self) -> newsfeed.NewsfeedCategory:
-        return newsfeed.NewsfeedCategory(self.api_instance)
+        @typing.overload
+        @property
+        def messages(self) -> "messages.MessagesCategory": ...
 
-    @property
-    def notes(self) -> notes.NotesCategory:
-        return notes.NotesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def newsfeed(self) -> "newsfeed.NewsfeedCategory": ...
 
-    @property
-    def notifications(self) -> notifications.NotificationsCategory:
-        return notifications.NotificationsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def notes(self) -> "notes.NotesCategory": ...
 
-    @property
-    def orders(self) -> orders.OrdersCategory:
-        return orders.OrdersCategory(self.api_instance)
+        @typing.overload
+        @property
+        def notifications(self) -> "notifications.NotificationsCategory": ...
 
-    @property
-    def pages(self) -> pages.PagesCategory:
-        return pages.PagesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def orders(self) -> "orders.OrdersCategory": ...
 
-    @property
-    def photos(self) -> photos.PhotosCategory:
-        return photos.PhotosCategory(self.api_instance)
+        @typing.overload
+        @property
+        def pages(self) -> "pages.PagesCategory": ...
 
-    @property
-    def podcasts(self) -> podcasts.PodcastsCategory:
-        return podcasts.PodcastsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def photos(self) -> "photos.PhotosCategory": ...
 
-    @property
-    def polls(self) -> polls.PollsCategory:
-        return polls.PollsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def podcasts(self) -> "podcasts.PodcastsCategory": ...
 
-    @property
-    def pretty_cards(self) -> pretty_cards.PrettyCardsCategory:
-        return pretty_cards.PrettyCardsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def polls(self) -> "polls.PollsCategory": ...
 
-    @property
-    def search(self) -> search.SearchCategory:
-        return search.SearchCategory(self.api_instance)
+        @typing.overload
+        @property
+        def pretty_cards(self) -> "pretty_cards.PrettyCardsCategory": ...
 
-    @property
-    def secure(self) -> secure.SecureCategory:
-        return secure.SecureCategory(self.api_instance)
+        @typing.overload
+        @property
+        def search(self) -> "search.SearchCategory": ...
 
-    @property
-    def stats(self) -> stats.StatsCategory:
-        return stats.StatsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def secure(self) -> "secure.SecureCategory": ...
 
-    @property
-    def status(self) -> status.StatusCategory:
-        return status.StatusCategory(self.api_instance)
+        @typing.overload
+        @property
+        def stats(self) -> "stats.StatsCategory": ...
 
-    @property
-    def storage(self) -> storage.StorageCategory:
-        return storage.StorageCategory(self.api_instance)
+        @typing.overload
+        @property
+        def status(self) -> "status.StatusCategory": ...
 
-    @property
-    def store(self) -> store.StoreCategory:
-        return store.StoreCategory(self.api_instance)
+        @typing.overload
+        @property
+        def storage(self) -> "storage.StorageCategory": ...
 
-    @property
-    def stories(self) -> stories.StoriesCategory:
-        return stories.StoriesCategory(self.api_instance)
+        @typing.overload
+        @property
+        def store(self) -> "store.StoreCategory": ...
 
-    @property
-    def streaming(self) -> streaming.StreamingCategory:
-        return streaming.StreamingCategory(self.api_instance)
+        @typing.overload
+        @property
+        def stories(self) -> "stories.StoriesCategory": ...
 
-    @property
-    def translations(self) -> translations.TranslationsCategory:
-        return translations.TranslationsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def streaming(self) -> "streaming.StreamingCategory": ...
 
-    @property
-    def users(self) -> users.UsersCategory:
-        return users.UsersCategory(self.api_instance)
+        @typing.overload
+        @property
+        def translations(self) -> "translations.TranslationsCategory": ...
 
-    @property
-    def utils(self) -> utils.UtilsCategory:
-        return utils.UtilsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def users(self) -> "users.UsersCategory": ...
 
-    @property
-    def video(self) -> video.VideoCategory:
-        return video.VideoCategory(self.api_instance)
+        @typing.overload
+        @property
+        def utils(self) -> "utils.UtilsCategory": ...
 
-    @property
-    def wall(self) -> wall.WallCategory:
-        return wall.WallCategory(self.api_instance)
+        @typing.overload
+        @property
+        def video(self) -> "video.VideoCategory": ...
 
-    @property
-    def widgets(self) -> widgets.WidgetsCategory:
-        return widgets.WidgetsCategory(self.api_instance)
+        @typing.overload
+        @property
+        def wall(self) -> "wall.WallCategory": ...
+
+        @typing.overload
+        @property
+        def widgets(self) -> "widgets.WidgetsCategory": ...
+
+    def __getattr__(self, name) -> "BaseCategory":
+        if name not in CATEGORIES:
+            raise AttributeError(name=name, obj=self)
+
+        module: "BaseCategory" = importlib.import_module(f".methods.{name}", package=__package__)
+        category = getattr(module, CATEGORIES[name])
+        
+        return category(self.api_instance)
 
     @property
     @abstractmethod
