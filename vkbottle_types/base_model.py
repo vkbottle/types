@@ -139,9 +139,12 @@ NOT_SUPPORTED_VALUES: typing.Final = {
     StrEnum: NOT_SUPPORTED,
     IntEnum: sys.maxsize,
     FloatEnum: math.inf,
-    enum.StrEnum: NOT_SUPPORTED,
     enum.IntEnum: sys.maxsize,
 }
+
+
+if sys.version_info >= (3, 11):
+    NOT_SUPPORTED_VALUES.update({enum.StrEnum: NOT_SUPPORTED})
 
 
 Field = pydantic.Field
