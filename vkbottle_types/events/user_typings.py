@@ -1,3 +1,5 @@
+from typing import TypeAlias
+
 from .user_events import (
     AddConversationsToFolder,
     Call,
@@ -35,38 +37,38 @@ from .user_events import (
 
 
 class UserTypes:
-    RawUserEvent = RawUserEvent
-    MessageFlagsReplace = MessageFlagsReplace
-    MessageSetFlags = MessageSetFlags
-    MessageResetFlags = MessageResetFlags
-    MessageNew = MessageNew
-    MessageEdit = MessageEdit
-    MessagesDelete = MessagesDelete
-    MessagesRestore = MessagesRestore
-    ChatVoiceMessageStates = ChatVoiceMessageStates
-    ChatEdit = ChatEdit
-    ChatInfoEdit = ChatInfoEdit
-    ChatTypingState = ChatTypingState
-    DialogTypingState = DialogTypingState
-    UsersTypingState = UsersTypingState
-    DialogResetFlags = DialogResetFlags
-    DialogFlagsReplace = DialogFlagsReplace
-    DialogSetFlags = DialogSetFlags
-    FriendOnline = FriendOnline
-    FriendOffline = FriendOffline
-    Counter = Counter
-    Call = Call
-    FriendAction = FriendAction
-    NotificationsSettingsChanged = NotificationsSettingsChanged
-    InRead = InRead
-    OutRead = OutRead
-    CreateFolder = CreateFolder
-    RenameFolder = RenameFolder
-    DeleteFolder = DeleteFolder
-    AddConversationsToFolder = AddConversationsToFolder
-    RemoveConversationsFromFolder = RemoveConversationsFromFolder
-    ChangeFolderOrder = ChangeFolderOrder
-    CounterUnreadDialogsInFolders = CounterUnreadDialogsInFolders
+    RawUserEvent: TypeAlias = RawUserEvent
+    MessageFlagsReplace: TypeAlias = MessageFlagsReplace
+    MessageSetFlags: TypeAlias = MessageSetFlags
+    MessageResetFlags: TypeAlias = MessageResetFlags
+    MessageNew: TypeAlias = MessageNew
+    MessageEdit: TypeAlias = MessageEdit
+    MessagesDelete: TypeAlias = MessagesDelete
+    MessagesRestore: TypeAlias = MessagesRestore
+    ChatVoiceMessageStates: TypeAlias = ChatVoiceMessageStates
+    ChatEdit: TypeAlias = ChatEdit
+    ChatInfoEdit: TypeAlias = ChatInfoEdit
+    ChatTypingState: TypeAlias = ChatTypingState
+    DialogTypingState: TypeAlias = DialogTypingState
+    UsersTypingState: TypeAlias = UsersTypingState
+    DialogResetFlags: TypeAlias = DialogResetFlags
+    DialogFlagsReplace: TypeAlias = DialogFlagsReplace
+    DialogSetFlags: TypeAlias = DialogSetFlags
+    FriendOnline: TypeAlias = FriendOnline
+    FriendOffline: TypeAlias = FriendOffline
+    Counter: TypeAlias = Counter
+    Call: TypeAlias = Call
+    FriendAction: TypeAlias = FriendAction
+    NotificationsSettingsChanged: TypeAlias = NotificationsSettingsChanged
+    InRead: TypeAlias = InRead
+    OutRead: TypeAlias = OutRead
+    CreateFolder: TypeAlias = CreateFolder
+    RenameFolder: TypeAlias = RenameFolder
+    DeleteFolder: TypeAlias = DeleteFolder
+    AddConversationsToFolder: TypeAlias = AddConversationsToFolder
+    RemoveConversationsFromFolder: TypeAlias = RemoveConversationsFromFolder
+    ChangeFolderOrder: TypeAlias = ChangeFolderOrder
+    CounterUnreadDialogsInFolders: TypeAlias = CounterUnreadDialogsInFolders
 
 
 __all__ = ("UserTypes",)

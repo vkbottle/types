@@ -1,3 +1,5 @@
+from typing import TypeAlias
+
 from .bot_events import (
     AppPayload,
     AudioNew,
@@ -59,62 +61,62 @@ from .bot_events import (
 
 
 class GroupTypes:
-    MessageNew = MessageNew
-    MessageReply = MessageReply
-    MessageEdit = MessageEdit
-    MessageRead = MessageRead
-    MessageAllow = MessageAllow
-    MessageDeny = MessageDeny
-    MessageReactionEvent = MessageReactionEvent
-    MessageTypingState = MessageTypingState
-    MessageEvent = MessageEvent
-    PhotoNew = PhotoNew
-    PhotoCommentNew = PhotoCommentNew
-    PhotoCommentEdit = PhotoCommentEdit
-    PhotoCommentRestore = PhotoCommentRestore
-    PhotoCommentDelete = PhotoCommentDelete
-    AudioNew = AudioNew
-    VideoNew = VideoNew
-    VideoCommentNew = VideoCommentNew
-    VideoCommentEdit = VideoCommentEdit
-    VideoCommentRestore = VideoCommentRestore
-    VideoCommentDelete = VideoCommentDelete
-    WallPostNew = WallPostNew
-    WallRepost = WallRepost
-    WallReplyNew = WallReplyNew
-    WallReplyEdit = WallReplyEdit
-    WallReplyRestore = WallReplyRestore
-    WallReplyDelete = WallReplyDelete
-    LeadFormsNew = LeadFormsNew
-    LikeAdd = LikeAdd
-    LikeRemove = LikeRemove
-    BoardPostNew = BoardPostNew
-    BoardPostEdit = BoardPostEdit
-    BoardPostRestore = BoardPostRestore
-    BoardPostDelete = BoardPostDelete
-    MarketCommentNew = MarketCommentNew
-    MarketCommentEdit = MarketCommentEdit
-    MarketCommentRestore = MarketCommentRestore
-    MarketCommentDelete = MarketCommentDelete
-    MarketOrderNew = MarketOrderNew
-    MarketOrderEdit = MarketOrderEdit
-    GroupLeave = GroupLeave
-    GroupJoin = GroupJoin
-    UserBlock = UserBlock
-    UserUnblock = UserUnblock
-    PollVoteNew = PollVoteNew
-    GroupOfficersEdit = GroupOfficersEdit
-    GroupChangeSettings = GroupChangeSettings
-    GroupChangePhoto = GroupChangePhoto
-    VkpayTransaction = VkpayTransaction
-    AppPayload = AppPayload
-    DonutSubscriptionCreate = DonutSubscriptionCreate
-    DonutSubscriptionProlonged = DonutSubscriptionProlonged
-    DonutSubscriptionExpired = DonutSubscriptionExpired
-    DonutSubscriptionCancelled = DonutSubscriptionCancelled
-    DonutSubscriptionPriceChanged = DonutSubscriptionPriceChanged
-    DonutMoneyWithdraw = DonutMoneyWithdraw
-    DonutMoneyWithdrawError = DonutMoneyWithdrawError
+    MessageNew: TypeAlias = MessageNew
+    MessageReply: TypeAlias = MessageReply
+    MessageEdit: TypeAlias = MessageEdit
+    MessageRead: TypeAlias = MessageRead
+    MessageAllow: TypeAlias = MessageAllow
+    MessageDeny: TypeAlias = MessageDeny
+    MessageReactionEvent: TypeAlias = MessageReactionEvent
+    MessageTypingState: TypeAlias = MessageTypingState
+    MessageEvent: TypeAlias = MessageEvent
+    PhotoNew: TypeAlias = PhotoNew
+    PhotoCommentNew: TypeAlias = PhotoCommentNew
+    PhotoCommentEdit: TypeAlias = PhotoCommentEdit
+    PhotoCommentRestore: TypeAlias = PhotoCommentRestore
+    PhotoCommentDelete: TypeAlias = PhotoCommentDelete
+    AudioNew: TypeAlias = AudioNew
+    VideoNew: TypeAlias = VideoNew
+    VideoCommentNew: TypeAlias = VideoCommentNew
+    VideoCommentEdit: TypeAlias = VideoCommentEdit
+    VideoCommentRestore: TypeAlias = VideoCommentRestore
+    VideoCommentDelete: TypeAlias = VideoCommentDelete
+    WallPostNew: TypeAlias = WallPostNew
+    WallRepost: TypeAlias = WallRepost
+    WallReplyNew: TypeAlias = WallReplyNew
+    WallReplyEdit: TypeAlias = WallReplyEdit
+    WallReplyRestore: TypeAlias = WallReplyRestore
+    WallReplyDelete: TypeAlias = WallReplyDelete
+    LeadFormsNew: TypeAlias = LeadFormsNew
+    LikeAdd: TypeAlias = LikeAdd
+    LikeRemove: TypeAlias = LikeRemove
+    BoardPostNew: TypeAlias = BoardPostNew
+    BoardPostEdit: TypeAlias = BoardPostEdit
+    BoardPostRestore: TypeAlias = BoardPostRestore
+    BoardPostDelete: TypeAlias = BoardPostDelete
+    MarketCommentNew: TypeAlias = MarketCommentNew
+    MarketCommentEdit: TypeAlias = MarketCommentEdit
+    MarketCommentRestore: TypeAlias = MarketCommentRestore
+    MarketCommentDelete: TypeAlias = MarketCommentDelete
+    MarketOrderNew: TypeAlias = MarketOrderNew
+    MarketOrderEdit: TypeAlias = MarketOrderEdit
+    GroupLeave: TypeAlias = GroupLeave
+    GroupJoin: TypeAlias = GroupJoin
+    UserBlock: TypeAlias = UserBlock
+    UserUnblock: TypeAlias = UserUnblock
+    PollVoteNew: TypeAlias = PollVoteNew
+    GroupOfficersEdit: TypeAlias = GroupOfficersEdit
+    GroupChangeSettings: TypeAlias = GroupChangeSettings
+    GroupChangePhoto: TypeAlias = GroupChangePhoto
+    VkpayTransaction: TypeAlias = VkpayTransaction
+    AppPayload: TypeAlias = AppPayload
+    DonutSubscriptionCreate: TypeAlias = DonutSubscriptionCreate
+    DonutSubscriptionProlonged: TypeAlias = DonutSubscriptionProlonged
+    DonutSubscriptionExpired: TypeAlias = DonutSubscriptionExpired
+    DonutSubscriptionCancelled: TypeAlias = DonutSubscriptionCancelled
+    DonutSubscriptionPriceChanged: TypeAlias = DonutSubscriptionPriceChanged
+    DonutMoneyWithdraw: TypeAlias = DonutMoneyWithdraw
+    DonutMoneyWithdrawError: TypeAlias = DonutMoneyWithdrawError
 
 
 __all__ = ("GroupTypes",)

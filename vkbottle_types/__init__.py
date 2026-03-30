@@ -1,6 +1,6 @@
 import typing
 
-from vkbottle_types.events import Event, GroupTypes, UserTypes
+from vkbottle_types.events import Event, GroupEventType, GroupTypes, UserEventType, UserTypes
 from vkbottle_types.events.bot_events import BaseGroupEvent
 from vkbottle_types.events.user_events import BaseUserEvent
 
@@ -14,6 +14,8 @@ __all__ = (
     "BaseGroupEvent",
     "BaseUserEvent",
     "Event",
+    "GroupEventType",
     "GroupTypes",
+    "UserEventType",
     "UserTypes",
 )
