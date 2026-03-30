@@ -225,7 +225,7 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         *,
         chat_id: int,
         name_case: str | None = None,
-    ) -> "MessagesChat": ...
+    ) -> MessagesChat: ...
 
     @typing.overload
     async def get_chat(
@@ -234,7 +234,7 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         chat_id: int,
         fields: list[UsersFields],
         name_case: str | None = None,
-    ) -> "MessagesChatFull": ...
+    ) -> MessagesChatFull: ...
 
     @typing.overload
     async def get_chat(
@@ -260,7 +260,7 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         chat_id: int | None = None,
         name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> "MessagesChat" | "MessagesChatFull" | list[MessagesChat] | list[MessagesChatFull]:
+    ) -> MessagesChat | MessagesChatFull | list[MessagesChat] | list[MessagesChatFull]:
         """Method `messages.getChat()`
 
         :param fields: Profile fields to return.

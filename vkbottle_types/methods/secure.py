@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, List
+from typing import TYPE_CHECKING
 
 from vkbottle_types.codegen.methods.secure import SecureCategory as _SecureCategory  # type: ignore
 from vkbottle_types.responses.secure import (
@@ -17,12 +17,12 @@ class SecureCategory(_SecureCategory):  # type: ignore
 
     async def set_counter(  # type: ignore
         self,
-        counters: List[str] | None = None,
+        counters: list[str] | None = None,
         user_id: int | None = None,
         counter: int | None = None,
         increment: bool | None = None,
         **kwargs,
-    ) -> int | List["SecureSetCounterItem"]:
+    ) -> int | list["SecureSetCounterItem"]:
         """Sets a counter which is shown to the user in bold in the left menu.
 
         :param counters:

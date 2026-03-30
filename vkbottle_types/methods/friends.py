@@ -85,7 +85,7 @@ class FriendsCategory(_FriendsCategory):  # type: ignore
         source_uid: int | None = None,
         target_uid: int | None = None,
         **kwargs: typing.Any,
-    ) -> "FriendsMutualFriend" | list[int] | list[FriendsMutualFriend]:
+    ) -> FriendsMutualFriend | list[int] | list[FriendsMutualFriend]:
         """Method `friends.getMutual()`
 
         :param target_uids: IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -169,7 +169,7 @@ class FriendsCategory(_FriendsCategory):  # type: ignore
         order: str | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> "FriendsOnlineUsersWithMobile" | list[int] | FriendsGetOnlineOnlineMobileResponseModel | "FriendsOnlineUsers":
+    ) -> FriendsOnlineUsersWithMobile | list[int] | FriendsGetOnlineOnlineMobileResponseModel | FriendsOnlineUsers:
         """Method `friends.getOnline()`
 
         :param online_mobile: '1' - to return an additional 'online_mobile' field, '0' - (default),
