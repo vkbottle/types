@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import DonutDonatorSubscriptionInfo, GroupsGroupFull, UsersUserFull
 from vkbottle_types.responses.base_response import BaseResponse
@@ -10,14 +8,14 @@ class DonutGetSubscriptionResponse(BaseResponse):
 
 
 class DonutGetSubscriptionsResponseModel(BaseModel):
-    subscriptions: typing.List["DonutDonatorSubscriptionInfo"] = Field()
-    count: typing.Optional[int] = Field(
+    subscriptions: list["DonutDonatorSubscriptionInfo"] = Field()
+    count: int | None = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 

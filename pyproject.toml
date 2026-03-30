@@ -5,12 +5,12 @@ license = "MIT"
 dynamic = ["version"]
 authors = [{name = "timoniq"}]
 readme = "README.md"
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 dependencies = [
-  "pydantic (>=2.11.9,<3.0.0)",
-  "vkbottle (>=4.6.0,<5.0.0)",
+  "pydantic (>=2.12.5,<3.0.0)",
+  "vkbottle (>=4.8.0,<5.0.0)",
   "typing-extensions (>=4.15.0,<5.0.0)",
-  "msgspec (>=0.19.0,<0.20.0)",
+  "msgspec (>=0.20.0,<0.21.0)",
 ]
 
 [tool.poetry]

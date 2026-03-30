@@ -13,7 +13,7 @@ class OrdersCategory(BaseCategory):
         self,
         subscription_id: int,
         user_id: int,
-        pending_cancel: typing.Optional[bool] = None,
+        pending_cancel: bool | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `orders.cancelSubscription()`
@@ -32,13 +32,13 @@ class OrdersCategory(BaseCategory):
         self,
         action: str,
         order_id: int,
-        app_order_id: typing.Optional[int] = None,
-        test_mode: typing.Optional[bool] = None,
+        app_order_id: int | None = None,
+        test_mode: bool | None = None,
         **kwargs: typing.Any,
     ) -> str:
         """Method `orders.changeState()`
 
-        :param action: action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.ru/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.
+        :param action: action to be done with the order. Available actions: *cancel - to cancel unconfirmed order. *charge - to confirm unconfirmed order. Applies only if processing of [vk.com/dev/payments_status|order_change_state] notification failed. *refund - to cancel confirmed order.
         :param order_id: order ID.
         :param app_order_id: internal ID of the order in the application.
         :param test_mode: if this parameter is set to 1, this method returns a list of test mode orders. By default - 0.
@@ -51,11 +51,11 @@ class OrdersCategory(BaseCategory):
 
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        test_mode: typing.Optional[bool] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        test_mode: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[OrdersOrder]:
+    ) -> list[OrdersOrder]:
         """Method `orders.get()`
 
         :param count: number of returned orders.
@@ -71,9 +71,9 @@ class OrdersCategory(BaseCategory):
     async def get_amount(
         self,
         user_id: int,
-        votes: typing.List[str],
+        votes: list[str],
         **kwargs: typing.Any,
-    ) -> typing.List[OrdersAmount]:
+    ) -> list[OrdersAmount]:
         """Method `orders.getAmount()`
 
         :param user_id:
@@ -87,11 +87,11 @@ class OrdersCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        order_id: typing.Optional[int] = None,
-        order_ids: typing.Optional[typing.List[int]] = None,
-        test_mode: typing.Optional[bool] = None,
+        order_id: int | None = None,
+        order_ids: list[int] | None = None,
+        test_mode: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[OrdersOrder]:
+    ) -> list[OrdersOrder]:
         """Method `orders.getById()`
 
         :param order_id: order ID.

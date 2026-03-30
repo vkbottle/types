@@ -12,9 +12,9 @@ class DonutCategory(BaseCategory):
     async def get_friends(
         self,
         owner_id: int,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetMembersFieldsResponseModel:
         """Method `donut.getFriends()`
@@ -47,9 +47,9 @@ class DonutCategory(BaseCategory):
 
     async def get_subscriptions(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> DonutGetSubscriptionsResponseModel:
         """Method `donut.getSubscriptions()`

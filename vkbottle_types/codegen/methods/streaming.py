@@ -19,12 +19,12 @@ class StreamingCategory(BaseCategory):
 
     async def get_stats(
         self,
-        end_time: typing.Optional[int] = None,
-        interval: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        end_time: int | None = None,
+        interval: str | None = None,
+        start_time: int | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[StreamingStats]:
+    ) -> list[StreamingStats]:
         """Method `streaming.getStats()`
 
         :param end_time:

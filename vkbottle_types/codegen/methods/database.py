@@ -9,8 +9,8 @@ class DatabaseCategory(BaseCategory):
     async def get_chairs(
         self,
         faculty_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetChairsResponseModel:
         """Method `database.getChairs()`
@@ -27,12 +27,12 @@ class DatabaseCategory(BaseCategory):
 
     async def get_cities(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[DatabaseCitiesFields]] = None,
-        need_all: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        region_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[DatabaseCitiesFields] | None = None,
+        need_all: bool | None = None,
+        offset: int | None = None,
+        q: str | None = None,
+        region_id: int | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetCitiesResponseModel:
         """Method `database.getCities()`
@@ -52,10 +52,10 @@ class DatabaseCategory(BaseCategory):
 
     async def get_cities_by_id(
         self,
-        city_ids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[DatabaseCitiesFields]] = None,
+        city_ids: list[int] | None = None,
+        fields: list[DatabaseCitiesFields] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[DatabaseCityById]:
+    ) -> list[DatabaseCityById]:
         """Method `database.getCitiesById()`
 
         :param city_ids: City IDs.
@@ -69,15 +69,15 @@ class DatabaseCategory(BaseCategory):
 
     async def get_countries(
         self,
-        code: typing.Optional[str] = None,
-        count: typing.Optional[int] = None,
-        need_all: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
+        code: str | None = None,
+        count: int | None = None,
+        need_all: bool | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetCountriesResponseModel:
         """Method `database.getCountries()`
 
-        :param code: Country codes in [vk.ru/dev/country_codes|ISO 3166-1 alpha-2] standard.
+        :param code: Country codes in [vk.com/dev/country_codes|ISO 3166-1 alpha-2] standard.
         :param count: Number of countries to return.
         :param need_all: '1' - to return a full list of all countries, '0' - to return a list of countries near the current user's country (default).
         :param offset: Offset needed to return a specific subset of countries.
@@ -90,9 +90,9 @@ class DatabaseCategory(BaseCategory):
 
     async def get_countries_by_id(
         self,
-        country_ids: typing.Optional[typing.List[int]] = None,
+        country_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[BaseCountry]:
+    ) -> list[BaseCountry]:
         """Method `database.getCountriesById()`
 
         :param country_ids: Country IDs.
@@ -106,8 +106,8 @@ class DatabaseCategory(BaseCategory):
     async def get_faculties(
         self,
         university_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetFacultiesResponseModel:
         """Method `database.getFaculties()`
@@ -125,9 +125,9 @@ class DatabaseCategory(BaseCategory):
     async def get_metro_stations(
         self,
         city_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetMetroStationsResponseModel:
         """Method `database.getMetroStations()`
@@ -145,9 +145,9 @@ class DatabaseCategory(BaseCategory):
 
     async def get_metro_stations_by_id(
         self,
-        station_ids: typing.Optional[typing.List[int]] = None,
+        station_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[DatabaseStation]:
+    ) -> list[DatabaseStation]:
         """Method `database.getMetroStationsById()`
 
         :param station_ids:
@@ -160,9 +160,9 @@ class DatabaseCategory(BaseCategory):
 
     async def get_regions(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetRegionsResponseModel:
         """Method `database.getRegions()`
@@ -179,9 +179,9 @@ class DatabaseCategory(BaseCategory):
 
     async def get_school_classes(
         self,
-        country_id: typing.Optional[int] = None,
+        country_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[DatabaseSchoolClass]:
+    ) -> list[DatabaseSchoolClass]:
         """Method `database.getSchoolClasses()`
 
         :param country_id: Country ID.
@@ -195,9 +195,9 @@ class DatabaseCategory(BaseCategory):
     async def get_schools(
         self,
         city_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetSchoolsResponseModel:
         """Method `database.getSchools()`
@@ -215,10 +215,10 @@ class DatabaseCategory(BaseCategory):
 
     async def get_universities(
         self,
-        city_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        city_id: int | None = None,
+        count: int | None = None,
+        offset: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> DatabaseGetUniversitiesResponseModel:
         """Method `database.getUniversities()`

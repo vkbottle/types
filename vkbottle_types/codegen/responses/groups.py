@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsAddress,
@@ -67,7 +65,7 @@ class GroupsEditAddressResponse(BaseResponse):
 
 class GroupsGetAddressesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsAddress"] = Field()
+    items: list["GroupsAddress"] = Field()
 
 
 class GroupsGetAddressesResponse(BaseResponse):
@@ -76,7 +74,7 @@ class GroupsGetAddressesResponse(BaseResponse):
 
 class GroupsGetBannedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsOwnerXtrBanInfo"] = Field()
+    items: list["GroupsOwnerXtrBanInfo"] = Field()
 
 
 class GroupsGetBannedResponse(BaseResponse):
@@ -84,10 +82,10 @@ class GroupsGetBannedResponse(BaseResponse):
 
 
 class GroupsGetByIdObjectResponseModel(BaseModel):
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["GroupsProfileItem"]] = Field(
+    profiles: list["GroupsProfileItem"] | None = Field(
         default=None,
     )
 
@@ -106,7 +104,7 @@ class GroupsGetCallbackConfirmationCodeResponse(BaseResponse):
 
 class GroupsGetCallbackServersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsCallbackServer"] = Field()
+    items: list["GroupsCallbackServer"] = Field()
 
 
 class GroupsGetCallbackServersResponse(BaseResponse):
@@ -119,7 +117,7 @@ class GroupsGetCallbackSettingsResponse(BaseResponse):
 
 class GroupsGetCatalogInfoExtendedResponseModel(BaseModel):
     enabled: bool = Field()
-    categories: typing.Optional[typing.List["GroupsGroupCategoryFull"]] = Field(
+    categories: list["GroupsGroupCategoryFull"] | None = Field(
         default=None,
     )
 
@@ -130,7 +128,7 @@ class GroupsGetCatalogInfoExtendedResponse(BaseResponse):
 
 class GroupsGetCatalogInfoResponseModel(BaseModel):
     enabled: bool = Field()
-    categories: typing.Optional[typing.List["GroupsGroupCategory"]] = Field(
+    categories: list["GroupsGroupCategory"] | None = Field(
         default=None,
     )
 
@@ -141,7 +139,7 @@ class GroupsGetCatalogInfoResponse(BaseResponse):
 
 class GroupsGetInvitedUsersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class GroupsGetInvitedUsersResponse(BaseResponse):
@@ -150,9 +148,9 @@ class GroupsGetInvitedUsersResponse(BaseResponse):
 
 class GroupsGetInvitesExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsGroupFull"] = Field()
-    profiles: typing.List["UsersUserMin"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["GroupsGroupFull"] = Field()
+    profiles: list["UsersUserMin"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class GroupsGetInvitesExtendedResponse(BaseResponse):
@@ -161,7 +159,7 @@ class GroupsGetInvitesExtendedResponse(BaseResponse):
 
 class GroupsGetInvitesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsGroupFull"] = Field()
+    items: list["GroupsGroupFull"] = Field()
 
 
 class GroupsGetInvitesResponse(BaseResponse):
@@ -178,8 +176,8 @@ class GroupsGetLongPollSettingsResponse(BaseResponse):
 
 class GroupsGetMembersFieldsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsUserXtrRole"] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list["GroupsUserXtrRole"] = Field()
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -190,8 +188,8 @@ class GroupsGetMembersFieldsResponse(BaseResponse):
 
 class GroupsGetMembersFilterResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsMemberRole"] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list["GroupsMemberRole"] = Field()
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -202,8 +200,8 @@ class GroupsGetMembersFilterResponse(BaseResponse):
 
 class GroupsGetMembersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list[int] = Field()
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -214,7 +212,7 @@ class GroupsGetMembersResponse(BaseResponse):
 
 class GroupsGetOnlineStatusResponseModel(BaseModel):
     status: "GroupsOnlineStatusType" = Field()
-    minutes: typing.Optional[int] = Field(
+    minutes: int | None = Field(
         default=None,
     )
 
@@ -225,7 +223,7 @@ class GroupsGetOnlineStatusResponse(BaseResponse):
 
 class GroupsGetRequestsFieldsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class GroupsGetRequestsFieldsResponse(BaseResponse):
@@ -234,7 +232,7 @@ class GroupsGetRequestsFieldsResponse(BaseResponse):
 
 class GroupsGetRequestsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class GroupsGetRequestsResponse(BaseResponse):
@@ -250,7 +248,7 @@ class GroupsGetSettingsResponseModel(BaseModel):
     docs: "GroupsGroupDocs" = Field()
     obscene_filter: bool = Field()
     obscene_stopwords: bool = Field()
-    obscene_words: typing.List[str] = Field()
+    obscene_words: list[str] = Field()
     toxic_filter: bool = Field()
     disable_replies_from_groups: bool = Field()
     photos: "GroupsGroupPhotos" = Field()
@@ -259,97 +257,97 @@ class GroupsGetSettingsResponseModel(BaseModel):
     video: "GroupsGroupVideo" = Field()
     wall: "GroupsGroupWall" = Field()
     wiki: "GroupsGroupWiki" = Field()
-    access: typing.Optional["GroupsGroupAccess"] = Field(
+    access: "GroupsGroupAccess | None" = Field(
         default=None,
     )
-    address: typing.Optional[str] = Field(
+    address: str | None = Field(
         default=None,
     )
-    recognize_photo: typing.Optional[int] = Field(
+    recognize_photo: int | None = Field(
         default=None,
     )
-    contacts: typing.Optional[bool] = Field(
+    contacts: bool | None = Field(
         default=None,
     )
-    links: typing.Optional[bool] = Field(
+    links: bool | None = Field(
         default=None,
     )
-    sections_list: typing.Optional[typing.List["GroupsSectionsListItem"]] = Field(
+    sections_list: list["GroupsSectionsListItem"] | None = Field(
         default=None,
     )
-    main_section: typing.Optional["GroupsGroupFullSection"] = Field(
+    main_section: "GroupsGroupFullSection | None" = Field(
         default=None,
     )
-    secondary_section: typing.Optional["GroupsGroupFullSection"] = Field(
+    secondary_section: "GroupsGroupFullSection | None" = Field(
         default=None,
     )
-    age_limits: typing.Optional["GroupsGroupAgeLimits"] = Field(
+    age_limits: "GroupsGroupAgeLimits | None" = Field(
         default=None,
     )
-    events: typing.Optional[bool] = Field(
+    events: bool | None = Field(
         default=None,
     )
-    addresses: typing.Optional[bool] = Field(
+    addresses: bool | None = Field(
         default=None,
     )
-    bots_capabilities: typing.Optional[bool] = Field(
+    bots_capabilities: bool | None = Field(
         default=None,
     )
-    bots_start_button: typing.Optional[bool] = Field(
+    bots_start_button: bool | None = Field(
         default=None,
     )
-    bots_add_to_chat: typing.Optional[bool] = Field(
+    bots_add_to_chat: bool | None = Field(
         default=None,
     )
-    bot_online_booking_enabled: typing.Optional[bool] = Field(
+    bot_online_booking_enabled: bool | None = Field(
         default=None,
     )
-    event_group_id: typing.Optional[int] = Field(
+    event_group_id: int | None = Field(
         default=None,
     )
-    public_category: typing.Optional[int] = Field(
+    public_category: int | None = Field(
         default=None,
     )
-    public_category_list: typing.Optional[typing.List["GroupsGroupPublicCategoryList"]] = Field(
+    public_category_list: list["GroupsGroupPublicCategoryList"] | None = Field(
         default=None,
     )
-    public_date: typing.Optional[str] = Field(
+    public_date: str | None = Field(
         default=None,
     )
-    public_date_label: typing.Optional[str] = Field(
+    public_date_label: str | None = Field(
         default=None,
     )
-    public_subcategory: typing.Optional[int] = Field(
+    public_subcategory: int | None = Field(
         default=None,
     )
-    rss: typing.Optional[str] = Field(
+    rss: str | None = Field(
         default=None,
     )
-    start_date: typing.Optional[int] = Field(
+    start_date: int | None = Field(
         default=None,
     )
-    finish_date: typing.Optional[int] = Field(
+    finish_date: int | None = Field(
         default=None,
     )
-    subject: typing.Optional[int] = Field(
+    subject: int | None = Field(
         default=None,
     )
-    subject_list: typing.Optional[typing.List["GroupsSubjectItem"]] = Field(
+    subject_list: list["GroupsSubjectItem"] | None = Field(
         default=None,
     )
-    suggested_privacy: typing.Optional["GroupsGroupSuggestedPrivacy"] = Field(
+    suggested_privacy: "GroupsGroupSuggestedPrivacy | None" = Field(
         default=None,
     )
-    twitter: typing.Optional["GroupsSettingsTwitter"] = Field(
+    twitter: "GroupsSettingsTwitter | None" = Field(
         default=None,
     )
-    website: typing.Optional[str] = Field(
+    website: str | None = Field(
         default=None,
     )
-    phone: typing.Optional[str] = Field(
+    phone: str | None = Field(
         default=None,
     )
-    email: typing.Optional[str] = Field(
+    email: str | None = Field(
         default=None,
     )
 
@@ -359,12 +357,12 @@ class GroupsGetSettingsResponse(BaseResponse):
 
 
 class GroupsGetTagListResponse(BaseResponse):
-    response: typing.List["GroupsGroupTag"] = Field()
+    response: list["GroupsGroupTag"] = Field()
 
 
 class GroupsGetTokenPermissionsResponseModel(BaseModel):
     mask: int = Field()
-    permissions: typing.List["GroupsTokenPermissionSetting"] = Field()
+    permissions: list["GroupsTokenPermissionSetting"] = Field()
 
 
 class GroupsGetTokenPermissionsResponse(BaseResponse):
@@ -373,7 +371,7 @@ class GroupsGetTokenPermissionsResponse(BaseResponse):
 
 class GroupsGetObjectExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsGroupFull"] = Field()
+    items: list["GroupsGroupFull"] = Field()
 
 
 class GroupsGetObjectExtendedResponse(BaseResponse):
@@ -382,7 +380,7 @@ class GroupsGetObjectExtendedResponse(BaseResponse):
 
 class GroupsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class GroupsGetResponse(BaseResponse):
@@ -399,16 +397,16 @@ class GroupsInviteUserIdsListResponse(BaseResponse):
 
 class GroupsIsMemberExtendedResponseModel(BaseModel):
     member: bool = Field()
-    invitation: typing.Optional[bool] = Field(
+    invitation: bool | None = Field(
         default=None,
     )
-    can_invite: typing.Optional[bool] = Field(
+    can_invite: bool | None = Field(
         default=None,
     )
-    can_recall: typing.Optional[bool] = Field(
+    can_recall: bool | None = Field(
         default=None,
     )
-    request: typing.Optional[bool] = Field(
+    request: bool | None = Field(
         default=None,
     )
 
@@ -418,16 +416,16 @@ class GroupsIsMemberExtendedResponse(BaseResponse):
 
 
 class GroupsIsMemberUserIdsExtendedResponse(BaseResponse):
-    response: typing.List["GroupsMemberStatusFull"] = Field()
+    response: list["GroupsMemberStatusFull"] = Field()
 
 
 class GroupsIsMemberUserIdsResponse(BaseResponse):
-    response: typing.List["GroupsMemberStatus"] = Field()
+    response: list["GroupsMemberStatus"] = Field()
 
 
 class GroupsSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["GroupsGroupFull"] = Field()
+    items: list["GroupsGroupFull"] = Field()
 
 
 class GroupsSearchResponse(BaseResponse):

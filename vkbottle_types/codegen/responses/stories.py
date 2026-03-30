@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import GroupsGroupFull, StoriesFeedItem, StoriesStory, StoriesStoryStats, StoriesViewersItem, UsersUser, UsersUserFull
 from vkbottle_types.responses.base_response import BaseResponse
@@ -7,9 +5,9 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class StoriesGetBannedExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list[int] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class StoriesGetBannedExtendedResponse(BaseResponse):
@@ -18,7 +16,7 @@ class StoriesGetBannedExtendedResponse(BaseResponse):
 
 class StoriesGetBannedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class StoriesGetBannedResponse(BaseResponse):
@@ -27,9 +25,9 @@ class StoriesGetBannedResponse(BaseResponse):
 
 class StoriesGetByIdExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["StoriesStory"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["StoriesStory"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class StoriesGetByIdExtendedResponse(BaseResponse):
@@ -38,7 +36,7 @@ class StoriesGetByIdExtendedResponse(BaseResponse):
 
 class StoriesGetPhotoUploadServerResponseModel(BaseModel):
     upload_url: str = Field()
-    user_ids: typing.List[int] = Field()
+    user_ids: list[int] = Field()
 
 
 class StoriesGetPhotoUploadServerResponse(BaseResponse):
@@ -51,7 +49,7 @@ class StoriesGetStatsResponse(BaseResponse):
 
 class StoriesGetVideoUploadServerResponseModel(BaseModel):
     upload_url: str = Field()
-    user_ids: typing.List[int] = Field()
+    user_ids: list[int] = Field()
 
 
 class StoriesGetVideoUploadServerResponse(BaseResponse):
@@ -60,11 +58,11 @@ class StoriesGetVideoUploadServerResponse(BaseResponse):
 
 class StoriesGetViewersExtendedV5115ResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["StoriesViewersItem"] = Field()
-    hidden_reason: typing.Optional[str] = Field(
+    items: list["StoriesViewersItem"] = Field()
+    hidden_reason: str | None = Field(
         default=None,
     )
-    next_from: typing.Optional[str] = Field(
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -75,20 +73,20 @@ class StoriesGetViewersExtendedV5115Response(BaseResponse):
 
 class StoriesGetV5113ResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["StoriesFeedItem"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["StoriesFeedItem"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    need_upload_screen: typing.Optional[bool] = Field(
+    need_upload_screen: bool | None = Field(
         default=None,
     )
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
-    next_from: typing.Optional[str] = Field(
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -99,11 +97,11 @@ class StoriesGetV5113Response(BaseResponse):
 
 class StoriesSaveResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["StoriesStory"] = Field()
-    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+    items: list["StoriesStory"] = Field()
+    profiles: list["UsersUser"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -113,7 +111,7 @@ class StoriesSaveResponse(BaseResponse):
 
 
 class StoriesUploadResponseModel(BaseModel):
-    upload_result: typing.Optional[str] = Field(
+    upload_result: str | None = Field(
         default=None,
     )
 

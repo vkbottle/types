@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AppsApp,
@@ -15,29 +13,29 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class NotificationsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["NotificationsNotificationItem"] = Field()
-    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+    items: list["NotificationsNotificationItem"] = Field()
+    profiles: list["UsersUser"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroup"]] = Field(
+    groups: list["GroupsGroup"] | None = Field(
         default=None,
     )
-    last_viewed: typing.Optional[int] = Field(
+    last_viewed: int | None = Field(
         default=None,
     )
-    photos: typing.Optional[typing.List["PhotosPhoto"]] = Field(
+    photos: list["PhotosPhoto"] | None = Field(
         default=None,
     )
-    videos: typing.Optional[typing.List["VideoVideoFull"]] = Field(
+    videos: list["VideoVideoFull"] | None = Field(
         default=None,
     )
-    apps: typing.Optional[typing.List["AppsApp"]] = Field(
+    apps: list["AppsApp"] | None = Field(
         default=None,
     )
-    next_from: typing.Optional[str] = Field(
+    next_from: str | None = Field(
         default=None,
     )
-    ttl: typing.Optional[int] = Field(
+    ttl: int | None = Field(
         default=None,
     )
 
@@ -47,4 +45,4 @@ class NotificationsGetResponse(BaseResponse):
 
 
 class NotificationsSendMessageResponse(BaseResponse):
-    response: typing.List["NotificationsSendMessageItem"] = Field()
+    response: list["NotificationsSendMessageItem"] = Field()

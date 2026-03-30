@@ -27,13 +27,13 @@ class PagesCategory(BaseCategory):
 
     async def get(
         self,
-        global_: typing.Optional[bool] = None,
-        need_html: typing.Optional[bool] = None,
-        need_source: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
-        page_id: typing.Optional[int] = None,
-        site_preview: typing.Optional[bool] = None,
-        title: typing.Optional[str] = None,
+        global_: bool | None = None,
+        need_html: bool | None = None,
+        need_source: bool | None = None,
+        owner_id: int | None = None,
+        page_id: int | None = None,
+        site_preview: bool | None = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> "PagesWikipageFull":
         """Method `pages.get()`
@@ -55,10 +55,10 @@ class PagesCategory(BaseCategory):
     async def get_history(
         self,
         page_id: int,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[PagesWikipageHistory]:
+    ) -> list[PagesWikipageHistory]:
         """Method `pages.getHistory()`
 
         :param page_id: Wiki page ID.
@@ -73,9 +73,9 @@ class PagesCategory(BaseCategory):
 
     async def get_titles(
         self,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[PagesWikipage]:
+    ) -> list[PagesWikipage]:
         """Method `pages.getTitles()`
 
         :param group_id: ID of the community that owns the wiki page.
@@ -89,9 +89,9 @@ class PagesCategory(BaseCategory):
     async def get_version(
         self,
         version_id: int,
-        group_id: typing.Optional[int] = None,
-        need_html: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        need_html: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> PagesGetVersionResponseModel:
         """Method `pages.getVersion()`
@@ -110,7 +110,7 @@ class PagesCategory(BaseCategory):
     async def parse_wiki(
         self,
         text: str,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> str:
         """Method `pages.parseWiki()`
@@ -126,11 +126,11 @@ class PagesCategory(BaseCategory):
 
     async def save(
         self,
-        group_id: typing.Optional[int] = None,
-        page_id: typing.Optional[int] = None,
-        text: typing.Optional[str] = None,
-        title: typing.Optional[str] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        page_id: int | None = None,
+        text: str | None = None,
+        title: str | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `pages.save()`
@@ -150,10 +150,10 @@ class PagesCategory(BaseCategory):
     async def save_access(
         self,
         page_id: int,
-        edit: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
-        view: typing.Optional[int] = None,
+        edit: int | None = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
+        view: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `pages.saveAccess()`

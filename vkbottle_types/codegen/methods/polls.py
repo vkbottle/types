@@ -14,10 +14,10 @@ from vkbottle_types.responses.polls import *  # noqa: F401,F403  # type: ignore
 class PollsCategory(BaseCategory):
     async def add_vote(
         self,
-        answer_ids: typing.List[int],
+        answer_ids: list[int],
         poll_id: int,
-        is_board: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
+        is_board: bool | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `polls.addVote()`
@@ -35,16 +35,16 @@ class PollsCategory(BaseCategory):
 
     async def create(
         self,
-        add_answers: typing.Optional[str] = None,
-        app_id: typing.Optional[int] = None,
-        background_id: typing.Optional[str] = None,
-        disable_unvote: typing.Optional[bool] = None,
-        end_date: typing.Optional[int] = None,
-        is_anonymous: typing.Optional[bool] = None,
-        is_multiple: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
-        photo_id: typing.Optional[int] = None,
-        question: typing.Optional[str] = None,
+        add_answers: str | None = None,
+        app_id: int | None = None,
+        background_id: str | None = None,
+        disable_unvote: bool | None = None,
+        end_date: int | None = None,
+        is_anonymous: bool | None = None,
+        is_multiple: bool | None = None,
+        owner_id: int | None = None,
+        photo_id: int | None = None,
+        question: str | None = None,
         **kwargs: typing.Any,
     ) -> "PollsPoll":
         """Method `polls.create()`
@@ -69,8 +69,8 @@ class PollsCategory(BaseCategory):
     async def delete_vote(
         self,
         poll_id: int,
-        is_board: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
+        is_board: bool | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `polls.deleteVote()`
@@ -88,14 +88,14 @@ class PollsCategory(BaseCategory):
     async def edit(
         self,
         poll_id: int,
-        add_answers: typing.Optional[str] = None,
-        background_id: typing.Optional[str] = None,
-        delete_answers: typing.Optional[str] = None,
-        edit_answers: typing.Optional[str] = None,
-        end_date: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        photo_id: typing.Optional[int] = None,
-        question: typing.Optional[str] = None,
+        add_answers: str | None = None,
+        background_id: str | None = None,
+        delete_answers: str | None = None,
+        edit_answers: str | None = None,
+        end_date: int | None = None,
+        owner_id: int | None = None,
+        photo_id: int | None = None,
+        question: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `polls.edit()`
@@ -119,7 +119,7 @@ class PollsCategory(BaseCategory):
     async def get_backgrounds(
         self,
         **kwargs: typing.Any,
-    ) -> typing.List[PollsBackground]:
+    ) -> list[PollsBackground]:
         """Method `polls.getBackgrounds()`"""
 
         params = self.get_set_params(locals())
@@ -130,12 +130,12 @@ class PollsCategory(BaseCategory):
     async def get_by_id(
         self,
         poll_id: int,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        friends_count: typing.Optional[int] = None,
-        is_board: typing.Optional[bool] = None,
-        name_case: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        fields: list[str] | None = None,
+        friends_count: int | None = None,
+        is_board: bool | None = None,
+        name_case: str | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "PollsPollExtended":
         """Method `polls.getById()`
@@ -156,7 +156,7 @@ class PollsCategory(BaseCategory):
 
     async def get_photo_upload_server(
         self,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `polls.getPhotoUploadServer()`
@@ -172,46 +172,46 @@ class PollsCategory(BaseCategory):
     @typing.overload
     async def get_voters(
         self,
-        answer_ids: typing.List[int],
+        answer_ids: list[int],
         poll_id: int,
-        fields: typing.List[UsersFields],
-        count: typing.Optional[int] = None,
-        friends_only: typing.Optional[bool] = None,
-        is_board: typing.Optional[bool] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        fields: list[UsersFields],
+        count: int | None = None,
+        friends_only: bool | None = None,
+        is_board: bool | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[PollsFieldsVoters]: ...
+    ) -> list[PollsFieldsVoters]: ...
 
     @typing.overload
     async def get_voters(
         self,
-        answer_ids: typing.List[int],
+        answer_ids: list[int],
         poll_id: int,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        friends_only: typing.Optional[bool] = None,
-        is_board: typing.Optional[bool] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        friends_only: bool | None = None,
+        is_board: bool | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[PollsVoters]: ...
+    ) -> list[PollsVoters]: ...
 
     async def get_voters(
         self,
-        answer_ids: typing.List[int],
+        answer_ids: list[int],
         poll_id: int,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        friends_only: typing.Optional[bool] = None,
-        is_board: typing.Optional[bool] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        friends_only: bool | None = None,
+        is_board: bool | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[typing.List[PollsFieldsVoters], typing.List[PollsVoters]]:
+    ) -> list[PollsVoters] | list[PollsFieldsVoters]:
         """Method `polls.getVoters()`
 
         :param answer_ids: Answer IDs.
@@ -236,8 +236,8 @@ class PollsCategory(BaseCategory):
 
     async def save_photo(
         self,
-        hash: typing.Optional[str] = None,
-        photo: typing.Optional[str] = None,
+        hash: str | None = None,
+        photo: str | None = None,
         **kwargs: typing.Any,
     ) -> "PollsBackground":
         """Method `polls.savePhoto()`

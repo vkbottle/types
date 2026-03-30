@@ -1,12 +1,10 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import AppWidgetsPhoto, AppWidgetsPhotos
 from vkbottle_types.responses.base_response import BaseResponse
 
 
 class AppWidgetsGetAppImageUploadServerResponseModel(BaseModel):
-    upload_url: typing.Optional[str] = Field(
+    upload_url: str | None = Field(
         default=None,
     )
 
@@ -20,7 +18,7 @@ class AppWidgetsGetAppImagesResponse(BaseResponse):
 
 
 class AppWidgetsGetGroupImageUploadServerResponseModel(BaseModel):
-    upload_url: typing.Optional[str] = Field(
+    upload_url: str | None = Field(
         default=None,
     )
 
@@ -34,7 +32,7 @@ class AppWidgetsGetGroupImagesResponse(BaseResponse):
 
 
 class AppWidgetsGetImagesByIdResponse(BaseResponse):
-    response: typing.List["AppWidgetsPhoto"] = Field()
+    response: list["AppWidgetsPhoto"] = Field()
 
 
 class AppWidgetsSaveAppImageResponse(BaseResponse):

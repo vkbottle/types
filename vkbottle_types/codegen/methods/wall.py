@@ -46,13 +46,13 @@ class WallCategory(BaseCategory):
     async def create_comment(
         self,
         post_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        from_group: typing.Optional[int] = None,
-        guid: typing.Optional[str] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        reply_to_comment: typing.Optional[int] = None,
-        sticker_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        from_group: int | None = None,
+        guid: str | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
+        reply_to_comment: int | None = None,
+        sticker_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WallCreateCommentResponseModel:
         """Method `wall.createComment()`
@@ -74,8 +74,8 @@ class WallCategory(BaseCategory):
 
     async def delete(
         self,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.delete()`
@@ -92,8 +92,8 @@ class WallCategory(BaseCategory):
     async def delete_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.deleteComment()`
@@ -111,24 +111,24 @@ class WallCategory(BaseCategory):
     async def edit(
         self,
         post_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        close_comments: typing.Optional[bool] = None,
-        copyright: typing.Optional[str] = None,
-        donut_paid_duration: typing.Optional[int] = None,
-        friends_only: typing.Optional[bool] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        mark_as_ads: typing.Optional[bool] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        place_id: typing.Optional[int] = None,
-        poster_bkg_access_hash: typing.Optional[str] = None,
-        poster_bkg_id: typing.Optional[int] = None,
-        poster_bkg_owner_id: typing.Optional[int] = None,
-        publish_date: typing.Optional[int] = None,
-        services: typing.Optional[str] = None,
-        signed: typing.Optional[bool] = None,
-        topic_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        close_comments: bool | None = None,
+        copyright: str | None = None,
+        donut_paid_duration: int | None = None,
+        friends_only: bool | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        mark_as_ads: bool | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
+        place_id: int | None = None,
+        poster_bkg_access_hash: str | None = None,
+        poster_bkg_id: int | None = None,
+        poster_bkg_owner_id: int | None = None,
+        publish_date: int | None = None,
+        services: str | None = None,
+        signed: bool | None = None,
+        topic_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WallEditResponseModel:
         """Method `wall.edit()`
@@ -162,17 +162,17 @@ class WallCategory(BaseCategory):
     async def edit_ads_stealth(
         self,
         post_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        lat: typing.Optional[float] = None,
-        link_button: typing.Optional[str] = None,
-        link_image: typing.Optional[str] = None,
-        link_title: typing.Optional[str] = None,
-        link_video: typing.Optional[str] = None,
-        long: typing.Optional[float] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        place_id: typing.Optional[int] = None,
-        signed: typing.Optional[bool] = None,
+        attachments: list[str] | None = None,
+        lat: float | None = None,
+        link_button: str | None = None,
+        link_image: str | None = None,
+        link_title: str | None = None,
+        link_video: str | None = None,
+        long: float | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
+        place_id: int | None = None,
+        signed: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.editAdsStealth()`
@@ -199,10 +199,10 @@ class WallCategory(BaseCategory):
     async def edit_comment(
         self,
         comment_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.editComment()`
@@ -223,36 +223,36 @@ class WallCategory(BaseCategory):
     async def get(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetExtendedResponseModel: ...
 
     @typing.overload
     async def get(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetResponseModel: ...
 
     async def get(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetExtendedResponseModel, WallGetResponseModel]:
+    ) -> WallGetResponseModel | WallGetExtendedResponseModel:
         """Method `wall.get()`
 
         :param extended: '1' - to return 'wall', 'profiles', and 'groups' fields, '0' - to return no additional fields (default)
@@ -275,31 +275,31 @@ class WallCategory(BaseCategory):
     @typing.overload
     async def get_by_id(
         self,
-        posts: typing.List[str],
+        posts: list[str],
         extended: typing.Literal[True],
-        copy_history_depth: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        copy_history_depth: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> WallGetByIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_id(
         self,
-        posts: typing.List[str],
-        extended: typing.Optional[typing.Literal[False]] = None,
-        copy_history_depth: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        posts: list[str],
+        extended: typing.Literal[False] | None = None,
+        copy_history_depth: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> WallGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
-        posts: typing.List[str],
-        extended: typing.Optional[bool] = None,
-        copy_history_depth: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        posts: list[str],
+        extended: bool | None = None,
+        copy_history_depth: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetByIdExtendedResponseModel, WallGetByIdResponseModel]:
+    ) -> WallGetByIdExtendedResponseModel | WallGetByIdResponseModel:
         """Method `wall.getById()`
 
         :param posts: User or community IDs and post IDs, separated by underscores. Use a negative value to designate a community ID. Example: "93388_21539,93388_20904,2943_4276,-1_1"
@@ -322,8 +322,8 @@ class WallCategory(BaseCategory):
         self,
         comment_id: int,
         extended: typing.Literal[True],
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        owner_id: typing.Optional[int] = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetCommentExtendedResponseModel: ...
 
@@ -331,20 +331,20 @@ class WallCategory(BaseCategory):
     async def get_comment(
         self,
         comment_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetCommentResponseModel: ...
 
     async def get_comment(
         self,
         comment_id: int,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentExtendedResponseModel, WallGetCommentResponseModel]:
+    ) -> WallGetCommentExtendedResponseModel | WallGetCommentResponseModel:
         """Method `wall.getComment()`
 
         :param comment_id: Comment ID.
@@ -366,54 +366,54 @@ class WallCategory(BaseCategory):
     async def get_comments(
         self,
         extended: typing.Literal[True],
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
+        preview_length: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetCommentsExtendedResponseModel: ...
 
     @typing.overload
     async def get_comments(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
+        preview_length: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetCommentsResponseModel: ...
 
     async def get_comments(
         self,
-        extended: typing.Optional[bool] = None,
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        extended: bool | None = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
+        preview_length: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallGetCommentsResponseModel, WallGetCommentsExtendedResponseModel]:
+    ) -> WallGetCommentsResponseModel | WallGetCommentsExtendedResponseModel:
         """Method `wall.getComments()`
 
         :param extended:
@@ -441,10 +441,10 @@ class WallCategory(BaseCategory):
 
     async def get_reposts(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WallGetRepostsResponseModel:
         """Method `wall.getReposts()`
@@ -480,9 +480,9 @@ class WallCategory(BaseCategory):
     async def parse_attached_link(
         self,
         links: str,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
+        extended: bool | None = None,
+        fields: list[str] | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
     ) -> WallParseAttachedLinkResponseModel:
         """Method `wall.parseAttachedLink()`
@@ -501,7 +501,7 @@ class WallCategory(BaseCategory):
     async def pin(
         self,
         post_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.pin()`
@@ -517,26 +517,26 @@ class WallCategory(BaseCategory):
 
     async def post(
         self,
-        attachments: typing.Optional[typing.List[str]] = None,
-        close_comments: typing.Optional[bool] = None,
-        copyright: typing.Optional[str] = None,
-        donut_paid_duration: typing.Optional[int] = None,
-        friends_only: typing.Optional[bool] = None,
-        from_group: typing.Optional[bool] = None,
-        guid: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        link_photo_id: typing.Optional[str] = None,
-        link_title: typing.Optional[str] = None,
-        long: typing.Optional[float] = None,
-        mark_as_ads: typing.Optional[bool] = None,
-        message: typing.Optional[str] = None,
-        mute_notifications: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
-        place_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
-        publish_date: typing.Optional[int] = None,
-        services: typing.Optional[str] = None,
-        signed: typing.Optional[bool] = None,
+        attachments: list[str] | None = None,
+        close_comments: bool | None = None,
+        copyright: str | None = None,
+        donut_paid_duration: int | None = None,
+        friends_only: bool | None = None,
+        from_group: bool | None = None,
+        guid: str | None = None,
+        lat: float | None = None,
+        link_photo_id: str | None = None,
+        link_title: str | None = None,
+        long: float | None = None,
+        mark_as_ads: bool | None = None,
+        message: str | None = None,
+        mute_notifications: bool | None = None,
+        owner_id: int | None = None,
+        place_id: int | None = None,
+        post_id: int | None = None,
+        publish_date: int | None = None,
+        services: str | None = None,
+        signed: bool | None = None,
         **kwargs: typing.Any,
     ) -> WallPostResponseModel:
         """Method `wall.post()`
@@ -571,17 +571,17 @@ class WallCategory(BaseCategory):
     async def post_ads_stealth(
         self,
         owner_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        guid: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        link_button: typing.Optional[str] = None,
-        link_image: typing.Optional[str] = None,
-        link_title: typing.Optional[str] = None,
-        link_video: typing.Optional[str] = None,
-        long: typing.Optional[float] = None,
-        message: typing.Optional[str] = None,
-        place_id: typing.Optional[int] = None,
-        signed: typing.Optional[bool] = None,
+        attachments: list[str] | None = None,
+        guid: str | None = None,
+        lat: float | None = None,
+        link_button: str | None = None,
+        link_image: str | None = None,
+        link_title: str | None = None,
+        link_video: str | None = None,
+        long: float | None = None,
+        message: str | None = None,
+        place_id: int | None = None,
+        signed: bool | None = None,
         **kwargs: typing.Any,
     ) -> WallPostAdsStealthResponseModel:
         """Method `wall.postAdsStealth()`
@@ -646,10 +646,10 @@ class WallCategory(BaseCategory):
     async def repost(
         self,
         object: str,
-        group_id: typing.Optional[int] = None,
-        mark_as_ads: typing.Optional[bool] = None,
-        message: typing.Optional[str] = None,
-        mute_notifications: typing.Optional[bool] = None,
+        group_id: int | None = None,
+        mark_as_ads: bool | None = None,
+        message: str | None = None,
+        mute_notifications: bool | None = None,
         **kwargs: typing.Any,
     ) -> WallRepostResponseModel:
         """Method `wall.repost()`
@@ -668,8 +668,8 @@ class WallCategory(BaseCategory):
 
     async def restore(
         self,
-        owner_id: typing.Optional[int] = None,
-        post_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
+        post_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.restore()`
@@ -686,7 +686,7 @@ class WallCategory(BaseCategory):
     async def restore_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.restoreComment()`
@@ -704,39 +704,39 @@ class WallCategory(BaseCategory):
     async def search(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owners_only: typing.Optional[bool] = None,
-        query: typing.Optional[str] = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        owners_only: bool | None = None,
+        query: str | None = None,
         **kwargs: typing.Any,
     ) -> WallSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owners_only: typing.Optional[bool] = None,
-        query: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        owners_only: bool | None = None,
+        query: str | None = None,
         **kwargs: typing.Any,
     ) -> WallSearchResponseModel: ...
 
     async def search(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        domain: typing.Optional[typing.Union["int", "str"]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owners_only: typing.Optional[bool] = None,
-        query: typing.Optional[str] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        domain: int | str | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        owners_only: bool | None = None,
+        query: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[WallSearchResponseModel, WallSearchExtendedResponseModel]:
+    ) -> WallSearchResponseModel | WallSearchExtendedResponseModel:
         """Method `wall.search()`
 
         :param extended: show extended post info.
@@ -760,7 +760,7 @@ class WallCategory(BaseCategory):
     async def unpin(
         self,
         post_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `wall.unpin()`

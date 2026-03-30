@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import GroupsGroupsArray, UsersSubscriptionsItem, UsersUserFull, UsersUsersArray
 from vkbottle_types.responses.base_response import BaseResponse
@@ -7,8 +5,8 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class UsersGetFollowersFieldsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
-    friends_count: typing.Optional[int] = Field(
+    items: list["UsersUserFull"] = Field()
+    friends_count: int | None = Field(
         default=None,
     )
 
@@ -19,7 +17,7 @@ class UsersGetFollowersFieldsResponse(BaseResponse):
 
 class UsersGetFollowersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class UsersGetFollowersResponse(BaseResponse):
@@ -28,7 +26,7 @@ class UsersGetFollowersResponse(BaseResponse):
 
 class UsersGetSubscriptionsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersSubscriptionsItem"] = Field()
+    items: list["UsersSubscriptionsItem"] = Field()
 
 
 class UsersGetSubscriptionsExtendedResponse(BaseResponse):
@@ -45,12 +43,12 @@ class UsersGetSubscriptionsResponse(BaseResponse):
 
 
 class UsersGetResponse(BaseResponse):
-    response: typing.List["UsersUserFull"] = Field()
+    response: list["UsersUserFull"] = Field()
 
 
 class UsersSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class UsersSearchResponse(BaseResponse):

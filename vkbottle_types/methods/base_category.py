@@ -13,7 +13,7 @@ class BaseCategory:
         self.api = api
 
     @classmethod
-    def get_set_params(cls, params: typing.Dict[str, typing.Any]) -> typing.Dict[str, typing.Any]:
+    def get_set_params(cls, params: dict[str, typing.Any]) -> dict[str, typing.Any]:
         exclude_params = params.copy()
         exclude_params.update(params["kwargs"])
         exclude_params.pop("kwargs")
@@ -26,18 +26,16 @@ class BaseCategory:
     @classmethod
     def get_model(
         cls,
-        dependent: typing.Tuple[
-            typing.Union[
-                typing.Tuple[
-                    typing.Tuple[typing.Union[str, typing.Sequence[str]], ...],
-                    typing.Type["BaseModel"],
-                ],
-                typing.Dict[str, typing.Dict[str, typing.Type["BaseModel"]]],
-            ],
+        dependent: tuple[
+            tuple[
+                tuple[str | typing.Sequence[str], ...],
+                type["BaseModel"],
+            ]
+            | dict[str, dict[str, type["BaseModel"]]],
             ...,
         ],
         default: Model,
-        params: typing.Dict[str, typing.Any],
+        params: dict[str, typing.Any],
     ) -> Model:
         """Choices model depending on params."""
 

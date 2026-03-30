@@ -8,13 +8,13 @@ from vkbottle_types.responses.widgets import *  # noqa: F401,F403  # type: ignor
 class WidgetsCategory(BaseCategory):
     async def get_comments(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[str] = None,
-        page_id: typing.Optional[str] = None,
-        url: typing.Optional[str] = None,
-        widget_api_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        order: str | None = None,
+        page_id: str | None = None,
+        url: str | None = None,
+        widget_api_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WidgetsGetCommentsResponseModel:
         """Method `widgets.getComments()`
@@ -35,11 +35,11 @@ class WidgetsCategory(BaseCategory):
 
     async def get_pages(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[str] = None,
-        period: typing.Optional[str] = None,
-        widget_api_id: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        order: str | None = None,
+        period: str | None = None,
+        widget_api_id: int | None = None,
         **kwargs: typing.Any,
     ) -> WidgetsGetPagesResponseModel:
         """Method `widgets.getPages()`

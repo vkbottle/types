@@ -1,9 +1,7 @@
-from enum import Enum
-
-from ...base_model import BaseEnumMeta
+from ...base_model import BaseEnumMeta, IntEnum
 
 
-class UserEventType(int, Enum, metaclass=BaseEnumMeta):
+class UserEventType(IntEnum, metaclass=BaseEnumMeta):
     UNDEFINED_EVENT = -1
     MESSAGE_FLAGS_REPLACE = 1
     MESSAGE_FLAGS_SET = 2

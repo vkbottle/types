@@ -7,7 +7,7 @@ from vkbottle_types.responses.downloaded_games import *  # noqa: F401,F403  # ty
 class DownloadedGamesCategory(BaseCategory):
     async def get_paid_status(
         self,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> DownloadedGamesPaidStatusResponseModel:
         """Method `downloadedGames.getPaidStatus()`

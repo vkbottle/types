@@ -11,7 +11,7 @@ from tqdm import tqdm  # type: ignore
 from . import parse_types
 from .data import Category, Definition, Objects, factory
 from .parse_types import get_complex_type, transform_ref  # noqa: F401
-from .utility import camelcase, instring, makesafe, snake_case
+from .utility import camelcase, instring, makesafe, makesafe_method_name, snake_case
 
 URL = "https://raw.githubusercontent.com/VKCOM/vk-api-schema/master/{}/{}.json"
 CATEGORIES = (
@@ -82,6 +82,7 @@ env.globals.update(
         "camelcase": camelcase,
         "is_int": lambda x: isinstance(x, int),
         "makesafe": makesafe,
+        "makesafe_method_name": makesafe_method_name,
         "instring": instring,
         "unique": lambda iterable: set(iterable),
     }
@@ -205,7 +206,9 @@ def apply_patches(schema: list[Category]) -> None:
 
 def create_folders(folders: list[tuple[str, ...]]) -> None:
     for folder in folders:
-        pathlib.Path(*folder).mkdir(exist_ok=True)
+        path = pathlib.Path(*folder)
+        path.mkdir(exist_ok=True)
+        (path / "__init__.py").touch(exist_ok=True)
 
 
 def generate_methods(category: Category, path: str):
@@ -263,7 +266,7 @@ def process_responses(responses: dict[str, dict[str, str]], responses_definition
                         if response_definition.properties or response_definition.enum:
                             hint = get_complex_type(response, response=True)
                         else:
-                            hint = "typing.Dict[str, typing.Any]"
+                            hint = "dict[str, typing.Any]"
                     else:
                         hint = prop.get_type(response=True)
 
@@ -271,10 +274,10 @@ def process_responses(responses: dict[str, dict[str, str]], responses_definition
                     if "Literal[" in hint:
                         orig_type = hint
                     else:
-                        orig_type = hint.replace("'", "").removeprefix("typing.").replace("List", "").replace("[", "").replace("]", "").strip()
-                        if "Union" in orig_type:
-                            orig_type = list(map(str.strip, orig_type.replace("Union", "").split(",")))
-                        if "Dict" in orig_type:
+                        orig_type = hint.replace("'", "").replace('"', "").replace("list", "").replace("[", "").replace("]", "").strip()
+                        if "|" in orig_type:
+                            orig_type = list(map(str.strip, orig_type.split(" | ")))
+                        if "dict" in orig_type:
                             orig_type = "dict"
                     responses[response_name]["response_hint"] = {  # type: ignore
                         "hint": hint,
@@ -346,21 +349,21 @@ def parse_properties(properties: dict[str, dict]) -> list[dict]:
 def get_definition(
     name: str,
     definitions: typing.Iterable[typing.Tuple[str, Definition]],
-) -> typing.Optional[Definition]:
+) -> Definition | None:
     for definition_name, definition in definitions:
         if definition_name == name:
             return definition
     return None
 
 
-def get_definitions(objects: Objects) -> typing.List[typing.Tuple[str, Definition]]:
+def get_definitions(objects: Objects) -> list[tuple[str, Definition]] | None:
     if not objects.definitions:
         return []
 
-    definitions: typing.Dict[str, Definition] = {}
-    for definition_name, definition in typing.cast(typing.Dict[str, dict], objects.definitions).items():
+    definitions: dict[str, Definition] = {}
+    for definition_name, definition in typing.cast(dict[str, dict], objects.definitions).items():
         if "properties" in definition:
-            properties: typing.Dict[str, dict] = {}
+            properties: dictt[str, dict] = {}
 
             if isinstance(definition["properties"], dict):
                 properties = definition["properties"]
@@ -398,7 +401,7 @@ def generate_schema(schema: list[Category], folder: str) -> None:
             {k: (v, category) for k, v in get_definitions(category.objects)},
         )
 
-    sub_definitions: typing.Dict[str, typing.List[str]] = {}
+    sub_definitions: dict[str, list[str]] = {}
     for def_name, (def_, _) in definitions.items():
         for base in def_.allOf:
             if base.ref:
@@ -421,6 +424,9 @@ def generate_schema(schema: list[Category], folder: str) -> None:
 
     print("Run ruff isort...")
     os.system(f"ruff check {folder} --select I --select F401 --fix")
+
+    print("Run ruff sortall...")
+    os.system(f"ruff check {folder} --select RUF022 --fix")
 
     print("Run fuff formatter...")
     os.system(f"ruff format {folder}")

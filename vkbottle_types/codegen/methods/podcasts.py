@@ -8,8 +8,8 @@ class PodcastsCategory(BaseCategory):
     async def search_podcast(
         self,
         search_string: str,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> PodcastsSearchPodcastResponseModel:
         """Method `podcasts.searchPodcast()`

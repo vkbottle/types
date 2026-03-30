@@ -14,14 +14,14 @@ class LeadFormsCategory(BaseCategory):
         policy_link_url: str,
         questions: str,
         title: str,
-        active: typing.Optional[bool] = None,
-        confirmation: typing.Optional[str] = None,
-        notify_admins: typing.Optional[typing.List[int]] = None,
-        notify_emails: typing.Optional[typing.List[str]] = None,
-        once_per_user: typing.Optional[bool] = None,
-        photo: typing.Optional[str] = None,
-        pixel_code: typing.Optional[str] = None,
-        site_link_url: typing.Optional[str] = None,
+        active: bool | None = None,
+        confirmation: str | None = None,
+        notify_admins: list[int] | None = None,
+        notify_emails: list[str] | None = None,
+        once_per_user: bool | None = None,
+        photo: str | None = None,
+        pixel_code: str | None = None,
+        site_link_url: str | None = None,
         **kwargs: typing.Any,
     ) -> LeadFormsCreateResponseModel:
         """Method `leadForms.create()`
@@ -85,8 +85,8 @@ class LeadFormsCategory(BaseCategory):
         self,
         form_id: int,
         group_id: int,
-        limit: typing.Optional[int] = None,
-        next_page_token: typing.Optional[str] = None,
+        limit: int | None = None,
+        next_page_token: str | None = None,
         **kwargs: typing.Any,
     ) -> LeadFormsGetLeadsResponseModel:
         """Method `leadForms.getLeads()`
@@ -113,11 +113,11 @@ class LeadFormsCategory(BaseCategory):
         model = LeadFormsUploadUrlResponse
         return model(**response).response
 
-    async def list(
+    async def get_list(
         self,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.List[LeadFormsForm]:
+    ) -> list[LeadFormsForm]:
         """Method `leadForms.list()`
 
         :param group_id:
@@ -137,14 +137,14 @@ class LeadFormsCategory(BaseCategory):
         policy_link_url: str,
         questions: str,
         title: str,
-        active: typing.Optional[bool] = None,
-        confirmation: typing.Optional[str] = None,
-        notify_admins: typing.Optional[typing.List[int]] = None,
-        notify_emails: typing.Optional[typing.List[str]] = None,
-        once_per_user: typing.Optional[bool] = None,
-        photo: typing.Optional[str] = None,
-        pixel_code: typing.Optional[str] = None,
-        site_link_url: typing.Optional[str] = None,
+        active: bool | None = None,
+        confirmation: str | None = None,
+        notify_admins: list[int] | None = None,
+        notify_emails: list[str] | None = None,
+        once_per_user: bool | None = None,
+        photo: str | None = None,
+        pixel_code: str | None = None,
+        site_link_url: str | None = None,
         **kwargs: typing.Any,
     ) -> LeadFormsCreateResponseModel:
         """Method `leadForms.update()`

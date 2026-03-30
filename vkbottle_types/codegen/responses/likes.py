@@ -23,11 +23,11 @@ class LikesDeleteResponse(BaseResponse):
 
 class LikesGetListExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersSubscriptionsItem"] = Field()
-    liked_by_author: typing.Optional[dict] = Field(
+    items: list["UsersSubscriptionsItem"] = Field()
+    liked_by_author: dict[str, typing.Any] | None = Field(
         default=None,
     )
-    liked_by_group: typing.Optional[dict] = Field(
+    liked_by_group: dict[str, typing.Any] | None = Field(
         default=None,
     )
 
@@ -38,7 +38,7 @@ class LikesGetListExtendedResponse(BaseResponse):
 
 class LikesGetListResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class LikesGetListResponse(BaseResponse):

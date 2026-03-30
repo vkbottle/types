@@ -15,13 +15,13 @@ class BoardCreateCommentResponse(BaseResponse):
 
 class BoardGetCommentsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BoardTopicComment"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
-    poll: typing.Optional[dict] = Field(
+    items: list["BoardTopicComment"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
+    poll: dict[str, typing.Any] | None = Field(
         default=None,
     )
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -32,11 +32,11 @@ class BoardGetCommentsExtendedResponse(BaseResponse):
 
 class BoardGetCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BoardTopicComment"] = Field()
-    poll: typing.Optional[dict] = Field(
+    items: list["BoardTopicComment"] = Field()
+    poll: dict[str, typing.Any] | None = Field(
         default=None,
     )
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -47,11 +47,11 @@ class BoardGetCommentsResponse(BaseResponse):
 
 class BoardGetTopicsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BoardTopic"] = Field()
+    items: list["BoardTopic"] = Field()
     default_order: "BoardDefaultOrder" = Field()
     can_add_topics: bool = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class BoardGetTopicsExtendedResponse(BaseResponse):
@@ -60,7 +60,7 @@ class BoardGetTopicsExtendedResponse(BaseResponse):
 
 class BoardGetTopicsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BoardTopic"] = Field()
+    items: list["BoardTopic"] = Field()
     default_order: "BoardDefaultOrder" = Field()
     can_add_topics: bool = Field()
 

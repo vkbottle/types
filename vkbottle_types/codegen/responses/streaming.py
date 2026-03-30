@@ -1,15 +1,13 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import StreamingStats
 from vkbottle_types.responses.base_response import BaseResponse
 
 
 class StreamingGetServerUrlResponseModel(BaseModel):
-    endpoint: typing.Optional[str] = Field(
+    endpoint: str | None = Field(
         default=None,
     )
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
 
@@ -19,11 +17,11 @@ class StreamingGetServerUrlResponse(BaseResponse):
 
 
 class StreamingGetStatsResponse(BaseResponse):
-    response: typing.List["StreamingStats"] = Field()
+    response: list["StreamingStats"] = Field()
 
 
 class StreamingGetStemResponseModel(BaseModel):
-    stem: typing.Optional[str] = Field(
+    stem: str | None = Field(
         default=None,
     )
 

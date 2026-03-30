@@ -27,9 +27,9 @@ class AppWidgetsCategory(BaseCategory):
 
     async def get_app_images(
         self,
-        count: typing.Optional[int] = None,
-        image_type: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        image_type: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> "AppWidgetsPhotos":
         """Method `appWidgets.getAppImages()`
@@ -61,9 +61,9 @@ class AppWidgetsCategory(BaseCategory):
 
     async def get_group_images(
         self,
-        count: typing.Optional[int] = None,
-        image_type: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        image_type: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> "AppWidgetsPhotos":
         """Method `appWidgets.getGroupImages()`
@@ -80,9 +80,9 @@ class AppWidgetsCategory(BaseCategory):
 
     async def get_images_by_id(
         self,
-        images: typing.List[str],
+        images: list[str],
         **kwargs: typing.Any,
-    ) -> typing.List[AppWidgetsPhoto]:
+    ) -> list[AppWidgetsPhoto]:
         """Method `appWidgets.getImagesById()`
 
         :param images: List of images IDs

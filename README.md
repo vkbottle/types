@@ -39,8 +39,6 @@ python3 -m patcher -m "Add users.get missing param_name"
 
 ## Генерация типов
 
-Генератор написан `>=Python 3.10`, но типы, которые он генерирует, не используют новые тайп-хинты для поддержки `Python 3.9`.
-
 ```console
 python -m generator
 ```

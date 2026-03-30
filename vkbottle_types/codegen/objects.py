@@ -1,12 +1,11 @@
 import datetime
-import enum
 
 import typing_extensions as typing
 
-from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field
+from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field, IntEnum, StrEnum
 
 
-class BaseBoolInt(int, enum.Enum, metaclass=BaseEnumMeta):
+class BaseBoolInt(IntEnum, metaclass=BaseEnumMeta):
     NO = 0
     YES = 1
 
@@ -28,43 +27,44 @@ class BaseCommentsInfo(BaseModel):
     Model: `BaseCommentsInfo`
     """
 
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the post."""
 
-    can_open: typing.Optional[bool] = Field(
+    can_open: bool | None = Field(
         default=None,
     )
     """Property `BaseCommentsInfo.can_open`."""
 
-    can_close: typing.Optional[bool] = Field(
+    can_close: bool | None = Field(
         default=None,
     )
     """Property `BaseCommentsInfo.can_close`."""
 
-    can_view: typing.Optional[bool] = Field(
+    can_view: bool | None = Field(
         default=None,
     )
     """Information whether current user can view the comments."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Comments number."""
 
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
     """Information whether groups can comment the post."""
 
-    donut: typing.Optional["WallWallpostCommentsDonut"] = Field(
+    donut: "WallWallpostCommentsDonut | None" = Field(
         default=None,
     )
     """Property `BaseCommentsInfo.donut`."""
 
-    list: typing.Optional[typing.List["WallWallComment"]] = Field(
+    list_: list["WallWallComment"] | None = Field(
         default=None,
+        alias="list",
     )
     """Property `BaseCommentsInfo.list`."""
 
@@ -132,7 +132,7 @@ class BaseCropPhotoRect(BaseModel):
     """Coordinate Y of the right lower corner."""
 
 
-class BaseErrorInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseErrorInnerType(StrEnum, metaclass=BaseEnumMeta):
     BASE_ERROR = "base_error"
 
 
@@ -147,22 +147,22 @@ class BaseError(BaseModel):
     error_code: int = Field()
     """Error code."""
 
-    error_subcode: typing.Optional[int] = Field(
+    error_subcode: int | None = Field(
         default=None,
     )
     """Error subcode."""
 
-    error_msg: typing.Optional[str] = Field(
+    error_msg: str | None = Field(
         default=None,
     )
     """Error message."""
 
-    error_text: typing.Optional[str] = Field(
+    error_text: str | None = Field(
         default=None,
     )
     """Localized error message."""
 
-    request_params: typing.Optional[typing.List["BaseRequestParam"]] = Field(
+    request_params: list["BaseRequestParam"] | None = Field(
         default=None,
     )
     """Property `BaseError.request_params`."""
@@ -173,22 +173,22 @@ class BaseGeo(BaseModel):
     Model: `BaseGeo`
     """
 
-    coordinates: typing.Optional["BaseGeoCoordinates"] = Field(
+    coordinates: "BaseGeoCoordinates | None" = Field(
         default=None,
     )
     """Property `BaseGeo.coordinates`."""
 
-    place: typing.Optional["BasePlace"] = Field(
+    place: "BasePlace | None" = Field(
         default=None,
     )
     """Property `BaseGeo.place`."""
 
-    showmap: typing.Optional[int] = Field(
+    showmap: int | None = Field(
         default=None,
     )
     """Information whether a map is showed."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Place type."""
@@ -218,7 +218,7 @@ class BaseGradientPoint(BaseModel):
     """Point position."""
 
 
-class BaseImageTheme(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseImageTheme(StrEnum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -237,18 +237,18 @@ class BaseImage(BaseModel):
     height: int = Field()
     """Image height."""
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """Property `BaseImage.id`."""
 
-    theme: typing.Optional["BaseImageTheme"] = Field(
+    theme: "BaseImageTheme | None" = Field(
         default=None,
     )
     """Property `BaseImage.theme`."""
 
 
-class BaseLang(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLang(StrEnum, metaclass=BaseEnumMeta):
     RU = "ru"
     UA = "ua"
     BE = "be"
@@ -264,12 +264,12 @@ class BaseLikes(BaseModel):
     Model: `BaseLikes`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Likes number."""
 
-    user_likes: typing.Optional[bool] = Field(
+    user_likes: bool | None = Field(
         default=None,
     )
     """Information whether current user likes the photo."""
@@ -289,32 +289,32 @@ class BaseLikesInfo(BaseModel):
     user_likes: bool = Field()
     """Information whether current uer has liked the post."""
 
-    can_publish: typing.Optional[bool] = Field(
+    can_publish: bool | None = Field(
         default=None,
     )
     """Information whether current user can repost."""
 
-    can_like_as_author: typing.Optional[bool] = Field(
+    can_like_as_author: bool | None = Field(
         default=None,
     )
     """Whether user can like comment as author."""
 
-    can_like_by_group: typing.Optional[bool] = Field(
+    can_like_by_group: bool | None = Field(
         default=None,
     )
     """Whether current owner of the group can like the reply."""
 
-    author_liked: typing.Optional[bool] = Field(
+    author_liked: bool | None = Field(
         default=None,
     )
     """Information whether post author liked the reply."""
 
-    group_liked: typing.Optional[bool] = Field(
+    group_liked: bool | None = Field(
         default=None,
     )
     """Information whether group liked the reply."""
 
-    repost_disabled: typing.Optional[bool] = Field(
+    repost_disabled: bool | None = Field(
         default=None,
     )
     """Remove repost feature for post."""
@@ -325,12 +325,12 @@ class BaseLinkApplication(BaseModel):
     Model: `BaseLinkApplication`
     """
 
-    app_id: typing.Optional[float] = Field(
+    app_id: float | None = Field(
         default=None,
     )
     """Application Id."""
 
-    store: typing.Optional["BaseLinkApplicationStore"] = Field(
+    store: "BaseLinkApplicationStore | None" = Field(
         default=None,
     )
     """Property `BaseLinkApplication.store`."""
@@ -341,12 +341,12 @@ class BaseLinkApplicationStore(BaseModel):
     Model: `BaseLinkApplicationStore`
     """
 
-    id: typing.Optional[float] = Field(
+    id: float | None = Field(
         default=None,
     )
     """Store Id."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Store name."""
@@ -357,62 +357,62 @@ class BaseLinkButton(BaseModel):
     Model: `BaseLinkButton`
     """
 
-    action: typing.Optional["BaseLinkButtonAction"] = Field(
+    action: "BaseLinkButtonAction | None" = Field(
         default=None,
     )
     """Button action."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Button title."""
 
-    block_id: typing.Optional[str] = Field(
+    block_id: str | None = Field(
         default=None,
     )
     """Target block id."""
 
-    section_id: typing.Optional[str] = Field(
+    section_id: str | None = Field(
         default=None,
     )
     """Target section id."""
 
-    artist_id: typing.Optional[str] = Field(
+    artist_id: str | None = Field(
         default=None,
     )
     """artist id."""
 
-    curator_id: typing.Optional[int] = Field(
+    curator_id: int | None = Field(
         default=None,
     )
     """curator id."""
 
-    album_id: typing.Optional[int] = Field(
+    album_id: int | None = Field(
         default=None,
     )
     """Video album id."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Owner id."""
 
-    icon: typing.Optional[str] = Field(
+    icon: str | None = Field(
         default=None,
     )
     """Button icon name, e.g. \'phone\' or \'gift\'."""
 
-    style: typing.Optional["BaseLinkButtonStyle"] = Field(
+    style: "BaseLinkButtonStyle | None" = Field(
         default=None,
     )
     """Property `BaseLinkButton.style`."""
 
-    audio_id: typing.Optional[int] = Field(
+    audio_id: int | None = Field(
         default=None,
     )
     """Property `BaseLinkButton.audio_id`."""
 
-    hashtag: typing.Optional[str] = Field(
+    hashtag: str | None = Field(
         default=None,
     )
     """Property `BaseLinkButton.hashtag`."""
@@ -426,18 +426,18 @@ class BaseLinkButtonAction(BaseModel):
     type: "BaseLinkButtonActionType" = Field()
     """Property `BaseLinkButtonAction.type`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Action URL."""
 
-    consume_reason: typing.Optional[str] = Field(
+    consume_reason: str | None = Field(
         default=None,
     )
     """Property `BaseLinkButtonAction.consume_reason`."""
 
 
-class BaseLinkButtonActionType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLinkButtonActionType(StrEnum, metaclass=BaseEnumMeta):
     OPEN_URL = "open_url"
     MARKET_CLEAR_RECENT_QUERIES = "market_clear_recent_queries"
     CLOSE_WEB_APP = "close_web_app"
@@ -451,7 +451,7 @@ class BaseLinkButtonActionType(str, enum.Enum, metaclass=BaseEnumMeta):
     SHOW_FILTERS = "show_filters"
 
 
-class BaseLinkButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLinkButtonStyle(StrEnum, metaclass=BaseEnumMeta):
     UPDATES = "updates"
     DEFAULT = "default"
     PRIMARY = "primary"
@@ -478,78 +478,78 @@ class BaseLinkNoProduct(BaseModel):
     url: str = Field()
     """Link URL."""
 
-    application: typing.Optional["BaseLinkApplication"] = Field(
+    application: "BaseLinkApplication | None" = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.application`."""
 
-    button: typing.Optional["BaseLinkButton"] = Field(
+    button: "BaseLinkButton | None" = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.button`."""
 
-    caption: typing.Optional[str] = Field(
+    caption: str | None = Field(
         default=None,
     )
     """Link caption."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Link description."""
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """Link ID."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.is_favorite`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.photo`."""
 
-    preview_page: typing.Optional[str] = Field(
+    preview_page: str | None = Field(
         default=None,
     )
     """String ID of the page with article preview."""
 
-    preview_url: typing.Optional[str] = Field(
+    preview_url: str | None = Field(
         default=None,
     )
     """URL of the page with article preview."""
 
-    rating: typing.Optional["BaseLinkRating"] = Field(
+    rating: "BaseLinkRating | None" = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.rating`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Link title."""
 
-    target_object: typing.Optional["LinkTargetObject"] = Field(
+    target_object: "LinkTargetObject | None" = Field(
         default=None,
     )
     """Property `BaseLinkNoProduct.target_object`."""
 
-    is_external: typing.Optional[bool] = Field(
+    is_external: bool | None = Field(
         default=None,
     )
     """Information whether the current link is external."""
 
-    video: typing.Optional["VideoVideoFull"] = Field(
+    video: "VideoVideoFull | None" = Field(
         default=None,
     )
     """Video from link."""
 
 
-class BaseLinkProductType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLinkProductType(StrEnum, metaclass=BaseEnumMeta):
     PRODUCT = "product"
 
 
@@ -561,42 +561,42 @@ class BaseLinkProduct(BaseModel):
     price: "MarketPrice" = Field()
     """Property `BaseLinkProduct.price`."""
 
-    merchant: typing.Optional[str] = Field(
+    merchant: str | None = Field(
         default=None,
     )
     """Property `BaseLinkProduct.merchant`."""
 
-    category: typing.Optional["BaseLinkProductCategory"] = Field(
+    category: "BaseLinkProductCategory | None" = Field(
         default=None,
     )
     """Property `BaseLinkProduct.category`."""
 
-    geo: typing.Optional["BaseGeoCoordinates"] = Field(
+    geo: "BaseGeoCoordinates | None" = Field(
         default=None,
     )
     """Property `BaseLinkProduct.geo`."""
 
-    distance: typing.Optional[int] = Field(
+    distance: int | None = Field(
         default=None,
     )
     """Property `BaseLinkProduct.distance`."""
 
-    city: typing.Optional[str] = Field(
+    city: str | None = Field(
         default=None,
     )
     """Property `BaseLinkProduct.city`."""
 
-    status: typing.Optional["BaseLinkProductStatus"] = Field(
+    status: "BaseLinkProductStatus | None" = Field(
         default=None,
     )
     """Property `BaseLinkProduct.status`."""
 
-    orders_count: typing.Optional[int] = Field(
+    orders_count: int | None = Field(
         default=None,
     )
     """Property `BaseLinkProduct.orders_count`."""
 
-    type: typing.Optional["BaseLinkProductType"] = Field(
+    type: "BaseLinkProductType | None" = Field(
         default=None,
     )
     """Property `BaseLinkProduct.type`."""
@@ -608,7 +608,7 @@ class BaseLinkProductCategory(BaseModel):
     """
 
 
-class BaseLinkProductStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLinkProductStatus(StrEnum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     BLOCKED = "blocked"
     SOLD = "sold"
@@ -616,7 +616,7 @@ class BaseLinkProductStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     ARCHIVED = "archived"
 
 
-class BaseLinkRatingType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseLinkRatingType(StrEnum, metaclass=BaseEnumMeta):
     RATING = "rating"
 
 
@@ -625,17 +625,17 @@ class BaseLinkRating(BaseModel):
     Model: `BaseLinkRating`
     """
 
-    reviews_count: typing.Optional[int] = Field(
+    reviews_count: int | None = Field(
         default=None,
     )
     """Count of reviews."""
 
-    stars: typing.Optional[float] = Field(
+    stars: float | None = Field(
         default=None,
     )
     """Count of stars."""
 
-    type: typing.Optional["BaseLinkRatingType"] = Field(
+    type: "BaseLinkRatingType | None" = Field(
         default=None,
     )
     """Property `BaseLinkRating.type`."""
@@ -646,18 +646,18 @@ class BaseMessageError(BaseModel):
     Model: `BaseMessageError`
     """
 
-    code: typing.Optional[int] = Field(
+    code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Error message."""
 
 
-class BaseNameCase(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseNameCase(StrEnum, metaclass=BaseEnumMeta):
     NOM = "Nom"
     GEN = "Gen"
     DAT = "Dat"
@@ -683,7 +683,7 @@ class BaseObjectCount(BaseModel):
     Model: `BaseObjectCount`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Items count."""
@@ -709,22 +709,22 @@ class BaseOwnerCover(BaseModel):
     enabled: bool = Field()
     """Information whether cover is enabled."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `BaseOwnerCover.images`."""
 
-    crop_params: typing.Optional["BaseOwnerCoverCropParams"] = Field(
+    crop_params: "BaseOwnerCoverCropParams | None" = Field(
         default=None,
     )
     """Property `BaseOwnerCover.crop_params`."""
 
-    original_image: typing.Optional["BaseImage"] = Field(
+    original_image: "BaseImage | None" = Field(
         default=None,
     )
     """Property `BaseOwnerCover.original_image`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `BaseOwnerCover.photo_id`."""
@@ -735,22 +735,22 @@ class BaseOwnerCoverCropParams(BaseModel):
     Model: `BaseOwnerCoverCropParams`
     """
 
-    x: typing.Optional[int] = Field(
+    x: int | None = Field(
         default=None,
     )
     """Property `BaseOwnerCoverCropParams.x`."""
 
-    y: typing.Optional[int] = Field(
+    y: int | None = Field(
         default=None,
     )
     """Property `BaseOwnerCoverCropParams.y`."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Property `BaseOwnerCoverCropParams.width`."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Property `BaseOwnerCoverCropParams.height`."""
@@ -761,58 +761,58 @@ class BasePlace(BaseModel):
     Model: `BasePlace`
     """
 
-    address: typing.Optional[str] = Field(
+    address: str | None = Field(
         default=None,
     )
     """Place address."""
 
-    checkins: typing.Optional[int] = Field(
+    checkins: int | None = Field(
         default=None,
     )
     """Checkins number."""
 
-    city: typing.Optional[str] = Field(
+    city: str | None = Field(
         default=None,
     )
     """City name."""
 
-    created: typing.Optional[int] = Field(
+    created: int | None = Field(
         default=None,
     )
     """Date of the place creation in Unixtime."""
 
-    icon: typing.Optional[str] = Field(
+    icon: str | None = Field(
         default=None,
     )
     """URL of the place\'s icon."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Place ID."""
 
-    latitude: typing.Optional[float] = Field(
+    latitude: float | None = Field(
         default=None,
     )
     """Place latitude."""
 
-    longitude: typing.Optional[float] = Field(
+    longitude: float | None = Field(
         default=None,
     )
     """Place longitude."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Place title."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Place type."""
 
 
-class BasePropertyExists(int, enum.Enum, metaclass=BaseEnumMeta):
+class BasePropertyExists(IntEnum, metaclass=BaseEnumMeta):
     PROPERTY_EXISTS = 1
 
 
@@ -825,17 +825,17 @@ class BaseRepostsInfo(BaseModel):
     count: int = Field()
     """Total reposts counter. Sum of wall and mail reposts counters."""
 
-    wall_count: typing.Optional[int] = Field(
+    wall_count: int | None = Field(
         default=None,
     )
     """Wall reposts counter."""
 
-    mail_count: typing.Optional[int] = Field(
+    mail_count: int | None = Field(
         default=None,
     )
     """Mail reposts counter."""
 
-    user_reposted: typing.Optional[bool] = Field(
+    user_reposted: bool | None = Field(
         default=None,
     )
     """Information whether current user has reposted the post."""
@@ -853,13 +853,13 @@ class BaseRequestParam(BaseModel):
     """Parameter value."""
 
 
-class BaseSex(int, enum.Enum, metaclass=BaseEnumMeta):
+class BaseSex(IntEnum, metaclass=BaseEnumMeta):
     UNKNOWN = 0
     FEMALE = 1
     MALE = 2
 
 
-class BaseStickerInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseStickerInnerType(StrEnum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -871,43 +871,43 @@ class BaseSticker(BaseModel):
     inner_type: "BaseStickerInnerType" = Field()
     """Property `BaseSticker.inner_type`."""
 
-    sticker_id: typing.Optional[int] = Field(
+    sticker_id: int | None = Field(
         default=None,
     )
     """Sticker ID."""
 
-    product_id: typing.Optional[int] = Field(
+    product_id: int | None = Field(
         default=None,
     )
     """Pack ID."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `BaseSticker.images`."""
 
-    images_with_background: typing.Optional[typing.List["BaseImage"]] = Field(
+    images_with_background: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `BaseSticker.images_with_background`."""
 
-    animation_url: typing.Optional[str] = Field(
+    animation_url: str | None = Field(
         default=None,
     )
     """URL of sticker animation script."""
 
-    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = Field(
+    animations: list["BaseStickerAnimation"] | None = Field(
         default=None,
     )
     """Array of sticker animation script objects."""
 
-    is_allowed: typing.Optional[bool] = Field(
+    is_allowed: bool | None = Field(
         default=None,
     )
     """Information whether the sticker is allowed."""
 
 
-class BaseStickerAnimationType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseStickerAnimationType(StrEnum, metaclass=BaseEnumMeta):
     LIGHT = "light"
     DARK = "dark"
 
@@ -917,18 +917,18 @@ class BaseStickerAnimation(BaseModel):
     Model: `BaseStickerAnimation`
     """
 
-    type: typing.Optional["BaseStickerAnimationType"] = Field(
+    type: "BaseStickerAnimationType | None" = Field(
         default=None,
     )
     """Type of animation script."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL of animation script."""
 
 
-class BaseStickerNewInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseStickerNewInnerType(StrEnum, metaclass=BaseEnumMeta):
     BASE_STICKER_NEW = "base_sticker_new"
 
 
@@ -940,37 +940,37 @@ class BaseStickerNew(BaseModel):
     inner_type: "BaseStickerNewInnerType" = Field()
     """Property `BaseStickerNew.inner_type`."""
 
-    sticker_id: typing.Optional[int] = Field(
+    sticker_id: int | None = Field(
         default=None,
     )
     """Sticker ID."""
 
-    product_id: typing.Optional[int] = Field(
+    product_id: int | None = Field(
         default=None,
     )
     """Pack ID."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `BaseStickerNew.images`."""
 
-    images_with_background: typing.Optional[typing.List["BaseImage"]] = Field(
+    images_with_background: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `BaseStickerNew.images_with_background`."""
 
-    animation_url: typing.Optional[str] = Field(
+    animation_url: str | None = Field(
         default=None,
     )
     """URL of sticker animation script."""
 
-    animations: typing.Optional[typing.List["BaseStickerAnimation"]] = Field(
+    animations: list["BaseStickerAnimation"] | None = Field(
         default=None,
     )
     """Array of sticker animation script objects."""
 
-    is_allowed: typing.Optional[bool] = Field(
+    is_allowed: bool | None = Field(
         default=None,
     )
     """Information whether the sticker is allowed."""
@@ -985,7 +985,7 @@ class BaseUploadServer(BaseModel):
     """Upload URL."""
 
 
-class BaseUserGroupFields(str, enum.Enum, metaclass=BaseEnumMeta):
+class BaseUserGroupFields(StrEnum, metaclass=BaseEnumMeta):
     ABOUT = "about"
     ACTION_BUTTON = "action_button"
     ACTIVITIES = "activities"
@@ -1112,7 +1112,7 @@ class BaseUserId(BaseModel):
     Model: `BaseUserId`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """User ID."""
@@ -1123,43 +1123,43 @@ class UsersCareer(BaseModel):
     Model: `UsersCareer`
     """
 
-    city_id: typing.Optional[int] = Field(
+    city_id: int | None = Field(
         default=None,
     )
     """City ID."""
 
-    city_name: typing.Optional[str] = Field(
+    city_name: str | None = Field(
         default=None,
     )
     """City name."""
 
-    company: typing.Optional[str] = Field(
+    company: str | None = Field(
         default=None,
     )
     """Company name."""
 
-    from_: typing.Optional[int] = Field(
+    from_: int | None = Field(
         default=None,
         alias="from",
     )
     """From year."""
 
-    group_id: typing.Optional[int] = Field(
+    group_id: int | None = Field(
         default=None,
     )
     """Community ID."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Career ID."""
 
-    position: typing.Optional[str] = Field(
+    position: str | None = Field(
         default=None,
     )
     """Position."""
 
-    until: typing.Optional[int] = Field(
+    until: int | None = Field(
         default=None,
     )
     """Till year."""
@@ -1170,23 +1170,23 @@ class UsersExports(BaseModel):
     Model: `UsersExports`
     """
 
-    facebook: typing.Optional[int] = Field(
+    facebook: int | None = Field(
         default=None,
     )
     """Property `UsersExports.facebook`."""
 
-    livejournal: typing.Optional[int] = Field(
+    livejournal: int | None = Field(
         default=None,
     )
     """Property `UsersExports.livejournal`."""
 
-    twitter: typing.Optional[int] = Field(
+    twitter: int | None = Field(
         default=None,
     )
     """Property `UsersExports.twitter`."""
 
 
-class UsersFields(str, enum.Enum, metaclass=BaseEnumMeta):
+class UsersFields(StrEnum, metaclass=BaseEnumMeta):
     FIRST_NAME_NOM = "first_name_nom"
     FIRST_NAME_GEN = "first_name_gen"
     FIRST_NAME_DAT = "first_name_dat"
@@ -1311,12 +1311,12 @@ class UsersLastSeen(BaseModel):
     Model: `UsersLastSeen`
     """
 
-    platform: typing.Optional[int] = Field(
+    platform: int | None = Field(
         default=None,
     )
     """Type of the platform that used for the last authorization."""
 
-    time: typing.Optional[int] = Field(
+    time: int | None = Field(
         default=None,
     )
     """Last visit date (in Unix time)."""
@@ -1333,24 +1333,24 @@ class UsersMilitary(BaseModel):
     unit_id: int = Field()
     """Unit ID."""
 
-    from_: typing.Optional[int] = Field(
+    from_: int | None = Field(
         default=None,
         alias="from",
     )
     """From year."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Military ID."""
 
-    until: typing.Optional[int] = Field(
+    until: int | None = Field(
         default=None,
     )
     """Till year."""
 
 
-class UsersOccupationType(str, enum.Enum, metaclass=BaseEnumMeta):
+class UsersOccupationType(StrEnum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     WORK = "work"
@@ -1361,33 +1361,33 @@ class UsersOccupation(BaseModel):
     Model: `UsersOccupation`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """ID of school, university, company group."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name of occupation."""
 
-    type: typing.Optional["UsersOccupationType"] = Field(
+    type: "UsersOccupationType | None" = Field(
         default=None,
     )
     """Type of occupation."""
 
-    graduate_year: typing.Optional[int] = Field(
+    graduate_year: int | None = Field(
         default=None,
     )
     """Property `UsersOccupation.graduate_year`."""
 
-    city_id: typing.Optional[int] = Field(
+    city_id: int | None = Field(
         default=None,
     )
     """Property `UsersOccupation.city_id`."""
 
 
-class UsersOnlineInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class UsersOnlineInfoStatus(StrEnum, metaclass=BaseEnumMeta):
     RECENTLY = "recently"
     LAST_WEEK = "last_week"
     LAST_MONTH = "last_month"
@@ -1403,27 +1403,27 @@ class UsersOnlineInfo(BaseModel):
     visible: bool = Field()
     """Whether you can see real online status of user or not."""
 
-    last_seen: typing.Optional[int] = Field(
+    last_seen: int | None = Field(
         default=None,
     )
     """Last time we saw user being active."""
 
-    is_online: typing.Optional[bool] = Field(
+    is_online: bool | None = Field(
         default=None,
     )
     """Whether user is currently online or not."""
 
-    app_id: typing.Optional[int] = Field(
+    app_id: int | None = Field(
         default=None,
     )
     """Application id from which user is currently online or was last seen online."""
 
-    is_mobile: typing.Optional[bool] = Field(
+    is_mobile: bool | None = Field(
         default=None,
     )
     """Is user online from desktop app or mobile app."""
 
-    status: typing.Optional["UsersOnlineInfoStatus"] = Field(
+    status: "UsersOnlineInfoStatus | None" = Field(
         default=None,
     )
     """In case user online is not visible, it indicates approximate timeframe of user online."""
@@ -1434,58 +1434,58 @@ class UsersPersonal(BaseModel):
     Model: `UsersPersonal`
     """
 
-    alcohol: typing.Optional[int] = Field(
+    alcohol: int | None = Field(
         default=None,
     )
     """User\'s views on alcohol."""
 
-    inspired_by: typing.Optional[str] = Field(
+    inspired_by: str | None = Field(
         default=None,
     )
     """User\'s inspired by."""
 
-    langs: typing.Optional[typing.List[str]] = Field(
+    langs: list[str] | None = Field(
         default=None,
     )
     """Property `UsersPersonal.langs`."""
 
-    langs_full: typing.Optional[typing.List["DatabaseLanguageFull"]] = Field(
+    langs_full: list["DatabaseLanguageFull"] | None = Field(
         default=None,
     )
     """User\'s languages with full info."""
 
-    life_main: typing.Optional[int] = Field(
+    life_main: int | None = Field(
         default=None,
     )
     """User\'s personal priority in life."""
 
-    people_main: typing.Optional[int] = Field(
+    people_main: int | None = Field(
         default=None,
     )
     """User\'s personal priority in people."""
 
-    political: typing.Optional[int] = Field(
+    political: int | None = Field(
         default=None,
     )
     """User\'s political views."""
 
-    religion: typing.Optional[str] = Field(
+    religion: str | None = Field(
         default=None,
     )
     """User\'s religion."""
 
-    religion_id: typing.Optional[int] = Field(
+    religion_id: int | None = Field(
         default=None,
     )
     """User\'s religion id."""
 
-    smoking: typing.Optional[int] = Field(
+    smoking: int | None = Field(
         default=None,
     )
     """User\'s views on smoking."""
 
 
-class UsersRelativeType(str, enum.Enum, metaclass=BaseEnumMeta):
+class UsersRelativeType(StrEnum, metaclass=BaseEnumMeta):
     PARENT = "parent"
     CHILD = "child"
     GRANDPARENT = "grandparent"
@@ -1501,17 +1501,17 @@ class UsersRelative(BaseModel):
     type: "UsersRelativeType" = Field()
     """Relative type."""
 
-    birth_date: typing.Optional[str] = Field(
+    birth_date: str | None = Field(
         default=None,
     )
     """Date of child birthday (format dd.mm.yyyy)."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Relative ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name of relative."""
@@ -1522,58 +1522,58 @@ class UsersSchool(BaseModel):
     Model: `UsersSchool`
     """
 
-    city: typing.Optional[int] = Field(
+    city: int | None = Field(
         default=None,
     )
     """City ID."""
 
-    class_: typing.Optional[str] = Field(
+    class_: str | None = Field(
         default=None,
         alias="class",
     )
     """School class letter."""
 
-    class_id: typing.Optional[int] = Field(
+    class_id: int | None = Field(
         default=None,
     )
     """School class id."""
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """School ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """School name."""
 
-    type: typing.Optional[int] = Field(
+    type: int | None = Field(
         default=None,
     )
     """School type ID."""
 
-    type_str: typing.Optional[str] = Field(
+    type_str: str | None = Field(
         default=None,
     )
     """School type name."""
 
-    year_from: typing.Optional[int] = Field(
+    year_from: int | None = Field(
         default=None,
     )
     """Year the user started to study."""
 
-    year_graduated: typing.Optional[int] = Field(
+    year_graduated: int | None = Field(
         default=None,
     )
     """Graduation year."""
 
-    year_to: typing.Optional[int] = Field(
+    year_to: int | None = Field(
         default=None,
     )
     """Year the user finished to study."""
 
-    speciality: typing.Optional[str] = Field(
+    speciality: str | None = Field(
         default=None,
     )
     """Property `UsersSchool.speciality`."""
@@ -1590,67 +1590,67 @@ class UsersUniversity(BaseModel):
     Model: `UsersUniversity`
     """
 
-    chair: typing.Optional[int] = Field(
+    chair: int | None = Field(
         default=None,
     )
     """Chair ID."""
 
-    chair_name: typing.Optional[str] = Field(
+    chair_name: str | None = Field(
         default=None,
     )
     """Chair name."""
 
-    city: typing.Optional[int] = Field(
+    city: int | None = Field(
         default=None,
     )
     """City ID."""
 
-    education_form: typing.Optional[str] = Field(
+    education_form: str | None = Field(
         default=None,
     )
     """Education form."""
 
-    education_form_id: typing.Optional[int] = Field(
+    education_form_id: int | None = Field(
         default=None,
     )
     """Education form id."""
 
-    education_status: typing.Optional[str] = Field(
+    education_status: str | None = Field(
         default=None,
     )
     """Education status."""
 
-    education_status_id: typing.Optional[int] = Field(
+    education_status_id: int | None = Field(
         default=None,
     )
     """Education status id."""
 
-    faculty: typing.Optional[int] = Field(
+    faculty: int | None = Field(
         default=None,
     )
     """Faculty ID."""
 
-    faculty_name: typing.Optional[str] = Field(
+    faculty_name: str | None = Field(
         default=None,
     )
     """Faculty name."""
 
-    graduation: typing.Optional[int] = Field(
+    graduation: int | None = Field(
         default=None,
     )
     """Graduation year."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """University ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """University name."""
 
-    university_group_id: typing.Optional[int] = Field(
+    university_group_id: int | None = Field(
         default=None,
     )
     """Property `UsersUniversity.university_group_id`."""
@@ -1673,12 +1673,12 @@ class UsersUserConnections(BaseModel):
     instagram: str = Field()
     """User\'s Instagram account."""
 
-    facebook_name: typing.Optional[str] = Field(
+    facebook_name: str | None = Field(
         default=None,
     )
     """User\'s Facebook name."""
 
-    livejournal: typing.Optional[str] = Field(
+    livejournal: str | None = Field(
         default=None,
     )
     """User\'s Livejournal account."""
@@ -1689,147 +1689,147 @@ class UsersUserCounters(BaseModel):
     Model: `UsersUserCounters`
     """
 
-    albums: typing.Optional[int] = Field(
+    albums: int | None = Field(
         default=None,
     )
     """Albums number."""
 
-    badges: typing.Optional[int] = Field(
+    badges: int | None = Field(
         default=None,
     )
     """Badges number."""
 
-    audios: typing.Optional[int] = Field(
+    audios: int | None = Field(
         default=None,
     )
     """Audios number."""
 
-    followers: typing.Optional[int] = Field(
+    followers: int | None = Field(
         default=None,
     )
     """Followers number."""
 
-    friends: typing.Optional[int] = Field(
+    friends: int | None = Field(
         default=None,
     )
     """Friends number."""
 
-    gifts: typing.Optional[int] = Field(
+    gifts: int | None = Field(
         default=None,
     )
     """Gifts number."""
 
-    groups: typing.Optional[int] = Field(
+    groups: int | None = Field(
         default=None,
     )
     """Communities number."""
 
-    notes: typing.Optional[int] = Field(
+    notes: int | None = Field(
         default=None,
     )
     """Notes number."""
 
-    online_friends: typing.Optional[int] = Field(
+    online_friends: int | None = Field(
         default=None,
     )
     """Online friends number."""
 
-    pages: typing.Optional[int] = Field(
+    pages: int | None = Field(
         default=None,
     )
     """Public pages number."""
 
-    photos: typing.Optional[int] = Field(
+    photos: int | None = Field(
         default=None,
     )
     """Photos number."""
 
-    subscriptions: typing.Optional[int] = Field(
+    subscriptions: int | None = Field(
         default=None,
     )
     """Subscriptions number."""
 
-    user_photos: typing.Optional[int] = Field(
+    user_photos: int | None = Field(
         default=None,
     )
     """Number of photos with user."""
 
-    user_videos: typing.Optional[int] = Field(
+    user_videos: int | None = Field(
         default=None,
     )
     """Number of videos with user."""
 
-    videos: typing.Optional[int] = Field(
+    videos: int | None = Field(
         default=None,
     )
     """Videos number."""
 
-    video_playlists: typing.Optional[int] = Field(
+    video_playlists: int | None = Field(
         default=None,
     )
     """Playlists number."""
 
-    new_photo_tags: typing.Optional[int] = Field(
+    new_photo_tags: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.new_photo_tags`."""
 
-    new_recognition_tags: typing.Optional[int] = Field(
+    new_recognition_tags: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.new_recognition_tags`."""
 
-    mutual_friends: typing.Optional[int] = Field(
+    mutual_friends: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.mutual_friends`."""
 
-    friends_followers: typing.Optional[int] = Field(
+    friends_followers: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.friends_followers`."""
 
-    posts: typing.Optional[int] = Field(
+    posts: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.posts`."""
 
-    articles: typing.Optional[int] = Field(
+    articles: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.articles`."""
 
-    wishes: typing.Optional[int] = Field(
+    wishes: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.wishes`."""
 
-    podcasts: typing.Optional[int] = Field(
+    podcasts: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.podcasts`."""
 
-    clips: typing.Optional[int] = Field(
+    clips: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.clips`."""
 
-    clips_followers: typing.Optional[int] = Field(
+    clips_followers: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.clips_followers`."""
 
-    videos_followers: typing.Optional[int] = Field(
+    videos_followers: int | None = Field(
         default=None,
     )
     """Videos followers number."""
 
-    clips_views: typing.Optional[int] = Field(
+    clips_views: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.clips_views`."""
 
-    clips_likes: typing.Optional[int] = Field(
+    clips_likes: int | None = Field(
         default=None,
     )
     """Property `UsersUserCounters.clips_likes`."""
@@ -1843,38 +1843,38 @@ class UsersUserMin(BaseModel):
     id: int = Field()
     """User ID."""
 
-    deactivated: typing.Optional[str] = Field(
+    deactivated: str | None = Field(
         default=None,
     )
     """Returns if a profile is deleted or blocked."""
 
-    first_name: typing.Optional[str] = Field(
+    first_name: str | None = Field(
         default=None,
     )
     """User first name."""
 
-    hidden: typing.Optional[int] = Field(
+    hidden: int | None = Field(
         default=None,
     )
     """Returns if a profile is hidden.."""
 
-    last_name: typing.Optional[str] = Field(
+    last_name: str | None = Field(
         default=None,
     )
     """User last name."""
 
-    can_access_closed: typing.Optional[bool] = Field(
+    can_access_closed: bool | None = Field(
         default=None,
     )
     """Property `UsersUserMin.can_access_closed`."""
 
-    is_closed: typing.Optional[bool] = Field(
+    is_closed: bool | None = Field(
         default=None,
     )
     """Property `UsersUserMin.is_closed`."""
 
 
-class UsersUserRelation(int, enum.Enum, metaclass=BaseEnumMeta):
+class UsersUserRelation(IntEnum, metaclass=BaseEnumMeta):
     NOT_SPECIFIED = 0
     SINGLE = 1
     IN_A_RELATIONSHIP = 2
@@ -1897,103 +1897,103 @@ class UsersUserSettingsXtr(BaseModel):
     status: str = Field()
     """User status."""
 
-    connections: typing.Optional["UsersUserConnections"] = Field(
+    connections: "UsersUserConnections | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.connections`."""
 
-    bdate: typing.Optional[str] = Field(
+    bdate: str | None = Field(
         default=None,
     )
     """User\'s date of birth."""
 
-    bdate_visibility: typing.Optional[int] = Field(
+    bdate_visibility: int | None = Field(
         default=None,
     )
     """Information whether user\'s birthdate are hidden."""
 
-    city: typing.Optional["BaseCity"] = Field(
+    city: "BaseCity | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.city`."""
 
-    first_name: typing.Optional[str] = Field(
+    first_name: str | None = Field(
         default=None,
     )
     """User first name."""
 
-    last_name: typing.Optional[str] = Field(
+    last_name: str | None = Field(
         default=None,
     )
     """User last name."""
 
-    maiden_name: typing.Optional[str] = Field(
+    maiden_name: str | None = Field(
         default=None,
     )
     """User maiden name."""
 
-    name_request: typing.Optional["AccountNameRequest"] = Field(
+    name_request: "AccountNameRequest | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.name_request`."""
 
-    personal: typing.Optional["UsersPersonal"] = Field(
+    personal: "UsersPersonal | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.personal`."""
 
-    phone: typing.Optional[str] = Field(
+    phone: str | None = Field(
         default=None,
     )
     """User phone number with some hidden digits."""
 
-    relation: typing.Optional["UsersUserRelation"] = Field(
+    relation: "UsersUserRelation | None" = Field(
         default=None,
     )
     """User relationship status."""
 
-    relation_partner: typing.Optional["UsersUserMin"] = Field(
+    relation_partner: "UsersUserMin | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.relation_partner`."""
 
-    relation_pending: typing.Optional[bool] = Field(
+    relation_pending: bool | None = Field(
         default=None,
     )
     """Information whether relation status is pending."""
 
-    relation_requests: typing.Optional[typing.List["UsersUserMin"]] = Field(
+    relation_requests: list["UsersUserMin"] | None = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.relation_requests`."""
 
-    screen_name: typing.Optional[str] = Field(
+    screen_name: str | None = Field(
         default=None,
     )
     """Domain name of the user\'s page."""
 
-    sex: typing.Optional["BaseSex"] = Field(
+    sex: "BaseSex | None" = Field(
         default=None,
     )
     """User sex."""
 
-    status_audio: typing.Optional["AudioAudio"] = Field(
+    status_audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.status_audio`."""
 
-    interests: typing.Optional["AccountUserSettingsInterests"] = Field(
+    interests: "AccountUserSettingsInterests | None" = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.interests`."""
 
-    languages: typing.Optional[typing.List[str]] = Field(
+    languages: list[str] | None = Field(
         default=None,
     )
     """Property `UsersUserSettingsXtr.languages`."""
 
 
-class UsersUserType(str, enum.Enum, metaclass=BaseEnumMeta):
+class UsersUserType(StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
 
 
@@ -2005,7 +2005,7 @@ class UsersUsersArray(BaseModel):
     count: int = Field()
     """Users number."""
 
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
     """Property `UsersUsersArray.items`."""
 
 
@@ -2017,32 +2017,32 @@ class MessagesActionOneOf(BaseModel):
     type: "MessagesMessageActionStatus" = Field()
     """Property `MessagesActionOneOf.type`."""
 
-    conversation_message_id: typing.Optional[int] = Field(
+    conversation_message_id: int | None = Field(
         default=None,
     )
     """Message ID."""
 
-    email: typing.Optional[str] = Field(
+    email: str | None = Field(
         default=None,
     )
     """Email address for chat_invite_user or chat_kick_user actions."""
 
-    member_id: typing.Optional[int] = Field(
+    member_id: int | None = Field(
         default=None,
     )
     """User or email peer ID."""
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Message body of related message."""
 
-    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
+    photo: "MessagesMessageActionPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesActionOneOf.photo`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """New chat title for chat_create and chat_title_update actions."""
@@ -2068,15 +2068,15 @@ class MessagesAudioMessage(BaseModel):
     owner_id: int = Field()
     """Audio message owner ID."""
 
-    waveform: typing.List[int] = Field()
+    waveform: list[int] = Field()
     """Property `MessagesAudioMessage.waveform`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for audio message."""
 
-    transcript_error: typing.Optional[int] = Field(
+    transcript_error: int | None = Field(
         default=None,
     )
     """Property `MessagesAudioMessage.transcript_error`."""
@@ -2111,77 +2111,77 @@ class MessagesBaseMessage(BaseModel):
     peer_id: int = Field()
     """Peer ID."""
 
-    action: typing.Optional["MessagesActionOneOf"] = Field(
+    action: "MessagesActionOneOf | None" = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.action`."""
 
-    admin_author_id: typing.Optional[int] = Field(
+    admin_author_id: int | None = Field(
         default=None,
     )
     """Only for messages from community. Contains user ID of community admin, who sent this message.."""
 
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+    attachments: list["MessagesMessageAttachment"] | None = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.attachments`."""
 
-    deleted: typing.Optional[bool] = Field(
+    deleted: bool | None = Field(
         default=None,
     )
     """Is it an deleted message."""
 
-    fwd_messages: typing.Optional["MessagesFwdMessages"] = Field(
+    fwd_messages: "MessagesFwdMessages | None" = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.fwd_messages`."""
 
-    geo: typing.Optional["BaseGeo"] = Field(
+    geo: "BaseGeo | None" = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.geo`."""
 
-    is_cropped: typing.Optional[bool] = Field(
+    is_cropped: bool | None = Field(
         default=None,
     )
     """this message is cropped for bot."""
 
-    keyboard: typing.Optional["MessagesKeyboard"] = Field(
+    keyboard: "MessagesKeyboard | None" = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.keyboard`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.payload`."""
 
-    update_time: typing.Optional[int] = Field(
+    update_time: int | None = Field(
         default=None,
     )
     """Date when the message has been updated in Unixtime."""
 
-    is_silent: typing.Optional[bool] = Field(
+    is_silent: bool | None = Field(
         default=None,
     )
     """Is silent message, push without sound."""
 
-    is_unavailable: typing.Optional[bool] = Field(
+    is_unavailable: bool | None = Field(
         default=None,
     )
     """Is message unavailable for some reason, including its id equals 0."""
 
-    random_id: typing.Optional[int] = Field(
+    random_id: int | None = Field(
         default=None,
     )
     """ID used for sending messages. It returned only for outgoing messages."""
 
-    ref: typing.Optional[str] = Field(
+    ref: str | None = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.ref`."""
 
-    ref_source: typing.Optional[str] = Field(
+    ref_source: str | None = Field(
         default=None,
     )
     """Property `MessagesBaseMessage.ref_source`."""
@@ -2201,53 +2201,53 @@ class MessagesChat(BaseModel):
     type: str = Field()
     """Chat type."""
 
-    users: typing.List[int] = Field()
+    users: list[int] = Field()
     """Property `MessagesChat.users`."""
 
     members_count: int = Field()
     """Count members in a chat."""
 
-    kicked: typing.Optional[bool] = Field(
+    kicked: bool | None = Field(
         default=None,
     )
     """Shows that user has been kicked from the chat."""
 
-    left: typing.Optional[bool] = Field(
+    left: bool | None = Field(
         default=None,
     )
     """Shows that user has been left the chat."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of the preview image with 100 px in width."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of the preview image with 200 px in width."""
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of the preview image with 50 px in width."""
 
-    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
+    push_settings: "MessagesChatPushSettings | None" = Field(
         default=None,
     )
     """Property `MessagesChat.push_settings`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Chat title."""
 
-    is_default_photo: typing.Optional[bool] = Field(
+    is_default_photo: bool | None = Field(
         default=None,
     )
     """If provided photo is default."""
 
-    is_group_channel: typing.Optional[bool] = Field(
+    is_group_channel: bool | None = Field(
         default=None,
     )
     """If chat is group channel."""
@@ -2267,53 +2267,53 @@ class MessagesChatFull(BaseModel):
     type: str = Field()
     """Chat type."""
 
-    users: typing.List["MessagesUserXtrInvitedBy"] = Field()
+    users: list["MessagesUserXtrInvitedBy"] = Field()
     """Property `MessagesChatFull.users`."""
 
     members_count: int = Field()
     """Count members in a chat."""
 
-    kicked: typing.Optional[bool] = Field(
+    kicked: bool | None = Field(
         default=None,
     )
     """Shows that user has been kicked from the chat."""
 
-    left: typing.Optional[bool] = Field(
+    left: bool | None = Field(
         default=None,
     )
     """Shows that user has been left the chat."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of the preview image with 100 px in width."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of the preview image with 200 px in width."""
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of the preview image with 50 px in width."""
 
-    push_settings: typing.Optional["MessagesChatPushSettings"] = Field(
+    push_settings: "MessagesChatPushSettings | None" = Field(
         default=None,
     )
     """Property `MessagesChatFull.push_settings`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Chat title."""
 
-    is_default_photo: typing.Optional[bool] = Field(
+    is_default_photo: bool | None = Field(
         default=None,
     )
     """If provided photo is default."""
 
-    is_group_channel: typing.Optional[bool] = Field(
+    is_group_channel: bool | None = Field(
         default=None,
     )
     """If chat is group channel."""
@@ -2327,53 +2327,53 @@ class MessagesChatPreview(BaseModel):
     admin_id: int = Field()
     """Property `MessagesChatPreview.admin_id`."""
 
-    members: typing.List[int] = Field()
+    members: list[int] = Field()
     """Property `MessagesChatPreview.members`."""
 
     title: str = Field()
     """Property `MessagesChatPreview.title`."""
 
-    joined: typing.Optional[bool] = Field(
+    joined: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.joined`."""
 
-    local_id: typing.Optional[int] = Field(
+    local_id: int | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.local_id`."""
 
-    members_count: typing.Optional[int] = Field(
+    members_count: int | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.members_count`."""
 
-    is_member: typing.Optional[bool] = Field(
+    is_member: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.is_member`."""
 
-    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
+    photo: "MessagesChatSettingsPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesChatPreview.photo`."""
 
-    is_don: typing.Optional[bool] = Field(
+    is_don: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.is_don`."""
 
-    is_nft: typing.Optional[bool] = Field(
+    is_nft: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.is_nft`."""
 
-    is_group_channel: typing.Optional[bool] = Field(
+    is_group_channel: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatPreview.is_group_channel`."""
 
-    button: typing.Optional["BaseLinkButton"] = Field(
+    button: "BaseLinkButton | None" = Field(
         default=None,
     )
     """Property `MessagesChatPreview.button`."""
@@ -2384,12 +2384,12 @@ class MessagesChatPushSettings(BaseModel):
     Model: `MessagesChatPushSettings`
     """
 
-    disabled_until: typing.Optional[int] = Field(
+    disabled_until: int | None = Field(
         default=None,
     )
     """Time until that notifications are disabled."""
 
-    sound: typing.Optional[bool] = Field(
+    sound: bool | None = Field(
         default=None,
     )
     """Information whether the sound is on."""
@@ -2400,27 +2400,27 @@ class MessagesChatRestrictions(BaseModel):
     Model: `MessagesChatRestrictions`
     """
 
-    admins_promote_users: typing.Optional[bool] = Field(
+    admins_promote_users: bool | None = Field(
         default=None,
     )
     """Only admins can promote users to admins."""
 
-    only_admins_edit_info: typing.Optional[bool] = Field(
+    only_admins_edit_info: bool | None = Field(
         default=None,
     )
     """Only admins can change chat info."""
 
-    only_admins_edit_pin: typing.Optional[bool] = Field(
+    only_admins_edit_pin: bool | None = Field(
         default=None,
     )
     """Only admins can edit pinned message."""
 
-    only_admins_invite: typing.Optional[bool] = Field(
+    only_admins_invite: bool | None = Field(
         default=None,
     )
     """Only admins can invite users to this chat."""
 
-    only_admins_kick: typing.Optional[bool] = Field(
+    only_admins_kick: bool | None = Field(
         default=None,
     )
     """Only admins can kick users from this chat."""
@@ -2443,67 +2443,67 @@ class MessagesChatSettings(BaseModel):
     acl: "MessagesChatSettingsAcl" = Field()
     """Property `MessagesChatSettings.acl`."""
 
-    members_count: typing.Optional[int] = Field(
+    members_count: int | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.members_count`."""
 
-    friends_count: typing.Optional[int] = Field(
+    friends_count: int | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.friends_count`."""
 
-    pinned_messages_count: typing.Optional[int] = Field(
+    pinned_messages_count: int | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.pinned_messages_count`."""
 
-    pinned_message: typing.Optional["MessagesPinnedMessage"] = Field(
+    pinned_message: "MessagesPinnedMessage | None" = Field(
         default=None,
     )
     """Property `MessagesChatSettings.pinned_message`."""
 
-    photo: typing.Optional["MessagesChatSettingsPhoto"] = Field(
+    photo: "MessagesChatSettingsPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesChatSettings.photo`."""
 
-    admin_ids: typing.Optional[typing.List[int]] = Field(
+    admin_ids: list[int] | None = Field(
         default=None,
     )
     """Ids of chat admins."""
 
-    active_ids: typing.Optional[typing.List[int]] = Field(
+    active_ids: list[int] | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.active_ids`."""
 
-    is_group_channel: typing.Optional[bool] = Field(
+    is_group_channel: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.is_group_channel`."""
 
-    permissions: typing.Optional["MessagesChatSettingsPermissions"] = Field(
+    permissions: "MessagesChatSettingsPermissions | None" = Field(
         default=None,
     )
     """Property `MessagesChatSettings.permissions`."""
 
-    is_disappearing: typing.Optional[bool] = Field(
+    is_disappearing: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.is_disappearing`."""
 
-    theme: typing.Optional[str] = Field(
+    theme: str | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.theme`."""
 
-    disappearing_chat_link: typing.Optional[str] = Field(
+    disappearing_chat_link: str | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.disappearing_chat_link`."""
 
-    is_service: typing.Optional[bool] = Field(
+    is_service: bool | None = Field(
         default=None,
     )
     """Property `MessagesChatSettings.is_service`."""
@@ -2544,49 +2544,49 @@ class MessagesChatSettingsAcl(BaseModel):
     can_use_mass_mentions: bool = Field()
     """Can you use mass mentions."""
 
-    can_change_service_type: typing.Optional[bool] = Field(
+    can_change_service_type: bool | None = Field(
         default=None,
     )
     """Can you change chat service type."""
 
 
-class MessagesChatSettingsPermissionsInvite(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsInvite(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeInfo(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangeInfo(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangePin(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangePin(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsUseMassMentions(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsUseMassMentions(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsSeeInviteLink(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsSeeInviteLink(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsCall(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsCall(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
     ALL = "all"
 
 
-class MessagesChatSettingsPermissionsChangeAdmins(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsPermissionsChangeAdmins(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OWNER_AND_ADMINS = "owner_and_admins"
 
@@ -2596,37 +2596,37 @@ class MessagesChatSettingsPermissions(BaseModel):
     Model: `MessagesChatSettingsPermissions`
     """
 
-    invite: typing.Optional["MessagesChatSettingsPermissionsInvite"] = Field(
+    invite: "MessagesChatSettingsPermissionsInvite | None" = Field(
         default=None,
     )
     """Who can invite users to chat."""
 
-    change_info: typing.Optional["MessagesChatSettingsPermissionsChangeInfo"] = Field(
+    change_info: "MessagesChatSettingsPermissionsChangeInfo | None" = Field(
         default=None,
     )
     """Who can change chat info."""
 
-    change_pin: typing.Optional["MessagesChatSettingsPermissionsChangePin"] = Field(
+    change_pin: "MessagesChatSettingsPermissionsChangePin | None" = Field(
         default=None,
     )
     """Who can change pinned message."""
 
-    use_mass_mentions: typing.Optional["MessagesChatSettingsPermissionsUseMassMentions"] = Field(
+    use_mass_mentions: "MessagesChatSettingsPermissionsUseMassMentions | None" = Field(
         default=None,
     )
     """Who can use mass mentions."""
 
-    see_invite_link: typing.Optional["MessagesChatSettingsPermissionsSeeInviteLink"] = Field(
+    see_invite_link: "MessagesChatSettingsPermissionsSeeInviteLink | None" = Field(
         default=None,
     )
     """Who can see invite link."""
 
-    call: typing.Optional["MessagesChatSettingsPermissionsCall"] = Field(
+    call: "MessagesChatSettingsPermissionsCall | None" = Field(
         default=None,
     )
     """Who can make calls."""
 
-    change_admins: typing.Optional["MessagesChatSettingsPermissionsChangeAdmins"] = Field(
+    change_admins: "MessagesChatSettingsPermissionsChangeAdmins | None" = Field(
         default=None,
     )
     """Who can change admins."""
@@ -2637,40 +2637,40 @@ class MessagesChatSettingsPhoto(BaseModel):
     Model: `MessagesChatSettingsPhoto`
     """
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of the preview image with 50px in width."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of the preview image with 100px in width."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of the preview image with 200px in width."""
 
-    is_default_photo: typing.Optional[bool] = Field(
+    is_default_photo: bool | None = Field(
         default=None,
     )
     """If provided photo is default."""
 
-    is_default_call_photo: typing.Optional[bool] = Field(
+    is_default_call_photo: bool | None = Field(
         default=None,
     )
     """If provided photo is default call photo."""
 
 
-class MessagesChatSettingsState(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesChatSettingsState(StrEnum, metaclass=BaseEnumMeta):
     IN = "in"
     KICKED = "kicked"
     LEFT = "left"
     OUT = "out"
 
 
-class MessagesConversationSpecialServiceType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesConversationSpecialServiceType(StrEnum, metaclass=BaseEnumMeta):
     BUSINESS_NOTIFY = "business_notify"
 
 
@@ -2697,67 +2697,67 @@ class MessagesConversation(BaseModel):
     version: int = Field()
     """Property `MessagesConversation.version`."""
 
-    sort_id: typing.Optional["MessagesConversationSortId"] = Field(
+    sort_id: "MessagesConversationSortId | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.sort_id`."""
 
-    unread_count: typing.Optional[int] = Field(
+    unread_count: int | None = Field(
         default=None,
     )
     """Unread messages number."""
 
-    is_marked_unread: typing.Optional[bool] = Field(
+    is_marked_unread: bool | None = Field(
         default=None,
     )
     """Is this conversation unread."""
 
-    out_read_by: typing.Optional["MessagesOutReadBy"] = Field(
+    out_read_by: "MessagesOutReadBy | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.out_read_by`."""
 
-    important: typing.Optional[bool] = Field(
+    important: bool | None = Field(
         default=None,
     )
     """Property `MessagesConversation.important`."""
 
-    unanswered: typing.Optional[bool] = Field(
+    unanswered: bool | None = Field(
         default=None,
     )
     """Property `MessagesConversation.unanswered`."""
 
-    special_service_type: typing.Optional["MessagesConversationSpecialServiceType"] = Field(
+    special_service_type: "MessagesConversationSpecialServiceType | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.special_service_type`."""
 
-    message_request_data: typing.Optional["MessagesMessageRequestData"] = Field(
+    message_request_data: "MessagesMessageRequestData | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.message_request_data`."""
 
-    mentions: typing.Optional[typing.List[int]] = Field(
+    mentions: list[int] | None = Field(
         default=None,
     )
     """Ids of messages with mentions."""
 
-    current_keyboard: typing.Optional["MessagesKeyboard"] = Field(
+    current_keyboard: "MessagesKeyboard | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.current_keyboard`."""
 
-    push_settings: typing.Optional["MessagesPushSettings"] = Field(
+    push_settings: "MessagesPushSettings | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.push_settings`."""
 
-    can_write: typing.Optional["MessagesConversationCanWrite"] = Field(
+    can_write: "MessagesConversationCanWrite | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.can_write`."""
 
-    chat_settings: typing.Optional["MessagesChatSettings"] = Field(
+    chat_settings: "MessagesChatSettings | None" = Field(
         default=None,
     )
     """Property `MessagesConversation.chat_settings`."""
@@ -2771,12 +2771,12 @@ class MessagesConversationCanWrite(BaseModel):
     allowed: bool = Field()
     """Property `MessagesConversationCanWrite.allowed`."""
 
-    reason: typing.Optional[int] = Field(
+    reason: int | None = Field(
         default=None,
     )
     """Property `MessagesConversationCanWrite.reason`."""
 
-    until: typing.Optional[int] = Field(
+    until: int | None = Field(
         default=None,
     )
     """Property `MessagesConversationCanWrite.until`."""
@@ -2790,42 +2790,42 @@ class MessagesConversationMember(BaseModel):
     member_id: int = Field()
     """Property `MessagesConversationMember.member_id`."""
 
-    can_kick: typing.Optional[bool] = Field(
+    can_kick: bool | None = Field(
         default=None,
     )
     """Is it possible for user to kick this member."""
 
-    is_restricted_to_write: typing.Optional[bool] = Field(
+    is_restricted_to_write: bool | None = Field(
         default=None,
     )
     """Does this member have write permission."""
 
-    invited_by: typing.Optional[int] = Field(
+    invited_by: int | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.invited_by`."""
 
-    is_admin: typing.Optional[bool] = Field(
+    is_admin: bool | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.is_admin`."""
 
-    is_owner: typing.Optional[bool] = Field(
+    is_owner: bool | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.is_owner`."""
 
-    is_message_request: typing.Optional[bool] = Field(
+    is_message_request: bool | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.is_message_request`."""
 
-    join_date: typing.Optional[int] = Field(
+    join_date: int | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.join_date`."""
 
-    request_date: typing.Optional[int] = Field(
+    request_date: int | None = Field(
         default=None,
     )
     """Message request date."""
@@ -2842,13 +2842,13 @@ class MessagesConversationPeer(BaseModel):
     type: "MessagesConversationPeerType" = Field()
     """Property `MessagesConversationPeer.type`."""
 
-    local_id: typing.Optional[int] = Field(
+    local_id: int | None = Field(
         default=None,
     )
     """Property `MessagesConversationPeer.local_id`."""
 
 
-class MessagesConversationPeerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesConversationPeerType(StrEnum, metaclass=BaseEnumMeta):
     CHAT = "chat"
     EMAIL = "email"
     USER = "user"
@@ -2875,7 +2875,7 @@ class MessagesConversationWithMessage(BaseModel):
     conversation: "MessagesConversation" = Field()
     """Property `MessagesConversationWithMessage.conversation`."""
 
-    last_message: typing.Optional["MessagesMessage"] = Field(
+    last_message: "MessagesMessage | None" = Field(
         default=None,
     )
     """Property `MessagesConversationWithMessage.last_message`."""
@@ -2886,27 +2886,27 @@ class MessagesDeleteFullResponseItem(BaseModel):
     Model: `MessagesDeleteFullResponseItem`
     """
 
-    peer_id: typing.Optional[int] = Field(
+    peer_id: int | None = Field(
         default=None,
     )
     """Property `MessagesDeleteFullResponseItem.peer_id`."""
 
-    message_id: typing.Optional[int] = Field(
+    message_id: int | None = Field(
         default=None,
     )
     """Property `MessagesDeleteFullResponseItem.message_id`."""
 
-    conversation_message_id: typing.Optional[int] = Field(
+    conversation_message_id: int | None = Field(
         default=None,
     )
     """Property `MessagesDeleteFullResponseItem.conversation_message_id`."""
 
-    response: typing.Optional[bool] = Field(
+    response: bool | None = Field(
         default=None,
     )
     """Property `MessagesDeleteFullResponseItem.response`."""
 
-    error: typing.Optional["BaseMessageError"] = Field(
+    error: "BaseMessageError | None" = Field(
         default=None,
     )
     """Property `MessagesDeleteFullResponseItem.error`."""
@@ -2929,47 +2929,47 @@ class MessagesForeignMessage(BaseModel):
     text: str = Field()
     """Message text."""
 
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+    attachments: list["MessagesMessageAttachment"] | None = Field(
         default=None,
     )
     """Property `MessagesForeignMessage.attachments`."""
 
-    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
+    fwd_messages: list["MessagesForeignMessage"] | None = Field(
         default=None,
     )
     """Property `MessagesForeignMessage.fwd_messages`."""
 
-    geo: typing.Optional["BaseGeo"] = Field(
+    geo: "BaseGeo | None" = Field(
         default=None,
     )
     """Property `MessagesForeignMessage.geo`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Message ID."""
 
-    peer_id: typing.Optional[int] = Field(
+    peer_id: int | None = Field(
         default=None,
     )
     """Peer ID."""
 
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+    reply_message: "MessagesForeignMessage | None" = Field(
         default=None,
     )
     """Property `MessagesForeignMessage.reply_message`."""
 
-    update_time: typing.Optional[int] = Field(
+    update_time: int | None = Field(
         default=None,
     )
     """Date when the message has been updated in Unixtime."""
 
-    was_listened: typing.Optional[bool] = Field(
+    was_listened: bool | None = Field(
         default=None,
     )
     """Was the audio message inside already listened by you."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
@@ -2980,38 +2980,38 @@ class MessagesForward(BaseModel):
     Model: `MessagesForward`
     """
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Messages owner_id."""
 
-    peer_id: typing.Optional[int] = Field(
+    peer_id: int | None = Field(
         default=None,
     )
     """Messages peer_id."""
 
-    conversation_message_ids: typing.Optional[typing.List[int]] = Field(
+    conversation_message_ids: list[int] | None = Field(
         default=None,
     )
     """Property `MessagesForward.conversation_message_ids`."""
 
-    cmids: typing.Optional[typing.List[int]] = Field(
+    cmids: list[int] | None = Field(
         default=None,
     )
     """Property `MessagesForward.cmids`."""
 
-    message_ids: typing.Optional[typing.List[int]] = Field(
+    message_ids: list[int] | None = Field(
         default=None,
     )
     """Property `MessagesForward.message_ids`."""
 
-    is_reply: typing.Optional[bool] = Field(
+    is_reply: bool | None = Field(
         default=None,
     )
     """If you need to reply to a message."""
 
 
-MessagesFwdMessages: typing.TypeAlias = typing.List[typing.List[MessagesForeignMessage]]
+MessagesFwdMessages: typing.TypeAlias = list[list["MessagesForeignMessage"]]
 
 
 class MessagesGetConversationById(BaseModel):
@@ -3022,7 +3022,7 @@ class MessagesGetConversationById(BaseModel):
     count: int = Field()
     """Total number."""
 
-    items: typing.List["MessagesConversation"] = Field()
+    items: list["MessagesConversation"] = Field()
     """Property `MessagesGetConversationById.items`."""
 
 
@@ -3031,23 +3031,23 @@ class MessagesGetConversationMembers(BaseModel):
     Model: `MessagesGetConversationMembers`
     """
 
-    items: typing.List["MessagesConversationMember"] = Field()
+    items: list["MessagesConversationMember"] = Field()
     """Property `MessagesGetConversationMembers.items`."""
 
     count: int = Field()
     """Chat members count."""
 
-    chat_restrictions: typing.Optional["MessagesChatRestrictions"] = Field(
+    chat_restrictions: "MessagesChatRestrictions | None" = Field(
         default=None,
     )
     """Property `MessagesGetConversationMembers.chat_restrictions`."""
 
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
     """Property `MessagesGetConversationMembers.profiles`."""
 
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
     """Property `MessagesGetConversationMembers.groups`."""
@@ -3061,12 +3061,12 @@ class MessagesGetInviteLinkByOwnerResponseItem(BaseModel):
     owner_id: int = Field()
     """Property `MessagesGetInviteLinkByOwnerResponseItem.owner_id`."""
 
-    link: typing.Optional[str] = Field(
+    link: str | None = Field(
         default=None,
     )
     """Property `MessagesGetInviteLinkByOwnerResponseItem.link`."""
 
-    error: typing.Optional["BaseMessageError"] = Field(
+    error: "BaseMessageError | None" = Field(
         default=None,
     )
     """Property `MessagesGetInviteLinkByOwnerResponseItem.error`."""
@@ -3092,7 +3092,7 @@ class MessagesGraffiti(BaseModel):
     height: int = Field()
     """Graffiti height."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for graffiti."""
@@ -3118,22 +3118,22 @@ class MessagesHistoryAttachment(BaseModel):
     from_id: int = Field()
     """Message author\'s ID."""
 
-    message_expire_ttl: typing.Optional[int] = Field(
+    message_expire_ttl: int | None = Field(
         default=None,
     )
     """Message Exipire ttl."""
 
-    forward_level: typing.Optional[int] = Field(
+    forward_level: int | None = Field(
         default=None,
     )
     """Forward level (optional)."""
 
-    was_listened: typing.Optional[bool] = Field(
+    was_listened: bool | None = Field(
         default=None,
     )
     """Property `MessagesHistoryAttachment.was_listened`."""
 
-    position: typing.Optional[int] = Field(
+    position: int | None = Field(
         default=None,
     )
     """Attachment position in the Message."""
@@ -3147,38 +3147,38 @@ class MessagesHistoryMessageAttachment(BaseModel):
     type: "MessagesHistoryMessageAttachmentType" = Field()
     """Property `MessagesHistoryMessageAttachment.type`."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.audio`."""
 
-    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+    audio_message: "MessagesAudioMessage | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.audio_message`."""
 
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.doc`."""
 
-    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+    graffiti: "MessagesGraffiti | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.graffiti`."""
 
-    market: typing.Optional["MarketMarketItem"] = Field(
+    market: "MarketMarketItem | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.market`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesHistoryMessageAttachment.photo`."""
 
 
-class MessagesHistoryMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesHistoryMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     APP_ACTION = "app_action"
     AUDIO = "audio"
     DOC = "doc"
@@ -3199,21 +3199,21 @@ class MessagesKeyboard(BaseModel):
     one_time: bool = Field()
     """Should this keyboard disappear on first use."""
 
-    buttons: typing.List[typing.List["MessagesKeyboardButton"]] = Field()
+    buttons: list[list["MessagesKeyboardButton"]] = Field()
     """Property `MessagesKeyboard.buttons`."""
 
-    author_id: typing.Optional[int] = Field(
+    author_id: int | None = Field(
         default=None,
     )
     """Community or bot, which set this keyboard."""
 
-    inline: typing.Optional[bool] = Field(
+    inline: bool | None = Field(
         default=None,
     )
     """Property `MessagesKeyboard.inline`."""
 
 
-class MessagesKeyboardButtonColor(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonColor(StrEnum, metaclass=BaseEnumMeta):
     DEFAULT = "default"
     POSITIVE = "positive"
     NEGATIVE = "negative"
@@ -3228,13 +3228,13 @@ class MessagesKeyboardButton(BaseModel):
     action: "MessagesKeyboardButtonPropertyAction" = Field()
     """Property `MessagesKeyboardButton.action`."""
 
-    color: typing.Optional["MessagesKeyboardButtonColor"] = Field(
+    color: "MessagesKeyboardButtonColor | None" = Field(
         default=None,
     )
     """Button color."""
 
 
-class MessagesKeyboardButtonActionCallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionCallbackType(StrEnum, metaclass=BaseEnumMeta):
     CALLBACK = "callback"
 
 
@@ -3250,13 +3250,13 @@ class MessagesKeyboardButtonActionCallback(BaseModel):
     type: "MessagesKeyboardButtonActionCallbackType" = Field()
     """Property `MessagesKeyboardButtonActionCallback.type`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionLocationType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionLocationType(StrEnum, metaclass=BaseEnumMeta):
     LOCATION = "location"
 
 
@@ -3269,13 +3269,13 @@ class MessagesKeyboardButtonActionLocation(BaseModel):
     type: "MessagesKeyboardButtonActionLocationType" = Field()
     """Property `MessagesKeyboardButtonActionLocation.type`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenAppType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenAppType(StrEnum, metaclass=BaseEnumMeta):
     OPEN_APP = "open_app"
 
 
@@ -3286,29 +3286,29 @@ class MessagesKeyboardButtonActionOpenApp(BaseModel):
     """
 
     app_id: int = Field()
-    """Fragment value in app link like vk.ru/app{app_id}_-654321#hash."""
+    """Fragment value in app link like vk.com/app{app_id}_-654321#hash."""
 
     label: str = Field()
     """Label for button."""
 
     owner_id: int = Field()
-    """Fragment value in app link like vk.ru/app123456_{owner_id}#hash."""
+    """Fragment value in app link like vk.com/app123456_{owner_id}#hash."""
 
     type: "MessagesKeyboardButtonActionOpenAppType" = Field()
     """Property `MessagesKeyboardButtonActionOpenApp.type`."""
 
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    """Fragment value in app link like vk.ru/app123456_-654321#{hash}."""
+    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenLinkType(StrEnum, metaclass=BaseEnumMeta):
     OPEN_LINK = "open_link"
 
 
@@ -3327,13 +3327,13 @@ class MessagesKeyboardButtonActionOpenLink(BaseModel):
     type: "MessagesKeyboardButtonActionOpenLinkType" = Field()
     """Property `MessagesKeyboardButtonActionOpenLink.type`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionOpenPhotoType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionOpenPhotoType(StrEnum, metaclass=BaseEnumMeta):
     OPEN_PHOTO = "open_photo"
 
 
@@ -3347,7 +3347,7 @@ class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
     """Property `MessagesKeyboardButtonActionOpenPhoto.type`."""
 
 
-class MessagesKeyboardButtonActionTextType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionTextType(StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
 
 
@@ -3363,13 +3363,13 @@ class MessagesKeyboardButtonActionText(BaseModel):
     type: "MessagesKeyboardButtonActionTextType" = Field()
     """Property `MessagesKeyboardButtonActionText.type`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
 
 
-class MessagesKeyboardButtonActionVkpayType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesKeyboardButtonActionVkpayType(StrEnum, metaclass=BaseEnumMeta):
     VKPAY = "vkpay"
 
 
@@ -3380,12 +3380,12 @@ class MessagesKeyboardButtonActionVkpay(BaseModel):
     """
 
     hash: str = Field()
-    """Fragment value in app link like vk.ru/app123456_-654321#{hash}."""
+    """Fragment value in app link like vk.com/app123456_-654321#{hash}."""
 
     type: "MessagesKeyboardButtonActionVkpayType" = Field()
     """Property `MessagesKeyboardButtonActionVkpay.type`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Additional data sent along with message for developer convenience."""
@@ -3429,7 +3429,7 @@ class MessagesLongpollParams(BaseModel):
     ts: int = Field()
     """Timestamp."""
 
-    pts: typing.Optional[int] = Field(
+    pts: int | None = Field(
         default=None,
     )
     """Persistent timestamp."""
@@ -3443,32 +3443,32 @@ class MessagesMessageAction(BaseModel):
     type: "MessagesMessageActionStatus" = Field()
     """Property `MessagesMessageAction.type`."""
 
-    conversation_message_id: typing.Optional[int] = Field(
+    conversation_message_id: int | None = Field(
         default=None,
     )
     """Message ID."""
 
-    email: typing.Optional[str] = Field(
+    email: str | None = Field(
         default=None,
     )
     """Email address for chat_invite_user or chat_kick_user actions."""
 
-    member_id: typing.Optional[int] = Field(
+    member_id: int | None = Field(
         default=None,
     )
     """User or email peer ID."""
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Message body of related message."""
 
-    photo: typing.Optional["MessagesMessageActionPhoto"] = Field(
+    photo: "MessagesMessageActionPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAction.photo`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """New chat title for chat_create and chat_title_update actions."""
@@ -3489,7 +3489,7 @@ class MessagesMessageActionPhoto(BaseModel):
     """URL of the preview image with 200px in width."""
 
 
-class MessagesMessageActionStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesMessageActionStatus(StrEnum, metaclass=BaseEnumMeta):
     CHAT_PHOTO_UPDATE = "chat_photo_update"
     CHAT_PHOTO_REMOVE = "chat_photo_remove"
     CHAT_CREATE = "chat_create"
@@ -3511,73 +3511,73 @@ class MessagesMessageAttachment(BaseModel):
     type: "MessagesMessageAttachmentType" = Field()
     """Property `MessagesMessageAttachment.type`."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.audio`."""
 
-    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+    audio_message: "MessagesAudioMessage | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.audio_message`."""
 
-    call: typing.Optional["CallsCall"] = Field(
+    call: "CallsCall | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.call`."""
 
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.doc`."""
 
-    gift: typing.Optional["GiftsLayout"] = Field(
+    gift: "GiftsLayout | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.gift`."""
 
-    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+    graffiti: "MessagesGraffiti | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.graffiti`."""
 
-    market: typing.Optional["MarketMarketItem"] = Field(
+    market: "MarketMarketItem | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.market`."""
 
-    market_market_album: typing.Optional["MarketMarketAlbum"] = Field(
+    market_market_album: "MarketMarketAlbum | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.market_market_album`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.photo`."""
 
-    sticker: typing.Optional["BaseSticker"] = Field(
+    sticker: "BaseSticker | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.sticker`."""
 
-    story: typing.Optional["StoriesStory"] = Field(
+    story: "StoriesStory | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.story`."""
 
-    wall_reply: typing.Optional["WallWallComment"] = Field(
+    wall_reply: "WallWallComment | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.wall_reply`."""
 
-    poll: typing.Optional["PollsPoll"] = Field(
+    poll: "PollsPoll | None" = Field(
         default=None,
     )
     """Property `MessagesMessageAttachment.poll`."""
 
 
-class MessagesMessageAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     VIDEO = "video"
@@ -3602,17 +3602,17 @@ class MessagesMessageRequestData(BaseModel):
     Model: `MessagesMessageRequestData`
     """
 
-    status: typing.Optional[str] = Field(
+    status: str | None = Field(
         default=None,
     )
     """Status of message request."""
 
-    inviter_id: typing.Optional[int] = Field(
+    inviter_id: int | None = Field(
         default=None,
     )
     """Message request sender id."""
 
-    request_date: typing.Optional[int] = Field(
+    request_date: int | None = Field(
         default=None,
     )
     """Message request date."""
@@ -3623,12 +3623,12 @@ class MessagesMessagesArray(BaseModel):
     Model: `MessagesMessagesArray`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Property `MessagesMessagesArray.count`."""
 
-    items: typing.Optional[typing.List["MessagesMessage"]] = Field(
+    items: list["MessagesMessage"] | None = Field(
         default=None,
     )
     """Property `MessagesMessagesArray.items`."""
@@ -3639,12 +3639,12 @@ class MessagesOutReadBy(BaseModel):
     Model: `MessagesOutReadBy`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Property `MessagesOutReadBy.count`."""
 
-    member_ids: typing.Optional[typing.List[int]] = Field(
+    member_ids: list[int] | None = Field(
         default=None,
     )
     """Property `MessagesOutReadBy.member_ids`."""
@@ -3673,37 +3673,37 @@ class MessagesPinnedMessage(BaseModel):
     text: str = Field()
     """Message text."""
 
-    attachments: typing.Optional[typing.List["MessagesMessageAttachment"]] = Field(
+    attachments: list["MessagesMessageAttachment"] | None = Field(
         default=None,
     )
     """Property `MessagesPinnedMessage.attachments`."""
 
-    fwd_messages: typing.Optional[typing.List["MessagesForeignMessage"]] = Field(
+    fwd_messages: list["MessagesForeignMessage"] | None = Field(
         default=None,
     )
     """Forwarded messages."""
 
-    geo: typing.Optional["BaseGeo"] = Field(
+    geo: "BaseGeo | None" = Field(
         default=None,
     )
     """Property `MessagesPinnedMessage.geo`."""
 
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+    reply_message: "MessagesForeignMessage | None" = Field(
         default=None,
     )
     """Property `MessagesPinnedMessage.reply_message`."""
 
-    keyboard: typing.Optional["MessagesKeyboard"] = Field(
+    keyboard: "MessagesKeyboard | None" = Field(
         default=None,
     )
     """Property `MessagesPinnedMessage.keyboard`."""
 
-    out: typing.Optional[bool] = Field(
+    out: bool | None = Field(
         default=None,
     )
     """Information whether the message is outcoming."""
 
-    important: typing.Optional[bool] = Field(
+    important: bool | None = Field(
         default=None,
     )
     """Is it an important message."""
@@ -3720,17 +3720,17 @@ class MessagesPushSettings(BaseModel):
     no_sound: bool = Field()
     """Information whether the sound is on."""
 
-    disabled_until: typing.Optional[int] = Field(
+    disabled_until: int | None = Field(
         default=None,
     )
     """Time until what notifications are disabled."""
 
-    disabled_mentions: typing.Optional[bool] = Field(
+    disabled_mentions: bool | None = Field(
         default=None,
     )
     """Information whether the mentions are disabled."""
 
-    disabled_mass_mentions: typing.Optional[bool] = Field(
+    disabled_mass_mentions: bool | None = Field(
         default=None,
     )
     """Information whether the mass mentions (like \'@all\', \'@online\') are disabled."""
@@ -3774,7 +3774,7 @@ class MessagesReactionCounterResponseItem(BaseModel):
     count: int = Field()
     """Property `MessagesReactionCounterResponseItem.count`."""
 
-    user_ids: typing.List[int] = Field()
+    user_ids: list[int] = Field()
     """Property `MessagesReactionCounterResponseItem.user_ids`."""
 
 
@@ -3786,7 +3786,7 @@ class MessagesReactionCountersResponseItem(BaseModel):
     cmid: int = Field()
     """Property `MessagesReactionCountersResponseItem.cmid`."""
 
-    counters: typing.List["MessagesReactionCounterResponseItem"] = Field()
+    counters: list["MessagesReactionCounterResponseItem"] = Field()
     """Property `MessagesReactionCountersResponseItem.counters`."""
 
 
@@ -3816,13 +3816,13 @@ class MessagesSendUserIdsResponseItem(BaseModel):
     conversation_message_id: int = Field()
     """Property `MessagesSendUserIdsResponseItem.conversation_message_id`."""
 
-    error: typing.Optional["BaseMessageError"] = Field(
+    error: "BaseMessageError | None" = Field(
         default=None,
     )
     """Property `MessagesSendUserIdsResponseItem.error`."""
 
 
-class MessagesTemplateActionTypeNames(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesTemplateActionTypeNames(StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     START = "start"
     LOCATION = "location"
@@ -3836,7 +3836,7 @@ class MessagesTemplateActionTypeNames(str, enum.Enum, metaclass=BaseEnumMeta):
     OPEN_MODAL_VIEW = "open_modal_view"
 
 
-class MessagesUserTypeForXtrInvitedBy(str, enum.Enum, metaclass=BaseEnumMeta):
+class MessagesUserTypeForXtrInvitedBy(StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
 
@@ -3846,68 +3846,68 @@ class AccountAccountCounters(BaseModel):
     Model: `AccountAccountCounters`
     """
 
-    app_requests: typing.Optional[int] = Field(
+    app_requests: int | None = Field(
         default=None,
     )
     """New app requests number."""
 
-    events: typing.Optional[int] = Field(
+    events: int | None = Field(
         default=None,
     )
     """New events number."""
 
-    faves: typing.Optional[int] = Field(
+    faves: int | None = Field(
         default=None,
     )
     """New faves number."""
 
-    friends: typing.Optional[int] = Field(
+    friends: int | None = Field(
         default=None,
     )
     """New friends requests number."""
 
-    friends_recommendations: typing.Optional[int] = Field(
+    friends_recommendations: int | None = Field(
         default=None,
     )
     """New friends recommendations number."""
 
-    gifts: typing.Optional[int] = Field(
+    gifts: int | None = Field(
         default=None,
     )
     """New gifts number."""
 
-    groups: typing.Optional[int] = Field(
+    groups: int | None = Field(
         default=None,
     )
     """New groups number."""
 
-    messages: typing.Optional[int] = Field(
+    messages: int | None = Field(
         default=None,
     )
     """New messages number. Will be removed when messages.getCounters is released.."""
 
-    memories: typing.Optional[int] = Field(
+    memories: int | None = Field(
         default=None,
     )
     """New memories number."""
 
-    notes: typing.Optional[int] = Field(
+    notes: int | None = Field(
         default=None,
     )
     """New notes number."""
 
-    notifications: typing.Optional[int] = Field(
+    notifications: int | None = Field(
         default=None,
     )
     """New notifications number."""
 
-    photos: typing.Optional[int] = Field(
+    photos: int | None = Field(
         default=None,
     )
     """New photo tags number."""
 
 
-class AccountCountersFilter(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountCountersFilter(StrEnum, metaclass=BaseEnumMeta):
     APP_REQUESTS = "app_requests"
     EVENTS = "events"
     FRIENDS = "friends"
@@ -3928,33 +3928,33 @@ class AccountInfo(BaseModel):
     Model: `AccountInfo`
     """
 
-    f__2fa_required: typing.Optional[bool] = Field(
+    f__2fa_required: bool | None = Field(
         default=None,
         alias="2fa_required",
     )
     """Two factor authentication is enabled."""
 
-    https_required: typing.Optional[bool] = Field(
+    https_required: bool | None = Field(
         default=None,
     )
     """Information whether HTTPS-only is enabled."""
 
-    intro: typing.Optional[int] = Field(
+    intro: int | None = Field(
         default=None,
     )
     """Information whether user has been processed intro."""
 
-    lang: typing.Optional[int] = Field(
+    lang: int | None = Field(
         default=None,
     )
     """Language ID."""
 
-    no_wall_replies: typing.Optional[bool] = Field(
+    no_wall_replies: bool | None = Field(
         default=None,
     )
     """Information whether wall comments should be hidden."""
 
-    own_posts_default: typing.Optional[bool] = Field(
+    own_posts_default: bool | None = Field(
         default=None,
     )
     """Information whether only owners posts should be shown."""
@@ -3965,43 +3965,43 @@ class AccountNameRequest(BaseModel):
     Model: `AccountNameRequest`
     """
 
-    first_name: typing.Optional[str] = Field(
+    first_name: str | None = Field(
         default=None,
     )
     """First name in request."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Request ID needed to cancel the request."""
 
-    last_name: typing.Optional[str] = Field(
+    last_name: str | None = Field(
         default=None,
     )
     """Last name in request."""
 
-    status: typing.Optional["AccountNameRequestStatus"] = Field(
+    status: "AccountNameRequestStatus | None" = Field(
         default=None,
     )
     """Property `AccountNameRequest.status`."""
 
-    lang: typing.Optional[str] = Field(
+    lang: str | None = Field(
         default=None,
     )
     """Text to display to user."""
 
-    link_href: typing.Optional[str] = Field(
+    link_href: str | None = Field(
         default=None,
     )
     """href for link in lang field."""
 
-    link_label: typing.Optional[str] = Field(
+    link_label: str | None = Field(
         default=None,
     )
     """label to display for link in lang field."""
 
 
-class AccountNameRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountNameRequestStatus(StrEnum, metaclass=BaseEnumMeta):
     SUCCESS = "success"
     PROCESSING = "processing"
     DECLINED = "declined"
@@ -4012,7 +4012,7 @@ class AccountNameRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     RESPONSE_WITH_LINK = "response_with_link"
 
 
-class AccountOfferLinkType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountOfferLinkType(StrEnum, metaclass=BaseEnumMeta):
     PROFILE = "profile"
     GROUP = "group"
     APP = "app"
@@ -4023,62 +4023,62 @@ class AccountOffer(BaseModel):
     Model: `AccountOffer`
     """
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Offer description."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Offer ID."""
 
-    img: typing.Optional[str] = Field(
+    img: str | None = Field(
         default=None,
     )
     """URL of the preview image."""
 
-    instruction: typing.Optional[str] = Field(
+    instruction: str | None = Field(
         default=None,
     )
     """Instruction how to process the offer."""
 
-    instruction_html: typing.Optional[str] = Field(
+    instruction_html: str | None = Field(
         default=None,
     )
     """Instruction how to process the offer (HTML format)."""
 
-    price: typing.Optional[int] = Field(
+    price: int | None = Field(
         default=None,
     )
     """Offer price."""
 
-    short_description: typing.Optional[str] = Field(
+    short_description: str | None = Field(
         default=None,
     )
     """Offer short description."""
 
-    tag: typing.Optional[str] = Field(
+    tag: str | None = Field(
         default=None,
     )
     """Offer tag."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Offer title."""
 
-    currency_amount: typing.Optional[float] = Field(
+    currency_amount: float | None = Field(
         default=None,
     )
     """Currency amount."""
 
-    link_id: typing.Optional[int] = Field(
+    link_id: int | None = Field(
         default=None,
     )
     """Link id."""
 
-    link_type: typing.Optional["AccountOfferLinkType"] = Field(
+    link_type: "AccountOfferLinkType | None" = Field(
         default=None,
     )
     """Link type."""
@@ -4089,12 +4089,12 @@ class AccountPushConversations(BaseModel):
     Model: `AccountPushConversations`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Items count."""
 
-    items: typing.Optional[typing.List["AccountPushConversationsItem"]] = Field(
+    items: list["AccountPushConversationsItem"] | None = Field(
         default=None,
     )
     """Property `AccountPushConversations.items`."""
@@ -4114,12 +4114,12 @@ class AccountPushConversationsItem(BaseModel):
     sound: bool = Field()
     """Information whether the sound are enabled."""
 
-    disabled_mentions: typing.Optional[bool] = Field(
+    disabled_mentions: bool | None = Field(
         default=None,
     )
     """Information whether the mentions are disabled."""
 
-    disabled_mass_mentions: typing.Optional[bool] = Field(
+    disabled_mass_mentions: bool | None = Field(
         default=None,
     )
     """Information whether the mass mentions (like \'@all\', \'@online\') are disabled. Can be affected by \'disabled_mentions\'."""
@@ -4130,116 +4130,116 @@ class AccountPushParams(BaseModel):
     Model: `AccountPushParams`
     """
 
-    msg: typing.Optional[typing.List["AccountPushParamsMode"]] = Field(
+    msg: list["AccountPushParamsMode"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.msg`."""
 
-    chat: typing.Optional[typing.List["AccountPushParamsMode"]] = Field(
+    chat: list["AccountPushParamsMode"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.chat`."""
 
-    like: typing.Optional[typing.List["AccountPushParamsSettings"]] = Field(
+    like: list["AccountPushParamsSettings"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.like`."""
 
-    repost: typing.Optional[typing.List["AccountPushParamsSettings"]] = Field(
+    repost: list["AccountPushParamsSettings"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.repost`."""
 
-    comment: typing.Optional[typing.List["AccountPushParamsSettings"]] = Field(
+    comment: list["AccountPushParamsSettings"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.comment`."""
 
-    mention: typing.Optional[typing.List["AccountPushParamsSettings"]] = Field(
+    mention: list["AccountPushParamsSettings"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.mention`."""
 
-    reply: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    reply: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.reply`."""
 
-    new_post: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    new_post: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.new_post`."""
 
-    wall_post: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    wall_post: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.wall_post`."""
 
-    wall_publish: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    wall_publish: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.wall_publish`."""
 
-    friend: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    friend: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.friend`."""
 
-    friend_found: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    friend_found: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.friend_found`."""
 
-    friend_accepted: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    friend_accepted: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.friend_accepted`."""
 
-    group_invite: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    group_invite: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.group_invite`."""
 
-    group_accepted: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    group_accepted: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.group_accepted`."""
 
-    birthday: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    birthday: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.birthday`."""
 
-    event_soon: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    event_soon: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.event_soon`."""
 
-    app_request: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    app_request: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.app_request`."""
 
-    sdk_open: typing.Optional[typing.List["AccountPushParamsOnoff"]] = Field(
+    sdk_open: list["AccountPushParamsOnoff"] | None = Field(
         default=None,
     )
     """Property `AccountPushParams.sdk_open`."""
 
 
-class AccountPushParamsMode(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountPushParamsMode(StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     NO_SOUND = "no_sound"
     NO_TEXT = "no_text"
 
 
-class AccountPushParamsOnoff(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountPushParamsOnoff(StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     NO_SOUND = "no_sound"
 
 
-class AccountPushParamsSettings(str, enum.Enum, metaclass=BaseEnumMeta):
+class AccountPushParamsSettings(StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     FR_OF_FR = "fr_of_fr"
@@ -4251,22 +4251,22 @@ class AccountPushSettings(BaseModel):
     Model: `AccountPushSettings`
     """
 
-    disabled: typing.Optional[bool] = Field(
+    disabled: bool | None = Field(
         default=None,
     )
     """Information whether notifications are disabled."""
 
-    disabled_until: typing.Optional[int] = Field(
+    disabled_until: int | None = Field(
         default=None,
     )
     """Time until that notifications are disabled in Unixtime."""
 
-    settings: typing.Optional["AccountPushParams"] = Field(
+    settings: "AccountPushParams | None" = Field(
         default=None,
     )
     """Property `AccountPushSettings.settings`."""
 
-    conversations: typing.Optional["AccountPushConversations"] = Field(
+    conversations: "AccountPushConversations | None" = Field(
         default=None,
     )
     """Property `AccountPushSettings.conversations`."""
@@ -4289,53 +4289,53 @@ class AccountUserSettingsInterests(BaseModel):
     Model: `AccountUserSettingsInterests`
     """
 
-    activities: typing.Optional["AccountUserSettingsInterest"] = Field(
+    activities: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.activities`."""
 
-    interests: typing.Optional["AccountUserSettingsInterest"] = Field(
+    interests: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.interests`."""
 
-    music: typing.Optional["AccountUserSettingsInterest"] = Field(
+    music: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.music`."""
 
-    tv: typing.Optional["AccountUserSettingsInterest"] = Field(
+    tv: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.tv`."""
 
-    movies: typing.Optional["AccountUserSettingsInterest"] = Field(
+    movies: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.movies`."""
 
-    books: typing.Optional["AccountUserSettingsInterest"] = Field(
+    books: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.books`."""
 
-    games: typing.Optional["AccountUserSettingsInterest"] = Field(
+    games: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.games`."""
 
-    quotes: typing.Optional["AccountUserSettingsInterest"] = Field(
+    quotes: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.quotes`."""
 
-    about: typing.Optional["AccountUserSettingsInterest"] = Field(
+    about: "AccountUserSettingsInterest | None" = Field(
         default=None,
     )
     """Property `AccountUserSettingsInterests.about`."""
 
 
-class AddressFields(str, enum.Enum, metaclass=BaseEnumMeta):
+class AddressFields(StrEnum, metaclass=BaseEnumMeta):
     ID = "id"
     TITLE = "title"
     ADDRESS = "address"
@@ -4354,13 +4354,13 @@ class AddressFields(str, enum.Enum, metaclass=BaseEnumMeta):
     TIME_OFFSET = "time_offset"
 
 
-class AdsAccessRole(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAccessRole(StrEnum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     MANAGER = "manager"
     REPORTS = "reports"
 
 
-class AdsAccessRolePublic(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAccessRolePublic(StrEnum, metaclass=BaseEnumMeta):
     MANAGER = "manager"
     REPORTS = "reports"
 
@@ -4370,12 +4370,12 @@ class AdsAccesses(BaseModel):
     Model: `AdsAccesses`
     """
 
-    client_id: typing.Optional[str] = Field(
+    client_id: str | None = Field(
         default=None,
     )
     """Client ID."""
 
-    role: typing.Optional["AdsAccessRole"] = Field(
+    role: "AdsAccessRole | None" = Field(
         default=None,
     )
     """Property `AdsAccesses.role`."""
@@ -4405,7 +4405,7 @@ class AdsAccount(BaseModel):
     """Can user view account budget."""
 
 
-class AdsAccountType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAccountType(StrEnum, metaclass=BaseEnumMeta):
     GENERAL = "general"
     AGENCY = "agency"
 
@@ -4418,7 +4418,7 @@ class AdsAd(BaseModel):
     ad_format: int = Field()
     """Ad format."""
 
-    ad_platform: typing.Union["int", "str"] = Field()
+    ad_platform: int | str = Field()
     """Ad platform."""
 
     all_limit: str = Field()
@@ -4442,230 +4442,230 @@ class AdsAd(BaseModel):
     status: "AdsAdStatus" = Field()
     """Property `AdsAd.status`."""
 
-    category1_id: typing.Optional[int] = Field(
+    category1_id: int | None = Field(
         default=None,
     )
     """Category ID."""
 
-    category2_id: typing.Optional[int] = Field(
+    category2_id: int | None = Field(
         default=None,
     )
     """Additional category ID."""
 
-    cpc: typing.Optional[str] = Field(
+    cpc: str | None = Field(
         default=None,
     )
     """Cost of a click, kopecks."""
 
-    cpm: typing.Optional[str] = Field(
+    cpm: str | None = Field(
         default=None,
     )
     """Cost of 1000 impressions, kopecks."""
 
-    cpa: typing.Optional[str] = Field(
+    cpa: str | None = Field(
         default=None,
     )
     """Cost of an action, kopecks."""
 
-    ocpm: typing.Optional[str] = Field(
+    ocpm: str | None = Field(
         default=None,
     )
     """Cost of 1000 impressions optimized, kopecks."""
 
-    autobidding: typing.Optional[bool] = Field(
+    autobidding: bool | None = Field(
         default=None,
     )
     """Autobidding."""
 
-    autobidding_max_cost: typing.Optional[str] = Field(
+    autobidding_max_cost: str | None = Field(
         default=None,
     )
     """Max cost of target actions for autobidding, kopecks."""
 
-    disclaimer_medical: typing.Optional[bool] = Field(
+    disclaimer_medical: bool | None = Field(
         default=None,
     )
     """Information whether disclaimer is enabled."""
 
-    disclaimer_specialist: typing.Optional[bool] = Field(
+    disclaimer_specialist: bool | None = Field(
         default=None,
     )
     """Information whether disclaimer is enabled."""
 
-    disclaimer_supplements: typing.Optional[bool] = Field(
+    disclaimer_supplements: bool | None = Field(
         default=None,
     )
     """Information whether disclaimer is enabled."""
 
-    disclaimer_credits: typing.Optional[bool] = Field(
+    disclaimer_credits: bool | None = Field(
         default=None,
     )
     """Information whether disclaimer is enabled."""
 
-    impressions_limit: typing.Optional[int] = Field(
+    impressions_limit: int | None = Field(
         default=None,
     )
     """Impressions limit."""
 
-    impressions_limit_period: typing.Optional[int] = Field(
+    impressions_limit_period: int | None = Field(
         default=None,
     )
     """Impressions limit period."""
 
-    impressions_limited: typing.Optional[bool] = Field(
+    impressions_limited: bool | None = Field(
         default=None,
     )
     """Information whether impressions are limited."""
 
-    video: typing.Optional[bool] = Field(
+    video: bool | None = Field(
         default=None,
     )
     """Information whether the ad is a video."""
 
-    day_limit: typing.Optional[str] = Field(
+    day_limit: str | None = Field(
         default=None,
     )
     """Day limit."""
 
-    goal_type: typing.Optional[int] = Field(
+    goal_type: int | None = Field(
         default=None,
     )
     """Goal type."""
 
-    user_goal_type: typing.Optional[int] = Field(
+    user_goal_type: int | None = Field(
         default=None,
     )
     """User goal type."""
 
-    age_restriction: typing.Optional[int] = Field(
+    age_restriction: int | None = Field(
         default=None,
     )
     """Age restriction."""
 
-    conversion_pixel_id: typing.Optional[int] = Field(
+    conversion_pixel_id: int | None = Field(
         default=None,
     )
     """Conversion pixel id."""
 
-    conversion_event_id: typing.Optional[int] = Field(
+    conversion_event_id: int | None = Field(
         default=None,
     )
     """Conversion event id."""
 
-    create_time: typing.Optional[int] = Field(
+    create_time: int | None = Field(
         default=None,
     )
     """Create time."""
 
-    update_time: typing.Optional[int] = Field(
+    update_time: int | None = Field(
         default=None,
     )
     """Update time."""
 
-    start_time: typing.Optional[int] = Field(
+    start_time: int | None = Field(
         default=None,
     )
     """Start time."""
 
-    stop_time: typing.Optional[int] = Field(
+    stop_time: int | None = Field(
         default=None,
     )
     """Stop time."""
 
-    publisher_platforms_auto: typing.Optional[bool] = Field(
+    publisher_platforms_auto: bool | None = Field(
         default=None,
     )
     """Publisher platform auto."""
 
-    publisher_platforms: typing.Optional[str] = Field(
+    publisher_platforms: str | None = Field(
         default=None,
     )
     """Publisher platforms."""
 
-    link_url: typing.Optional[str] = Field(
+    link_url: str | None = Field(
         default=None,
     )
     """Link url."""
 
-    link_owner_id: typing.Optional[int] = Field(
+    link_owner_id: int | None = Field(
         default=None,
     )
     """Link owner id."""
 
-    link_id: typing.Optional[int] = Field(
+    link_id: int | None = Field(
         default=None,
     )
     """Link id."""
 
-    has_campaign_budget_optimization: typing.Optional[bool] = Field(
+    has_campaign_budget_optimization: bool | None = Field(
         default=None,
     )
     """Has campaign budget optimization."""
 
-    events_retargeting_groups: typing.Optional[typing.List["AdsEventsRetargetingGroup"]] = Field(
+    events_retargeting_groups: list["AdsEventsRetargetingGroup"] | None = Field(
         default=None,
     )
     """Events retargeting groups."""
 
-    weekly_schedule_hours: typing.Optional[typing.List[str]] = Field(
+    weekly_schedule_hours: list[str] | None = Field(
         default=None,
     )
     """Weekly schedule hours."""
 
-    weekly_schedule_use_holidays: typing.Optional[int] = Field(
+    weekly_schedule_use_holidays: int | None = Field(
         default=None,
     )
     """Weekly schedule use holidays."""
 
-    ad_platform_no_ad_network: typing.Optional[int] = Field(
+    ad_platform_no_ad_network: int | None = Field(
         default=None,
     )
     """Ad platform no ad network."""
 
-    ad_platform_no_wall: typing.Optional[int] = Field(
+    ad_platform_no_wall: int | None = Field(
         default=None,
     )
     """Ad platform no wall."""
 
-    disclaimer_finance: typing.Optional[int] = Field(
+    disclaimer_finance: int | None = Field(
         default=None,
     )
     """Disclaimer finance."""
 
-    disclaimer_finance_name: typing.Optional[str] = Field(
+    disclaimer_finance_name: str | None = Field(
         default=None,
     )
     """Disclaimer finance name."""
 
-    disclaimer_finance_license_no: typing.Optional[str] = Field(
+    disclaimer_finance_license_no: str | None = Field(
         default=None,
     )
     """Disclaimer finance license no."""
 
-    is_promo: typing.Optional[bool] = Field(
+    is_promo: bool | None = Field(
         default=None,
     )
     """is promo."""
 
-    suggested_criteria: typing.Optional[int] = Field(
+    suggested_criteria: int | None = Field(
         default=None,
     )
     """Suggested criteria."""
 
-    link_type: typing.Optional[int] = Field(
+    link_type: int | None = Field(
         default=None,
     )
     """Link type."""
 
 
-class AdsAdApproved(int, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAdApproved(IntEnum, metaclass=BaseEnumMeta):
     NOT_MODERATED = 0
     PENDING_MODERATION = 1
     APPROVED = 2
     REJECTED = 3
 
 
-class AdsAdCostType(int, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAdCostType(IntEnum, metaclass=BaseEnumMeta):
     PER_CLICKS = 0
     PER_IMPRESSIONS = 1
     PER_ACTIONS = 2
@@ -4704,138 +4704,138 @@ class AdsAdLayout(BaseModel):
     title: str = Field()
     """Ad title."""
 
-    image_src_2x: typing.Optional[str] = Field(
+    image_src_2x: str | None = Field(
         default=None,
     )
     """URL of the preview image in double size."""
 
-    link_domain: typing.Optional[str] = Field(
+    link_domain: str | None = Field(
         default=None,
     )
     """Domain of advertised object."""
 
-    preview_link: typing.Optional[str] = Field(
+    preview_link: str | None = Field(
         default=None,
     )
     """link to preview an ad as it is shown on the website."""
 
-    video: typing.Optional[bool] = Field(
+    video: bool | None = Field(
         default=None,
     )
     """Information whether the ad is a video."""
 
-    social: typing.Optional[bool] = Field(
+    social: bool | None = Field(
         default=None,
     )
     """Social."""
 
-    okved: typing.Optional[str] = Field(
+    okved: str | None = Field(
         default=None,
     )
     """Okved."""
 
-    age_restriction: typing.Optional[int] = Field(
+    age_restriction: int | None = Field(
         default=None,
     )
     """Age restriction."""
 
-    goal_type: typing.Optional[int] = Field(
+    goal_type: int | None = Field(
         default=None,
     )
     """Goal type."""
 
-    link_title: typing.Optional[str] = Field(
+    link_title: str | None = Field(
         default=None,
     )
     """Link title."""
 
-    link_button: typing.Optional[str] = Field(
+    link_button: str | None = Field(
         default=None,
     )
     """Link button."""
 
-    repeat_video: typing.Optional[int] = Field(
+    repeat_video: int | None = Field(
         default=None,
     )
     """Repeat video."""
 
-    video_src_240: typing.Optional[str] = Field(
+    video_src_240: str | None = Field(
         default=None,
     )
     """Video source 240p."""
 
-    video_src_360: typing.Optional[str] = Field(
+    video_src_360: str | None = Field(
         default=None,
     )
     """Video source 360p."""
 
-    video_src_480: typing.Optional[str] = Field(
+    video_src_480: str | None = Field(
         default=None,
     )
     """Video source 480p."""
 
-    video_src_720: typing.Optional[str] = Field(
+    video_src_720: str | None = Field(
         default=None,
     )
     """Video source 720p."""
 
-    video_src_1080: typing.Optional[str] = Field(
+    video_src_1080: str | None = Field(
         default=None,
     )
     """Video source 1080p."""
 
-    video_src_1440: typing.Optional[str] = Field(
+    video_src_1440: str | None = Field(
         default=None,
     )
     """Video source 1440p."""
 
-    video_src_2160: typing.Optional[str] = Field(
+    video_src_2160: str | None = Field(
         default=None,
     )
     """Video source 2160p."""
 
-    video_image_src: typing.Optional[str] = Field(
+    video_image_src: str | None = Field(
         default=None,
     )
     """Video image source."""
 
-    video_image_src_2x: typing.Optional[str] = Field(
+    video_image_src_2x: str | None = Field(
         default=None,
     )
     """Video image source 2x."""
 
-    video_duration: typing.Optional[int] = Field(
+    video_duration: int | None = Field(
         default=None,
     )
     """Video duration."""
 
-    icon_src: typing.Optional[str] = Field(
+    icon_src: str | None = Field(
         default=None,
     )
     """Icon source."""
 
-    icon_src_2x: typing.Optional[str] = Field(
+    icon_src_2x: str | None = Field(
         default=None,
     )
     """Icon source 2x."""
 
-    post: typing.Optional["AdsPost"] = Field(
+    post: "AdsPost | None" = Field(
         default=None,
     )
     """Property `AdsAdLayout.post`."""
 
-    stories_data: typing.Optional["AdsStories"] = Field(
+    stories_data: "AdsStories | None" = Field(
         default=None,
     )
     """Property `AdsAdLayout.stories_data`."""
 
-    clips_list: typing.Optional[typing.List["AdsClipItem"]] = Field(
+    clips_list: list["AdsClipItem"] | None = Field(
         default=None,
     )
     """Property `AdsAdLayout.clips_list`."""
 
 
-class AdsAdStatus(int, enum.Enum, metaclass=BaseEnumMeta):
+class AdsAdStatus(IntEnum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
@@ -4870,49 +4870,49 @@ class AdsCampaign(BaseModel):
     type: "AdsCampaignType" = Field()
     """Property `AdsCampaign.type`."""
 
-    ads_count: typing.Optional[int] = Field(
+    ads_count: int | None = Field(
         default=None,
     )
     """Amount of active ads in campaign."""
 
-    create_time: typing.Optional[int] = Field(
+    create_time: int | None = Field(
         default=None,
     )
     """Campaign create time, as Unixtime."""
 
-    goal_type: typing.Optional[int] = Field(
+    goal_type: int | None = Field(
         default=None,
     )
     """Campaign goal type."""
 
-    user_goal_type: typing.Optional[int] = Field(
+    user_goal_type: int | None = Field(
         default=None,
     )
     """Campaign user goal type."""
 
-    is_cbo_enabled: typing.Optional[bool] = Field(
+    is_cbo_enabled: bool | None = Field(
         default=None,
     )
     """Shows if Campaign Budget Optimization is on."""
 
-    update_time: typing.Optional[int] = Field(
+    update_time: int | None = Field(
         default=None,
     )
     """Campaign update time, as Unixtime."""
 
-    views_limit: typing.Optional[int] = Field(
+    views_limit: int | None = Field(
         default=None,
     )
     """Limit of views per user per campaign."""
 
 
-class AdsCampaignStatus(int, enum.Enum, metaclass=BaseEnumMeta):
+class AdsCampaignStatus(IntEnum, metaclass=BaseEnumMeta):
     STOPPED = 0
     STARTED = 1
     DELETED = 2
 
 
-class AdsCampaignType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsCampaignType(StrEnum, metaclass=BaseEnumMeta):
     NORMAL = "normal"
     VK_APPS_MANAGED = "vk_apps_managed"
     MOBILE_APPS = "mobile_apps"
@@ -4932,7 +4932,7 @@ class AdsCategory(BaseModel):
     name: str = Field()
     """Category name."""
 
-    subcategories: typing.Optional[typing.List["AdsCategory"]] = Field(
+    subcategories: list["AdsCategory"] | None = Field(
         default=None,
     )
     """Property `AdsCategory.subcategories`."""
@@ -4955,7 +4955,7 @@ class AdsClient(BaseModel):
     name: str = Field()
     """Client name."""
 
-    ord_data: typing.Optional["AdsOrdData"] = Field(
+    ord_data: "AdsOrdData | None" = Field(
         default=None,
     )
     """Ord data."""
@@ -4966,17 +4966,17 @@ class AdsClipItem(BaseModel):
     Model: `AdsClipItem`
     """
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Video id."""
 
-    preview_url: typing.Optional[str] = Field(
+    preview_url: str | None = Field(
         default=None,
     )
     """Preview url."""
 
-    link: typing.Optional["AdsClipItemLink"] = Field(
+    link: "AdsClipItemLink | None" = Field(
         default=None,
     )
     """Property `AdsClipItem.link`."""
@@ -4988,17 +4988,17 @@ class AdsClipItemLink(BaseModel):
     Model: `AdsClipItemLink`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Text."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Key."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Url."""
@@ -5012,17 +5012,17 @@ class AdsCreateAdStatus(BaseModel):
     id: int = Field()
     """Ad ID."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Stealth Post ID."""
 
-    error_code: typing.Optional[int] = Field(
+    error_code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    error_desc: typing.Optional[str] = Field(
+    error_desc: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -5036,12 +5036,12 @@ class AdsCreateCampaignStatus(BaseModel):
     id: int = Field()
     """Campaign ID."""
 
-    error_code: typing.Optional[int] = Field(
+    error_code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    error_desc: typing.Optional[str] = Field(
+    error_desc: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -5055,12 +5055,12 @@ class AdsCreateClientsStatus(BaseModel):
     id: int = Field()
     """Client ID."""
 
-    error_code: typing.Optional[int] = Field(
+    error_code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    error_desc: typing.Optional[str] = Field(
+    error_desc: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -5071,288 +5071,288 @@ class AdsCriteria(BaseModel):
     Model: `AdsCriteria`
     """
 
-    age_from: typing.Optional[str] = Field(
+    age_from: str | None = Field(
         default=None,
     )
     """Age from."""
 
-    age_to: typing.Optional[str] = Field(
+    age_to: str | None = Field(
         default=None,
     )
     """Age to."""
 
-    apps: typing.Optional[str] = Field(
+    apps: str | None = Field(
         default=None,
     )
     """Apps IDs."""
 
-    apps_not: typing.Optional[str] = Field(
+    apps_not: str | None = Field(
         default=None,
     )
     """Apps IDs to except."""
 
-    birthday: typing.Optional[str] = Field(
+    birthday: str | None = Field(
         default=None,
     )
     """Days to birthday."""
 
-    cities: typing.Optional[str] = Field(
+    cities: str | None = Field(
         default=None,
     )
     """Cities IDs."""
 
-    cities_not: typing.Optional[str] = Field(
+    cities_not: str | None = Field(
         default=None,
     )
     """Cities IDs to except."""
 
-    districts: typing.Optional[str] = Field(
+    districts: str | None = Field(
         default=None,
     )
     """Districts IDs."""
 
-    groups: typing.Optional[str] = Field(
+    groups: str | None = Field(
         default=None,
     )
     """Communities IDs."""
 
-    interest_categories: typing.Optional[str] = Field(
+    interest_categories: str | None = Field(
         default=None,
     )
     """Interests categories IDs."""
 
-    interests: typing.Optional[str] = Field(
+    interests: str | None = Field(
         default=None,
     )
     """Interests."""
 
-    paying: typing.Optional[str] = Field(
+    paying: str | None = Field(
         default=None,
     )
     """Information whether the user has proceeded VK payments before."""
 
-    positions: typing.Optional[str] = Field(
+    positions: str | None = Field(
         default=None,
     )
     """Positions IDs."""
 
-    religions: typing.Optional[str] = Field(
+    religions: str | None = Field(
         default=None,
     )
     """Religions IDs."""
 
-    retargeting_groups: typing.Optional[str] = Field(
+    retargeting_groups: str | None = Field(
         default=None,
     )
     """Retargeting groups ids."""
 
-    retargeting_groups_not: typing.Optional[str] = Field(
+    retargeting_groups_not: str | None = Field(
         default=None,
     )
     """Retargeting groups NOT ids."""
 
-    school_from: typing.Optional[str] = Field(
+    school_from: str | None = Field(
         default=None,
     )
     """School graduation year from."""
 
-    school_to: typing.Optional[str] = Field(
+    school_to: str | None = Field(
         default=None,
     )
     """School graduation year to."""
 
-    schools: typing.Optional[str] = Field(
+    schools: str | None = Field(
         default=None,
     )
     """Schools IDs."""
 
-    sex: typing.Optional["AdsCriteriaSex"] = Field(
+    sex: "AdsCriteriaSex | None" = Field(
         default=None,
     )
     """Property `AdsCriteria.sex`."""
 
-    stations: typing.Optional[str] = Field(
+    stations: str | None = Field(
         default=None,
     )
     """Stations IDs."""
 
-    statuses: typing.Optional[str] = Field(
+    statuses: str | None = Field(
         default=None,
     )
     """Relationship statuses."""
 
-    streets: typing.Optional[str] = Field(
+    streets: str | None = Field(
         default=None,
     )
     """Streets IDs."""
 
-    travellers: typing.Optional[str] = Field(
+    travellers: str | None = Field(
         default=None,
     )
     """Travellers."""
 
-    ab_test: typing.Optional[str] = Field(
+    ab_test: str | None = Field(
         default=None,
     )
     """AB test."""
 
-    uni_from: typing.Optional[str] = Field(
+    uni_from: str | None = Field(
         default=None,
     )
     """University graduation year from."""
 
-    uni_to: typing.Optional[str] = Field(
+    uni_to: str | None = Field(
         default=None,
     )
     """University graduation year to."""
 
-    user_browsers: typing.Optional[str] = Field(
+    user_browsers: str | None = Field(
         default=None,
     )
     """Browsers."""
 
-    user_devices: typing.Optional[str] = Field(
+    user_devices: str | None = Field(
         default=None,
     )
     """Devices."""
 
-    user_os: typing.Optional[str] = Field(
+    user_os: str | None = Field(
         default=None,
     )
     """Operating systems."""
 
-    suggested_criteria: typing.Optional[str] = Field(
+    suggested_criteria: str | None = Field(
         default=None,
     )
     """Suggested criteria."""
 
-    groups_not: typing.Optional[str] = Field(
+    groups_not: str | None = Field(
         default=None,
     )
     """Group not."""
 
-    price_list_audience_type: typing.Optional[str] = Field(
+    price_list_audience_type: str | None = Field(
         default=None,
     )
     """Price list audience type."""
 
-    count: typing.Optional[str] = Field(
+    count: str | None = Field(
         default=None,
     )
     """Count."""
 
-    groups_active_formula: typing.Optional[str] = Field(
+    groups_active_formula: str | None = Field(
         default=None,
     )
     """Group active formula."""
 
-    interest_categories_formula: typing.Optional[str] = Field(
+    interest_categories_formula: str | None = Field(
         default=None,
     )
     """Interest categories formula."""
 
-    groups_formula: typing.Optional[str] = Field(
+    groups_formula: str | None = Field(
         default=None,
     )
     """Groups formula."""
 
-    groups_active: typing.Optional[str] = Field(
+    groups_active: str | None = Field(
         default=None,
     )
     """Groups active."""
 
-    group_types: typing.Optional[str] = Field(
+    group_types: str | None = Field(
         default=None,
     )
     """Group types."""
 
-    key_phrases: typing.Optional[str] = Field(
+    key_phrases: str | None = Field(
         default=None,
     )
     """Key phrases."""
 
-    key_phrases_days: typing.Optional[str] = Field(
+    key_phrases_days: str | None = Field(
         default=None,
     )
     """Key phrases days."""
 
-    geo_near: typing.Optional[str] = Field(
+    geo_near: str | None = Field(
         default=None,
     )
     """Geo near."""
 
-    geo_point_type: typing.Optional[str] = Field(
+    geo_point_type: str | None = Field(
         default=None,
     )
     """Geo point type."""
 
-    price_list_id: typing.Optional[str] = Field(
+    price_list_id: str | None = Field(
         default=None,
     )
     """Price list id."""
 
-    groups_recommended: typing.Optional[str] = Field(
+    groups_recommended: str | None = Field(
         default=None,
     )
     """Groups recommended ids."""
 
-    groups_active_recommended: typing.Optional[str] = Field(
+    groups_active_recommended: str | None = Field(
         default=None,
     )
     """Groups active recommended ids."""
 
-    music_artists_formula: typing.Optional[str] = Field(
+    music_artists_formula: str | None = Field(
         default=None,
     )
     """Music artists formula."""
 
-    price_list_retargeting_formula: typing.Optional[str] = Field(
+    price_list_retargeting_formula: str | None = Field(
         default=None,
     )
     """Price list retargeting formula."""
 
-    tags: typing.Optional[str] = Field(
+    tags: str | None = Field(
         default=None,
     )
     """Tags."""
 
-    browsers: typing.Optional[str] = Field(
+    browsers: str | None = Field(
         default=None,
     )
     """Browsers."""
 
-    mobile_os_min_version: typing.Optional[str] = Field(
+    mobile_os_min_version: str | None = Field(
         default=None,
     )
     """Mobile os min version."""
 
-    mobile_apps_events_formula: typing.Optional[str] = Field(
+    mobile_apps_events_formula: str | None = Field(
         default=None,
     )
     """Mobile apps events formula."""
 
-    mobile_os_max_version: typing.Optional[str] = Field(
+    mobile_os_max_version: str | None = Field(
         default=None,
     )
     """Mobile os max version."""
 
-    operators: typing.Optional[str] = Field(
+    operators: str | None = Field(
         default=None,
     )
     """operators."""
 
-    wifi_only: typing.Optional[str] = Field(
+    wifi_only: str | None = Field(
         default=None,
     )
     """wifi_only."""
 
-    mobile_manufacturers: typing.Optional[str] = Field(
+    mobile_manufacturers: str | None = Field(
         default=None,
     )
     """mobile_manufacturers."""
 
 
-class AdsCriteriaSex(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsCriteriaSex(StrEnum, metaclass=BaseEnumMeta):
     f__0 = "0"
     f__1 = "1"
     f__2 = "2"
@@ -5363,17 +5363,17 @@ class AdsDemoStats(BaseModel):
     Model: `AdsDemoStats`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    stats: typing.Optional[typing.List["AdsDemostatsFormat"]] = Field(
+    stats: list["AdsDemostatsFormat"] | None = Field(
         default=None,
     )
     """Property `AdsDemoStats.stats`."""
 
-    type: typing.Optional["AdsObjectType"] = Field(
+    type: "AdsObjectType | None" = Field(
         default=None,
     )
     """Property `AdsDemoStats.type`."""
@@ -5384,12 +5384,12 @@ class AdsDemographicStatsPeriodItemBase(BaseModel):
     Model: `AdsDemographicStatsPeriodItemBase`
     """
 
-    clicks_rate: typing.Optional[float] = Field(
+    clicks_rate: float | None = Field(
         default=None,
     )
     """Clicks rate."""
 
-    impressions_rate: typing.Optional[float] = Field(
+    impressions_rate: float | None = Field(
         default=None,
     )
     """Impressions rate."""
@@ -5400,47 +5400,47 @@ class AdsDemostatsFormat(BaseModel):
     Model: `AdsDemostatsFormat`
     """
 
-    age: typing.Optional[typing.List["AdsStatsAge"]] = Field(
+    age: list["AdsStatsAge"] | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.age`."""
 
-    cities: typing.Optional[typing.List["AdsStatsCities"]] = Field(
+    cities: list["AdsStatsCities"] | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.cities`."""
 
-    day: typing.Optional[str] = Field(
+    day: str | None = Field(
         default=None,
     )
     """Day as YYYY-MM-DD."""
 
-    day_from: typing.Optional[str] = Field(
+    day_from: str | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.day_from`."""
 
-    day_to: typing.Optional[str] = Field(
+    day_to: str | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.day_to`."""
 
-    month: typing.Optional[str] = Field(
+    month: str | None = Field(
         default=None,
     )
     """Month as YYYY-MM."""
 
-    overall: typing.Optional[int] = Field(
+    overall: int | None = Field(
         default=None,
     )
     """1 if period=overall."""
 
-    sex: typing.Optional[typing.List["AdsStatsSex"]] = Field(
+    sex: list["AdsStatsSex"] | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.sex`."""
 
-    sex_age: typing.Optional[typing.List["AdsStatsSexAge"]] = Field(
+    sex_age: list["AdsStatsSexAge"] | None = Field(
         default=None,
     )
     """Property `AdsDemostatsFormat.sex_age`."""
@@ -5451,12 +5451,12 @@ class AdsEventsRetargetingGroup(BaseModel):
     Model: `AdsEventsRetargetingGroup`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Property `AdsEventsRetargetingGroup.id`."""
 
-    value: typing.Optional[typing.List[int]] = Field(
+    value: list[int] | None = Field(
         default=None,
     )
     """Property `AdsEventsRetargetingGroup.value`."""
@@ -5473,7 +5473,7 @@ class AdsFloodStats(BaseModel):
     refresh: int = Field()
     """Time to refresh in seconds."""
 
-    stats_by_user: typing.Optional[typing.List["AdsFloodStatsByUserItem"]] = Field(
+    stats_by_user: list["AdsFloodStatsByUserItem"] | None = Field(
         default=None,
     )
     """Used requests per user."""
@@ -5499,18 +5499,18 @@ class AdsLinkStatus(BaseModel):
     status: str = Field()
     """Link status."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Reject reason."""
 
-    redirect_url: typing.Optional[str] = Field(
+    redirect_url: str | None = Field(
         default=None,
     )
     """URL."""
 
 
-class AdsLookalikeRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsLookalikeRequestStatus(StrEnum, metaclass=BaseEnumMeta):
     SEARCH_IN_PROGRESS = "search_in_progress"
     SEARCH_FAILED = "search_failed"
     SEARCH_DONE = "search_done"
@@ -5519,7 +5519,7 @@ class AdsLookalikeRequestStatus(str, enum.Enum, metaclass=BaseEnumMeta):
     SAVE_DONE = "save_done"
 
 
-class AdsLookalikeRequestSourceType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsLookalikeRequestSourceType(StrEnum, metaclass=BaseEnumMeta):
     RETARGETING_GROUP = "retargeting_group"
 
 
@@ -5543,27 +5543,27 @@ class AdsLookalikeRequest(BaseModel):
     source_type: "AdsLookalikeRequestSourceType" = Field()
     """Lookalike request source type."""
 
-    scheduled_delete_time: typing.Optional[int] = Field(
+    scheduled_delete_time: int | None = Field(
         default=None,
     )
     """Time by which lookalike request would be deleted, as Unixtime."""
 
-    source_retargeting_group_id: typing.Optional[int] = Field(
+    source_retargeting_group_id: int | None = Field(
         default=None,
     )
     """Retargeting group id, which was used as lookalike seed."""
 
-    source_name: typing.Optional[str] = Field(
+    source_name: str | None = Field(
         default=None,
     )
     """Lookalike request seed name (retargeting group name)."""
 
-    audience_count: typing.Optional[int] = Field(
+    audience_count: int | None = Field(
         default=None,
     )
     """Lookalike request seed audience size."""
 
-    save_audience_levels: typing.Optional[typing.List["AdsLookalikeRequestSaveAudienceLevel"]] = Field(
+    save_audience_levels: list["AdsLookalikeRequestSaveAudienceLevel"] | None = Field(
         default=None,
     )
     """Property `AdsLookalikeRequest.save_audience_levels`."""
@@ -5574,12 +5574,12 @@ class AdsLookalikeRequestSaveAudienceLevel(BaseModel):
     Model: `AdsLookalikeRequestSaveAudienceLevel`
     """
 
-    level: typing.Optional[int] = Field(
+    level: int | None = Field(
         default=None,
     )
     """Save audience level id, which is used in save audience queries."""
 
-    audience_count: typing.Optional[int] = Field(
+    audience_count: int | None = Field(
         default=None,
     )
     """Saved audience audience size for according level."""
@@ -5590,12 +5590,12 @@ class AdsMobileStatItem(BaseModel):
     Model: `AdsMobileStatItem`
     """
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Property `AdsMobileStatItem.key`."""
 
-    value: typing.Optional[float] = Field(
+    value: float | None = Field(
         default=None,
     )
     """Property `AdsMobileStatItem.value`."""
@@ -5615,20 +5615,20 @@ class AdsMusician(BaseModel):
     name: str = Field()
     """Music artist name."""
 
-    avatar: typing.Optional[str] = Field(
+    avatar: str | None = Field(
         default=None,
     )
     """Music artist photo."""
 
 
-class AdsObjectType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsObjectType(StrEnum, metaclass=BaseEnumMeta):
     AD = "ad"
     CAMPAIGN = "campaign"
     CLIENT = "client"
     OFFICE = "office"
 
 
-class AdsOrdClientType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsOrdClientType(StrEnum, metaclass=BaseEnumMeta):
     PERSON = "person"
     INDIVIDUAL = "individual"
     LEGAL = "legal"
@@ -5665,17 +5665,17 @@ class AdsOrdData(BaseModel):
     with_vat: bool = Field()
     """Property `AdsOrdData.with_vat`."""
 
-    inn: typing.Optional[str] = Field(
+    inn: str | None = Field(
         default=None,
     )
     """Property `AdsOrdData.inn`."""
 
-    agency_phone: typing.Optional[str] = Field(
+    agency_phone: str | None = Field(
         default=None,
     )
     """Property `AdsOrdData.agency_phone`."""
 
-    subagent: typing.Optional["AdsOrdSubagent"] = Field(
+    subagent: "AdsOrdSubagent | None" = Field(
         default=None,
     )
     """Property `AdsOrdData.subagent`."""
@@ -5695,7 +5695,7 @@ class AdsOrdSubagent(BaseModel):
     phone: str = Field()
     """Property `AdsOrdSubagent.phone`."""
 
-    inn: typing.Optional[str] = Field(
+    inn: str | None = Field(
         default=None,
     )
     """Property `AdsOrdSubagent.inn`."""
@@ -5706,142 +5706,142 @@ class AdsPost(BaseModel):
     Model: `AdsPost`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Post id."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """From id."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Owner id."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date."""
 
-    edited: typing.Optional[int] = Field(
+    edited: int | None = Field(
         default=None,
     )
     """Edited date."""
 
-    is_pinned: typing.Optional[int] = Field(
+    is_pinned: int | None = Field(
         default=None,
     )
     """Is pinned."""
 
-    marked_as_ads: typing.Optional[int] = Field(
+    marked_as_ads: int | None = Field(
         default=None,
     )
     """Marked as ads."""
 
-    ads_easy_promote: typing.Optional["AdsPostEasyPromote"] = Field(
+    ads_easy_promote: "AdsPostEasyPromote | None" = Field(
         default=None,
     )
     """Property `AdsPost.ads_easy_promote`."""
 
-    donut: typing.Optional["AdsPostDonut"] = Field(
+    donut: "AdsPostDonut | None" = Field(
         default=None,
     )
     """Property `AdsPost.donut`."""
 
-    comments: typing.Optional["AdsPostComments"] = Field(
+    comments: "AdsPostComments | None" = Field(
         default=None,
     )
     """Property `AdsPost.comments`."""
 
-    copyright: typing.Optional["WallPostCopyright"] = Field(
+    copyright: "WallPostCopyright | None" = Field(
         default=None,
     )
     """Property `AdsPost.copyright`."""
 
-    short_text_rate: typing.Optional[float] = Field(
+    short_text_rate: float | None = Field(
         default=None,
     )
     """Short text rate."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Type."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Is favorite."""
 
-    likes: typing.Optional["AdsPostLikes"] = Field(
+    likes: "AdsPostLikes | None" = Field(
         default=None,
     )
     """Property `AdsPost.likes`."""
 
-    views: typing.Optional["AdsPostViews"] = Field(
+    views: "AdsPostViews | None" = Field(
         default=None,
     )
     """Property `AdsPost.views`."""
 
-    post_type: typing.Optional[str] = Field(
+    post_type: str | None = Field(
         default=None,
     )
     """Post type."""
 
-    reposts: typing.Optional["AdsPostReposts"] = Field(
+    reposts: "AdsPostReposts | None" = Field(
         default=None,
     )
     """Property `AdsPost.reposts`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Text."""
 
-    is_promoted_post_stealth: typing.Optional[bool] = Field(
+    is_promoted_post_stealth: bool | None = Field(
         default=None,
     )
     """Is promoted post stealth."""
 
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
     """Hash."""
 
-    owner: typing.Optional["AdsPostOwner"] = Field(
+    owner: "AdsPostOwner | None" = Field(
         default=None,
     )
     """Property `AdsPost.owner`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `AdsPost.attachments`."""
 
-    created_by: typing.Optional[int] = Field(
+    created_by: int | None = Field(
         default=None,
     )
     """Created by."""
 
-    carousel_offset: typing.Optional[int] = Field(
+    carousel_offset: int | None = Field(
         default=None,
     )
     """Carousel offset."""
 
-    can_edit: typing.Optional[int] = Field(
+    can_edit: int | None = Field(
         default=None,
     )
     """Can edit."""
 
-    can_delete: typing.Optional[int] = Field(
+    can_delete: int | None = Field(
         default=None,
     )
     """Can delete."""
 
-    can_pin: typing.Optional[int] = Field(
+    can_pin: int | None = Field(
         default=None,
     )
     """Can pin."""
@@ -5853,7 +5853,7 @@ class AdsPostComments(BaseModel):
     Model: `AdsPostComments`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count."""
@@ -5865,7 +5865,7 @@ class AdsPostDonut(BaseModel):
     Model: `AdsPostDonut`
     """
 
-    is_donut: typing.Optional[bool] = Field(
+    is_donut: bool | None = Field(
         default=None,
     )
     """Is donut."""
@@ -5877,37 +5877,37 @@ class AdsPostEasyPromote(BaseModel):
     Model: `AdsPostEasyPromote`
     """
 
-    type: typing.Optional[int] = Field(
+    type: int | None = Field(
         default=None,
     )
     """Type."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Text."""
 
-    label_text: typing.Optional[str] = Field(
+    label_text: str | None = Field(
         default=None,
     )
     """Label text."""
 
-    button_text: typing.Optional[str] = Field(
+    button_text: str | None = Field(
         default=None,
     )
     """Button text."""
 
-    is_ad_not_easy: typing.Optional[bool] = Field(
+    is_ad_not_easy: bool | None = Field(
         default=None,
     )
     """Is ad not easy."""
 
-    ad_id: typing.Optional[int] = Field(
+    ad_id: int | None = Field(
         default=None,
     )
     """Ad id."""
 
-    top_union_id: typing.Optional[int] = Field(
+    top_union_id: int | None = Field(
         default=None,
     )
     """Top union id."""
@@ -5919,17 +5919,17 @@ class AdsPostLikes(BaseModel):
     Model: `AdsPostLikes`
     """
 
-    can_like: typing.Optional[int] = Field(
+    can_like: int | None = Field(
         default=None,
     )
     """Can like."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count."""
 
-    user_likes: typing.Optional[int] = Field(
+    user_likes: int | None = Field(
         default=None,
     )
     """User likes."""
@@ -5941,22 +5941,22 @@ class AdsPostOwner(BaseModel):
     Model: `AdsPostOwner`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Owner id."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """Photo url."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Profile url."""
@@ -5968,17 +5968,17 @@ class AdsPostReposts(BaseModel):
     Model: `AdsPostReposts`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count."""
 
-    wall_count: typing.Optional[int] = Field(
+    wall_count: int | None = Field(
         default=None,
     )
     """Wall count."""
 
-    mail_count: typing.Optional[int] = Field(
+    mail_count: int | None = Field(
         default=None,
     )
     """Mail count."""
@@ -5990,7 +5990,7 @@ class AdsPostViews(BaseModel):
     Model: `AdsPostViews`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count."""
@@ -6028,42 +6028,42 @@ class AdsPromotedPostReach(BaseModel):
     unsubscribe: int = Field()
     """\'Unsubscribe\' events amount."""
 
-    video_views_100p: typing.Optional[int] = Field(
+    video_views_100p: int | None = Field(
         default=None,
     )
     """Video views for 100 percent."""
 
-    video_views_25p: typing.Optional[int] = Field(
+    video_views_25p: int | None = Field(
         default=None,
     )
     """Video views for 25 percent."""
 
-    video_views_3s: typing.Optional[int] = Field(
+    video_views_3s: int | None = Field(
         default=None,
     )
     """Video views for 3 seconds."""
 
-    video_views_10s: typing.Optional[int] = Field(
+    video_views_10s: int | None = Field(
         default=None,
     )
     """Video views for 10 seconds."""
 
-    video_views_50p: typing.Optional[int] = Field(
+    video_views_50p: int | None = Field(
         default=None,
     )
     """Video views for 50 percent."""
 
-    video_views_75p: typing.Optional[int] = Field(
+    video_views_75p: int | None = Field(
         default=None,
     )
     """Video views for 75 percent."""
 
-    video_views_start: typing.Optional[int] = Field(
+    video_views_start: int | None = Field(
         default=None,
     )
     """Video starts."""
 
-    pretty_cards_clicks: typing.Optional[int] = Field(
+    pretty_cards_clicks: int | None = Field(
         default=None,
     )
     """Pretty cards clicks."""
@@ -6074,12 +6074,12 @@ class AdsRejectReason(BaseModel):
     Model: `AdsRejectReason`
     """
 
-    comment: typing.Optional[str] = Field(
+    comment: str | None = Field(
         default=None,
     )
     """Comment text."""
 
-    rules: typing.Optional[typing.List["AdsRules"]] = Field(
+    rules: list["AdsRules"] | None = Field(
         default=None,
     )
     """Property `AdsRejectReason.rules`."""
@@ -6090,28 +6090,28 @@ class AdsRules(BaseModel):
     Model: `AdsRules`
     """
 
-    help_url: typing.Optional[typing.Union["str", "bool"]] = Field(
+    help_url: str | bool | None = Field(
         default=None,
     )
     """Help url."""
 
-    help_label: typing.Optional[str] = Field(
+    help_label: str | None = Field(
         default=None,
     )
     """Label."""
 
-    content_html: typing.Optional[str] = Field(
+    content_html: str | None = Field(
         default=None,
     )
     """Content Html."""
 
-    help_chat: typing.Optional[bool] = Field(
+    help_chat: bool | None = Field(
         default=None,
     )
     """Help chat."""
 
 
-class AdsStatisticClickActionType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsStatisticClickActionType(StrEnum, metaclass=BaseEnumMeta):
     LOAD = "load"
     IMPRESSION = "impression"
     CLICK_DEEPLINK = "click_deeplink"
@@ -6143,12 +6143,12 @@ class AdsStatisticClickAction(BaseModel):
     Model: `AdsStatisticClickAction`
     """
 
-    type: typing.Optional["AdsStatisticClickActionType"] = Field(
+    type: "AdsStatisticClickActionType | None" = Field(
         default=None,
     )
     """Property `AdsStatisticClickAction.type`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Property `AdsStatisticClickAction.url`."""
@@ -6159,22 +6159,22 @@ class AdsStats(BaseModel):
     Model: `AdsStats`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    stats: typing.Optional[typing.List["AdsStatsFormat"]] = Field(
+    stats: list["AdsStatsFormat"] | None = Field(
         default=None,
     )
     """Property `AdsStats.stats`."""
 
-    type: typing.Optional["AdsObjectType"] = Field(
+    type: "AdsObjectType | None" = Field(
         default=None,
     )
     """Property `AdsStats.type`."""
 
-    views_times: typing.Optional["AdsStatsViewsTimes"] = Field(
+    views_times: "AdsStatsViewsTimes | None" = Field(
         default=None,
     )
     """Property `AdsStats.views_times`."""
@@ -6185,163 +6185,163 @@ class AdsStatsFormat(BaseModel):
     Model: `AdsStatsFormat`
     """
 
-    clicks: typing.Optional[int] = Field(
+    clicks: int | None = Field(
         default=None,
     )
     """Clicks number."""
 
-    link_external_clicks: typing.Optional[int] = Field(
+    link_external_clicks: int | None = Field(
         default=None,
     )
     """External clicks number."""
 
-    day: typing.Optional[str] = Field(
+    day: str | None = Field(
         default=None,
     )
     """Day as YYYY-MM-DD."""
 
-    impressions: typing.Optional[int] = Field(
+    impressions: int | None = Field(
         default=None,
     )
     """Impressions number."""
 
-    join_rate: typing.Optional[int] = Field(
+    join_rate: int | None = Field(
         default=None,
     )
     """Events number."""
 
-    month: typing.Optional[str] = Field(
+    month: str | None = Field(
         default=None,
     )
     """Month as YYYY-MM."""
 
-    year: typing.Optional[int] = Field(
+    year: int | None = Field(
         default=None,
     )
     """Year as YYYY."""
 
-    overall: typing.Optional[int] = Field(
+    overall: int | None = Field(
         default=None,
     )
     """1 if period=overall."""
 
-    reach: typing.Optional[int] = Field(
+    reach: int | None = Field(
         default=None,
     )
     """Reach ."""
 
-    spent: typing.Optional[str] = Field(
+    spent: str | None = Field(
         default=None,
     )
     """Spent funds."""
 
-    video_plays_unique_started: typing.Optional[int] = Field(
+    video_plays_unique_started: int | None = Field(
         default=None,
     )
     """Video plays unique started count."""
 
-    video_plays_unique_3_seconds: typing.Optional[int] = Field(
+    video_plays_unique_3_seconds: int | None = Field(
         default=None,
     )
     """Video plays unique 3 seconds count."""
 
-    video_plays_unique_10_seconds: typing.Optional[int] = Field(
+    video_plays_unique_10_seconds: int | None = Field(
         default=None,
     )
     """Video plays unique 10 seconds count."""
 
-    video_plays_unique_25_percents: typing.Optional[int] = Field(
+    video_plays_unique_25_percents: int | None = Field(
         default=None,
     )
     """Video plays unique 25 percents count."""
 
-    video_plays_unique_50_percents: typing.Optional[int] = Field(
+    video_plays_unique_50_percents: int | None = Field(
         default=None,
     )
     """Video plays unique 50 percents count."""
 
-    video_plays_unique_75_percents: typing.Optional[int] = Field(
+    video_plays_unique_75_percents: int | None = Field(
         default=None,
     )
     """Video plays unique 75 percents count."""
 
-    video_plays_unique_100_percents: typing.Optional[int] = Field(
+    video_plays_unique_100_percents: int | None = Field(
         default=None,
     )
     """Video plays unique 100 percents count."""
 
-    effective_cost_per_click: typing.Optional[str] = Field(
+    effective_cost_per_click: str | None = Field(
         default=None,
     )
     """Effective cost per click."""
 
-    effective_cost_per_mille: typing.Optional[str] = Field(
+    effective_cost_per_mille: str | None = Field(
         default=None,
     )
     """Effective cost per mille."""
 
-    effective_cpf: typing.Optional[str] = Field(
+    effective_cpf: str | None = Field(
         default=None,
     )
     """Effective cpf."""
 
-    effective_cost_per_message: typing.Optional[str] = Field(
+    effective_cost_per_message: str | None = Field(
         default=None,
     )
     """Effective cost per message."""
 
-    message_sends: typing.Optional[int] = Field(
+    message_sends: int | None = Field(
         default=None,
     )
     """Message sends count."""
 
-    message_sends_by_any_user: typing.Optional[int] = Field(
+    message_sends_by_any_user: int | None = Field(
         default=None,
     )
     """Message sends by anu user."""
 
-    conversions_external: typing.Optional[int] = Field(
+    conversions_external: int | None = Field(
         default=None,
     )
     """Conversions external."""
 
-    conversion_count: typing.Optional[int] = Field(
+    conversion_count: int | None = Field(
         default=None,
     )
     """Conversions count."""
 
-    conversion_cr: typing.Optional[str] = Field(
+    conversion_cr: str | None = Field(
         default=None,
     )
     """Conversions CR."""
 
-    day_from: typing.Optional[str] = Field(
+    day_from: str | None = Field(
         default=None,
     )
     """Day from."""
 
-    day_to: typing.Optional[str] = Field(
+    day_to: str | None = Field(
         default=None,
     )
     """Day to."""
 
-    ctr: typing.Optional[str] = Field(
+    ctr: str | None = Field(
         default=None,
     )
     """Ctr."""
 
-    uniq_views_count: typing.Optional[int] = Field(
+    uniq_views_count: int | None = Field(
         default=None,
     )
     """Unique views count."""
 
-    mobile_app_stat: typing.Optional[typing.List["AdsMobileStatItem"]] = Field(
+    mobile_app_stat: list["AdsMobileStatItem"] | None = Field(
         default=None,
     )
     """Mobile app stat."""
 
 
-class AdsStatsSexValue(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsStatsSexValue(StrEnum, metaclass=BaseEnumMeta):
     F = "f"
     M = "m"
 
@@ -6351,57 +6351,57 @@ class AdsStatsViewsTimes(BaseModel):
     Model: `AdsStatsViewsTimes`
     """
 
-    views_ads_times_1: typing.Optional[int] = Field(
+    views_ads_times_1: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_1`."""
 
-    views_ads_times_2: typing.Optional[int] = Field(
+    views_ads_times_2: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_2`."""
 
-    views_ads_times_3: typing.Optional[int] = Field(
+    views_ads_times_3: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_3`."""
 
-    views_ads_times_4: typing.Optional[int] = Field(
+    views_ads_times_4: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_4`."""
 
-    views_ads_times_5: typing.Optional[str] = Field(
+    views_ads_times_5: str | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_5`."""
 
-    views_ads_times_6: typing.Optional[int] = Field(
+    views_ads_times_6: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_6`."""
 
-    views_ads_times_7: typing.Optional[int] = Field(
+    views_ads_times_7: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_7`."""
 
-    views_ads_times_8: typing.Optional[int] = Field(
+    views_ads_times_8: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_8`."""
 
-    views_ads_times_9: typing.Optional[int] = Field(
+    views_ads_times_9: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_9`."""
 
-    views_ads_times_10: typing.Optional[int] = Field(
+    views_ads_times_10: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_10`."""
 
-    views_ads_times_11_plus: typing.Optional[int] = Field(
+    views_ads_times_11_plus: int | None = Field(
         default=None,
     )
     """Property `AdsStatsViewsTimes.views_ads_times_11_plus`."""
@@ -6412,17 +6412,17 @@ class AdsStories(BaseModel):
     Model: `AdsStories`
     """
 
-    stories: typing.Optional[typing.List["AdsStoryItem"]] = Field(
+    stories: list["AdsStoryItem"] | None = Field(
         default=None,
     )
     """Property `AdsStories.stories`."""
 
-    owner: typing.Optional["AdsStoriesOwner"] = Field(
+    owner: "AdsStoriesOwner | None" = Field(
         default=None,
     )
     """Property `AdsStories.owner`."""
 
-    stories_disclaimers_text: typing.Optional[str] = Field(
+    stories_disclaimers_text: str | None = Field(
         default=None,
     )
     """Stories disclaimers text."""
@@ -6433,58 +6433,58 @@ class AdsStoriesOwner(BaseModel):
     Model: `AdsStoriesOwner`
     """
 
-    id: typing.Optional[typing.Union["int", "bool"]] = Field(
+    id: int | bool | None = Field(
         default=None,
     )
     """Owner id."""
 
-    href: typing.Optional[str] = Field(
+    href: str | None = Field(
         default=None,
     )
     """Href."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """Photo."""
 
-    verify: typing.Optional[str] = Field(
+    verify: str | None = Field(
         default=None,
     )
     """Verify."""
 
-    gender: typing.Optional[str] = Field(
+    gender: str | None = Field(
         default=None,
     )
     """Gender."""
 
-    name_get: typing.Optional[str] = Field(
+    name_get: str | None = Field(
         default=None,
     )
     """Name get."""
 
-    first_name: typing.Optional[str] = Field(
+    first_name: str | None = Field(
         default=None,
         alias="firstName",
     )
     """First name."""
 
-    first_name_gen: typing.Optional[str] = Field(
+    first_name_gen: str | None = Field(
         default=None,
     )
     """First name gen."""
 
-    first_name_ins: typing.Optional[str] = Field(
+    first_name_ins: str | None = Field(
         default=None,
     )
     """First name ins."""
 
-    can_follow: typing.Optional[bool] = Field(
+    can_follow: bool | None = Field(
         default=None,
     )
     """Can follow."""
@@ -6495,136 +6495,136 @@ class AdsStoryItem(BaseModel):
     Model: `AdsStoryItem`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Story id."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Owner id."""
 
-    raw_id: typing.Optional[str] = Field(
+    raw_id: str | None = Field(
         default=None,
     )
     """Story raw id."""
 
-    date: typing.Optional[str] = Field(
+    date: str | None = Field(
         default=None,
     )
     """Date."""
 
-    time: typing.Optional[int] = Field(
+    time: int | None = Field(
         default=None,
     )
     """Time."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Type."""
 
-    unread: typing.Optional[bool] = Field(
+    unread: bool | None = Field(
         default=None,
     )
     """Is unread."""
 
-    can_like: typing.Optional[bool] = Field(
+    can_like: bool | None = Field(
         default=None,
         alias="canLike",
     )
     """Can like."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Can comment."""
 
-    can_share: typing.Optional[bool] = Field(
+    can_share: bool | None = Field(
         default=None,
     )
     """Can share."""
 
-    can_remove: typing.Optional[bool] = Field(
+    can_remove: bool | None = Field(
         default=None,
     )
     """Can remove."""
 
-    can_manage: typing.Optional[bool] = Field(
+    can_manage: bool | None = Field(
         default=None,
     )
     """Can manage."""
 
-    can_ask: typing.Optional[bool] = Field(
+    can_ask: bool | None = Field(
         default=None,
     )
     """Can ask."""
 
-    can_ask_anonymous: typing.Optional[bool] = Field(
+    can_ask_anonymous: bool | None = Field(
         default=None,
     )
     """Can ask anonymous."""
 
-    is_profile_question: typing.Optional[bool] = Field(
+    is_profile_question: bool | None = Field(
         default=None,
         alias="isProfileQuestion",
     )
     """Is profile question."""
 
-    stats: typing.Optional["AdsStoryItemStats"] = Field(
+    stats: "AdsStoryItemStats | None" = Field(
         default=None,
     )
     """Property `AdsStoryItem.stats`."""
 
-    link: typing.Optional["AdsStoryItemLink"] = Field(
+    link: "AdsStoryItemLink | None" = Field(
         default=None,
     )
     """Property `AdsStoryItem.link`."""
 
-    photo_url: typing.Optional[str] = Field(
+    photo_url: str | None = Field(
         default=None,
     )
     """Photo url."""
 
-    preview_url: typing.Optional[str] = Field(
+    preview_url: str | None = Field(
         default=None,
     )
     """Preview url."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Track code."""
 
-    is_part_of_narrative: typing.Optional[bool] = Field(
+    is_part_of_narrative: bool | None = Field(
         default=None,
         alias="isPartOfNarrative",
     )
     """Is part of narrative."""
 
-    is_ads: typing.Optional[bool] = Field(
+    is_ads: bool | None = Field(
         default=None,
         alias="isAds",
     )
     """Is ads."""
 
-    video_url: typing.Optional[str] = Field(
+    video_url: str | None = Field(
         default=None,
     )
     """Video url."""
 
-    first_frame: typing.Optional[str] = Field(
+    first_frame: str | None = Field(
         default=None,
     )
     """First frame."""
 
-    small_preview: typing.Optional[str] = Field(
+    small_preview: str | None = Field(
         default=None,
     )
     """Small preview."""
 
-    is_liked: typing.Optional[bool] = Field(
+    is_liked: bool | None = Field(
         default=None,
         alias="isLiked",
     )
@@ -6636,22 +6636,22 @@ class AdsStoryItemLink(BaseModel):
     Model: `AdsStoryItemLink`
     """
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Key."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Text."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Url."""
 
-    raw_url: typing.Optional[str] = Field(
+    raw_url: str | None = Field(
         default=None,
     )
     """Raw url."""
@@ -6662,12 +6662,12 @@ class AdsStoryItemStats(BaseModel):
     Model: `AdsStoryItemStats`
     """
 
-    follow: typing.Optional["AdsStoryItemStatsFollow"] = Field(
+    follow: "AdsStoryItemStatsFollow | None" = Field(
         default=None,
     )
     """Property `AdsStoryItemStats.follow`."""
 
-    url_view: typing.Optional["AdsStoryItemStatsUrlView"] = Field(
+    url_view: "AdsStoryItemStatsUrlView | None" = Field(
         default=None,
     )
     """Property `AdsStoryItemStats.url_view`."""
@@ -6679,12 +6679,12 @@ class AdsStoryItemStatsFollow(BaseModel):
     Model: `AdsStoryItemStatsFollow`
     """
 
-    event_type: typing.Optional[str] = Field(
+    event_type: str | None = Field(
         default=None,
     )
     """Event type."""
 
-    rhash: typing.Optional[str] = Field(
+    rhash: str | None = Field(
         default=None,
     )
     """Event hash."""
@@ -6696,12 +6696,12 @@ class AdsStoryItemStatsUrlView(BaseModel):
     Model: `AdsStoryItemStatsUrlView`
     """
 
-    event_type: typing.Optional[str] = Field(
+    event_type: str | None = Field(
         default=None,
     )
     """Event type."""
 
-    rhash: typing.Optional[str] = Field(
+    rhash: str | None = Field(
         default=None,
     )
     """Event hash."""
@@ -6715,47 +6715,47 @@ class AdsTargStats(BaseModel):
     audience_count: int = Field()
     """Audience."""
 
-    recommended_cpc: typing.Optional[str] = Field(
+    recommended_cpc: str | None = Field(
         default=None,
     )
     """Recommended CPC value for 50% reach (old format)."""
 
-    recommended_cpm: typing.Optional[str] = Field(
+    recommended_cpm: str | None = Field(
         default=None,
     )
     """Recommended CPM value for 50% reach (old format)."""
 
-    recommended_cpc_50: typing.Optional[str] = Field(
+    recommended_cpc_50: str | None = Field(
         default=None,
     )
     """Recommended CPC value for 50% reach."""
 
-    recommended_cpm_50: typing.Optional[str] = Field(
+    recommended_cpm_50: str | None = Field(
         default=None,
     )
     """Recommended CPM value for 50% reach."""
 
-    recommended_cpc_70: typing.Optional[str] = Field(
+    recommended_cpc_70: str | None = Field(
         default=None,
     )
     """Recommended CPC value for 70% reach."""
 
-    recommended_cpm_70: typing.Optional[str] = Field(
+    recommended_cpm_70: str | None = Field(
         default=None,
     )
     """Recommended CPM value for 70% reach."""
 
-    recommended_cpc_90: typing.Optional[str] = Field(
+    recommended_cpc_90: str | None = Field(
         default=None,
     )
     """Recommended CPC value for 90% reach."""
 
-    recommended_cpm_90: typing.Optional[str] = Field(
+    recommended_cpm_90: str | None = Field(
         default=None,
     )
     """Recommended CPM value for 90% reach."""
 
-    total_alive_audience: typing.Optional[int] = Field(
+    total_alive_audience: int | None = Field(
         default=None,
     )
     """Total alive audience."""
@@ -6766,22 +6766,22 @@ class AdsTargSuggestions(BaseModel):
     Model: `AdsTargSuggestions`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Object name."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Object type."""
 
-    parent: typing.Optional[str] = Field(
+    parent: str | None = Field(
         default=None,
     )
     """Parent."""
@@ -6792,17 +6792,17 @@ class AdsTargSuggestionsCities(BaseModel):
     Model: `AdsTargSuggestionsCities`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Object name."""
 
-    parent: typing.Optional[str] = Field(
+    parent: str | None = Field(
         default=None,
     )
     """Parent object."""
@@ -6813,17 +6813,17 @@ class AdsTargSuggestionsRegions(BaseModel):
     Model: `AdsTargSuggestionsRegions`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Object name."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Object type."""
@@ -6834,33 +6834,33 @@ class AdsTargSuggestionsSchools(BaseModel):
     Model: `AdsTargSuggestionsSchools`
     """
 
-    desc: typing.Optional[str] = Field(
+    desc: str | None = Field(
         default=None,
     )
     """Full school title."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """School ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """School title."""
 
-    parent: typing.Optional[str] = Field(
+    parent: str | None = Field(
         default=None,
     )
     """City name."""
 
-    type: typing.Optional["AdsTargSuggestionsSchoolsType"] = Field(
+    type: "AdsTargSuggestionsSchoolsType | None" = Field(
         default=None,
     )
     """Property `AdsTargSuggestionsSchools.type`."""
 
 
-class AdsTargSuggestionsSchoolsType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AdsTargSuggestionsSchoolsType(StrEnum, metaclass=BaseEnumMeta):
     SCHOOL = "school"
     UNIVERSITY = "university"
     FACULTY = "faculty"
@@ -6872,72 +6872,72 @@ class AdsTargetGroup(BaseModel):
     Model: `AdsTargetGroup`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Group ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Group name."""
 
-    is_audience: typing.Optional[bool] = Field(
+    is_audience: bool | None = Field(
         default=None,
     )
     """Is audience."""
 
-    is_shared: typing.Optional[bool] = Field(
+    is_shared: bool | None = Field(
         default=None,
     )
     """Is shared."""
 
-    file_source: typing.Optional[bool] = Field(
+    file_source: bool | None = Field(
         default=None,
     )
     """File source."""
 
-    api_source: typing.Optional[bool] = Field(
+    api_source: bool | None = Field(
         default=None,
     )
     """API source."""
 
-    lookalike_source: typing.Optional[bool] = Field(
+    lookalike_source: bool | None = Field(
         default=None,
     )
     """File source."""
 
-    audience_count: typing.Optional[int] = Field(
+    audience_count: int | None = Field(
         default=None,
     )
     """Audience."""
 
-    domain: typing.Optional[str] = Field(
+    domain: str | None = Field(
         default=None,
     )
     """Site domain."""
 
-    lifetime: typing.Optional[int] = Field(
+    lifetime: int | None = Field(
         default=None,
     )
     """Number of days for user to be in group."""
 
-    pixel: typing.Optional[str] = Field(
+    pixel: str | None = Field(
         default=None,
     )
     """Pixel code."""
 
-    target_pixel_id: typing.Optional[int] = Field(
+    target_pixel_id: int | None = Field(
         default=None,
     )
     """Target Pixel id."""
 
-    target_pixel_rules: typing.Optional[typing.List["AdsTargetGroupTargetPixelRule"]] = Field(
+    target_pixel_rules: list["AdsTargetGroupTargetPixelRule"] | None = Field(
         default=None,
     )
     """Target Pixel rules."""
 
-    last_updated: typing.Optional[int] = Field(
+    last_updated: int | None = Field(
         default=None,
     )
     """Last updated."""
@@ -6948,32 +6948,32 @@ class AdsTargetGroupTargetPixelRule(BaseModel):
     Model: `AdsTargetGroupTargetPixelRule`
     """
 
-    url_full_match: typing.Optional[str] = Field(
+    url_full_match: str | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.url_full_match`."""
 
-    event_full_match: typing.Optional[str] = Field(
+    event_full_match: str | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.event_full_match`."""
 
-    url_substrings_match: typing.Optional[typing.List[str]] = Field(
+    url_substrings_match: list[str] | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.url_substrings_match`."""
 
-    event_substrings_match: typing.Optional[typing.List[str]] = Field(
+    event_substrings_match: list[str] | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.event_substrings_match`."""
 
-    url_regex_match: typing.Optional[str] = Field(
+    url_regex_match: str | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.url_regex_match`."""
 
-    event_regex_match: typing.Optional[str] = Field(
+    event_regex_match: str | None = Field(
         default=None,
     )
     """Property `AdsTargetGroupTargetPixelRule.event_regex_match`."""
@@ -7014,7 +7014,7 @@ class AdsUpdateOfficeUsersResult(BaseModel):
     is_success: bool = Field()
     """Property `AdsUpdateOfficeUsersResult.is_success`."""
 
-    error: typing.Optional["BaseError"] = Field(
+    error: "BaseError | None" = Field(
         default=None,
     )
     """Property `AdsUpdateOfficeUsersResult.error`."""
@@ -7028,12 +7028,12 @@ class AdsUpdateAdsStatus(BaseModel):
     id: int = Field()
     """Ad ID."""
 
-    error_code: typing.Optional[int] = Field(
+    error_code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    error_desc: typing.Optional[str] = Field(
+    error_desc: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -7047,12 +7047,12 @@ class AdsUpdateClientsStatus(BaseModel):
     id: int = Field()
     """Client ID."""
 
-    error_code: typing.Optional[int] = Field(
+    error_code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    error_desc: typing.Optional[str] = Field(
+    error_desc: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -7069,17 +7069,17 @@ class AdsUserSpecification(BaseModel):
     role: "AdsAccessRolePublic" = Field()
     """Property `AdsUserSpecification.role`."""
 
-    grant_access_to_all_clients: typing.Optional[bool] = Field(
+    grant_access_to_all_clients: bool | None = Field(
         default=None,
     )
     """Property `AdsUserSpecification.grant_access_to_all_clients`."""
 
-    client_ids: typing.Optional[typing.List[int]] = Field(
+    client_ids: list[int] | None = Field(
         default=None,
     )
     """Property `AdsUserSpecification.client_ids`."""
 
-    view_budget: typing.Optional[bool] = Field(
+    view_budget: bool | None = Field(
         default=None,
     )
     """Property `AdsUserSpecification.view_budget`."""
@@ -7096,12 +7096,12 @@ class AdsUserSpecificationCutted(BaseModel):
     role: "AdsAccessRolePublic" = Field()
     """Property `AdsUserSpecificationCutted.role`."""
 
-    client_id: typing.Optional[int] = Field(
+    client_id: int | None = Field(
         default=None,
     )
     """Property `AdsUserSpecificationCutted.client_id`."""
 
-    view_budget: typing.Optional[bool] = Field(
+    view_budget: bool | None = Field(
         default=None,
     )
     """Property `AdsUserSpecificationCutted.view_budget`."""
@@ -7112,7 +7112,7 @@ class AdsUsers(BaseModel):
     Model: `AdsUsers`
     """
 
-    accesses: typing.List["AdsAccesses"] = Field()
+    accesses: list["AdsAccesses"] = Field()
     """Property `AdsUsers.accesses`."""
 
     user_id: int = Field()
@@ -7127,7 +7127,7 @@ class AppWidgetsPhoto(BaseModel):
     id: str = Field()
     """Image ID."""
 
-    images: typing.List["BaseImage"] = Field()
+    images: list["BaseImage"] = Field()
     """Property `AppWidgetsPhoto.images`."""
 
 
@@ -7136,18 +7136,18 @@ class AppWidgetsPhotos(BaseModel):
     Model: `AppWidgetsPhotos`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Property `AppWidgetsPhotos.count`."""
 
-    items: typing.Optional[typing.List["AppWidgetsPhoto"]] = Field(
+    items: list["AppWidgetsPhoto"] | None = Field(
         default=None,
     )
     """Property `AppWidgetsPhotos.items`."""
 
 
-class AppsAppFields(str, enum.Enum, metaclass=BaseEnumMeta):
+class AppsAppFields(StrEnum, metaclass=BaseEnumMeta):
     AUTHOR_GROUP = "author_group"
     AUTHOR_ID = "author_id"
     AUTHOR_URL = "author_url"
@@ -7198,7 +7198,7 @@ class AppsAppFields(str, enum.Enum, metaclass=BaseEnumMeta):
     SCREEN_ORIENTATION = "screen_orientation"
 
 
-class AppsAppLeaderboardType(int, enum.Enum, metaclass=BaseEnumMeta):
+class AppsAppLeaderboardType(IntEnum, metaclass=BaseEnumMeta):
     NOT_SUPPORTED = 0
     LEVELS = 1
     POINTS = 2
@@ -7218,58 +7218,58 @@ class AppsAppMin(BaseModel):
     title: str = Field()
     """Application title."""
 
-    author_owner_id: typing.Optional[int] = Field(
+    author_owner_id: int | None = Field(
         default=None,
     )
     """Application author\'s ID."""
 
-    is_installed: typing.Optional[bool] = Field(
+    is_installed: bool | None = Field(
         default=None,
     )
     """Is application installed."""
 
-    icon_139: typing.Optional[str] = Field(
+    icon_139: str | None = Field(
         default=None,
     )
     """URL of the app icon with 139 px in width."""
 
-    icon_150: typing.Optional[str] = Field(
+    icon_150: str | None = Field(
         default=None,
     )
     """URL of the app icon with 150 px in width."""
 
-    icon_278: typing.Optional[str] = Field(
+    icon_278: str | None = Field(
         default=None,
     )
     """URL of the app icon with 278 px in width."""
 
-    icon_576: typing.Optional[str] = Field(
+    icon_576: str | None = Field(
         default=None,
     )
     """URL of the app icon with 576 px in width."""
 
-    background_loader_color: typing.Optional[str] = Field(
+    background_loader_color: str | None = Field(
         default=None,
     )
     """Hex color code without hash sign."""
 
-    loader_icon: typing.Optional[str] = Field(
+    loader_icon: str | None = Field(
         default=None,
     )
     """SVG data."""
 
-    icon_75: typing.Optional[str] = Field(
+    icon_75: str | None = Field(
         default=None,
     )
     """URL of the app icon with 75 px in width."""
 
-    screen_orientation: typing.Optional[int] = Field(
+    screen_orientation: int | None = Field(
         default=None,
     )
     """Screen orientation."""
 
 
-class AppsAppType(str, enum.Enum, metaclass=BaseEnumMeta):
+class AppsAppType(StrEnum, metaclass=BaseEnumMeta):
     APP = "app"
     GAME = "game"
     SITE = "site"
@@ -7288,16 +7288,16 @@ class AppsCatalogList(BaseModel):
     count: int = Field()
     """Total number."""
 
-    items: typing.List["AppsApp"] = Field()
+    items: list["AppsApp"] = Field()
     """Property `AppsCatalogList.items`."""
 
-    profiles: typing.Optional[typing.List["UsersUserMin"]] = Field(
+    profiles: list["UsersUserMin"] | None = Field(
         default=None,
     )
     """Property `AppsCatalogList.profiles`."""
 
 
-class AppsCustomSnippetButton(str, enum.Enum, metaclass=BaseEnumMeta):
+class AppsCustomSnippetButton(StrEnum, metaclass=BaseEnumMeta):
     BUY = "buy"
     BUY_TICKET = "buy_ticket"
     CONTACT = "contact"
@@ -7314,52 +7314,52 @@ class AppsCustomSnippet(BaseModel):
     Model: `AppsCustomSnippet`
     """
 
-    vk_ref: typing.Optional[typing.List[typing.Literal["snippet_im", "snippet_post"]]] = Field(
+    vk_ref: list[typing.Literal["snippet_im", "snippet_post"]] | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.vk_ref`."""
 
-    group_id: typing.Optional[typing.List[int]] = Field(
+    group_id: list[int] | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.group_id`."""
 
-    hash: typing.Optional[typing.List[str]] = Field(
+    hash: list[str] | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.hash`."""
 
-    snippet_id: typing.Optional[int] = Field(
+    snippet_id: int | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.snippet_id`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.title`."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.description`."""
 
-    expired_at: typing.Optional[int] = Field(
+    expired_at: int | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.expired_at`."""
 
-    image_url: typing.Optional[str] = Field(
+    image_url: str | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.image_url`."""
 
-    small_image_url: typing.Optional[str] = Field(
+    small_image_url: str | None = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.small_image_url`."""
 
-    button: typing.Optional["AppsCustomSnippetButton"] = Field(
+    button: "AppsCustomSnippetButton | None" = Field(
         default=None,
     )
     """Property `AppsCustomSnippet.button`."""
@@ -7373,23 +7373,23 @@ class AppsLeaderboard(BaseModel):
     user_id: int = Field()
     """User ID."""
 
-    level: typing.Optional[int] = Field(
+    level: int | None = Field(
         default=None,
     )
     """Level."""
 
-    points: typing.Optional[int] = Field(
+    points: int | None = Field(
         default=None,
     )
     """Points number."""
 
-    score: typing.Optional[int] = Field(
+    score: int | None = Field(
         default=None,
     )
     """Score number."""
 
 
-class AppsScopeName(str, enum.Enum, metaclass=BaseEnumMeta):
+class AppsScopeName(StrEnum, metaclass=BaseEnumMeta):
     FRIENDS = "friends"
     PHOTOS = "photos"
     VIDEO = "video"
@@ -7430,7 +7430,7 @@ class AppsScope(BaseModel):
     name: "AppsScopeName" = Field()
     """Scope name."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Scope title."""
@@ -7441,23 +7441,23 @@ class AppsTestingGroup(BaseModel):
     Model: `AppsTestingGroup`
     """
 
-    user_ids: typing.List[int] = Field()
+    user_ids: list[int] = Field()
     """Property `AppsTestingGroup.user_ids`."""
 
     group_id: int = Field()
     """Property `AppsTestingGroup.group_id`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `AppsTestingGroup.name`."""
 
-    webview: typing.Optional[str] = Field(
+    webview: str | None = Field(
         default=None,
     )
     """Property `AppsTestingGroup.webview`."""
 
-    platforms: typing.Optional[typing.List[typing.Literal["mobile", "web", "mvk"]]] = Field(
+    platforms: list[typing.Literal["mobile", "web", "mvk"]] | None = Field(
         default=None,
     )
     """Property `AppsTestingGroup.platforms`."""
@@ -7483,43 +7483,43 @@ class AudioAudio(BaseModel):
     duration: int = Field()
     """Duration in seconds."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the audio."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL of mp3 file."""
 
-    stream_duration: typing.Optional[int] = Field(
+    stream_duration: int | None = Field(
         default=None,
     )
     """Stream duration in seconds."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when uploaded."""
 
-    album_id: typing.Optional[int] = Field(
+    album_id: int | None = Field(
         default=None,
     )
     """Album ID."""
 
-    performer: typing.Optional[str] = Field(
+    performer: str | None = Field(
         default=None,
     )
     """Performer name."""
 
-    file_size: typing.Optional[int] = Field(
+    file_size: int | None = Field(
         default=None,
     )
     """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
 
 
-class BoardDefaultOrder(int, enum.Enum, metaclass=BaseEnumMeta):
+class BoardDefaultOrder(IntEnum, metaclass=BaseEnumMeta):
     DESC_UPDATED = 1
     DESC_CREATED = 2
     ASC_UPDATED = -1
@@ -7531,57 +7531,57 @@ class BoardTopic(BaseModel):
     Model: `BoardTopic`
     """
 
-    comments: typing.Optional[int] = Field(
+    comments: int | None = Field(
         default=None,
     )
     """Comments number."""
 
-    created: typing.Optional[int] = Field(
+    created: int | None = Field(
         default=None,
     )
     """Date when the topic has been created in Unixtime."""
 
-    created_by: typing.Optional[int] = Field(
+    created_by: int | None = Field(
         default=None,
     )
     """Creator ID."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Topic ID."""
 
-    is_closed: typing.Optional[bool] = Field(
+    is_closed: bool | None = Field(
         default=None,
     )
     """Information whether the topic is closed."""
 
-    is_fixed: typing.Optional[bool] = Field(
+    is_fixed: bool | None = Field(
         default=None,
     )
     """Information whether the topic is fixed."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Topic title."""
 
-    updated: typing.Optional[int] = Field(
+    updated: int | None = Field(
         default=None,
     )
     """Date when the topic has been updated in Unixtime."""
 
-    updated_by: typing.Optional[int] = Field(
+    updated_by: int | None = Field(
         default=None,
     )
     """ID of user who updated the topic."""
 
-    first_comment: typing.Optional[str] = Field(
+    first_comment: str | None = Field(
         default=None,
     )
     """First comment text."""
 
-    last_comment: typing.Optional[str] = Field(
+    last_comment: str | None = Field(
         default=None,
     )
     """Last comment text."""
@@ -7604,22 +7604,22 @@ class BoardTopicComment(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+    attachments: list["WallCommentAttachment"] | None = Field(
         default=None,
     )
     """Property `BoardTopicComment.attachments`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the comment."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `BoardTopicComment.likes`."""
@@ -7637,7 +7637,7 @@ class BugtrackerAddCompanyGroupsMembersError(BaseModel):
     """Property `BugtrackerAddCompanyGroupsMembersError.user_id`."""
 
 
-class BugtrackerAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class BugtrackerAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     DOC = "doc"
 
@@ -7650,12 +7650,12 @@ class BugtrackerAttachment(BaseModel):
     type: "BugtrackerAttachmentType" = Field()
     """Property `BugtrackerAttachment.type`."""
 
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
     """Property `BugtrackerAttachment.doc`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `BugtrackerAttachment.photo`."""
@@ -7684,162 +7684,162 @@ class BugtrackerBugreport(BaseModel):
     company_id: int = Field()
     """Property `BugtrackerBugreport.company_id`."""
 
-    original_id: typing.Optional[int] = Field(
+    original_id: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.original_id`."""
 
-    clones_count: typing.Optional[int] = Field(
+    clones_count: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.clones_count`."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.description`."""
 
-    state_actual: typing.Optional[str] = Field(
+    state_actual: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.state_actual`."""
 
-    state_supposed: typing.Optional[str] = Field(
+    state_supposed: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.state_supposed`."""
 
-    phone: typing.Optional[str] = Field(
+    phone: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.phone`."""
 
-    comments_count: typing.Optional[int] = Field(
+    comments_count: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.comments_count`."""
 
-    can_remove: typing.Optional[bool] = Field(
+    can_remove: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_remove`."""
 
-    can_change_status: typing.Optional[bool] = Field(
+    can_change_status: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_change_status`."""
 
-    can_bookmark: typing.Optional[bool] = Field(
+    can_bookmark: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_bookmark`."""
 
-    is_bookmarked: typing.Optional[bool] = Field(
+    is_bookmarked: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.is_bookmarked`."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_edit`."""
 
-    can_export_to_trackers: typing.Optional[bool] = Field(
+    can_export_to_trackers: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_export_to_trackers`."""
 
-    can_export_to_csv: typing.Optional[bool] = Field(
+    can_export_to_csv: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_export_to_csv`."""
 
-    can_add_moder_comment: typing.Optional[bool] = Field(
+    can_add_moder_comment: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_add_moder_comment`."""
 
-    can_add_hidden_comment: typing.Optional[bool] = Field(
+    can_add_hidden_comment: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_add_hidden_comment`."""
 
-    can_view_history: typing.Optional[bool] = Field(
+    can_view_history: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_view_history`."""
 
-    is_deleted: typing.Optional[bool] = Field(
+    is_deleted: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.is_deleted`."""
 
-    can_restore: typing.Optional[bool] = Field(
+    can_restore: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_restore`."""
 
-    is_vulnerability: typing.Optional[bool] = Field(
+    is_vulnerability: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.is_vulnerability`."""
 
-    is_severity_by_moderator: typing.Optional[bool] = Field(
+    is_severity_by_moderator: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.is_severity_by_moderator`."""
 
-    hidden_docs: typing.Optional[bool] = Field(
+    hidden_docs: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.hidden_docs`."""
 
-    is_confidential: typing.Optional[bool] = Field(
+    is_confidential: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.is_confidential`."""
 
-    private_comment: typing.Optional[str] = Field(
+    private_comment: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.private_comment`."""
 
-    can_change_product: typing.Optional[bool] = Field(
+    can_change_product: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.can_change_product`."""
 
-    tournament_score: typing.Optional[int] = Field(
+    tournament_score: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.tournament_score`."""
 
-    moderator_user_id: typing.Optional[int] = Field(
+    moderator_user_id: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.moderator_user_id`."""
 
-    moderated: typing.Optional[int] = Field(
+    moderated: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.moderated`."""
 
-    screen_reader: typing.Optional[int] = Field(
+    screen_reader: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.screen_reader`."""
 
-    status_auto_update_ts: typing.Optional[int] = Field(
+    status_auto_update_ts: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.status_auto_update_ts`."""
 
-    status_auto_update_reason: typing.Optional[int] = Field(
+    status_auto_update_reason: int | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.status_auto_update_reason`."""
 
-    product_has_wishes: typing.Optional[bool] = Field(
+    product_has_wishes: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreport.product_has_wishes`."""
@@ -7853,12 +7853,12 @@ class BugtrackerBugreportSubscribeState(BaseModel):
     can_set_subscribe: bool = Field()
     """Property `BugtrackerBugreportSubscribeState.can_set_subscribe`."""
 
-    is_subscribed: typing.Optional[bool] = Field(
+    is_subscribed: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreportSubscribeState.is_subscribed`."""
 
-    set_subscribe_hash: typing.Optional[str] = Field(
+    set_subscribe_hash: str | None = Field(
         default=None,
     )
     """Property `BugtrackerBugreportSubscribeState.set_subscribe_hash`."""
@@ -7881,57 +7881,57 @@ class BugtrackerComment(BaseModel):
     text: str = Field()
     """Property `BugtrackerComment.text`."""
 
-    meta_text: typing.Optional[str] = Field(
+    meta_text: str | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.meta_text`."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.from_id`."""
 
-    author_name: typing.Optional[str] = Field(
+    author_name: str | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.author_name`."""
 
-    author_photo: typing.Optional[str] = Field(
+    author_photo: str | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.author_photo`."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.can_edit`."""
 
-    can_remove: typing.Optional[bool] = Field(
+    can_remove: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.can_remove`."""
 
-    is_hidden: typing.Optional[bool] = Field(
+    is_hidden: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.is_hidden`."""
 
-    attachments: typing.Optional[typing.List["BugtrackerAttachment"]] = Field(
+    attachments: list["BugtrackerAttachment"] | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.attachments`."""
 
-    is_unread: typing.Optional[bool] = Field(
+    is_unread: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.is_unread`."""
 
-    author: typing.Optional["BugtrackerCommentAuthor"] = Field(
+    author: "BugtrackerCommentAuthor | None" = Field(
         default=None,
     )
     """Property `BugtrackerComment.author`."""
 
-    is_attachments_hidden: typing.Optional[bool] = Field(
+    is_attachments_hidden: bool | None = Field(
         default=None,
     )
     """Property `BugtrackerComment.is_attachments_hidden`."""
@@ -7942,32 +7942,32 @@ class BugtrackerCommentAuthor(BaseModel):
     Model: `BugtrackerCommentAuthor`
     """
 
-    author_id: typing.Optional[int] = Field(
+    author_id: int | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.author_id`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.name`."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.photo`."""
 
-    moder_name: typing.Optional[str] = Field(
+    moder_name: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.moder_name`."""
 
-    moder_number: typing.Optional[int] = Field(
+    moder_number: int | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.moder_number`."""
 
-    link: typing.Optional[str] = Field(
+    link: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCommentAuthor.link`."""
@@ -8002,12 +8002,12 @@ class BugtrackerCompanyMember(BaseModel):
     reporter_url: str = Field()
     """Property `BugtrackerCompanyMember.reporter_url`."""
 
-    groups: typing.Optional[typing.List[int]] = Field(
+    groups: list[int] | None = Field(
         default=None,
     )
     """Property `BugtrackerCompanyMember.groups`."""
 
-    products: typing.Optional[typing.List["BugtrackerCompanyMemberProduct"]] = Field(
+    products: list["BugtrackerCompanyMemberProduct"] | None = Field(
         default=None,
     )
     """Property `BugtrackerCompanyMember.products`."""
@@ -8027,17 +8027,17 @@ class BugtrackerCompanyMemberProduct(BaseModel):
     status: int = Field()
     """Property `BugtrackerCompanyMemberProduct.status`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCompanyMemberProduct.title`."""
 
-    photo_url: typing.Optional[str] = Field(
+    photo_url: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCompanyMemberProduct.photo_url`."""
 
-    licence_status_text: typing.Optional[str] = Field(
+    licence_status_text: str | None = Field(
         default=None,
     )
     """Property `BugtrackerCompanyMemberProduct.licence_status_text`."""
@@ -8078,37 +8078,37 @@ class CallbackAudioNew(BaseModel):
     duration: int = Field()
     """Duration in seconds."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the audio."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL of mp3 file."""
 
-    stream_duration: typing.Optional[int] = Field(
+    stream_duration: int | None = Field(
         default=None,
     )
     """Stream duration in seconds."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when uploaded."""
 
-    album_id: typing.Optional[int] = Field(
+    album_id: int | None = Field(
         default=None,
     )
     """Album ID."""
 
-    performer: typing.Optional[str] = Field(
+    performer: str | None = Field(
         default=None,
     )
     """Performer name."""
 
-    file_size: typing.Optional[int] = Field(
+    file_size: int | None = Field(
         default=None,
     )
     """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
@@ -8131,7 +8131,7 @@ class CallbackBase(BaseModel):
     v: str = Field()
     """API object version."""
 
-    secret: typing.Optional[str] = Field(
+    secret: str | None = Field(
         default=None,
     )
     """Property `CallbackBase.secret`."""
@@ -8151,7 +8151,7 @@ class CallbackBoardPostDelete(BaseModel):
     id: int = Field()
     """Property `CallbackBoardPostDelete.id`."""
 
-    deleter_id: typing.Optional[int] = Field(
+    deleter_id: int | None = Field(
         default=None,
     )
     """Property `CallbackBoardPostDelete.deleter_id`."""
@@ -8174,22 +8174,22 @@ class CallbackBoardPostEdit(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+    attachments: list["WallCommentAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackBoardPostEdit.attachments`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the comment."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackBoardPostEdit.likes`."""
@@ -8212,22 +8212,22 @@ class CallbackBoardPostNew(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+    attachments: list["WallCommentAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackBoardPostNew.attachments`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the comment."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackBoardPostNew.likes`."""
@@ -8250,22 +8250,22 @@ class CallbackBoardPostRestore(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+    attachments: list["WallCommentAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackBoardPostRestore.attachments`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the comment."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackBoardPostRestore.likes`."""
@@ -8297,7 +8297,7 @@ class CallbackDonutSubscriptionCancelled(BaseModel):
     Model: `CallbackDonutSubscriptionCancelled`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionCancelled.user_id`."""
@@ -8314,7 +8314,7 @@ class CallbackDonutSubscriptionCreate(BaseModel):
     amount_without_fee: float = Field()
     """Property `CallbackDonutSubscriptionCreate.amount_without_fee`."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionCreate.user_id`."""
@@ -8325,7 +8325,7 @@ class CallbackDonutSubscriptionExpired(BaseModel):
     Model: `CallbackDonutSubscriptionExpired`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionExpired.user_id`."""
@@ -8342,17 +8342,17 @@ class CallbackDonutSubscriptionPriceChanged(BaseModel):
     amount_new: int = Field()
     """Property `CallbackDonutSubscriptionPriceChanged.amount_new`."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionPriceChanged.user_id`."""
 
-    amount_diff: typing.Optional[float] = Field(
+    amount_diff: float | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionPriceChanged.amount_diff`."""
 
-    amount_diff_without_fee: typing.Optional[float] = Field(
+    amount_diff_without_fee: float | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionPriceChanged.amount_diff_without_fee`."""
@@ -8369,13 +8369,13 @@ class CallbackDonutSubscriptionProlonged(BaseModel):
     amount_without_fee: float = Field()
     """Property `CallbackDonutSubscriptionProlonged.amount_without_fee`."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackDonutSubscriptionProlonged.user_id`."""
 
 
-CallbackFwdMessages: typing.TypeAlias = typing.List[typing.List["CallbackForeignMessage"]]
+CallbackFwdMessages: typing.TypeAlias = list[list["CallbackForeignMessage"]]
 
 
 class CallbackGroupChangePhoto(BaseModel):
@@ -8398,7 +8398,7 @@ class CallbackGroupChangeSettings(BaseModel):
     user_id: int = Field()
     """Property `CallbackGroupChangeSettings.user_id`."""
 
-    changes: typing.Optional["CallbackGroupSettingsChanges"] = Field(
+    changes: "CallbackGroupSettingsChanges | None" = Field(
         default=None,
     )
     """Property `CallbackGroupChangeSettings.changes`."""
@@ -8416,7 +8416,7 @@ class CallbackGroupJoin(BaseModel):
     """Property `CallbackGroupJoin.join_type`."""
 
 
-class CallbackGroupJoinType(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackGroupJoinType(StrEnum, metaclass=BaseEnumMeta):
     JOIN = "join"
     UNSURE = "unsure"
     ACCEPTED = "accepted"
@@ -8429,23 +8429,23 @@ class CallbackGroupLeave(BaseModel):
     Model: `CallbackGroupLeave`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `CallbackGroupLeave.user_id`."""
 
-    self: typing.Optional[bool] = Field(
+    self: bool | None = Field(
         default=None,
     )
     """Property `CallbackGroupLeave.self`."""
 
 
-class CallbackGroupMarket(int, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackGroupMarket(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
 
 
-class CallbackGroupOfficerRole(int, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackGroupOfficerRole(IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     MODERATOR = 1
     EDITOR = 2
@@ -8475,177 +8475,177 @@ class CallbackGroupSettingsChanges(BaseModel):
     Model: `CallbackGroupSettingsChanges`
     """
 
-    title: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    title: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.title`."""
 
-    screen_name: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    screen_name: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.screen_name`."""
 
-    event_start_date: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    event_start_date: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.event_start_date`."""
 
-    event_finish_date: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    event_finish_date: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.event_finish_date`."""
 
-    event_group_id: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    event_group_id: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.event_group_id`."""
 
-    donations: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    donations: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.donations`."""
 
-    wall: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    wall: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.wall`."""
 
-    replies: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    replies: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.replies`."""
 
-    topics: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    topics: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.topics`."""
 
-    photos: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    photos: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.photos`."""
 
-    docs: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    docs: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.docs`."""
 
-    messages: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    messages: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.messages`."""
 
-    market: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    market: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.market`."""
 
-    market_wiki: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    market_wiki: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.market_wiki`."""
 
-    board: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    board: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.board`."""
 
-    links: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    links: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.links`."""
 
-    audio: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    audio: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.audio`."""
 
-    video: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    video: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.video`."""
 
-    can_post_topics: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    can_post_topics: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.can_post_topics`."""
 
-    can_post_albums: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    can_post_albums: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.can_post_albums`."""
 
-    can_post_video: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    can_post_video: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.can_post_video`."""
 
-    disable_market_comments: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    disable_market_comments: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.disable_market_comments`."""
 
-    status_default: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    status_default: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.status_default`."""
 
-    access: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    access: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.access`."""
 
-    email: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    email: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.email`."""
 
-    country_id: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    country_id: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.country_id`."""
 
-    city_id: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    city_id: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.city_id`."""
 
-    address: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    address: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.address`."""
 
-    description: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    description: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.description`."""
 
-    website: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    website: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.website`."""
 
-    phone: typing.Optional["CallbackGroupSettingsChangesStringValues"] = Field(
+    phone: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.phone`."""
 
-    age_limits: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    age_limits: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.age_limits`."""
 
-    category_v2: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    category_v2: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.category_v2`."""
 
-    public_category: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    public_category: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.public_category`."""
 
-    public_subcategory: typing.Optional["CallbackGroupSettingsChangesIntegerValues"] = Field(
+    public_subcategory: "CallbackGroupSettingsChangesIntegerValues | None" = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChanges.public_subcategory`."""
@@ -8656,12 +8656,12 @@ class CallbackGroupSettingsChangesIntegerValues(BaseModel):
     Model: `CallbackGroupSettingsChangesIntegerValues`
     """
 
-    old_value: typing.Optional[int] = Field(
+    old_value: int | None = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChangesIntegerValues.old_value`."""
 
-    new_value: typing.Optional[int] = Field(
+    new_value: int | None = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChangesIntegerValues.new_value`."""
@@ -8672,12 +8672,12 @@ class CallbackGroupSettingsChangesStringValues(BaseModel):
     Model: `CallbackGroupSettingsChangesStringValues`
     """
 
-    old_value: typing.Optional[str] = Field(
+    old_value: str | None = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChangesStringValues.old_value`."""
 
-    new_value: typing.Optional[str] = Field(
+    new_value: str | None = Field(
         default=None,
     )
     """Property `CallbackGroupSettingsChangesStringValues.new_value`."""
@@ -8688,33 +8688,33 @@ class CallbackInfoForBots(BaseModel):
     Model: `CallbackInfoForBots`
     """
 
-    button_actions: typing.Optional[typing.List["MessagesTemplateActionTypeNames"]] = Field(
+    button_actions: list["MessagesTemplateActionTypeNames"] | None = Field(
         default=None,
     )
     """Property `CallbackInfoForBots.button_actions`."""
 
-    keyboard: typing.Optional[bool] = Field(
+    keyboard: bool | None = Field(
         default=None,
     )
     """client has support keyboard."""
 
-    inline_keyboard: typing.Optional[bool] = Field(
+    inline_keyboard: bool | None = Field(
         default=None,
     )
     """client has support inline keyboard."""
 
-    carousel: typing.Optional[bool] = Field(
+    carousel: bool | None = Field(
         default=None,
     )
     """client has support carousel."""
 
-    lang_id: typing.Optional[int] = Field(
+    lang_id: int | None = Field(
         default=None,
     )
     """client or user language id."""
 
 
-class CallbackLikeAddRemoveObjectType(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):
     VIDEO = "video"
     PHOTO = "photo"
     POST = "post"
@@ -8747,7 +8747,7 @@ class CallbackLikeAddRemove(BaseModel):
     post_id: int = Field()
     """Property `CallbackLikeAddRemove.post_id`."""
 
-    thread_reply_id: typing.Optional[int] = Field(
+    thread_reply_id: int | None = Field(
         default=None,
     )
     """Property `CallbackLikeAddRemove.thread_reply_id`."""
@@ -8767,17 +8767,17 @@ class CallbackMarketComment(BaseModel):
     date: int = Field()
     """Property `CallbackMarketComment.date`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `CallbackMarketComment.text`."""
 
-    market_owner_id: typing.Optional[int] = Field(
+    market_owner_id: int | None = Field(
         default=None,
     )
     """Property `CallbackMarketComment.market_owner_id`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `CallbackMarketComment.photo_id`."""
@@ -8839,7 +8839,7 @@ class CallbackMessageEvent(BaseModel):
     payload: str = Field()
     """Property `CallbackMessageEvent.payload`."""
 
-    conversation_message_id: typing.Optional[int] = Field(
+    conversation_message_id: int | None = Field(
         default=None,
     )
     """Property `CallbackMessageEvent.conversation_message_id`."""
@@ -8850,12 +8850,12 @@ class CallbackMessageNew(BaseModel):
     Model: `CallbackMessageNew`
     """
 
-    client_info: typing.Optional["CallbackInfoForBots"] = Field(
+    client_info: "CallbackInfoForBots | None" = Field(
         default=None,
     )
     """Property `CallbackMessageNew.client_info`."""
 
-    message: typing.Optional["CallbackMessage"] = Field(
+    message: "CallbackMessage | None" = Field(
         default=None,
     )
     """Property `CallbackMessageNew.message`."""
@@ -8866,12 +8866,12 @@ class CallbackMessageObject(BaseModel):
     Model: `CallbackMessageObject`
     """
 
-    client_info: typing.Optional["CallbackInfoForBots"] = Field(
+    client_info: "CallbackInfoForBots | None" = Field(
         default=None,
     )
     """Property `CallbackMessageObject.client_info`."""
 
-    message: typing.Optional["CallbackMessage"] = Field(
+    message: "CallbackMessage | None" = Field(
         default=None,
     )
     """Property `CallbackMessageObject.message`."""
@@ -8891,7 +8891,7 @@ class CallbackMessageReactionEvent(BaseModel):
     cmid: int = Field()
     """Property `CallbackMessageReactionEvent.cmid`."""
 
-    reaction_id: typing.Optional[int] = Field(
+    reaction_id: int | None = Field(
         default=None,
     )
     """Property `CallbackMessageReactionEvent.reaction_id`."""
@@ -8915,7 +8915,7 @@ class CallbackMessageRead(BaseModel):
     """Property `CallbackMessageRead.conversation_message_id`."""
 
 
-class CallbackMessageTypingStateState(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackMessageTypingStateState(StrEnum, metaclass=BaseEnumMeta):
     MESSAGE_TYPING_STATE = "message_typing_state"
     f__0 = "0"
     f__1 = "1"
@@ -8961,7 +8961,7 @@ class CallbackPhotoCommentDelete(BaseModel):
     """Property `CallbackPhotoCommentDelete.deleter_id`."""
 
 
-class CallbackPhotoNewVerticalAlign(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackPhotoNewVerticalAlign(StrEnum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -8987,112 +8987,112 @@ class CallbackPhotoNew(BaseModel):
     has_tags: bool = Field()
     """Whether photo has attached tag links."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the photo."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Original photo height."""
 
-    images: typing.Optional[typing.List["PhotosImage"]] = Field(
+    images: list["PhotosImage"] | None = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.images`."""
 
-    lat: typing.Optional[float] = Field(
+    lat: float | None = Field(
         default=None,
     )
     """Latitude."""
 
-    long: typing.Optional[float] = Field(
+    long: float | None = Field(
         default=None,
     )
     """Longitude."""
 
-    photo_256: typing.Optional[str] = Field(
+    photo_256: str | None = Field(
         default=None,
     )
     """URL of image with 2560 px width."""
 
-    thumb_hash: typing.Optional[str] = Field(
+    thumb_hash: str | None = Field(
         default=None,
     )
     """Thumb Hash."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the photo."""
 
-    place: typing.Optional[str] = Field(
+    place: str | None = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.place`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+    sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.sizes`."""
 
-    square_crop: typing.Optional[str] = Field(
+    square_crop: str | None = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.square_crop`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Photo caption."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """ID of the user who have uploaded the photo."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Original photo width."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.likes`."""
 
-    comments: typing.Optional["BaseObjectCount"] = Field(
+    comments: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.comments`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.reposts`."""
 
-    tags: typing.Optional["BaseObjectCount"] = Field(
+    tags: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `CallbackPhotoNew.tags`."""
 
-    hidden: typing.Optional["BasePropertyExists"] = Field(
+    hidden: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Returns if the photo is hidden above the wall."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the photo."""
 
-    vertical_align: typing.Optional["CallbackPhotoNewVerticalAlign"] = Field(
+    vertical_align: "CallbackPhotoNewVerticalAlign | None" = Field(
         default=None,
     )
     """Sets vertical alignment of a photo."""
@@ -9116,7 +9116,7 @@ class CallbackPollVoteNew(BaseModel):
     """Property `CallbackPollVoteNew.user_id`."""
 
 
-class CallbackType(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackType(StrEnum, metaclass=BaseEnumMeta):
     AUDIO_NEW = "audio_new"
     BOARD_POST_NEW = "board_post_new"
     BOARD_POST_EDIT = "board_post_edit"
@@ -9184,7 +9184,7 @@ class CallbackUserBlock(BaseModel):
     reason: int = Field()
     """Property `CallbackUserBlock.reason`."""
 
-    comment: typing.Optional[str] = Field(
+    comment: str | None = Field(
         default=None,
     )
     """Property `CallbackUserBlock.comment`."""
@@ -9243,37 +9243,37 @@ class CallbackVideoNew(BaseModel):
     duration: int = Field()
     """Duration in seconds."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the audio."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL of mp3 file."""
 
-    stream_duration: typing.Optional[int] = Field(
+    stream_duration: int | None = Field(
         default=None,
     )
     """Stream duration in seconds."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when uploaded."""
 
-    album_id: typing.Optional[int] = Field(
+    album_id: int | None = Field(
         default=None,
     )
     """Album ID."""
 
-    performer: typing.Optional[str] = Field(
+    performer: str | None = Field(
         default=None,
     )
     """Performer name."""
 
-    file_size: typing.Optional[int] = Field(
+    file_size: int | None = Field(
         default=None,
     )
     """Примерный объем памяти занимаемый аудио на устройстве. Реализовано только для эпизодов подкастов."""
@@ -9296,7 +9296,7 @@ class CallbackVkpayTransaction(BaseModel):
     date: int = Field()
     """Property `CallbackVkpayTransaction.date`."""
 
-    payload: typing.Optional[str] = Field(
+    payload: str | None = Field(
         default=None,
     )
     """Property `CallbackVkpayTransaction.payload`."""
@@ -9320,7 +9320,7 @@ class CallbackWallCommentDelete(BaseModel):
     """Property `CallbackWallCommentDelete.post_id`."""
 
 
-class CallbackWallPostNewInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackWallPostNewInnerType(StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -9332,122 +9332,122 @@ class CallbackWallPostNew(BaseModel):
     inner_type: "CallbackWallPostNewInnerType" = Field()
     """Property `CallbackWallPostNew.inner_type`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key to private object."""
 
-    is_deleted: typing.Optional[bool] = Field(
+    is_deleted: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.is_deleted`."""
 
-    deleted_reason: typing.Optional[str] = Field(
+    deleted_reason: str | None = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.deleted_reason`."""
 
-    deleted_details: typing.Optional[str] = Field(
+    deleted_details: str | None = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.deleted_details`."""
 
-    donut_miniapp_url: typing.Optional[str] = Field(
+    donut_miniapp_url: str | None = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.donut_miniapp_url`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.attachments`."""
 
-    copyright: typing.Optional["WallPostCopyright"] = Field(
+    copyright: "WallPostCopyright | None" = Field(
         default=None,
     )
     """Information about the source of the post."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
 
-    edited: typing.Optional[int] = Field(
+    edited: int | None = Field(
         default=None,
     )
     """Date of editing in Unixtime."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Post author ID."""
 
-    geo: typing.Optional["WallGeo"] = Field(
+    geo: "WallGeo | None" = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.geo`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    is_archived: typing.Optional[bool] = Field(
+    is_archived: bool | None = Field(
         default=None,
     )
     """Is post archived, only for post owners."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether the post in favorites list."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Count of likes."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Wall owner\'s ID."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original post ID."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original parent IDs stack."""
 
-    post_source: typing.Optional["WallPostSource"] = Field(
+    post_source: "WallPostSource | None" = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.post_source`."""
 
-    post_type: typing.Optional["WallPostType"] = Field(
+    post_type: "WallPostType | None" = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.post_type`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `CallbackWallPostNew.reposts`."""
 
-    signer_id: typing.Optional[int] = Field(
+    signer_id: int | None = Field(
         default=None,
     )
     """Post signer ID."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Post text."""
 
-    views: typing.Optional["WallViews"] = Field(
+    views: "WallViews | None" = Field(
         default=None,
     )
     """Count of views."""
@@ -9470,82 +9470,82 @@ class CallbackWallReplyEdit(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.can_edit`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.post_id`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.owner_id`."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.parents_stack`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.photo_id`."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.video_id`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.attachments`."""
 
-    donut: typing.Optional["WallWallCommentDonut"] = Field(
+    donut: "WallWallCommentDonut | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.donut`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.likes`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    reply_to_user: typing.Optional[int] = Field(
+    reply_to_user: int | None = Field(
         default=None,
     )
     """Replied user ID."""
 
-    reply_to_comment: typing.Optional[int] = Field(
+    reply_to_comment: int | None = Field(
         default=None,
     )
     """Replied comment ID."""
 
-    thread: typing.Optional["CommentThread"] = Field(
+    thread: "CommentThread | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.thread`."""
 
-    is_from_post_author: typing.Optional[bool] = Field(
+    is_from_post_author: bool | None = Field(
         default=None,
     )
     """Whether post is by author of the post or not."""
 
-    deleted: typing.Optional[bool] = Field(
+    deleted: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyEdit.deleted`."""
 
-    pid: typing.Optional[int] = Field(
+    pid: int | None = Field(
         default=None,
     )
     """Photo ID."""
@@ -9568,82 +9568,82 @@ class CallbackWallReplyNew(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.can_edit`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.post_id`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.owner_id`."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.parents_stack`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.photo_id`."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.video_id`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.attachments`."""
 
-    donut: typing.Optional["WallWallCommentDonut"] = Field(
+    donut: "WallWallCommentDonut | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.donut`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.likes`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    reply_to_user: typing.Optional[int] = Field(
+    reply_to_user: int | None = Field(
         default=None,
     )
     """Replied user ID."""
 
-    reply_to_comment: typing.Optional[int] = Field(
+    reply_to_comment: int | None = Field(
         default=None,
     )
     """Replied comment ID."""
 
-    thread: typing.Optional["CommentThread"] = Field(
+    thread: "CommentThread | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.thread`."""
 
-    is_from_post_author: typing.Optional[bool] = Field(
+    is_from_post_author: bool | None = Field(
         default=None,
     )
     """Whether post is by author of the post or not."""
 
-    deleted: typing.Optional[bool] = Field(
+    deleted: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyNew.deleted`."""
 
-    pid: typing.Optional[int] = Field(
+    pid: int | None = Field(
         default=None,
     )
     """Photo ID."""
@@ -9666,88 +9666,88 @@ class CallbackWallReplyRestore(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.can_edit`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.post_id`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.owner_id`."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.parents_stack`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.photo_id`."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.video_id`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.attachments`."""
 
-    donut: typing.Optional["WallWallCommentDonut"] = Field(
+    donut: "WallWallCommentDonut | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.donut`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.likes`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    reply_to_user: typing.Optional[int] = Field(
+    reply_to_user: int | None = Field(
         default=None,
     )
     """Replied user ID."""
 
-    reply_to_comment: typing.Optional[int] = Field(
+    reply_to_comment: int | None = Field(
         default=None,
     )
     """Replied comment ID."""
 
-    thread: typing.Optional["CommentThread"] = Field(
+    thread: "CommentThread | None" = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.thread`."""
 
-    is_from_post_author: typing.Optional[bool] = Field(
+    is_from_post_author: bool | None = Field(
         default=None,
     )
     """Whether post is by author of the post or not."""
 
-    deleted: typing.Optional[bool] = Field(
+    deleted: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallReplyRestore.deleted`."""
 
-    pid: typing.Optional[int] = Field(
+    pid: int | None = Field(
         default=None,
     )
     """Photo ID."""
 
 
-class CallbackWallRepostInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallbackWallRepostInnerType(StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -9759,122 +9759,122 @@ class CallbackWallRepost(BaseModel):
     inner_type: "CallbackWallRepostInnerType" = Field()
     """Property `CallbackWallRepost.inner_type`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key to private object."""
 
-    is_deleted: typing.Optional[bool] = Field(
+    is_deleted: bool | None = Field(
         default=None,
     )
     """Property `CallbackWallRepost.is_deleted`."""
 
-    deleted_reason: typing.Optional[str] = Field(
+    deleted_reason: str | None = Field(
         default=None,
     )
     """Property `CallbackWallRepost.deleted_reason`."""
 
-    deleted_details: typing.Optional[str] = Field(
+    deleted_details: str | None = Field(
         default=None,
     )
     """Property `CallbackWallRepost.deleted_details`."""
 
-    donut_miniapp_url: typing.Optional[str] = Field(
+    donut_miniapp_url: str | None = Field(
         default=None,
     )
     """Property `CallbackWallRepost.donut_miniapp_url`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `CallbackWallRepost.attachments`."""
 
-    copyright: typing.Optional["WallPostCopyright"] = Field(
+    copyright: "WallPostCopyright | None" = Field(
         default=None,
     )
     """Information about the source of the post."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
 
-    edited: typing.Optional[int] = Field(
+    edited: int | None = Field(
         default=None,
     )
     """Date of editing in Unixtime."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Post author ID."""
 
-    geo: typing.Optional["WallGeo"] = Field(
+    geo: "WallGeo | None" = Field(
         default=None,
     )
     """Property `CallbackWallRepost.geo`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    is_archived: typing.Optional[bool] = Field(
+    is_archived: bool | None = Field(
         default=None,
     )
     """Is post archived, only for post owners."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether the post in favorites list."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Count of likes."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Wall owner\'s ID."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original post ID."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original parent IDs stack."""
 
-    post_source: typing.Optional["WallPostSource"] = Field(
+    post_source: "WallPostSource | None" = Field(
         default=None,
     )
     """Property `CallbackWallRepost.post_source`."""
 
-    post_type: typing.Optional["WallPostType"] = Field(
+    post_type: "WallPostType | None" = Field(
         default=None,
     )
     """Property `CallbackWallRepost.post_type`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `CallbackWallRepost.reposts`."""
 
-    signer_id: typing.Optional[int] = Field(
+    signer_id: int | None = Field(
         default=None,
     )
     """Post signer ID."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Post text."""
 
-    views: typing.Optional["WallViews"] = Field(
+    views: "WallViews | None" = Field(
         default=None,
     )
     """Count of views."""
@@ -9897,23 +9897,23 @@ class CallsCall(BaseModel):
     time: int = Field()
     """Timestamp for call."""
 
-    duration: typing.Optional[int] = Field(
+    duration: int | None = Field(
         default=None,
     )
     """Call duration."""
 
-    video: typing.Optional[bool] = Field(
+    video: bool | None = Field(
         default=None,
     )
     """Was this call initiated as video call."""
 
-    participants: typing.Optional["CallsParticipants"] = Field(
+    participants: "CallsParticipants | None" = Field(
         default=None,
     )
     """Property `CallsCall.participants`."""
 
 
-class CallsEndState(str, enum.Enum, metaclass=BaseEnumMeta):
+class CallsEndState(StrEnum, metaclass=BaseEnumMeta):
     CANCELED_BY_INITIATOR = "canceled_by_initiator"
     CANCELED_BY_RECEIVER = "canceled_by_receiver"
     REACHED = "reached"
@@ -9924,12 +9924,13 @@ class CallsParticipants(BaseModel):
     Model: `CallsParticipants`
     """
 
-    list: typing.Optional[typing.List[int]] = Field(
+    list_: list[int] | None = Field(
         default=None,
+        alias="list",
     )
     """Property `CallsParticipants.list`."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Participants count."""
@@ -9962,27 +9963,27 @@ class CommentThread(BaseModel):
     count: int = Field()
     """Comments number."""
 
-    items: typing.Optional[typing.List["WallWallComment"]] = Field(
+    items: list["WallWallComment"] | None = Field(
         default=None,
     )
     """Property `CommentThread.items`."""
 
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the post."""
 
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
     """Information whether recommended to display reply button."""
 
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
     """Information whether groups can comment the post."""
 
-    author_replied: typing.Optional[bool] = Field(
+    author_replied: bool | None = Field(
         default=None,
     )
     """Information whether author commented the thread."""
@@ -10008,12 +10009,12 @@ class DatabaseFaculty(BaseModel):
     Model: `DatabaseFaculty`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Faculty ID."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Faculty title."""
@@ -10036,12 +10037,12 @@ class DatabaseRegion(BaseModel):
     Model: `DatabaseRegion`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Region ID."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Region title."""
@@ -10052,12 +10053,12 @@ class DatabaseSchool(BaseModel):
     Model: `DatabaseSchool`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """School ID."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """School title."""
@@ -10086,12 +10087,12 @@ class DatabaseStation(BaseModel):
     name: str = Field()
     """Station name."""
 
-    city_id: typing.Optional[int] = Field(
+    city_id: int | None = Field(
         default=None,
     )
     """City ID."""
 
-    color: typing.Optional[str] = Field(
+    color: str | None = Field(
         default=None,
     )
     """Hex color code without #."""
@@ -10102,12 +10103,12 @@ class DatabaseUniversity(BaseModel):
     Model: `DatabaseUniversity`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """University ID."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """University title."""
@@ -10139,33 +10140,33 @@ class DocsDoc(BaseModel):
     type: int = Field()
     """Document type."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """File URL."""
 
-    preview: typing.Optional["DocsDocPreview"] = Field(
+    preview: "DocsDocPreview | None" = Field(
         default=None,
     )
     """Property `DocsDoc.preview`."""
 
-    is_licensed: typing.Optional[bool] = Field(
+    is_licensed: bool | None = Field(
         default=None,
     )
     """Property `DocsDoc.is_licensed`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the document."""
 
-    tags: typing.Optional[typing.List[str]] = Field(
+    tags: list[str] | None = Field(
         default=None,
     )
     """Document tags."""
 
 
-class DocsDocAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class DocsDocAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     DOC = "doc"
     GRAFFITI = "graffiti"
     AUDIO_MESSAGE = "audio_message"
@@ -10176,22 +10177,22 @@ class DocsDocPreview(BaseModel):
     Model: `DocsDocPreview`
     """
 
-    audio_msg: typing.Optional["DocsDocPreviewAudioMsg"] = Field(
+    audio_msg: "DocsDocPreviewAudioMsg | None" = Field(
         default=None,
     )
     """Property `DocsDocPreview.audio_msg`."""
 
-    graffiti: typing.Optional["DocsDocPreviewGraffiti"] = Field(
+    graffiti: "DocsDocPreviewGraffiti | None" = Field(
         default=None,
     )
     """Property `DocsDocPreview.graffiti`."""
 
-    photo: typing.Optional["DocsDocPreviewPhoto"] = Field(
+    photo: "DocsDocPreviewPhoto | None" = Field(
         default=None,
     )
     """Property `DocsDocPreview.photo`."""
 
-    video: typing.Optional["DocsDocPreviewVideo"] = Field(
+    video: "DocsDocPreviewVideo | None" = Field(
         default=None,
     )
     """Property `DocsDocPreview.video`."""
@@ -10211,7 +10212,7 @@ class DocsDocPreviewAudioMsg(BaseModel):
     link_ogg: str = Field()
     """OGG file URL."""
 
-    waveform: typing.List[int] = Field()
+    waveform: list[int] = Field()
     """Property `DocsDocPreviewAudioMsg.waveform`."""
 
 
@@ -10235,7 +10236,7 @@ class DocsDocPreviewPhoto(BaseModel):
     Model: `DocsDocPreviewPhoto`
     """
 
-    sizes: typing.Optional[typing.List["DocsDocPreviewPhotoSizes"]] = Field(
+    sizes: list["DocsDocPreviewPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `DocsDocPreviewPhoto.sizes`."""
@@ -10292,7 +10293,7 @@ class DocsDocTypes(BaseModel):
     """Number of docs."""
 
 
-class DonutDonatorSubscriptionInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class DonutDonatorSubscriptionInfoStatus(StrEnum, metaclass=BaseEnumMeta):
     ACTIVE = "active"
     EXPIRING = "expiring"
 
@@ -10324,7 +10325,7 @@ class EventsEventAttach(BaseModel):
     button_text: str = Field()
     """text of attach."""
 
-    friends: typing.List[int] = Field()
+    friends: list[int] = Field()
     """array of friends ids."""
 
     id: int = Field()
@@ -10336,17 +10337,17 @@ class EventsEventAttach(BaseModel):
     text: str = Field()
     """text of attach."""
 
-    address: typing.Optional[str] = Field(
+    address: str | None = Field(
         default=None,
     )
     """address of event."""
 
-    member_status: typing.Optional["GroupsGroupFullMemberStatus"] = Field(
+    member_status: "GroupsGroupFullMemberStatus | None" = Field(
         default=None,
     )
     """Current user\'s member status."""
 
-    time: typing.Optional[int] = Field(
+    time: int | None = Field(
         default=None,
     )
     """event start time."""
@@ -10363,34 +10364,34 @@ class FaveBookmark(BaseModel):
     seen: bool = Field()
     """Has user seen this item."""
 
-    tags: typing.List["FaveTag"] = Field()
+    tags: list["FaveTag"] = Field()
     """Property `FaveBookmark.tags`."""
 
     type: "FaveBookmarkType" = Field()
     """Item type."""
 
-    link: typing.Optional["BaseLink"] = Field(
+    link: "BaseLink | None" = Field(
         default=None,
     )
     """Property `FaveBookmark.link`."""
 
-    post: typing.Optional["WallWallpostFull"] = Field(
+    post: "WallWallpostFull | None" = Field(
         default=None,
     )
     """Property `FaveBookmark.post`."""
 
-    product: typing.Optional["MarketMarketItemFull"] = Field(
+    product: "MarketMarketItemFull | None" = Field(
         default=None,
     )
     """Property `FaveBookmark.product`."""
 
-    video: typing.Optional["VideoVideoFull"] = Field(
+    video: "VideoVideoFull | None" = Field(
         default=None,
     )
     """Property `FaveBookmark.video`."""
 
 
-class FaveBookmarkType(str, enum.Enum, metaclass=BaseEnumMeta):
+class FaveBookmarkType(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     VIDEO = "video"
     PRODUCT = "product"
@@ -10409,29 +10410,29 @@ class FavePage(BaseModel):
     description: str = Field()
     """Some info about user or group."""
 
-    tags: typing.List["FaveTag"] = Field()
+    tags: list["FaveTag"] = Field()
     """Property `FavePage.tags`."""
 
     type: "FavePageType" = Field()
     """Item type."""
 
-    group: typing.Optional["GroupsGroupFull"] = Field(
+    group: "GroupsGroupFull | None" = Field(
         default=None,
     )
     """Property `FavePage.group`."""
 
-    updated_date: typing.Optional[int] = Field(
+    updated_date: int | None = Field(
         default=None,
     )
     """Timestamp, when this page was bookmarked."""
 
-    user: typing.Optional["UsersUserFull"] = Field(
+    user: "UsersUserFull | None" = Field(
         default=None,
     )
     """Property `FavePage.user`."""
 
 
-class FavePageType(str, enum.Enum, metaclass=BaseEnumMeta):
+class FavePageType(StrEnum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     HINTS = "hints"
@@ -10442,12 +10443,12 @@ class FaveTag(BaseModel):
     Model: `FaveTag`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Tag id."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Tag name."""
@@ -10458,43 +10459,43 @@ class GiftsGift(BaseModel):
     Model: `GiftsGift`
     """
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when gist has been sent in Unixtime."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Gift sender ID."""
 
-    gift: typing.Optional["GiftsLayout"] = Field(
+    gift: "GiftsLayout | None" = Field(
         default=None,
     )
     """Property `GiftsGift.gift`."""
 
-    gift_hash: typing.Optional[str] = Field(
+    gift_hash: str | None = Field(
         default=None,
     )
     """Hash."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Gift ID."""
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Comment text."""
 
-    privacy: typing.Optional["GiftsGiftPrivacy"] = Field(
+    privacy: "GiftsGiftPrivacy | None" = Field(
         default=None,
     )
     """Property `GiftsGift.privacy`."""
 
 
-class GiftsGiftPrivacy(int, enum.Enum, metaclass=BaseEnumMeta):
+class GiftsGiftPrivacy(IntEnum, metaclass=BaseEnumMeta):
     NAME_AND_MESSAGE_FOR_ALL = 0
     NAME_FOR_ALL = 1
     NAME_AND_MESSAGE_FOR_RECIPIENT_ONLY = 2
@@ -10508,42 +10509,42 @@ class GiftsLayout(BaseModel):
     id: int = Field()
     """Gift ID."""
 
-    thumb_512: typing.Optional[str] = Field(
+    thumb_512: str | None = Field(
         default=None,
     )
     """URL of the preview image with 512 px in width."""
 
-    thumb_256: typing.Optional[str] = Field(
+    thumb_256: str | None = Field(
         default=None,
     )
     """URL of the preview image with 256 px in width."""
 
-    thumb_48: typing.Optional[str] = Field(
+    thumb_48: str | None = Field(
         default=None,
     )
     """URL of the preview image with 48 px in width."""
 
-    thumb_96: typing.Optional[str] = Field(
+    thumb_96: str | None = Field(
         default=None,
     )
     """URL of the preview image with 96 px in width."""
 
-    stickers_product_id: typing.Optional[int] = Field(
+    stickers_product_id: int | None = Field(
         default=None,
     )
     """ID of the sticker pack, if the gift is representing one."""
 
-    is_stickers_style: typing.Optional[bool] = Field(
+    is_stickers_style: bool | None = Field(
         default=None,
     )
     """Information whether gift represents a stickers style."""
 
-    build_id: typing.Optional[str] = Field(
+    build_id: str | None = Field(
         default=None,
     )
     """ID of the build of constructor gift."""
 
-    keywords: typing.Optional[str] = Field(
+    keywords: str | None = Field(
         default=None,
     )
     """Keywords used for search."""
@@ -10557,82 +10558,82 @@ class GroupsAddress(BaseModel):
     id: int = Field()
     """Address id."""
 
-    additional_address: typing.Optional[str] = Field(
+    additional_address: str | None = Field(
         default=None,
     )
     """Additional address to the place (6 floor, left door)."""
 
-    address: typing.Optional[str] = Field(
+    address: str | None = Field(
         default=None,
     )
     """String address to the place (Nevsky, 28)."""
 
-    city_id: typing.Optional[int] = Field(
+    city_id: int | None = Field(
         default=None,
     )
     """City id of address."""
 
-    city: typing.Optional["DatabaseCityById"] = Field(
+    city: "DatabaseCityById | None" = Field(
         default=None,
     )
     """City for address."""
 
-    metro_station: typing.Optional["DatabaseStation"] = Field(
+    metro_station: "DatabaseStation | None" = Field(
         default=None,
     )
     """Metro for address."""
 
-    country: typing.Optional["BaseCountry"] = Field(
+    country: "BaseCountry | None" = Field(
         default=None,
     )
     """Country for address."""
 
-    distance: typing.Optional[int] = Field(
+    distance: int | None = Field(
         default=None,
     )
     """Distance from the point."""
 
-    latitude: typing.Optional[float] = Field(
+    latitude: float | None = Field(
         default=None,
     )
     """Address latitude."""
 
-    longitude: typing.Optional[float] = Field(
+    longitude: float | None = Field(
         default=None,
     )
     """Address longitude."""
 
-    metro_station_id: typing.Optional[int] = Field(
+    metro_station_id: int | None = Field(
         default=None,
     )
     """Metro id of address."""
 
-    phone: typing.Optional[str] = Field(
+    phone: str | None = Field(
         default=None,
     )
     """Address phone."""
 
-    time_offset: typing.Optional[int] = Field(
+    time_offset: int | None = Field(
         default=None,
     )
     """Time offset int minutes from utc time."""
 
-    timetable: typing.Optional["GroupsAddressTimetable"] = Field(
+    timetable: "GroupsAddressTimetable | None" = Field(
         default=None,
     )
     """Week timetable for the address."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Title of the place (Zinger, etc)."""
 
-    work_info_status: typing.Optional["GroupsAddressWorkInfoStatus"] = Field(
+    work_info_status: "GroupsAddressWorkInfoStatus | None" = Field(
         default=None,
     )
     """Status of information about timetable."""
 
-    place_id: typing.Optional[int] = Field(
+    place_id: int | None = Field(
         default=None,
     )
     """Property `GroupsAddress.place_id`."""
@@ -10644,37 +10645,37 @@ class GroupsAddressTimetable(BaseModel):
     Model: `GroupsAddressTimetable`
     """
 
-    fri: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    fri: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for friday."""
 
-    mon: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    mon: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for monday."""
 
-    sat: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    sat: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for saturday."""
 
-    sun: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    sun: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for sunday."""
 
-    thu: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    thu: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for thursday."""
 
-    tue: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    tue: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for tuesday."""
 
-    wed: typing.Optional["GroupsAddressTimetableDay"] = Field(
+    wed: "GroupsAddressTimetableDay | None" = Field(
         default=None,
     )
     """Timetable for wednesday."""
@@ -10692,18 +10693,18 @@ class GroupsAddressTimetableDay(BaseModel):
     open_time: int = Field()
     """Open time in minutes."""
 
-    break_close_time: typing.Optional[int] = Field(
+    break_close_time: int | None = Field(
         default=None,
     )
     """Close time of the break in minutes."""
 
-    break_open_time: typing.Optional[int] = Field(
+    break_open_time: int | None = Field(
         default=None,
     )
     """Start time of the break in minutes."""
 
 
-class GroupsAddressWorkInfoStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsAddressWorkInfoStatus(StrEnum, metaclass=BaseEnumMeta):
     NO_INFORMATION = "no_information"
     TEMPORARILY_CLOSED = "temporarily_closed"
     ALWAYS_OPENED = "always_opened"
@@ -10719,17 +10720,17 @@ class GroupsAddressesInfo(BaseModel):
     is_enabled: bool = Field()
     """Information whether addresses is enabled."""
 
-    main_address_id: typing.Optional[int] = Field(
+    main_address_id: int | None = Field(
         default=None,
     )
     """Main address id for group."""
 
-    main_address: typing.Optional["GroupsAddress"] = Field(
+    main_address: "GroupsAddress | None" = Field(
         default=None,
     )
     """Main address."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count of addresses."""
@@ -10740,43 +10741,43 @@ class GroupsBanInfo(BaseModel):
     Model: `GroupsBanInfo`
     """
 
-    admin_id: typing.Optional[int] = Field(
+    admin_id: int | None = Field(
         default=None,
     )
     """Administrator ID."""
 
-    comment: typing.Optional[str] = Field(
+    comment: str | None = Field(
         default=None,
     )
     """Comment for a ban."""
 
-    comment_visible: typing.Optional[bool] = Field(
+    comment_visible: bool | None = Field(
         default=None,
     )
     """Show comment for user."""
 
-    is_closed: typing.Optional[bool] = Field(
+    is_closed: bool | None = Field(
         default=None,
     )
     """Property `GroupsBanInfo.is_closed`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when user has been added to blacklist in Unixtime."""
 
-    end_date: typing.Optional[int] = Field(
+    end_date: int | None = Field(
         default=None,
     )
     """Date when user will be removed from blacklist in Unixtime."""
 
-    reason: typing.Optional["GroupsBanInfoReason"] = Field(
+    reason: "GroupsBanInfoReason | None" = Field(
         default=None,
     )
     """Property `GroupsBanInfo.reason`."""
 
 
-class GroupsBanInfoReason(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsBanInfoReason(IntEnum, metaclass=BaseEnumMeta):
     OTHER = 0
     SPAM = 1
     VERBAL_ABUSE = 2
@@ -10784,7 +10785,7 @@ class GroupsBanInfoReason(int, enum.Enum, metaclass=BaseEnumMeta):
     FLOOD = 4
 
 
-class GroupsCallbackServerStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsCallbackServerStatus(StrEnum, metaclass=BaseEnumMeta):
     UNCONFIGURED = "unconfigured"
     FAILED = "failed"
     WAIT = "wait"
@@ -10820,12 +10821,12 @@ class GroupsCallbackSettings(BaseModel):
     Model: `GroupsCallbackSettings`
     """
 
-    api_version: typing.Optional[str] = Field(
+    api_version: str | None = Field(
         default=None,
     )
     """API version used for the events."""
 
-    events: typing.Optional["GroupsLongPollEvents"] = Field(
+    events: "GroupsLongPollEvents | None" = Field(
         default=None,
     )
     """Property `GroupsCallbackSettings.events`."""
@@ -10836,22 +10837,22 @@ class GroupsContactsItem(BaseModel):
     Model: `GroupsContactsItem`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """User ID."""
 
-    desc: typing.Optional[str] = Field(
+    desc: str | None = Field(
         default=None,
     )
     """Contact description."""
 
-    phone: typing.Optional[str] = Field(
+    phone: str | None = Field(
         default=None,
     )
     """Contact phone."""
 
-    email: typing.Optional[str] = Field(
+    email: str | None = Field(
         default=None,
     )
     """Contact email."""
@@ -10862,103 +10863,103 @@ class GroupsCountersGroup(BaseModel):
     Model: `GroupsCountersGroup`
     """
 
-    addresses: typing.Optional[int] = Field(
+    addresses: int | None = Field(
         default=None,
     )
     """Addresses number."""
 
-    albums: typing.Optional[int] = Field(
+    albums: int | None = Field(
         default=None,
     )
     """Photo albums number."""
 
-    audios: typing.Optional[int] = Field(
+    audios: int | None = Field(
         default=None,
     )
     """Audios number."""
 
-    audio_playlists: typing.Optional[int] = Field(
+    audio_playlists: int | None = Field(
         default=None,
     )
     """Audio playlists number."""
 
-    docs: typing.Optional[int] = Field(
+    docs: int | None = Field(
         default=None,
     )
     """Docs number."""
 
-    market: typing.Optional[int] = Field(
+    market: int | None = Field(
         default=None,
     )
     """Market items number."""
 
-    photos: typing.Optional[int] = Field(
+    photos: int | None = Field(
         default=None,
     )
     """Photos number."""
 
-    topics: typing.Optional[int] = Field(
+    topics: int | None = Field(
         default=None,
     )
     """Topics number."""
 
-    videos: typing.Optional[int] = Field(
+    videos: int | None = Field(
         default=None,
     )
     """Videos number."""
 
-    video_playlists: typing.Optional[int] = Field(
+    video_playlists: int | None = Field(
         default=None,
     )
     """Playlists number."""
 
-    market_services: typing.Optional[int] = Field(
+    market_services: int | None = Field(
         default=None,
     )
     """Market services number."""
 
-    podcasts: typing.Optional[int] = Field(
+    podcasts: int | None = Field(
         default=None,
     )
     """Podcasts number."""
 
-    articles: typing.Optional[int] = Field(
+    articles: int | None = Field(
         default=None,
     )
     """Articles number."""
 
-    narratives: typing.Optional[int] = Field(
+    narratives: int | None = Field(
         default=None,
     )
     """Narratives number."""
 
-    clips: typing.Optional[int] = Field(
+    clips: int | None = Field(
         default=None,
     )
     """Clips number."""
 
-    clips_followers: typing.Optional[int] = Field(
+    clips_followers: int | None = Field(
         default=None,
     )
     """Clips followers number."""
 
-    videos_followers: typing.Optional[int] = Field(
+    videos_followers: int | None = Field(
         default=None,
     )
     """Videos followers number."""
 
-    clips_views: typing.Optional[int] = Field(
+    clips_views: int | None = Field(
         default=None,
     )
     """Clips views number."""
 
-    clips_likes: typing.Optional[int] = Field(
+    clips_likes: int | None = Field(
         default=None,
     )
     """Clips likes number."""
 
 
-class GroupsFields(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsFields(StrEnum, metaclass=BaseEnumMeta):
     ID = "id"
     NAME = "name"
     SCREEN_NAME = "screen_name"
@@ -11054,7 +11055,7 @@ class GroupsFields(str, enum.Enum, metaclass=BaseEnumMeta):
     VIDEOS_COUNT = "videos_count"
 
 
-class GroupsFilter(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsFilter(StrEnum, metaclass=BaseEnumMeta):
     ADMIN = "admin"
     EDITOR = "editor"
     MODER = "moder"
@@ -11073,145 +11074,145 @@ class GroupsGroup(BaseModel):
     id: int = Field()
     """Community ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Community name."""
 
-    screen_name: typing.Optional[str] = Field(
+    screen_name: str | None = Field(
         default=None,
     )
     """Domain of the community page."""
 
-    is_closed: typing.Optional["GroupsGroupIsClosed"] = Field(
+    is_closed: "GroupsGroupIsClosed | None" = Field(
         default=None,
     )
     """Property `GroupsGroup.is_closed`."""
 
-    type: typing.Optional["GroupsGroupType"] = Field(
+    type: "GroupsGroupType | None" = Field(
         default=None,
     )
     """Property `GroupsGroup.type`."""
 
-    is_admin: typing.Optional[bool] = Field(
+    is_admin: bool | None = Field(
         default=None,
     )
     """Information whether current user is administrator."""
 
-    admin_level: typing.Optional["GroupsGroupAdminLevel"] = Field(
+    admin_level: "GroupsGroupAdminLevel | None" = Field(
         default=None,
     )
     """Property `GroupsGroup.admin_level`."""
 
-    is_member: typing.Optional[bool] = Field(
+    is_member: bool | None = Field(
         default=None,
     )
     """Information whether current user is member."""
 
-    is_advertiser: typing.Optional[bool] = Field(
+    is_advertiser: bool | None = Field(
         default=None,
     )
     """Information whether current user is advertiser."""
 
-    start_date: typing.Optional[int] = Field(
+    start_date: int | None = Field(
         default=None,
     )
     """Start date in Unixtime format."""
 
-    finish_date: typing.Optional[int] = Field(
+    finish_date: int | None = Field(
         default=None,
     )
     """Finish date in Unixtime format."""
 
-    verified: typing.Optional[bool] = Field(
+    verified: bool | None = Field(
         default=None,
     )
     """Information whether community is verified."""
 
-    deactivated: typing.Optional[str] = Field(
+    deactivated: str | None = Field(
         default=None,
     )
     """Information whether community is banned."""
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 50 pixels in width."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 100 pixels in width."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 200 pixels in width."""
 
-    photo_200_orig: typing.Optional[str] = Field(
+    photo_200_orig: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 200 pixels in width original."""
 
-    photo_400: typing.Optional[str] = Field(
+    photo_400: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 400 pixels in width."""
 
-    photo_400_orig: typing.Optional[str] = Field(
+    photo_400_orig: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with 400 pixels in width original."""
 
-    photo_max: typing.Optional[str] = Field(
+    photo_max: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with max pixels in width."""
 
-    photo_max_orig: typing.Optional[str] = Field(
+    photo_max_orig: str | None = Field(
         default=None,
     )
     """URL of square photo of the community with max pixels in width original."""
 
-    est_date: typing.Optional[str] = Field(
+    est_date: str | None = Field(
         default=None,
     )
     """Established date."""
 
-    public_date_label: typing.Optional[str] = Field(
+    public_date_label: str | None = Field(
         default=None,
     )
     """Public date label."""
 
-    photo_max_size: typing.Optional["GroupsPhotoSize"] = Field(
+    photo_max_size: "GroupsPhotoSize | None" = Field(
         default=None,
     )
     """Property `GroupsGroup.photo_max_size`."""
 
-    is_video_live_notifications_blocked: typing.Optional[bool] = Field(
+    is_video_live_notifications_blocked: bool | None = Field(
         default=None,
     )
     """Property `GroupsGroup.is_video_live_notifications_blocked`."""
 
-    video_live: typing.Optional["VideoLiveInfo"] = Field(
+    video_live: "VideoLiveInfo | None" = Field(
         default=None,
     )
     """Property `GroupsGroup.video_live`."""
 
 
-class GroupsGroupAccess(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupAccess(IntEnum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupAdminLevel(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupAdminLevel(IntEnum, metaclass=BaseEnumMeta):
     MODERATOR = 1
     EDITOR = 2
     ADMINISTRATOR = 3
 
 
-class GroupsGroupAgeLimits(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupAgeLimits(IntEnum, metaclass=BaseEnumMeta):
     UNLIMITED = 1
     F__16_PLUS = 2
     F__18_PLUS = 3
@@ -11238,7 +11239,7 @@ class GroupsGroupAttach(BaseModel):
     """is favorite."""
 
 
-class GroupsGroupAudio(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupAudio(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -11249,17 +11250,17 @@ class GroupsGroupBanInfo(BaseModel):
     Model: `GroupsGroupBanInfo`
     """
 
-    comment: typing.Optional[str] = Field(
+    comment: str | None = Field(
         default=None,
     )
     """Ban comment."""
 
-    end_date: typing.Optional[int] = Field(
+    end_date: int | None = Field(
         default=None,
     )
     """End date of ban in Unixtime."""
 
-    reason: typing.Optional["GroupsBanInfoReason"] = Field(
+    reason: "GroupsBanInfoReason | None" = Field(
         default=None,
     )
     """Property `GroupsGroupBanInfo.reason`."""
@@ -11276,7 +11277,7 @@ class GroupsGroupCategory(BaseModel):
     name: str = Field()
     """Category name."""
 
-    subcategories: typing.Optional[typing.List["GroupsGroupSubcategory"]] = Field(
+    subcategories: list["GroupsGroupSubcategory"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupCategory.subcategories`."""
@@ -11296,10 +11297,10 @@ class GroupsGroupCategoryFull(BaseModel):
     page_count: int = Field()
     """Pages number."""
 
-    page_previews: typing.List["GroupsGroup"] = Field()
+    page_previews: list["GroupsGroup"] = Field()
     """Property `GroupsGroupCategoryFull.page_previews`."""
 
-    subcategories: typing.Optional[typing.List["GroupsGroupCategory"]] = Field(
+    subcategories: list["GroupsGroupCategory"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupCategoryFull.subcategories`."""
@@ -11317,19 +11318,19 @@ class GroupsGroupCategoryType(BaseModel):
     """Property `GroupsGroupCategoryType.name`."""
 
 
-class GroupsGroupDocs(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupDocs(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupFullAgeLimits(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupFullAgeLimits(IntEnum, metaclass=BaseEnumMeta):
     NO = 1
     OVER_16 = 2
     OVER_18 = 3
 
 
-class GroupsGroupFullMemberStatus(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupFullMemberStatus(IntEnum, metaclass=BaseEnumMeta):
     NOT_A_MEMBER = 0
     MEMBER = 1
     NOT_SURE = 2
@@ -11338,7 +11339,7 @@ class GroupsGroupFullMemberStatus(int, enum.Enum, metaclass=BaseEnumMeta):
     INVITED = 5
 
 
-class GroupsGroupFullSection(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupFullSection(IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     PHOTOS = 1
     TOPICS = 2
@@ -11390,13 +11391,13 @@ class GroupsGroupFullSection(int, enum.Enum, metaclass=BaseEnumMeta):
     RECOMMENDED_TIPS_WIDGET = 62
 
 
-class GroupsGroupIsClosed(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupIsClosed(IntEnum, metaclass=BaseEnumMeta):
     OPEN = 0
     CLOSED = 1
     PRIVATE = 2
 
 
-class GroupsGroupMarketCurrency(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupMarketCurrency(IntEnum, metaclass=BaseEnumMeta):
     RUSSIAN_RUBLES = 643
     UKRAINIAN_HRYVNIA = 980
     KAZAKH_TENGE = 398
@@ -11404,7 +11405,7 @@ class GroupsGroupMarketCurrency(int, enum.Enum, metaclass=BaseEnumMeta):
     US_DOLLARS = 840
 
 
-class GroupsGroupPhotos(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupPhotos(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -11415,23 +11416,23 @@ class GroupsGroupPublicCategoryList(BaseModel):
     Model: `GroupsGroupPublicCategoryList`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Property `GroupsGroupPublicCategoryList.id`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `GroupsGroupPublicCategoryList.name`."""
 
-    subcategories: typing.Optional[typing.List["GroupsGroupCategoryType"]] = Field(
+    subcategories: list["GroupsGroupCategoryType"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupPublicCategoryList.subcategories`."""
 
 
-class GroupsGroupRole(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupRole(StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -11449,13 +11450,13 @@ class GroupsGroupSubcategory(BaseModel):
     name: str = Field()
     """Object name."""
 
-    genders: typing.Optional[typing.List["BaseObjectWithName"]] = Field(
+    genders: list["BaseObjectWithName"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupSubcategory.genders`."""
 
 
-class GroupsGroupSubject(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupSubject(IntEnum, metaclass=BaseEnumMeta):
     AUTO = 1
     ACTIVITY_HOLIDAYS = 2
     BUSINESS = 3
@@ -11500,13 +11501,13 @@ class GroupsGroupSubject(int, enum.Enum, metaclass=BaseEnumMeta):
     DESIGN_AND_GRAPHICS = 42
 
 
-class GroupsGroupSuggestedPrivacy(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupSuggestedPrivacy(IntEnum, metaclass=BaseEnumMeta):
     NONE = 0
     ALL = 1
     SUBSCRIBERS = 2
 
 
-class GroupsGroupTagColor(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupTagColor(StrEnum, metaclass=BaseEnumMeta):
     f__454647 = "454647"
     f__45678f = "45678f"
     f__4bb34b = "4bb34b"
@@ -11543,38 +11544,38 @@ class GroupsGroupTag(BaseModel):
     color: "GroupsGroupTagColor" = Field()
     """Property `GroupsGroupTag.color`."""
 
-    uses: typing.Optional[int] = Field(
+    uses: int | None = Field(
         default=None,
     )
     """Property `GroupsGroupTag.uses`."""
 
 
-class GroupsGroupTopics(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupTopics(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupType(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupType(StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PAGE = "page"
     EVENT = "event"
 
 
-class GroupsGroupVideo(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupVideo(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
 
 
-class GroupsGroupWall(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupWall(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
     CLOSED = 3
 
 
-class GroupsGroupWiki(int, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsGroupWiki(IntEnum, metaclass=BaseEnumMeta):
     DISABLED = 0
     OPEN = 1
     LIMITED = 2
@@ -11588,7 +11589,7 @@ class GroupsGroupsArray(BaseModel):
     count: int = Field()
     """Communities number."""
 
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
     """Property `GroupsGroupsArray.items`."""
 
 
@@ -11597,42 +11598,42 @@ class GroupsLinksItem(BaseModel):
     Model: `GroupsLinksItem`
     """
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Link title."""
 
-    desc: typing.Optional[str] = Field(
+    desc: str | None = Field(
         default=None,
     )
     """Link description."""
 
-    edit_title: typing.Optional[bool] = Field(
+    edit_title: bool | None = Field(
         default=None,
     )
     """Information whether the link title can be edited."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Link ID."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of square image of the link with 100 pixels in width."""
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of square image of the link with 50 pixels in width."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Link URL."""
 
-    image_processing: typing.Optional[bool] = Field(
+    image_processing: bool | None = Field(
         default=None,
     )
     """Information whether the image on processing."""
@@ -11646,12 +11647,12 @@ class GroupsLiveCovers(BaseModel):
     is_enabled: bool = Field()
     """Information whether live covers is enabled."""
 
-    is_scalable: typing.Optional[bool] = Field(
+    is_scalable: bool | None = Field(
         default=None,
     )
     """Information whether live covers photo scaling is enabled."""
 
-    story_ids: typing.Optional[typing.List[str]] = Field(
+    story_ids: list[str] | None = Field(
         default=None,
     )
     """Property `GroupsLiveCovers.story_ids`."""
@@ -11812,17 +11813,17 @@ class GroupsLongPollEvents(BaseModel):
     donut_money_withdraw_error: bool = Field()
     """Property `GroupsLongPollEvents.donut_money_withdraw_error`."""
 
-    lead_forms_new: typing.Optional[bool] = Field(
+    lead_forms_new: bool | None = Field(
         default=None,
     )
     """Property `GroupsLongPollEvents.lead_forms_new`."""
 
-    market_order_new: typing.Optional[bool] = Field(
+    market_order_new: bool | None = Field(
         default=None,
     )
     """Property `GroupsLongPollEvents.market_order_new`."""
 
-    market_order_edit: typing.Optional[bool] = Field(
+    market_order_edit: bool | None = Field(
         default=None,
     )
     """Property `GroupsLongPollEvents.market_order_edit`."""
@@ -11854,7 +11855,7 @@ class GroupsLongPollSettings(BaseModel):
     is_enabled: bool = Field()
     """Shows whether Long Poll is enabled."""
 
-    api_version: typing.Optional[str] = Field(
+    api_version: str | None = Field(
         default=None,
     )
     """API version used for the events."""
@@ -11865,47 +11866,47 @@ class GroupsMarketInfo(BaseModel):
     Model: `GroupsMarketInfo`
     """
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Market type."""
 
-    contact_id: typing.Optional[int] = Field(
+    contact_id: int | None = Field(
         default=None,
     )
     """Contact person ID."""
 
-    currency: typing.Optional["MarketCurrency"] = Field(
+    currency: "MarketCurrency | None" = Field(
         default=None,
     )
     """Property `GroupsMarketInfo.currency`."""
 
-    currency_text: typing.Optional[str] = Field(
+    currency_text: str | None = Field(
         default=None,
     )
     """Currency name."""
 
-    enabled: typing.Optional[bool] = Field(
+    enabled: bool | None = Field(
         default=None,
     )
     """Information whether the market is enabled."""
 
-    main_album_id: typing.Optional[int] = Field(
+    main_album_id: int | None = Field(
         default=None,
     )
     """Main market album ID."""
 
-    price_max: typing.Optional[str] = Field(
+    price_max: str | None = Field(
         default=None,
     )
     """Maximum price."""
 
-    price_min: typing.Optional[str] = Field(
+    price_min: str | None = Field(
         default=None,
     )
     """Minimum price."""
 
-    min_order_price: typing.Optional["MarketPrice"] = Field(
+    min_order_price: "MarketPrice | None" = Field(
         default=None,
     )
     """Property `GroupsMarketInfo.min_order_price`."""
@@ -11916,23 +11917,23 @@ class GroupsMarketProperties(BaseModel):
     Model: `GroupsMarketProperties`
     """
 
-    market: typing.Optional["GroupsMarketInfo"] = Field(
+    market: "GroupsMarketInfo | None" = Field(
         default=None,
     )
     """Property `GroupsMarketProperties.market`."""
 
-    has_market_app: typing.Optional[bool] = Field(
+    has_market_app: bool | None = Field(
         default=None,
     )
     """Information whether community has installed market app."""
 
-    using_vkpay_market_app: typing.Optional[bool] = Field(
+    using_vkpay_market_app: bool | None = Field(
         default=None,
     )
     """Property `GroupsMarketProperties.using_vkpay_market_app`."""
 
 
-class GroupsMarketState(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsMarketState(StrEnum, metaclass=BaseEnumMeta):
     NONE = "none"
     BASIC = "basic"
     ADVANCED = "advanced"
@@ -11946,27 +11947,27 @@ class GroupsMemberRole(BaseModel):
     id: int = Field()
     """User ID."""
 
-    is_call_operator: typing.Optional[bool] = Field(
+    is_call_operator: bool | None = Field(
         default=None,
     )
     """Allow the manager to accept community calls.."""
 
-    permissions: typing.Optional[typing.List["GroupsMemberRolePermission"]] = Field(
+    permissions: list["GroupsMemberRolePermission"] | None = Field(
         default=None,
     )
     """Property `GroupsMemberRole.permissions`."""
 
-    role: typing.Optional["GroupsMemberRoleStatus"] = Field(
+    role: "GroupsMemberRoleStatus | None" = Field(
         default=None,
     )
     """Property `GroupsMemberRole.role`."""
 
 
-class GroupsMemberRolePermission(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsMemberRolePermission(StrEnum, metaclass=BaseEnumMeta):
     ADS = "ads"
 
 
-class GroupsMemberRoleStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsMemberRoleStatus(StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -11997,22 +11998,22 @@ class GroupsMemberStatusFull(BaseModel):
     user_id: int = Field()
     """User ID."""
 
-    can_invite: typing.Optional[bool] = Field(
+    can_invite: bool | None = Field(
         default=None,
     )
     """Information whether user can be invited."""
 
-    can_recall: typing.Optional[bool] = Field(
+    can_recall: bool | None = Field(
         default=None,
     )
     """Information whether user\'s invite to the group can be recalled."""
 
-    invitation: typing.Optional[bool] = Field(
+    invitation: bool | None = Field(
         default=None,
     )
     """Information whether user has been invited to the group."""
 
-    request: typing.Optional[bool] = Field(
+    request: bool | None = Field(
         default=None,
     )
     """Information whether user has send request to the group."""
@@ -12027,19 +12028,19 @@ class GroupsOnlineStatus(BaseModel):
     status: "GroupsOnlineStatusType" = Field()
     """Property `GroupsOnlineStatus.status`."""
 
-    minutes: typing.Optional[int] = Field(
+    minutes: int | None = Field(
         default=None,
     )
     """Estimated time of answer (for status = answer_mark)."""
 
 
-class GroupsOnlineStatusType(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsOnlineStatusType(StrEnum, metaclass=BaseEnumMeta):
     NONE = "none"
     ONLINE = "online"
     ANSWER_MARK = "answer_mark"
 
 
-class GroupsOwnerXtrBanInfoType(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsOwnerXtrBanInfoType(StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
 
@@ -12049,22 +12050,22 @@ class GroupsOwnerXtrBanInfo(BaseModel):
     Model: `GroupsOwnerXtrBanInfo`
     """
 
-    ban_info: typing.Optional["GroupsBanInfo"] = Field(
+    ban_info: "GroupsBanInfo | None" = Field(
         default=None,
     )
     """Property `GroupsOwnerXtrBanInfo.ban_info`."""
 
-    group: typing.Optional["GroupsGroup"] = Field(
+    group: "GroupsGroup | None" = Field(
         default=None,
     )
     """Information about group if type = group."""
 
-    profile: typing.Optional["UsersUser"] = Field(
+    profile: "UsersUser | None" = Field(
         default=None,
     )
     """Information about group if type = profile."""
 
-    type: typing.Optional["GroupsOwnerXtrBanInfoType"] = Field(
+    type: "GroupsOwnerXtrBanInfoType | None" = Field(
         default=None,
     )
     """Property `GroupsOwnerXtrBanInfo.type`."""
@@ -12099,18 +12100,18 @@ class GroupsProfileItem(BaseModel):
     first_name: str = Field()
     """User first name."""
 
-    last_name: typing.Optional[str] = Field(
+    last_name: str | None = Field(
         default=None,
     )
     """User last name."""
 
-    screen_name: typing.Optional[str] = Field(
+    screen_name: str | None = Field(
         default=None,
     )
     """Domain of the user page."""
 
 
-class GroupsRoleOptions(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsRoleOptions(StrEnum, metaclass=BaseEnumMeta):
     MODERATOR = "moderator"
     EDITOR = "editor"
     ADMINISTRATOR = "administrator"
@@ -12129,7 +12130,7 @@ class GroupsSectionsListItem(BaseModel):
     """Object title."""
 
 
-class GroupsSettingsTwitterStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupsSettingsTwitterStatus(StrEnum, metaclass=BaseEnumMeta):
     LOADING = "loading"
     SYNC = "sync"
 
@@ -12142,7 +12143,7 @@ class GroupsSettingsTwitter(BaseModel):
     status: "GroupsSettingsTwitterStatus" = Field()
     """Property `GroupsSettingsTwitter.status`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `GroupsSettingsTwitter.name`."""
@@ -12192,7 +12193,7 @@ class LeadFormsAnswerItem(BaseModel):
     value: str = Field()
     """Property `LeadFormsAnswerItem.value`."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Property `LeadFormsAnswerItem.key`."""
@@ -12221,67 +12222,67 @@ class LeadFormsForm(BaseModel):
     url: str = Field()
     """Property `LeadFormsForm.url`."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.photo`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.name`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.title`."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.description`."""
 
-    confirmation: typing.Optional[str] = Field(
+    confirmation: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.confirmation`."""
 
-    site_link_url: typing.Optional[str] = Field(
+    site_link_url: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.site_link_url`."""
 
-    policy_link_url: typing.Optional[str] = Field(
+    policy_link_url: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.policy_link_url`."""
 
-    questions: typing.Optional[typing.List["LeadFormsQuestionItem"]] = Field(
+    questions: list["LeadFormsQuestionItem"] | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.questions`."""
 
-    active: typing.Optional[bool] = Field(
+    active: bool | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.active`."""
 
-    pixel_code: typing.Optional[str] = Field(
+    pixel_code: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.pixel_code`."""
 
-    once_per_user: typing.Optional[int] = Field(
+    once_per_user: int | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.once_per_user`."""
 
-    notify_admins: typing.Optional[str] = Field(
+    notify_admins: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.notify_admins`."""
 
-    notify_emails: typing.Optional[str] = Field(
+    notify_emails: str | None = Field(
         default=None,
     )
     """Property `LeadFormsForm.notify_emails`."""
@@ -12301,16 +12302,16 @@ class LeadFormsLead(BaseModel):
     date: int = Field()
     """Property `LeadFormsLead.date`."""
 
-    answers: typing.List["LeadFormsAnswer"] = Field()
+    answers: list["LeadFormsAnswer"] = Field()
     """Property `LeadFormsLead.answers`."""
 
-    ad_id: typing.Optional[int] = Field(
+    ad_id: int | None = Field(
         default=None,
     )
     """Property `LeadFormsLead.ad_id`."""
 
 
-class LeadFormsQuestionItemType(str, enum.Enum, metaclass=BaseEnumMeta):
+class LeadFormsQuestionItemType(StrEnum, metaclass=BaseEnumMeta):
     INPUT = "input"
     TEXTAREA = "textarea"
     RADIO = "radio"
@@ -12329,12 +12330,12 @@ class LeadFormsQuestionItem(BaseModel):
     type: "LeadFormsQuestionItemType" = Field()
     """Property `LeadFormsQuestionItem.type`."""
 
-    label: typing.Optional[str] = Field(
+    label: str | None = Field(
         default=None,
     )
     """Property `LeadFormsQuestionItem.label`."""
 
-    options: typing.Optional[typing.List["LeadFormsQuestionItemOption"]] = Field(
+    options: list["LeadFormsQuestionItemOption"] | None = Field(
         default=None,
     )
     """Опции выбора для типов radio, checkbox, select."""
@@ -12348,13 +12349,13 @@ class LeadFormsQuestionItemOption(BaseModel):
     label: str = Field()
     """Property `LeadFormsQuestionItemOption.label`."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Property `LeadFormsQuestionItemOption.key`."""
 
 
-class LikesType(str, enum.Enum, metaclass=BaseEnumMeta):
+class LikesType(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     PHOTO = "photo"
@@ -12378,17 +12379,17 @@ class LinkTargetObject(BaseModel):
     Model: `LinkTargetObject`
     """
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Object type."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Owner ID."""
 
-    item_id: typing.Optional[int] = Field(
+    item_id: int | None = Field(
         default=None,
     )
     """Item ID."""
@@ -12414,12 +12415,12 @@ class MarketGlobalSearchFilters(BaseModel):
     Model: `MarketGlobalSearchFilters`
     """
 
-    city: typing.Optional["BaseCity"] = Field(
+    city: "BaseCity | None" = Field(
         default=None,
     )
     """Property `MarketGlobalSearchFilters.city`."""
 
-    country: typing.Optional["BaseCountry"] = Field(
+    country: "BaseCountry | None" = Field(
         default=None,
     )
     """Property `MarketGlobalSearchFilters.country`."""
@@ -12431,32 +12432,32 @@ class MarketItemOwnerInfo(BaseModel):
     Model: `MarketItemOwnerInfo`
     """
 
-    avatar: typing.Optional[typing.List["BaseImage"]] = Field(
+    avatar: list["BaseImage"] | None = Field(
         default=None,
     )
     """Avatar of the group."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name of the group."""
 
-    category: typing.Optional[str] = Field(
+    category: str | None = Field(
         default=None,
     )
     """Category of the item or description of the group."""
 
-    category_url: typing.Optional[str] = Field(
+    category_url: str | None = Field(
         default=None,
     )
     """Link to the section of the group."""
 
-    is_corporated_market: typing.Optional[bool] = Field(
+    is_corporated_market: bool | None = Field(
         default=None,
     )
     """Is the group is VK corporated market."""
 
-    market_type: typing.Optional["MarketOwnerType"] = Field(
+    market_type: "MarketOwnerType | None" = Field(
         default=None,
     )
     """Type of the market group."""
@@ -12468,7 +12469,7 @@ class MarketItemPromotionInfo(BaseModel):
     Model: `MarketItemPromotionInfo`
     """
 
-    is_available: typing.Optional[bool] = Field(
+    is_available: bool | None = Field(
         default=None,
     )
     """Can the item be promoted?."""
@@ -12494,33 +12495,33 @@ class MarketMarketAlbum(BaseModel):
     updated_time: int = Field()
     """Date when album has been updated last time in Unixtime."""
 
-    is_main: typing.Optional[bool] = Field(
+    is_main: bool | None = Field(
         default=None,
     )
     """Is album main for owner."""
 
-    is_hidden: typing.Optional[bool] = Field(
+    is_hidden: bool | None = Field(
         default=None,
     )
     """Is album hidden."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `MarketMarketAlbum.photo`."""
 
-    type: typing.Optional[int] = Field(
+    type: int | None = Field(
         default=None,
     )
     """Type of album."""
 
-    is_blur_enabled: typing.Optional[bool] = Field(
+    is_blur_enabled: bool | None = Field(
         default=None,
     )
     """Is album needed to be blurred (18+) or not."""
 
 
-class MarketMarketCategoryInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryInnerType(StrEnum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -12538,18 +12539,18 @@ class MarketMarketCategory(BaseModel):
     name: str = Field()
     """Category name."""
 
-    is_v2: typing.Optional[bool] = Field(
+    is_v2: bool | None = Field(
         default=None,
     )
     """Is v2 category."""
 
-    parent: typing.Optional["MarketMarketCategoryNested"] = Field(
+    parent: "MarketMarketCategoryNested | None" = Field(
         default=None,
     )
     """Property `MarketMarketCategory.parent`."""
 
 
-class MarketMarketCategoryNestedInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryNestedInnerType(StrEnum, metaclass=BaseEnumMeta):
     MARKET_MARKET_CATEGORY_NESTED = "market_market_category_nested"
 
 
@@ -12567,12 +12568,12 @@ class MarketMarketCategoryNested(BaseModel):
     name: str = Field()
     """Category name."""
 
-    is_v2: typing.Optional[bool] = Field(
+    is_v2: bool | None = Field(
         default=None,
     )
     """Is v2 category."""
 
-    parent: typing.Optional["MarketMarketCategoryNested"] = Field(
+    parent: "MarketMarketCategoryNested | None" = Field(
         default=None,
     )
     """Property `MarketMarketCategoryNested.parent`."""
@@ -12589,43 +12590,43 @@ class MarketMarketCategoryTree(BaseModel):
     name: str = Field()
     """Category name."""
 
-    icon_name: typing.Optional[str] = Field(
+    icon_name: str | None = Field(
         default=None,
     )
     """Icon name."""
 
-    children: typing.Optional[typing.List["MarketMarketCategoryTree"]] = Field(
+    children: list["MarketMarketCategoryTree"] | None = Field(
         default=None,
     )
     """Property `MarketMarketCategoryTree.children`."""
 
-    view: typing.Optional["MarketMarketCategoryTreeView"] = Field(
+    view: "MarketMarketCategoryTreeView | None" = Field(
         default=None,
     )
     """Property `MarketMarketCategoryTree.view`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """SEO-friendly URL to page with category\'s items."""
 
-    seo_name: typing.Optional[str] = Field(
+    seo_name: str | None = Field(
         default=None,
     )
     """SEO-friendly variant of category\'s name."""
 
-    page_title: typing.Optional[str] = Field(
+    page_title: str | None = Field(
         default=None,
     )
     """Title for category\'s page. Used for SEO."""
 
-    page_description: typing.Optional[str] = Field(
+    page_description: str | None = Field(
         default=None,
     )
     """Description for category\'s page. Used for SEO."""
 
 
-class MarketMarketCategoryTreeViewType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MarketMarketCategoryTreeViewType(StrEnum, metaclass=BaseEnumMeta):
     TAB_ROOT = "tab_root"
 
 
@@ -12634,17 +12635,17 @@ class MarketMarketCategoryTreeView(BaseModel):
     Model: `MarketMarketCategoryTreeView`
     """
 
-    type: typing.Optional["MarketMarketCategoryTreeViewType"] = Field(
+    type: "MarketMarketCategoryTreeViewType | None" = Field(
         default=None,
     )
     """Property `MarketMarketCategoryTreeView.type`."""
 
-    selected: typing.Optional[bool] = Field(
+    selected: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketCategoryTreeView.selected`."""
 
-    root_path: typing.Optional[typing.List[str]] = Field(
+    root_path: list[str] | None = Field(
         default=None,
     )
     """Property `MarketMarketCategoryTreeView.root_path`."""
@@ -12676,88 +12677,88 @@ class MarketMarketItem(BaseModel):
     title: str = Field()
     """Item title."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the market item."""
 
-    button_title: typing.Optional[str] = Field(
+    button_title: str | None = Field(
         default=None,
     )
     """Title for button for url."""
 
-    category_v2: typing.Optional["MarketMarketCategory"] = Field(
+    category_v2: "MarketMarketCategory | None" = Field(
         default=None,
     )
     """Property `MarketMarketItem.category_v2`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when the item has been created in Unixtime."""
 
-    external_id: typing.Optional[str] = Field(
+    external_id: str | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.external_id`."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.is_favorite`."""
 
-    is_owner: typing.Optional[bool] = Field(
+    is_owner: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.is_owner`."""
 
-    is_adult: typing.Optional[bool] = Field(
+    is_adult: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.is_adult`."""
 
-    thumb_photo: typing.Optional[str] = Field(
+    thumb_photo: str | None = Field(
         default=None,
     )
     """URL of the preview image."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL to item."""
 
-    variants_grouping_id: typing.Optional[int] = Field(
+    variants_grouping_id: int | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.variants_grouping_id`."""
 
-    is_main_variant: typing.Optional[bool] = Field(
+    is_main_variant: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.is_main_variant`."""
 
-    sku: typing.Optional[str] = Field(
+    sku: str | None = Field(
         default=None,
     )
     """Property `MarketMarketItem.sku`."""
 
-    stock_amount: typing.Optional[int] = Field(
+    stock_amount: int | None = Field(
         default=None,
     )
     """Inventory balances."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Attach for post id."""
 
-    post_owner_id: typing.Optional[int] = Field(
+    post_owner_id: int | None = Field(
         default=None,
     )
     """Attach for post owner id."""
 
 
-class MarketMarketItemAvailability(int, enum.Enum, metaclass=BaseEnumMeta):
+class MarketMarketItemAvailability(IntEnum, metaclass=BaseEnumMeta):
     AVAILABLE = 0
     REMOVED = 1
     UNAVAILABLE = 2
@@ -12780,12 +12781,12 @@ class MarketMarketItemBasic(BaseModel):
     price: "MarketPrice" = Field()
     """Property `MarketMarketItemBasic.price`."""
 
-    thumb_photo: typing.Optional[str] = Field(
+    thumb_photo: str | None = Field(
         default=None,
     )
     """URL of the preview image."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasic.is_favorite`."""
@@ -12817,72 +12818,72 @@ class MarketOrder(BaseModel):
     total_price: "MarketPrice" = Field()
     """Property `MarketOrder.total_price`."""
 
-    display_order_id: typing.Optional[str] = Field(
+    display_order_id: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.display_order_id`."""
 
-    track_number: typing.Optional[str] = Field(
+    track_number: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.track_number`."""
 
-    track_link: typing.Optional[str] = Field(
+    track_link: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.track_link`."""
 
-    comment: typing.Optional[str] = Field(
+    comment: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.comment`."""
 
-    address: typing.Optional[str] = Field(
+    address: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.address`."""
 
-    merchant_comment: typing.Optional[str] = Field(
+    merchant_comment: str | None = Field(
         default=None,
     )
     """Property `MarketOrder.merchant_comment`."""
 
-    weight: typing.Optional[int] = Field(
+    weight: int | None = Field(
         default=None,
     )
     """Property `MarketOrder.weight`."""
 
-    discount: typing.Optional["MarketPrice"] = Field(
+    discount: "MarketPrice | None" = Field(
         default=None,
     )
     """Property `MarketOrder.discount`."""
 
-    preview_order_items: typing.Optional[typing.List["MarketOrderItem"]] = Field(
+    preview_order_items: list["MarketOrderItem"] | None = Field(
         default=None,
     )
     """Several order items for preview."""
 
-    cancel_info: typing.Optional["BaseLink"] = Field(
+    cancel_info: "BaseLink | None" = Field(
         default=None,
     )
     """Information for cancel and revert order."""
 
-    comment_for_user: typing.Optional[str] = Field(
+    comment_for_user: str | None = Field(
         default=None,
     )
     """Seller comment for user."""
 
-    is_viewed_by_admin: typing.Optional[bool] = Field(
+    is_viewed_by_admin: bool | None = Field(
         default=None,
     )
     """Property `MarketOrder.is_viewed_by_admin`."""
 
-    date_viewed: typing.Optional[int] = Field(
+    date_viewed: int | None = Field(
         default=None,
     )
     """Property `MarketOrder.date_viewed`."""
 
-    can_add_review: typing.Optional[bool] = Field(
+    can_add_review: bool | None = Field(
         default=None,
     )
     """Extended field. Can current viewer add review for at least one item in this order."""
@@ -12908,28 +12909,28 @@ class MarketOrderItem(BaseModel):
     item: "MarketMarketItem" = Field()
     """Property `MarketOrderItem.item`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `MarketOrderItem.title`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `MarketOrderItem.photo`."""
 
-    variants: typing.Optional[typing.List[str]] = Field(
+    variants: list[str] | None = Field(
         default=None,
     )
     """Property `MarketOrderItem.variants`."""
 
-    can_add_review: typing.Optional[bool] = Field(
+    can_add_review: bool | None = Field(
         default=None,
     )
     """Extended field. Can current viewer add review for this ordered item."""
 
 
-class MarketOwnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MarketOwnerType(StrEnum, metaclass=BaseEnumMeta):
     BASE = "base"
     PRO = "pro"
     DISABLED = "disabled"
@@ -12949,38 +12950,38 @@ class MarketPrice(BaseModel):
     text: str = Field()
     """Text."""
 
-    amount_to: typing.Optional[str] = Field(
+    amount_to: str | None = Field(
         default=None,
     )
     """Amount to for price_type=2."""
 
-    price_type: typing.Optional[int] = Field(
+    price_type: int | None = Field(
         default=None,
     )
     """Property `MarketPrice.price_type`."""
 
-    price_unit: typing.Optional[int] = Field(
+    price_unit: int | None = Field(
         default=None,
     )
     """Property `MarketPrice.price_unit`."""
 
-    discount_rate: typing.Optional[int] = Field(
+    discount_rate: int | None = Field(
         default=None,
     )
     """Property `MarketPrice.discount_rate`."""
 
-    old_amount: typing.Optional[str] = Field(
+    old_amount: str | None = Field(
         default=None,
     )
     """Property `MarketPrice.old_amount`."""
 
-    old_amount_text: typing.Optional[str] = Field(
+    old_amount_text: str | None = Field(
         default=None,
     )
     """Textual representation of old price."""
 
 
-class MarketPropertyType(str, enum.Enum, metaclass=BaseEnumMeta):
+class MarketPropertyType(StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     COLOR = "color"
 
@@ -12996,10 +12997,10 @@ class MarketProperty(BaseModel):
     title: str = Field()
     """Property name."""
 
-    variants: typing.List["MarketPropertyVariant"] = Field()
+    variants: list["MarketPropertyVariant"] = Field()
     """Property `MarketProperty.variants`."""
 
-    type: typing.Optional["MarketPropertyType"] = Field(
+    type: "MarketPropertyType | None" = Field(
         default=None,
     )
     """Property type."""
@@ -13016,13 +13017,13 @@ class MarketPropertyVariant(BaseModel):
     title: str = Field()
     """Property name."""
 
-    value: typing.Optional[str] = Field(
+    value: str | None = Field(
         default=None,
     )
     """Property value corresponding to property type."""
 
 
-class MarketServicesViewType(int, enum.Enum, metaclass=BaseEnumMeta):
+class MarketServicesViewType(IntEnum, metaclass=BaseEnumMeta):
     CARDS = 1
     ROWS = 2
 
@@ -13035,7 +13036,7 @@ class MarketUploadPhotoData(BaseModel):
     photo_id: int = Field()
     """Photo ID."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `MarketUploadPhotoData.photo`."""
@@ -13064,32 +13065,32 @@ class NotesNote(BaseModel):
     view_url: str = Field()
     """URL of the page with note preview."""
 
-    read_comments: typing.Optional[int] = Field(
+    read_comments: int | None = Field(
         default=None,
     )
     """Property `NotesNote.read_comments`."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the note."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Note text."""
 
-    text_wiki: typing.Optional[str] = Field(
+    text_wiki: str | None = Field(
         default=None,
     )
     """Note text in wiki format."""
 
-    privacy_view: typing.Optional[typing.List[str]] = Field(
+    privacy_view: list[str] | None = Field(
         default=None,
     )
     """Property `NotesNote.privacy_view`."""
 
-    privacy_comment: typing.Optional[typing.List[str]] = Field(
+    privacy_comment: list[str] | None = Field(
         default=None,
     )
     """Property `NotesNote.privacy_comment`."""
@@ -13118,7 +13119,7 @@ class NotesNoteComment(BaseModel):
     uid: int = Field()
     """Comment author\'s ID."""
 
-    reply_to: typing.Optional[int] = Field(
+    reply_to: int | None = Field(
         default=None,
     )
     """ID of replied comment ."""
@@ -13129,43 +13130,43 @@ class NotificationsFeedback(BaseModel):
     Model: `NotificationsFeedback`
     """
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `NotificationsFeedback.attachments`."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Reply author\'s ID."""
 
-    geo: typing.Optional["BaseGeo"] = Field(
+    geo: "BaseGeo | None" = Field(
         default=None,
     )
     """Property `NotificationsFeedback.geo`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Item ID."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `NotificationsFeedback.likes`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Reply text."""
 
-    to_id: typing.Optional[int] = Field(
+    to_id: int | None = Field(
         default=None,
     )
     """Wall owner\'s ID."""
 
 
-class NotificationsNotificationInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class NotificationsNotificationInnerType(StrEnum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13177,33 +13178,33 @@ class NotificationsNotification(BaseModel):
     inner_type: "NotificationsNotificationInnerType" = Field()
     """Property `NotificationsNotification.inner_type`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when the event has been occurred."""
 
-    feedback: typing.Optional["NotificationsFeedback"] = Field(
+    feedback: "NotificationsFeedback | None" = Field(
         default=None,
     )
     """Property `NotificationsNotification.feedback`."""
 
-    parent: typing.Optional["NotificationsNotification"] = Field(
+    parent: "NotificationsNotification | None" = Field(
         default=None,
     )
     """Property `NotificationsNotification.parent`."""
 
-    reply: typing.Optional["NotificationsReply"] = Field(
+    reply: "NotificationsReply | None" = Field(
         default=None,
     )
     """Property `NotificationsNotification.reply`."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Notification type."""
 
 
-class NotificationsNotificationItemInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class NotificationsNotificationItemInnerType(StrEnum, metaclass=BaseEnumMeta):
     NOTIFICATIONS_NOTIFICATION = "notifications_notification"
 
 
@@ -13215,27 +13216,27 @@ class NotificationsNotificationItem(BaseModel):
     inner_type: "NotificationsNotificationItemInnerType" = Field()
     """Property `NotificationsNotificationItem.inner_type`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when the event has been occurred."""
 
-    feedback: typing.Optional["NotificationsFeedback"] = Field(
+    feedback: "NotificationsFeedback | None" = Field(
         default=None,
     )
     """Property `NotificationsNotificationItem.feedback`."""
 
-    parent: typing.Optional["NotificationsNotification"] = Field(
+    parent: "NotificationsNotification | None" = Field(
         default=None,
     )
     """Property `NotificationsNotificationItem.parent`."""
 
-    reply: typing.Optional["NotificationsReply"] = Field(
+    reply: "NotificationsReply | None" = Field(
         default=None,
     )
     """Property `NotificationsNotificationItem.reply`."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Notification type."""
@@ -13246,17 +13247,17 @@ class NotificationsReply(BaseModel):
     Model: `NotificationsReply`
     """
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when the reply has been created in Unixtime."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Reply ID."""
 
-    text: typing.Optional[int] = Field(
+    text: int | None = Field(
         default=None,
     )
     """Reply text."""
@@ -13267,12 +13268,12 @@ class NotificationsSendMessageError(BaseModel):
     Model: `NotificationsSendMessageError`
     """
 
-    code: typing.Optional[int] = Field(
+    code: int | None = Field(
         default=None,
     )
     """Error code."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Error description."""
@@ -13283,17 +13284,17 @@ class NotificationsSendMessageItem(BaseModel):
     Model: `NotificationsSendMessageItem`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """User ID."""
 
-    status: typing.Optional[bool] = Field(
+    status: bool | None = Field(
         default=None,
     )
     """Notification status."""
 
-    error: typing.Optional["NotificationsSendMessageError"] = Field(
+    error: "NotificationsSendMessageError | None" = Field(
         default=None,
     )
     """Property `NotificationsSendMessageItem.error`."""
@@ -13310,7 +13311,7 @@ class OauthError(BaseModel):
     error_description: str = Field()
     """Error description."""
 
-    redirect_uri: typing.Optional[str] = Field(
+    redirect_uri: str | None = Field(
         default=None,
     )
     """URI for validation."""
@@ -13321,12 +13322,12 @@ class OrdersAmount(BaseModel):
     Model: `OrdersAmount`
     """
 
-    amounts: typing.Optional[typing.List["OrdersAmountItem"]] = Field(
+    amounts: list["OrdersAmountItem"] | None = Field(
         default=None,
     )
     """Property `OrdersAmount.amounts`."""
 
-    currency: typing.Optional[str] = Field(
+    currency: str | None = Field(
         default=None,
     )
     """Currency name."""
@@ -13337,23 +13338,23 @@ class OrdersAmountItem(BaseModel):
     Model: `OrdersAmountItem`
     """
 
-    amount: typing.Optional[float] = Field(
+    amount: float | None = Field(
         default=None,
     )
     """Votes amount in user\'s currency."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Amount description."""
 
-    votes: typing.Optional[str] = Field(
+    votes: str | None = Field(
         default=None,
     )
     """Votes number."""
 
 
-class OrdersOrderStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class OrdersOrderStatus(StrEnum, metaclass=BaseEnumMeta):
     CREATED = "created"
     CHARGED = "charged"
     REFUNDED = "refunded"
@@ -13391,12 +13392,12 @@ class OrdersOrder(BaseModel):
     user_id: str = Field()
     """User ID."""
 
-    cancel_transaction_id: typing.Optional[str] = Field(
+    cancel_transaction_id: str | None = Field(
         default=None,
     )
     """Cancel transaction ID."""
 
-    transaction_id: typing.Optional[str] = Field(
+    transaction_id: str | None = Field(
         default=None,
     )
     """Transaction ID."""
@@ -13431,57 +13432,57 @@ class OrdersSubscription(BaseModel):
     update_time: int = Field()
     """Date of last change in Unixtime."""
 
-    cancel_reason: typing.Optional[str] = Field(
+    cancel_reason: str | None = Field(
         default=None,
     )
     """Cancel reason."""
 
-    next_bill_time: typing.Optional[int] = Field(
+    next_bill_time: int | None = Field(
         default=None,
     )
     """Date of next bill in Unixtime."""
 
-    expire_time: typing.Optional[int] = Field(
+    expire_time: int | None = Field(
         default=None,
     )
     """Subscription expiration time in Unixtime."""
 
-    pending_cancel: typing.Optional[bool] = Field(
+    pending_cancel: bool | None = Field(
         default=None,
     )
     """Pending cancel state."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Subscription name."""
 
-    app_id: typing.Optional[int] = Field(
+    app_id: int | None = Field(
         default=None,
     )
     """Subscription\'s application id."""
 
-    application_name: typing.Optional[str] = Field(
+    application_name: str | None = Field(
         default=None,
     )
     """Subscription\'s application name."""
 
-    photo_url: typing.Optional[str] = Field(
+    photo_url: str | None = Field(
         default=None,
     )
     """Item photo image url."""
 
-    test_mode: typing.Optional[bool] = Field(
+    test_mode: bool | None = Field(
         default=None,
     )
     """Is test subscription."""
 
-    trial_expire_time: typing.Optional[int] = Field(
+    trial_expire_time: int | None = Field(
         default=None,
     )
     """Date of trial expire in Unixtime."""
 
-    is_game: typing.Optional[bool] = Field(
+    is_game: bool | None = Field(
         default=None,
     )
     """Is game (not miniapp) subscription."""
@@ -13492,18 +13493,18 @@ class OwnerState(BaseModel):
     Model: `OwnerState`
     """
 
-    state: typing.Optional[int] = Field(
+    state: int | None = Field(
         default=None,
     )
     """Property `OwnerState.state`."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """wiki text to describe user state."""
 
 
-class PagesPrivacySettings(int, enum.Enum, metaclass=BaseEnumMeta):
+class PagesPrivacySettings(IntEnum, metaclass=BaseEnumMeta):
     COMMUNITY_MANAGERS_ONLY = 0
     COMMUNITY_MEMBERS_ONLY = 1
     EVERYONE = 2
@@ -13538,22 +13539,22 @@ class PagesWikipage(BaseModel):
     edited: int = Field()
     """Property `PagesWikipage.edited`."""
 
-    creator_id: typing.Optional[int] = Field(
+    creator_id: int | None = Field(
         default=None,
     )
     """Page creator ID."""
 
-    creator_name: typing.Optional[str] = Field(
+    creator_name: str | None = Field(
         default=None,
     )
     """Page creator name."""
 
-    editor_id: typing.Optional[int] = Field(
+    editor_id: int | None = Field(
         default=None,
     )
     """Last editor ID."""
 
-    editor_name: typing.Optional[str] = Field(
+    editor_name: str | None = Field(
         default=None,
     )
     """Last editor name."""
@@ -13591,52 +13592,52 @@ class PagesWikipageFull(BaseModel):
     who_can_view: "PagesPrivacySettings" = Field()
     """View settings of the page."""
 
-    creator_id: typing.Optional[int] = Field(
+    creator_id: int | None = Field(
         default=None,
     )
     """Page creator ID."""
 
-    current_user_can_edit: typing.Optional[bool] = Field(
+    current_user_can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the page."""
 
-    current_user_can_edit_access: typing.Optional[bool] = Field(
+    current_user_can_edit_access: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the page access settings."""
 
-    editor_id: typing.Optional[int] = Field(
+    editor_id: int | None = Field(
         default=None,
     )
     """Last editor ID."""
 
-    html: typing.Optional[str] = Field(
+    html: str | None = Field(
         default=None,
     )
     """Page content, HTML."""
 
-    source: typing.Optional[str] = Field(
+    source: str | None = Field(
         default=None,
     )
     """Page content, wiki."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL."""
 
-    parent: typing.Optional[str] = Field(
+    parent: str | None = Field(
         default=None,
     )
     """Parent."""
 
-    parent2: typing.Optional[str] = Field(
+    parent2: str | None = Field(
         default=None,
     )
     """Parent2."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Owner ID."""
@@ -13668,28 +13669,28 @@ class PhotosImage(BaseModel):
     Model: `PhotosImage`
     """
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Height of the photo in px.."""
 
-    type: typing.Optional["PhotosImageType"] = Field(
+    type: "PhotosImageType | None" = Field(
         default=None,
     )
     """Property `PhotosImage.type`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Photo URL.."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Width of the photo in px.."""
 
 
-class PhotosImageType(str, enum.Enum, metaclass=BaseEnumMeta):
+class PhotosImageType(StrEnum, metaclass=BaseEnumMeta):
     S = "s"
     M = "m"
     X = "x"
@@ -13704,7 +13705,7 @@ class PhotosImageType(str, enum.Enum, metaclass=BaseEnumMeta):
     BASE = "base"
 
 
-class PhotosPhotoVerticalAlign(str, enum.Enum, metaclass=BaseEnumMeta):
+class PhotosPhotoVerticalAlign(StrEnum, metaclass=BaseEnumMeta):
     TOP = "top"
     MIDDLE = "middle"
     BOTTOM = "bottom"
@@ -13730,112 +13731,112 @@ class PhotosPhoto(BaseModel):
     has_tags: bool = Field()
     """Whether photo has attached tag links."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the photo."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Original photo height."""
 
-    images: typing.Optional[typing.List["PhotosImage"]] = Field(
+    images: list["PhotosImage"] | None = Field(
         default=None,
     )
     """Property `PhotosPhoto.images`."""
 
-    lat: typing.Optional[float] = Field(
+    lat: float | None = Field(
         default=None,
     )
     """Latitude."""
 
-    long: typing.Optional[float] = Field(
+    long: float | None = Field(
         default=None,
     )
     """Longitude."""
 
-    photo_256: typing.Optional[str] = Field(
+    photo_256: str | None = Field(
         default=None,
     )
     """URL of image with 2560 px width."""
 
-    thumb_hash: typing.Optional[str] = Field(
+    thumb_hash: str | None = Field(
         default=None,
     )
     """Thumb Hash."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the photo."""
 
-    place: typing.Optional[str] = Field(
+    place: str | None = Field(
         default=None,
     )
     """Property `PhotosPhoto.place`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+    sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `PhotosPhoto.sizes`."""
 
-    square_crop: typing.Optional[str] = Field(
+    square_crop: str | None = Field(
         default=None,
     )
     """Property `PhotosPhoto.square_crop`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Photo caption."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """ID of the user who have uploaded the photo."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Original photo width."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `PhotosPhoto.likes`."""
 
-    comments: typing.Optional["BaseObjectCount"] = Field(
+    comments: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `PhotosPhoto.comments`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `PhotosPhoto.reposts`."""
 
-    tags: typing.Optional["BaseObjectCount"] = Field(
+    tags: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `PhotosPhoto.tags`."""
 
-    hidden: typing.Optional["BasePropertyExists"] = Field(
+    hidden: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Returns if the photo is hidden above the wall."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the photo."""
 
-    vertical_align: typing.Optional["PhotosPhotoVerticalAlign"] = Field(
+    vertical_align: "PhotosPhotoVerticalAlign | None" = Field(
         default=None,
     )
     """Sets vertical alignment of a photo."""
@@ -13864,12 +13865,12 @@ class PhotosPhotoAlbum(BaseModel):
     updated: int = Field()
     """Date when the album has been updated last time in Unixtime."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Photo album description."""
 
-    thumb: typing.Optional["PhotosPhoto"] = Field(
+    thumb: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `PhotosPhotoAlbum.thumb`."""
@@ -13892,67 +13893,67 @@ class PhotosPhotoAlbumFull(BaseModel):
     title: str = Field()
     """Photo album title."""
 
-    can_upload: typing.Optional[bool] = Field(
+    can_upload: bool | None = Field(
         default=None,
     )
     """Information whether current user can upload photo to the album."""
 
-    comments_disabled: typing.Optional[bool] = Field(
+    comments_disabled: bool | None = Field(
         default=None,
     )
     """Information whether album comments are disabled."""
 
-    created: typing.Optional[int] = Field(
+    created: int | None = Field(
         default=None,
     )
     """Date when the album has been created in Unixtime, not set for system albums."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Photo album description."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """album can delete."""
 
-    can_include_to_feed: typing.Optional[bool] = Field(
+    can_include_to_feed: bool | None = Field(
         default=None,
     )
     """album can be selected to feed."""
 
-    is_locked: typing.Optional[bool] = Field(
+    is_locked: bool | None = Field(
         default=None,
     )
     """Need show privacy lock at album."""
 
-    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+    sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `PhotosPhotoAlbumFull.sizes`."""
 
-    thumb_id: typing.Optional[int] = Field(
+    thumb_id: int | None = Field(
         default=None,
     )
     """Thumb photo ID."""
 
-    thumb_is_last: typing.Optional[bool] = Field(
+    thumb_is_last: bool | None = Field(
         default=None,
     )
     """Information whether the album thumb is last photo."""
 
-    thumb_src: typing.Optional[str] = Field(
+    thumb_src: str | None = Field(
         default=None,
     )
     """URL of the thumb image."""
 
-    updated: typing.Optional[int] = Field(
+    updated: int | None = Field(
         default=None,
     )
     """Date when the album has been updated last time in Unixtime, not set for system albums."""
 
-    upload_by_admins_only: typing.Optional[bool] = Field(
+    upload_by_admins_only: bool | None = Field(
         default=None,
     )
     """Information whether only community administrators can upload photos."""
@@ -13972,18 +13973,18 @@ class PhotosPhotoSizes(BaseModel):
     width: int = Field()
     """Width in px."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL of the image."""
 
-    src: typing.Optional[str] = Field(
+    src: str | None = Field(
         default=None,
     )
     """URL of the image."""
 
 
-class PhotosPhotoSizesType(str, enum.Enum, metaclass=BaseEnumMeta):
+class PhotosPhotoSizesType(StrEnum, metaclass=BaseEnumMeta):
     T = "t"
     S = "s"
     M = "m"
@@ -14051,7 +14052,7 @@ class PhotosPhotoTag(BaseModel):
     y2: float = Field()
     """Coordinate Y of the right lower corner."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Tagged description.."""
@@ -14071,12 +14072,12 @@ class PhotosPhotoUpload(BaseModel):
     user_id: int = Field()
     """User ID."""
 
-    fallback_upload_url: typing.Optional[str] = Field(
+    fallback_upload_url: str | None = Field(
         default=None,
     )
     """Fallback URL if upload_url returned error."""
 
-    group_id: typing.Optional[int] = Field(
+    group_id: int | None = Field(
         default=None,
     )
     """Group ID."""
@@ -14099,97 +14100,97 @@ class PhotosPhotoXtrTagInfo(BaseModel):
     owner_id: int = Field()
     """Photo owner\'s ID."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the photo."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Original photo height."""
 
-    lat: typing.Optional[float] = Field(
+    lat: float | None = Field(
         default=None,
     )
     """Latitude."""
 
-    long: typing.Optional[float] = Field(
+    long: float | None = Field(
         default=None,
     )
     """Longitude."""
 
-    photo_1280: typing.Optional[str] = Field(
+    photo_1280: str | None = Field(
         default=None,
     )
     """URL of image with 1280 px width."""
 
-    photo_130: typing.Optional[str] = Field(
+    photo_130: str | None = Field(
         default=None,
     )
     """URL of image with 130 px width."""
 
-    photo_2560: typing.Optional[str] = Field(
+    photo_2560: str | None = Field(
         default=None,
     )
     """URL of image with 2560 px width."""
 
-    photo_604: typing.Optional[str] = Field(
+    photo_604: str | None = Field(
         default=None,
     )
     """URL of image with 604 px width."""
 
-    photo_75: typing.Optional[str] = Field(
+    photo_75: str | None = Field(
         default=None,
     )
     """URL of image with 75 px width."""
 
-    photo_807: typing.Optional[str] = Field(
+    photo_807: str | None = Field(
         default=None,
     )
     """URL of image with 807 px width."""
 
-    placer_id: typing.Optional[int] = Field(
+    placer_id: int | None = Field(
         default=None,
     )
     """ID of the tag creator."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+    sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `PhotosPhotoXtrTagInfo.sizes`."""
 
-    tag_created: typing.Optional[int] = Field(
+    tag_created: int | None = Field(
         default=None,
     )
     """Date when tag has been added in Unixtime."""
 
-    tag_id: typing.Optional[int] = Field(
+    tag_id: int | None = Field(
         default=None,
     )
     """Tag ID."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Photo caption."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """ID of the user who have uploaded the photo."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Original photo width."""
 
-    has_tags: typing.Optional[bool] = Field(
+    has_tags: bool | None = Field(
         default=None,
     )
     """Whether photo has attached tag links."""
@@ -14200,49 +14201,49 @@ class PhotosTagsSuggestionItem(BaseModel):
     Model: `PhotosTagsSuggestionItem`
     """
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.title`."""
 
-    caption: typing.Optional[str] = Field(
+    caption: str | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.caption`."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.type`."""
 
-    buttons: typing.Optional[typing.List["PhotosTagsSuggestionItemButton"]] = Field(
+    buttons: list["PhotosTagsSuggestionItemButton"] | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.buttons`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.photo`."""
 
-    tags: typing.Optional[typing.List["PhotosPhotoTag"]] = Field(
+    tags: list["PhotosPhotoTag"] | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.tags`."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItem.track_code`."""
 
 
-class PhotosTagsSuggestionItemButtonAction(str, enum.Enum, metaclass=BaseEnumMeta):
+class PhotosTagsSuggestionItemButtonAction(StrEnum, metaclass=BaseEnumMeta):
     CONFIRM = "confirm"
     DECLINE = "decline"
     SHOW_TAGS = "show_tags"
 
 
-class PhotosTagsSuggestionItemButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class PhotosTagsSuggestionItemButtonStyle(StrEnum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
     SECONDARY = "secondary"
 
@@ -14252,17 +14253,17 @@ class PhotosTagsSuggestionItemButton(BaseModel):
     Model: `PhotosTagsSuggestionItemButton`
     """
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItemButton.title`."""
 
-    action: typing.Optional["PhotosTagsSuggestionItemButtonAction"] = Field(
+    action: "PhotosTagsSuggestionItemButtonAction | None" = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItemButton.action`."""
 
-    style: typing.Optional["PhotosTagsSuggestionItemButtonStyle"] = Field(
+    style: "PhotosTagsSuggestionItemButtonStyle | None" = Field(
         default=None,
     )
     """Property `PhotosTagsSuggestionItemButton.style`."""
@@ -14273,7 +14274,7 @@ class PodcastCover(BaseModel):
     Model: `PodcastCover`
     """
 
-    sizes: typing.Optional[typing.List["PhotosPhotoSizes"]] = Field(
+    sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
     )
     """Property `PodcastCover.sizes`."""
@@ -14284,27 +14285,27 @@ class PodcastExternalData(BaseModel):
     Model: `PodcastExternalData`
     """
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Url of the podcast page."""
 
-    owner_url: typing.Optional[str] = Field(
+    owner_url: str | None = Field(
         default=None,
     )
     """Url of the podcasts owner community."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Podcast title."""
 
-    owner_name: typing.Optional[str] = Field(
+    owner_name: str | None = Field(
         default=None,
     )
     """Name of the podcasts owner community."""
 
-    cover: typing.Optional["PodcastCover"] = Field(
+    cover: "PodcastCover | None" = Field(
         default=None,
     )
     """Podcast cover."""
@@ -14328,7 +14329,7 @@ class PollsAnswer(BaseModel):
     """Votes number."""
 
 
-class PollsBackgroundType(str, enum.Enum, metaclass=BaseEnumMeta):
+class PollsBackgroundType(StrEnum, metaclass=BaseEnumMeta):
     GRADIENT = "gradient"
     TILE = "tile"
     COLOR = "color"
@@ -14339,47 +14340,47 @@ class PollsBackground(BaseModel):
     Model: `PollsBackground`
     """
 
-    angle: typing.Optional[int] = Field(
+    angle: int | None = Field(
         default=None,
     )
     """Gradient angle with 0 on positive X axis."""
 
-    color: typing.Optional[str] = Field(
+    color: str | None = Field(
         default=None,
     )
     """Hex color code without #."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Original height of pattern tile."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Property `PollsBackground.id`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `PollsBackground.name`."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Pattern tiles."""
 
-    points: typing.Optional[typing.List["BaseGradientPoint"]] = Field(
+    points: list["BaseGradientPoint"] | None = Field(
         default=None,
     )
     """Gradient points."""
 
-    type: typing.Optional["PollsBackgroundType"] = Field(
+    type: "PollsBackgroundType | None" = Field(
         default=None,
     )
     """Property `PollsBackground.type`."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Original with of pattern tile."""
@@ -14390,17 +14391,17 @@ class PollsFieldsVoters(BaseModel):
     Model: `PollsFieldsVoters`
     """
 
-    answer_id: typing.Optional[int] = Field(
+    answer_id: int | None = Field(
         default=None,
     )
     """Answer ID."""
 
-    users: typing.Optional["PollsVotersFieldsUsers"] = Field(
+    users: "PollsVotersFieldsUsers | None" = Field(
         default=None,
     )
     """Property `PollsFieldsVoters.users`."""
 
-    answer_offset: typing.Optional[str] = Field(
+    answer_offset: str | None = Field(
         default=None,
     )
     """Answer offset."""
@@ -14444,7 +14445,7 @@ class PollsPoll(BaseModel):
     can_share: bool = Field()
     """Property `PollsPoll.can_share`."""
 
-    answers: typing.List["PollsAnswer"] = Field()
+    answers: list["PollsAnswer"] = Field()
     """Property `PollsPoll.answers`."""
 
     created: int = Field()
@@ -14465,42 +14466,42 @@ class PollsPoll(BaseModel):
     disable_unvote: bool = Field()
     """Property `PollsPoll.disable_unvote`."""
 
-    anonymous: typing.Optional["PollsPollAnonymous"] = Field(
+    anonymous: "PollsPollAnonymous | None" = Field(
         default=None,
     )
     """Property `PollsPoll.anonymous`."""
 
-    friends: typing.Optional[typing.List["PollsFriend"]] = Field(
+    friends: list["PollsFriend"] | None = Field(
         default=None,
     )
     """Property `PollsPoll.friends`."""
 
-    answer_id: typing.Optional[int] = Field(
+    answer_id: int | None = Field(
         default=None,
     )
     """Current user\'s answer ID."""
 
-    answer_ids: typing.Optional[typing.List[int]] = Field(
+    answer_ids: list[int] | None = Field(
         default=None,
     )
     """Current user\'s answer IDs."""
 
-    embed_hash: typing.Optional[str] = Field(
+    embed_hash: str | None = Field(
         default=None,
     )
     """Property `PollsPoll.embed_hash`."""
 
-    photo: typing.Optional["PollsBackground"] = Field(
+    photo: "PollsBackground | None" = Field(
         default=None,
     )
     """Property `PollsPoll.photo`."""
 
-    author_id: typing.Optional[int] = Field(
+    author_id: int | None = Field(
         default=None,
     )
     """Poll author\'s ID."""
 
-    background: typing.Optional["PollsBackground"] = Field(
+    background: "PollsBackground | None" = Field(
         default=None,
     )
     """Property `PollsPoll.background`."""
@@ -14514,17 +14515,17 @@ class PollsVoters(BaseModel):
     Model: `PollsVoters`
     """
 
-    answer_id: typing.Optional[int] = Field(
+    answer_id: int | None = Field(
         default=None,
     )
     """Answer ID."""
 
-    users: typing.Optional["PollsVotersUsers"] = Field(
+    users: "PollsVotersUsers | None" = Field(
         default=None,
     )
     """Property `PollsVoters.users`."""
 
-    answer_offset: typing.Optional[str] = Field(
+    answer_offset: str | None = Field(
         default=None,
     )
     """Answer offset."""
@@ -14535,12 +14536,12 @@ class PollsVotersFieldsUsers(BaseModel):
     Model: `PollsVotersFieldsUsers`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Votes number."""
 
-    items: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["UsersUserFull"] | None = Field(
         default=None,
     )
     """Property `PollsVotersFieldsUsers.items`."""
@@ -14551,12 +14552,12 @@ class PollsVotersUsers(BaseModel):
     Model: `PollsVotersUsers`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Votes number."""
 
-    items: typing.Optional[typing.List[int]] = Field(
+    items: list[int] | None = Field(
         default=None,
     )
     """Property `PollsVotersUsers.items`."""
@@ -14568,7 +14569,7 @@ class PrettyCardsButtonOneOf(BaseModel):
     """
 
 
-class PrettyCardsPrettyCardInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class PrettyCardsPrettyCardInnerType(StrEnum, metaclass=BaseEnumMeta):
     PRETTYCARDS_PRETTYCARD = "prettyCards_prettyCard"
 
 
@@ -14592,27 +14593,27 @@ class PrettyCardsPrettyCard(BaseModel):
     title: str = Field()
     """Title."""
 
-    button: typing.Optional["PrettyCardsButtonOneOf"] = Field(
+    button: "PrettyCardsButtonOneOf | None" = Field(
         default=None,
     )
     """Button key."""
 
-    button_text: typing.Optional[str] = Field(
+    button_text: str | None = Field(
         default=None,
     )
     """Button text in current language."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `PrettyCardsPrettyCard.images`."""
 
-    price: typing.Optional[str] = Field(
+    price: str | None = Field(
         default=None,
     )
     """Price if set (decimal number returned as string)."""
 
-    price_old: typing.Optional[str] = Field(
+    price_old: str | None = Field(
         default=None,
     )
     """Old price if set (decimal number returned as string)."""
@@ -14635,39 +14636,39 @@ class SearchHint(BaseModel):
     type: "SearchHintType" = Field()
     """Property `SearchHint.type`."""
 
-    app: typing.Optional["AppsApp"] = Field(
+    app: "AppsApp | None" = Field(
         default=None,
     )
     """Property `SearchHint.app`."""
 
-    global_: typing.Optional[bool] = Field(
+    global_: bool | None = Field(
         default=None,
         alias="global",
     )
     """Information whether the object has been found globally."""
 
-    group: typing.Optional["GroupsGroup"] = Field(
+    group: "GroupsGroup | None" = Field(
         default=None,
     )
     """Property `SearchHint.group`."""
 
-    profile: typing.Optional["UsersUserMin"] = Field(
+    profile: "UsersUserMin | None" = Field(
         default=None,
     )
     """Property `SearchHint.profile`."""
 
-    section: typing.Optional["SearchHintSection"] = Field(
+    section: "SearchHintSection | None" = Field(
         default=None,
     )
     """Property `SearchHint.section`."""
 
-    link: typing.Optional["BaseLink"] = Field(
+    link: "BaseLink | None" = Field(
         default=None,
     )
     """Property `SearchHint.link`."""
 
 
-class SearchHintSection(str, enum.Enum, metaclass=BaseEnumMeta):
+class SearchHintSection(StrEnum, metaclass=BaseEnumMeta):
     GROUPS = "groups"
     EVENTS = "events"
     PUBLICS = "publics"
@@ -14678,7 +14679,7 @@ class SearchHintSection(str, enum.Enum, metaclass=BaseEnumMeta):
     PROMO = "promo"
 
 
-class SearchHintType(str, enum.Enum, metaclass=BaseEnumMeta):
+class SearchHintType(StrEnum, metaclass=BaseEnumMeta):
     GROUP = "group"
     PROFILE = "profile"
     VK_APP = "vk_app"
@@ -14692,12 +14693,12 @@ class SecureGiveEventStickerItem(BaseModel):
     Model: `SecureGiveEventStickerItem`
     """
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Property `SecureGiveEventStickerItem.user_id`."""
 
-    status: typing.Optional[str] = Field(
+    status: str | None = Field(
         default=None,
     )
     """Property `SecureGiveEventStickerItem.status`."""
@@ -14708,12 +14709,12 @@ class SecureLevel(BaseModel):
     Model: `SecureLevel`
     """
 
-    level: typing.Optional[int] = Field(
+    level: int | None = Field(
         default=None,
     )
     """Level."""
 
-    uid: typing.Optional[int] = Field(
+    uid: int | None = Field(
         default=None,
     )
     """User ID."""
@@ -14736,27 +14737,27 @@ class SecureSmsNotification(BaseModel):
     Model: `SecureSmsNotification`
     """
 
-    app_id: typing.Optional[str] = Field(
+    app_id: str | None = Field(
         default=None,
     )
     """Application ID."""
 
-    date: typing.Optional[str] = Field(
+    date: str | None = Field(
         default=None,
     )
     """Date when message has been sent in Unixtime."""
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """Notification ID."""
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Messsage text."""
 
-    user_id: typing.Optional[str] = Field(
+    user_id: str | None = Field(
         default=None,
     )
     """User ID."""
@@ -14767,22 +14768,22 @@ class SecureTokenChecked(BaseModel):
     Model: `SecureTokenChecked`
     """
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when access_token has been generated in Unixtime."""
 
-    expire: typing.Optional[int] = Field(
+    expire: int | None = Field(
         default=None,
     )
     """Date when access_token will expire in Unixtime."""
 
-    success: typing.Optional[int] = Field(
+    success: int | None = Field(
         default=None,
     )
     """Returns if successfully processed."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """User ID."""
@@ -14793,27 +14794,27 @@ class SecureTransaction(BaseModel):
     Model: `SecureTransaction`
     """
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Transaction date in Unixtime."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Transaction ID."""
 
-    uid_from: typing.Optional[int] = Field(
+    uid_from: int | None = Field(
         default=None,
     )
     """From ID."""
 
-    uid_to: typing.Optional[int] = Field(
+    uid_to: int | None = Field(
         default=None,
     )
     """To ID."""
 
-    votes: typing.Optional[int] = Field(
+    votes: int | None = Field(
         default=None,
     )
     """Votes number."""
@@ -14825,32 +14826,32 @@ class StatsActivity(BaseModel):
     Model: `StatsActivity`
     """
 
-    comments: typing.Optional[int] = Field(
+    comments: int | None = Field(
         default=None,
     )
     """Comments number."""
 
-    copies: typing.Optional[int] = Field(
+    copies: int | None = Field(
         default=None,
     )
     """Reposts number."""
 
-    hidden: typing.Optional[int] = Field(
+    hidden: int | None = Field(
         default=None,
     )
     """Hidden from news count."""
 
-    likes: typing.Optional[int] = Field(
+    likes: int | None = Field(
         default=None,
     )
     """Likes number."""
 
-    subscribed: typing.Optional[int] = Field(
+    subscribed: int | None = Field(
         default=None,
     )
     """New subscribers count."""
 
-    unsubscribed: typing.Optional[int] = Field(
+    unsubscribed: int | None = Field(
         default=None,
     )
     """Unsubscribed count."""
@@ -14861,17 +14862,17 @@ class StatsCity(BaseModel):
     Model: `StatsCity`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Visitors number."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """City name."""
 
-    value: typing.Optional[int] = Field(
+    value: int | None = Field(
         default=None,
     )
     """City ID."""
@@ -14882,22 +14883,22 @@ class StatsCountry(BaseModel):
     Model: `StatsCountry`
     """
 
-    code: typing.Optional[str] = Field(
+    code: str | None = Field(
         default=None,
     )
     """Country code."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Visitors number."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Country name."""
 
-    value: typing.Optional[int] = Field(
+    value: int | None = Field(
         default=None,
     )
     """Country ID."""
@@ -14908,27 +14909,27 @@ class StatsPeriod(BaseModel):
     Model: `StatsPeriod`
     """
 
-    activity: typing.Optional["StatsActivity"] = Field(
+    activity: "StatsActivity | None" = Field(
         default=None,
     )
     """Property `StatsPeriod.activity`."""
 
-    period_from: typing.Optional["StatsPeriodFromOneOf"] = Field(
+    period_from: "StatsPeriodFromOneOf | None" = Field(
         default=None,
     )
     """Property `StatsPeriod.period_from`."""
 
-    period_to: typing.Optional["StatsPeriodToOneOf"] = Field(
+    period_to: "StatsPeriodToOneOf | None" = Field(
         default=None,
     )
     """Property `StatsPeriod.period_to`."""
 
-    reach: typing.Optional["StatsReach"] = Field(
+    reach: "StatsReach | None" = Field(
         default=None,
     )
     """Property `StatsPeriod.reach`."""
 
-    visitors: typing.Optional["StatsViews"] = Field(
+    visitors: "StatsViews | None" = Field(
         default=None,
     )
     """Property `StatsPeriod.visitors`."""
@@ -14946,42 +14947,42 @@ class StatsReach(BaseModel):
     Model: `StatsReach`
     """
 
-    age: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    age: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsReach.age`."""
 
-    cities: typing.Optional[typing.List["StatsCity"]] = Field(
+    cities: list["StatsCity"] | None = Field(
         default=None,
     )
     """Property `StatsReach.cities`."""
 
-    countries: typing.Optional[typing.List["StatsCountry"]] = Field(
+    countries: list["StatsCountry"] | None = Field(
         default=None,
     )
     """Property `StatsReach.countries`."""
 
-    mobile_reach: typing.Optional[int] = Field(
+    mobile_reach: int | None = Field(
         default=None,
     )
     """Reach count from mobile devices."""
 
-    reach: typing.Optional[int] = Field(
+    reach: int | None = Field(
         default=None,
     )
     """Reach count."""
 
-    reach_subscribers: typing.Optional[int] = Field(
+    reach_subscribers: int | None = Field(
         default=None,
     )
     """Subscribers reach count."""
 
-    sex: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    sex: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsReach.sex`."""
 
-    sex_age: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    sex_age: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsReach.sex_age`."""
@@ -14995,22 +14996,22 @@ class StatsSexAge(BaseModel):
     value: str = Field()
     """Sex/age value."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Visitors number."""
 
-    reach: typing.Optional[int] = Field(
+    reach: int | None = Field(
         default=None,
     )
     """Property `StatsSexAge.reach`."""
 
-    reach_subscribers: typing.Optional[int] = Field(
+    reach_subscribers: int | None = Field(
         default=None,
     )
     """Property `StatsSexAge.reach_subscribers`."""
 
-    count_subscribers: typing.Optional[int] = Field(
+    count_subscribers: int | None = Field(
         default=None,
     )
     """Property `StatsSexAge.count_subscribers`."""
@@ -15022,42 +15023,42 @@ class StatsViews(BaseModel):
     Model: `StatsViews`
     """
 
-    age: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    age: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsViews.age`."""
 
-    cities: typing.Optional[typing.List["StatsCity"]] = Field(
+    cities: list["StatsCity"] | None = Field(
         default=None,
     )
     """Property `StatsViews.cities`."""
 
-    countries: typing.Optional[typing.List["StatsCountry"]] = Field(
+    countries: list["StatsCountry"] | None = Field(
         default=None,
     )
     """Property `StatsViews.countries`."""
 
-    mobile_views: typing.Optional[int] = Field(
+    mobile_views: int | None = Field(
         default=None,
     )
     """Number of views from mobile devices."""
 
-    sex: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    sex: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsViews.sex`."""
 
-    sex_age: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    sex_age: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsViews.sex_age`."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Views number."""
 
-    visitors: typing.Optional[int] = Field(
+    visitors: int | None = Field(
         default=None,
     )
     """Visitors number."""
@@ -15068,72 +15069,72 @@ class StatsWallpostStat(BaseModel):
     Model: `StatsWallpostStat`
     """
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.post_id`."""
 
-    hide: typing.Optional[int] = Field(
+    hide: int | None = Field(
         default=None,
     )
     """Hidings number."""
 
-    join_group: typing.Optional[int] = Field(
+    join_group: int | None = Field(
         default=None,
     )
     """People have joined the group."""
 
-    links: typing.Optional[int] = Field(
+    links: int | None = Field(
         default=None,
     )
     """Link clickthrough."""
 
-    reach_subscribers: typing.Optional[int] = Field(
+    reach_subscribers: int | None = Field(
         default=None,
     )
     """Subscribers reach."""
 
-    reach_subscribers_count: typing.Optional[int] = Field(
+    reach_subscribers_count: int | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.reach_subscribers_count`."""
 
-    reach_total: typing.Optional[int] = Field(
+    reach_total: int | None = Field(
         default=None,
     )
     """Total reach."""
 
-    reach_total_count: typing.Optional[int] = Field(
+    reach_total_count: int | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.reach_total_count`."""
 
-    reach_viral: typing.Optional[int] = Field(
+    reach_viral: int | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.reach_viral`."""
 
-    reach_ads: typing.Optional[int] = Field(
+    reach_ads: int | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.reach_ads`."""
 
-    report: typing.Optional[int] = Field(
+    report: int | None = Field(
         default=None,
     )
     """Reports number."""
 
-    to_group: typing.Optional[int] = Field(
+    to_group: int | None = Field(
         default=None,
     )
     """Clickthrough to community."""
 
-    unsubscribe: typing.Optional[int] = Field(
+    unsubscribe: int | None = Field(
         default=None,
     )
     """Unsubscribed members."""
 
-    sex_age: typing.Optional[typing.List["StatsSexAge"]] = Field(
+    sex_age: list["StatsSexAge"] | None = Field(
         default=None,
     )
     """Property `StatsWallpostStat.sex_age`."""
@@ -15147,7 +15148,7 @@ class StatusStatus(BaseModel):
     text: str = Field()
     """Status text."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `StatusStatus.audio`."""
@@ -15161,12 +15162,12 @@ class StickersImageSet(BaseModel):
     base_url: str = Field()
     """Base URL for images in set."""
 
-    version: typing.Optional[int] = Field(
+    version: int | None = Field(
         default=None,
     )
     """Version number to be appended to the image URL."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `StickersImageSet.images`."""
@@ -15184,7 +15185,7 @@ class StorageValue(BaseModel):
     """Property `StorageValue.value`."""
 
 
-class StoreProductType(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoreProductType(StrEnum, metaclass=BaseEnumMeta):
     STICKERS = "stickers"
 
 
@@ -15199,107 +15200,107 @@ class StoreProduct(BaseModel):
     type: "StoreProductType" = Field()
     """Product type."""
 
-    is_new: typing.Optional[bool] = Field(
+    is_new: bool | None = Field(
         default=None,
     )
     """Information whether sticker product wasn\'t used after being purchased."""
 
-    copyright: typing.Optional[str] = Field(
+    copyright: str | None = Field(
         default=None,
     )
     """Product copyright information."""
 
-    base_id: typing.Optional[int] = Field(
+    base_id: int | None = Field(
         default=None,
     )
     """Id of the base pack (for sticker pack styles)."""
 
-    style_ids: typing.Optional[typing.List[int]] = Field(
+    style_ids: list[int] | None = Field(
         default=None,
     )
     """Array of style ids available for the sticker pack."""
 
-    purchased: typing.Optional[bool] = Field(
+    purchased: bool | None = Field(
         default=None,
     )
     """Information whether the product is purchased (1 - yes, 0 - no)."""
 
-    active: typing.Optional[bool] = Field(
+    active: bool | None = Field(
         default=None,
     )
     """Information whether the product is active (1 - yes, 0 - no)."""
 
-    promoted: typing.Optional[bool] = Field(
+    promoted: bool | None = Field(
         default=None,
     )
     """Information whether the product is promoted (1 - yes, 0 - no)."""
 
-    purchase_date: typing.Optional[int] = Field(
+    purchase_date: int | None = Field(
         default=None,
     )
     """Date (Unix time) when the product was purchased."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Title of the product."""
 
-    stickers: typing.Optional[typing.List["BaseStickerNew"]] = Field(
+    stickers: list["BaseStickerNew"] | None = Field(
         default=None,
     )
     """Property `StoreProduct.stickers`."""
 
-    style_sticker_ids: typing.Optional[typing.List[int]] = Field(
+    style_sticker_ids: list[int] | None = Field(
         default=None,
     )
     """Array of style sticker ids (for sticker pack styles)."""
 
-    icon: typing.Optional["StoreProductIcon"] = Field(
+    icon: "StoreProductIcon | None" = Field(
         default=None,
     )
     """Array of icon images or icon set object of the product (for stickers product type)."""
 
-    previews: typing.Optional[typing.List["BaseImage"]] = Field(
+    previews: list["BaseImage"] | None = Field(
         default=None,
     )
     """Array of preview images of the product (for stickers product type)."""
 
-    has_animation: typing.Optional[bool] = Field(
+    has_animation: bool | None = Field(
         default=None,
     )
     """Information whether the product is an animated sticker pack (for stickers product type)."""
 
-    subtitle: typing.Optional[str] = Field(
+    subtitle: str | None = Field(
         default=None,
     )
     """Subtitle of the product."""
 
-    payment_region: typing.Optional[str] = Field(
+    payment_region: str | None = Field(
         default=None,
     )
     """Property `StoreProduct.payment_region`."""
 
-    is_vmoji: typing.Optional[bool] = Field(
+    is_vmoji: bool | None = Field(
         default=None,
     )
     """Information whether sticker pack is a vmoji pack."""
 
-    title_lang_key: typing.Optional[str] = Field(
+    title_lang_key: str | None = Field(
         default=None,
     )
     """Property `StoreProduct.title_lang_key`."""
 
-    description_lang_key: typing.Optional[str] = Field(
+    description_lang_key: str | None = Field(
         default=None,
     )
     """Property `StoreProduct.description_lang_key`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Property `StoreProduct.url`."""
 
-    is_popup: typing.Optional[bool] = Field(
+    is_popup: bool | None = Field(
         default=None,
     )
     """Information whether the product is a sticker pack with popup stickers (for stickers product type)."""
@@ -15313,12 +15314,12 @@ class StoreProductIcon(BaseModel):
     base_url: str = Field()
     """Base URL for images in set."""
 
-    version: typing.Optional[int] = Field(
+    version: int | None = Field(
         default=None,
     )
     """Version number to be appended to the image URL."""
 
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `StoreProductIcon.images`."""
@@ -15329,20 +15330,20 @@ class StoreStickersKeyword(BaseModel):
     Model: `StoreStickersKeyword`
     """
 
-    words: typing.List[str] = Field()
+    words: list[str] = Field()
     """Property `StoreStickersKeyword.words`."""
 
-    user_stickers: typing.Optional[typing.List["BaseStickerNew"]] = Field(
+    user_stickers: list["BaseStickerNew"] | None = Field(
         default=None,
     )
     """Property `StoreStickersKeyword.user_stickers`."""
 
-    promoted_stickers: typing.Optional[typing.List["BaseStickerNew"]] = Field(
+    promoted_stickers: list["BaseStickerNew"] | None = Field(
         default=None,
     )
     """Property `StoreStickersKeyword.promoted_stickers`."""
 
-    stickers: typing.Optional[typing.List["StoreStickersKeywordSticker"]] = Field(
+    stickers: list["StoreStickersKeywordSticker"] | None = Field(
         default=None,
     )
     """Property `StoreStickersKeyword.stickers`."""
@@ -15372,7 +15373,7 @@ class StoriesClickableArea(BaseModel):
     """Property `StoriesClickableArea.y`."""
 
 
-class StoriesClickableStickerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerType(StrEnum, metaclass=BaseEnumMeta):
     HASHTAG = "hashtag"
     MENTION = "mention"
     LINK = "link"
@@ -15395,7 +15396,7 @@ class StoriesClickableStickerType(str, enum.Enum, metaclass=BaseEnumMeta):
     SERVICE_YC_ITEM = "service_yc_item"
 
 
-class StoriesClickableStickerStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerStyle(StrEnum, metaclass=BaseEnumMeta):
     TRANSPARENT = "transparent"
     BLUE_GRADIENT = "blue_gradient"
     RED_GRADIENT = "red_gradient"
@@ -15434,7 +15435,7 @@ class StoriesClickableStickerStyle(str, enum.Enum, metaclass=BaseEnumMeta):
     ACCENT = "accent"
 
 
-class StoriesClickableStickerSubtype(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesClickableStickerSubtype(StrEnum, metaclass=BaseEnumMeta):
     MARKET_ITEM = "market_item"
     ALIEXPRESS_PRODUCT = "aliexpress_product"
 
@@ -15444,7 +15445,7 @@ class StoriesClickableSticker(BaseModel):
     Model: `StoriesClickableSticker`
     """
 
-    clickable_area: typing.List["StoriesClickableArea"] = Field()
+    clickable_area: list["StoriesClickableArea"] = Field()
     """Property `StoriesClickableSticker.clickable_area`."""
 
     id: int = Field()
@@ -15453,142 +15454,142 @@ class StoriesClickableSticker(BaseModel):
     type: "StoriesClickableStickerType" = Field()
     """Property `StoriesClickableSticker.type`."""
 
-    hashtag: typing.Optional[str] = Field(
+    hashtag: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.hashtag`."""
 
-    link_object: typing.Optional["BaseLink"] = Field(
+    link_object: "BaseLink | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.link_object`."""
 
-    mention: typing.Optional[str] = Field(
+    mention: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.mention`."""
 
-    tooltip_text: typing.Optional[str] = Field(
+    tooltip_text: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.tooltip_text`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.owner_id`."""
 
-    story_id: typing.Optional[int] = Field(
+    story_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.story_id`."""
 
-    clip_id: typing.Optional[int] = Field(
+    clip_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.clip_id`."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.video_id`."""
 
-    question: typing.Optional[str] = Field(
+    question: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.question`."""
 
-    question_button: typing.Optional[str] = Field(
+    question_button: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.question_button`."""
 
-    place_id: typing.Optional[int] = Field(
+    place_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.place_id`."""
 
-    market_item: typing.Optional["MarketMarketItem"] = Field(
+    market_item: "MarketMarketItem | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.market_item`."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.audio`."""
 
-    audio_start_time: typing.Optional[int] = Field(
+    audio_start_time: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.audio_start_time`."""
 
-    style: typing.Optional["StoriesClickableStickerStyle"] = Field(
+    style: "StoriesClickableStickerStyle | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.style`."""
 
-    subtype: typing.Optional["StoriesClickableStickerSubtype"] = Field(
+    subtype: "StoriesClickableStickerSubtype | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.subtype`."""
 
-    post_owner_id: typing.Optional[int] = Field(
+    post_owner_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.post_owner_id`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.post_id`."""
 
-    poll: typing.Optional["PollsPoll"] = Field(
+    poll: "PollsPoll | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.poll`."""
 
-    color: typing.Optional[str] = Field(
+    color: str | None = Field(
         default=None,
     )
     """Color, hex format."""
 
-    sticker_id: typing.Optional[int] = Field(
+    sticker_id: int | None = Field(
         default=None,
     )
     """Sticker ID."""
 
-    sticker_pack_id: typing.Optional[int] = Field(
+    sticker_pack_id: int | None = Field(
         default=None,
     )
     """Sticker pack ID."""
 
-    app: typing.Optional["AppsAppMin"] = Field(
+    app: "AppsAppMin | None" = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.app`."""
 
-    app_context: typing.Optional[str] = Field(
+    app_context: str | None = Field(
         default=None,
     )
     """Additional context for app sticker."""
 
-    has_new_interactions: typing.Optional[bool] = Field(
+    has_new_interactions: bool | None = Field(
         default=None,
     )
     """Whether current user has unread interaction with this app."""
 
-    is_broadcast_notify_allowed: typing.Optional[bool] = Field(
+    is_broadcast_notify_allowed: bool | None = Field(
         default=None,
     )
     """Whether current user allowed broadcast notify from this app."""
 
-    situational_theme_id: typing.Optional[int] = Field(
+    situational_theme_id: int | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.situational_theme_id`."""
 
-    situational_app_url: typing.Optional[str] = Field(
+    situational_app_url: str | None = Field(
         default=None,
     )
     """Property `StoriesClickableSticker.situational_app_url`."""
@@ -15599,7 +15600,7 @@ class StoriesClickableStickers(BaseModel):
     Model: `StoriesClickableStickers`
     """
 
-    clickable_stickers: typing.List["StoriesClickableSticker"] = Field()
+    clickable_stickers: list["StoriesClickableSticker"] = Field()
     """Property `StoriesClickableStickers.clickable_stickers`."""
 
     original_height: int = Field()
@@ -15609,7 +15610,7 @@ class StoriesClickableStickers(BaseModel):
     """Property `StoriesClickableStickers.original_width`."""
 
 
-class StoriesFeedItemType(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesFeedItemType(StrEnum, metaclass=BaseEnumMeta):
     PROMO_STORIES = "promo_stories"
     STORIES = "stories"
     LIVE_ACTIVE = "live_active"
@@ -15626,47 +15627,47 @@ class StoriesFeedItem(BaseModel):
     type: "StoriesFeedItemType" = Field()
     """Type of Feed Item."""
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """Property `StoriesFeedItem.id`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `StoriesFeedItem.owner_id`."""
 
-    stories: typing.Optional[typing.List["StoriesStory"]] = Field(
+    stories: list["StoriesStory"] | None = Field(
         default=None,
     )
     """Author stories."""
 
-    grouped: typing.Optional[typing.List["StoriesFeedItem"]] = Field(
+    grouped: list["StoriesFeedItem"] | None = Field(
         default=None,
     )
     """Grouped stories of various authors (for types community_grouped_stories/app_grouped_stories type)."""
 
-    app: typing.Optional["AppsAppMin"] = Field(
+    app: "AppsAppMin | None" = Field(
         default=None,
     )
     """App, which stories has been grouped (for type app_grouped_stories)."""
 
-    promo_data: typing.Optional["StoriesPromoBlock"] = Field(
+    promo_data: "StoriesPromoBlock | None" = Field(
         default=None,
     )
     """Additional data for promo stories (for type promo_stories)."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Property `StoriesFeedItem.track_code`."""
 
-    has_unseen: typing.Optional[bool] = Field(
+    has_unseen: bool | None = Field(
         default=None,
     )
     """Property `StoriesFeedItem.has_unseen`."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Property `StoriesFeedItem.name`."""
@@ -15702,7 +15703,7 @@ class StoriesReplies(BaseModel):
     count: int = Field()
     """Replies number.."""
 
-    new: typing.Optional[int] = Field(
+    new: int | None = Field(
         default=None,
     )
     """New replies number.."""
@@ -15719,152 +15720,152 @@ class StoriesStory(BaseModel):
     owner_id: int = Field()
     """Story owner\'s ID.."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for private object.."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the story (0 - no, 1 - yes).."""
 
-    can_reply: typing.Optional[bool] = Field(
+    can_reply: bool | None = Field(
         default=None,
     )
     """Information whether current user can reply to the story (0 - no, 1 - yes).."""
 
-    can_see: typing.Optional[bool] = Field(
+    can_see: bool | None = Field(
         default=None,
     )
     """Information whether current user can see the story (0 - no, 1 - yes).."""
 
-    can_like: typing.Optional[bool] = Field(
+    can_like: bool | None = Field(
         default=None,
     )
     """Information whether current user can like the story.."""
 
-    can_share: typing.Optional[bool] = Field(
+    can_share: bool | None = Field(
         default=None,
     )
     """Information whether current user can share the story (0 - no, 1 - yes).."""
 
-    can_hide: typing.Optional[bool] = Field(
+    can_hide: bool | None = Field(
         default=None,
     )
     """Information whether current user can hide the story (0 - no, 1 - yes).."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when story has been added in Unixtime.."""
 
-    expires_at: typing.Optional[int] = Field(
+    expires_at: int | None = Field(
         default=None,
     )
     """Story expiration time. Unixtime.."""
 
-    is_deleted: typing.Optional[bool] = Field(
+    is_deleted: bool | None = Field(
         default=None,
     )
     """Information whether the story is deleted (false - no, true - yes).."""
 
-    is_expired: typing.Optional[bool] = Field(
+    is_expired: bool | None = Field(
         default=None,
     )
     """Information whether the story is expired (false - no, true - yes).."""
 
-    link: typing.Optional["StoriesStoryLink"] = Field(
+    link: "StoriesStoryLink | None" = Field(
         default=None,
     )
     """Property `StoriesStory.link`."""
 
-    parent_story: typing.Optional["StoriesStory"] = Field(
+    parent_story: "StoriesStory | None" = Field(
         default=None,
     )
     """Property `StoriesStory.parent_story`."""
 
-    parent_story_access_key: typing.Optional[str] = Field(
+    parent_story_access_key: str | None = Field(
         default=None,
     )
     """Access key for private object.."""
 
-    parent_story_id: typing.Optional[int] = Field(
+    parent_story_id: int | None = Field(
         default=None,
     )
     """Parent story ID.."""
 
-    parent_story_owner_id: typing.Optional[int] = Field(
+    parent_story_owner_id: int | None = Field(
         default=None,
     )
     """Parent story owner\'s ID.."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `StoriesStory.photo`."""
 
-    blurred_preview: typing.Optional[str] = Field(
+    blurred_preview: str | None = Field(
         default=None,
     )
     """url with blured preview image.."""
 
-    replies: typing.Optional["StoriesReplies"] = Field(
+    replies: "StoriesReplies | None" = Field(
         default=None,
     )
     """Replies counters to current story.."""
 
-    seen: typing.Optional[bool] = Field(
+    seen: bool | None = Field(
         default=None,
     )
     """Information whether current user has seen the story or not (0 - no, 1 - yes).."""
 
-    type: typing.Optional["StoriesStoryType"] = Field(
+    type: "StoriesStoryType | None" = Field(
         default=None,
     )
     """Property `StoriesStory.type`."""
 
-    clickable_stickers: typing.Optional["StoriesClickableStickers"] = Field(
+    clickable_stickers: "StoriesClickableStickers | None" = Field(
         default=None,
     )
     """Property `StoriesStory.clickable_stickers`."""
 
-    video: typing.Optional["VideoVideoFull"] = Field(
+    video: "VideoVideoFull | None" = Field(
         default=None,
     )
     """Property `StoriesStory.video`."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Views number.."""
 
-    can_ask: typing.Optional[bool] = Field(
+    can_ask: bool | None = Field(
         default=None,
     )
     """Information whether story has question sticker and current user can send question to the author."""
 
-    can_ask_anonymous: typing.Optional[bool] = Field(
+    can_ask_anonymous: bool | None = Field(
         default=None,
     )
     """Information whether story has question sticker and current user can send anonymous question to the author."""
 
-    narratives_count: typing.Optional[int] = Field(
+    narratives_count: int | None = Field(
         default=None,
     )
     """Property `StoriesStory.narratives_count`."""
 
-    first_narrative_title: typing.Optional[str] = Field(
+    first_narrative_title: str | None = Field(
         default=None,
     )
     """Property `StoriesStory.first_narrative_title`."""
 
-    first_narrative_id: typing.Optional[int] = Field(
+    first_narrative_id: int | None = Field(
         default=None,
     )
     """Property `StoriesStory.first_narrative_id`."""
 
-    can_use_in_narrative: typing.Optional[bool] = Field(
+    can_use_in_narrative: bool | None = Field(
         default=None,
     )
     """Property `StoriesStory.can_use_in_narrative`."""
@@ -15881,7 +15882,7 @@ class StoriesStoryLink(BaseModel):
     url: str = Field()
     """Link URL."""
 
-    link_url_target: typing.Optional[str] = Field(
+    link_url_target: str | None = Field(
         default=None,
     )
     """How to open url."""
@@ -15925,26 +15926,26 @@ class StoriesStoryStatsStat(BaseModel):
     state: "StoriesStoryStatsState" = Field()
     """Property `StoriesStoryStatsStat.state`."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Stat value."""
 
 
-class StoriesStoryStatsState(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesStoryStatsState(StrEnum, metaclass=BaseEnumMeta):
     ON = "on"
     OFF = "off"
     HIDDEN = "hidden"
 
 
-class StoriesStoryType(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesStoryType(StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     VIDEO = "video"
     LIVE_ACTIVE = "live_active"
     LIVE_FINISHED = "live_finished"
 
 
-class StoriesUploadLinkText(str, enum.Enum, metaclass=BaseEnumMeta):
+class StoriesUploadLinkText(StrEnum, metaclass=BaseEnumMeta):
     TO_STORE = "to_store"
     VOTE = "vote"
     MORE = "more"
@@ -15976,7 +15977,7 @@ class StoriesUploadResult(BaseModel):
     Model: `StoriesUploadResult`
     """
 
-    upload_result: typing.Optional[str] = Field(
+    upload_result: str | None = Field(
         default=None,
     )
     """Property `StoriesUploadResult.upload_result`."""
@@ -15993,13 +15994,13 @@ class StoriesViewersItem(BaseModel):
     user_id: int = Field()
     """user id."""
 
-    user: typing.Optional["UsersUserFull"] = Field(
+    user: "UsersUserFull | None" = Field(
         default=None,
     )
     """Property `StoriesViewersItem.user`."""
 
 
-class StreamingStatsEventType(str, enum.Enum, metaclass=BaseEnumMeta):
+class StreamingStatsEventType(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COMMENT = "comment"
     SHARE = "share"
@@ -16013,7 +16014,7 @@ class StreamingStats(BaseModel):
     event_type: "StreamingStatsEventType" = Field()
     """Events type."""
 
-    stats: typing.List["StreamingStatsPoint"] = Field()
+    stats: list["StreamingStatsPoint"] = Field()
     """Statistics."""
 
 
@@ -16040,13 +16041,13 @@ class FriendsFriendStatus(BaseModel):
     user_id: int = Field()
     """User ID."""
 
-    sign: typing.Optional[str] = Field(
+    sign: str | None = Field(
         default=None,
     )
     """MD5 hash for the result validation."""
 
 
-class FriendsFriendStatusStatus(int, enum.Enum, metaclass=BaseEnumMeta):
+class FriendsFriendStatusStatus(IntEnum, metaclass=BaseEnumMeta):
     NOT_A_FRIEND = 0
     OUTCOMING_REQUEST = 1
     INCOMING_REQUEST = 2
@@ -16070,17 +16071,17 @@ class FriendsMutualFriend(BaseModel):
     Model: `FriendsMutualFriend`
     """
 
-    common_count: typing.Optional[int] = Field(
+    common_count: int | None = Field(
         default=None,
     )
     """Total mutual friends number."""
 
-    common_friends: typing.Optional[typing.List[int]] = Field(
+    common_friends: list[int] | None = Field(
         default=None,
     )
     """Property `FriendsMutualFriend.common_friends`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """User ID."""
@@ -16091,10 +16092,10 @@ class FriendsOnlineUsers(BaseModel):
     Model: `FriendsOnlineUsers`
     """
 
-    online: typing.List[int] = Field()
+    online: list[int] = Field()
     """Property `FriendsOnlineUsers.online`."""
 
-    total_count: typing.Optional[int] = Field(
+    total_count: int | None = Field(
         default=None,
     )
     """Total online friends number."""
@@ -16105,13 +16106,13 @@ class FriendsOnlineUsersWithMobile(BaseModel):
     Model: `FriendsOnlineUsersWithMobile`
     """
 
-    online: typing.List[int] = Field()
+    online: list[int] = Field()
     """Property `FriendsOnlineUsersWithMobile.online`."""
 
-    online_mobile: typing.List[int] = Field()
+    online_mobile: list[int] = Field()
     """Property `FriendsOnlineUsersWithMobile.online_mobile`."""
 
-    total_count: typing.Optional[int] = Field(
+    total_count: int | None = Field(
         default=None,
     )
     """Total online friends number."""
@@ -16122,12 +16123,12 @@ class FriendsRequestsMutual(BaseModel):
     Model: `FriendsRequestsMutual`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Total mutual friends number."""
 
-    users: typing.Optional[typing.List[int]] = Field(
+    users: list[int] | None = Field(
         default=None,
     )
     """Property `FriendsRequestsMutual.users`."""
@@ -16138,23 +16139,23 @@ class UtilsDomainResolved(BaseModel):
     Model: `UtilsDomainResolved`
     """
 
-    object_id: typing.Optional[int] = Field(
+    object_id: int | None = Field(
         default=None,
     )
     """Object ID."""
 
-    group_id: typing.Optional[int] = Field(
+    group_id: int | None = Field(
         default=None,
     )
     """Group ID."""
 
-    type: typing.Optional["UtilsDomainResolvedType"] = Field(
+    type: "UtilsDomainResolvedType | None" = Field(
         default=None,
     )
     """Property `UtilsDomainResolved.type`."""
 
 
-class UtilsDomainResolvedType(str, enum.Enum, metaclass=BaseEnumMeta):
+class UtilsDomainResolvedType(StrEnum, metaclass=BaseEnumMeta):
     USER = "user"
     GROUP = "group"
     APPLICATION = "application"
@@ -16169,32 +16170,32 @@ class UtilsLastShortenedLink(BaseModel):
     Model: `UtilsLastShortenedLink`
     """
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for private stats."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Link key (characters after vk.cc/)."""
 
-    short_url: typing.Optional[str] = Field(
+    short_url: str | None = Field(
         default=None,
     )
     """Short link URL."""
 
-    timestamp: typing.Optional[int] = Field(
+    timestamp: int | None = Field(
         default=None,
     )
     """Creation time in Unixtime."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Full URL."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Total views number."""
@@ -16205,18 +16206,18 @@ class UtilsLinkChecked(BaseModel):
     Model: `UtilsLinkChecked`
     """
 
-    link: typing.Optional[str] = Field(
+    link: str | None = Field(
         default=None,
     )
     """Link URL."""
 
-    status: typing.Optional["UtilsLinkCheckedStatus"] = Field(
+    status: "UtilsLinkCheckedStatus | None" = Field(
         default=None,
     )
     """Property `UtilsLinkChecked.status`."""
 
 
-class UtilsLinkCheckedStatus(str, enum.Enum, metaclass=BaseEnumMeta):
+class UtilsLinkCheckedStatus(StrEnum, metaclass=BaseEnumMeta):
     NOT_BANNED = "not_banned"
     BANNED = "banned"
     PROCESSING = "processing"
@@ -16227,12 +16228,12 @@ class UtilsLinkStats(BaseModel):
     Model: `UtilsLinkStats`
     """
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Link key (characters after vk.cc/)."""
 
-    stats: typing.Optional[typing.List["UtilsStats"]] = Field(
+    stats: list["UtilsStats"] | None = Field(
         default=None,
     )
     """Property `UtilsLinkStats.stats`."""
@@ -16243,12 +16244,12 @@ class UtilsLinkStatsExtended(BaseModel):
     Model: `UtilsLinkStatsExtended`
     """
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Link key (characters after vk.cc/)."""
 
-    stats: typing.Optional[typing.List["UtilsStatsExtended"]] = Field(
+    stats: list["UtilsStatsExtended"] | None = Field(
         default=None,
     )
     """Property `UtilsLinkStatsExtended.stats`."""
@@ -16259,22 +16260,22 @@ class UtilsShortLink(BaseModel):
     Model: `UtilsShortLink`
     """
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for private stats."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Link key (characters after vk.cc/)."""
 
-    short_url: typing.Optional[str] = Field(
+    short_url: str | None = Field(
         default=None,
     )
     """Short link URL."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Full URL."""
@@ -16285,12 +16286,12 @@ class UtilsStats(BaseModel):
     Model: `UtilsStats`
     """
 
-    timestamp: typing.Optional[int] = Field(
+    timestamp: int | None = Field(
         default=None,
     )
     """Start time."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Total views number."""
@@ -16301,12 +16302,12 @@ class UtilsStatsCity(BaseModel):
     Model: `UtilsStatsCity`
     """
 
-    city_id: typing.Optional[int] = Field(
+    city_id: int | None = Field(
         default=None,
     )
     """City ID."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Views number."""
@@ -16317,12 +16318,12 @@ class UtilsStatsCountry(BaseModel):
     Model: `UtilsStatsCountry`
     """
 
-    country_id: typing.Optional[int] = Field(
+    country_id: int | None = Field(
         default=None,
     )
     """Country ID."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Views number."""
@@ -16333,27 +16334,27 @@ class UtilsStatsExtended(BaseModel):
     Model: `UtilsStatsExtended`
     """
 
-    cities: typing.Optional[typing.List["UtilsStatsCity"]] = Field(
+    cities: list["UtilsStatsCity"] | None = Field(
         default=None,
     )
     """Property `UtilsStatsExtended.cities`."""
 
-    countries: typing.Optional[typing.List["UtilsStatsCountry"]] = Field(
+    countries: list["UtilsStatsCountry"] | None = Field(
         default=None,
     )
     """Property `UtilsStatsExtended.countries`."""
 
-    sex_age: typing.Optional[typing.List["UtilsStatsSexAge"]] = Field(
+    sex_age: list["UtilsStatsSexAge"] | None = Field(
         default=None,
     )
     """Property `UtilsStatsExtended.sex_age`."""
 
-    timestamp: typing.Optional[int] = Field(
+    timestamp: int | None = Field(
         default=None,
     )
     """Start time."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Total views number."""
@@ -16364,17 +16365,17 @@ class UtilsStatsSexAge(BaseModel):
     Model: `UtilsStatsSexAge`
     """
 
-    age_range: typing.Optional[str] = Field(
+    age_range: str | None = Field(
         default=None,
     )
     """Age denotation."""
 
-    female: typing.Optional[int] = Field(
+    female: int | None = Field(
         default=None,
     )
     """ Views by female users."""
 
-    male: typing.Optional[int] = Field(
+    male: int | None = Field(
         default=None,
     )
     """ Views by male users."""
@@ -16385,12 +16386,12 @@ class VideoEpisode(BaseModel):
     Model: `VideoEpisode`
     """
 
-    time: typing.Optional[int] = Field(
+    time: int | None = Field(
         default=None,
     )
     """Seconds from start of the video."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Description of episode."""
@@ -16407,7 +16408,7 @@ class VideoLiveCategory(BaseModel):
     label: str = Field()
     """Property `VideoLiveCategory.label`."""
 
-    sublist: typing.Optional[typing.List["VideoLiveCategory"]] = Field(
+    sublist: list["VideoLiveCategory"] | None = Field(
         default=None,
     )
     """Property `VideoLiveCategory.sublist`."""
@@ -16421,7 +16422,7 @@ class VideoLiveInfo(BaseModel):
     enabled: bool = Field()
     """Property `VideoLiveInfo.enabled`."""
 
-    is_notifications_blocked: typing.Optional[bool] = Field(
+    is_notifications_blocked: bool | None = Field(
         default=None,
     )
     """Property `VideoLiveInfo.is_notifications_blocked`."""
@@ -16433,28 +16434,28 @@ class VideoLiveSettings(BaseModel):
     Model: `VideoLiveSettings`
     """
 
-    can_rewind: typing.Optional[bool] = Field(
+    can_rewind: bool | None = Field(
         default=None,
     )
     """If user car rewind live or not."""
 
-    is_endless: typing.Optional[bool] = Field(
+    is_endless: bool | None = Field(
         default=None,
     )
     """If live is endless or not."""
 
-    max_duration: typing.Optional[int] = Field(
+    max_duration: int | None = Field(
         default=None,
     )
     """Max possible time for rewind."""
 
-    is_clips_live: typing.Optional[bool] = Field(
+    is_clips_live: bool | None = Field(
         default=None,
     )
     """If live in clips apps."""
 
 
-class VideoPlaylistPrivacyCategory(str, enum.Enum, metaclass=BaseEnumMeta):
+class VideoPlaylistPrivacyCategory(StrEnum, metaclass=BaseEnumMeta):
     ALL = "all"
     FRIENDS = "friends"
     FRIENDS_OF_FRIENDS = "friends_of_friends"
@@ -16467,32 +16468,32 @@ class VideoSaveResult(BaseModel):
     Model: `VideoSaveResult`
     """
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Video access key."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Video description."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Video owner ID."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Video title."""
 
-    upload_url: typing.Optional[str] = Field(
+    upload_url: str | None = Field(
         default=None,
     )
     """URL for the video uploading."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Video ID."""
@@ -16503,33 +16504,33 @@ class VideoStreamInputParams(BaseModel):
     Model: `VideoStreamInputParams`
     """
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Property `VideoStreamInputParams.url`."""
 
-    key: typing.Optional[str] = Field(
+    key: str | None = Field(
         default=None,
     )
     """Property `VideoStreamInputParams.key`."""
 
-    okmp_url: typing.Optional[str] = Field(
+    okmp_url: str | None = Field(
         default=None,
     )
     """Property `VideoStreamInputParams.okmp_url`."""
 
-    webrtc_url: typing.Optional[str] = Field(
+    webrtc_url: str | None = Field(
         default=None,
     )
     """Property `VideoStreamInputParams.webrtc_url`."""
 
 
-class VideoVideoResponseType(str, enum.Enum, metaclass=BaseEnumMeta):
+class VideoVideoResponseType(StrEnum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
 
-class VideoVideoType(str, enum.Enum, metaclass=BaseEnumMeta):
+class VideoVideoType(StrEnum, metaclass=BaseEnumMeta):
     INTERACTIVE = "interactive"
     VIDEO = "video"
     MUSIC_VIDEO = "music_video"
@@ -16545,253 +16546,253 @@ class VideoVideo(BaseModel):
     Model: `VideoVideo`
     """
 
-    response_type: typing.Optional["VideoVideoResponseType"] = Field(
+    response_type: "VideoVideoResponseType | None" = Field(
         default=None,
     )
     """Property `VideoVideo.response_type`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Video access key."""
 
-    adding_date: typing.Optional[int] = Field(
+    adding_date: int | None = Field(
         default=None,
     )
     """Date when the video has been added in Unixtime."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the video."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the video."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Information whether current user can delete the video."""
 
-    can_like: typing.Optional[bool] = Field(
+    can_like: bool | None = Field(
         default=None,
     )
     """Information whether current user can like the video."""
 
-    can_repost: typing.Optional[int] = Field(
+    can_repost: int | None = Field(
         default=None,
     )
     """Information whether current user can repost the video."""
 
-    can_subscribe: typing.Optional[bool] = Field(
+    can_subscribe: bool | None = Field(
         default=None,
     )
     """Information whether current user can subscribe to author of the video."""
 
-    can_be_promoted: typing.Optional[bool] = Field(
+    can_be_promoted: bool | None = Field(
         default=None,
     )
     """Information whether current user can promote the video."""
 
-    can_add_to_faves: typing.Optional[bool] = Field(
+    can_add_to_faves: bool | None = Field(
         default=None,
     )
     """Information whether current user can add the video to favourites."""
 
-    can_add: typing.Optional[bool] = Field(
+    can_add: bool | None = Field(
         default=None,
     )
     """Information whether current user can add the video."""
 
-    can_attach_link: typing.Optional[bool] = Field(
+    can_attach_link: bool | None = Field(
         default=None,
     )
     """Information whether current user can attach action button to the video."""
 
-    can_edit_privacy: typing.Optional[bool] = Field(
+    can_edit_privacy: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the video privacy."""
 
-    is_private: typing.Optional[bool] = Field(
+    is_private: bool | None = Field(
         default=None,
     )
     """1 if video is private."""
 
-    comments: typing.Optional[int] = Field(
+    comments: int | None = Field(
         default=None,
     )
     """Number of comments."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when video has been uploaded in Unixtime."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Video description."""
 
-    duration: typing.Optional[int] = Field(
+    duration: int | None = Field(
         default=None,
     )
     """Video duration in seconds."""
 
-    image: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+    image: list["VideoVideoImage"] | None = Field(
         default=None,
     )
     """Property `VideoVideo.image`."""
 
-    first_frame: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+    first_frame: list["VideoVideoImage"] | None = Field(
         default=None,
     )
     """Property `VideoVideo.first_frame`."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Video width."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Video height."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Video ID."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Video owner ID."""
 
-    user_id: typing.Optional[int] = Field(
+    user_id: int | None = Field(
         default=None,
     )
     """Id of the user who uploaded the video if it was uploaded to a group by member."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Video title."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Whether video is added to bookmarks."""
 
-    player: typing.Optional[str] = Field(
+    player: str | None = Field(
         default=None,
     )
     """Video embed URL."""
 
-    processing: typing.Optional["BasePropertyExists"] = Field(
+    processing: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Returns if the video is processing."""
 
-    converting: typing.Optional[bool] = Field(
+    converting: bool | None = Field(
         default=None,
     )
     """1 if  video is being converted."""
 
-    added: typing.Optional[bool] = Field(
+    added: bool | None = Field(
         default=None,
     )
     """1 if video is added to user\'s albums."""
 
-    is_subscribed: typing.Optional[bool] = Field(
+    is_subscribed: bool | None = Field(
         default=None,
     )
     """1 if user is subscribed to author of the video."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Property `VideoVideo.track_code`."""
 
-    repeat: typing.Optional["BasePropertyExists"] = Field(
+    repeat: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Information whether the video is repeated."""
 
-    type: typing.Optional["VideoVideoType"] = Field(
+    type: "VideoVideoType | None" = Field(
         default=None,
     )
     """Property `VideoVideo.type`."""
 
-    views: typing.Optional[int] = Field(
+    views: int | None = Field(
         default=None,
     )
     """Number of views."""
 
-    local_views: typing.Optional[int] = Field(
+    local_views: int | None = Field(
         default=None,
     )
     """If video is external, number of views on vk."""
 
-    content_restricted: typing.Optional[int] = Field(
+    content_restricted: int | None = Field(
         default=None,
     )
     """Restriction code."""
 
-    content_restricted_message: typing.Optional[str] = Field(
+    content_restricted_message: str | None = Field(
         default=None,
     )
     """Restriction text."""
 
-    balance: typing.Optional[int] = Field(
+    balance: int | None = Field(
         default=None,
     )
     """Live donations balance."""
 
-    live: typing.Optional["BasePropertyExists"] = Field(
+    live: "BasePropertyExists | None" = Field(
         default=None,
     )
     """1 if the video is a live stream."""
 
-    upcoming: typing.Optional["BasePropertyExists"] = Field(
+    upcoming: "BasePropertyExists | None" = Field(
         default=None,
     )
     """1 if the video is an upcoming stream."""
 
-    live_start_time: typing.Optional[int] = Field(
+    live_start_time: int | None = Field(
         default=None,
     )
     """Date in Unixtime when the live stream is scheduled to start by the author."""
 
-    live_notify: typing.Optional[bool] = Field(
+    live_notify: bool | None = Field(
         default=None,
     )
     """Whether current user is subscribed to the upcoming live stream notification (if not subscribed to the author)."""
 
-    spectators: typing.Optional[int] = Field(
+    spectators: int | None = Field(
         default=None,
     )
     """Number of spectators of the stream."""
 
-    platform: typing.Optional[str] = Field(
+    platform: str | None = Field(
         default=None,
     )
     """External platform."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `VideoVideo.likes`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `VideoVideo.reposts`."""
 
 
-class VideoVideoAlbumResponseType(str, enum.Enum, metaclass=BaseEnumMeta):
+class VideoVideoAlbumResponseType(StrEnum, metaclass=BaseEnumMeta):
     MIN = "min"
     FULL = "full"
 
@@ -16810,12 +16811,12 @@ class VideoVideoAlbum(BaseModel):
     title: str = Field()
     """Album title."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Album trackcode."""
 
-    response_type: typing.Optional["VideoVideoAlbumResponseType"] = Field(
+    response_type: "VideoVideoAlbumResponseType | None" = Field(
         default=None,
     )
     """Property `VideoVideoAlbum.response_type`."""
@@ -16826,52 +16827,52 @@ class VideoVideoFiles(BaseModel):
     Model: `VideoVideoFiles`
     """
 
-    external: typing.Optional[str] = Field(
+    external: str | None = Field(
         default=None,
     )
     """URL of the external player."""
 
-    mp4_144: typing.Optional[str] = Field(
+    mp4_144: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 144p quality."""
 
-    mp4_240: typing.Optional[str] = Field(
+    mp4_240: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 240p quality."""
 
-    mp4_360: typing.Optional[str] = Field(
+    mp4_360: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 360p quality."""
 
-    mp4_480: typing.Optional[str] = Field(
+    mp4_480: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 480p quality."""
 
-    mp4_720: typing.Optional[str] = Field(
+    mp4_720: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 720p quality."""
 
-    mp4_1080: typing.Optional[str] = Field(
+    mp4_1080: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 1080p quality."""
 
-    mp4_1440: typing.Optional[str] = Field(
+    mp4_1440: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 2K quality."""
 
-    mp4_2160: typing.Optional[str] = Field(
+    mp4_2160: str | None = Field(
         default=None,
     )
     """URL of the mpeg4 file with 4K quality."""
 
-    flv_320: typing.Optional[str] = Field(
+    flv_320: str | None = Field(
         default=None,
     )
     """URL of the flv file with 320p quality."""
@@ -16882,22 +16883,22 @@ class WallAppPost(BaseModel):
     Model: `WallAppPost`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Application ID."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Application name."""
 
-    photo_130: typing.Optional[str] = Field(
+    photo_130: str | None = Field(
         default=None,
     )
     """URL of the preview image with 130 px in width."""
 
-    photo_604: typing.Optional[str] = Field(
+    photo_604: str | None = Field(
         default=None,
     )
     """URL of the preview image with 604 px in width."""
@@ -16929,27 +16930,27 @@ class WallAttachedNote(BaseModel):
     view_url: str = Field()
     """URL of the page with note preview."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Note text."""
 
-    privacy_view: typing.Optional[typing.List[str]] = Field(
+    privacy_view: list[str] | None = Field(
         default=None,
     )
     """Property `WallAttachedNote.privacy_view`."""
 
-    privacy_comment: typing.Optional[typing.List[str]] = Field(
+    privacy_comment: list[str] | None = Field(
         default=None,
     )
     """Property `WallAttachedNote.privacy_comment`."""
 
-    can_comment: typing.Optional[int] = Field(
+    can_comment: int | None = Field(
         default=None,
     )
     """Property `WallAttachedNote.can_comment`."""
 
-    text_wiki: typing.Optional[str] = Field(
+    text_wiki: str | None = Field(
         default=None,
     )
     """Note wiki text."""
@@ -16960,7 +16961,7 @@ class WallCarouselBase(BaseModel):
     Model: `WallCarouselBase`
     """
 
-    carousel_offset: typing.Optional[int] = Field(
+    carousel_offset: int | None = Field(
         default=None,
     )
     """Index of current carousel element."""
@@ -16974,63 +16975,63 @@ class WallCommentAttachment(BaseModel):
     type: "WallCommentAttachmentType" = Field()
     """Property `WallCommentAttachment.type`."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.audio`."""
 
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.doc`."""
 
-    link: typing.Optional["BaseLink"] = Field(
+    link: "BaseLink | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.link`."""
 
-    market: typing.Optional["MarketMarketItem"] = Field(
+    market: "MarketMarketItem | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.market`."""
 
-    market_market_album: typing.Optional["MarketMarketAlbum"] = Field(
+    market_market_album: "MarketMarketAlbum | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.market_market_album`."""
 
-    note: typing.Optional["WallAttachedNote"] = Field(
+    note: "WallAttachedNote | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.note`."""
 
-    page: typing.Optional["PagesWikipageFull"] = Field(
+    page: "PagesWikipageFull | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.page`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.photo`."""
 
-    sticker: typing.Optional["BaseSticker"] = Field(
+    sticker: "BaseSticker | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.sticker`."""
 
-    video: typing.Optional["VideoVideo"] = Field(
+    video: "VideoVideo | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.video`."""
 
-    graffiti: typing.Optional["WallGraffiti"] = Field(
+    graffiti: "WallGraffiti | None" = Field(
         default=None,
     )
     """Property `WallCommentAttachment.graffiti`."""
 
 
-class WallCommentAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallCommentAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     AUDIO = "audio"
     AUDIO_PLAYLIST = "audio_playlist"
@@ -17045,7 +17046,7 @@ class WallCommentAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
     GRAFFITI = "graffiti"
 
 
-class WallGeoType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallGeoType(StrEnum, metaclass=BaseEnumMeta):
     PLACE = "place"
     POINT = "point"
 
@@ -17055,23 +17056,23 @@ class WallGeo(BaseModel):
     Model: `WallGeo`
     """
 
-    coordinates: typing.Optional[str] = Field(
+    coordinates: str | None = Field(
         default=None,
     )
     """Coordinates as string. <latitude> <longtitude>."""
 
-    showmap: typing.Optional[int] = Field(
+    showmap: int | None = Field(
         default=None,
     )
     """Information whether a map is showed."""
 
-    type: typing.Optional["WallGeoType"] = Field(
+    type: "WallGeoType | None" = Field(
         default=None,
     )
     """Place type."""
 
 
-class WallGetFilter(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallGetFilter(StrEnum, metaclass=BaseEnumMeta):
     OWNER = "owner"
     OTHERS = "others"
     ALL = "all"
@@ -17086,42 +17087,42 @@ class WallGraffiti(BaseModel):
     Model: `WallGraffiti`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Graffiti ID."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Graffiti owner\'s ID."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of the preview image with 200 px in width."""
 
-    photo_586: typing.Optional[str] = Field(
+    photo_586: str | None = Field(
         default=None,
     )
     """URL of the preview image with 586 px in width."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Graffiti height."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Graffiti URL."""
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Graffiti width."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for graffiti."""
@@ -17141,7 +17142,7 @@ class WallPostCopyright(BaseModel):
     type: str = Field()
     """Property `WallPostCopyright.type`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Property `WallPostCopyright.id`."""
@@ -17152,33 +17153,33 @@ class WallPostSource(BaseModel):
     Model: `WallPostSource`
     """
 
-    data: typing.Optional[str] = Field(
+    data: str | None = Field(
         default=None,
     )
     """Additional data."""
 
-    platform: typing.Optional[str] = Field(
+    platform: str | None = Field(
         default=None,
     )
     """Platform name."""
 
-    type: typing.Optional["WallPostSourceType"] = Field(
+    type: "WallPostSourceType | None" = Field(
         default=None,
     )
     """Property `WallPostSource.type`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """URL to an external site used to publish the post."""
 
-    link: typing.Optional["BaseLink"] = Field(
+    link: "BaseLink | None" = Field(
         default=None,
     )
     """Property `WallPostSource.link`."""
 
 
-class WallPostSourceType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallPostSourceType(StrEnum, metaclass=BaseEnumMeta):
     VK = "vk"
     WIDGET = "widget"
     API = "api"
@@ -17187,7 +17188,7 @@ class WallPostSourceType(str, enum.Enum, metaclass=BaseEnumMeta):
     MVK = "mvk"
 
 
-class WallPostType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallPostType(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     COPY = "copy"
     REPLY = "reply"
@@ -17204,22 +17205,22 @@ class WallPostedPhoto(BaseModel):
     Model: `WallPostedPhoto`
     """
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Photo ID."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Photo owner\'s ID."""
 
-    photo_130: typing.Optional[str] = Field(
+    photo_130: str | None = Field(
         default=None,
     )
     """URL of the preview image with 130 px in width."""
 
-    photo_604: typing.Optional[str] = Field(
+    photo_604: str | None = Field(
         default=None,
     )
     """URL of the preview image with 604 px in width."""
@@ -17230,7 +17231,7 @@ class WallViews(BaseModel):
     Model: `WallViews`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Count."""
@@ -17253,82 +17254,82 @@ class WallWallComment(BaseModel):
     text: str = Field()
     """Comment text."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Property `WallWallComment.can_edit`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `WallWallComment.post_id`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Property `WallWallComment.owner_id`."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """Property `WallWallComment.parents_stack`."""
 
-    photo_id: typing.Optional[int] = Field(
+    photo_id: int | None = Field(
         default=None,
     )
     """Property `WallWallComment.photo_id`."""
 
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
     """Property `WallWallComment.video_id`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `WallWallComment.attachments`."""
 
-    donut: typing.Optional["WallWallCommentDonut"] = Field(
+    donut: "WallWallCommentDonut | None" = Field(
         default=None,
     )
     """Property `WallWallComment.donut`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `WallWallComment.likes`."""
 
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
     """Real position of the comment."""
 
-    reply_to_user: typing.Optional[int] = Field(
+    reply_to_user: int | None = Field(
         default=None,
     )
     """Replied user ID."""
 
-    reply_to_comment: typing.Optional[int] = Field(
+    reply_to_comment: int | None = Field(
         default=None,
     )
     """Replied comment ID."""
 
-    thread: typing.Optional["CommentThread"] = Field(
+    thread: "CommentThread | None" = Field(
         default=None,
     )
     """Property `WallWallComment.thread`."""
 
-    is_from_post_author: typing.Optional[bool] = Field(
+    is_from_post_author: bool | None = Field(
         default=None,
     )
     """Whether post is by author of the post or not."""
 
-    deleted: typing.Optional[bool] = Field(
+    deleted: bool | None = Field(
         default=None,
     )
     """Property `WallWallComment.deleted`."""
 
-    pid: typing.Optional[int] = Field(
+    pid: int | None = Field(
         default=None,
     )
     """Photo ID."""
@@ -17339,12 +17340,12 @@ class WallWallCommentDonut(BaseModel):
     Model: `WallWallCommentDonut`
     """
 
-    is_don: typing.Optional[bool] = Field(
+    is_don: bool | None = Field(
         default=None,
     )
     """Means commentator is donator."""
 
-    placeholder: typing.Optional["WallWallCommentDonutPlaceholder"] = Field(
+    placeholder: "WallWallCommentDonutPlaceholder | None" = Field(
         default=None,
     )
     """Property `WallWallCommentDonut.placeholder`."""
@@ -17364,83 +17365,83 @@ class WallWallItem(BaseModel):
     Model: `WallWallItem`
     """
 
-    copy_history: typing.Optional[typing.List["WallWallpostFull"]] = Field(
+    copy_history: list["WallWallpostFull"] | None = Field(
         default=None,
     )
     """Property `WallWallItem.copy_history`."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the post."""
 
-    created_by: typing.Optional[int] = Field(
+    created_by: int | None = Field(
         default=None,
     )
     """Post creator ID (if post still can be edited)."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Information whether current user can delete the post."""
 
-    can_pin: typing.Optional[bool] = Field(
+    can_pin: bool | None = Field(
         default=None,
     )
     """Information whether current user can pin the post."""
 
-    donut: typing.Optional["WallWallpostDonut"] = Field(
+    donut: "WallWallpostDonut | None" = Field(
         default=None,
     )
     """Property `WallWallItem.donut`."""
 
-    is_pinned: typing.Optional[bool] = Field(
+    is_pinned: bool | None = Field(
         default=None,
     )
     """Information whether the post is pinned."""
 
-    comments: typing.Optional["BaseCommentsInfo"] = Field(
+    comments: "BaseCommentsInfo | None" = Field(
         default=None,
     )
     """Property `WallWallItem.comments`."""
 
-    marked_as_ads: typing.Optional[bool] = Field(
+    marked_as_ads: bool | None = Field(
         default=None,
     )
     """Information whether the post is marked as ads."""
 
-    topic_id: typing.Optional[int] = Field(
+    topic_id: int | None = Field(
         default=None,
     )
     """Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method."""
 
-    short_text_rate: typing.Optional[float] = Field(
+    short_text_rate: float | None = Field(
         default=None,
     )
     """Preview length control parameter."""
 
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
     """Hash for sharing."""
 
-    type: typing.Optional["WallPostType"] = Field(
+    type: "WallPostType | None" = Field(
         default=None,
     )
     """Property `WallWallItem.type`."""
 
-    feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = Field(
+    feedback: "NewsfeedItemWallpostFeedback | None" = Field(
         default=None,
     )
     """Property `WallWallItem.feedback`."""
 
-    to_id: typing.Optional[int] = Field(
+    to_id: int | None = Field(
         default=None,
     )
     """Property `WallWallItem.to_id`."""
 
 
-class WallWallpostInnerType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallWallpostInnerType(StrEnum, metaclass=BaseEnumMeta):
     WALL_WALLPOST = "wall_wallpost"
 
 
@@ -17452,122 +17453,122 @@ class WallWallpost(BaseModel):
     inner_type: "WallWallpostInnerType" = Field()
     """Property `WallWallpost.inner_type`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key to private object."""
 
-    is_deleted: typing.Optional[bool] = Field(
+    is_deleted: bool | None = Field(
         default=None,
     )
     """Property `WallWallpost.is_deleted`."""
 
-    deleted_reason: typing.Optional[str] = Field(
+    deleted_reason: str | None = Field(
         default=None,
     )
     """Property `WallWallpost.deleted_reason`."""
 
-    deleted_details: typing.Optional[str] = Field(
+    deleted_details: str | None = Field(
         default=None,
     )
     """Property `WallWallpost.deleted_details`."""
 
-    donut_miniapp_url: typing.Optional[str] = Field(
+    donut_miniapp_url: str | None = Field(
         default=None,
     )
     """Property `WallWallpost.donut_miniapp_url`."""
 
-    attachments: typing.Optional[typing.List["WallWallpostAttachment"]] = Field(
+    attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
     )
     """Property `WallWallpost.attachments`."""
 
-    copyright: typing.Optional["WallPostCopyright"] = Field(
+    copyright: "WallPostCopyright | None" = Field(
         default=None,
     )
     """Information about the source of the post."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
 
-    edited: typing.Optional[int] = Field(
+    edited: int | None = Field(
         default=None,
     )
     """Date of editing in Unixtime."""
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Post author ID."""
 
-    geo: typing.Optional["WallGeo"] = Field(
+    geo: "WallGeo | None" = Field(
         default=None,
     )
     """Property `WallWallpost.geo`."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Post ID."""
 
-    is_archived: typing.Optional[bool] = Field(
+    is_archived: bool | None = Field(
         default=None,
     )
     """Is post archived, only for post owners."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether the post in favorites list."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Count of likes."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Wall owner\'s ID."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original post ID."""
 
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
     """If post type \'reply\', contains original parent IDs stack."""
 
-    post_source: typing.Optional["WallPostSource"] = Field(
+    post_source: "WallPostSource | None" = Field(
         default=None,
     )
     """Property `WallWallpost.post_source`."""
 
-    post_type: typing.Optional["WallPostType"] = Field(
+    post_type: "WallPostType | None" = Field(
         default=None,
     )
     """Property `WallWallpost.post_type`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `WallWallpost.reposts`."""
 
-    signer_id: typing.Optional[int] = Field(
+    signer_id: int | None = Field(
         default=None,
     )
     """Post signer ID."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Post text."""
 
-    views: typing.Optional["WallViews"] = Field(
+    views: "WallViews | None" = Field(
         default=None,
     )
     """Count of views."""
@@ -17581,103 +17582,103 @@ class WallWallpostAttachment(BaseModel):
     type: "WallWallpostAttachmentType" = Field()
     """Property `WallWallpostAttachment.type`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Access key for the audio."""
 
-    album: typing.Optional["PhotosPhotoAlbum"] = Field(
+    album: "PhotosPhotoAlbum | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.album`."""
 
-    app: typing.Optional["WallAppPost"] = Field(
+    app: "WallAppPost | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.app`."""
 
-    audio: typing.Optional["AudioAudio"] = Field(
+    audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.audio`."""
 
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.doc`."""
 
-    event: typing.Optional["EventsEventAttach"] = Field(
+    event: "EventsEventAttach | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.event`."""
 
-    group: typing.Optional["GroupsGroupAttach"] = Field(
+    group: "GroupsGroupAttach | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.group`."""
 
-    graffiti: typing.Optional["WallGraffiti"] = Field(
+    graffiti: "WallGraffiti | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.graffiti`."""
 
-    link: typing.Optional["BaseLink"] = Field(
+    link: "BaseLink | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.link`."""
 
-    market: typing.Optional["MarketMarketItem"] = Field(
+    market: "MarketMarketItem | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.market`."""
 
-    market_album: typing.Optional["MarketMarketAlbum"] = Field(
+    market_album: "MarketMarketAlbum | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.market_album`."""
 
-    note: typing.Optional["NotesNote"] = Field(
+    note: "NotesNote | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.note`."""
 
-    page: typing.Optional["PagesWikipageFull"] = Field(
+    page: "PagesWikipageFull | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.page`."""
 
-    photo: typing.Optional["PhotosPhoto"] = Field(
+    photo: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.photo`."""
 
-    poll: typing.Optional["PollsPoll"] = Field(
+    poll: "PollsPoll | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.poll`."""
 
-    posted_photo: typing.Optional["WallPostedPhoto"] = Field(
+    posted_photo: "WallPostedPhoto | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.posted_photo`."""
 
-    video: typing.Optional["VideoVideoFull"] = Field(
+    video: "VideoVideoFull | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.video`."""
 
-    clip: typing.Optional["VideoVideoFull"] = Field(
+    clip: "VideoVideoFull | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.clip`."""
 
-    video_playlist: typing.Optional["VideoVideoAlbumFull"] = Field(
+    video_playlist: "VideoVideoAlbumFull | None" = Field(
         default=None,
     )
     """Property `WallWallpostAttachment.video_playlist`."""
 
 
-class WallWallpostAttachmentType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallWallpostAttachmentType(StrEnum, metaclass=BaseEnumMeta):
     PHOTO = "photo"
     PHOTOS_LIST = "photos_list"
     POSTED_PHOTO = "posted_photo"
@@ -17713,7 +17714,7 @@ class WallWallpostCommentsDonut(BaseModel):
     Model: `WallWallpostCommentsDonut`
     """
 
-    placeholder: typing.Optional["WallWallpostCommentsDonutPlaceholder"] = Field(
+    placeholder: "WallWallpostCommentsDonutPlaceholder | None" = Field(
         default=None,
     )
     """Property `WallWallpostCommentsDonut.placeholder`."""
@@ -17729,7 +17730,7 @@ class WallWallpostCommentsDonutPlaceholder(BaseModel):
     """Property `WallWallpostCommentsDonutPlaceholder.text`."""
 
 
-class WallWallpostDonutEditMode(str, enum.Enum, metaclass=BaseEnumMeta):
+class WallWallpostDonutEditMode(StrEnum, metaclass=BaseEnumMeta):
     ALL = "all"
     DURATION = "duration"
 
@@ -17743,22 +17744,22 @@ class WallWallpostDonut(BaseModel):
     is_donut: bool = Field()
     """Post only for dons."""
 
-    paid_duration: typing.Optional[int] = Field(
+    paid_duration: int | None = Field(
         default=None,
     )
     """Value of this field need to pass in wall.post/edit in donut_paid_duration."""
 
-    placeholder: typing.Optional["WallWallpostDonutPlaceholder"] = Field(
+    placeholder: "WallWallpostDonutPlaceholder | None" = Field(
         default=None,
     )
     """If placeholder was respond, text and all attachments will be hidden."""
 
-    can_publish_free_copy: typing.Optional[bool] = Field(
+    can_publish_free_copy: bool | None = Field(
         default=None,
     )
     """Says whether group admin can post free copy of this donut post."""
 
-    edit_mode: typing.Optional["WallWallpostDonutEditMode"] = Field(
+    edit_mode: "WallWallpostDonutEditMode | None" = Field(
         default=None,
     )
     """Says what user can edit in post about donut properties."""
@@ -17773,7 +17774,7 @@ class WallWallpostDonutPlaceholder(BaseModel):
     """Property `WallWallpostDonutPlaceholder.text`."""
 
 
-class NewsfeedCommentsFilters(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedCommentsFilters(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     VIDEO = "video"
@@ -17795,23 +17796,23 @@ class NewsfeedCommentsItemBase(BaseModel):
     type: "NewsfeedNewsfeedItemType" = Field()
     """Property `NewsfeedCommentsItemBase.type`."""
 
-    source_id: typing.Optional[int] = Field(
+    source_id: int | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemBase.source_id`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemBase.date`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemBase.post_id`."""
 
 
-class NewsfeedIgnoreItemType(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedIgnoreItemType(StrEnum, metaclass=BaseEnumMeta):
     WALL = "wall"
     TAG = "tag"
     PROFILEPHOTO = "profilephoto"
@@ -17825,12 +17826,12 @@ class NewsfeedItemAudioAudio(BaseModel):
     Model: `NewsfeedItemAudioAudio`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Audios number."""
 
-    items: typing.Optional[typing.List["AudioAudio"]] = Field(
+    items: list["AudioAudio"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemAudioAudio.items`."""
@@ -17850,18 +17851,18 @@ class NewsfeedItemBase(BaseModel):
     date: int = Field()
     """Date when item has been added in Unixtime."""
 
-    short_text_rate: typing.Optional[float] = Field(
+    short_text_rate: float | None = Field(
         default=None,
     )
     """Preview length control parameter."""
 
-    feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = Field(
+    feedback: "NewsfeedItemWallpostFeedback | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemBase.feedback`."""
 
 
-class NewsfeedItemDigestButtonStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestButtonStyle(StrEnum, metaclass=BaseEnumMeta):
     PRIMARY = "primary"
 
 
@@ -17873,13 +17874,13 @@ class NewsfeedItemDigestButton(BaseModel):
     title: str = Field()
     """Property `NewsfeedItemDigestButton.title`."""
 
-    style: typing.Optional["NewsfeedItemDigestButtonStyle"] = Field(
+    style: "NewsfeedItemDigestButtonStyle | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestButton.style`."""
 
 
-class NewsfeedItemDigestFooterStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestFooterStyle(StrEnum, metaclass=BaseEnumMeta):
     TEXT = "text"
     BUTTON = "button"
 
@@ -17895,18 +17896,18 @@ class NewsfeedItemDigestFooter(BaseModel):
     text: str = Field()
     """text for invite to enable smart feed."""
 
-    button: typing.Optional["NewsfeedItemDigestButton"] = Field(
+    button: "NewsfeedItemDigestButton | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFooter.button`."""
 
-    feed_id: typing.Optional[str] = Field(
+    feed_id: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFooter.feed_id`."""
 
 
-class NewsfeedItemDigestHeaderStyle(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedItemDigestHeaderStyle(StrEnum, metaclass=BaseEnumMeta):
     SINGLELINE = "singleline"
     MULTILINE = "multiline"
 
@@ -17922,17 +17923,17 @@ class NewsfeedItemDigestHeader(BaseModel):
     style: "NewsfeedItemDigestHeaderStyle" = Field()
     """Property `NewsfeedItemDigestHeader.style`."""
 
-    subtitle: typing.Optional[str] = Field(
+    subtitle: str | None = Field(
         default=None,
     )
     """Subtitle of the header, when title have two strings."""
 
-    badge_text: typing.Optional[str] = Field(
+    badge_text: str | None = Field(
         default=None,
     )
     """Optional field for red badge in Trends feed blocks."""
 
-    button: typing.Optional["NewsfeedItemDigestButton"] = Field(
+    button: "NewsfeedItemDigestButton | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestHeader.button`."""
@@ -17949,32 +17950,32 @@ class NewsfeedItemDigestItem(BaseModel):
     post: "NewsfeedItemWallpost" = Field()
     """Property `NewsfeedItemDigestItem.post`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestItem.text`."""
 
-    source_name: typing.Optional[str] = Field(
+    source_name: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestItem.source_name`."""
 
-    attachment_index: typing.Optional[int] = Field(
+    attachment_index: int | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestItem.attachment_index`."""
 
-    attachment: typing.Optional["WallWallpostAttachment"] = Field(
+    attachment: "WallWallpostAttachment | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestItem.attachment`."""
 
-    style: typing.Optional[str] = Field(
+    style: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestItem.style`."""
 
-    badge_text: typing.Optional[str] = Field(
+    badge_text: str | None = Field(
         default=None,
     )
     """Optional red badge for posts in digest block."""
@@ -17985,12 +17986,12 @@ class NewsfeedItemFriendFriends(BaseModel):
     Model: `NewsfeedItemFriendFriends`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Number of friends has been added."""
 
-    items: typing.Optional[typing.List["BaseUserId"]] = Field(
+    items: list["BaseUserId"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemFriendFriends.items`."""
@@ -18001,22 +18002,22 @@ class NewsfeedItemHolidayRecommendationsBlockHeader(BaseModel):
     Model: `NewsfeedItemHolidayRecommendationsBlockHeader`
     """
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Title of the header."""
 
-    subtitle: typing.Optional[str] = Field(
+    subtitle: str | None = Field(
         default=None,
     )
     """Subtitle of the header."""
 
-    image: typing.Optional[typing.List["BaseImage"]] = Field(
+    image: list["BaseImage"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemHolidayRecommendationsBlockHeader.image`."""
 
-    action: typing.Optional["BaseLinkButtonAction"] = Field(
+    action: "BaseLinkButtonAction | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemHolidayRecommendationsBlockHeader.action`."""
@@ -18027,12 +18028,12 @@ class NewsfeedItemPhotoPhotos(BaseModel):
     Model: `NewsfeedItemPhotoPhotos`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Photos number."""
 
-    items: typing.Optional[typing.List["PhotosPhoto"]] = Field(
+    items: list["PhotosPhoto"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPhotoPhotos.items`."""
@@ -18043,12 +18044,12 @@ class NewsfeedItemPhotoTagPhotoTags(BaseModel):
     Model: `NewsfeedItemPhotoTagPhotoTags`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Tags number."""
 
-    items: typing.Optional[typing.List["PhotosPhoto"]] = Field(
+    items: list["PhotosPhoto"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPhotoTagPhotoTags.items`."""
@@ -18059,17 +18060,17 @@ class NewsfeedItemPromoButtonAction(BaseModel):
     Model: `NewsfeedItemPromoButtonAction`
     """
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonAction.url`."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonAction.type`."""
 
-    target: typing.Optional[str] = Field(
+    target: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonAction.target`."""
@@ -18080,17 +18081,17 @@ class NewsfeedItemPromoButtonImage(BaseModel):
     Model: `NewsfeedItemPromoButtonImage`
     """
 
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonImage.width`."""
 
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonImage.height`."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButtonImage.url`."""
@@ -18101,12 +18102,12 @@ class NewsfeedItemVideoVideo(BaseModel):
     Model: `NewsfeedItemVideoVideo`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Tags number."""
 
-    items: typing.Optional[typing.List["VideoVideoFull"]] = Field(
+    items: list["VideoVideoFull"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemVideoVideo.items`."""
@@ -18123,27 +18124,27 @@ class NewsfeedItemWallpostFeedback(BaseModel):
     question: str = Field()
     """Property `NewsfeedItemWallpostFeedback.question`."""
 
-    answers: typing.Optional[typing.List["NewsfeedItemWallpostFeedbackAnswer"]] = Field(
+    answers: list["NewsfeedItemWallpostFeedbackAnswer"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemWallpostFeedback.answers`."""
 
-    stars_count: typing.Optional[int] = Field(
+    stars_count: int | None = Field(
         default=None,
     )
     """Property `NewsfeedItemWallpostFeedback.stars_count`."""
 
-    descriptions: typing.Optional[typing.List[str]] = Field(
+    descriptions: list[str] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemWallpostFeedback.descriptions`."""
 
-    gratitude: typing.Optional[str] = Field(
+    gratitude: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemWallpostFeedback.gratitude`."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemWallpostFeedback.track_code`."""
@@ -18161,7 +18162,7 @@ class NewsfeedItemWallpostFeedbackAnswer(BaseModel):
     """Property `NewsfeedItemWallpostFeedbackAnswer.id`."""
 
 
-class NewsfeedItemWallpostFeedbackType(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedItemWallpostFeedbackType(StrEnum, metaclass=BaseEnumMeta):
     BUTTONS = "buttons"
     STARS = "stars"
 
@@ -18184,7 +18185,7 @@ class NewsfeedNewsfeedItem(BaseModel):
     """
 
 
-class NewsfeedNewsfeedItemType(str, enum.Enum, metaclass=BaseEnumMeta):
+class NewsfeedNewsfeedItemType(StrEnum, metaclass=BaseEnumMeta):
     POST = "post"
     PHOTO = "photo"
     PHOTO_TAG = "photo_tag"
@@ -18206,28 +18207,28 @@ class WidgetsCommentMedia(BaseModel):
     Model: `WidgetsCommentMedia`
     """
 
-    item_id: typing.Optional[int] = Field(
+    item_id: int | None = Field(
         default=None,
     )
     """Media item ID."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Media owner\'s ID."""
 
-    thumb_src: typing.Optional[str] = Field(
+    thumb_src: str | None = Field(
         default=None,
     )
     """URL of the preview image (type=photo only)."""
 
-    type: typing.Optional["WidgetsCommentMediaType"] = Field(
+    type: "WidgetsCommentMediaType | None" = Field(
         default=None,
     )
     """Property `WidgetsCommentMedia.type`."""
 
 
-class WidgetsCommentMediaType(str, enum.Enum, metaclass=BaseEnumMeta):
+class WidgetsCommentMediaType(StrEnum, metaclass=BaseEnumMeta):
     AUDIO = "audio"
     PHOTO = "photo"
     VIDEO = "video"
@@ -18238,27 +18239,27 @@ class WidgetsCommentReplies(BaseModel):
     Model: `WidgetsCommentReplies`
     """
 
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment the post."""
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Comments number."""
 
-    replies: typing.Optional[typing.List["WidgetsCommentRepliesItem"]] = Field(
+    replies: list["WidgetsCommentRepliesItem"] | None = Field(
         default=None,
     )
     """Property `WidgetsCommentReplies.replies`."""
 
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
     """Information whether groups can comment the post."""
 
-    can_view: typing.Optional[bool] = Field(
+    can_view: bool | None = Field(
         default=None,
     )
     """Information whether current user can view the comments."""
@@ -18269,32 +18270,32 @@ class WidgetsCommentRepliesItem(BaseModel):
     Model: `WidgetsCommentRepliesItem`
     """
 
-    cid: typing.Optional[int] = Field(
+    cid: int | None = Field(
         default=None,
     )
     """Comment ID."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when the comment has been added in Unixtime."""
 
-    likes: typing.Optional["WidgetsWidgetLikes"] = Field(
+    likes: "WidgetsWidgetLikes | None" = Field(
         default=None,
     )
     """Property `WidgetsCommentRepliesItem.likes`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Comment text."""
 
-    uid: typing.Optional[int] = Field(
+    uid: int | None = Field(
         default=None,
     )
     """User ID."""
 
-    user: typing.Optional["UsersUserFull"] = Field(
+    user: "UsersUserFull | None" = Field(
         default=None,
     )
     """Property `WidgetsCommentRepliesItem.user`."""
@@ -18323,57 +18324,57 @@ class WidgetsWidgetComment(BaseModel):
     to_id: int = Field()
     """Wall owner."""
 
-    attachments: typing.Optional[typing.List["WallCommentAttachment"]] = Field(
+    attachments: list["WallCommentAttachment"] | None = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.attachments`."""
 
-    owner_id: typing.Optional[int] = Field(
+    owner_id: int | None = Field(
         default=None,
     )
     """Wall owner\'s ID."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Information whether current user can delete the comment."""
 
-    comments: typing.Optional["WidgetsCommentReplies"] = Field(
+    comments: "WidgetsCommentReplies | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.comments`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.likes`."""
 
-    media: typing.Optional["WidgetsCommentMedia"] = Field(
+    media: "WidgetsCommentMedia | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.media`."""
 
-    post_source: typing.Optional["WallPostSource"] = Field(
+    post_source: "WallPostSource | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.post_source`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.reposts`."""
 
-    user: typing.Optional["UsersUserFull"] = Field(
+    user: "UsersUserFull | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetComment.user`."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether the post in favorites list."""
 
-    short_text_rate: typing.Optional[float] = Field(
+    short_text_rate: float | None = Field(
         default=None,
     )
     """Preview length control parameter."""
@@ -18384,7 +18385,7 @@ class WidgetsWidgetLikes(BaseModel):
     Model: `WidgetsWidgetLikes`
     """
 
-    count: typing.Optional[int] = Field(
+    count: int | None = Field(
         default=None,
     )
     """Likes number."""
@@ -18395,47 +18396,47 @@ class WidgetsWidgetPage(BaseModel):
     Model: `WidgetsWidgetPage`
     """
 
-    comments: typing.Optional["BaseObjectCount"] = Field(
+    comments: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetPage.comments`."""
 
-    date: typing.Optional[int] = Field(
+    date: int | None = Field(
         default=None,
     )
     """Date when widgets on the page has been initialized firstly in Unixtime."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Page description."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """Page ID."""
 
-    likes: typing.Optional["BaseObjectCount"] = Field(
+    likes: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetPage.likes`."""
 
-    page_id: typing.Optional[str] = Field(
+    page_id: str | None = Field(
         default=None,
     )
     """page_id parameter value."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """URL of the preview image."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Page title."""
 
-    url: typing.Optional[str] = Field(
+    url: str | None = Field(
         default=None,
     )
     """Page absolute URL."""
@@ -18446,12 +18447,12 @@ class BaseLink(BaseLinkNoProduct):
     Model: `BaseLink`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `BaseLink.text`."""
 
-    product: typing.Optional["BaseLinkProduct"] = Field(
+    product: "BaseLinkProduct | None" = Field(
         default=None,
     )
     """Property `BaseLink.product`."""
@@ -18462,62 +18463,62 @@ class UsersUser(UsersUserMin):
     Model: `UsersUser`
     """
 
-    sex: typing.Optional["BaseSex"] = Field(
+    sex: "BaseSex | None" = Field(
         default=None,
     )
     """User sex."""
 
-    screen_name: typing.Optional[str] = Field(
+    screen_name: str | None = Field(
         default=None,
     )
     """Domain name of the user\'s page."""
 
-    photo_50: typing.Optional[str] = Field(
+    photo_50: str | None = Field(
         default=None,
     )
     """URL of square photo of the user with 50 pixels in width."""
 
-    photo_100: typing.Optional[str] = Field(
+    photo_100: str | None = Field(
         default=None,
     )
     """URL of square photo of the user with 100 pixels in width."""
 
-    online_info: typing.Optional["UsersOnlineInfo"] = Field(
+    online_info: "UsersOnlineInfo | None" = Field(
         default=None,
     )
     """Property `UsersUser.online_info`."""
 
-    online: typing.Optional[bool] = Field(
+    online: bool | None = Field(
         default=None,
     )
     """Information whether the user is online."""
 
-    online_mobile: typing.Optional[bool] = Field(
+    online_mobile: bool | None = Field(
         default=None,
     )
     """Information whether the user is online in mobile site or application."""
 
-    online_app: typing.Optional[int] = Field(
+    online_app: int | None = Field(
         default=None,
     )
     """Application ID."""
 
-    verified: typing.Optional[bool] = Field(
+    verified: bool | None = Field(
         default=None,
     )
     """Information whether the user is verified."""
 
-    trending: typing.Optional[bool] = Field(
+    trending: bool | None = Field(
         default=None,
     )
     """Information whether the user has a \"fire\" pictogram.."""
 
-    friend_status: typing.Optional["FriendsFriendStatusStatus"] = Field(
+    friend_status: "FriendsFriendStatusStatus | None" = Field(
         default=None,
     )
     """Property `UsersUser.friend_status`."""
 
-    mutual: typing.Optional["FriendsRequestsMutual"] = Field(
+    mutual: "FriendsRequestsMutual | None" = Field(
         default=None,
     )
     """Property `UsersUser.mutual`."""
@@ -18528,627 +18529,627 @@ class UsersUserFull(UsersUser):
     Model: `UsersUserFull`
     """
 
-    first_name_nom: typing.Optional[str] = Field(
+    first_name_nom: str | None = Field(
         default=None,
     )
     """User\'s first name in nominative case."""
 
-    first_name_gen: typing.Optional[str] = Field(
+    first_name_gen: str | None = Field(
         default=None,
     )
     """User\'s first name in genitive case."""
 
-    first_name_dat: typing.Optional[str] = Field(
+    first_name_dat: str | None = Field(
         default=None,
     )
     """User\'s first name in dative case."""
 
-    first_name_acc: typing.Optional[str] = Field(
+    first_name_acc: str | None = Field(
         default=None,
     )
     """User\'s first name in accusative case."""
 
-    first_name_ins: typing.Optional[str] = Field(
+    first_name_ins: str | None = Field(
         default=None,
     )
     """User\'s first name in instrumental case."""
 
-    first_name_abl: typing.Optional[str] = Field(
+    first_name_abl: str | None = Field(
         default=None,
     )
     """User\'s first name in prepositional case."""
 
-    last_name_nom: typing.Optional[str] = Field(
+    last_name_nom: str | None = Field(
         default=None,
     )
     """User\'s last name in nominative case."""
 
-    last_name_gen: typing.Optional[str] = Field(
+    last_name_gen: str | None = Field(
         default=None,
     )
     """User\'s last name in genitive case."""
 
-    last_name_dat: typing.Optional[str] = Field(
+    last_name_dat: str | None = Field(
         default=None,
     )
     """User\'s last name in dative case."""
 
-    last_name_acc: typing.Optional[str] = Field(
+    last_name_acc: str | None = Field(
         default=None,
     )
     """User\'s last name in accusative case."""
 
-    last_name_ins: typing.Optional[str] = Field(
+    last_name_ins: str | None = Field(
         default=None,
     )
     """User\'s last name in instrumental case."""
 
-    last_name_abl: typing.Optional[str] = Field(
+    last_name_abl: str | None = Field(
         default=None,
     )
     """User\'s last name in prepositional case."""
 
-    nickname: typing.Optional[str] = Field(
+    nickname: str | None = Field(
         default=None,
     )
     """User nickname."""
 
-    maiden_name: typing.Optional[str] = Field(
+    maiden_name: str | None = Field(
         default=None,
     )
     """User maiden name."""
 
-    contact_name: typing.Optional[str] = Field(
+    contact_name: str | None = Field(
         default=None,
     )
     """User contact name."""
 
-    domain: typing.Optional[str] = Field(
+    domain: str | None = Field(
         default=None,
     )
     """Domain name of the user\'s page."""
 
-    bdate: typing.Optional[str] = Field(
+    bdate: str | None = Field(
         default=None,
     )
     """User\'s date of birth."""
 
-    city: typing.Optional["BaseCity"] = Field(
+    city: "BaseCity | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.city`."""
 
-    timezone: typing.Optional[float] = Field(
+    timezone: float | None = Field(
         default=None,
     )
     """User\'s timezone."""
 
-    owner_state: typing.Optional["OwnerState"] = Field(
+    owner_state: "OwnerState | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.owner_state`."""
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of square photo of the user with 200 pixels in width."""
 
-    photo_max: typing.Optional[str] = Field(
+    photo_max: str | None = Field(
         default=None,
     )
     """URL of square photo of the user with maximum width."""
 
-    photo_200_orig: typing.Optional[str] = Field(
+    photo_200_orig: str | None = Field(
         default=None,
     )
     """URL of user\'s photo with 200 pixels in width."""
 
-    photo_400_orig: typing.Optional[str] = Field(
+    photo_400_orig: str | None = Field(
         default=None,
     )
     """URL of user\'s photo with 400 pixels in width."""
 
-    photo_max_orig: typing.Optional[str] = Field(
+    photo_max_orig: str | None = Field(
         default=None,
     )
     """URL of user\'s photo of maximum size."""
 
-    photo_id: typing.Optional[str] = Field(
+    photo_id: str | None = Field(
         default=None,
     )
     """ID of the user\'s main photo."""
 
-    has_photo: typing.Optional[bool] = Field(
+    has_photo: bool | None = Field(
         default=None,
     )
     """Information whether the user has main photo."""
 
-    has_mobile: typing.Optional[bool] = Field(
+    has_mobile: bool | None = Field(
         default=None,
     )
     """Information whether the user specified his phone number."""
 
-    is_friend: typing.Optional[bool] = Field(
+    is_friend: bool | None = Field(
         default=None,
     )
     """Information whether the user is a friend of current user."""
 
-    is_best_friend: typing.Optional[bool] = Field(
+    is_best_friend: bool | None = Field(
         default=None,
     )
     """Information whether the user is a best friend of current user."""
 
-    wall_comments: typing.Optional[bool] = Field(
+    wall_comments: bool | None = Field(
         default=None,
     )
     """Information whether current user can comment wall posts."""
 
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
     """Information whether current user can post on the user\'s wall."""
 
-    can_see_all_posts: typing.Optional[bool] = Field(
+    can_see_all_posts: bool | None = Field(
         default=None,
     )
     """Information whether current user can see other users\' audio on the wall."""
 
-    can_see_audio: typing.Optional[bool] = Field(
+    can_see_audio: bool | None = Field(
         default=None,
     )
     """Information whether current user can see the user\'s audio."""
 
-    type: typing.Optional["UsersUserType"] = Field(
+    type: "UsersUserType | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.type`."""
 
-    email: typing.Optional[str] = Field(
+    email: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.email`."""
 
-    skype: typing.Optional[str] = Field(
+    skype: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.skype`."""
 
-    facebook: typing.Optional[str] = Field(
+    facebook: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.facebook`."""
 
-    facebook_name: typing.Optional[str] = Field(
+    facebook_name: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.facebook_name`."""
 
-    twitter: typing.Optional[str] = Field(
+    twitter: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.twitter`."""
 
-    livejournal: typing.Optional[str] = Field(
+    livejournal: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.livejournal`."""
 
-    instagram: typing.Optional[str] = Field(
+    instagram: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.instagram`."""
 
-    test: typing.Optional[bool] = Field(
+    test: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.test`."""
 
-    video_live: typing.Optional["VideoLiveInfo"] = Field(
+    video_live: "VideoLiveInfo | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.video_live`."""
 
-    is_video_live_notifications_blocked: typing.Optional[bool] = Field(
+    is_video_live_notifications_blocked: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.is_video_live_notifications_blocked`."""
 
-    is_service: typing.Optional[bool] = Field(
+    is_service: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.is_service`."""
 
-    service_description: typing.Optional[str] = Field(
+    service_description: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.service_description`."""
 
-    photo_rec: typing.Optional[typing.Union["str", "bool"]] = Field(
+    photo_rec: str | bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_rec`."""
 
-    photo_medium: typing.Optional[typing.Union["str", "bool"]] = Field(
+    photo_medium: str | bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_medium`."""
 
-    photo_medium_rec: typing.Optional[typing.Union["str", "bool"]] = Field(
+    photo_medium_rec: str | bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_medium_rec`."""
 
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo`."""
 
-    photo_big: typing.Optional[str] = Field(
+    photo_big: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_big`."""
 
-    photo_400: typing.Optional[str] = Field(
+    photo_400: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_400`."""
 
-    photo_max_size: typing.Optional["PhotosPhoto"] = Field(
+    photo_max_size: "PhotosPhoto | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.photo_max_size`."""
 
-    language: typing.Optional[str] = Field(
+    language: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.language`."""
 
-    stories_archive_count: typing.Optional[int] = Field(
+    stories_archive_count: int | None = Field(
         default=None,
     )
     """Property `UsersUserFull.stories_archive_count`."""
 
-    has_unseen_stories: typing.Optional[bool] = Field(
+    has_unseen_stories: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.has_unseen_stories`."""
 
-    wall_default: typing.Optional[str] = Field(
+    wall_default: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.wall_default`."""
 
-    can_call: typing.Optional[bool] = Field(
+    can_call: bool | None = Field(
         default=None,
     )
     """Information whether current user can call."""
 
-    can_call_from_group: typing.Optional[bool] = Field(
+    can_call_from_group: bool | None = Field(
         default=None,
     )
     """Information whether group can call user."""
 
-    can_invite_as_voicerooms_speaker: typing.Optional[bool] = Field(
+    can_invite_as_voicerooms_speaker: bool | None = Field(
         default=None,
     )
     """Information whether user/group can invite user as voicerooms speakr."""
 
-    can_see_wishes: typing.Optional[bool] = Field(
+    can_see_wishes: bool | None = Field(
         default=None,
     )
     """Information whether current user can see the user\'s wishes."""
 
-    can_see_gifts: typing.Optional[bool] = Field(
+    can_see_gifts: bool | None = Field(
         default=None,
     )
     """Information whether current user can see the user\'s gifts."""
 
-    interests: typing.Optional[str] = Field(
+    interests: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.interests`."""
 
-    books: typing.Optional[str] = Field(
+    books: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.books`."""
 
-    tv: typing.Optional[str] = Field(
+    tv: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.tv`."""
 
-    quotes: typing.Optional[str] = Field(
+    quotes: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.quotes`."""
 
-    about: typing.Optional[str] = Field(
+    about: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.about`."""
 
-    games: typing.Optional[str] = Field(
+    games: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.games`."""
 
-    movies: typing.Optional[str] = Field(
+    movies: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.movies`."""
 
-    activities: typing.Optional[str] = Field(
+    activities: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.activities`."""
 
-    music: typing.Optional[str] = Field(
+    music: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.music`."""
 
-    can_write_private_message: typing.Optional[bool] = Field(
+    can_write_private_message: bool | None = Field(
         default=None,
     )
     """Information whether current user can write private message."""
 
-    can_send_friend_request: typing.Optional[bool] = Field(
+    can_send_friend_request: bool | None = Field(
         default=None,
     )
     """Information whether current user can send a friend request."""
 
-    can_be_invited_group: typing.Optional[bool] = Field(
+    can_be_invited_group: bool | None = Field(
         default=None,
     )
     """Information whether current user can be invited to the community."""
 
-    mobile_phone: typing.Optional[str] = Field(
+    mobile_phone: str | None = Field(
         default=None,
     )
     """User\'s mobile phone number."""
 
-    home_phone: typing.Optional[str] = Field(
+    home_phone: str | None = Field(
         default=None,
     )
     """User\'s additional phone number."""
 
-    site: typing.Optional[str] = Field(
+    site: str | None = Field(
         default=None,
     )
     """User\'s website."""
 
-    status_audio: typing.Optional["AudioAudio"] = Field(
+    status_audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.status_audio`."""
 
-    status: typing.Optional[str] = Field(
+    status: str | None = Field(
         default=None,
     )
     """User\'s status."""
 
-    activity: typing.Optional[str] = Field(
+    activity: str | None = Field(
         default=None,
     )
     """User\'s status."""
 
-    status_app: typing.Optional["AppsAppMin"] = Field(
+    status_app: "AppsAppMin | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.status_app`."""
 
-    last_seen: typing.Optional["UsersLastSeen"] = Field(
+    last_seen: "UsersLastSeen | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.last_seen`."""
 
-    exports: typing.Optional["UsersExports"] = Field(
+    exports: "UsersExports | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.exports`."""
 
-    crop_photo: typing.Optional["BaseCropPhoto"] = Field(
+    crop_photo: "BaseCropPhoto | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.crop_photo`."""
 
-    followers_count: typing.Optional[int] = Field(
+    followers_count: int | None = Field(
         default=None,
     )
     """Number of user\'s followers and friends."""
 
-    video_live_level: typing.Optional[int] = Field(
+    video_live_level: int | None = Field(
         default=None,
     )
     """User level in live streams achievements."""
 
-    video_live_count: typing.Optional[int] = Field(
+    video_live_count: int | None = Field(
         default=None,
     )
     """Number of user\'s live streams."""
 
-    clips_count: typing.Optional[int] = Field(
+    clips_count: int | None = Field(
         default=None,
     )
     """Number of user\'s clips."""
 
-    blacklisted: typing.Optional[bool] = Field(
+    blacklisted: bool | None = Field(
         default=None,
     )
     """Information whether current user is in the requested user\'s blacklist.."""
 
-    blacklisted_by_me: typing.Optional[bool] = Field(
+    blacklisted_by_me: bool | None = Field(
         default=None,
     )
     """Information whether the requested user is in current user\'s blacklist."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether the requested user is in faves of current user."""
 
-    is_hidden_from_feed: typing.Optional[bool] = Field(
+    is_hidden_from_feed: bool | None = Field(
         default=None,
     )
     """Information whether the requested user is hidden from current user\'s newsfeed."""
 
-    common_count: typing.Optional[int] = Field(
+    common_count: int | None = Field(
         default=None,
     )
     """Number of common friends with current user."""
 
-    occupation: typing.Optional["UsersOccupation"] = Field(
+    occupation: "UsersOccupation | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.occupation`."""
 
-    career: typing.Optional[typing.List["UsersCareer"]] = Field(
+    career: list["UsersCareer"] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.career`."""
 
-    military: typing.Optional[typing.List["UsersMilitary"]] = Field(
+    military: list["UsersMilitary"] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.military`."""
 
-    university: typing.Optional[int] = Field(
+    university: int | None = Field(
         default=None,
     )
     """University ID."""
 
-    university_name: typing.Optional[str] = Field(
+    university_name: str | None = Field(
         default=None,
     )
     """University name."""
 
-    university_group_id: typing.Optional[int] = Field(
+    university_group_id: int | None = Field(
         default=None,
     )
     """Property `UsersUserFull.university_group_id`."""
 
-    faculty: typing.Optional[int] = Field(
+    faculty: int | None = Field(
         default=None,
     )
     """Faculty ID."""
 
-    faculty_name: typing.Optional[str] = Field(
+    faculty_name: str | None = Field(
         default=None,
     )
     """Faculty name."""
 
-    graduation: typing.Optional[int] = Field(
+    graduation: int | None = Field(
         default=None,
     )
     """Graduation year."""
 
-    education_form: typing.Optional[str] = Field(
+    education_form: str | None = Field(
         default=None,
     )
     """Education form."""
 
-    education_status: typing.Optional[str] = Field(
+    education_status: str | None = Field(
         default=None,
     )
     """User\'s education status."""
 
-    home_town: typing.Optional[str] = Field(
+    home_town: str | None = Field(
         default=None,
     )
     """User hometown."""
 
-    relation: typing.Optional["UsersUserRelation"] = Field(
+    relation: "UsersUserRelation | None" = Field(
         default=None,
     )
     """User relationship status."""
 
-    relation_partner: typing.Optional["UsersUserMin"] = Field(
+    relation_partner: "UsersUserMin | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.relation_partner`."""
 
-    personal: typing.Optional["UsersPersonal"] = Field(
+    personal: "UsersPersonal | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.personal`."""
 
-    universities: typing.Optional[typing.List["UsersUniversity"]] = Field(
+    universities: list["UsersUniversity"] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.universities`."""
 
-    schools: typing.Optional[typing.List["UsersSchool"]] = Field(
+    schools: list["UsersSchool"] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.schools`."""
 
-    relatives: typing.Optional[typing.List["UsersRelative"]] = Field(
+    relatives: list["UsersRelative"] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.relatives`."""
 
-    is_subscribed_podcasts: typing.Optional[bool] = Field(
+    is_subscribed_podcasts: bool | None = Field(
         default=None,
     )
     """Information whether current user is subscribed to podcasts."""
 
-    can_subscribe_podcasts: typing.Optional[bool] = Field(
+    can_subscribe_podcasts: bool | None = Field(
         default=None,
     )
     """Owner in whitelist or not."""
 
-    can_subscribe_posts: typing.Optional[bool] = Field(
+    can_subscribe_posts: bool | None = Field(
         default=None,
     )
     """Can subscribe to wall."""
 
-    counters: typing.Optional["UsersUserCounters"] = Field(
+    counters: "UsersUserCounters | None" = Field(
         default=None,
     )
     """Property `UsersUserFull.counters`."""
 
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.access_key`."""
 
-    can_upload_doc: typing.Optional[bool] = Field(
+    can_upload_doc: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.can_upload_doc`."""
 
-    can_ban: typing.Optional[bool] = Field(
+    can_ban: bool | None = Field(
         default=None,
     )
     """Information whether the user can be baned (added to black list) by me."""
 
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
     """Property `UsersUserFull.hash`."""
 
-    is_no_index: typing.Optional[bool] = Field(
+    is_no_index: bool | None = Field(
         default=None,
     )
     """Access to user profile is restricted for search engines."""
 
-    contact_id: typing.Optional[int] = Field(
+    contact_id: int | None = Field(
         default=None,
     )
     """Contact person ID."""
 
-    is_message_request: typing.Optional[bool] = Field(
+    is_message_request: bool | None = Field(
         default=None,
     )
     """Property `UsersUserFull.is_message_request`."""
 
-    descriptions: typing.Optional[typing.List[str]] = Field(
+    descriptions: list[str] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.descriptions`."""
 
-    lists: typing.Optional[typing.List[int]] = Field(
+    lists: list[int] | None = Field(
         default=None,
     )
     """Property `UsersUserFull.lists`."""
@@ -19159,7 +19160,7 @@ class UsersUserXtrType(UsersUserFull):
     Model: `UsersUserXtrType`
     """
 
-    type: typing.Optional["UsersUserType"] = Field(
+    type: "UsersUserType | None" = Field(
         default=None,
     )
     """Property `UsersUserXtrType.type`."""
@@ -19170,17 +19171,17 @@ class MessagesUserXtrInvitedBy(UsersUserXtrType):
     Model: `MessagesUserXtrInvitedBy`
     """
 
-    invited_by: typing.Optional[int] = Field(
+    invited_by: int | None = Field(
         default=None,
     )
     """ID of the inviter."""
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """Name of group."""
 
-    type: typing.Optional["MessagesUserTypeForXtrInvitedBy"] = Field(
+    type: "MessagesUserTypeForXtrInvitedBy | None" = Field(
         default=None,
     )
     """Property `MessagesUserXtrInvitedBy.type`."""
@@ -19191,12 +19192,12 @@ class MessagesGetConversationByIdExtended(MessagesGetConversationById):
     Model: `MessagesGetConversationByIdExtended`
     """
 
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
     """Property `MessagesGetConversationByIdExtended.profiles`."""
 
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
     """Property `MessagesGetConversationByIdExtended.groups`."""
@@ -19207,52 +19208,52 @@ class MessagesMessage(MessagesBaseMessage):
     Model: `MessagesMessage`
     """
 
-    important: typing.Optional[bool] = Field(
+    important: bool | None = Field(
         default=None,
     )
     """Is it an important message."""
 
-    is_hidden: typing.Optional[bool] = Field(
+    is_hidden: bool | None = Field(
         default=None,
     )
     """Property `MessagesMessage.is_hidden`."""
 
-    members_count: typing.Optional[int] = Field(
+    members_count: int | None = Field(
         default=None,
     )
     """Members number."""
 
-    reply_message: typing.Optional["MessagesForeignMessage"] = Field(
+    reply_message: "MessagesForeignMessage | None" = Field(
         default=None,
     )
     """Property `MessagesMessage.reply_message`."""
 
-    reaction_id: typing.Optional[int] = Field(
+    reaction_id: int | None = Field(
         default=None,
     )
     """Reaction id set on message."""
 
-    reactions: typing.Optional[typing.List["MessagesReactionCounterResponseItem"]] = Field(
+    reactions: list["MessagesReactionCounterResponseItem"] | None = Field(
         default=None,
     )
     """Actual reactions counters on this message."""
 
-    last_reaction_id: typing.Optional[int] = Field(
+    last_reaction_id: int | None = Field(
         default=None,
     )
     """Last reaction id set on this message."""
 
-    is_pinned: typing.Optional[bool] = Field(
+    is_pinned: bool | None = Field(
         default=None,
     )
     """Is message pinned in its conversation."""
 
-    was_listened: typing.Optional[bool] = Field(
+    was_listened: bool | None = Field(
         default=None,
     )
     """Was the audio message inside already listened by you."""
 
-    pinned_at: typing.Optional[int] = Field(
+    pinned_at: int | None = Field(
         default=None,
     )
     """Date when the message has been pinned in Unixtime."""
@@ -19263,12 +19264,12 @@ class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
     Model: `AccountUserSettings`
     """
 
-    photo_200: typing.Optional[str] = Field(
+    photo_200: str | None = Field(
         default=None,
     )
     """URL of square photo of the user with 200 pixels in width."""
 
-    is_service_account: typing.Optional[bool] = Field(
+    is_service_account: bool | None = Field(
         default=None,
     )
     """flag about service account."""
@@ -19279,7 +19280,7 @@ class AdsStatsAge(AdsDemographicStatsPeriodItemBase):
     Model: `AdsStatsAge`
     """
 
-    value: typing.Optional[str] = Field(
+    value: str | None = Field(
         default=None,
     )
     """Age interval."""
@@ -19290,12 +19291,12 @@ class AdsStatsCities(AdsDemographicStatsPeriodItemBase):
     Model: `AdsStatsCities`
     """
 
-    name: typing.Optional[str] = Field(
+    name: str | None = Field(
         default=None,
     )
     """City name."""
 
-    value: typing.Optional[typing.Union["int", "str"]] = Field(
+    value: int | str | None = Field(
         default=None,
     )
     """City ID."""
@@ -19306,7 +19307,7 @@ class AdsStatsSex(AdsDemographicStatsPeriodItemBase):
     Model: `AdsStatsSex`
     """
 
-    value: typing.Optional["AdsStatsSexValue"] = Field(
+    value: "AdsStatsSexValue | None" = Field(
         default=None,
     )
     """Property `AdsStatsSex.value`."""
@@ -19317,7 +19318,7 @@ class AdsStatsSexAge(AdsDemographicStatsPeriodItemBase):
     Model: `AdsStatsSexAge`
     """
 
-    value: typing.Optional[str] = Field(
+    value: str | None = Field(
         default=None,
     )
     """Sex and age interval."""
@@ -19328,12 +19329,12 @@ class AdsTargSettings(AdsCriteria):
     Model: `AdsTargSettings`
     """
 
-    id: typing.Optional[str] = Field(
+    id: str | None = Field(
         default=None,
     )
     """Ad ID."""
 
-    campaign_id: typing.Optional[str] = Field(
+    campaign_id: str | None = Field(
         default=None,
     )
     """Campaign ID."""
@@ -19344,97 +19345,97 @@ class AppsApp(AppsAppMin):
     Model: `AppsApp`
     """
 
-    author_url: typing.Optional[str] = Field(
+    author_url: str | None = Field(
         default=None,
     )
     """Application author\'s URL."""
 
-    banner_1120: typing.Optional[str] = Field(
+    banner_1120: str | None = Field(
         default=None,
     )
     """URL of the app banner with 1120 px in width."""
 
-    banner_560: typing.Optional[str] = Field(
+    banner_560: str | None = Field(
         default=None,
     )
     """URL of the app banner with 560 px in width."""
 
-    icon_16: typing.Optional[str] = Field(
+    icon_16: str | None = Field(
         default=None,
     )
     """URL of the app icon with 16 px in width."""
 
-    is_new: typing.Optional[bool] = Field(
+    is_new: bool | None = Field(
         default=None,
     )
     """Is new flag."""
 
-    push_enabled: typing.Optional[bool] = Field(
+    push_enabled: bool | None = Field(
         default=None,
     )
     """Is push enabled."""
 
-    friends: typing.Optional[typing.List[int]] = Field(
+    friends: list[int] | None = Field(
         default=None,
     )
     """Property `AppsApp.friends`."""
 
-    catalog_position: typing.Optional[int] = Field(
+    catalog_position: int | None = Field(
         default=None,
     )
     """Catalog position."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Application description."""
 
-    genre: typing.Optional[str] = Field(
+    genre: str | None = Field(
         default=None,
     )
     """Genre name."""
 
-    genre_id: typing.Optional[int] = Field(
+    genre_id: int | None = Field(
         default=None,
     )
     """Genre ID."""
 
-    international: typing.Optional[bool] = Field(
+    international: bool | None = Field(
         default=None,
     )
     """Information whether the application is multilanguage."""
 
-    is_in_catalog: typing.Optional[int] = Field(
+    is_in_catalog: int | None = Field(
         default=None,
     )
     """Information whether application is in mobile catalog."""
 
-    leaderboard_type: typing.Optional["AppsAppLeaderboardType"] = Field(
+    leaderboard_type: "AppsAppLeaderboardType | None" = Field(
         default=None,
     )
     """Property `AppsApp.leaderboard_type`."""
 
-    members_count: typing.Optional[int] = Field(
+    members_count: int | None = Field(
         default=None,
     )
     """Members number."""
 
-    platform_id: typing.Optional[str] = Field(
+    platform_id: str | None = Field(
         default=None,
     )
     """Application ID in store."""
 
-    published_date: typing.Optional[int] = Field(
+    published_date: int | None = Field(
         default=None,
     )
     """Date when the application has been published in Unixtime."""
 
-    screen_name: typing.Optional[str] = Field(
+    screen_name: str | None = Field(
         default=None,
     )
     """Screen name."""
 
-    section: typing.Optional[str] = Field(
+    section: str | None = Field(
         default=None,
     )
     """Application section name."""
@@ -19445,17 +19446,17 @@ class CallbackForeignMessage(MessagesForeignMessage):
     Model: `CallbackForeignMessage`
     """
 
-    is_cropped: typing.Optional[bool] = Field(
+    is_cropped: bool | None = Field(
         default=None,
     )
     """Property `CallbackForeignMessage.is_cropped`."""
 
-    fwd_messages: typing.Optional[typing.List["CallbackForeignMessage"]] = Field(
+    fwd_messages: list["CallbackForeignMessage"] | None = Field(
         default=None,
     )
     """Property `CallbackForeignMessage.fwd_messages`."""
 
-    reply_message: typing.Optional["CallbackForeignMessage"] = Field(
+    reply_message: "CallbackForeignMessage | None" = Field(
         default=None,
     )
     """Property `CallbackForeignMessage.reply_message`."""
@@ -19466,17 +19467,17 @@ class CallbackMessage(MessagesMessage):
     Model: `CallbackMessage`
     """
 
-    influence_score: typing.Optional[float] = Field(
+    influence_score: float | None = Field(
         default=None,
     )
     """Property `CallbackMessage.influence_score`."""
 
-    reply_message: typing.Optional["CallbackForeignMessage"] = Field(
+    reply_message: "CallbackForeignMessage | None" = Field(
         default=None,
     )
     """Property `CallbackMessage.reply_message`."""
 
-    fwd_messages: typing.Optional["CallbackFwdMessages"] = Field(
+    fwd_messages: "CallbackFwdMessages | None" = Field(
         default=None,
     )
     """Property `CallbackMessage.fwd_messages`."""
@@ -19496,7 +19497,7 @@ class CallbackVideoComment(WallWallComment):
     Model: `CallbackVideoComment`
     """
 
-    video_owner_id: typing.Optional[int] = Field(
+    video_owner_id: int | None = Field(
         default=None,
     )
     """Property `CallbackVideoComment.video_owner_id`."""
@@ -19507,7 +19508,7 @@ class CallbackConfirmation(CallbackBase):
     Model: `CallbackConfirmation`
     """
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Property `CallbackConfirmation.type`."""
@@ -19518,17 +19519,17 @@ class DatabaseCity(BaseObject):
     Model: `DatabaseCity`
     """
 
-    area: typing.Optional[str] = Field(
+    area: str | None = Field(
         default=None,
     )
     """Area title."""
 
-    region: typing.Optional[str] = Field(
+    region: str | None = Field(
         default=None,
     )
     """Region title."""
 
-    important: typing.Optional[bool] = Field(
+    important: bool | None = Field(
         default=None,
     )
     """Information whether the city is included in important cities list."""
@@ -19539,12 +19540,12 @@ class GroupsUserXtrRole(UsersUserFull):
     Model: `GroupsUserXtrRole`
     """
 
-    permissions: typing.Optional[typing.List["GroupsMemberRolePermission"]] = Field(
+    permissions: list["GroupsMemberRolePermission"] | None = Field(
         default=None,
     )
     """Property `GroupsUserXtrRole.permissions`."""
 
-    role: typing.Optional["GroupsRoleOptions"] = Field(
+    role: "GroupsRoleOptions | None" = Field(
         default=None,
     )
     """Property `GroupsUserXtrRole.role`."""
@@ -19555,292 +19556,292 @@ class GroupsGroupFull(GroupsGroup, GroupsMarketProperties):
     Model: `GroupsGroupFull`
     """
 
-    member_status: typing.Optional["GroupsGroupFullMemberStatus"] = Field(
+    member_status: "GroupsGroupFullMemberStatus | None" = Field(
         default=None,
     )
     """Current user\'s member status."""
 
-    is_adult: typing.Optional[bool] = Field(
+    is_adult: bool | None = Field(
         default=None,
     )
     """Information whether community is adult."""
 
-    is_hidden_from_feed: typing.Optional[bool] = Field(
+    is_hidden_from_feed: bool | None = Field(
         default=None,
     )
     """Information whether community is hidden from current user\'s newsfeed."""
 
-    is_favorite: typing.Optional[bool] = Field(
+    is_favorite: bool | None = Field(
         default=None,
     )
     """Information whether community is in faves."""
 
-    is_subscribed: typing.Optional[bool] = Field(
+    is_subscribed: bool | None = Field(
         default=None,
     )
     """Information whether current user is subscribed."""
 
-    city: typing.Optional["BaseObject"] = Field(
+    city: "BaseObject | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.city`."""
 
-    description: typing.Optional[str] = Field(
+    description: str | None = Field(
         default=None,
     )
     """Community description."""
 
-    wiki_page: typing.Optional[str] = Field(
+    wiki_page: str | None = Field(
         default=None,
     )
     """Community\'s main wiki page title."""
 
-    members_count: typing.Optional[int] = Field(
+    members_count: int | None = Field(
         default=None,
     )
     """Community members number."""
 
-    members_count_text: typing.Optional[str] = Field(
+    members_count_text: str | None = Field(
         default=None,
     )
     """Info about number of users in group."""
 
-    requests_count: typing.Optional[int] = Field(
+    requests_count: int | None = Field(
         default=None,
     )
     """The number of incoming requests to the community."""
 
-    video_live_level: typing.Optional[int] = Field(
+    video_live_level: int | None = Field(
         default=None,
     )
     """Community level live streams achievements."""
 
-    video_live_count: typing.Optional[int] = Field(
+    video_live_count: int | None = Field(
         default=None,
     )
     """Number of community\'s live streams."""
 
-    clips_count: typing.Optional[int] = Field(
+    clips_count: int | None = Field(
         default=None,
     )
     """Number of community\'s clips."""
 
-    counters: typing.Optional["GroupsCountersGroup"] = Field(
+    counters: "GroupsCountersGroup | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.counters`."""
 
-    textlives_count: typing.Optional[int] = Field(
+    textlives_count: int | None = Field(
         default=None,
     )
     """Textlives number."""
 
-    cover: typing.Optional["BaseOwnerCover"] = Field(
+    cover: "BaseOwnerCover | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.cover`."""
 
-    video_cover: typing.Optional["BaseOwnerCover"] = Field(
+    video_cover: "BaseOwnerCover | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.video_cover`."""
 
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
     """Information whether current user can post on community\'s wall."""
 
-    can_suggest: typing.Optional[bool] = Field(
+    can_suggest: bool | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.can_suggest`."""
 
-    can_upload_story: typing.Optional[bool] = Field(
+    can_upload_story: bool | None = Field(
         default=None,
     )
     """Information whether current user can upload story."""
 
-    can_call_to_community: typing.Optional[bool] = Field(
+    can_call_to_community: bool | None = Field(
         default=None,
     )
     """Information whether current user can call to community."""
 
-    can_upload_doc: typing.Optional[bool] = Field(
+    can_upload_doc: bool | None = Field(
         default=None,
     )
     """Information whether current user can upload doc."""
 
-    can_upload_video: typing.Optional[bool] = Field(
+    can_upload_video: bool | None = Field(
         default=None,
     )
     """Information whether current user can upload video."""
 
-    can_upload_clip: typing.Optional[bool] = Field(
+    can_upload_clip: bool | None = Field(
         default=None,
     )
     """Information whether current user can upload clip."""
 
-    can_see_all_posts: typing.Optional[bool] = Field(
+    can_see_all_posts: bool | None = Field(
         default=None,
     )
     """Information whether current user can see all posts on community\'s wall."""
 
-    can_create_topic: typing.Optional[bool] = Field(
+    can_create_topic: bool | None = Field(
         default=None,
     )
     """Information whether current user can create topic."""
 
-    activity: typing.Optional[str] = Field(
+    activity: str | None = Field(
         default=None,
     )
     """Type of group, start date of event or category of public page."""
 
-    fixed_post: typing.Optional[int] = Field(
+    fixed_post: int | None = Field(
         default=None,
     )
     """Fixed post ID."""
 
-    has_photo: typing.Optional[bool] = Field(
+    has_photo: bool | None = Field(
         default=None,
     )
     """Information whether community has photo."""
 
-    crop_photo: typing.Optional["BaseCropPhoto"] = Field(
+    crop_photo: "BaseCropPhoto | None" = Field(
         default=None,
     )
     """Данные о точках, по которым вырезаны профильная и миниатюрная фотографии сообщества."""
 
-    status: typing.Optional[str] = Field(
+    status: str | None = Field(
         default=None,
     )
     """Community status."""
 
-    status_audio: typing.Optional["AudioAudio"] = Field(
+    status_audio: "AudioAudio | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.status_audio`."""
 
-    main_album_id: typing.Optional[int] = Field(
+    main_album_id: int | None = Field(
         default=None,
     )
     """Community\'s main photo album ID."""
 
-    links: typing.Optional[typing.List["GroupsLinksItem"]] = Field(
+    links: list["GroupsLinksItem"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.links`."""
 
-    contacts: typing.Optional[typing.List["GroupsContactsItem"]] = Field(
+    contacts: list["GroupsContactsItem"] | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.contacts`."""
 
-    wall: typing.Optional[int] = Field(
+    wall: int | None = Field(
         default=None,
     )
     """Information about wall status in community."""
 
-    site: typing.Optional[str] = Field(
+    site: str | None = Field(
         default=None,
     )
     """Community\'s website."""
 
-    main_section: typing.Optional["GroupsGroupFullSection"] = Field(
+    main_section: "GroupsGroupFullSection | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.main_section`."""
 
-    secondary_section: typing.Optional["GroupsGroupFullSection"] = Field(
+    secondary_section: "GroupsGroupFullSection | None" = Field(
         default=None,
     )
     """Property `GroupsGroupFull.secondary_section`."""
 
-    trending: typing.Optional[bool] = Field(
+    trending: bool | None = Field(
         default=None,
     )
     """Information whether the community has a \"fire\" pictogram.."""
 
-    can_message: typing.Optional[bool] = Field(
+    can_message: bool | None = Field(
         default=None,
     )
     """Information whether current user can send a message to community."""
 
-    is_messages_blocked: typing.Optional[bool] = Field(
+    is_messages_blocked: bool | None = Field(
         default=None,
     )
     """Information whether community can send a message to current user."""
 
-    can_send_notify: typing.Optional[bool] = Field(
+    can_send_notify: bool | None = Field(
         default=None,
     )
     """Information whether community can send notifications by phone number to current user."""
 
-    online_status: typing.Optional["GroupsOnlineStatus"] = Field(
+    online_status: "GroupsOnlineStatus | None" = Field(
         default=None,
     )
     """Status of replies in community messages."""
 
-    invited_by: typing.Optional[int] = Field(
+    invited_by: int | None = Field(
         default=None,
     )
     """Inviter ID."""
 
-    age_limits: typing.Optional["GroupsGroupFullAgeLimits"] = Field(
+    age_limits: "GroupsGroupFullAgeLimits | None" = Field(
         default=None,
     )
     """Information whether age limit."""
 
-    ban_info: typing.Optional["GroupsGroupBanInfo"] = Field(
+    ban_info: "GroupsGroupBanInfo | None" = Field(
         default=None,
     )
     """User ban info."""
 
-    has_group_channel: typing.Optional[bool] = Field(
+    has_group_channel: bool | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.has_group_channel`."""
 
-    addresses: typing.Optional["GroupsAddressesInfo"] = Field(
+    addresses: "GroupsAddressesInfo | None" = Field(
         default=None,
     )
     """Info about addresses in groups."""
 
-    is_subscribed_podcasts: typing.Optional[bool] = Field(
+    is_subscribed_podcasts: bool | None = Field(
         default=None,
     )
     """Information whether current user is subscribed to podcasts."""
 
-    can_subscribe_podcasts: typing.Optional[bool] = Field(
+    can_subscribe_podcasts: bool | None = Field(
         default=None,
     )
     """Owner in whitelist or not."""
 
-    can_subscribe_posts: typing.Optional[bool] = Field(
+    can_subscribe_posts: bool | None = Field(
         default=None,
     )
     """Can subscribe to wall."""
 
-    live_covers: typing.Optional["GroupsLiveCovers"] = Field(
+    live_covers: "GroupsLiveCovers | None" = Field(
         default=None,
     )
     """Live covers state."""
 
-    stories_archive_count: typing.Optional[int] = Field(
+    stories_archive_count: int | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.stories_archive_count`."""
 
-    has_unseen_stories: typing.Optional[bool] = Field(
+    has_unseen_stories: bool | None = Field(
         default=None,
     )
     """Property `GroupsGroupFull.has_unseen_stories`."""
 
-    video_notifications_status: typing.Optional[str] = Field(
+    video_notifications_status: str | None = Field(
         default=None,
     )
     """Information about the status of video notifications for the current user.."""
 
-    videos_count: typing.Optional[int] = Field(
+    videos_count: int | None = Field(
         default=None,
     )
     """Community videos number."""
@@ -19851,27 +19852,27 @@ class MarketMarketItemBasicWithGroup(MarketMarketItemBasic):
     Model: `MarketMarketItemBasicWithGroup`
     """
 
-    is_group_verified: typing.Optional[bool] = Field(
+    is_group_verified: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasicWithGroup.is_group_verified`."""
 
-    group_name: typing.Optional[str] = Field(
+    group_name: str | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasicWithGroup.group_name`."""
 
-    group_link: typing.Optional[str] = Field(
+    group_link: str | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasicWithGroup.group_link`."""
 
-    is_owner: typing.Optional[bool] = Field(
+    is_owner: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasicWithGroup.is_owner`."""
 
-    is_adult: typing.Optional[bool] = Field(
+    is_adult: bool | None = Field(
         default=None,
     )
     """Property `MarketMarketItemBasicWithGroup.is_adult`."""
@@ -19882,107 +19883,107 @@ class MarketMarketItemFull(MarketMarketItem):
     Model: `MarketMarketItemFull`
     """
 
-    albums_ids: typing.Optional[typing.List[int]] = Field(
+    albums_ids: list[int] | None = Field(
         default=None,
     )
     """Property `MarketMarketItemFull.albums_ids`."""
 
-    photos: typing.Optional[typing.List["PhotosPhoto"]] = Field(
+    photos: list["PhotosPhoto"] | None = Field(
         default=None,
     )
     """Property `MarketMarketItemFull.photos`."""
 
-    can_comment: typing.Optional[bool] = Field(
+    can_comment: bool | None = Field(
         default=None,
     )
     """Information whether current use can comment the item."""
 
-    show_comments: typing.Optional[bool] = Field(
+    show_comments: bool | None = Field(
         default=None,
     )
     """Information about whether to show the comments tab."""
 
-    can_repost: typing.Optional[bool] = Field(
+    can_repost: bool | None = Field(
         default=None,
     )
     """Information whether current use can repost the item."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `MarketMarketItemFull.likes`."""
 
-    reposts: typing.Optional["BaseRepostsInfo"] = Field(
+    reposts: "BaseRepostsInfo | None" = Field(
         default=None,
     )
     """Property `MarketMarketItemFull.reposts`."""
 
-    views_count: typing.Optional[int] = Field(
+    views_count: int | None = Field(
         default=None,
     )
     """Views number."""
 
-    wishlist_item_id: typing.Optional[int] = Field(
+    wishlist_item_id: int | None = Field(
         default=None,
     )
     """Object identifier in wishlist of viewer."""
 
-    rating: typing.Optional[float] = Field(
+    rating: float | None = Field(
         default=None,
     )
     """Rating of product."""
 
-    orders_count: typing.Optional[int] = Field(
+    orders_count: int | None = Field(
         default=None,
     )
     """Count of product orders."""
 
-    cancel_info: typing.Optional["BaseLink"] = Field(
+    cancel_info: "BaseLink | None" = Field(
         default=None,
     )
     """Information for cancel and revert order."""
 
-    user_agreement_info: typing.Optional[str] = Field(
+    user_agreement_info: str | None = Field(
         default=None,
     )
     """User agreement info."""
 
-    ad_id: typing.Optional[int] = Field(
+    ad_id: int | None = Field(
         default=None,
     )
     """Contains ad ID if it has."""
 
-    owner_info: typing.Optional["MarketItemOwnerInfo"] = Field(
+    owner_info: "MarketItemOwnerInfo | None" = Field(
         default=None,
     )
     """Information about the group where the item is placed."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Can the item be updated by current user?."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Can item be deleted by current user?."""
 
-    can_recover: typing.Optional[bool] = Field(
+    can_recover: bool | None = Field(
         default=None,
     )
     """Can item be restored by current user?."""
 
-    can_show_convert_to_service: typing.Optional[bool] = Field(
+    can_show_convert_to_service: bool | None = Field(
         default=None,
     )
     """Can the item be converted from a product into a service?."""
 
-    promotion: typing.Optional["MarketItemPromotionInfo"] = Field(
+    promotion: "MarketItemPromotionInfo | None" = Field(
         default=None,
     )
     """Information about promotion of the item."""
 
-    vk_pay_discount: typing.Optional[int] = Field(
+    vk_pay_discount: int | None = Field(
         default=None,
     )
     """The amount of the discount if VK Pay is used for payment."""
@@ -19993,7 +19994,7 @@ class PollsPollExtended(PollsPoll):
     Model: `PollsPollExtended`
     """
 
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
     """Property `PollsPollExtended.profiles`."""
@@ -20007,38 +20008,38 @@ class FriendsRequestsXtrMutual(UsersUserFull):
     user_id: int = Field()
     """User ID."""
 
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
     """User ID."""
 
-    from_: typing.Optional[str] = Field(
+    from_: str | None = Field(
         default=None,
         alias="from",
     )
     """ID of the user by whom friend has been suggested."""
 
-    mutual: typing.Optional["FriendsRequestsMutual"] = Field(
+    mutual: "FriendsRequestsMutual | None" = Field(
         default=None,
     )
     """Property `FriendsRequestsXtrMutual.mutual`."""
 
-    track_code: typing.Optional[str] = Field(
+    track_code: str | None = Field(
         default=None,
     )
     """Property `FriendsRequestsXtrMutual.track_code`."""
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Message sent with a request."""
 
-    timestamp: typing.Optional[int] = Field(
+    timestamp: int | None = Field(
         default=None,
     )
     """Request timestamp."""
 
-    descriptions: typing.Optional[typing.List[str]] = Field(
+    descriptions: list[str] | None = Field(
         default=None,
     )
     """Property `FriendsRequestsXtrMutual.descriptions`."""
@@ -20049,7 +20050,7 @@ class FriendsFriendExtendedStatus(FriendsFriendStatus):
     Model: `FriendsFriendExtendedStatus`
     """
 
-    is_request_unread: typing.Optional[bool] = Field(
+    is_request_unread: bool | None = Field(
         default=None,
     )
     """Is friend request from other user unread."""
@@ -20060,7 +20061,7 @@ class FriendsRequestsXtrMessage(FriendsRequestsXtrMutual):
     Model: `FriendsRequestsXtrMessage`
     """
 
-    message: typing.Optional[str] = Field(
+    message: str | None = Field(
         default=None,
     )
     """Message sent with a request."""
@@ -20071,12 +20072,12 @@ class VideoVideoImage(BaseImage):
     Model: `VideoVideoImage`
     """
 
-    with_padding: typing.Optional["BasePropertyExists"] = Field(
+    with_padding: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Property `VideoVideoImage.with_padding`."""
 
-    size: typing.Optional[str] = Field(
+    size: str | None = Field(
         default=None,
     )
     """Property `VideoVideoImage.size`."""
@@ -20093,32 +20094,32 @@ class VideoVideoAlbumFull(VideoVideoAlbum):
     updated_time: int = Field()
     """Date when the album has been updated last time in Unixtime."""
 
-    image: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+    image: list["VideoVideoImage"] | None = Field(
         default=None,
     )
     """Album cover image in different sizes."""
 
-    image_blur: typing.Optional["BasePropertyExists"] = Field(
+    image_blur: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Need blur album thumb or not."""
 
-    is_system: typing.Optional["BasePropertyExists"] = Field(
+    is_system: "BasePropertyExists | None" = Field(
         default=None,
     )
     """Information whether album is system."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Is user can edit playlist."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Is user can delete playlist."""
 
-    can_upload: typing.Optional[bool] = Field(
+    can_upload: bool | None = Field(
         default=None,
     )
     """Is user can upload video to playlist."""
@@ -20129,22 +20130,22 @@ class VideoVideoFull(VideoVideo):
     Model: `VideoVideoFull`
     """
 
-    files: typing.Optional["VideoVideoFiles"] = Field(
+    files: "VideoVideoFiles | None" = Field(
         default=None,
     )
     """Property `VideoVideoFull.files`."""
 
-    trailer: typing.Optional["VideoVideoFiles"] = Field(
+    trailer: "VideoVideoFiles | None" = Field(
         default=None,
     )
     """Property `VideoVideoFull.trailer`."""
 
-    episodes: typing.Optional[typing.List["VideoEpisode"]] = Field(
+    episodes: list["VideoEpisode"] | None = Field(
         default=None,
     )
     """List of video episodes with timecodes."""
 
-    live_settings: typing.Optional["VideoLiveSettings"] = Field(
+    live_settings: "VideoLiveSettings | None" = Field(
         default=None,
     )
     """Settings for live stream."""
@@ -20155,77 +20156,77 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
     Model: `WallWallpostFull`
     """
 
-    copy_history: typing.Optional[typing.List["WallWallpostFull"]] = Field(
+    copy_history: list["WallWallpostFull"] | None = Field(
         default=None,
     )
     """Property `WallWallpostFull.copy_history`."""
 
-    can_edit: typing.Optional[bool] = Field(
+    can_edit: bool | None = Field(
         default=None,
     )
     """Information whether current user can edit the post."""
 
-    created_by: typing.Optional[int] = Field(
+    created_by: int | None = Field(
         default=None,
     )
     """Post creator ID (if post still can be edited)."""
 
-    can_delete: typing.Optional[bool] = Field(
+    can_delete: bool | None = Field(
         default=None,
     )
     """Information whether current user can delete the post."""
 
-    can_pin: typing.Optional[bool] = Field(
+    can_pin: bool | None = Field(
         default=None,
     )
     """Information whether current user can pin the post."""
 
-    donut: typing.Optional["WallWallpostDonut"] = Field(
+    donut: "WallWallpostDonut | None" = Field(
         default=None,
     )
     """Property `WallWallpostFull.donut`."""
 
-    is_pinned: typing.Optional[bool] = Field(
+    is_pinned: bool | None = Field(
         default=None,
     )
     """Information whether the post is pinned."""
 
-    comments: typing.Optional["BaseCommentsInfo"] = Field(
+    comments: "BaseCommentsInfo | None" = Field(
         default=None,
     )
     """Property `WallWallpostFull.comments`."""
 
-    marked_as_ads: typing.Optional[bool] = Field(
+    marked_as_ads: bool | None = Field(
         default=None,
     )
     """Information whether the post is marked as ads."""
 
-    topic_id: typing.Optional[int] = Field(
+    topic_id: int | None = Field(
         default=None,
     )
     """Topic ID. Allowed values can be obtained from newsfeed.getPostTopics method."""
 
-    short_text_rate: typing.Optional[float] = Field(
+    short_text_rate: float | None = Field(
         default=None,
     )
     """Preview length control parameter."""
 
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
     """Hash for sharing."""
 
-    type: typing.Optional["WallPostType"] = Field(
+    type: "WallPostType | None" = Field(
         default=None,
     )
     """Property `WallWallpostFull.type`."""
 
-    feedback: typing.Optional["NewsfeedItemWallpostFeedback"] = Field(
+    feedback: "NewsfeedItemWallpostFeedback | None" = Field(
         default=None,
     )
     """Property `WallWallpostFull.feedback`."""
 
-    to_id: typing.Optional[int] = Field(
+    to_id: int | None = Field(
         default=None,
     )
     """Property `WallWallpostFull.to_id`."""
@@ -20236,8 +20237,9 @@ class NewsfeedCommentsBase(BaseCommentsInfo):
     Model: `NewsfeedCommentsBase`
     """
 
-    list: typing.Optional[typing.List["WallWallComment"]] = Field(
+    list_: list["WallWallComment"] | None = Field(
         default=None,
+        alias="list",
     )
     """Property `NewsfeedCommentsBase.list`."""
 
@@ -20247,12 +20249,12 @@ class NewsfeedCommentsItemTypeMarket(MarketMarketItem, NewsfeedCommentsItemBase)
     Model: `NewsfeedCommentsItemTypeMarket`
     """
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeMarket.comments`."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeMarket.likes`."""
@@ -20263,17 +20265,17 @@ class NewsfeedCommentsItemTypeNotes(NewsfeedCommentsItemBase):
     Model: `NewsfeedCommentsItemTypeNotes`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeNotes.text`."""
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeNotes.comments`."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeNotes.likes`."""
@@ -20284,12 +20286,12 @@ class NewsfeedCommentsItemTypePhoto(PhotosPhoto, NewsfeedCommentsItemBase):
     Model: `NewsfeedCommentsItemTypePhoto`
     """
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypePhoto.comments`."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypePhoto.likes`."""
@@ -20300,12 +20302,12 @@ class NewsfeedCommentsItemTypePost(WallWallpostFull, NewsfeedCommentsItemBase):
     Model: `NewsfeedCommentsItemTypePost`
     """
 
-    from_id: typing.Optional[int] = Field(
+    from_id: int | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypePost.from_id`."""
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypePost.comments`."""
@@ -20316,17 +20318,17 @@ class NewsfeedCommentsItemTypeTopic(NewsfeedCommentsItemBase):
     Model: `NewsfeedCommentsItemTypeTopic`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeTopic.text`."""
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeTopic.comments`."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeTopic.likes`."""
@@ -20337,22 +20339,22 @@ class NewsfeedCommentsItemTypeVideo(VideoVideo, NewsfeedCommentsItemBase):
     Model: `NewsfeedCommentsItemTypeVideo`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeVideo.text`."""
 
-    comments: typing.Optional["NewsfeedCommentsBase"] = Field(
+    comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeVideo.comments`."""
 
-    likes: typing.Optional["BaseLikes"] = Field(
+    likes: "BaseLikes | None" = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeVideo.likes`."""
 
-    type: typing.Optional[str] = Field(
+    type: str | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemTypeVideo.type`."""
@@ -20363,12 +20365,12 @@ class NewsfeedItemAudio(NewsfeedItemBase):
     Model: `NewsfeedItemAudio`
     """
 
-    audio: typing.Optional["NewsfeedItemAudioAudio"] = Field(
+    audio: "NewsfeedItemAudioAudio | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemAudio.audio`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
@@ -20379,32 +20381,32 @@ class NewsfeedItemDigest(NewsfeedItemBase):
     Model: `NewsfeedItemDigest`
     """
 
-    feed_id: typing.Optional[str] = Field(
+    feed_id: str | None = Field(
         default=None,
     )
     """id of feed in digest."""
 
-    items: typing.Optional[typing.List["NewsfeedItemDigestItem"]] = Field(
+    items: list["NewsfeedItemDigestItem"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigest.items`."""
 
-    main_post_ids: typing.Optional[typing.List[str]] = Field(
+    main_post_ids: list[str] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigest.main_post_ids`."""
 
-    template: typing.Optional[str] = Field(
+    template: str | None = Field(
         default=None,
     )
     """type of digest."""
 
-    header: typing.Optional["NewsfeedItemDigestHeader"] = Field(
+    header: "NewsfeedItemDigestHeader | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigest.header`."""
 
-    footer: typing.Optional["NewsfeedItemDigestFooter"] = Field(
+    footer: "NewsfeedItemDigestFooter | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigest.footer`."""
@@ -20421,32 +20423,32 @@ class NewsfeedItemDigestFullItem(NewsfeedItemBase):
     post: "NewsfeedItemWallpost" = Field()
     """Property `NewsfeedItemDigestFullItem.post`."""
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFullItem.text`."""
 
-    source_name: typing.Optional[str] = Field(
+    source_name: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFullItem.source_name`."""
 
-    attachment_index: typing.Optional[int] = Field(
+    attachment_index: int | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFullItem.attachment_index`."""
 
-    attachment: typing.Optional["WallWallpostAttachment"] = Field(
+    attachment: "WallWallpostAttachment | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFullItem.attachment`."""
 
-    style: typing.Optional[str] = Field(
+    style: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemDigestFullItem.style`."""
 
-    badge_text: typing.Optional[str] = Field(
+    badge_text: str | None = Field(
         default=None,
     )
     """Optional red badge for posts in digest block."""
@@ -20457,7 +20459,7 @@ class NewsfeedItemFriend(NewsfeedItemBase):
     Model: `NewsfeedItemFriend`
     """
 
-    friends: typing.Optional["NewsfeedItemFriendFriends"] = Field(
+    friends: "NewsfeedItemFriendFriends | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemFriend.friends`."""
@@ -20468,12 +20470,12 @@ class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
     Model: `NewsfeedItemPhoto`
     """
 
-    photos: typing.Optional["NewsfeedItemPhotoPhotos"] = Field(
+    photos: "NewsfeedItemPhotoPhotos | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemPhoto.photos`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
@@ -20484,12 +20486,12 @@ class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
     Model: `NewsfeedItemPhotoTag`
     """
 
-    photo_tags: typing.Optional["NewsfeedItemPhotoTagPhotoTags"] = Field(
+    photo_tags: "NewsfeedItemPhotoTagPhotoTags | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemPhotoTag.photo_tags`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
@@ -20500,22 +20502,22 @@ class NewsfeedItemPromoButton(NewsfeedItemBase):
     Model: `NewsfeedItemPromoButton`
     """
 
-    text: typing.Optional[str] = Field(
+    text: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButton.text`."""
 
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButton.title`."""
 
-    action: typing.Optional["NewsfeedItemPromoButtonAction"] = Field(
+    action: "NewsfeedItemPromoButtonAction | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButton.action`."""
 
-    images: typing.Optional[typing.List["NewsfeedItemPromoButtonImage"]] = Field(
+    images: list["NewsfeedItemPromoButtonImage"] | None = Field(
         default=None,
     )
     """Property `NewsfeedItemPromoButton.images`."""
@@ -20532,12 +20534,12 @@ class NewsfeedItemTopic(NewsfeedItemBase):
     text: str = Field()
     """Post text."""
 
-    comments: typing.Optional["BaseCommentsInfo"] = Field(
+    comments: "BaseCommentsInfo | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemTopic.comments`."""
 
-    likes: typing.Optional["BaseLikesInfo"] = Field(
+    likes: "BaseLikesInfo | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemTopic.likes`."""
@@ -20548,12 +20550,12 @@ class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
     Model: `NewsfeedItemVideo`
     """
 
-    video: typing.Optional["NewsfeedItemVideoVideo"] = Field(
+    video: "NewsfeedItemVideoVideo | None" = Field(
         default=None,
     )
     """Property `NewsfeedItemVideo.video`."""
 
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
     """Post ID."""
@@ -20570,169 +20572,18 @@ class NewsfeedListFull(NewsfeedList):
     Model: `NewsfeedListFull`
     """
 
-    no_reposts: typing.Optional[bool] = Field(
+    no_reposts: bool | None = Field(
         default=None,
     )
     """Information whether reposts hiding is enabled."""
 
-    source_ids: typing.Optional[typing.List[int]] = Field(
+    source_ids: list[int] | None = Field(
         default=None,
     )
     """Property `NewsfeedListFull.source_ids`."""
 
 
 __all__ = (
-    "BaseBoolInt",
-    "BaseCity",
-    "BaseCommentsInfo",
-    "BaseCountry",
-    "BaseCropPhoto",
-    "BaseCropPhotoCrop",
-    "BaseCropPhotoRect",
-    "BaseError",
-    "BaseErrorInnerType",
-    "BaseGeo",
-    "BaseGeoCoordinates",
-    "BaseGradientPoint",
-    "BaseImage",
-    "BaseImageTheme",
-    "BaseLang",
-    "BaseLikes",
-    "BaseLikesInfo",
-    "BaseLinkApplication",
-    "BaseLinkApplicationStore",
-    "BaseLinkButton",
-    "BaseLinkButtonAction",
-    "BaseLinkButtonActionType",
-    "BaseLinkButtonStyle",
-    "BaseLinkNoProduct",
-    "BaseLinkProduct",
-    "BaseLinkProductType",
-    "BaseLinkProductCategory",
-    "BaseLinkProductStatus",
-    "BaseLinkRating",
-    "BaseLinkRatingType",
-    "BaseMessageError",
-    "BaseNameCase",
-    "BaseObject",
-    "BaseObjectCount",
-    "BaseObjectWithName",
-    "BaseOwnerCover",
-    "BaseOwnerCoverCropParams",
-    "BasePlace",
-    "BasePropertyExists",
-    "BaseRepostsInfo",
-    "BaseRequestParam",
-    "BaseSex",
-    "BaseSticker",
-    "BaseStickerInnerType",
-    "BaseStickerAnimation",
-    "BaseStickerAnimationType",
-    "BaseStickerNew",
-    "BaseStickerNewInnerType",
-    "BaseUploadServer",
-    "BaseUserGroupFields",
-    "BaseUserId",
-    "UsersCareer",
-    "UsersExports",
-    "UsersFields",
-    "UsersLastSeen",
-    "UsersMilitary",
-    "UsersOccupation",
-    "UsersOccupationType",
-    "UsersOnlineInfo",
-    "UsersOnlineInfoStatus",
-    "UsersPersonal",
-    "UsersRelative",
-    "UsersRelativeType",
-    "UsersSchool",
-    "UsersSubscriptionsItem",
-    "UsersUniversity",
-    "UsersUserConnections",
-    "UsersUserCounters",
-    "UsersUserMin",
-    "UsersUserRelation",
-    "UsersUserSettingsXtr",
-    "UsersUserType",
-    "UsersUsersArray",
-    "MessagesActionOneOf",
-    "MessagesAudioMessage",
-    "MessagesBaseMessage",
-    "MessagesChat",
-    "MessagesChatFull",
-    "MessagesChatPreview",
-    "MessagesChatPushSettings",
-    "MessagesChatRestrictions",
-    "MessagesChatSettings",
-    "MessagesChatSettingsAcl",
-    "MessagesChatSettingsPermissions",
-    "MessagesChatSettingsPermissionsInvite",
-    "MessagesChatSettingsPermissionsChangeInfo",
-    "MessagesChatSettingsPermissionsChangePin",
-    "MessagesChatSettingsPermissionsUseMassMentions",
-    "MessagesChatSettingsPermissionsSeeInviteLink",
-    "MessagesChatSettingsPermissionsCall",
-    "MessagesChatSettingsPermissionsChangeAdmins",
-    "MessagesChatSettingsPhoto",
-    "MessagesChatSettingsState",
-    "MessagesConversation",
-    "MessagesConversationSpecialServiceType",
-    "MessagesConversationCanWrite",
-    "MessagesConversationMember",
-    "MessagesConversationPeer",
-    "MessagesConversationPeerType",
-    "MessagesConversationSortId",
-    "MessagesConversationWithMessage",
-    "MessagesDeleteFullResponseItem",
-    "MessagesForeignMessage",
-    "MessagesForward",
-    "MessagesFwdMessages",
-    "MessagesGetConversationById",
-    "MessagesGetConversationMembers",
-    "MessagesGetInviteLinkByOwnerResponseItem",
-    "MessagesGraffiti",
-    "MessagesHistoryAttachment",
-    "MessagesHistoryMessageAttachment",
-    "MessagesHistoryMessageAttachmentType",
-    "MessagesKeyboard",
-    "MessagesKeyboardButton",
-    "MessagesKeyboardButtonColor",
-    "MessagesKeyboardButtonActionCallback",
-    "MessagesKeyboardButtonActionCallbackType",
-    "MessagesKeyboardButtonActionLocation",
-    "MessagesKeyboardButtonActionLocationType",
-    "MessagesKeyboardButtonActionOpenApp",
-    "MessagesKeyboardButtonActionOpenAppType",
-    "MessagesKeyboardButtonActionOpenLink",
-    "MessagesKeyboardButtonActionOpenLinkType",
-    "MessagesKeyboardButtonActionOpenPhoto",
-    "MessagesKeyboardButtonActionOpenPhotoType",
-    "MessagesKeyboardButtonActionText",
-    "MessagesKeyboardButtonActionTextType",
-    "MessagesKeyboardButtonActionVkpay",
-    "MessagesKeyboardButtonActionVkpayType",
-    "MessagesKeyboardButtonPropertyAction",
-    "MessagesLastActivity",
-    "MessagesLongpollMessages",
-    "MessagesLongpollParams",
-    "MessagesMessageAction",
-    "MessagesMessageActionPhoto",
-    "MessagesMessageActionStatus",
-    "MessagesMessageAttachment",
-    "MessagesMessageAttachmentType",
-    "MessagesMessageRequestData",
-    "MessagesMessagesArray",
-    "MessagesOutReadBy",
-    "MessagesPinnedMessage",
-    "MessagesPushSettings",
-    "MessagesReactionAssetItem",
-    "MessagesReactionAssetItemLinks",
-    "MessagesReactionCounterResponseItem",
-    "MessagesReactionCountersResponseItem",
-    "MessagesReactionResponseItem",
-    "MessagesSendUserIdsResponseItem",
-    "MessagesTemplateActionTypeNames",
-    "MessagesUserTypeForXtrInvitedBy",
     "AccountAccountCounters",
     "AccountCountersFilter",
     "AccountInfo",
@@ -20747,6 +20598,7 @@ __all__ = (
     "AccountPushParamsOnoff",
     "AccountPushParamsSettings",
     "AccountPushSettings",
+    "AccountUserSettings",
     "AccountUserSettingsInterest",
     "AccountUserSettingsInterests",
     "AddressFields",
@@ -20780,9 +20632,9 @@ __all__ = (
     "AdsFloodStatsByUserItem",
     "AdsLinkStatus",
     "AdsLookalikeRequest",
-    "AdsLookalikeRequestStatus",
-    "AdsLookalikeRequestSourceType",
     "AdsLookalikeRequestSaveAudienceLevel",
+    "AdsLookalikeRequestSourceType",
+    "AdsLookalikeRequestStatus",
     "AdsMobileStatItem",
     "AdsMusician",
     "AdsObjectType",
@@ -20803,7 +20655,11 @@ __all__ = (
     "AdsStatisticClickAction",
     "AdsStatisticClickActionType",
     "AdsStats",
+    "AdsStatsAge",
+    "AdsStatsCities",
     "AdsStatsFormat",
+    "AdsStatsSex",
+    "AdsStatsSexAge",
     "AdsStatsSexValue",
     "AdsStatsViewsTimes",
     "AdsStories",
@@ -20813,6 +20669,7 @@ __all__ = (
     "AdsStoryItemStats",
     "AdsStoryItemStatsFollow",
     "AdsStoryItemStatsUrlView",
+    "AdsTargSettings",
     "AdsTargStats",
     "AdsTargSuggestions",
     "AdsTargSuggestionsCities",
@@ -20822,14 +20679,15 @@ __all__ = (
     "AdsTargetGroup",
     "AdsTargetGroupTargetPixelRule",
     "AdsTargetPixelInfo",
-    "AdsUpdateOfficeUsersResult",
     "AdsUpdateAdsStatus",
     "AdsUpdateClientsStatus",
+    "AdsUpdateOfficeUsersResult",
     "AdsUserSpecification",
     "AdsUserSpecificationCutted",
     "AdsUsers",
     "AppWidgetsPhoto",
     "AppWidgetsPhotos",
+    "AppsApp",
     "AppsAppFields",
     "AppsAppLeaderboardType",
     "AppsAppMin",
@@ -20842,6 +20700,58 @@ __all__ = (
     "AppsScopeName",
     "AppsTestingGroup",
     "AudioAudio",
+    "BaseBoolInt",
+    "BaseCity",
+    "BaseCommentsInfo",
+    "BaseCountry",
+    "BaseCropPhoto",
+    "BaseCropPhotoCrop",
+    "BaseCropPhotoRect",
+    "BaseError",
+    "BaseErrorInnerType",
+    "BaseGeo",
+    "BaseGeoCoordinates",
+    "BaseGradientPoint",
+    "BaseImage",
+    "BaseImageTheme",
+    "BaseLang",
+    "BaseLikes",
+    "BaseLikesInfo",
+    "BaseLink",
+    "BaseLinkApplication",
+    "BaseLinkApplicationStore",
+    "BaseLinkButton",
+    "BaseLinkButtonAction",
+    "BaseLinkButtonActionType",
+    "BaseLinkButtonStyle",
+    "BaseLinkNoProduct",
+    "BaseLinkProduct",
+    "BaseLinkProductCategory",
+    "BaseLinkProductStatus",
+    "BaseLinkProductType",
+    "BaseLinkRating",
+    "BaseLinkRatingType",
+    "BaseMessageError",
+    "BaseNameCase",
+    "BaseObject",
+    "BaseObjectCount",
+    "BaseObjectWithName",
+    "BaseOwnerCover",
+    "BaseOwnerCoverCropParams",
+    "BasePlace",
+    "BasePropertyExists",
+    "BaseRepostsInfo",
+    "BaseRequestParam",
+    "BaseSex",
+    "BaseSticker",
+    "BaseStickerAnimation",
+    "BaseStickerAnimationType",
+    "BaseStickerInnerType",
+    "BaseStickerNew",
+    "BaseStickerNewInnerType",
+    "BaseUploadServer",
+    "BaseUserGroupFields",
+    "BaseUserId",
     "BoardDefaultOrder",
     "BoardTopic",
     "BoardTopicComment",
@@ -20861,6 +20771,7 @@ __all__ = (
     "CallbackBoardPostEdit",
     "CallbackBoardPostNew",
     "CallbackBoardPostRestore",
+    "CallbackConfirmation",
     "CallbackDonutMoneyWithdraw",
     "CallbackDonutMoneyWithdrawError",
     "CallbackDonutSubscriptionCancelled",
@@ -20868,6 +20779,7 @@ __all__ = (
     "CallbackDonutSubscriptionExpired",
     "CallbackDonutSubscriptionPriceChanged",
     "CallbackDonutSubscriptionProlonged",
+    "CallbackForeignMessage",
     "CallbackFwdMessages",
     "CallbackGroupChangePhoto",
     "CallbackGroupChangeSettings",
@@ -20885,6 +20797,7 @@ __all__ = (
     "CallbackLikeAddRemoveObjectType",
     "CallbackMarketComment",
     "CallbackMarketCommentDelete",
+    "CallbackMessage",
     "CallbackMessageAllow",
     "CallbackMessageDeny",
     "CallbackMessageEvent",
@@ -20894,6 +20807,7 @@ __all__ = (
     "CallbackMessageRead",
     "CallbackMessageTypingState",
     "CallbackMessageTypingStateState",
+    "CallbackPhotoComment",
     "CallbackPhotoCommentDelete",
     "CallbackPhotoNew",
     "CallbackPhotoNewVerticalAlign",
@@ -20901,6 +20815,7 @@ __all__ = (
     "CallbackType",
     "CallbackUserBlock",
     "CallbackUserUnblock",
+    "CallbackVideoComment",
     "CallbackVideoCommentDelete",
     "CallbackVideoNew",
     "CallbackVkpayTransaction",
@@ -20918,6 +20833,7 @@ __all__ = (
     "CallsShortCredentials",
     "CommentThread",
     "DatabaseCitiesFields",
+    "DatabaseCity",
     "DatabaseCityById",
     "DatabaseFaculty",
     "DatabaseLanguageFull",
@@ -20943,6 +20859,16 @@ __all__ = (
     "FavePage",
     "FavePageType",
     "FaveTag",
+    "FriendsFriendExtendedStatus",
+    "FriendsFriendStatus",
+    "FriendsFriendStatusStatus",
+    "FriendsFriendsList",
+    "FriendsMutualFriend",
+    "FriendsOnlineUsers",
+    "FriendsOnlineUsersWithMobile",
+    "FriendsRequestsMutual",
+    "FriendsRequestsXtrMessage",
+    "FriendsRequestsXtrMutual",
     "GiftsGift",
     "GiftsGiftPrivacy",
     "GiftsLayout",
@@ -20971,6 +20897,7 @@ __all__ = (
     "GroupsGroupCategoryFull",
     "GroupsGroupCategoryType",
     "GroupsGroupDocs",
+    "GroupsGroupFull",
     "GroupsGroupFullAgeLimits",
     "GroupsGroupFullMemberStatus",
     "GroupsGroupFullSection",
@@ -21015,14 +20942,15 @@ __all__ = (
     "GroupsSettingsTwitterStatus",
     "GroupsSubjectItem",
     "GroupsTokenPermissionSetting",
+    "GroupsUserXtrRole",
     "LeadFormsAnswer",
     "LeadFormsAnswerItem",
     "LeadFormsAnswerOneOf",
     "LeadFormsForm",
     "LeadFormsLead",
     "LeadFormsQuestionItem",
-    "LeadFormsQuestionItemType",
     "LeadFormsQuestionItemOption",
+    "LeadFormsQuestionItemType",
     "LikesType",
     "LinkTargetObject",
     "MarketCurrency",
@@ -21040,6 +20968,8 @@ __all__ = (
     "MarketMarketItem",
     "MarketMarketItemAvailability",
     "MarketMarketItemBasic",
+    "MarketMarketItemBasicWithGroup",
+    "MarketMarketItemFull",
     "MarketOrder",
     "MarketOrderItem",
     "MarketOwnerType",
@@ -21049,6 +20979,131 @@ __all__ = (
     "MarketPropertyVariant",
     "MarketServicesViewType",
     "MarketUploadPhotoData",
+    "MessagesActionOneOf",
+    "MessagesAudioMessage",
+    "MessagesBaseMessage",
+    "MessagesChat",
+    "MessagesChatFull",
+    "MessagesChatPreview",
+    "MessagesChatPushSettings",
+    "MessagesChatRestrictions",
+    "MessagesChatSettings",
+    "MessagesChatSettingsAcl",
+    "MessagesChatSettingsPermissions",
+    "MessagesChatSettingsPermissionsCall",
+    "MessagesChatSettingsPermissionsChangeAdmins",
+    "MessagesChatSettingsPermissionsChangeInfo",
+    "MessagesChatSettingsPermissionsChangePin",
+    "MessagesChatSettingsPermissionsInvite",
+    "MessagesChatSettingsPermissionsSeeInviteLink",
+    "MessagesChatSettingsPermissionsUseMassMentions",
+    "MessagesChatSettingsPhoto",
+    "MessagesChatSettingsState",
+    "MessagesConversation",
+    "MessagesConversationCanWrite",
+    "MessagesConversationMember",
+    "MessagesConversationPeer",
+    "MessagesConversationPeerType",
+    "MessagesConversationSortId",
+    "MessagesConversationSpecialServiceType",
+    "MessagesConversationWithMessage",
+    "MessagesDeleteFullResponseItem",
+    "MessagesForeignMessage",
+    "MessagesForward",
+    "MessagesFwdMessages",
+    "MessagesGetConversationById",
+    "MessagesGetConversationByIdExtended",
+    "MessagesGetConversationMembers",
+    "MessagesGetInviteLinkByOwnerResponseItem",
+    "MessagesGraffiti",
+    "MessagesHistoryAttachment",
+    "MessagesHistoryMessageAttachment",
+    "MessagesHistoryMessageAttachmentType",
+    "MessagesKeyboard",
+    "MessagesKeyboardButton",
+    "MessagesKeyboardButtonActionCallback",
+    "MessagesKeyboardButtonActionCallbackType",
+    "MessagesKeyboardButtonActionLocation",
+    "MessagesKeyboardButtonActionLocationType",
+    "MessagesKeyboardButtonActionOpenApp",
+    "MessagesKeyboardButtonActionOpenAppType",
+    "MessagesKeyboardButtonActionOpenLink",
+    "MessagesKeyboardButtonActionOpenLinkType",
+    "MessagesKeyboardButtonActionOpenPhoto",
+    "MessagesKeyboardButtonActionOpenPhotoType",
+    "MessagesKeyboardButtonActionText",
+    "MessagesKeyboardButtonActionTextType",
+    "MessagesKeyboardButtonActionVkpay",
+    "MessagesKeyboardButtonActionVkpayType",
+    "MessagesKeyboardButtonColor",
+    "MessagesKeyboardButtonPropertyAction",
+    "MessagesLastActivity",
+    "MessagesLongpollMessages",
+    "MessagesLongpollParams",
+    "MessagesMessage",
+    "MessagesMessageAction",
+    "MessagesMessageActionPhoto",
+    "MessagesMessageActionStatus",
+    "MessagesMessageAttachment",
+    "MessagesMessageAttachmentType",
+    "MessagesMessageRequestData",
+    "MessagesMessagesArray",
+    "MessagesOutReadBy",
+    "MessagesPinnedMessage",
+    "MessagesPushSettings",
+    "MessagesReactionAssetItem",
+    "MessagesReactionAssetItemLinks",
+    "MessagesReactionCounterResponseItem",
+    "MessagesReactionCountersResponseItem",
+    "MessagesReactionResponseItem",
+    "MessagesSendUserIdsResponseItem",
+    "MessagesTemplateActionTypeNames",
+    "MessagesUserTypeForXtrInvitedBy",
+    "MessagesUserXtrInvitedBy",
+    "NewsfeedCommentsBase",
+    "NewsfeedCommentsFilters",
+    "NewsfeedCommentsItem",
+    "NewsfeedCommentsItemBase",
+    "NewsfeedCommentsItemTypeMarket",
+    "NewsfeedCommentsItemTypeNotes",
+    "NewsfeedCommentsItemTypePhoto",
+    "NewsfeedCommentsItemTypePost",
+    "NewsfeedCommentsItemTypeTopic",
+    "NewsfeedCommentsItemTypeVideo",
+    "NewsfeedIgnoreItemType",
+    "NewsfeedItemAudio",
+    "NewsfeedItemAudioAudio",
+    "NewsfeedItemBase",
+    "NewsfeedItemDigest",
+    "NewsfeedItemDigestButton",
+    "NewsfeedItemDigestButtonStyle",
+    "NewsfeedItemDigestFooter",
+    "NewsfeedItemDigestFooterStyle",
+    "NewsfeedItemDigestFullItem",
+    "NewsfeedItemDigestHeader",
+    "NewsfeedItemDigestHeaderStyle",
+    "NewsfeedItemDigestItem",
+    "NewsfeedItemFriend",
+    "NewsfeedItemFriendFriends",
+    "NewsfeedItemHolidayRecommendationsBlockHeader",
+    "NewsfeedItemPhoto",
+    "NewsfeedItemPhotoPhotos",
+    "NewsfeedItemPhotoTag",
+    "NewsfeedItemPhotoTagPhotoTags",
+    "NewsfeedItemPromoButton",
+    "NewsfeedItemPromoButtonAction",
+    "NewsfeedItemPromoButtonImage",
+    "NewsfeedItemTopic",
+    "NewsfeedItemVideo",
+    "NewsfeedItemVideoVideo",
+    "NewsfeedItemWallpost",
+    "NewsfeedItemWallpostFeedback",
+    "NewsfeedItemWallpostFeedbackAnswer",
+    "NewsfeedItemWallpostFeedbackType",
+    "NewsfeedList",
+    "NewsfeedListFull",
+    "NewsfeedNewsfeedItem",
+    "NewsfeedNewsfeedItemType",
     "NotesNote",
     "NotesNoteComment",
     "NotificationsFeedback",
@@ -21073,13 +21128,13 @@ __all__ = (
     "PhotosImage",
     "PhotosImageType",
     "PhotosPhoto",
-    "PhotosPhotoVerticalAlign",
     "PhotosPhotoAlbum",
     "PhotosPhotoAlbumFull",
     "PhotosPhotoSizes",
     "PhotosPhotoSizesType",
     "PhotosPhotoTag",
     "PhotosPhotoUpload",
+    "PhotosPhotoVerticalAlign",
     "PhotosPhotoXtrTagInfo",
     "PhotosTagsSuggestionItem",
     "PhotosTagsSuggestionItemButton",
@@ -21094,6 +21149,7 @@ __all__ = (
     "PollsFriend",
     "PollsPoll",
     "PollsPollAnonymous",
+    "PollsPollExtended",
     "PollsVoters",
     "PollsVotersFieldsUsers",
     "PollsVotersUsers",
@@ -21124,15 +21180,15 @@ __all__ = (
     "StickersImageSet",
     "StorageValue",
     "StoreProduct",
-    "StoreProductType",
     "StoreProductIcon",
+    "StoreProductType",
     "StoreStickersKeyword",
     "StoreStickersKeywordSticker",
     "StoriesClickableArea",
     "StoriesClickableSticker",
-    "StoriesClickableStickerType",
     "StoriesClickableStickerStyle",
     "StoriesClickableStickerSubtype",
+    "StoriesClickableStickerType",
     "StoriesClickableStickers",
     "StoriesFeedItem",
     "StoriesFeedItemType",
@@ -21150,13 +21206,31 @@ __all__ = (
     "StreamingStats",
     "StreamingStatsEventType",
     "StreamingStatsPoint",
-    "FriendsFriendStatus",
-    "FriendsFriendStatusStatus",
-    "FriendsFriendsList",
-    "FriendsMutualFriend",
-    "FriendsOnlineUsers",
-    "FriendsOnlineUsersWithMobile",
-    "FriendsRequestsMutual",
+    "UsersCareer",
+    "UsersExports",
+    "UsersFields",
+    "UsersLastSeen",
+    "UsersMilitary",
+    "UsersOccupation",
+    "UsersOccupationType",
+    "UsersOnlineInfo",
+    "UsersOnlineInfoStatus",
+    "UsersPersonal",
+    "UsersRelative",
+    "UsersRelativeType",
+    "UsersSchool",
+    "UsersSubscriptionsItem",
+    "UsersUniversity",
+    "UsersUser",
+    "UsersUserConnections",
+    "UsersUserCounters",
+    "UsersUserFull",
+    "UsersUserMin",
+    "UsersUserRelation",
+    "UsersUserSettingsXtr",
+    "UsersUserType",
+    "UsersUserXtrType",
+    "UsersUsersArray",
     "UtilsDomainResolved",
     "UtilsDomainResolvedType",
     "UtilsLastShortenedLink",
@@ -21178,11 +21252,14 @@ __all__ = (
     "VideoSaveResult",
     "VideoStreamInputParams",
     "VideoVideo",
-    "VideoVideoResponseType",
-    "VideoVideoType",
     "VideoVideoAlbum",
+    "VideoVideoAlbumFull",
     "VideoVideoAlbumResponseType",
     "VideoVideoFiles",
+    "VideoVideoFull",
+    "VideoVideoImage",
+    "VideoVideoResponseType",
+    "VideoVideoType",
     "WallAppPost",
     "WallAttachedNote",
     "WallCarouselBase",
@@ -21203,7 +21280,6 @@ __all__ = (
     "WallWallCommentDonutPlaceholder",
     "WallWallItem",
     "WallWallpost",
-    "WallWallpostInnerType",
     "WallWallpostAttachment",
     "WallWallpostAttachmentType",
     "WallWallpostCommentsDonut",
@@ -21211,32 +21287,8 @@ __all__ = (
     "WallWallpostDonut",
     "WallWallpostDonutEditMode",
     "WallWallpostDonutPlaceholder",
-    "NewsfeedCommentsFilters",
-    "NewsfeedCommentsItem",
-    "NewsfeedCommentsItemBase",
-    "NewsfeedIgnoreItemType",
-    "NewsfeedItemAudioAudio",
-    "NewsfeedItemBase",
-    "NewsfeedItemDigestButton",
-    "NewsfeedItemDigestButtonStyle",
-    "NewsfeedItemDigestFooter",
-    "NewsfeedItemDigestFooterStyle",
-    "NewsfeedItemDigestHeader",
-    "NewsfeedItemDigestHeaderStyle",
-    "NewsfeedItemDigestItem",
-    "NewsfeedItemFriendFriends",
-    "NewsfeedItemHolidayRecommendationsBlockHeader",
-    "NewsfeedItemPhotoPhotos",
-    "NewsfeedItemPhotoTagPhotoTags",
-    "NewsfeedItemPromoButtonAction",
-    "NewsfeedItemPromoButtonImage",
-    "NewsfeedItemVideoVideo",
-    "NewsfeedItemWallpostFeedback",
-    "NewsfeedItemWallpostFeedbackAnswer",
-    "NewsfeedItemWallpostFeedbackType",
-    "NewsfeedList",
-    "NewsfeedNewsfeedItem",
-    "NewsfeedNewsfeedItemType",
+    "WallWallpostFull",
+    "WallWallpostInnerType",
     "WidgetsCommentMedia",
     "WidgetsCommentMediaType",
     "WidgetsCommentReplies",
@@ -21244,54 +21296,4 @@ __all__ = (
     "WidgetsWidgetComment",
     "WidgetsWidgetLikes",
     "WidgetsWidgetPage",
-    "BaseLink",
-    "UsersUser",
-    "UsersUserFull",
-    "UsersUserXtrType",
-    "MessagesUserXtrInvitedBy",
-    "MessagesGetConversationByIdExtended",
-    "MessagesMessage",
-    "AccountUserSettings",
-    "AdsStatsAge",
-    "AdsStatsCities",
-    "AdsStatsSex",
-    "AdsStatsSexAge",
-    "AdsTargSettings",
-    "AppsApp",
-    "CallbackForeignMessage",
-    "CallbackMessage",
-    "CallbackPhotoComment",
-    "CallbackVideoComment",
-    "CallbackConfirmation",
-    "DatabaseCity",
-    "GroupsUserXtrRole",
-    "GroupsGroupFull",
-    "MarketMarketItemBasicWithGroup",
-    "MarketMarketItemFull",
-    "PollsPollExtended",
-    "FriendsRequestsXtrMutual",
-    "FriendsFriendExtendedStatus",
-    "FriendsRequestsXtrMessage",
-    "VideoVideoImage",
-    "VideoVideoAlbumFull",
-    "VideoVideoFull",
-    "WallWallpostFull",
-    "NewsfeedCommentsBase",
-    "NewsfeedCommentsItemTypeMarket",
-    "NewsfeedCommentsItemTypeNotes",
-    "NewsfeedCommentsItemTypePhoto",
-    "NewsfeedCommentsItemTypePost",
-    "NewsfeedCommentsItemTypeTopic",
-    "NewsfeedCommentsItemTypeVideo",
-    "NewsfeedItemAudio",
-    "NewsfeedItemDigest",
-    "NewsfeedItemDigestFullItem",
-    "NewsfeedItemFriend",
-    "NewsfeedItemPhoto",
-    "NewsfeedItemPhotoTag",
-    "NewsfeedItemPromoButton",
-    "NewsfeedItemTopic",
-    "NewsfeedItemVideo",
-    "NewsfeedItemWallpost",
-    "NewsfeedListFull",
 )

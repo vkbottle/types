@@ -1,16 +1,14 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import PagesWikipage, PagesWikipageFull, PagesWikipageHistory
 from vkbottle_types.responses.base_response import BaseResponse
 
 
 class PagesGetHistoryResponse(BaseResponse):
-    response: typing.List["PagesWikipageHistory"] = Field()
+    response: list["PagesWikipageHistory"] = Field()
 
 
 class PagesGetTitlesResponse(BaseResponse):
-    response: typing.List["PagesWikipage"] = Field()
+    response: list["PagesWikipage"] = Field()
 
 
 class PagesGetVersionResponseModel(BaseModel):
@@ -23,16 +21,16 @@ class PagesGetVersionResponseModel(BaseModel):
     who_can_view: int = Field()
     who_can_edit: int = Field()
     version_created: int = Field()
-    creator_id: typing.Optional[int] = Field(
+    creator_id: int | None = Field(
         default=None,
     )
-    parent: typing.Optional[str] = Field(
+    parent: str | None = Field(
         default=None,
     )
-    parent2: typing.Optional[str] = Field(
+    parent2: str | None = Field(
         default=None,
     )
-    html: typing.Optional[str] = Field(
+    html: str | None = Field(
         default=None,
     )
 

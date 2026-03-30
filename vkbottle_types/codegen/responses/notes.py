@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import NotesNote, NotesNoteComment
 from vkbottle_types.responses.base_response import BaseResponse
@@ -19,7 +17,7 @@ class NotesGetByIdResponse(BaseResponse):
 
 class NotesGetCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["NotesNoteComment"] = Field()
+    items: list["NotesNoteComment"] = Field()
 
 
 class NotesGetCommentsResponse(BaseResponse):
@@ -28,7 +26,7 @@ class NotesGetCommentsResponse(BaseResponse):
 
 class NotesGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["NotesNote"] = Field()
+    items: list["NotesNote"] = Field()
 
 
 class NotesGetResponse(BaseResponse):

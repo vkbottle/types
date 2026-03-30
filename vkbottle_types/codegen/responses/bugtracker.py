@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     BugtrackerAddCompanyGroupsMembersError,
@@ -13,7 +11,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 
 class BugtrackerAddCompanyGroupsMembersResponseModel(BaseModel):
-    errors: typing.List["BugtrackerAddCompanyGroupsMembersError"] = Field()
+    errors: list["BugtrackerAddCompanyGroupsMembersError"] = Field()
 
 
 class BugtrackerAddCompanyGroupsMembersResponse(BaseResponse):
@@ -21,7 +19,7 @@ class BugtrackerAddCompanyGroupsMembersResponse(BaseResponse):
 
 
 class BugtrackerAddCompanyMembersResponseModel(BaseModel):
-    errors: typing.List[str] = Field()
+    errors: list[str] = Field()
 
 
 class BugtrackerAddCompanyMembersResponse(BaseResponse):
@@ -30,10 +28,10 @@ class BugtrackerAddCompanyMembersResponse(BaseResponse):
 
 class BugtrackerCreateCommentResponseModel(BaseModel):
     comment: "BugtrackerComment" = Field()
-    comment_flood: typing.Optional[bool] = Field(
+    comment_flood: bool | None = Field(
         default=None,
     )
-    subscribe_state: typing.Optional["BugtrackerBugreportSubscribeState"] = Field(
+    subscribe_state: "BugtrackerBugreportSubscribeState | None" = Field(
         default=None,
     )
 
@@ -43,10 +41,10 @@ class BugtrackerCreateCommentResponse(BaseResponse):
 
 
 class BugtrackerGetBugreportByIdResponseModel(BaseModel):
-    bugreport: typing.Optional["BugtrackerBugreport"] = Field(
+    bugreport: "BugtrackerBugreport | None" = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
 
@@ -56,8 +54,8 @@ class BugtrackerGetBugreportByIdResponse(BaseResponse):
 
 
 class BugtrackerGetCompanyGroupMembersResponseModel(BaseModel):
-    user_ids: typing.List[int] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    user_ids: list[int] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
 
@@ -67,9 +65,9 @@ class BugtrackerGetCompanyGroupMembersResponse(BaseResponse):
 
 
 class BugtrackerGetCompanyMembersResponseModel(BaseModel):
-    company_members: typing.List["BugtrackerCompanyMember"] = Field()
+    company_members: list["BugtrackerCompanyMember"] = Field()
     count: int = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
 
@@ -80,19 +78,19 @@ class BugtrackerGetCompanyMembersResponse(BaseResponse):
 
 class BugtrackerGetDownloadVersionUrlResponseModel(BaseModel):
     url: str = Field()
-    app_title: typing.Optional[str] = Field(
+    app_title: str | None = Field(
         default=None,
     )
-    bundle_name: typing.Optional[str] = Field(
+    bundle_name: str | None = Field(
         default=None,
     )
-    build_id: typing.Optional[int] = Field(
+    build_id: int | None = Field(
         default=None,
     )
-    build_name: typing.Optional[str] = Field(
+    build_name: str | None = Field(
         default=None,
     )
-    build_title: typing.Optional[str] = Field(
+    build_title: str | None = Field(
         default=None,
     )
 

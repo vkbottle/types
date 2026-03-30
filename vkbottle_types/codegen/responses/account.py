@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AccountAccountCounters,
@@ -16,7 +14,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class AccountChangePasswordResponseModel(BaseModel):
     token: str = Field()
-    secret: typing.Optional[str] = Field(
+    secret: str | None = Field(
         default=None,
     )
 
@@ -27,7 +25,7 @@ class AccountChangePasswordResponse(BaseResponse):
 
 class AccountGetActiveOffersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AccountOffer"] = Field()
+    items: list["AccountOffer"] = Field()
 
 
 class AccountGetActiveOffersResponse(BaseResponse):
@@ -40,11 +38,11 @@ class AccountGetAppPermissionsResponse(BaseResponse):
 
 class AccountGetBannedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list[int] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroup"]] = Field(
+    groups: list["GroupsGroup"] | None = Field(
         default=None,
     )
 
@@ -71,7 +69,7 @@ class AccountGetPushSettingsResponse(BaseResponse):
 
 class AccountSaveProfileInfoResponseModel(BaseModel):
     changed: bool = Field()
-    name_request: typing.Optional["AccountNameRequest"] = Field(
+    name_request: "AccountNameRequest | None" = Field(
         default=None,
     )
 

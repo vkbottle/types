@@ -12,7 +12,7 @@ from vkbottle_types.responses.stories import *  # noqa: F401,F403  # type: ignor
 class StoriesCategory(BaseCategory):
     async def ban_owner(
         self,
-        owners_ids: typing.List[int],
+        owners_ids: list[int],
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stories.banOwner()`
@@ -27,9 +27,9 @@ class StoriesCategory(BaseCategory):
 
     async def delete(
         self,
-        owner_id: typing.Optional[int] = None,
-        stories: typing.Optional[typing.List[str]] = None,
-        story_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
+        stories: list[str] | None = None,
+        story_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stories.delete()`
@@ -46,9 +46,9 @@ class StoriesCategory(BaseCategory):
 
     async def get(
         self,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetV5113ResponseModel:
         """Method `stories.get()`
@@ -67,24 +67,24 @@ class StoriesCategory(BaseCategory):
     async def get_banned(
         self,
         extended: typing.Literal[True],
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetBannedExtendedResponseModel: ...
 
     @typing.overload
     async def get_banned(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        extended: typing.Literal[False] | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetBannedResponseModel: ...
 
     async def get_banned(
         self,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[StoriesGetBannedExtendedResponseModel, StoriesGetBannedResponseModel]:
+    ) -> StoriesGetBannedExtendedResponseModel | StoriesGetBannedResponseModel:
         """Method `stories.getBanned()`
 
         :param extended: '1' - to return additional fields for users and communities. Default value is 0.
@@ -102,9 +102,9 @@ class StoriesCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        stories: typing.List[str],
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        stories: list[str],
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetByIdExtendedResponseModel:
         """Method `stories.getById()`
@@ -121,13 +121,13 @@ class StoriesCategory(BaseCategory):
 
     async def get_photo_upload_server(
         self,
-        add_to_news: typing.Optional[bool] = None,
-        clickable_stickers: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        link_text: typing.Optional[str] = None,
-        link_url: typing.Optional[str] = None,
-        reply_to_story: typing.Optional[str] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        add_to_news: bool | None = None,
+        clickable_stickers: str | None = None,
+        group_id: int | None = None,
+        link_text: str | None = None,
+        link_url: str | None = None,
+        reply_to_story: str | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetPhotoUploadServerResponseModel:
         """Method `stories.getPhotoUploadServer()`
@@ -136,7 +136,7 @@ class StoriesCategory(BaseCategory):
         :param clickable_stickers:
         :param group_id: ID of the community to upload the story (should be verified or with the "fire" icon).
         :param link_text: Link text (for community's stories only).
-        :param link_url: Link URL. Internal links on https://vk.ru only.
+        :param link_url: Link URL. Internal links on https://vk.com only.
         :param reply_to_story: ID of the story to reply with the current.
         :param user_ids: List of users IDs who can see the story.
         """
@@ -150,9 +150,9 @@ class StoriesCategory(BaseCategory):
         self,
         owner_id: int,
         story_id: int,
-        access_key: typing.Optional[str] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        access_key: str | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetV5113ResponseModel:
         """Method `stories.getReplies()`
@@ -188,13 +188,13 @@ class StoriesCategory(BaseCategory):
 
     async def get_video_upload_server(
         self,
-        add_to_news: typing.Optional[bool] = None,
-        clickable_stickers: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        link_text: typing.Optional[str] = None,
-        link_url: typing.Optional[str] = None,
-        reply_to_story: typing.Optional[str] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        add_to_news: bool | None = None,
+        clickable_stickers: str | None = None,
+        group_id: int | None = None,
+        link_text: str | None = None,
+        link_url: str | None = None,
+        reply_to_story: str | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetVideoUploadServerResponseModel:
         """Method `stories.getVideoUploadServer()`
@@ -203,7 +203,7 @@ class StoriesCategory(BaseCategory):
         :param clickable_stickers:
         :param group_id: ID of the community to upload the story (should be verified or with the "fire" icon).
         :param link_text: Link text (for community's stories only).
-        :param link_url: Link URL. Internal links on https://vk.ru only.
+        :param link_url: Link URL. Internal links on https://vk.com only.
         :param reply_to_story: ID of the story to reply with the current.
         :param user_ids: List of users IDs who can see the story.
         """
@@ -216,11 +216,11 @@ class StoriesCategory(BaseCategory):
     async def get_viewers(
         self,
         story_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetViewersExtendedV5115ResponseModel:
         """Method `stories.getViewers()`
@@ -241,7 +241,7 @@ class StoriesCategory(BaseCategory):
     async def hide_all_replies(
         self,
         owner_id: int,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stories.hideAllReplies()`
@@ -274,10 +274,10 @@ class StoriesCategory(BaseCategory):
 
     async def save(
         self,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        upload_results: typing.Optional[typing.List[str]] = None,
-        upload_results_json: typing.Optional[str] = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        upload_results: list[str] | None = None,
+        upload_results_json: str | None = None,
         **kwargs: typing.Any,
     ) -> StoriesSaveResponseModel:
         """Method `stories.save()`
@@ -295,15 +295,15 @@ class StoriesCategory(BaseCategory):
 
     async def search(
         self,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        mentioned_id: typing.Optional[int] = None,
-        place_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        radius: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        mentioned_id: int | None = None,
+        place_id: int | None = None,
+        q: str | None = None,
+        radius: int | None = None,
         **kwargs: typing.Any,
     ) -> StoriesGetV5113ResponseModel:
         """Method `stories.search()`
@@ -327,10 +327,10 @@ class StoriesCategory(BaseCategory):
     async def send_interaction(
         self,
         access_key: str,
-        is_anonymous: typing.Optional[bool] = None,
-        is_broadcast: typing.Optional[bool] = None,
-        message: typing.Optional[str] = None,
-        unseen_marker: typing.Optional[bool] = None,
+        is_anonymous: bool | None = None,
+        is_broadcast: bool | None = None,
+        message: str | None = None,
+        unseen_marker: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stories.sendInteraction()`
@@ -349,7 +349,7 @@ class StoriesCategory(BaseCategory):
 
     async def unban_owner(
         self,
-        owners_ids: typing.List[int],
+        owners_ids: list[int],
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stories.unbanOwner()`

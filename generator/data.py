@@ -185,6 +185,7 @@ class Method:
                     self.responses.pop(name)
 
             return dependants
+
         return []
 
     def get_dependants_dependant_parameters(self) -> dict[str, str]:
@@ -213,12 +214,13 @@ class Method:
     def get_response_hint(self) -> str:
         responses = get_responses(self.responses)  # type: ignore
         if not responses:
-            return "typing.Dict[str, typing.Any]"
+            return "dict[str, typing.Any]"
         if len(responses) > 1:
             responses_hints = self.get_responses_hints()
             if len(responses_hints) == 1 or not self.get_dependants():
                 return responses_hints[0]
-            return "typing.Union[{}]".format(", ".join(responses_hints))
+            union = " | ".join(x.strip('"').strip("'") for x in responses_hints)
+            return "{}".format(f'"{union}"' if any("Literal" not in x and ("'" in x or '"' in x) for x in responses_hints) else union)
         return get_complex_type(responses[0], response=True)
 
     def get_response_model(self) -> str:
@@ -267,7 +269,11 @@ def wrap_optional(func):
     def wrapper(self: "Property", **kw: typing.Any) -> str:
         response = func(self, **kw)
         if self.is_optional:
-            response = "typing.Optional[{}]".format(response)
+            response = (
+                "{} | None".format(response)
+                if not response.startswith("'") or not response.endswith("'")
+                else '"{} | None"'.format(response.strip('"').strip("'"))
+            )
         return response
 
     return wrapper
@@ -310,7 +316,7 @@ class Property:
             return repr(propname)
 
         if t == "dict" and response:
-            return "typing.Dict[str, typing.Any]"
+            return "dict[str, typing.Any]"
         return t
 
     @property
@@ -324,7 +330,7 @@ class Property:
             for i, enum in enumerate(self.enum):
                 if enum == self.default:
                     return model_name + "." + self.enumNames[i].replace(" ", "_").upper()
-        if self.type == "boolean":
+        if self.type in ("boolean", "BaseBoolInt"):
             return bool(self.default)
         return self.default
 
@@ -348,9 +354,8 @@ class Definition:
 
     @property
     def is_typealias(self) -> bool:
-        return (
-            bool(self.type == "integer" and UNIX_TIMESTAMP_DESCRIPTION_TEXT in (self.description or ""))
-            or (self.type != "object" and not any((self.properties, self.allOf, self.enum, self.sub_definitions)))
+        return bool(self.type == "integer" and UNIX_TIMESTAMP_DESCRIPTION_TEXT in (self.description or "")) or (
+            self.type != "object" and not any((self.properties, self.allOf, self.enum, self.sub_definitions))
         )
 
     @property
@@ -372,7 +377,7 @@ class Definition:
                 return Definition(type="object", allOf=self.allOf, properties=properties)
         return None
 
-    def get_properties(self) -> typing.List[Property]:
+    def get_properties(self) -> list[Property]:
         return sorted(self.properties, key=lambda x: x.is_optional)
 
     def get_enums(self, definition_name: str) -> typing.Iterator["Definition"]:

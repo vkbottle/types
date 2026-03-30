@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AdsAccount,
@@ -36,7 +34,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 
 class AdsAddOfficeUsersResponse(BaseResponse):
-    response: typing.List[bool] = Field()
+    response: list[bool] = Field()
 
 
 class AdsCheckLinkResponse(BaseResponse):
@@ -44,19 +42,19 @@ class AdsCheckLinkResponse(BaseResponse):
 
 
 class AdsCreateAdsResponse(BaseResponse):
-    response: typing.List["AdsCreateAdStatus"] = Field()
+    response: list["AdsCreateAdStatus"] = Field()
 
 
 class AdsCreateCampaignsResponse(BaseResponse):
-    response: typing.List["AdsCreateCampaignStatus"] = Field()
+    response: list["AdsCreateCampaignStatus"] = Field()
 
 
 class AdsCreateClientsResponse(BaseResponse):
-    response: typing.List["AdsCreateClientsStatus"] = Field()
+    response: list["AdsCreateClientsStatus"] = Field()
 
 
 class AdsCreateLookalikeRequestResponseModel(BaseModel):
-    request_id: typing.Optional[int] = Field(
+    request_id: int | None = Field(
         default=None,
     )
 
@@ -66,10 +64,10 @@ class AdsCreateLookalikeRequestResponse(BaseResponse):
 
 
 class AdsCreateTargetGroupResponseModel(BaseModel):
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
-    pixel: typing.Optional[str] = Field(
+    pixel: str | None = Field(
         default=None,
     )
 
@@ -79,10 +77,10 @@ class AdsCreateTargetGroupResponse(BaseResponse):
 
 
 class AdsCreateTargetPixelResponseModel(BaseModel):
-    id: typing.Optional[int] = Field(
+    id: int | None = Field(
         default=None,
     )
-    pixel: typing.Optional[str] = Field(
+    pixel: str | None = Field(
         default=None,
     )
 
@@ -92,31 +90,31 @@ class AdsCreateTargetPixelResponse(BaseResponse):
 
 
 class AdsDeleteAdsResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class AdsDeleteCampaignsResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class AdsDeleteClientsResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class AdsGetAccountsResponse(BaseResponse):
-    response: typing.List["AdsAccount"] = Field()
+    response: list["AdsAccount"] = Field()
 
 
 class AdsGetAdsLayoutResponse(BaseResponse):
-    response: typing.List["AdsAdLayout"] = Field()
+    response: list["AdsAdLayout"] = Field()
 
 
 class AdsGetAdsTargetingResponse(BaseResponse):
-    response: typing.List["AdsTargSettings"] = Field()
+    response: list["AdsTargSettings"] = Field()
 
 
 class AdsGetAdsResponse(BaseResponse):
-    response: typing.List["AdsAd"] = Field()
+    response: list["AdsAd"] = Field()
 
 
 class AdsGetBudgetResponse(BaseResponse):
@@ -124,14 +122,14 @@ class AdsGetBudgetResponse(BaseResponse):
 
 
 class AdsGetCampaignsResponse(BaseResponse):
-    response: typing.List["AdsCampaign"] = Field()
+    response: list["AdsCampaign"] = Field()
 
 
 class AdsGetCategoriesResponseModel(BaseModel):
-    v1: typing.Optional[typing.List["AdsCategory"]] = Field(
+    v1: list["AdsCategory"] | None = Field(
         default=None,
     )
-    v2: typing.Optional[typing.List["AdsCategory"]] = Field(
+    v2: list["AdsCategory"] | None = Field(
         default=None,
     )
 
@@ -141,11 +139,11 @@ class AdsGetCategoriesResponse(BaseResponse):
 
 
 class AdsGetClientsResponse(BaseResponse):
-    response: typing.List["AdsClient"] = Field()
+    response: list["AdsClient"] = Field()
 
 
 class AdsGetDemographicsResponse(BaseResponse):
-    response: typing.List["AdsDemoStats"] = Field()
+    response: list["AdsDemoStats"] = Field()
 
 
 class AdsGetFloodStatsResponse(BaseResponse):
@@ -154,7 +152,7 @@ class AdsGetFloodStatsResponse(BaseResponse):
 
 class AdsGetLookalikeRequestsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AdsLookalikeRequest"] = Field()
+    items: list["AdsLookalikeRequest"] = Field()
 
 
 class AdsGetLookalikeRequestsResponse(BaseResponse):
@@ -162,7 +160,7 @@ class AdsGetLookalikeRequestsResponse(BaseResponse):
 
 
 class AdsGetMusiciansResponseModel(BaseModel):
-    items: typing.List["AdsMusician"] = Field()
+    items: list["AdsMusician"] = Field()
 
 
 class AdsGetMusiciansResponse(BaseResponse):
@@ -170,11 +168,11 @@ class AdsGetMusiciansResponse(BaseResponse):
 
 
 class AdsGetOfficeUsersResponse(BaseResponse):
-    response: typing.List["AdsUsers"] = Field()
+    response: list["AdsUsers"] = Field()
 
 
 class AdsGetPostsReachResponse(BaseResponse):
-    response: typing.List["AdsPromotedPostReach"] = Field()
+    response: list["AdsPromotedPostReach"] = Field()
 
 
 class AdsGetRejectionReasonResponse(BaseResponse):
@@ -182,31 +180,31 @@ class AdsGetRejectionReasonResponse(BaseResponse):
 
 
 class AdsGetStatisticsResponse(BaseResponse):
-    response: typing.List["AdsStats"] = Field()
+    response: list["AdsStats"] = Field()
 
 
 class AdsGetSuggestionsCitiesResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsCities"] = Field()
+    response: list["AdsTargSuggestionsCities"] = Field()
 
 
 class AdsGetSuggestionsRegionsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsRegions"] = Field()
+    response: list["AdsTargSuggestionsRegions"] = Field()
 
 
 class AdsGetSuggestionsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestions"] = Field()
+    response: list["AdsTargSuggestions"] = Field()
 
 
 class AdsGetSuggestionsSchoolsResponse(BaseResponse):
-    response: typing.List["AdsTargSuggestionsSchools"] = Field()
+    response: list["AdsTargSuggestionsSchools"] = Field()
 
 
 class AdsGetTargetGroupsResponse(BaseResponse):
-    response: typing.List["AdsTargetGroup"] = Field()
+    response: list["AdsTargetGroup"] = Field()
 
 
 class AdsGetTargetPixelsResponse(BaseResponse):
-    response: typing.List["AdsTargetPixelInfo"] = Field()
+    response: list["AdsTargetPixelInfo"] = Field()
 
 
 class AdsGetTargetingStatsResponse(BaseResponse):
@@ -226,7 +224,7 @@ class AdsImportTargetContactsResponse(BaseResponse):
 
 
 class AdsRemoveOfficeUsersResponse(BaseResponse):
-    response: typing.List[bool] = Field()
+    response: list[bool] = Field()
 
 
 class AdsRemoveTargetContactsResponseModel(BaseModel):
@@ -255,16 +253,16 @@ class AdsShareTargetGroupResponse(BaseResponse):
 
 
 class AdsUpdateAdsResponse(BaseResponse):
-    response: typing.List["AdsUpdateAdsStatus"] = Field()
+    response: list["AdsUpdateAdsStatus"] = Field()
 
 
 class AdsUpdateCampaignsResponse(BaseResponse):
-    response: typing.List["AdsCreateCampaignStatus"] = Field()
+    response: list["AdsCreateCampaignStatus"] = Field()
 
 
 class AdsUpdateClientsResponse(BaseResponse):
-    response: typing.List["AdsUpdateClientsStatus"] = Field()
+    response: list["AdsUpdateClientsStatus"] = Field()
 
 
 class AdsUpdateOfficeUsersResponse(BaseResponse):
-    response: typing.List["AdsUpdateOfficeUsersResult"] = Field()
+    response: list["AdsUpdateOfficeUsersResult"] = Field()

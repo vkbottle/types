@@ -18,21 +18,21 @@ class MarketCategory(BaseCategory):
         description: str,
         name: str,
         owner_id: int,
-        deleted: typing.Optional[bool] = None,
-        dimension_height: typing.Optional[int] = None,
-        dimension_length: typing.Optional[int] = None,
-        dimension_width: typing.Optional[int] = None,
-        is_main_variant: typing.Optional[bool] = None,
-        main_photo_id: typing.Optional[int] = None,
-        old_price: typing.Optional[float] = None,
-        photo_ids: typing.Optional[typing.List[int]] = None,
-        price: typing.Optional[float] = None,
-        sku: typing.Optional[str] = None,
-        stock_amount: typing.Optional[int] = None,
-        url: typing.Optional[str] = None,
-        variant_ids: typing.Optional[typing.List[int]] = None,
-        video_ids: typing.Optional[typing.List[int]] = None,
-        weight: typing.Optional[int] = None,
+        deleted: bool | None = None,
+        dimension_height: int | None = None,
+        dimension_length: int | None = None,
+        dimension_width: int | None = None,
+        is_main_variant: bool | None = None,
+        main_photo_id: int | None = None,
+        old_price: float | None = None,
+        photo_ids: list[int] | None = None,
+        price: float | None = None,
+        sku: str | None = None,
+        stock_amount: int | None = None,
+        url: str | None = None,
+        variant_ids: list[int] | None = None,
+        video_ids: list[int] | None = None,
+        weight: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketAddResponseModel:
         """Method `market.add()`
@@ -67,9 +67,9 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         title: str,
-        is_hidden: typing.Optional[bool] = None,
-        main_album: typing.Optional[bool] = None,
-        photo_id: typing.Optional[int] = None,
+        is_hidden: bool | None = None,
+        main_album: bool | None = None,
+        photo_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketAddAlbumResponseModel:
         """Method `market.addAlbum()`
@@ -124,8 +124,8 @@ class MarketCategory(BaseCategory):
 
     async def add_to_album(
         self,
-        album_ids: typing.List[int],
-        item_ids: typing.List[int],
+        album_ids: list[int],
+        item_ids: list[int],
         owner_id: int,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
@@ -145,12 +145,12 @@ class MarketCategory(BaseCategory):
         self,
         item_id: int,
         owner_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        from_group: typing.Optional[bool] = None,
-        guid: typing.Optional[str] = None,
-        message: typing.Optional[str] = None,
-        reply_to_comment: typing.Optional[int] = None,
-        sticker_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        from_group: bool | None = None,
+        guid: str | None = None,
+        message: str | None = None,
+        reply_to_comment: int | None = None,
+        sticker_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `market.createComment()`
@@ -213,7 +213,7 @@ class MarketCategory(BaseCategory):
         """Method `market.deleteComment()`
 
         :param comment_id: comment id
-        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
+        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())
@@ -259,24 +259,24 @@ class MarketCategory(BaseCategory):
         self,
         item_id: int,
         owner_id: int,
-        category_id: typing.Optional[int] = None,
-        deleted: typing.Optional[bool] = None,
-        description: typing.Optional[str] = None,
-        dimension_height: typing.Optional[int] = None,
-        dimension_length: typing.Optional[int] = None,
-        dimension_width: typing.Optional[int] = None,
-        is_main_variant: typing.Optional[bool] = None,
-        main_photo_id: typing.Optional[int] = None,
-        name: typing.Optional[str] = None,
-        old_price: typing.Optional[float] = None,
-        photo_ids: typing.Optional[typing.List[int]] = None,
-        price: typing.Optional[float] = None,
-        sku: typing.Optional[str] = None,
-        stock_amount: typing.Optional[int] = None,
-        url: typing.Optional[str] = None,
-        variant_ids: typing.Optional[typing.List[int]] = None,
-        video_ids: typing.Optional[typing.List[int]] = None,
-        weight: typing.Optional[int] = None,
+        category_id: int | None = None,
+        deleted: bool | None = None,
+        description: str | None = None,
+        dimension_height: int | None = None,
+        dimension_length: int | None = None,
+        dimension_width: int | None = None,
+        is_main_variant: bool | None = None,
+        main_photo_id: int | None = None,
+        name: str | None = None,
+        old_price: float | None = None,
+        photo_ids: list[int] | None = None,
+        price: float | None = None,
+        sku: str | None = None,
+        stock_amount: int | None = None,
+        url: str | None = None,
+        variant_ids: list[int] | None = None,
+        video_ids: list[int] | None = None,
+        weight: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.edit()`
@@ -313,9 +313,9 @@ class MarketCategory(BaseCategory):
         album_id: int,
         owner_id: int,
         title: str,
-        is_hidden: typing.Optional[bool] = None,
-        main_album: typing.Optional[bool] = None,
-        photo_id: typing.Optional[int] = None,
+        is_hidden: bool | None = None,
+        main_album: bool | None = None,
+        photo_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.editAlbum()`
@@ -337,8 +337,8 @@ class MarketCategory(BaseCategory):
         self,
         comment_id: int,
         owner_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        message: typing.Optional[str] = None,
+        attachments: list[str] | None = None,
+        message: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.editComment()`
@@ -358,17 +358,17 @@ class MarketCategory(BaseCategory):
         self,
         order_id: int,
         user_id: int,
-        comment_for_user: typing.Optional[str] = None,
-        delivery_price: typing.Optional[int] = None,
-        height: typing.Optional[int] = None,
-        length: typing.Optional[int] = None,
-        merchant_comment: typing.Optional[str] = None,
-        payment_status: typing.Optional[str] = None,
-        receipt_link: typing.Optional[str] = None,
-        status: typing.Optional[int] = None,
-        track_number: typing.Optional[str] = None,
-        weight: typing.Optional[int] = None,
-        width: typing.Optional[int] = None,
+        comment_for_user: str | None = None,
+        delivery_price: int | None = None,
+        height: int | None = None,
+        length: int | None = None,
+        merchant_comment: str | None = None,
+        payment_status: str | None = None,
+        receipt_link: str | None = None,
+        status: int | None = None,
+        track_number: str | None = None,
+        weight: int | None = None,
+        width: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.editOrder()`
@@ -433,9 +433,9 @@ class MarketCategory(BaseCategory):
 
     async def filter_categories(
         self,
-        category_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        query: typing.Optional[str] = None,
+        category_id: int | None = None,
+        count: int | None = None,
+        query: str | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetCategoriesNewResponseModel:
         """Method `market.filterCategories()`
@@ -455,14 +455,14 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         extended: typing.Literal[True],
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        with_disabled: typing.Optional[bool] = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        fields: list[str] | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        with_disabled: bool | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetExtendedResponseModel: ...
 
@@ -470,35 +470,35 @@ class MarketCategory(BaseCategory):
     async def get(
         self,
         owner_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        with_disabled: typing.Optional[bool] = None,
+        extended: typing.Literal[False] | None = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        fields: list[str] | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        with_disabled: bool | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetResponseModel: ...
 
     async def get(
         self,
         owner_id: int,
-        extended: typing.Optional[bool] = None,
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        with_disabled: typing.Optional[bool] = None,
+        extended: bool | None = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        fields: list[str] | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        with_disabled: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetResponseModel, MarketGetExtendedResponseModel]:
+    ) -> MarketGetExtendedResponseModel | MarketGetResponseModel:
         """Method `market.get()`
 
-        :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
+        :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         :param extended: '1' - method will return additional fields: 'likes, can_comment, car_repost, photos'. These parameters are not returned by default.
         :param album_id:
         :param count: Number of items to return.
@@ -521,14 +521,14 @@ class MarketCategory(BaseCategory):
 
     async def get_album_by_id(
         self,
-        album_ids: typing.List[int],
+        album_ids: list[int],
         owner_id: int,
         **kwargs: typing.Any,
     ) -> MarketGetAlbumByIdResponseModel:
         """Method `market.getAlbumById()`
 
         :param album_ids: collections identifiers to obtain data from
-        :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
+        :param owner_id: identifier of an album owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())
@@ -539,8 +539,8 @@ class MarketCategory(BaseCategory):
     async def get_albums(
         self,
         owner_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetAlbumsResponseModel:
         """Method `market.getAlbums()`
@@ -558,7 +558,7 @@ class MarketCategory(BaseCategory):
     @typing.overload
     async def get_by_id(
         self,
-        item_ids: typing.List[str],
+        item_ids: list[str],
         extended: typing.Literal[True],
         **kwargs: typing.Any,
     ) -> MarketGetByIdExtendedResponseModel: ...
@@ -566,17 +566,17 @@ class MarketCategory(BaseCategory):
     @typing.overload
     async def get_by_id(
         self,
-        item_ids: typing.List[str],
-        extended: typing.Optional[typing.Literal[False]] = None,
+        item_ids: list[str],
+        extended: typing.Literal[False] | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
-        item_ids: typing.List[str],
-        extended: typing.Optional[bool] = None,
+        item_ids: list[str],
+        extended: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetByIdExtendedResponseModel, MarketGetByIdResponseModel]:
+    ) -> MarketGetByIdExtendedResponseModel | MarketGetByIdResponseModel:
         """Method `market.getById()`
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"
@@ -594,8 +594,8 @@ class MarketCategory(BaseCategory):
 
     async def get_categories(
         self,
-        album_id: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
+        album_id: int | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetCategoriesNewResponseModel:
         """Method `market.getCategories()`
@@ -613,13 +613,13 @@ class MarketCategory(BaseCategory):
         self,
         item_id: int,
         owner_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetCommentsResponseModel:
         """Method `market.getComments()`
@@ -628,7 +628,7 @@ class MarketCategory(BaseCategory):
         :param owner_id: ID of an item owner community
         :param count: Number of results to return.
         :param extended: '1' - comments will be returned as numbered objects, in addition lists of 'profiles' and 'groups' objects will be returned.
-        :param fields: List of additional profile fields to return. See the [vk.ru/dev/fields|details]
+        :param fields: List of additional profile fields to return. See the [vk.com/dev/fields|details]
         :param need_likes: '1' - to return likes info.
         :param offset:
         :param sort: Sort order ('asc' - from old to new, 'desc' - from new to old)
@@ -642,10 +642,10 @@ class MarketCategory(BaseCategory):
 
     async def get_faves_for_attach(
         self,
-        count: typing.Optional[int] = None,
-        current_group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        public_only: typing.Optional[bool] = None,
+        count: int | None = None,
+        current_group_id: int | None = None,
+        offset: int | None = None,
+        public_only: bool | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetFavesForAttachResponseModel:
         """Method `market.getFavesForAttach()`
@@ -663,9 +663,9 @@ class MarketCategory(BaseCategory):
 
     async def get_group_orders(
         self,
-        count: typing.Optional[int] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        group_id: int | str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetGroupOrdersResponseModel:
         """Method `market.getGroupOrders()`
@@ -683,8 +683,8 @@ class MarketCategory(BaseCategory):
     async def get_order_by_id(
         self,
         order_id: int,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetOrderByIdResponseModel:
         """Method `market.getOrderById()`
@@ -702,9 +702,9 @@ class MarketCategory(BaseCategory):
     async def get_order_items(
         self,
         order_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetOrderItemsResponseModel:
         """Method `market.getOrderItems()`
@@ -724,33 +724,33 @@ class MarketCategory(BaseCategory):
     async def get_orders(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetOrdersExtendedResponseModel: ...
 
     @typing.overload
     async def get_orders(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGetOrdersResponseModel: ...
 
     async def get_orders(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        date_from: typing.Optional[str] = None,
-        date_to: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        date_from: str | None = None,
+        date_to: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketGetOrdersResponseModel, MarketGetOrdersExtendedResponseModel]:
+    ) -> MarketGetOrdersResponseModel | MarketGetOrdersExtendedResponseModel:
         """Method `market.getOrders()`
 
         :param extended:
@@ -772,7 +772,7 @@ class MarketCategory(BaseCategory):
     async def get_product_photo_upload_server(
         self,
         group_id: int,
-        bulk: typing.Optional[bool] = None,
+        bulk: bool | None = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `market.getProductPhotoUploadServer()`
@@ -804,8 +804,8 @@ class MarketCategory(BaseCategory):
     async def group_items(
         self,
         group_id: int,
-        item_ids: typing.List[int],
-        item_group_id: typing.Optional[int] = None,
+        item_ids: list[int],
+        item_group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketGroupItemsResponseModel:
         """Method `market.groupItems()`
@@ -822,7 +822,7 @@ class MarketCategory(BaseCategory):
 
     async def remove_from_album(
         self,
-        album_ids: typing.List[int],
+        album_ids: list[int],
         item_id: int,
         owner_id: int,
         **kwargs: typing.Any,
@@ -843,8 +843,8 @@ class MarketCategory(BaseCategory):
         self,
         album_id: int,
         owner_id: int,
-        after: typing.Optional[int] = None,
-        before: typing.Optional[int] = None,
+        after: int | None = None,
+        before: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.reorderAlbums()`
@@ -864,9 +864,9 @@ class MarketCategory(BaseCategory):
         self,
         item_id: int,
         owner_id: int,
-        after: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = None,
-        before: typing.Optional[int] = None,
+        after: int | None = None,
+        album_id: int | None = None,
+        before: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.reorderItems()`
@@ -887,7 +887,7 @@ class MarketCategory(BaseCategory):
         self,
         item_id: int,
         owner_id: int,
-        reason: typing.Optional[int] = None,
+        reason: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `market.report()`
@@ -947,7 +947,7 @@ class MarketCategory(BaseCategory):
         """Method `market.restoreComment()`
 
         :param comment_id: deleted comment id
-        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.ru/apiclub|VK API] community "
+        :param owner_id: identifier of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
         """
 
         params = self.get_set_params(locals())
@@ -974,7 +974,7 @@ class MarketCategory(BaseCategory):
         self,
         upload_response: str,
         **kwargs: typing.Any,
-    ) -> typing.List[MarketUploadPhotoData]:
+    ) -> list[MarketUploadPhotoData]:
         """Method `market.saveProductPhotoBulk()`
 
         :param upload_response: Upload response
@@ -990,16 +990,16 @@ class MarketCategory(BaseCategory):
         self,
         owner_id: int,
         extended: typing.Literal[True],
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        price_from: typing.Optional[int] = None,
-        price_to: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        rev: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        status: typing.Optional[typing.List[int]] = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        price_from: int | None = None,
+        price_to: int | None = None,
+        q: str | None = None,
+        rev: int | None = None,
+        sort: int | None = None,
+        status: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> MarketSearchExtendedResponseModel: ...
 
@@ -1007,36 +1007,36 @@ class MarketCategory(BaseCategory):
     async def search(
         self,
         owner_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        price_from: typing.Optional[int] = None,
-        price_to: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        rev: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        status: typing.Optional[typing.List[int]] = None,
+        extended: typing.Literal[False] | None = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        price_from: int | None = None,
+        price_to: int | None = None,
+        q: str | None = None,
+        rev: int | None = None,
+        sort: int | None = None,
+        status: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> MarketSearchResponseModel: ...
 
     async def search(
         self,
         owner_id: int,
-        extended: typing.Optional[bool] = None,
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        need_variants: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        price_from: typing.Optional[int] = None,
-        price_to: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        rev: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        status: typing.Optional[typing.List[int]] = None,
+        extended: bool | None = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        need_variants: bool | None = None,
+        offset: int | None = None,
+        price_from: int | None = None,
+        price_to: int | None = None,
+        q: str | None = None,
+        rev: int | None = None,
+        sort: int | None = None,
+        status: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MarketSearchResponseModel, MarketSearchExtendedResponseModel]:
+    ) -> MarketSearchExtendedResponseModel | MarketSearchResponseModel:
         """Method `market.search()`
 
         :param owner_id: ID of an items owner community.
@@ -1065,15 +1065,15 @@ class MarketCategory(BaseCategory):
     async def search_items(
         self,
         q: str,
-        category_id: typing.Optional[int] = None,
-        city: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        country: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        price_from: typing.Optional[int] = None,
-        price_to: typing.Optional[int] = None,
-        sort_by: typing.Optional[int] = None,
-        sort_direction: typing.Optional[int] = None,
+        category_id: int | None = None,
+        city: int | None = None,
+        count: int | None = None,
+        country: int | None = None,
+        offset: int | None = None,
+        price_from: int | None = None,
+        price_to: int | None = None,
+        sort_by: int | None = None,
+        sort_direction: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketSearchResponseModel:
         """Method `market.searchItems()`
@@ -1098,16 +1098,16 @@ class MarketCategory(BaseCategory):
     async def search_items_basic(
         self,
         q: str,
-        category_id: typing.Optional[int] = None,
-        city: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        country: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        only_my_groups: typing.Optional[bool] = None,
-        price_from: typing.Optional[int] = None,
-        price_to: typing.Optional[int] = None,
-        sort_by: typing.Optional[int] = None,
-        sort_direction: typing.Optional[int] = None,
+        category_id: int | None = None,
+        city: int | None = None,
+        count: int | None = None,
+        country: int | None = None,
+        offset: int | None = None,
+        only_my_groups: bool | None = None,
+        price_from: int | None = None,
+        price_to: int | None = None,
+        sort_by: int | None = None,
+        sort_direction: int | None = None,
         **kwargs: typing.Any,
     ) -> MarketSearchBasicResponseModel:
         """Method `market.searchItemsBasic()`

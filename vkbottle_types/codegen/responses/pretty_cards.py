@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import PrettyCardsPrettyCard, PrettyCardsPrettyCardOrError
 from vkbottle_types.responses.base_response import BaseResponse
@@ -17,7 +15,7 @@ class PrettyCardsCreateResponse(BaseResponse):
 class PrettyCardsDeleteResponseModel(BaseModel):
     owner_id: int = Field()
     card_id: str = Field()
-    error: typing.Optional[str] = Field(
+    error: str | None = Field(
         default=None,
     )
 
@@ -36,7 +34,7 @@ class PrettyCardsEditResponse(BaseResponse):
 
 
 class PrettyCardsGetByIdResponse(BaseResponse):
-    response: typing.List["PrettyCardsPrettyCardOrError"] = Field()
+    response: list["PrettyCardsPrettyCardOrError"] = Field()
 
 
 class PrettyCardsGetUploadURLResponse(BaseResponse):
@@ -45,7 +43,7 @@ class PrettyCardsGetUploadURLResponse(BaseResponse):
 
 class PrettyCardsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PrettyCardsPrettyCard"] = Field()
+    items: list["PrettyCardsPrettyCard"] = Field()
 
 
 class PrettyCardsGetResponse(BaseResponse):

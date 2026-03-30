@@ -1,9 +1,7 @@
-import enum
-
-from ...base_model import BaseEnumMeta
+from ...base_model import BaseEnumMeta, StrEnum
 
 
-class GroupEventType(str, enum.Enum, metaclass=BaseEnumMeta):
+class GroupEventType(StrEnum, metaclass=BaseEnumMeta):
     MESSAGE_NEW = "message_new"
     MESSAGE_REPLY = "message_reply"
     MESSAGE_EDIT = "message_edit"
@@ -62,5 +60,5 @@ class GroupEventType(str, enum.Enum, metaclass=BaseEnumMeta):
     DONUT_MONEY_WITHDRAW = "donut_money_withdraw"
     DONUT_MONEY_WITHDRAW_ERROR = "donut_money_withdraw_error"
 
-    def __str__(self) -> str:
-        return str(self.value)
+
+__all__ = ("GroupEventType",)

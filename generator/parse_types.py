@@ -39,7 +39,7 @@ def transform_ref(ref_link: str) -> str:
     return name
 
 
-def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False) -> str:
+def get_complex_type(type_dct: dict[str, object], response: bool = False, hint: bool = False) -> str:
     if (type_ := type_dct.get("type")) and type_ != "object":
         return get_type(type_, type_dct.get("items", type_dct), hint=hint)
     elif ref := type_dct.get("$ref"):
@@ -58,8 +58,8 @@ def get_complex_type(type_dct: dict, response: bool = False, hint: bool = False)
 
 
 def get_type(
-    type_name: str | list[str] | dict | Ready,
-    items: dict | None = None,
+    type_name: str | list[str] | dict[str, object] | Ready,
+    items: dict[str, object] | None = None,
     hint: bool = False,
 ) -> str:
     if isinstance(type_name, Ready):
@@ -73,11 +73,11 @@ def get_type(
                 return "typing.Literal[{}]".format(", ".join(repr(literal) for literal in literals))
             return "str"
         case "array":
-            return "typing.List[{}]".format(get_complex_type(items, hint=hint))
+            return "list[{}]".format(get_complex_type(items, hint=hint))
         case "object":
             if "$ref" in items:
                 return get_complex_type(items, hint=True)
-            return "dict"
+            return "dict[str, typing.Any]"
         case "integer" if UNIX_TIMESTAMP_DESCRIPTION_TEXT in items.get("description", ""):
             return "datetime.datetime"
         case str(type_name):
@@ -85,7 +85,11 @@ def get_type(
                 raise RuntimeError(f"{type_name} not in primitive types")
             return PRIMITIVE_TYPES[type_name]
         case list(lst):
-            return "typing.Union{}".format([get_type(name, {}, hint=True) for name in lst])
+            types = [get_type(name, {}, hint=False) for name in lst]
+            union = " | ".join(t.strip("'").strip('"') for t in types)
+            return "{}".format(f'"{union}"' if any("Literal" not in x and ("'" in x or '"' in x) for x in types) else union)
+        case _:
+            pass
 
     raise RuntimeError(f"Cannot process {type_name} (items={items})")
 

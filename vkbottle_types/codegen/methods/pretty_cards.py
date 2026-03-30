@@ -12,9 +12,9 @@ class PrettyCardsCategory(BaseCategory):
         owner_id: int,
         photo: str,
         title: str,
-        button: typing.Optional[str] = None,
-        price: typing.Optional[str] = None,
-        price_old: typing.Optional[str] = None,
+        button: str | None = None,
+        price: str | None = None,
+        price_old: str | None = None,
         **kwargs: typing.Any,
     ) -> PrettyCardsCreateResponseModel:
         """Method `prettyCards.create()`
@@ -54,12 +54,12 @@ class PrettyCardsCategory(BaseCategory):
         self,
         card_id: int,
         owner_id: int,
-        button: typing.Optional[str] = None,
-        link: typing.Optional[str] = None,
-        photo: typing.Optional[str] = None,
-        price: typing.Optional[str] = None,
-        price_old: typing.Optional[str] = None,
-        title: typing.Optional[str] = None,
+        button: str | None = None,
+        link: str | None = None,
+        photo: str | None = None,
+        price: str | None = None,
+        price_old: str | None = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> PrettyCardsEditResponseModel:
         """Method `prettyCards.edit()`
@@ -82,8 +82,8 @@ class PrettyCardsCategory(BaseCategory):
     async def get(
         self,
         owner_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> PrettyCardsGetResponseModel:
         """Method `prettyCards.get()`
@@ -100,10 +100,10 @@ class PrettyCardsCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        card_ids: typing.List[int],
+        card_ids: list[int],
         owner_id: int,
         **kwargs: typing.Any,
-    ) -> typing.List[PrettyCardsPrettyCardOrError]:
+    ) -> list[PrettyCardsPrettyCardOrError]:
         """Method `prettyCards.getById()`
 
         :param card_ids:

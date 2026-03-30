@@ -1,6 +1,8 @@
 import itertools
 import keyword
 
+BUILTIN_TYPES = frozenset(("list", "dict", "str", "int", "float", "bool", "set", "frozenset", "tuple", "bytes"))
+
 
 def camelcase(s: str) -> str:
     return "".join(word[0].upper() + word[1:] for word in s.split("_"))
@@ -29,7 +31,7 @@ def snake_case(s: str) -> str:
 def makesafe(s: str) -> str:
     """Transforms arbitrary string into python-declarable name."""
 
-    if keyword.iskeyword(s) or s == "model":
+    if keyword.iskeyword(s) or s == "model" or s in BUILTIN_TYPES:
         s = s + "_"
     elif s[0].isdigit():
         s = "f__" + s
@@ -39,8 +41,16 @@ def makesafe(s: str) -> str:
     return snake_case(s)
 
 
+def makesafe_method_name(s: str) -> str:
+    if keyword.iskeyword(s):
+        return s + "_"
+    if s in ("dict", "list"):
+        return "get_" + s
+    return s
+
+
 def instring(s: str) -> str:
     return s.replace("'", "\\'").replace('"', '\\"')
 
 
-__all__ = ("camelcase", "snake_case", "makesafe", "instring")
+__all__ = ("camelcase", "snake_case", "makesafe", "instring", "makesafe_method_name")

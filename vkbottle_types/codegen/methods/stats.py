@@ -12,17 +12,17 @@ from vkbottle_types.responses.stats import *  # noqa: F401,F403  # type: ignore
 class StatsCategory(BaseCategory):
     async def get(
         self,
-        app_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        filters: typing.Optional[typing.List[str]] = None,
-        group_id: typing.Optional[int] = None,
-        interval: typing.Optional[str] = None,
-        intervals_count: typing.Optional[int] = None,
-        stats_groups: typing.Optional[typing.List[str]] = None,
-        timestamp_from: typing.Optional[float] = None,
-        timestamp_to: typing.Optional[float] = None,
+        app_id: int | None = None,
+        extended: bool | None = None,
+        filters: list[str] | None = None,
+        group_id: int | None = None,
+        interval: str | None = None,
+        intervals_count: int | None = None,
+        stats_groups: list[str] | None = None,
+        timestamp_from: float | None = None,
+        timestamp_to: float | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[StatsPeriod]:
+    ) -> list[StatsPeriod]:
         """Method `stats.get()`
 
         :param app_id: Application ID.
@@ -44,9 +44,9 @@ class StatsCategory(BaseCategory):
     async def get_post_reach(
         self,
         owner_id: int,
-        post_ids: typing.List[int],
+        post_ids: list[int],
         **kwargs: typing.Any,
-    ) -> typing.List[StatsWallpostStat]:
+    ) -> list[StatsWallpostStat]:
         """Method `stats.getPostReach()`
 
         :param owner_id: post owner community id. Specify with "-" sign.
@@ -60,7 +60,7 @@ class StatsCategory(BaseCategory):
 
     async def track_visitor(
         self,
-        type: typing.Optional[str] = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `stats.trackVisitor()`

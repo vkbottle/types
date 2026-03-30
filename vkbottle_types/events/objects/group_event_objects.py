@@ -1,4 +1,4 @@
-from typing import Any, List, Optional
+from typing import Any
 
 import pydantic
 
@@ -11,8 +11,8 @@ class BaseEventObject(BaseModel):
 
 
 class MessageNewObject(BaseEventObject):
-    client_info: Optional[ClientInfoForBots] = None
-    message: Optional[MessagesMessage] = None
+    client_info: ClientInfoForBots | None = None
+    message: MessagesMessage | None = None
 
 
 class MessageReplyObject(BaseEventObject, MessagesMessage):
@@ -33,17 +33,17 @@ class MessageDenyObject(BaseEventObject):
 
 
 class MessageTypingStateObject(BaseEventObject):
-    state: Optional[str] = None
-    from_id: Optional[int] = None
-    to_id: Optional[int] = None
+    state: str | None = None
+    from_id: int | None = None
+    to_id: int | None = None
 
 
 class MessageEventObject(BaseEventObject):
     user_id: int
     peer_id: int
     event_id: str
-    payload: Optional[dict] = None
-    conversation_message_id: Optional[int] = None
+    payload: dict[str, Any] | None = None
+    conversation_message_id: int | None = None
 
 
 class PhotoNewObject(BaseEventObject, PhotosPhoto):
@@ -100,7 +100,7 @@ class VideoCommentDeleteObject(BaseEventObject):
 
 
 class WallPostNewObject(BaseEventObject, WallWallpostFull):
-    postponed_id: Optional[int] = None
+    postponed_id: int | None = None
 
 
 class WallRepostObject(WallPostNewObject):
@@ -108,8 +108,8 @@ class WallRepostObject(WallPostNewObject):
 
 
 class WallReplyNewObject(BaseEventObject, WallWallComment):
-    post_id: Optional[int] = None
-    post_owner_id: Optional[int] = None
+    post_id: int | None = None
+    post_owner_id: int | None = None
 
 
 class WallReplyEditObject(WallReplyNewObject):
@@ -121,19 +121,19 @@ class WallReplyRestoreObject(WallReplyNewObject):
 
 
 class WallReplyDeleteObject(BaseEventObject):
-    owner_id: Optional[int] = None
-    id: Optional[int] = None
-    deleter_id: Optional[int] = None
-    post_id: Optional[int] = None
+    owner_id: int | None = None
+    id: int | None = None
+    deleter_id: int | None = None
+    post_id: int | None = None
 
 
 class LikeAddObject(BaseEventObject):
     liker_id: int
     object_id: int
     object_owner_id: int
-    object_type: Optional[CallbackLikeAddRemoveObjectType] = None
+    object_type: CallbackLikeAddRemoveObjectType | None = None
     post_id: int
-    thread_reply_id: Optional[int] = None
+    thread_reply_id: int | None = None
 
 
 class LikeRemoveObject(LikeAddObject):
@@ -143,7 +143,7 @@ class LikeRemoveObject(LikeAddObject):
 class LeadFormAnswerModel(BaseModel):
     key: str
     question: str
-    answer: Optional[str] = None
+    answer: str | None = None
 
 
 class LeadFormsNewObject(BaseEventObject):
@@ -152,12 +152,12 @@ class LeadFormsNewObject(BaseEventObject):
     form_id: int
     user_id: int
     form_name: str
-    answers: Optional[List[LeadFormAnswerModel]] = None
+    answers: list[LeadFormAnswerModel] | None = None
 
 
 class BoardPostNewObject(BaseEventObject, BoardTopicComment):
-    topic_id: Optional[int] = None
-    topic_owner_id: Optional[int] = None
+    topic_id: int | None = None
+    topic_owner_id: int | None = None
 
 
 class BoardPostEditObject(BoardPostNewObject):
@@ -178,9 +178,9 @@ class MarketCommentNewObject(BaseEventObject):
     date: int
     from_id: int
     id: int
-    market_owner_id: Optional[int] = None
-    photo_id: Optional[int] = None
-    text: Optional[str] = None
+    market_owner_id: int | None = None
+    photo_id: int | None = None
+    text: str | None = None
 
 
 class MarketCommentEditObject(MarketCommentNewObject):
@@ -207,8 +207,8 @@ class MarketOrderEditObject(MarketOrderNewObject):
 
 
 class GroupLeaveObject(BaseEventObject):
-    self: Optional[BaseBoolInt] = None
-    user_id: Optional[int] = None
+    self: bool | None = None
+    user_id: int | None = None
 
 
 class GroupJoinObject(BaseEventObject):
@@ -218,7 +218,7 @@ class GroupJoinObject(BaseEventObject):
 
 class UserBlockObject(BaseEventObject):
     admin_id: int
-    comment: Optional[str] = None
+    comment: str | None = None
     reason: int
     unblock_date: int
     user_id: int
@@ -245,25 +245,25 @@ class GroupOfficersEditObject(BaseEventObject):
 
 
 class GroupSettingsChangesObject(BaseEventObject):
-    access: Optional[GroupsGroupIsClosed] = None
-    age_limits: Optional[GroupsGroupFullAgeLimits] = None
-    description: Optional[str] = None
-    enable_audio: Optional[GroupsGroupAudio] = None
-    enable_market: Optional[CallbackGroupMarket] = None
-    enable_photo: Optional[GroupsGroupPhotos] = None
-    enable_status_default: Optional[GroupsGroupWall] = None
-    enable_video: Optional[GroupsGroupVideo] = None
-    public_category: Optional[int] = None
-    public_subcategory: Optional[int] = None
-    screen_name: Optional[str] = None
-    title: Optional[str] = None
-    website: Optional[str] = None
+    access: GroupsGroupIsClosed | None = None
+    age_limits: GroupsGroupFullAgeLimits | None = None
+    description: str | None = None
+    enable_audio: GroupsGroupAudio | None = None
+    enable_market: CallbackGroupMarket | None = None
+    enable_photo: GroupsGroupPhotos | None = None
+    enable_status_default: GroupsGroupWall | None = None
+    enable_video: GroupsGroupVideo | None = None
+    public_category: int | None = None
+    public_subcategory: int | None = None
+    screen_name: str | None = None
+    title: str | None = None
+    website: str | None = None
     old_value: Any
     new_value: Any
 
 
 class GroupChangeSettingsObject(BaseEventObject):
-    changes: Optional[GroupSettingsChangesObject] = None
+    changes: GroupSettingsChangesObject | None = None
     user_id: int
 
 
@@ -273,23 +273,23 @@ class GroupChangePhotoObject(BaseEventObject):
 
 
 class VkpayTransactionObject(BaseEventObject):
-    amount: Optional[int] = None
-    date: Optional[int] = None
-    description: Optional[str] = None
-    from_id: Optional[int] = None
+    amount: int | None = None
+    date: int | None = None
+    description: str | None = None
+    from_id: int | None = None
 
 
 class AppPayloadObject(BaseEventObject):
-    user_id: Optional[int] = None
-    app_id: Optional[int] = None
-    payload: Optional[str] = None
-    group_id: Optional[int] = None
+    user_id: int | None = None
+    app_id: int | None = None
+    payload: str | None = None
+    group_id: int | None = None
 
 
 class DonutSubscriptionCreateObject(BaseEventObject):
     amount: int
     amount_without_fee: float
-    user_id: Optional[int] = None
+    user_id: int | None = None
 
 
 class DonutSubscriptionProlongedObject(BaseEventObject):
@@ -297,19 +297,19 @@ class DonutSubscriptionProlongedObject(BaseEventObject):
 
 
 class DonutSubscriptionExpiredObject(BaseEventObject):
-    user_id: Optional[int] = None
+    user_id: int | None = None
 
 
 class DonutSubscriptionCancelledObject(BaseEventObject):
-    user_id: Optional[int] = None
+    user_id: int | None = None
 
 
 class DonutSubscriptionPriceChangedObject(BaseEventObject):
-    amount_diff: Optional[float] = None
-    amount_diff_without_fee: Optional[float] = None
+    amount_diff: float | None = None
+    amount_diff_without_fee: float | None = None
     amount_new: int
     amount_old: int
-    user_id: Optional[int] = None
+    user_id: int | None = None
 
 
 class DonutMoneyWithdrawObject(BaseEventObject):
@@ -325,7 +325,7 @@ class MessageReactionEventObject(BaseEventObject):
     reacted_id: int
     peer_id: int
     cmid: int
-    reaction_id: Optional[int] = None
+    reaction_id: int | None = None
 
 
 class MessageReadObject(BaseEventObject):

@@ -19,9 +19,9 @@ class VideoCategory(_VideoCategory):  # type: ignore
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = ...,
-        album_ids: typing.Optional[Literal[None]] = None,
+        target_id: int | None = None,
+        album_id: int | None = ...,
+        album_ids: Literal[None] | None = None,
         **kwargs,
     ) -> BaseOkResponseModel: ...
 
@@ -30,21 +30,21 @@ class VideoCategory(_VideoCategory):  # type: ignore
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[Literal[None]] = None,
-        album_ids: typing.Optional[typing.List[int]] = ...,
+        target_id: int | None = None,
+        album_id: Literal[None] | None = None,
+        album_ids: list[int] | None = ...,
         **kwargs,
-    ) -> typing.List[int]: ...
+    ) -> list[int]: ...
 
     async def add_to_album(
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = None,
-        album_ids: typing.Optional[typing.List[int]] = None,
+        target_id: int | None = None,
+        album_id: int | None = None,
+        album_ids: list[int] | None = None,
         **kwargs,
-    ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
+    ) -> BaseOkResponseModel | list[int]:
         """video.addToAlbum method
 
         :param owner_id:
@@ -68,9 +68,9 @@ class VideoCategory(_VideoCategory):  # type: ignore
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = ...,
-        album_ids: typing.Optional[Literal[None]] = None,
+        target_id: int | None = None,
+        album_id: int | None = ...,
+        album_ids: Literal[None] | None = None,
         **kwargs,
     ) -> BaseOkResponseModel: ...
 
@@ -79,21 +79,21 @@ class VideoCategory(_VideoCategory):  # type: ignore
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[Literal[None]] = None,
-        album_ids: typing.Optional[typing.List[int]] = ...,
+        target_id: int | None = None,
+        album_id: Literal[None] | None = None,
+        album_ids: list[int] | None = ...,
         **kwargs,
-    ) -> typing.List[int]: ...
+    ) -> list[int]: ...
 
     async def remove_from_album(
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = None,
-        album_ids: typing.Optional[typing.List[int]] = None,
+        target_id: int | None = None,
+        album_id: int | None = None,
+        album_ids: list[int] | None = None,
         **kwargs,
-    ) -> typing.Union[BaseOkResponseModel, typing.List[int]]:
+    ) -> BaseOkResponseModel | list[int]:
         """video.removeFromAlbum method
 
         :param owner_id:

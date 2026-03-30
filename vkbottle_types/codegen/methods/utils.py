@@ -42,8 +42,8 @@ class UtilsCategory(BaseCategory):
 
     async def get_last_shortened_links(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> UtilsGetLastShortenedLinksResponseModel:
         """Method `utils.getLastShortenedLinks()`
@@ -62,10 +62,10 @@ class UtilsCategory(BaseCategory):
         self,
         key: str,
         extended: typing.Literal[True],
-        access_key: typing.Optional[str] = None,
-        interval: typing.Optional[str] = None,
-        intervals_count: typing.Optional[int] = None,
-        source: typing.Optional[str] = None,
+        access_key: str | None = None,
+        interval: str | None = None,
+        intervals_count: int | None = None,
+        source: str | None = None,
         **kwargs: typing.Any,
     ) -> "UtilsLinkStatsExtended": ...
 
@@ -73,24 +73,24 @@ class UtilsCategory(BaseCategory):
     async def get_link_stats(
         self,
         key: str,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        access_key: typing.Optional[str] = None,
-        interval: typing.Optional[str] = None,
-        intervals_count: typing.Optional[int] = None,
-        source: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        access_key: str | None = None,
+        interval: str | None = None,
+        intervals_count: int | None = None,
+        source: str | None = None,
         **kwargs: typing.Any,
     ) -> "UtilsLinkStats": ...
 
     async def get_link_stats(
         self,
         key: str,
-        extended: typing.Optional[bool] = None,
-        access_key: typing.Optional[str] = None,
-        interval: typing.Optional[str] = None,
-        intervals_count: typing.Optional[int] = None,
-        source: typing.Optional[str] = None,
+        extended: bool | None = None,
+        access_key: str | None = None,
+        interval: str | None = None,
+        intervals_count: int | None = None,
+        source: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["UtilsLinkStats", "UtilsLinkStatsExtended"]:
+    ) -> "UtilsLinkStats | UtilsLinkStatsExtended":
         """Method `utils.getLinkStats()`
 
         :param key: Link key (characters after vk.cc/).
@@ -124,7 +124,7 @@ class UtilsCategory(BaseCategory):
     async def get_short_link(
         self,
         url: str,
-        private: typing.Optional[bool] = None,
+        private: bool | None = None,
         **kwargs: typing.Any,
     ) -> "UtilsShortLink":
         """Method `utils.getShortLink()`

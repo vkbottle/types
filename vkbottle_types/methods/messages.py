@@ -22,29 +22,29 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
     @typing.overload  # type: ignore
     async def send(  # type: ignore
         self,
-        user_id: typing.Optional[int] = None,
-        random_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        peer_ids: typing.Optional[typing.List[int]] = None,
-        domain: typing.Optional[str] = None,
-        chat_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[Literal[None]] = ...,
-        message: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        attachment: typing.Optional[str] = None,
-        reply_to: typing.Optional[int] = None,
-        forward_messages: typing.Optional[typing.List[int]] = None,
-        forward: typing.Optional[str] = None,
-        sticker_id: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
-        keyboard: typing.Optional[str] = None,
-        template: typing.Optional[str] = None,
-        payload: typing.Optional[str] = None,
-        content_source: typing.Optional[str] = None,
-        dont_parse_links: typing.Optional[bool] = None,
-        disable_mentions: typing.Optional[bool] = None,
-        intent: typing.Optional[
+        user_id: int | None = None,
+        random_id: int | None = None,
+        peer_id: int | None = None,
+        peer_ids: list[int] | None = None,
+        domain: str | None = None,
+        chat_id: int | None = None,
+        user_ids: Literal[None] | None = ...,
+        message: str | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        attachment: str | None = None,
+        reply_to: int | None = None,
+        forward_messages: list[int] | None = None,
+        forward: str | None = None,
+        sticker_id: int | None = None,
+        group_id: int | None = None,
+        keyboard: str | None = None,
+        template: str | None = None,
+        payload: str | None = None,
+        content_source: str | None = None,
+        dont_parse_links: bool | None = None,
+        disable_mentions: bool | None = None,
+        intent: (
             Literal[
                 "account_update",
                 "bot_ad_invite",
@@ -58,36 +58,37 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
                 "promo_newsletter",
                 "purchase_update",
             ]
-        ] = None,
-        subscribe_id: typing.Optional[int] = None,
+            | None
+        ) = None,
+        subscribe_id: int | None = None,
     ) -> int: ...
 
     @typing.overload
     async def send(
         self,
-        user_id: typing.Optional[int] = None,
-        random_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        peer_ids: typing.Optional[typing.List[int]] = None,
-        domain: typing.Optional[str] = None,
-        chat_id: typing.Optional[int] = None,
-        user_ids: typing.List[int] = ...,
-        message: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        attachment: typing.Optional[str] = None,
-        reply_to: typing.Optional[int] = None,
-        forward_messages: typing.Optional[typing.List[int]] = None,
-        forward: typing.Optional[str] = None,
-        sticker_id: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
-        keyboard: typing.Optional[str] = None,
-        template: typing.Optional[str] = None,
-        payload: typing.Optional[str] = None,
-        content_source: typing.Optional[str] = None,
-        dont_parse_links: typing.Optional[bool] = None,
-        disable_mentions: typing.Optional[bool] = None,
-        intent: typing.Optional[
+        user_id: int | None = None,
+        random_id: int | None = None,
+        peer_id: int | None = None,
+        peer_ids: list[int] | None = None,
+        domain: str | None = None,
+        chat_id: int | None = None,
+        user_ids: list[int] = ...,
+        message: str | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        attachment: str | None = None,
+        reply_to: int | None = None,
+        forward_messages: list[int] | None = None,
+        forward: str | None = None,
+        sticker_id: int | None = None,
+        group_id: int | None = None,
+        keyboard: str | None = None,
+        template: str | None = None,
+        payload: str | None = None,
+        content_source: str | None = None,
+        dont_parse_links: bool | None = None,
+        disable_mentions: bool | None = None,
+        intent: (
             Literal[
                 "account_update",
                 "bot_ad_invite",
@@ -101,36 +102,37 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
                 "promo_newsletter",
                 "purchase_update",
             ]
-        ] = None,
-        subscribe_id: typing.Optional[int] = None,
-    ) -> typing.List[MessagesSendUserIdsResponseItem]: ...
+            | None
+        ) = None,
+        subscribe_id: int | None = None,
+    ) -> list[MessagesSendUserIdsResponseItem]: ...
 
     @typing.overload
     async def send(
         self,
-        user_id: typing.Optional[int] = None,
-        random_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        peer_ids: typing.List[int] = ...,
-        domain: typing.Optional[str] = None,
-        chat_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
-        message: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        attachment: typing.Optional[str] = None,
-        reply_to: typing.Optional[int] = None,
-        forward_messages: typing.Optional[typing.List[int]] = None,
-        forward: typing.Optional[str] = None,
-        sticker_id: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
-        keyboard: typing.Optional[str] = None,
-        template: typing.Optional[str] = None,
-        payload: typing.Optional[str] = None,
-        content_source: typing.Optional[str] = None,
-        dont_parse_links: typing.Optional[bool] = None,
-        disable_mentions: typing.Optional[bool] = None,
-        intent: typing.Optional[
+        user_id: int | None = None,
+        random_id: int | None = None,
+        peer_id: int | None = None,
+        peer_ids: list[int] = ...,
+        domain: str | None = None,
+        chat_id: int | None = None,
+        user_ids: list[int] | None = None,
+        message: str | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        attachment: str | None = None,
+        reply_to: int | None = None,
+        forward_messages: list[int] | None = None,
+        forward: str | None = None,
+        sticker_id: int | None = None,
+        group_id: int | None = None,
+        keyboard: str | None = None,
+        template: str | None = None,
+        payload: str | None = None,
+        content_source: str | None = None,
+        dont_parse_links: bool | None = None,
+        disable_mentions: bool | None = None,
+        intent: (
             Literal[
                 "account_update",
                 "bot_ad_invite",
@@ -144,9 +146,10 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
                 "promo_newsletter",
                 "purchase_update",
             ]
-        ] = None,
-        subscribe_id: typing.Optional[int] = None,
-    ) -> typing.List[MessagesSendUserIdsResponseItem]: ...
+            | None
+        ) = None,
+        subscribe_id: int | None = None,
+    ) -> list[MessagesSendUserIdsResponseItem]: ...
 
     async def send(
         self,
@@ -175,7 +178,7 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         intent=None,
         subscribe_id=None,
         **kwargs,
-    ) -> typing.Union[typing.List[MessagesSendUserIdsResponseItem], int]:
+    ) -> list[MessagesSendUserIdsResponseItem] | int:
         """Sends a message.
 
         :param user_id: User ID (by default — current user).
@@ -221,7 +224,7 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         self,
         *,
         chat_id: int,
-        name_case: typing.Optional[str] = None,
+        name_case: str | None = None,
     ) -> "MessagesChat": ...
 
     @typing.overload
@@ -229,40 +232,35 @@ class MessagesCategory(_MessagesCategory):  # type: ignore
         self,
         *,
         chat_id: int,
-        fields: typing.List[UsersFields],
-        name_case: typing.Optional[str] = None,
+        fields: list[UsersFields],
+        name_case: str | None = None,
     ) -> "MessagesChatFull": ...
 
     @typing.overload
     async def get_chat(
         self,
         *,
-        chat_ids: typing.List[int],
-        name_case: typing.Optional[str] = None,
-    ) -> typing.List[MessagesChat]: ...
+        chat_ids: list[int],
+        name_case: str | None = None,
+    ) -> list[MessagesChat]: ...
 
     @typing.overload
     async def get_chat(
         self,
         *,
-        chat_ids: typing.List[int],
-        fields: typing.List[UsersFields],
-        name_case: typing.Optional[str] = None,
-    ) -> typing.List[MessagesChatFull]: ...
+        chat_ids: list[int],
+        fields: list[UsersFields],
+        name_case: str | None = None,
+    ) -> list[MessagesChatFull]: ...
 
     async def get_chat(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        chat_ids: typing.Optional[typing.List[int]] = None,
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        fields: list[UsersFields] | None = None,
+        chat_ids: list[int] | None = None,
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        "MessagesChat",
-        "MessagesChatFull",
-        typing.List[MessagesChat],
-        typing.List[MessagesChatFull],
-    ]:
+    ) -> "MessagesChat" | "MessagesChatFull" | list[MessagesChat] | list[MessagesChatFull]:
         """Method `messages.getChat()`
 
         :param fields: Profile fields to return.

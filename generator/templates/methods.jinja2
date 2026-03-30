@@ -22,7 +22,7 @@ class {{camelcase(category.name)}}Category(BaseCategory):
     async def {{snake_case(method.name)}}(
         self,
         {% for parameter in dep_method.sorted_parameters %}
-        {{makesafe(parameter.name)}}: {% if parameter.required == False %}typing.Optional[{% endif %}{{parameter.get_type()}}{% if parameter.required == False %}]{% endif %}{% if parameter.has_default %} = {{ parameter.get_default() }} {% endif %},
+        {{makesafe(parameter.name)}}: {% if parameter.required == False %}{% endif %}{{parameter.get_type()}}{% if parameter.required == False %} | None{% endif %}{% if parameter.has_default %} = {{ parameter.get_default() }} {% endif %},
         {% endfor %}
         **kwargs: typing.Any,
     ) -> {{dep_method.get_response_hint()}}:
@@ -30,10 +30,10 @@ class {{camelcase(category.name)}}Category(BaseCategory):
     {% endfor %}
     {% endif %}
 
-    async def {{snake_case(method.name)}}(
+    async def {{makesafe_method_name(snake_case(method.name))}}(
         self,
         {% for parameter in method.sorted_parameters %}
-        {{makesafe(parameter.name)}}: {% if parameter.required == False %}typing.Optional[{% endif %}{{parameter.get_type()}}{% if parameter.required == False %}]{% endif %}{% if parameter.has_default %} = {{ parameter.get_default() }} {% endif %},
+        {{makesafe(parameter.name)}}: {% if parameter.required == False %}{% endif %}{{parameter.get_type()}}{% if parameter.required == False %} | None{% endif %}{% if parameter.has_default %} = {{ parameter.get_default() }} {% endif %},
         {% endfor %}
         **kwargs: typing.Any,
     ) -> {{method.get_response_hint()}}:

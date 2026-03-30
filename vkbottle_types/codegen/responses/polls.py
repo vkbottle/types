@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import Field
 from vkbottle_types.objects import PollsBackground, PollsFieldsVoters, PollsPoll, PollsPollExtended, PollsVoters
 from vkbottle_types.responses.base_response import BaseResponse
@@ -10,7 +8,7 @@ class PollsCreateResponse(BaseResponse):
 
 
 class PollsGetBackgroundsResponse(BaseResponse):
-    response: typing.List["PollsBackground"] = Field()
+    response: list["PollsBackground"] = Field()
 
 
 class PollsGetByIdResponse(BaseResponse):
@@ -18,11 +16,11 @@ class PollsGetByIdResponse(BaseResponse):
 
 
 class PollsGetVotersFieldsResponse(BaseResponse):
-    response: typing.List["PollsFieldsVoters"] = Field()
+    response: list["PollsFieldsVoters"] = Field()
 
 
 class PollsGetVotersResponse(BaseResponse):
-    response: typing.List["PollsVoters"] = Field()
+    response: list["PollsVoters"] = Field()
 
 
 class PollsSavePhotoResponse(BaseResponse):

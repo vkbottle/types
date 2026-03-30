@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsGroupFull,
@@ -32,9 +30,9 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 
 class MessagesAddChatUsersResponseModel(BaseModel):
-    failed_peer_ids: typing.List[int] = Field()
-    failed_phone_numbers: typing.List[str] = Field()
-    invitees: typing.List[int] = Field()
+    failed_peer_ids: list[int] = Field()
+    failed_phone_numbers: list[str] = Field()
+    invitees: list[int] = Field()
 
 
 class MessagesAddChatUsersResponse(BaseResponse):
@@ -42,10 +40,10 @@ class MessagesAddChatUsersResponse(BaseResponse):
 
 
 class MessagesCreateChatWithPeerIdsResponseModel(BaseModel):
-    chat_id: typing.Optional[int] = Field(
+    chat_id: int | None = Field(
         default=None,
     )
-    peer_ids: typing.Optional[typing.List[int]] = Field(
+    peer_ids: list[int] | None = Field(
         default=None,
     )
 
@@ -55,10 +53,10 @@ class MessagesCreateChatWithPeerIdsResponse(BaseResponse):
 
 
 class MessagesDeleteChatPhotoResponseModel(BaseModel):
-    message_id: typing.Optional[int] = Field(
+    message_id: int | None = Field(
         default=None,
     )
-    chat: typing.Optional["MessagesChat"] = Field(
+    chat: "MessagesChat | None" = Field(
         default=None,
     )
 
@@ -76,16 +74,16 @@ class MessagesDeleteConversationResponse(BaseResponse):
 
 
 class MessagesDeleteFullResponse(BaseResponse):
-    response: typing.List["MessagesDeleteFullResponseItem"] = Field()
+    response: list["MessagesDeleteFullResponseItem"] = Field()
 
 
 class MessagesGetByConversationMessageIdExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesMessage"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -96,7 +94,7 @@ class MessagesGetByConversationMessageIdExtendedResponse(BaseResponse):
 
 class MessagesGetByConversationMessageIdResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
+    items: list["MessagesMessage"] = Field()
 
 
 class MessagesGetByConversationMessageIdResponse(BaseResponse):
@@ -105,11 +103,11 @@ class MessagesGetByConversationMessageIdResponse(BaseResponse):
 
 class MessagesGetByIdExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesMessage"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -120,7 +118,7 @@ class MessagesGetByIdExtendedResponse(BaseResponse):
 
 class MessagesGetByIdResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
+    items: list["MessagesMessage"] = Field()
 
 
 class MessagesGetByIdResponse(BaseResponse):
@@ -129,10 +127,10 @@ class MessagesGetByIdResponse(BaseResponse):
 
 class MessagesGetChatPreviewResponseModel(BaseModel):
     preview: "MessagesChatPreview" = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -142,11 +140,11 @@ class MessagesGetChatPreviewResponse(BaseResponse):
 
 
 class MessagesGetChatChatIdsFieldsResponse(BaseResponse):
-    response: typing.List["MessagesChatFull"] = Field()
+    response: list["MessagesChatFull"] = Field()
 
 
 class MessagesGetChatChatIdsResponse(BaseResponse):
-    response: typing.List["MessagesChat"] = Field()
+    response: list["MessagesChat"] = Field()
 
 
 class MessagesGetChatFieldsResponse(BaseResponse):
@@ -171,14 +169,14 @@ class MessagesGetConversationsByIdResponse(BaseResponse):
 
 class MessagesGetConversationsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesConversationWithMessage"] = Field()
-    unread_count: typing.Optional[int] = Field(
+    items: list["MessagesConversationWithMessage"] = Field()
+    unread_count: int | None = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -188,14 +186,14 @@ class MessagesGetConversationsResponse(BaseResponse):
 
 
 class MessagesGetHistoryAttachmentsResponseModel(BaseModel):
-    items: typing.List["MessagesHistoryAttachment"] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list["MessagesHistoryAttachment"] = Field()
+    next_from: str | None = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -206,14 +204,14 @@ class MessagesGetHistoryAttachmentsResponse(BaseResponse):
 
 class MessagesGetHistoryExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesMessage"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    conversations: typing.Optional[typing.List["MessagesConversation"]] = Field(
+    conversations: list["MessagesConversation"] | None = Field(
         default=None,
     )
 
@@ -224,7 +222,7 @@ class MessagesGetHistoryExtendedResponse(BaseResponse):
 
 class MessagesGetHistoryResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
+    items: list["MessagesMessage"] = Field()
 
 
 class MessagesGetHistoryResponse(BaseResponse):
@@ -233,13 +231,13 @@ class MessagesGetHistoryResponse(BaseResponse):
 
 class MessagesGetImportantMessagesExtendedResponseModel(BaseModel):
     messages: "MessagesMessagesArray" = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    conversations: typing.Optional[typing.List["MessagesConversation"]] = Field(
+    conversations: list["MessagesConversation"] | None = Field(
         default=None,
     )
 
@@ -250,13 +248,13 @@ class MessagesGetImportantMessagesExtendedResponse(BaseResponse):
 
 class MessagesGetImportantMessagesResponseModel(BaseModel):
     messages: "MessagesMessagesArray" = Field()
-    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+    profiles: list["UsersUser"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    conversations: typing.Optional[typing.List["MessagesConversation"]] = Field(
+    conversations: list["MessagesConversation"] | None = Field(
         default=None,
     )
 
@@ -267,8 +265,8 @@ class MessagesGetImportantMessagesResponse(BaseResponse):
 
 class MessagesGetIntentUsersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list[int] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
 
@@ -278,7 +276,7 @@ class MessagesGetIntentUsersResponse(BaseResponse):
 
 
 class MessagesGetInviteLinkByOwnerResponseModel(BaseModel):
-    items: typing.List["MessagesGetInviteLinkByOwnerResponseItem"] = Field()
+    items: list["MessagesGetInviteLinkByOwnerResponseItem"] = Field()
 
 
 class MessagesGetInviteLinkByOwnerResponse(BaseResponse):
@@ -286,7 +284,7 @@ class MessagesGetInviteLinkByOwnerResponse(BaseResponse):
 
 
 class MessagesGetInviteLinkResponseModel(BaseModel):
-    link: typing.Optional[str] = Field(
+    link: str | None = Field(
         default=None,
     )
 
@@ -300,34 +298,34 @@ class MessagesGetLastActivityResponse(BaseResponse):
 
 
 class MessagesGetLongPollHistoryResponseModel(BaseModel):
-    history: typing.Optional[typing.List[typing.List[typing.Union["str", "int"]]]] = Field(
+    history: list[list[str | int]] | None = Field(
         default=None,
     )
-    messages: typing.Optional["MessagesLongpollMessages"] = Field(
+    messages: "MessagesLongpollMessages | None" = Field(
         default=None,
     )
-    credentials: typing.Optional["MessagesLongpollParams"] = Field(
+    credentials: "MessagesLongpollParams | None" = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    chats: typing.Optional[typing.List["MessagesChat"]] = Field(
+    chats: list["MessagesChat"] | None = Field(
         default=None,
     )
-    new_pts: typing.Optional[int] = Field(
+    new_pts: int | None = Field(
         default=None,
     )
-    from_pts: typing.Optional[int] = Field(
+    from_pts: int | None = Field(
         default=None,
     )
-    more: typing.Optional[bool] = Field(
+    more: bool | None = Field(
         default=None,
     )
-    conversations: typing.Optional[typing.List["MessagesConversation"]] = Field(
+    conversations: list["MessagesConversation"] | None = Field(
         default=None,
     )
 
@@ -341,11 +339,11 @@ class MessagesGetLongPollServerResponse(BaseResponse):
 
 
 class MessagesGetMessagesReactionsResponseModel(BaseModel):
-    items: typing.List["MessagesReactionCountersResponseItem"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesReactionCountersResponseItem"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -356,12 +354,12 @@ class MessagesGetMessagesReactionsResponse(BaseResponse):
 
 class MessagesGetReactedPeersResponseModel(BaseModel):
     count: int = Field()
-    reactions: typing.List["MessagesReactionResponseItem"] = Field()
-    counters: typing.List["MessagesReactionCounterResponseItem"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    reactions: list["MessagesReactionResponseItem"] = Field()
+    counters: list["MessagesReactionCounterResponseItem"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -372,9 +370,9 @@ class MessagesGetReactedPeersResponse(BaseResponse):
 
 class MessagesGetReactionsAssetsResponseModel(BaseModel):
     version: int = Field()
-    assets: typing.List["MessagesReactionAssetItem"] = Field()
-    reaction_ids: typing.List[int] = Field()
-    override_assets: typing.Optional[typing.List["MessagesReactionAssetItem"]] = Field(
+    assets: list["MessagesReactionAssetItem"] = Field()
+    reaction_ids: list[int] = Field()
+    override_assets: list["MessagesReactionAssetItem"] | None = Field(
         default=None,
     )
 
@@ -384,7 +382,7 @@ class MessagesGetReactionsAssetsResponse(BaseResponse):
 
 
 class MessagesIsMessagesFromGroupAllowedResponseModel(BaseModel):
-    is_allowed: typing.Optional[bool] = Field(
+    is_allowed: bool | None = Field(
         default=None,
     )
 
@@ -394,7 +392,7 @@ class MessagesIsMessagesFromGroupAllowedResponse(BaseResponse):
 
 
 class MessagesJoinChatByInviteLinkResponseModel(BaseModel):
-    chat_id: typing.Optional[int] = Field(
+    chat_id: int | None = Field(
         default=None,
     )
 
@@ -404,7 +402,7 @@ class MessagesJoinChatByInviteLinkResponse(BaseResponse):
 
 
 class MessagesMarkAsImportantDeprecatedResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class MessagesPinResponse(BaseResponse):
@@ -413,11 +411,11 @@ class MessagesPinResponse(BaseResponse):
 
 class MessagesSearchConversationsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesConversation"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesConversation"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -428,7 +426,7 @@ class MessagesSearchConversationsExtendedResponse(BaseResponse):
 
 class MessagesSearchConversationsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesConversation"] = Field()
+    items: list["MessagesConversation"] = Field()
 
 
 class MessagesSearchConversationsResponse(BaseResponse):
@@ -437,14 +435,14 @@ class MessagesSearchConversationsResponse(BaseResponse):
 
 class MessagesSearchExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["MessagesMessage"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    conversations: typing.Optional[typing.List["MessagesConversation"]] = Field(
+    conversations: list["MessagesConversation"] | None = Field(
         default=None,
     )
 
@@ -455,7 +453,7 @@ class MessagesSearchExtendedResponse(BaseResponse):
 
 class MessagesSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["MessagesMessage"] = Field()
+    items: list["MessagesMessage"] = Field()
 
 
 class MessagesSearchResponse(BaseResponse):
@@ -467,14 +465,14 @@ class MessagesSendDeprecatedResponse(BaseResponse):
 
 
 class MessagesSendUserIdsResponse(BaseResponse):
-    response: typing.List["MessagesSendUserIdsResponseItem"] = Field()
+    response: list["MessagesSendUserIdsResponseItem"] = Field()
 
 
 class MessagesSetChatPhotoResponseModel(BaseModel):
-    message_id: typing.Optional[int] = Field(
+    message_id: int | None = Field(
         default=None,
     )
-    chat: typing.Optional["MessagesChat"] = Field(
+    chat: "MessagesChat | None" = Field(
         default=None,
     )
 

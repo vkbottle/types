@@ -11,7 +11,7 @@ from vkbottle_types.responses.store import *  # noqa: F401,F403  # type: ignore
 class StoreCategory(BaseCategory):
     async def add_stickers_to_favorite(
         self,
-        sticker_ids: typing.List[int],
+        sticker_ids: list[int],
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `store.addStickersToFavorite()`
@@ -37,12 +37,12 @@ class StoreCategory(BaseCategory):
 
     async def get_products(
         self,
-        extended: typing.Optional[bool] = None,
-        filters: typing.Optional[typing.List[str]] = None,
-        merchant: typing.Optional[str] = None,
-        product_ids: typing.Optional[typing.List[int]] = None,
-        section: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        extended: bool | None = None,
+        filters: list[str] | None = None,
+        merchant: str | None = None,
+        product_ids: list[int] | None = None,
+        section: str | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> StoreGetProductsResponseModel:
         """Method `store.getProducts()`
@@ -62,12 +62,12 @@ class StoreCategory(BaseCategory):
 
     async def get_stickers_keywords(
         self,
-        aliases: typing.Optional[bool] = None,
-        all_products: typing.Optional[bool] = None,
-        need_stickers: typing.Optional[bool] = None,
-        products_ids: typing.Optional[typing.List[int]] = None,
-        stickers_ids: typing.Optional[typing.List[int]] = None,
-        vmoji_promo: typing.Optional[bool] = None,
+        aliases: bool | None = None,
+        all_products: bool | None = None,
+        need_stickers: bool | None = None,
+        products_ids: list[int] | None = None,
+        stickers_ids: list[int] | None = None,
+        vmoji_promo: bool | None = None,
         **kwargs: typing.Any,
     ) -> StoreGetStickersKeywordsResponseModel:
         """Method `store.getStickersKeywords()`
@@ -87,7 +87,7 @@ class StoreCategory(BaseCategory):
 
     async def remove_stickers_from_favorite(
         self,
-        sticker_ids: typing.List[int],
+        sticker_ids: list[int],
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `store.removeStickersFromFavorite()`

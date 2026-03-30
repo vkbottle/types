@@ -7,7 +7,7 @@ from vkbottle_types.responses.translations import *  # noqa: F401,F403  # type: 
 class TranslationsCategory(BaseCategory):
     async def translate(
         self,
-        texts: typing.List[str],
+        texts: list[str],
         translation_language: str,
         **kwargs: typing.Any,
     ) -> TranslationsTranslateResponseModel:

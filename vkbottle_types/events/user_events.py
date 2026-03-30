@@ -1,5 +1,5 @@
 import msgspec
-from typing_extensions import TYPE_CHECKING, Any, Dict, List, Optional, Self, Union
+from typing_extensions import TYPE_CHECKING, Any, Self
 
 from .objects import user_event_objects
 
@@ -8,28 +8,29 @@ if TYPE_CHECKING:
 
 
 class BaseUserEvent(msgspec.Struct, omit_defaults=True):
-    object: Optional[Any]
-    unprepared_ctx_api: Optional[Any] = None
+    object: Any | None
+    unprepared_ctx_api: Any | None = None
 
     @classmethod
     def from_raw(cls, data: bytes) -> Self:
         return msgspec.json.decode(data, type=cls)
 
     @classmethod
-    def parse(cls, obj: List[Any]) -> Self:
+    def parse(cls, obj: list[Any]) -> Self:
         return msgspec.convert({"object": obj}, type=cls)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         return msgspec.structs.asdict(self)
 
     @property
-    def ctx_api(self) -> Union["ABCAPI", "API"]:
-        assert self.unprepared_ctx_api is not None
+    def ctx_api(self) -> "ABCAPI | API":
+        if self.unprepared_ctx_api is None:
+            raise AssertionError
         return self.unprepared_ctx_api
 
 
 class RawUserEvent(BaseUserEvent):
-    object: List[Any]
+    object: list[Any]
 
 
 class MessageFlagsReplace(BaseUserEvent):
@@ -153,7 +154,7 @@ class ChangeFolderOrder(BaseUserEvent):
 
 
 class CounterUnreadDialogsInFolders(BaseUserEvent):
-    object: List[user_event_objects.CounterUnreadDialogsInFoldersObject]
+    object: list[user_event_objects.CounterUnreadDialogsInFoldersObject]
 
 
 __all__ = (

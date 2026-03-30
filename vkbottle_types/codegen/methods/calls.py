@@ -26,7 +26,7 @@ class CallsCategory(BaseCategory):
 
     async def start(
         self,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> CallsStartResponseModel:
         """Method `calls.start()`

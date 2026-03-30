@@ -7,12 +7,12 @@ from vkbottle_types.responses.search import *  # noqa: F401,F403  # type: ignore
 class SearchCategory(BaseCategory):
     async def get_hints(
         self,
-        fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[typing.List[str]] = None,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        search_global: typing.Optional[bool] = None,
+        fields: list[str] | None = None,
+        filters: list[str] | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        q: str | None = None,
+        search_global: bool | None = None,
         **kwargs: typing.Any,
     ) -> SearchGetHintsResponseModel:
         """Method `search.getHints()`

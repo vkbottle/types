@@ -43,7 +43,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[bool]:
+    ) -> list[bool]:
         """Method `ads.addOfficeUsers()`
 
         :param account_id: Advertising account ID.
@@ -60,7 +60,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         link_type: str,
         link_url: str,
-        campaign_id: typing.Optional[int] = None,
+        campaign_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "AdsLinkStatus":
         """Method `ads.checkLink()`
@@ -81,7 +81,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsCreateAdStatus]:
+    ) -> list[AdsCreateAdStatus]:
         """Method `ads.createAds()`
 
         :param account_id: Advertising account ID.
@@ -98,7 +98,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsCreateCampaignStatus]:
+    ) -> list[AdsCreateCampaignStatus]:
         """Method `ads.createCampaigns()`
 
         :param account_id: Advertising account ID.
@@ -115,7 +115,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsCreateClientsStatus]:
+    ) -> list[AdsCreateClientsStatus]:
         """Method `ads.createClients()`
 
         :param account_id: Advertising account ID.
@@ -131,8 +131,8 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         source_type: str,
-        client_id: typing.Optional[int] = None,
-        retargeting_group_id: typing.Optional[int] = None,
+        client_id: int | None = None,
+        retargeting_group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> AdsCreateLookalikeRequestResponseModel:
         """Method `ads.createLookalikeRequest()`
@@ -153,9 +153,9 @@ class AdsCategory(BaseCategory):
         account_id: int,
         lifetime: int,
         name: str,
-        client_id: typing.Optional[int] = None,
-        target_pixel_id: typing.Optional[int] = None,
-        target_pixel_rules: typing.Optional[str] = None,
+        client_id: int | None = None,
+        target_pixel_id: int | None = None,
+        target_pixel_rules: str | None = None,
         **kwargs: typing.Any,
     ) -> AdsCreateTargetGroupResponseModel:
         """Method `ads.createTargetGroup()`
@@ -178,8 +178,8 @@ class AdsCategory(BaseCategory):
         account_id: int,
         category_id: int,
         name: str,
-        client_id: typing.Optional[int] = None,
-        domain: typing.Optional[str] = None,
+        client_id: int | None = None,
+        domain: str | None = None,
         **kwargs: typing.Any,
     ) -> AdsCreateTargetPixelResponseModel:
         """Method `ads.createTargetPixel()`
@@ -201,7 +201,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         ids: str,
         **kwargs: typing.Any,
-    ) -> typing.List[int]:
+    ) -> list[int]:
         """Method `ads.deleteAds()`
 
         :param account_id: Advertising account ID.
@@ -218,7 +218,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         ids: str,
         **kwargs: typing.Any,
-    ) -> typing.List[int]:
+    ) -> list[int]:
         """Method `ads.deleteCampaigns()`
 
         :param account_id: Advertising account ID.
@@ -235,7 +235,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         ids: str,
         **kwargs: typing.Any,
-    ) -> typing.List[int]:
+    ) -> list[int]:
         """Method `ads.deleteClients()`
 
         :param account_id: Advertising account ID.
@@ -251,7 +251,7 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         target_group_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `ads.deleteTargetGroup()`
@@ -270,9 +270,9 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         target_pixel_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> dict[str, typing.Any]:
         """Method `ads.deleteTargetPixel()`
 
         :param account_id:
@@ -288,7 +288,7 @@ class AdsCategory(BaseCategory):
     async def get_accounts(
         self,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsAccount]:
+    ) -> list[AdsAccount]:
         """Method `ads.getAccounts()`"""
 
         params = self.get_set_params(locals())
@@ -299,15 +299,15 @@ class AdsCategory(BaseCategory):
     async def get_ads(
         self,
         account_id: int,
-        ad_ids: typing.Optional[str] = None,
-        campaign_ids: typing.Optional[str] = None,
-        client_id: typing.Optional[int] = None,
-        include_deleted: typing.Optional[bool] = None,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        only_deleted: typing.Optional[bool] = None,
+        ad_ids: str | None = None,
+        campaign_ids: str | None = None,
+        client_id: int | None = None,
+        include_deleted: bool | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        only_deleted: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsAd]:
+    ) -> list[AdsAd]:
         """Method `ads.getAds()`
 
         :param account_id: Advertising account ID.
@@ -328,15 +328,15 @@ class AdsCategory(BaseCategory):
     async def get_ads_layout(
         self,
         account_id: int,
-        ad_ids: typing.Optional[str] = None,
-        campaign_ids: typing.Optional[str] = None,
-        client_id: typing.Optional[int] = None,
-        include_deleted: typing.Optional[bool] = None,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        only_deleted: typing.Optional[bool] = None,
+        ad_ids: str | None = None,
+        campaign_ids: str | None = None,
+        client_id: int | None = None,
+        include_deleted: bool | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        only_deleted: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsAdLayout]:
+    ) -> list[AdsAdLayout]:
         """Method `ads.getAdsLayout()`
 
         :param account_id: Advertising account ID.
@@ -357,15 +357,15 @@ class AdsCategory(BaseCategory):
     async def get_ads_targeting(
         self,
         account_id: int,
-        ad_ids: typing.Optional[str] = None,
-        campaign_ids: typing.Optional[str] = None,
-        client_id: typing.Optional[int] = None,
-        include_deleted: typing.Optional[bool] = None,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        only_deleted: typing.Optional[bool] = None,
+        ad_ids: str | None = None,
+        campaign_ids: str | None = None,
+        client_id: int | None = None,
+        include_deleted: bool | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        only_deleted: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargSettings]:
+    ) -> list[AdsTargSettings]:
         """Method `ads.getAdsTargeting()`
 
         :param account_id: Advertising account ID.
@@ -401,12 +401,12 @@ class AdsCategory(BaseCategory):
     async def get_campaigns(
         self,
         account_id: int,
-        campaign_ids: typing.Optional[str] = None,
-        client_id: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[typing.Literal["ads_count"]]] = None,
-        include_deleted: typing.Optional[bool] = None,
+        campaign_ids: str | None = None,
+        client_id: int | None = None,
+        fields: list[typing.Literal["ads_count"]] | None = None,
+        include_deleted: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsCampaign]:
+    ) -> list[AdsCampaign]:
         """Method `ads.getCampaigns()`
 
         :param account_id: Advertising account ID.
@@ -423,12 +423,12 @@ class AdsCategory(BaseCategory):
 
     async def get_categories(
         self,
-        lang: typing.Optional[str] = None,
+        lang: str | None = None,
         **kwargs: typing.Any,
     ) -> AdsGetCategoriesResponseModel:
         """Method `ads.getCategories()`
 
-        :param lang: Language. The full list of supported languages is [vk.ru/dev/api_requests|here].
+        :param lang: Language. The full list of supported languages is [vk.com/dev/api_requests|here].
         """
 
         params = self.get_set_params(locals())
@@ -440,7 +440,7 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsClient]:
+    ) -> list[AdsClient]:
         """Method `ads.getClients()`
 
         :param account_id: Advertising account ID.
@@ -460,7 +460,7 @@ class AdsCategory(BaseCategory):
         ids_type: str,
         period: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsDemoStats]:
+    ) -> list[AdsDemoStats]:
         """Method `ads.getDemographics()`
 
         :param account_id: Advertising account ID.
@@ -494,11 +494,11 @@ class AdsCategory(BaseCategory):
     async def get_lookalike_requests(
         self,
         account_id: int,
-        client_id: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        requests_ids: typing.Optional[str] = None,
-        sort_by: typing.Optional[str] = None,
+        client_id: int | None = None,
+        limit: int | None = None,
+        offset: int | None = None,
+        requests_ids: str | None = None,
+        sort_by: str | None = None,
         **kwargs: typing.Any,
     ) -> AdsGetLookalikeRequestsResponseModel:
         """Method `ads.getLookalikeRequests()`
@@ -533,7 +533,7 @@ class AdsCategory(BaseCategory):
 
     async def get_musicians_by_ids(
         self,
-        ids: typing.List[int],
+        ids: list[int],
         **kwargs: typing.Any,
     ) -> AdsGetMusiciansResponseModel:
         """Method `ads.getMusiciansByIds()`
@@ -550,7 +550,7 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsUsers]:
+    ) -> list[AdsUsers]:
         """Method `ads.getOfficeUsers()`
 
         :param account_id: Advertising account ID.
@@ -567,7 +567,7 @@ class AdsCategory(BaseCategory):
         ids: str,
         ids_type: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsPromotedPostReach]:
+    ) -> list[AdsPromotedPostReach]:
         """Method `ads.getPostsReach()`
 
         :param account_id: Advertising account ID.
@@ -605,9 +605,9 @@ class AdsCategory(BaseCategory):
         ids: str,
         ids_type: str,
         period: str,
-        stats_fields: typing.Optional[typing.List[typing.Literal["views_times"]]] = None,
+        stats_fields: list[typing.Literal["views_times"]] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsStats]:
+    ) -> list[AdsStats]:
         """Method `ads.getStatistics()`
 
         :param account_id: Advertising account ID.
@@ -629,64 +629,59 @@ class AdsCategory(BaseCategory):
         self,
         section: str,
         cities: str,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        country: int | None = None,
+        ids: str | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargSuggestionsRegions]: ...
+    ) -> list[AdsTargSuggestionsRegions]: ...
 
     @typing.overload
     async def get_suggestions(
         self,
         section: str,
-        cities: typing.Optional[str] = None,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        cities: str | None = None,
+        country: int | None = None,
+        ids: str | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargSuggestionsCities]: ...
+    ) -> list[AdsTargSuggestionsCities]: ...
 
     @typing.overload
     async def get_suggestions(
         self,
         section: str,
         cities: str,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        country: int | None = None,
+        ids: str | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargSuggestionsSchools]: ...
+    ) -> list[AdsTargSuggestionsSchools]: ...
 
     @typing.overload
     async def get_suggestions(
         self,
         section: str,
-        cities: typing.Optional[str] = None,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        cities: str | None = None,
+        country: int | None = None,
+        ids: str | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargSuggestions]: ...
+    ) -> list[AdsTargSuggestions]: ...
 
     async def get_suggestions(
         self,
         section: str,
-        cities: typing.Optional[str] = None,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[str] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        cities: str | None = None,
+        country: int | None = None,
+        ids: str | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        typing.List[AdsTargSuggestionsSchools],
-        typing.List[AdsTargSuggestions],
-        typing.List[AdsTargSuggestionsCities],
-        typing.List[AdsTargSuggestionsRegions],
-    ]:
+    ) -> list[AdsTargSuggestionsCities] | list[AdsTargSuggestions] | list[AdsTargSuggestionsRegions] | list[AdsTargSuggestionsSchools]:
         """Method `ads.getSuggestions()`
 
         :param section: Section, suggestions are retrieved in. Available values: *countries - request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions - requested list of regions. 'country' parameter is required. *cities - requested list of cities. 'country' parameter is required. *districts - requested list of districts. 'cities' parameter is required. *stations - requested list of subway stations. 'cities' parameter is required. *streets - requested list of streets. 'cities' parameter is required. *schools - requested list of educational organizations. 'cities' parameter is required. *interests - requested list of interests. *positions - requested list of positions (professions). *group_types - requested list of group types. *religions - requested list of religious commitments. *browsers - requested list of browsers and mobile devices.
@@ -701,8 +696,8 @@ class AdsCategory(BaseCategory):
         response = await self.api.request("ads.getSuggestions", params)
         model = self.get_model(
             (
-                (("cities",), AdsGetSuggestionsRegionsResponse),
                 (("regions",), AdsGetSuggestionsRegionsResponse),
+                (("cities",), AdsGetSuggestionsRegionsResponse),
                 (("schools",), AdsGetSuggestionsSchoolsResponse),
             ),
             default=AdsGetSuggestionsResponse,
@@ -713,10 +708,10 @@ class AdsCategory(BaseCategory):
     async def get_target_groups(
         self,
         account_id: int,
-        client_id: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
+        client_id: int | None = None,
+        extended: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargetGroup]:
+    ) -> list[AdsTargetGroup]:
         """Method `ads.getTargetGroups()`
 
         :param account_id: Advertising account ID.
@@ -732,9 +727,9 @@ class AdsCategory(BaseCategory):
     async def get_target_pixels(
         self,
         account_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsTargetPixelInfo]:
+    ) -> list[AdsTargetPixelInfo]:
         """Method `ads.getTargetPixels()`
 
         :param account_id:
@@ -750,17 +745,17 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         link_url: str,
-        ad_format: typing.Optional[int] = None,
-        ad_id: typing.Optional[int] = None,
-        ad_platform: typing.Optional[str] = None,
-        ad_platform_no_ad_network: typing.Optional[str] = None,
-        ad_platform_no_wall: typing.Optional[str] = None,
-        client_id: typing.Optional[int] = None,
-        criteria: typing.Optional[str] = None,
-        impressions_limit_period: typing.Optional[int] = None,
-        link_domain: typing.Optional[str] = None,
-        need_precise: typing.Optional[bool] = None,
-        publisher_platforms: typing.Optional[str] = None,
+        ad_format: int | None = None,
+        ad_id: int | None = None,
+        ad_platform: str | None = None,
+        ad_platform_no_ad_network: str | None = None,
+        ad_platform_no_wall: str | None = None,
+        client_id: int | None = None,
+        criteria: str | None = None,
+        impressions_limit_period: int | None = None,
+        link_domain: str | None = None,
+        need_precise: bool | None = None,
+        publisher_platforms: str | None = None,
         **kwargs: typing.Any,
     ) -> "AdsTargStats":
         """Method `ads.getTargetingStats()`
@@ -788,7 +783,7 @@ class AdsCategory(BaseCategory):
     async def get_upload_url(
         self,
         ad_format: int,
-        icon: typing.Optional[int] = None,
+        icon: int | None = None,
         **kwargs: typing.Any,
     ) -> str:
         """Method `ads.getUploadURL()`
@@ -818,7 +813,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         contacts: str,
         target_group_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `ads.importTargetContacts()`
@@ -839,7 +834,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         ids: str,
         **kwargs: typing.Any,
-    ) -> typing.List[bool]:
+    ) -> list[bool]:
         """Method `ads.removeOfficeUsers()`
 
         :param account_id: Advertising account ID.
@@ -856,7 +851,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         contacts: str,
         target_group_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
     ) -> AdsRemoveTargetContactsResponseModel:
         """Method `ads.removeTargetContacts()`
@@ -877,7 +872,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         level: int,
         request_id: int,
-        client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
         **kwargs: typing.Any,
     ) -> AdsSaveLookalikeRequestResultResponseModel:
         """Method `ads.saveLookalikeRequestResult()`
@@ -897,8 +892,8 @@ class AdsCategory(BaseCategory):
         self,
         account_id: int,
         target_group_id: int,
-        client_id: typing.Optional[int] = None,
-        share_with_client_id: typing.Optional[int] = None,
+        client_id: int | None = None,
+        share_with_client_id: int | None = None,
         **kwargs: typing.Any,
     ) -> AdsShareTargetGroupResponseModel:
         """Method `ads.shareTargetGroup()`
@@ -919,7 +914,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsUpdateAdsStatus]:
+    ) -> list[AdsUpdateAdsStatus]:
         """Method `ads.updateAds()`
 
         :param account_id: Advertising account ID.
@@ -936,7 +931,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsCreateCampaignStatus]:
+    ) -> list[AdsCreateCampaignStatus]:
         """Method `ads.updateCampaigns()`
 
         :param account_id: Advertising account ID.
@@ -953,7 +948,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsUpdateClientsStatus]:
+    ) -> list[AdsUpdateClientsStatus]:
         """Method `ads.updateClients()`
 
         :param account_id: Advertising account ID.
@@ -970,7 +965,7 @@ class AdsCategory(BaseCategory):
         account_id: int,
         data: str,
         **kwargs: typing.Any,
-    ) -> typing.List[AdsUpdateOfficeUsersResult]:
+    ) -> list[AdsUpdateOfficeUsersResult]:
         """Method `ads.updateOfficeUsers()`
 
         :param account_id: Advertising account ID.
@@ -988,10 +983,10 @@ class AdsCategory(BaseCategory):
         lifetime: int,
         name: str,
         target_group_id: int,
-        client_id: typing.Optional[int] = None,
-        domain: typing.Optional[str] = None,
-        target_pixel_id: typing.Optional[int] = None,
-        target_pixel_rules: typing.Optional[str] = None,
+        client_id: int | None = None,
+        domain: str | None = None,
+        target_pixel_id: int | None = None,
+        target_pixel_rules: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `ads.updateTargetGroup()`
@@ -1017,10 +1012,10 @@ class AdsCategory(BaseCategory):
         category_id: int,
         name: str,
         target_pixel_id: int,
-        client_id: typing.Optional[int] = None,
-        domain: typing.Optional[str] = None,
+        client_id: int | None = None,
+        domain: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> dict[str, typing.Any]:
         """Method `ads.updateTargetPixel()`
 
         :param account_id:

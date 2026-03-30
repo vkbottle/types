@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import BaseUploadServer, DocsDoc, DocsDocAttachmentType, DocsDocTypes, MessagesAudioMessage, MessagesGraffiti
 from vkbottle_types.responses.base_response import BaseResponse
@@ -10,7 +8,7 @@ class DocsAddResponse(BaseResponse):
 
 
 class DocsDocUploadResponseModel(BaseModel):
-    file: typing.Optional[str] = Field(
+    file: str | None = Field(
         default=None,
     )
 
@@ -20,12 +18,12 @@ class DocsDocUploadResponse(BaseResponse):
 
 
 class DocsGetByIdResponse(BaseResponse):
-    response: typing.List["DocsDoc"] = Field()
+    response: list["DocsDoc"] = Field()
 
 
 class DocsGetTypesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DocsDocTypes"] = Field()
+    items: list["DocsDocTypes"] = Field()
 
 
 class DocsGetTypesResponse(BaseResponse):
@@ -38,7 +36,7 @@ class DocsGetUploadServerResponse(BaseResponse):
 
 class DocsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DocsDoc"] = Field()
+    items: list["DocsDoc"] = Field()
 
 
 class DocsGetResponse(BaseResponse):
@@ -46,16 +44,16 @@ class DocsGetResponse(BaseResponse):
 
 
 class DocsSaveResponseModel(BaseModel):
-    type: typing.Optional["DocsDocAttachmentType"] = Field(
+    type: "DocsDocAttachmentType | None" = Field(
         default=None,
     )
-    audio_message: typing.Optional["MessagesAudioMessage"] = Field(
+    audio_message: "MessagesAudioMessage | None" = Field(
         default=None,
     )
-    doc: typing.Optional["DocsDoc"] = Field(
+    doc: "DocsDoc | None" = Field(
         default=None,
     )
-    graffiti: typing.Optional["MessagesGraffiti"] = Field(
+    graffiti: "MessagesGraffiti | None" = Field(
         default=None,
     )
 
@@ -66,7 +64,7 @@ class DocsSaveResponse(BaseResponse):
 
 class DocsSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DocsDoc"] = Field()
+    items: list["DocsDoc"] = Field()
 
 
 class DocsSearchResponse(BaseResponse):

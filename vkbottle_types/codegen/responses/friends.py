@@ -1,7 +1,4 @@
-import enum
-import typing
-
-from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field, IntEnum
 from vkbottle_types.objects import (
     FriendsFriendExtendedStatus,
     FriendsFriendsList,
@@ -24,7 +21,7 @@ class FriendsAddListResponse(BaseResponse):
     response: "FriendsAddListResponseModel" = Field()
 
 
-class FriendsAddResponseModel(enum.IntEnum):
+class FriendsAddResponseModel(IntEnum, metaclass=BaseEnumMeta):
     SEND = 1
     APPROVED = 2
     RESEND = 4
@@ -35,25 +32,25 @@ class FriendsAddResponse(BaseResponse):
 
 
 class FriendsAreFriendsExtendedResponse(BaseResponse):
-    response: typing.List["FriendsFriendExtendedStatus"] = Field()
+    response: list["FriendsFriendExtendedStatus"] = Field()
 
 
 class FriendsAreFriendsResponse(BaseResponse):
-    response: typing.List["FriendsFriendStatus"] = Field()
+    response: list["FriendsFriendStatus"] = Field()
 
 
 class FriendsDeleteResponseModel(BaseModel):
     success: int = Field(default=1)
-    friend_deleted: typing.Optional[int] = Field(
+    friend_deleted: int | None = Field(
         default=None,
     )
-    out_request_deleted: typing.Optional[int] = Field(
+    out_request_deleted: int | None = Field(
         default=None,
     )
-    in_request_deleted: typing.Optional[int] = Field(
+    in_request_deleted: int | None = Field(
         default=None,
     )
-    suggestion_deleted: typing.Optional[int] = Field(
+    suggestion_deleted: int | None = Field(
         default=None,
     )
 
@@ -63,12 +60,12 @@ class FriendsDeleteResponse(BaseResponse):
 
 
 class FriendsGetAppUsersResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class FriendsGetListsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["FriendsFriendsList"] = Field()
+    items: list["FriendsFriendsList"] = Field()
 
 
 class FriendsGetListsResponse(BaseResponse):
@@ -76,11 +73,11 @@ class FriendsGetListsResponse(BaseResponse):
 
 
 class FriendsGetMutualResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class FriendsGetMutualTargetUidsResponse(BaseResponse):
-    response: typing.List["FriendsMutualFriend"] = Field()
+    response: list["FriendsMutualFriend"] = Field()
 
 
 class FriendsGetMutualTotalCountResponse(BaseResponse):
@@ -96,8 +93,8 @@ class FriendsGetOnlineOnlineMobileExtendedResponse(BaseResponse):
 
 
 class FriendsGetOnlineOnlineMobileResponseModel(BaseModel):
-    online: typing.List[int] = Field()
-    online_mobile: typing.List[int] = Field()
+    online: list[int] = Field()
+    online_mobile: list[int] = Field()
 
 
 class FriendsGetOnlineOnlineMobileResponse(BaseResponse):
@@ -105,20 +102,20 @@ class FriendsGetOnlineOnlineMobileResponse(BaseResponse):
 
 
 class FriendsGetOnlineResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class FriendsGetRecentResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class FriendsGetRequestsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["FriendsRequestsXtrMessage"] = Field()
-    count_unread: typing.Optional[int] = Field(
+    items: list["FriendsRequestsXtrMessage"] = Field()
+    count_unread: int | None = Field(
         default=None,
     )
-    last_viewed: typing.Optional[int] = Field(
+    last_viewed: int | None = Field(
         default=None,
     )
 
@@ -129,11 +126,11 @@ class FriendsGetRequestsExtendedResponse(BaseResponse):
 
 class FriendsGetRequestsNeedMutualResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["FriendsRequestsXtrMutual"] = Field()
-    count_unread: typing.Optional[int] = Field(
+    items: list["FriendsRequestsXtrMutual"] = Field()
+    count_unread: int | None = Field(
         default=None,
     )
-    last_viewed: typing.Optional[int] = Field(
+    last_viewed: int | None = Field(
         default=None,
     )
 
@@ -144,11 +141,11 @@ class FriendsGetRequestsNeedMutualResponse(BaseResponse):
 
 class FriendsGetRequestsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
-    count_unread: typing.Optional[int] = Field(
+    items: list[int] = Field()
+    count_unread: int | None = Field(
         default=None,
     )
-    last_viewed: typing.Optional[int] = Field(
+    last_viewed: int | None = Field(
         default=None,
     )
 
@@ -159,7 +156,7 @@ class FriendsGetRequestsResponse(BaseResponse):
 
 class FriendsGetSuggestionsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class FriendsGetSuggestionsResponse(BaseResponse):
@@ -168,8 +165,8 @@ class FriendsGetSuggestionsResponse(BaseResponse):
 
 class FriendsGetFieldsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["UsersUserFull"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
 
@@ -180,7 +177,7 @@ class FriendsGetFieldsResponse(BaseResponse):
 
 class FriendsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class FriendsGetResponse(BaseResponse):
@@ -189,7 +186,7 @@ class FriendsGetResponse(BaseResponse):
 
 class FriendsSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class FriendsSearchResponse(BaseResponse):

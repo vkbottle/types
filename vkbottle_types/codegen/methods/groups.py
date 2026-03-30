@@ -34,12 +34,12 @@ class GroupsCategory(BaseCategory):
         latitude: float,
         longitude: float,
         title: str,
-        additional_address: typing.Optional[str] = None,
-        is_main_address: typing.Optional[bool] = None,
-        metro_id: typing.Optional[int] = None,
-        phone: typing.Optional[str] = None,
-        timetable: typing.Optional[str] = None,
-        work_info_status: typing.Optional[str] = None,
+        additional_address: str | None = None,
+        is_main_address: bool | None = None,
+        metro_id: int | None = None,
+        phone: str | None = None,
+        timetable: str | None = None,
+        work_info_status: str | None = None,
         **kwargs: typing.Any,
     ) -> "GroupsAddress":
         """Method `groups.addAddress()`
@@ -68,7 +68,7 @@ class GroupsCategory(BaseCategory):
         group_id: int,
         title: str,
         url: str,
-        secret_key: typing.Optional[str] = None,
+        secret_key: str | None = None,
         **kwargs: typing.Any,
     ) -> GroupsAddCallbackServerResponseModel:
         """Method `groups.addCallbackServer()`
@@ -88,7 +88,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         link: str,
-        text: typing.Optional[str] = None,
+        text: str | None = None,
         **kwargs: typing.Any,
     ) -> "GroupsLinksItem":
         """Method `groups.addLink()`
@@ -123,11 +123,11 @@ class GroupsCategory(BaseCategory):
     async def ban(
         self,
         group_id: int,
-        comment: typing.Optional[str] = None,
-        comment_visible: typing.Optional[bool] = None,
-        end_date: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        reason: typing.Optional[int] = None,
+        comment: str | None = None,
+        comment_visible: bool | None = None,
+        end_date: int | None = None,
+        owner_id: int | None = None,
+        reason: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.ban()`
@@ -148,11 +148,11 @@ class GroupsCategory(BaseCategory):
     async def create(
         self,
         title: str,
-        description: typing.Optional[str] = None,
-        public_category: typing.Optional[int] = None,
-        public_subcategory: typing.Optional[int] = None,
-        subtype: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        description: str | None = None,
+        public_category: int | None = None,
+        public_subcategory: int | None = None,
+        subtype: int | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> "GroupsGroupFull":
         """Method `groups.create()`
@@ -239,53 +239,53 @@ class GroupsCategory(BaseCategory):
     async def edit(
         self,
         group_id: int,
-        access: typing.Optional[int] = None,
-        addresses: typing.Optional[bool] = None,
-        age_limits: typing.Optional[int] = None,
-        articles: typing.Optional[bool] = None,
-        audio: typing.Optional[int] = None,
-        city: typing.Optional[int] = None,
-        contacts: typing.Optional[bool] = None,
-        country: typing.Optional[int] = None,
-        description: typing.Optional[str] = None,
-        disable_replies_from_groups: typing.Optional[bool] = None,
-        docs: typing.Optional[int] = None,
-        email: typing.Optional[str] = None,
-        event_finish_date: typing.Optional[int] = None,
-        event_group_id: typing.Optional[int] = None,
-        event_start_date: typing.Optional[int] = None,
-        events: typing.Optional[bool] = None,
-        links: typing.Optional[bool] = None,
-        main_section: typing.Optional[int] = None,
-        market: typing.Optional[bool] = None,
-        market_buttons: typing.Optional[str] = None,
-        market_city: typing.Optional[typing.List[int]] = None,
-        market_comments: typing.Optional[bool] = None,
-        market_contact: typing.Optional[int] = None,
-        market_country: typing.Optional[typing.List[int]] = None,
-        market_currency: typing.Optional[int] = None,
-        market_wiki: typing.Optional[int] = None,
-        messages: typing.Optional[bool] = None,
-        obscene_filter: typing.Optional[bool] = None,
-        obscene_stopwords: typing.Optional[bool] = None,
-        obscene_words: typing.Optional[typing.List[str]] = None,
-        phone: typing.Optional[str] = None,
-        photos: typing.Optional[int] = None,
-        places: typing.Optional[bool] = None,
-        public_category: typing.Optional[int] = None,
-        public_date: typing.Optional[str] = None,
-        public_subcategory: typing.Optional[int] = None,
-        rss: typing.Optional[str] = None,
-        screen_name: typing.Optional[str] = None,
-        secondary_section: typing.Optional[int] = None,
-        subject: typing.Optional[int] = None,
-        title: typing.Optional[str] = None,
-        topics: typing.Optional[int] = None,
-        toxic_filter: typing.Optional[bool] = None,
-        video: typing.Optional[int] = None,
-        wall: typing.Optional[int] = None,
-        website: typing.Optional[str] = None,
-        wiki: typing.Optional[int] = None,
+        access: int | None = None,
+        addresses: bool | None = None,
+        age_limits: int | None = None,
+        articles: bool | None = None,
+        audio: int | None = None,
+        city: int | None = None,
+        contacts: bool | None = None,
+        country: int | None = None,
+        description: str | None = None,
+        disable_replies_from_groups: bool | None = None,
+        docs: int | None = None,
+        email: str | None = None,
+        event_finish_date: int | None = None,
+        event_group_id: int | None = None,
+        event_start_date: int | None = None,
+        events: bool | None = None,
+        links: bool | None = None,
+        main_section: int | None = None,
+        market: bool | None = None,
+        market_buttons: str | None = None,
+        market_city: list[int] | None = None,
+        market_comments: bool | None = None,
+        market_contact: int | None = None,
+        market_country: list[int] | None = None,
+        market_currency: int | None = None,
+        market_wiki: int | None = None,
+        messages: bool | None = None,
+        obscene_filter: bool | None = None,
+        obscene_stopwords: bool | None = None,
+        obscene_words: list[str] | None = None,
+        phone: str | None = None,
+        photos: int | None = None,
+        places: bool | None = None,
+        public_category: int | None = None,
+        public_date: str | None = None,
+        public_subcategory: int | None = None,
+        rss: str | None = None,
+        screen_name: str | None = None,
+        secondary_section: int | None = None,
+        subject: int | None = None,
+        title: str | None = None,
+        topics: int | None = None,
+        toxic_filter: bool | None = None,
+        video: int | None = None,
+        wall: int | None = None,
+        website: str | None = None,
+        wiki: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.edit()`
@@ -327,7 +327,7 @@ class GroupsCategory(BaseCategory):
         :param public_category: Public page category ID.
         :param public_date: Founding date of a company or organization owning the community in "dd.mm.YYYY" format.
         :param public_subcategory: Public page subcategory ID.
-        :param rss: RSS feed address for import (available only to communities with special permission. Contact vk.ru/support to get it.
+        :param rss: RSS feed address for import (available only to communities with special permission. Contact vk.com/support to get it.
         :param screen_name: Community screen name.
         :param secondary_section:
         :param subject: Community subject. Possible values: , *'1' - auto/moto,, *'2' - activity holidays,, *'3' - business,, *'4' - pets,, *'5' - health,, *'6' - dating and communication, , *'7' - games,, *'8' - IT (computers and software),, *'9' - cinema,, *'10' - beauty and fashion,, *'11' - cooking,, *'12' - art and culture,, *'13' - literature,, *'14' - mobile services and internet,, *'15' - music,, *'16' - science and technology,, *'17' - real estate,, *'18' - news and media,, *'19' - security,, *'20' - education,, *'21' - home and renovations,, *'22' - politics,, *'23' - food,, *'24' - industry,, *'25' - travel,, *'26' - work,, *'27' - entertainment,, *'28' - religion,, *'29' - family,, *'30' - sports,, *'31' - insurance,, *'32' - television,, *'33' - goods and services,, *'34' - hobbies,, *'35' - finance,, *'36' - photo,, *'37' - esoterics,, *'38' - electronics and appliances,, *'39' - erotic,, *'40' - humor,, *'41' - society, humanities,, *'42' - design and graphics.
@@ -349,17 +349,17 @@ class GroupsCategory(BaseCategory):
         self,
         address_id: int,
         group_id: int,
-        additional_address: typing.Optional[str] = None,
-        address: typing.Optional[str] = None,
-        city_id: typing.Optional[int] = None,
-        is_main_address: typing.Optional[bool] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        metro_id: typing.Optional[int] = None,
-        phone: typing.Optional[str] = None,
-        timetable: typing.Optional[str] = None,
-        title: typing.Optional[str] = None,
-        work_info_status: typing.Optional[str] = None,
+        additional_address: str | None = None,
+        address: str | None = None,
+        city_id: int | None = None,
+        is_main_address: bool | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        metro_id: int | None = None,
+        phone: str | None = None,
+        timetable: str | None = None,
+        title: str | None = None,
+        work_info_status: str | None = None,
         **kwargs: typing.Any,
     ) -> "GroupsAddress":
         """Method `groups.editAddress()`
@@ -390,7 +390,7 @@ class GroupsCategory(BaseCategory):
         server_id: int,
         title: str,
         url: str,
-        secret_key: typing.Optional[str] = None,
+        secret_key: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.editCallbackServer()`
@@ -411,7 +411,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         link_id: int,
-        text: typing.Optional[str] = None,
+        text: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.editLink()`
@@ -430,12 +430,12 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         user_id: int,
-        contact_email: typing.Optional[str] = None,
-        contact_phone: typing.Optional[str] = None,
-        contact_position: typing.Optional[str] = None,
-        is_call_operator: typing.Optional[bool] = None,
-        is_contact: typing.Optional[bool] = None,
-        role: typing.Optional[str] = None,
+        contact_email: str | None = None,
+        contact_phone: str | None = None,
+        contact_position: str | None = None,
+        is_call_operator: bool | None = None,
+        is_contact: bool | None = None,
+        role: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.editManager()`
@@ -474,36 +474,36 @@ class GroupsCategory(BaseCategory):
     async def get(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[GroupsFields]] = None,
-        filter: typing.Optional[typing.List[GroupsFilter]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[GroupsFields] | None = None,
+        filter: list[GroupsFilter] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetObjectExtendedResponseModel: ...
 
     @typing.overload
     async def get(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[GroupsFields]] = None,
-        filter: typing.Optional[typing.List[GroupsFilter]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[GroupsFields] | None = None,
+        filter: list[GroupsFilter] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetResponseModel: ...
 
     async def get(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[GroupsFields]] = None,
-        filter: typing.Optional[typing.List[GroupsFilter]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[GroupsFields] | None = None,
+        filter: list[GroupsFilter] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetResponseModel, GroupsGetObjectExtendedResponseModel]:
+    ) -> GroupsGetObjectExtendedResponseModel | GroupsGetResponseModel:
         """Method `groups.get()`
 
         :param extended: '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
@@ -526,12 +526,12 @@ class GroupsCategory(BaseCategory):
     async def get_addresses(
         self,
         group_id: int,
-        address_ids: typing.Optional[typing.List[int]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[AddressFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        offset: typing.Optional[int] = None,
+        address_ids: list[int] | None = None,
+        count: int | None = None,
+        fields: list[AddressFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetAddressesResponseModel:
         """Method `groups.getAddresses()`
@@ -553,10 +553,10 @@ class GroupsCategory(BaseCategory):
     async def get_banned(
         self,
         group_id: int,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetBannedResponseModel:
         """Method `groups.getBanned()`
@@ -575,9 +575,9 @@ class GroupsCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        fields: typing.Optional[typing.List[GroupsFields]] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        group_ids: typing.Optional[typing.List[typing.Union["int", "str"]]] = None,
+        fields: list[GroupsFields] | None = None,
+        group_id: int | str | None = None,
+        group_ids: list[int | str] | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetByIdObjectResponseModel:
         """Method `groups.getById()`
@@ -610,7 +610,7 @@ class GroupsCategory(BaseCategory):
     async def get_callback_servers(
         self,
         group_id: int,
-        server_ids: typing.Optional[typing.List[int]] = None,
+        server_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetCallbackServersResponseModel:
         """Method `groups.getCallbackServers()`
@@ -627,7 +627,7 @@ class GroupsCategory(BaseCategory):
     async def get_callback_settings(
         self,
         group_id: int,
-        server_id: typing.Optional[int] = None,
+        server_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "GroupsCallbackSettings":
         """Method `groups.getCallbackSettings()`
@@ -645,24 +645,24 @@ class GroupsCategory(BaseCategory):
     async def get_catalog_info(
         self,
         extended: typing.Literal[True],
-        subcategories: typing.Optional[bool] = None,
+        subcategories: bool | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetCatalogInfoExtendedResponseModel: ...
 
     @typing.overload
     async def get_catalog_info(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        subcategories: typing.Optional[bool] = None,
+        extended: typing.Literal[False] | None = None,
+        subcategories: bool | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetCatalogInfoResponseModel: ...
 
     async def get_catalog_info(
         self,
-        extended: typing.Optional[bool] = None,
-        subcategories: typing.Optional[bool] = None,
+        extended: bool | None = None,
+        subcategories: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetCatalogInfoExtendedResponseModel, GroupsGetCatalogInfoResponseModel]:
+    ) -> GroupsGetCatalogInfoExtendedResponseModel | GroupsGetCatalogInfoResponseModel:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -681,10 +681,10 @@ class GroupsCategory(BaseCategory):
     async def get_invited_users(
         self,
         group_id: int,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetInvitedUsersResponseModel:
         """Method `groups.getInvitedUsers()`
@@ -705,30 +705,30 @@ class GroupsCategory(BaseCategory):
     async def get_invites(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetInvitesExtendedResponseModel: ...
 
     @typing.overload
     async def get_invites(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetInvitesResponseModel: ...
 
     async def get_invites(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetInvitesResponseModel, GroupsGetInvitesExtendedResponseModel]:
+    ) -> GroupsGetInvitesResponseModel | GroupsGetInvitesExtendedResponseModel:
         """Method `groups.getInvites()`
 
-        :param extended: '1' - to return additional [vk.ru/dev/fields_groups|fields] for communities..
+        :param extended: '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
         :param count: Number of invitations to return.
         :param offset: Offset needed to return a specific subset of invitations.
         """
@@ -775,49 +775,49 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
+        fields: list[UsersFields],
         filter: str,
-        count: typing.Optional[int] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        count: int | None = None,
+        group_id: int | str | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetMembersFieldsResponseModel: ...
 
     @typing.overload
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        filter: typing.Optional[str] = None,
-        count: typing.Optional[int] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        fields: list[UsersFields] | None = None,
+        filter: str | None = None,
+        count: int | None = None,
+        group_id: int | str | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetMembersFilterResponseModel: ...
 
     @typing.overload
     async def get_members(
         self,
-        fields: typing.List[UsersFields],
+        fields: list[UsersFields],
         filter: str,
-        count: typing.Optional[int] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        count: int | None = None,
+        group_id: int | str | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetMembersResponseModel: ...
 
     async def get_members(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        filter: typing.Optional[str] = None,
-        count: typing.Optional[int] = None,
-        group_id: typing.Optional[typing.Union["int", "str"]] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
+        fields: list[UsersFields] | None = None,
+        filter: str | None = None,
+        count: int | None = None,
+        group_id: int | str | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetMembersFieldsResponseModel, GroupsGetMembersFilterResponseModel, GroupsGetMembersResponseModel]:
+    ) -> GroupsGetMembersFieldsResponseModel | GroupsGetMembersFilterResponseModel | GroupsGetMembersResponseModel:
         """Method `groups.getMembers()`
 
         :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
@@ -859,9 +859,9 @@ class GroupsCategory(BaseCategory):
     async def get_requests(
         self,
         group_id: int,
-        fields: typing.List[UsersFields],
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        fields: list[UsersFields],
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetRequestsFieldsResponseModel: ...
 
@@ -869,20 +869,20 @@ class GroupsCategory(BaseCategory):
     async def get_requests(
         self,
         group_id: int,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsGetRequestsResponseModel: ...
 
     async def get_requests(
         self,
         group_id: int,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[GroupsGetRequestsResponseModel, GroupsGetRequestsFieldsResponseModel]:
+    ) -> GroupsGetRequestsFieldsResponseModel | GroupsGetRequestsResponseModel:
         """Method `groups.getRequests()`
 
         :param group_id: Community ID.
@@ -902,7 +902,7 @@ class GroupsCategory(BaseCategory):
 
     async def get_settings(
         self,
-        group_id: typing.Union["int", "str"],
+        group_id: int | str,
         **kwargs: typing.Any,
     ) -> GroupsGetSettingsResponseModel:
         """Method `groups.getSettings()`
@@ -919,7 +919,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         **kwargs: typing.Any,
-    ) -> typing.List[GroupsGroupTag]:
+    ) -> list[GroupsGroupTag]:
         """Method `groups.getTagList()`
 
         :param group_id:
@@ -944,8 +944,8 @@ class GroupsCategory(BaseCategory):
     async def invite(
         self,
         group_id: int,
-        user_id: typing.Optional[int] = None,
-        user_ids_list: typing.Optional[typing.List[int]] = None,
+        user_id: int | None = None,
+        user_ids_list: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.invite()`
@@ -963,51 +963,51 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.List[int],
+        group_id: int | str,
         extended: typing.Literal[True],
-        user_id: typing.Optional[int] = None,
+        user_ids: list[int],
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[GroupsMemberStatus]: ...
+    ) -> list[GroupsMemberStatus]: ...
 
     @typing.overload
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | str,
+        extended: bool | None = None,
+        user_ids: list[int] | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsIsMemberExtendedResponseModel: ...
 
     @typing.overload
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.List[int],
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | str,
+        user_ids: list[int],
+        extended: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[GroupsMemberStatusFull]: ...
+    ) -> list[GroupsMemberStatusFull]: ...
 
     @typing.overload
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | str,
+        user_ids: list[int] | None = None,
+        extended: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool: ...
 
     async def is_member(
         self,
-        group_id: typing.Union["int", "str"],
-        user_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | str,
+        user_ids: list[int] | None = None,
+        extended: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[bool, typing.List[GroupsMemberStatusFull], GroupsIsMemberExtendedResponseModel, typing.List[GroupsMemberStatus]]:
+    ) -> GroupsIsMemberExtendedResponseModel | list[GroupsMemberStatusFull] | bool | list[GroupsMemberStatus]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.
@@ -1020,8 +1020,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
             (
-                (("user_ids",), GroupsIsMemberUserIdsResponse),
                 (("extended",), GroupsIsMemberUserIdsResponse),
+                (("user_ids",), GroupsIsMemberUserIdsResponse),
             ),
             default=BaseBoolResponse,
             params=params,
@@ -1031,7 +1031,7 @@ class GroupsCategory(BaseCategory):
     async def join(
         self,
         group_id: int,
-        not_sure: typing.Optional[str] = None,
+        not_sure: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.join()`
@@ -1081,7 +1081,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         link_id: int,
-        after: typing.Optional[int] = None,
+        after: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.reorderLink()`
@@ -1099,14 +1099,14 @@ class GroupsCategory(BaseCategory):
     async def search(
         self,
         q: str,
-        city_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        country_id: typing.Optional[int] = None,
-        future: typing.Optional[bool] = None,
-        market: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        city_id: int | None = None,
+        count: int | None = None,
+        country_id: int | None = None,
+        future: bool | None = None,
+        market: bool | None = None,
+        offset: int | None = None,
+        sort: int | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> GroupsSearchResponseModel:
         """Method `groups.search()`
@@ -1130,64 +1130,64 @@ class GroupsCategory(BaseCategory):
     async def set_callback_settings(
         self,
         group_id: int,
-        api_version: typing.Optional[str] = None,
-        audio_new: typing.Optional[bool] = None,
-        board_post_delete: typing.Optional[bool] = None,
-        board_post_edit: typing.Optional[bool] = None,
-        board_post_new: typing.Optional[bool] = None,
-        board_post_restore: typing.Optional[bool] = None,
-        donut_money_withdraw: typing.Optional[bool] = None,
-        donut_money_withdraw_error: typing.Optional[bool] = None,
-        donut_subscription_cancelled: typing.Optional[bool] = None,
-        donut_subscription_create: typing.Optional[bool] = None,
-        donut_subscription_expired: typing.Optional[bool] = None,
-        donut_subscription_price_changed: typing.Optional[bool] = None,
-        donut_subscription_prolonged: typing.Optional[bool] = None,
-        group_change_photo: typing.Optional[bool] = None,
-        group_change_settings: typing.Optional[bool] = None,
-        group_join: typing.Optional[bool] = None,
-        group_leave: typing.Optional[bool] = None,
-        group_officers_edit: typing.Optional[bool] = None,
-        lead_forms_new: typing.Optional[bool] = None,
-        like_add: typing.Optional[bool] = None,
-        like_remove: typing.Optional[bool] = None,
-        market_comment_delete: typing.Optional[bool] = None,
-        market_comment_edit: typing.Optional[bool] = None,
-        market_comment_new: typing.Optional[bool] = None,
-        market_comment_restore: typing.Optional[bool] = None,
-        market_order_edit: typing.Optional[bool] = None,
-        market_order_new: typing.Optional[bool] = None,
-        message_allow: typing.Optional[bool] = None,
-        message_deny: typing.Optional[bool] = None,
-        message_edit: typing.Optional[bool] = None,
-        message_event: typing.Optional[bool] = None,
-        message_new: typing.Optional[bool] = None,
-        message_reaction_event: typing.Optional[bool] = None,
-        message_read: typing.Optional[bool] = None,
-        message_reply: typing.Optional[bool] = None,
-        message_typing_state: typing.Optional[bool] = None,
-        photo_comment_delete: typing.Optional[bool] = None,
-        photo_comment_edit: typing.Optional[bool] = None,
-        photo_comment_new: typing.Optional[bool] = None,
-        photo_comment_restore: typing.Optional[bool] = None,
-        photo_new: typing.Optional[bool] = None,
-        poll_vote_new: typing.Optional[bool] = None,
-        server_id: typing.Optional[int] = None,
-        user_block: typing.Optional[bool] = None,
-        user_unblock: typing.Optional[bool] = None,
-        video_comment_delete: typing.Optional[bool] = None,
-        video_comment_edit: typing.Optional[bool] = None,
-        video_comment_new: typing.Optional[bool] = None,
-        video_comment_restore: typing.Optional[bool] = None,
-        video_new: typing.Optional[bool] = None,
-        wall_post_new: typing.Optional[bool] = None,
-        wall_reply_delete: typing.Optional[bool] = None,
-        wall_reply_edit: typing.Optional[bool] = None,
-        wall_reply_new: typing.Optional[bool] = None,
-        wall_reply_restore: typing.Optional[bool] = None,
-        wall_repost: typing.Optional[bool] = None,
-        wall_schedule_post_delete: typing.Optional[bool] = None,
-        wall_schedule_post_new: typing.Optional[bool] = None,
+        api_version: str | None = None,
+        audio_new: bool | None = None,
+        board_post_delete: bool | None = None,
+        board_post_edit: bool | None = None,
+        board_post_new: bool | None = None,
+        board_post_restore: bool | None = None,
+        donut_money_withdraw: bool | None = None,
+        donut_money_withdraw_error: bool | None = None,
+        donut_subscription_cancelled: bool | None = None,
+        donut_subscription_create: bool | None = None,
+        donut_subscription_expired: bool | None = None,
+        donut_subscription_price_changed: bool | None = None,
+        donut_subscription_prolonged: bool | None = None,
+        group_change_photo: bool | None = None,
+        group_change_settings: bool | None = None,
+        group_join: bool | None = None,
+        group_leave: bool | None = None,
+        group_officers_edit: bool | None = None,
+        lead_forms_new: bool | None = None,
+        like_add: bool | None = None,
+        like_remove: bool | None = None,
+        market_comment_delete: bool | None = None,
+        market_comment_edit: bool | None = None,
+        market_comment_new: bool | None = None,
+        market_comment_restore: bool | None = None,
+        market_order_edit: bool | None = None,
+        market_order_new: bool | None = None,
+        message_allow: bool | None = None,
+        message_deny: bool | None = None,
+        message_edit: bool | None = None,
+        message_event: bool | None = None,
+        message_new: bool | None = None,
+        message_reaction_event: bool | None = None,
+        message_read: bool | None = None,
+        message_reply: bool | None = None,
+        message_typing_state: bool | None = None,
+        photo_comment_delete: bool | None = None,
+        photo_comment_edit: bool | None = None,
+        photo_comment_new: bool | None = None,
+        photo_comment_restore: bool | None = None,
+        photo_new: bool | None = None,
+        poll_vote_new: bool | None = None,
+        server_id: int | None = None,
+        user_block: bool | None = None,
+        user_unblock: bool | None = None,
+        video_comment_delete: bool | None = None,
+        video_comment_edit: bool | None = None,
+        video_comment_new: bool | None = None,
+        video_comment_restore: bool | None = None,
+        video_new: bool | None = None,
+        wall_post_new: bool | None = None,
+        wall_reply_delete: bool | None = None,
+        wall_reply_edit: bool | None = None,
+        wall_reply_new: bool | None = None,
+        wall_reply_restore: bool | None = None,
+        wall_repost: bool | None = None,
+        wall_schedule_post_delete: bool | None = None,
+        wall_schedule_post_new: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.setCallbackSettings()`
@@ -1261,59 +1261,59 @@ class GroupsCategory(BaseCategory):
     async def set_long_poll_settings(
         self,
         group_id: int,
-        api_version: typing.Optional[str] = None,
-        audio_new: typing.Optional[bool] = None,
-        board_post_delete: typing.Optional[bool] = None,
-        board_post_edit: typing.Optional[bool] = None,
-        board_post_new: typing.Optional[bool] = None,
-        board_post_restore: typing.Optional[bool] = None,
-        donut_money_withdraw: typing.Optional[bool] = None,
-        donut_money_withdraw_error: typing.Optional[bool] = None,
-        donut_subscription_cancelled: typing.Optional[bool] = None,
-        donut_subscription_create: typing.Optional[bool] = None,
-        donut_subscription_expired: typing.Optional[bool] = None,
-        donut_subscription_price_changed: typing.Optional[bool] = None,
-        donut_subscription_prolonged: typing.Optional[bool] = None,
-        enabled: typing.Optional[bool] = None,
-        group_change_photo: typing.Optional[bool] = None,
-        group_change_settings: typing.Optional[bool] = None,
-        group_join: typing.Optional[bool] = None,
-        group_leave: typing.Optional[bool] = None,
-        group_officers_edit: typing.Optional[bool] = None,
-        like_add: typing.Optional[bool] = None,
-        like_remove: typing.Optional[bool] = None,
-        market_comment_delete: typing.Optional[bool] = None,
-        market_comment_edit: typing.Optional[bool] = None,
-        market_comment_new: typing.Optional[bool] = None,
-        market_comment_restore: typing.Optional[bool] = None,
-        message_allow: typing.Optional[bool] = None,
-        message_deny: typing.Optional[bool] = None,
-        message_edit: typing.Optional[bool] = None,
-        message_event: typing.Optional[bool] = None,
-        message_new: typing.Optional[bool] = None,
-        message_reaction_event: typing.Optional[bool] = None,
-        message_read: typing.Optional[bool] = None,
-        message_reply: typing.Optional[bool] = None,
-        message_typing_state: typing.Optional[bool] = None,
-        photo_comment_delete: typing.Optional[bool] = None,
-        photo_comment_edit: typing.Optional[bool] = None,
-        photo_comment_new: typing.Optional[bool] = None,
-        photo_comment_restore: typing.Optional[bool] = None,
-        photo_new: typing.Optional[bool] = None,
-        poll_vote_new: typing.Optional[bool] = None,
-        user_block: typing.Optional[bool] = None,
-        user_unblock: typing.Optional[bool] = None,
-        video_comment_delete: typing.Optional[bool] = None,
-        video_comment_edit: typing.Optional[bool] = None,
-        video_comment_new: typing.Optional[bool] = None,
-        video_comment_restore: typing.Optional[bool] = None,
-        video_new: typing.Optional[bool] = None,
-        wall_post_new: typing.Optional[bool] = None,
-        wall_reply_delete: typing.Optional[bool] = None,
-        wall_reply_edit: typing.Optional[bool] = None,
-        wall_reply_new: typing.Optional[bool] = None,
-        wall_reply_restore: typing.Optional[bool] = None,
-        wall_repost: typing.Optional[bool] = None,
+        api_version: str | None = None,
+        audio_new: bool | None = None,
+        board_post_delete: bool | None = None,
+        board_post_edit: bool | None = None,
+        board_post_new: bool | None = None,
+        board_post_restore: bool | None = None,
+        donut_money_withdraw: bool | None = None,
+        donut_money_withdraw_error: bool | None = None,
+        donut_subscription_cancelled: bool | None = None,
+        donut_subscription_create: bool | None = None,
+        donut_subscription_expired: bool | None = None,
+        donut_subscription_price_changed: bool | None = None,
+        donut_subscription_prolonged: bool | None = None,
+        enabled: bool | None = None,
+        group_change_photo: bool | None = None,
+        group_change_settings: bool | None = None,
+        group_join: bool | None = None,
+        group_leave: bool | None = None,
+        group_officers_edit: bool | None = None,
+        like_add: bool | None = None,
+        like_remove: bool | None = None,
+        market_comment_delete: bool | None = None,
+        market_comment_edit: bool | None = None,
+        market_comment_new: bool | None = None,
+        market_comment_restore: bool | None = None,
+        message_allow: bool | None = None,
+        message_deny: bool | None = None,
+        message_edit: bool | None = None,
+        message_event: bool | None = None,
+        message_new: bool | None = None,
+        message_reaction_event: bool | None = None,
+        message_read: bool | None = None,
+        message_reply: bool | None = None,
+        message_typing_state: bool | None = None,
+        photo_comment_delete: bool | None = None,
+        photo_comment_edit: bool | None = None,
+        photo_comment_new: bool | None = None,
+        photo_comment_restore: bool | None = None,
+        photo_new: bool | None = None,
+        poll_vote_new: bool | None = None,
+        user_block: bool | None = None,
+        user_unblock: bool | None = None,
+        video_comment_delete: bool | None = None,
+        video_comment_edit: bool | None = None,
+        video_comment_new: bool | None = None,
+        video_comment_restore: bool | None = None,
+        video_new: bool | None = None,
+        wall_post_new: bool | None = None,
+        wall_reply_delete: bool | None = None,
+        wall_reply_edit: bool | None = None,
+        wall_reply_new: bool | None = None,
+        wall_reply_restore: bool | None = None,
+        wall_repost: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.setLongPollSettings()`
@@ -1382,11 +1382,11 @@ class GroupsCategory(BaseCategory):
     async def set_settings(
         self,
         group_id: int,
-        bot_online_booking_enabled: typing.Optional[bool] = None,
-        bots_add_to_chat: typing.Optional[bool] = None,
-        bots_capabilities: typing.Optional[bool] = None,
-        bots_start_button: typing.Optional[bool] = None,
-        messages: typing.Optional[bool] = None,
+        bot_online_booking_enabled: bool | None = None,
+        bots_add_to_chat: bool | None = None,
+        bots_capabilities: bool | None = None,
+        bots_start_button: bool | None = None,
+        messages: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.setSettings()`
@@ -1408,7 +1408,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         user_id: int,
-        note: typing.Optional[str] = None,
+        note: str | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `groups.setUserNote()`
@@ -1427,7 +1427,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         tag_name: str,
-        tag_color: typing.Optional[str] = None,
+        tag_color: str | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `groups.tagAdd()`
@@ -1503,7 +1503,7 @@ class GroupsCategory(BaseCategory):
         self,
         group_id: int,
         state: str,
-        ref: typing.Optional[str] = None,
+        ref: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.toggleMarket()`
@@ -1521,7 +1521,7 @@ class GroupsCategory(BaseCategory):
     async def unban(
         self,
         group_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `groups.unban()`

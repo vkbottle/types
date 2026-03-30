@@ -26,8 +26,8 @@ class MessagesCategory(BaseCategory):
     async def add_chat_user(
         self,
         chat_id: int,
-        user_id: typing.Optional[int] = None,
-        visible_messages_count: typing.Optional[int] = None,
+        user_id: int | None = None,
+        visible_messages_count: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.addChatUser()`
@@ -44,8 +44,8 @@ class MessagesCategory(BaseCategory):
 
     async def add_chat_users(
         self,
-        chat_id: typing.Optional[int] = None,
-        visible_messages_count: typing.Optional[int] = None,
+        chat_id: int | None = None,
+        visible_messages_count: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesAddChatUsersResponseModel:
         """Method `messages.addChatUsers()`
@@ -62,7 +62,7 @@ class MessagesCategory(BaseCategory):
     async def allow_messages_from_group(
         self,
         group_id: int,
-        key: typing.Optional[str] = None,
+        key: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.allowMessagesFromGroup()`
@@ -78,9 +78,9 @@ class MessagesCategory(BaseCategory):
 
     async def create_chat(
         self,
-        group_id: typing.Optional[int] = None,
-        title: typing.Optional[str] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        group_id: int | None = None,
+        title: str | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> MessagesCreateChatWithPeerIdsResponseModel:
         """Method `messages.createChat()`
@@ -97,15 +97,15 @@ class MessagesCategory(BaseCategory):
 
     async def delete(
         self,
-        cmids: typing.Optional[typing.List[int]] = None,
-        delete_for_all: typing.Optional[bool] = None,
-        group_id: typing.Optional[int] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
-        peer_id: typing.Optional[int] = None,
-        reason: typing.Optional[int] = None,
-        spam: typing.Optional[bool] = None,
+        cmids: list[int] | None = None,
+        delete_for_all: bool | None = None,
+        group_id: int | None = None,
+        message_ids: list[int] | None = None,
+        peer_id: int | None = None,
+        reason: int | None = None,
+        spam: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[MessagesDeleteFullResponseItem]:
+    ) -> list[MessagesDeleteFullResponseItem]:
         """Method `messages.delete()`
 
         :param cmids: Conversation message IDs.
@@ -125,7 +125,7 @@ class MessagesCategory(BaseCategory):
     async def delete_chat_photo(
         self,
         chat_id: int,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesDeleteChatPhotoResponseModel:
         """Method `messages.deleteChatPhoto()`
@@ -141,9 +141,9 @@ class MessagesCategory(BaseCategory):
 
     async def delete_conversation(
         self,
-        group_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        peer_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesDeleteConversationResponseModel:
         """Method `messages.deleteConversation()`
@@ -193,19 +193,19 @@ class MessagesCategory(BaseCategory):
     async def edit(
         self,
         peer_id: int,
-        attachment: typing.Optional[str] = None,
-        cmid: typing.Optional[int] = None,
-        disable_mentions: typing.Optional[bool] = None,
-        dont_parse_links: typing.Optional[bool] = None,
-        group_id: typing.Optional[int] = None,
-        keep_forward_messages: typing.Optional[bool] = None,
-        keep_snippets: typing.Optional[bool] = None,
-        keyboard: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        message: typing.Optional[str] = None,
-        message_id: typing.Optional[int] = None,
-        template: typing.Optional[str] = None,
+        attachment: str | None = None,
+        cmid: int | None = None,
+        disable_mentions: bool | None = None,
+        dont_parse_links: bool | None = None,
+        group_id: int | None = None,
+        keep_forward_messages: bool | None = None,
+        keep_snippets: bool | None = None,
+        keyboard: str | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        message: str | None = None,
+        message_id: int | None = None,
+        template: str | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `messages.edit()`
@@ -234,7 +234,7 @@ class MessagesCategory(BaseCategory):
     async def edit_chat(
         self,
         chat_id: int,
-        title: typing.Optional[str] = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.editChat()`
@@ -251,34 +251,34 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_by_conversation_message_id(
         self,
-        conversation_message_ids: typing.List[int],
+        conversation_message_ids: list[int],
         peer_id: int,
         extended: typing.Literal[True],
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetByConversationMessageIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_conversation_message_id(
         self,
-        conversation_message_ids: typing.List[int],
+        conversation_message_ids: list[int],
         peer_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetByConversationMessageIdResponseModel: ...
 
     async def get_by_conversation_message_id(
         self,
-        conversation_message_ids: typing.List[int],
+        conversation_message_ids: list[int],
         peer_id: int,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetByConversationMessageIdExtendedResponseModel, MessagesGetByConversationMessageIdResponseModel]:
+    ) -> MessagesGetByConversationMessageIdExtendedResponseModel | MessagesGetByConversationMessageIdResponseModel:
         """Method `messages.getByConversationMessageId()`
 
         :param conversation_message_ids: Conversation message IDs.
@@ -301,39 +301,39 @@ class MessagesCategory(BaseCategory):
     async def get_by_id(
         self,
         extended: typing.Literal[True],
-        cmids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
+        cmids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        message_ids: list[int] | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetByIdExtendedResponseModel: ...
 
     @typing.overload
     async def get_by_id(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        cmids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        cmids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        message_ids: list[int] | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetByIdResponseModel: ...
 
     async def get_by_id(
         self,
-        extended: typing.Optional[bool] = None,
-        cmids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
+        extended: bool | None = None,
+        cmids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        message_ids: list[int] | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetByIdResponseModel, MessagesGetByIdExtendedResponseModel]:
+    ) -> MessagesGetByIdExtendedResponseModel | MessagesGetByIdResponseModel:
         """Method `messages.getById()`
 
         :param extended: Information whether the response should be extended
@@ -357,51 +357,51 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.List[int],
-        fields: typing.List[UsersFields],
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        chat_ids: list[int],
+        fields: list[UsersFields],
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesChatFull": ...
 
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        chat_ids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[MessagesChat]: ...
+    ) -> list[MessagesChat]: ...
 
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.List[int],
-        fields: typing.List[UsersFields],
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        chat_ids: list[int],
+        fields: list[UsersFields],
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[MessagesChatFull]: ...
+    ) -> list[MessagesChatFull]: ...
 
     @typing.overload
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        chat_ids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesChat": ...
 
     async def get_chat(
         self,
-        chat_ids: typing.Optional[typing.List[int]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        chat_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
+        chat_ids: list[int] | None = None,
+        fields: list[UsersFields] | None = None,
+        chat_id: int | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesChatFull", typing.List[MessagesChatFull], "MessagesChat", typing.List[MessagesChat]]:
+    ) -> "MessagesChat | list[MessagesChat] | list[MessagesChatFull] | MessagesChatFull":
         """Method `messages.getChat()`
 
         :param chat_ids: Chat IDs.
@@ -424,9 +424,9 @@ class MessagesCategory(BaseCategory):
 
     async def get_chat_preview(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        link: typing.Optional[str] = None,
-        peer_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        link: str | None = None,
+        peer_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetChatPreviewResponseModel:
         """Method `messages.getChatPreview()`
@@ -444,12 +444,12 @@ class MessagesCategory(BaseCategory):
     async def get_conversation_members(
         self,
         peer_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        member_ids: typing.Optional[typing.List[int]] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        member_ids: list[int] | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesGetConversationMembers":
         """Method `messages.getConversationMembers()`
@@ -470,13 +470,13 @@ class MessagesCategory(BaseCategory):
 
     async def get_conversations(
         self,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter: str | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        start_message_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetConversationsResponseModel:
         """Method `messages.getConversations()`
@@ -498,31 +498,31 @@ class MessagesCategory(BaseCategory):
     @typing.overload
     async def get_conversations_by_id(
         self,
-        peer_ids: typing.List[int],
+        peer_ids: list[int],
         extended: typing.Literal[True],
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesGetConversationByIdExtended": ...
 
     @typing.overload
     async def get_conversations_by_id(
         self,
-        peer_ids: typing.List[int],
-        extended: typing.Optional[typing.Literal[False]] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
+        peer_ids: list[int],
+        extended: typing.Literal[False] | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesGetConversationById": ...
 
     async def get_conversations_by_id(
         self,
-        peer_ids: typing.List[int],
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
+        peer_ids: list[int],
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union["MessagesGetConversationById", "MessagesGetConversationByIdExtended"]:
+    ) -> "MessagesGetConversationById | MessagesGetConversationByIdExtended":
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "
@@ -544,45 +544,45 @@ class MessagesCategory(BaseCategory):
     async def get_history(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        rev: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        rev: int | None = None,
+        start_message_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetHistoryExtendedResponseModel: ...
 
     @typing.overload
     async def get_history(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        rev: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        rev: int | None = None,
+        start_message_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetHistoryResponseModel: ...
 
     async def get_history(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        rev: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        rev: int | None = None,
+        start_message_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetHistoryExtendedResponseModel, MessagesGetHistoryResponseModel]:
+    ) -> MessagesGetHistoryResponseModel | MessagesGetHistoryExtendedResponseModel:
         """Method `messages.getHistory()`
 
         :param extended: Information whether the response should be extended
@@ -607,39 +607,38 @@ class MessagesCategory(BaseCategory):
 
     async def get_history_attachments(
         self,
-        attachment_position: typing.Optional[int] = None,
-        attachment_types: typing.Optional[
-            typing.List[
-                typing.Literal[
-                    "app_action_games",
-                    "app_action_mini_apps",
-                    "audio",
-                    "audio_message",
-                    "clip",
-                    "doc",
-                    "graffiti",
-                    "link",
-                    "market",
-                    "photo",
-                    "share",
-                    "video",
-                    "wall",
-                ]
+        attachment_position: int | None = None,
+        attachment_types: list[
+            typing.Literal[
+                "app_action_games",
+                "app_action_mini_apps",
+                "audio",
+                "audio_message",
+                "clip",
+                "doc",
+                "graffiti",
+                "link",
+                "market",
+                "photo",
+                "share",
+                "video",
+                "wall",
             ]
-        ] = None,
-        cmid: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        max_forwards_level: typing.Optional[int] = None,
-        media_type: typing.Optional[str] = None,
-        message_video: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        photo_sizes: typing.Optional[bool] = None,
-        preserve_order: typing.Optional[bool] = None,
-        start_from: typing.Optional[str] = None,
+        ]
+        | None = None,
+        cmid: int | None = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        max_forwards_level: int | None = None,
+        media_type: str | None = None,
+        message_video: bool | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        photo_sizes: bool | None = None,
+        preserve_order: bool | None = None,
+        start_from: str | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetHistoryAttachmentsResponseModel:
         """Method `messages.getHistoryAttachments()`
@@ -649,7 +648,7 @@ class MessagesCategory(BaseCategory):
         :param cmid:
         :param count: Number of objects to return.
         :param extended:
-        :param fields: Additional profile [vk.ru/dev/fields|fields] to return.
+        :param fields: Additional profile [vk.com/dev/fields|fields] to return.
         :param group_id: Group ID (for group messages with group access token)
         :param max_forwards_level:
         :param media_type: Type of media files to return: *'photo',, *'video',, *'audio',, *'doc',, *'link'.,*'market'.,*'wall'.,*'share'
@@ -670,39 +669,39 @@ class MessagesCategory(BaseCategory):
     async def get_important_messages(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        preview_length: int | None = None,
+        start_message_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetImportantMessagesExtendedResponseModel: ...
 
     @typing.overload
     async def get_important_messages(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        preview_length: int | None = None,
+        start_message_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetImportantMessagesResponseModel: ...
 
     async def get_important_messages(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        preview_length: int | None = None,
+        start_message_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesGetImportantMessagesExtendedResponseModel, MessagesGetImportantMessagesResponseModel]:
+    ) -> MessagesGetImportantMessagesExtendedResponseModel | MessagesGetImportantMessagesResponseModel:
         """Method `messages.getImportantMessages()`
 
         :param extended: Return extended properties
@@ -726,12 +725,12 @@ class MessagesCategory(BaseCategory):
     async def get_intent_users(
         self,
         intent: str,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        subscribe_id: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[str] | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        subscribe_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetIntentUsersResponseModel:
         """Method `messages.getIntentUsers()`
@@ -753,8 +752,8 @@ class MessagesCategory(BaseCategory):
     async def get_invite_link(
         self,
         peer_id: int,
-        group_id: typing.Optional[int] = None,
-        reset: typing.Optional[bool] = None,
+        group_id: int | None = None,
+        reset: bool | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetInviteLinkResponseModel:
         """Method `messages.getInviteLink()`
@@ -786,19 +785,19 @@ class MessagesCategory(BaseCategory):
 
     async def get_long_poll_history(
         self,
-        credentials: typing.Optional[bool] = None,
-        events_limit: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        last_n: typing.Optional[int] = None,
-        lp_version: typing.Optional[int] = None,
-        max_msg_id: typing.Optional[int] = None,
-        msgs_limit: typing.Optional[int] = None,
-        onlines: typing.Optional[bool] = None,
-        preview_length: typing.Optional[int] = None,
-        pts: typing.Optional[int] = None,
-        ts: typing.Optional[int] = None,
+        credentials: bool | None = None,
+        events_limit: int | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        last_n: int | None = None,
+        lp_version: int | None = None,
+        max_msg_id: int | None = None,
+        msgs_limit: int | None = None,
+        onlines: bool | None = None,
+        preview_length: int | None = None,
+        pts: int | None = None,
+        ts: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetLongPollHistoryResponseModel:
         """Method `messages.getLongPollHistory()`
@@ -806,7 +805,7 @@ class MessagesCategory(BaseCategory):
         :param credentials:
         :param events_limit: Maximum number of events to return.
         :param extended:
-        :param fields: Additional profile [vk.ru/dev/fields|fields] to return.
+        :param fields: Additional profile [vk.com/dev/fields|fields] to return.
         :param group_id: Group ID (for group messages with user access token)
         :param last_n:
         :param lp_version:
@@ -814,8 +813,8 @@ class MessagesCategory(BaseCategory):
         :param msgs_limit: Maximum number of messages to return.
         :param onlines: '1' - to return history with online users only.
         :param preview_length: Number of characters after which to truncate a previewed message. To preview the full message, specify '0'. "NOTE: Messages are not truncated by default. Messages are truncated by words."
-        :param pts: Last value of 'pts' parameter returned from the Long Poll server or by using [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
-        :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param pts: Last value of 'pts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param ts: Last value of the 'ts' parameter returned from the Long Poll server or by using [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         """
 
         params = self.get_set_params(locals())
@@ -825,16 +824,16 @@ class MessagesCategory(BaseCategory):
 
     async def get_long_poll_server(
         self,
-        group_id: typing.Optional[int] = None,
-        lp_version: typing.Optional[int] = None,
-        need_pts: typing.Optional[bool] = None,
+        group_id: int | None = None,
+        lp_version: int | None = None,
+        need_pts: bool | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesLongpollParams":
         """Method `messages.getLongPollServer()`
 
         :param group_id: Group ID (for group messages with user access token)
         :param lp_version: Long poll version
-        :param need_pts: '1' - to return the 'pts' field, needed for the [vk.ru/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
+        :param need_pts: '1' - to return the 'pts' field, needed for the [vk.com/dev/messages.getLongPollHistory|messages.getLongPollHistory] method.
         """
 
         params = self.get_set_params(locals())
@@ -844,7 +843,7 @@ class MessagesCategory(BaseCategory):
 
     async def get_messages_reactions(
         self,
-        cmids: typing.List[int],
+        cmids: list[int],
         peer_id: int,
         **kwargs: typing.Any,
     ) -> MessagesGetMessagesReactionsResponseModel:
@@ -863,7 +862,7 @@ class MessagesCategory(BaseCategory):
         self,
         cmid: int,
         peer_id: int,
-        reaction_id: typing.Optional[int] = None,
+        reaction_id: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetReactedPeersResponseModel:
         """Method `messages.getReactedPeers()`
@@ -880,7 +879,7 @@ class MessagesCategory(BaseCategory):
 
     async def get_reactions_assets(
         self,
-        client_version: typing.Optional[int] = None,
+        client_version: int | None = None,
         **kwargs: typing.Any,
     ) -> MessagesGetReactionsAssetsResponseModel:
         """Method `messages.getReactionsAssets()`
@@ -928,8 +927,8 @@ class MessagesCategory(BaseCategory):
     async def mark_as_answered_conversation(
         self,
         peer_id: int,
-        answered: typing.Optional[bool] = None,
-        group_id: typing.Optional[int] = None,
+        answered: bool | None = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.markAsAnsweredConversation()`
@@ -946,10 +945,10 @@ class MessagesCategory(BaseCategory):
 
     async def mark_as_important(
         self,
-        important: typing.Optional[int] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
+        important: int | None = None,
+        message_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[int]:
+    ) -> list[int]:
         """Method `messages.markAsImportant()`
 
         :param important: '1' - to add a star (mark as important), '0' - to remove the star
@@ -964,8 +963,8 @@ class MessagesCategory(BaseCategory):
     async def mark_as_important_conversation(
         self,
         peer_id: int,
-        group_id: typing.Optional[int] = None,
-        important: typing.Optional[bool] = None,
+        group_id: int | None = None,
+        important: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.markAsImportantConversation()`
@@ -982,12 +981,12 @@ class MessagesCategory(BaseCategory):
 
     async def mark_as_read(
         self,
-        group_id: typing.Optional[int] = None,
-        mark_conversation_as_read: typing.Optional[bool] = None,
-        message_ids: typing.Optional[typing.List[int]] = None,
-        peer_id: typing.Optional[int] = None,
-        start_message_id: typing.Optional[int] = None,
-        up_to_cmid: typing.Optional[int] = None,
+        group_id: int | None = None,
+        mark_conversation_as_read: bool | None = None,
+        message_ids: list[int] | None = None,
+        peer_id: int | None = None,
+        start_message_id: int | None = None,
+        up_to_cmid: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.markAsRead()`
@@ -1008,7 +1007,7 @@ class MessagesCategory(BaseCategory):
     async def mark_reactions_as_read(
         self,
         peer_id: int,
-        cmids: typing.Optional[typing.List[int]] = None,
+        cmids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `messages.markReactionsAsRead()`
@@ -1042,8 +1041,8 @@ class MessagesCategory(BaseCategory):
     async def pin(
         self,
         peer_id: int,
-        cmid: typing.Optional[int] = None,
-        message_id: typing.Optional[int] = None,
+        cmid: int | None = None,
+        message_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "MessagesPinnedMessage":
         """Method `messages.pin()`
@@ -1061,8 +1060,8 @@ class MessagesCategory(BaseCategory):
     async def remove_chat_user(
         self,
         chat_id: int,
-        member_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        member_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.removeChatUser()`
@@ -1079,10 +1078,10 @@ class MessagesCategory(BaseCategory):
 
     async def restore(
         self,
-        cmid: typing.Optional[int] = None,
-        group_id: typing.Optional[int] = None,
-        message_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
+        cmid: int | None = None,
+        group_id: int | None = None,
+        message_id: int | None = None,
+        peer_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.restore()`
@@ -1102,45 +1101,45 @@ class MessagesCategory(BaseCategory):
     async def search(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        date: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        count: int | None = None,
+        date: int | None = None,
+        fields: list[str] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> MessagesSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        date: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        date: int | None = None,
+        fields: list[str] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> MessagesSearchResponseModel: ...
 
     async def search(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        date: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        group_id: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        date: int | None = None,
+        fields: list[str] | None = None,
+        group_id: int | None = None,
+        offset: int | None = None,
+        peer_id: int | None = None,
+        preview_length: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesSearchResponseModel, MessagesSearchExtendedResponseModel]:
+    ) -> MessagesSearchExtendedResponseModel | MessagesSearchResponseModel:
         """Method `messages.search()`
 
         :param extended:
@@ -1167,33 +1166,33 @@ class MessagesCategory(BaseCategory):
     async def search_conversations(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> MessagesSearchConversationsExtendedResponseModel: ...
 
     @typing.overload
     async def search_conversations(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
     ) -> MessagesSearchConversationsResponseModel: ...
 
     async def search_conversations(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        group_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        group_id: int | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[MessagesSearchConversationsResponseModel, MessagesSearchConversationsExtendedResponseModel]:
+    ) -> MessagesSearchConversationsExtendedResponseModel | MessagesSearchConversationsResponseModel:
         """Method `messages.searchConversations()`
 
         :param extended: '1' - return extra information about users and communities
@@ -1214,31 +1213,31 @@ class MessagesCategory(BaseCategory):
 
     async def send(
         self,
-        attachment: typing.Optional[str] = None,
-        chat_id: typing.Optional[int] = None,
-        content_source: typing.Optional[str] = None,
-        disable_mentions: typing.Optional[bool] = None,
-        domain: typing.Optional[str] = None,
-        dont_parse_links: typing.Optional[bool] = None,
-        forward: typing.Optional[str] = None,
-        forward_messages: typing.Optional[typing.List[int]] = None,
-        group_id: typing.Optional[int] = None,
-        intent: typing.Optional[str] = None,
-        keyboard: typing.Optional[str] = None,
-        lat: typing.Optional[float] = None,
-        long: typing.Optional[float] = None,
-        message: typing.Optional[str] = None,
-        payload: typing.Optional[str] = None,
-        peer_id: typing.Optional[int] = None,
-        peer_ids: typing.Optional[typing.List[int]] = None,
-        random_id: typing.Optional[int] = None,
-        reply_to: typing.Optional[int] = None,
-        sticker_id: typing.Optional[int] = None,
-        subscribe_id: typing.Optional[int] = None,
-        template: typing.Optional[str] = None,
-        user_id: typing.Optional[int] = None,
+        attachment: str | None = None,
+        chat_id: int | None = None,
+        content_source: str | None = None,
+        disable_mentions: bool | None = None,
+        domain: str | None = None,
+        dont_parse_links: bool | None = None,
+        forward: str | None = None,
+        forward_messages: list[int] | None = None,
+        group_id: int | None = None,
+        intent: str | None = None,
+        keyboard: str | None = None,
+        lat: float | None = None,
+        long: float | None = None,
+        message: str | None = None,
+        payload: str | None = None,
+        peer_id: int | None = None,
+        peer_ids: list[int] | None = None,
+        random_id: int | None = None,
+        reply_to: int | None = None,
+        sticker_id: int | None = None,
+        subscribe_id: int | None = None,
+        template: str | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> dict[str, typing.Any]:
         """Method `messages.send()`
 
         :param attachment: (Required if 'message' is not set.) List of objects attached to the message, separated by commas, in the following format: "<owner_id>_<media_id>", '' - Type of media attachment: 'photo' - photo, 'video' - video, 'audio' - audio, 'doc' - document, 'wall' - wall post, '<owner_id>' - ID of the media attachment owner. '<media_id>' - media attachment ID. Example: "photo100172_166443618"
@@ -1276,7 +1275,7 @@ class MessagesCategory(BaseCategory):
         event_id: str,
         peer_id: int,
         user_id: int,
-        event_data: typing.Optional[str] = None,
+        event_data: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.sendMessageEventAnswer()`
@@ -1313,10 +1312,10 @@ class MessagesCategory(BaseCategory):
 
     async def set_activity(
         self,
-        group_id: typing.Optional[int] = None,
-        peer_id: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        peer_id: int | None = None,
+        type: str | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.setActivity()`
@@ -1339,7 +1338,7 @@ class MessagesCategory(BaseCategory):
     ) -> MessagesSetChatPhotoResponseModel:
         """Method `messages.setChatPhoto()`
 
-        :param file: Upload URL from the 'response' field returned by the [vk.ru/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
+        :param file: Upload URL from the 'response' field returned by the [vk.com/dev/photos.getChatUploadServer|photos.getChatUploadServer] method upon successfully uploading an image.
         """
 
         params = self.get_set_params(locals())
@@ -1350,7 +1349,7 @@ class MessagesCategory(BaseCategory):
     async def unpin(
         self,
         peer_id: int,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `messages.unpin()`

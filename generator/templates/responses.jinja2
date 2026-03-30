@@ -1,7 +1,6 @@
 import typing
-import enum
 
-from vkbottle_types.base_model import BaseModel, Field
+from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta, StrEnum, IntEnum
 from vkbottle_types.responses.base_response import BaseResponse
 
 ### IMPORTS
@@ -11,11 +10,11 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 {% if response_def is not none and response_def.type == 'enum' %}
 {% if is_int(response_def.enum[0]) %}
-class {{camelcase(name)}}Model(enum.IntEnum):
+class {{camelcase(name)}}Model(IntEnum, metaclass=BaseEnumMeta):
     {% for enumeration in response_def.enum %}{{makesafe(response_def.enumNames[loop.index-1])|upper}} = {{enumeration}}
     {% endfor %}
 {% else %}
-class {{camelcase(name)}}Model(enum.Enum):
+class {{camelcase(name)}}Model(StrEnum, metaclass=BaseEnumMeta):
     {% for enumeration in response_def.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endif %}
@@ -44,7 +43,7 @@ class {{camelcase(name)}}(BaseResponse):
         default={{property.get_default_value(model_name=camelcase(name) + 'Model')}}
         {% endif %}
     ){% elif property.name == 'response' and property.get_type(response=True) == 'dict' %}
-    response: typing.Dict[str, typing.Any] = Field(){% else %}
+    response: dict[str, typing.Any] = Field(){% else %}
     {{makesafe(property.name)}}: {{property.get_type(hint=True, literal_to_enum=True, definition_name=name, response=True)}} = Field(
         {% if property.is_optional %}
         default={{property.default if property.default is not none else None}},

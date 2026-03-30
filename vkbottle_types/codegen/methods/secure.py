@@ -20,8 +20,8 @@ class SecureCategory(BaseCategory):
     async def add_app_event(
         self,
         activity_id: int,
-        user_id: typing.Optional[int] = None,
-        value: typing.Optional[int] = None,
+        user_id: int | None = None,
+        value: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `secure.addAppEvent()`
@@ -38,8 +38,8 @@ class SecureCategory(BaseCategory):
 
     async def check_token(
         self,
-        ip: typing.Optional[str] = None,
-        token: typing.Optional[str] = None,
+        ip: str | None = None,
+        token: str | None = None,
         **kwargs: typing.Any,
     ) -> "SecureTokenChecked":
         """Method `secure.checkToken()`
@@ -66,12 +66,12 @@ class SecureCategory(BaseCategory):
 
     async def get_smshistory(
         self,
-        date_from: typing.Optional[int] = None,
-        date_to: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        date_from: int | None = None,
+        date_to: int | None = None,
+        limit: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[SecureSmsNotification]:
+    ) -> list[SecureSmsNotification]:
         """Method `secure.getSMSHistory()`
 
         :param date_from: filter by start date. It is set as UNIX-time.
@@ -87,14 +87,14 @@ class SecureCategory(BaseCategory):
 
     async def get_transactions_history(
         self,
-        date_from: typing.Optional[int] = None,
-        date_to: typing.Optional[int] = None,
-        limit: typing.Optional[int] = None,
-        type: typing.Optional[int] = None,
-        uid_from: typing.Optional[int] = None,
-        uid_to: typing.Optional[int] = None,
+        date_from: int | None = None,
+        date_to: int | None = None,
+        limit: int | None = None,
+        type: int | None = None,
+        uid_from: int | None = None,
+        uid_to: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[SecureTransaction]:
+    ) -> list[SecureTransaction]:
         """Method `secure.getTransactionsHistory()`
 
         :param date_from:
@@ -112,9 +112,9 @@ class SecureCategory(BaseCategory):
 
     async def get_user_level(
         self,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
-    ) -> typing.List[SecureLevel]:
+    ) -> list[SecureLevel]:
         """Method `secure.getUserLevel()`
 
         :param user_ids:
@@ -128,9 +128,9 @@ class SecureCategory(BaseCategory):
     async def give_event_sticker(
         self,
         achievement_id: int,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
-    ) -> typing.List[SecureGiveEventStickerItem]:
+    ) -> list[SecureGiveEventStickerItem]:
         """Method `secure.giveEventSticker()`
 
         :param achievement_id:
@@ -145,12 +145,12 @@ class SecureCategory(BaseCategory):
     async def send_notification(
         self,
         message: str,
-        notification_id: typing.Optional[int] = None,
-        promo_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        notification_id: int | None = None,
+        promo_id: int | None = None,
+        user_id: int | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[int]:
+    ) -> list[int]:
         """Method `secure.sendNotification()`
 
         :param message: notification text which should be sent in 'UTF-8' encoding ('254' characters maximum).
@@ -184,12 +184,12 @@ class SecureCategory(BaseCategory):
 
     async def set_counter(
         self,
-        counter: typing.Optional[int] = None,
-        counters: typing.Optional[typing.List[str]] = None,
-        increment: typing.Optional[bool] = None,
-        user_id: typing.Optional[int] = None,
+        counter: int | None = None,
+        counters: list[str] | None = None,
+        increment: bool | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Dict[str, typing.Any]:
+    ) -> dict[str, typing.Any]:
         """Method `secure.setCounter()`
 
         :param counter: counter value.

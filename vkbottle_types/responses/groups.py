@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import List
 
 from vkbottle_types.codegen.responses.groups import *  # noqa: F403,F401
 from vkbottle_types.objects import GroupsMemberRole, GroupsUserXtrRole
@@ -14,10 +14,10 @@ class GetMembersFieldsFilterManagersResponse(BaseResponse):
 
 
 class GetMembersFilterManagersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsMemberRole"]] = None
+    count: int | None = None
+    items: List["GroupsMemberRole"] | None = None
 
 
 class GetMembersFieldsFilterManagersResponseModel(BaseResponse):
-    count: Optional[int] = None
-    items: Optional[List["GroupsUserXtrRole"]] = None
+    count: int | None = None
+    items: List["GroupsUserXtrRole"] | None = None

@@ -14,8 +14,8 @@ class NotesCategory(BaseCategory):
         self,
         text: str,
         title: str,
-        privacy_comment: typing.Optional[typing.List[str]] = None,
-        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: list[str] | None = None,
+        privacy_view: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `notes.add()`
@@ -35,9 +35,9 @@ class NotesCategory(BaseCategory):
         self,
         message: str,
         note_id: int,
-        guid: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        reply_to: typing.Optional[int] = None,
+        guid: str | None = None,
+        owner_id: int | None = None,
+        reply_to: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `notes.createComment()`
@@ -72,7 +72,7 @@ class NotesCategory(BaseCategory):
     async def delete_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `notes.deleteComment()`
@@ -91,8 +91,8 @@ class NotesCategory(BaseCategory):
         note_id: int,
         text: str,
         title: str,
-        privacy_comment: typing.Optional[typing.List[str]] = None,
-        privacy_view: typing.Optional[typing.List[str]] = None,
+        privacy_comment: list[str] | None = None,
+        privacy_view: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `notes.edit()`
@@ -113,7 +113,7 @@ class NotesCategory(BaseCategory):
         self,
         comment_id: int,
         message: str,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `notes.editComment()`
@@ -130,11 +130,11 @@ class NotesCategory(BaseCategory):
 
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        note_ids: typing.Optional[typing.List[int]] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        note_ids: list[int] | None = None,
+        offset: int | None = None,
+        sort: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> NotesGetResponseModel:
         """Method `notes.get()`
@@ -154,8 +154,8 @@ class NotesCategory(BaseCategory):
     async def get_by_id(
         self,
         note_id: int,
-        need_wiki: typing.Optional[bool] = None,
-        owner_id: typing.Optional[int] = None,
+        need_wiki: bool | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "NotesNote":
         """Method `notes.getById()`
@@ -173,10 +173,10 @@ class NotesCategory(BaseCategory):
     async def get_comments(
         self,
         note_id: int,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        sort: int | None = None,
         **kwargs: typing.Any,
     ) -> NotesGetCommentsResponseModel:
         """Method `notes.getComments()`
@@ -196,7 +196,7 @@ class NotesCategory(BaseCategory):
     async def restore_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `notes.restoreComment()`

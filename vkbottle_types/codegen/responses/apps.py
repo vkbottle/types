@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     AppsApp,
@@ -37,7 +35,7 @@ class AppsGetCatalogResponse(BaseResponse):
 
 class AppsGetFriendsListExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["UsersUserFull"] = Field()
+    items: list["UsersUserFull"] = Field()
 
 
 class AppsGetFriendsListExtendedResponse(BaseResponse):
@@ -46,7 +44,7 @@ class AppsGetFriendsListExtendedResponse(BaseResponse):
 
 class AppsGetFriendsListResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List[int] = Field()
+    items: list[int] = Field()
 
 
 class AppsGetFriendsListResponse(BaseResponse):
@@ -55,8 +53,8 @@ class AppsGetFriendsListResponse(BaseResponse):
 
 class AppsGetLeaderboardExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AppsLeaderboard"] = Field()
-    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+    items: list["AppsLeaderboard"] = Field()
+    profiles: list["UsersUser"] | None = Field(
         default=None,
     )
 
@@ -67,7 +65,7 @@ class AppsGetLeaderboardExtendedResponse(BaseResponse):
 
 class AppsGetLeaderboardResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AppsLeaderboard"] = Field()
+    items: list["AppsLeaderboard"] = Field()
 
 
 class AppsGetLeaderboardResponse(BaseResponse):
@@ -75,10 +73,10 @@ class AppsGetLeaderboardResponse(BaseResponse):
 
 
 class AppsGetMiniAppPoliciesResponseModel(BaseModel):
-    privacy_policy: typing.Optional[str] = Field(
+    privacy_policy: str | None = Field(
         default=None,
     )
-    terms: typing.Optional[str] = Field(
+    terms: str | None = Field(
         default=None,
     )
 
@@ -89,7 +87,7 @@ class AppsGetMiniAppPoliciesResponse(BaseResponse):
 
 class AppsGetScopesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AppsScope"] = Field()
+    items: list["AppsScope"] = Field()
 
 
 class AppsGetScopesResponse(BaseResponse):
@@ -101,7 +99,7 @@ class AppsGetScoreResponse(BaseResponse):
 
 
 class AppsGetSnippetsResponseModel(BaseModel):
-    items: typing.Optional[typing.List["AppsCustomSnippet"]] = Field(
+    items: list["AppsCustomSnippet"] | None = Field(
         default=None,
     )
 
@@ -111,16 +109,16 @@ class AppsGetSnippetsResponse(BaseResponse):
 
 
 class AppsGetTestingGroupsResponse(BaseResponse):
-    response: typing.List["AppsTestingGroup"] = Field()
+    response: list["AppsTestingGroup"] = Field()
 
 
 class AppsGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["AppsApp"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["AppsApp"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
 
@@ -130,10 +128,10 @@ class AppsGetResponse(BaseResponse):
 
 
 class AppsImageUploadResponseModel(BaseModel):
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    image: typing.Optional[str] = Field(
+    image: str | None = Field(
         default=None,
     )
 

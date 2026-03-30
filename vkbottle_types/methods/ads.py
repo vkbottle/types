@@ -21,9 +21,9 @@ class AdsCategory(_AdsCategory):  # type: ignore
         *,
         q: typing.Literal["regions"],
         country: int,
-        ids: typing.Optional[typing.List[str]] = None,
-        lang: typing.Optional[str] = None,
-    ) -> typing.List[AdsTargSuggestionsRegions]: ...
+        ids: list[str] | None = None,
+        lang: str | None = None,
+    ) -> list[AdsTargSuggestionsRegions]: ...
 
     @typing.overload
     async def get_suggestions(
@@ -31,51 +31,46 @@ class AdsCategory(_AdsCategory):  # type: ignore
         section: str,
         *,
         q: typing.Literal["schools"],
-        cities: typing.List[str],
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[typing.List[str]] = None,
-        lang: typing.Optional[str] = None,
-    ) -> typing.List[AdsTargSuggestionsSchools]: ...
+        cities: list[str],
+        country: int | None = None,
+        ids: list[str] | None = None,
+        lang: str | None = None,
+    ) -> list[AdsTargSuggestionsSchools]: ...
 
     @typing.overload
     async def get_suggestions(
         self,
         section: str,
         *,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[typing.List[str]] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
-    ) -> typing.List[AdsTargSuggestions]: ...
+        country: int | None = None,
+        ids: list[str] | None = None,
+        lang: str | None = None,
+        q: str | None = None,
+    ) -> list[AdsTargSuggestions]: ...
 
     @typing.overload
     async def get_suggestions(
         self,
         section: str,
         *,
-        cities: typing.List[str],
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[typing.List[str]] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
-    ) -> typing.List[AdsTargSuggestionsCities]: ...
+        cities: list[str],
+        country: int | None = None,
+        ids: list[str] | None = None,
+        lang: str | None = None,
+        q: str | None = None,
+    ) -> list[AdsTargSuggestionsCities]: ...
 
     async def get_suggestions(
         self,
         section: str,
         *,
-        cities: typing.Optional[typing.List[str]] = None,
-        country: typing.Optional[int] = None,
-        ids: typing.Optional[typing.List[str]] = None,
-        lang: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
+        cities: list[str] | None = None,
+        country: int | None = None,
+        ids: list[str] | None = None,
+        lang: str | None = None,
+        q: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        typing.List[AdsTargSuggestionsSchools],
-        typing.List[AdsTargSuggestionsCities],
-        typing.List[AdsTargSuggestionsRegions],
-        typing.List[AdsTargSuggestions],
-    ]:
+    ) -> list[AdsTargSuggestionsSchools] | list[AdsTargSuggestionsCities] | list[AdsTargSuggestionsRegions] | list[AdsTargSuggestions]:
         """Method `ads.getSuggestions()`
 
         :param section: Section, suggestions are retrieved in. Available values: *countries - request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions - requested list of regions. 'country' parameter is required. *cities - requested list of cities. 'country' parameter is required. *districts - requested list of districts. 'cities' parameter is required. *stations - requested list of subway stations. 'cities' parameter is required. *streets - requested list of streets. 'cities' parameter is required. *schools - requested list of educational organizations. 'cities' parameter is required. *interests - requested list of interests. *positions - requested list of positions (professions). *group_types - requested list of group types. *religions - requested list of religious commitments. *browsers - requested list of browsers and mobile devices.

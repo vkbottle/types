@@ -12,11 +12,11 @@ from vkbottle_types.responses.storage import *  # noqa: F401,F403  # type: ignor
 class StorageCategory(BaseCategory):
     async def get(
         self,
-        key: typing.Optional[str] = None,
-        keys: typing.Optional[typing.List[str]] = None,
-        user_id: typing.Optional[int] = None,
+        key: str | None = None,
+        keys: list[str] | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[StorageValue]:
+    ) -> list[StorageValue]:
         """Method `storage.get()`
 
         :param key:
@@ -31,11 +31,11 @@ class StorageCategory(BaseCategory):
 
     async def get_keys(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[str]:
+    ) -> list[str]:
         """Method `storage.getKeys()`
 
         :param count: amount of variable names the info needs to be collected from.
@@ -51,8 +51,8 @@ class StorageCategory(BaseCategory):
     async def set(
         self,
         key: str,
-        user_id: typing.Optional[int] = None,
-        value: typing.Optional[str] = None,
+        user_id: int | None = None,
+        value: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `storage.set()`

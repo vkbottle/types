@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import AppsAppFields, AppsTestingGroup, UsersFields
+from vkbottle_types.objects import AppsAppFields, AppsCatalogList, AppsTestingGroup, UsersFields
 from vkbottle_types.responses.apps import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
@@ -13,15 +13,15 @@ from vkbottle_types.responses.base import (
 class AppsCategory(BaseCategory):
     async def add_snippet(
         self,
-        button: typing.Optional[str] = None,
-        description: typing.Optional[str] = None,
-        group_id: typing.Optional[typing.List[int]] = None,
-        hash: typing.Optional[typing.List[str]] = None,
-        image_url: typing.Optional[str] = None,
-        small_image_url: typing.Optional[str] = None,
-        snippet_id: typing.Optional[int] = None,
-        title: typing.Optional[str] = None,
-        vk_ref: typing.Optional[typing.List[typing.Literal["snippet_im", "snippet_post"]]] = None,
+        button: str | None = None,
+        description: str | None = None,
+        group_id: list[int] | None = None,
+        hash: list[str] | None = None,
+        image_url: str | None = None,
+        small_image_url: str | None = None,
+        snippet_id: int | None = None,
+        title: str | None = None,
+        vk_ref: list[typing.Literal["snippet_im", "snippet_post"]] | None = None,
         **kwargs: typing.Any,
     ) -> AppsAddSnippetResponseModel:
         """Method `apps.addSnippet()`
@@ -45,7 +45,7 @@ class AppsCategory(BaseCategory):
     async def add_users_to_testing_group(
         self,
         group_id: int,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
     ) -> bool:
         """Method `apps.addUsersToTestingGroup()`
@@ -72,7 +72,7 @@ class AppsCategory(BaseCategory):
 
     async def delete_snippet(
         self,
-        id: typing.Optional[int] = None,
+        id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `apps.deleteSnippet()`
@@ -87,14 +87,14 @@ class AppsCategory(BaseCategory):
 
     async def get(
         self,
-        app_fields: typing.Optional[typing.List[AppsAppFields]] = None,
-        app_id: typing.Optional[int] = None,
-        app_ids: typing.Optional[typing.List[int]] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        name_case: typing.Optional[str] = None,
-        platform: typing.Optional[str] = None,
-        return_friends: typing.Optional[bool] = None,
+        app_fields: list[AppsAppFields] | None = None,
+        app_id: int | None = None,
+        app_ids: list[int] | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        name_case: str | None = None,
+        platform: str | None = None,
+        return_friends: bool | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetResponseModel:
         """Method `apps.get()`
@@ -105,7 +105,7 @@ class AppsCategory(BaseCategory):
         :param extended:
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', (only if return_friends - 1)
         :param name_case: Case for declension of user name and surname: 'nom' - nominative (default),, 'gen' - genitive,, 'dat' - dative,, 'acc' - accusative,, 'ins' - instrumental,, 'abl' - prepositional. (only if 'return_friends' = '1')
-        :param platform: platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.ru. By default: 'web'.
+        :param platform: platform. Possible values: *'ios' - iOS,, *'android' - Android,, *'winphone' - Windows Phone,, *'web' - приложения на vk.com. By default: 'web'.
         :param return_friends:
         """
 
@@ -116,17 +116,17 @@ class AppsCategory(BaseCategory):
 
     async def get_catalog(
         self,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        filter: typing.Optional[str] = None,
-        genre_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        platform: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
-        return_friends: typing.Optional[bool] = None,
-        sort: typing.Optional[str] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        filter: str | None = None,
+        genre_id: int | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        platform: str | None = None,
+        q: str | None = None,
+        return_friends: bool | None = None,
+        sort: str | None = None,
         **kwargs: typing.Any,
     ) -> "AppsCatalogList":
         """Method `apps.getCatalog()`
@@ -153,41 +153,41 @@ class AppsCategory(BaseCategory):
     async def get_friends_list(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        query: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        query: str | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetFriendsListExtendedResponseModel: ...
 
     @typing.overload
     async def get_friends_list(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        query: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        query: str | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetFriendsListResponseModel: ...
 
     async def get_friends_list(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        query: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        query: str | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[AppsGetFriendsListResponseModel, AppsGetFriendsListExtendedResponseModel]:
+    ) -> AppsGetFriendsListResponseModel | AppsGetFriendsListExtendedResponseModel:
         """Method `apps.getFriendsList()`
 
         :param extended:
         :param count: List size.
-        :param fields: Additional profile fields, see [vk.ru/dev/fields|description].
+        :param fields: Additional profile fields, see [vk.com/dev/fields|description].
         :param offset:
         :param query: Search query string (e.g., 'Vasya Babich').
         :param type: List type. Possible values: * 'invite' - available for invites (don't play the game),, * 'request' - available for request (play the game). By default: 'invite'.
@@ -207,7 +207,7 @@ class AppsCategory(BaseCategory):
         self,
         type: str,
         extended: typing.Literal[True],
-        global_: typing.Optional[bool] = None,
+        global_: bool | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetLeaderboardExtendedResponseModel: ...
 
@@ -215,18 +215,18 @@ class AppsCategory(BaseCategory):
     async def get_leaderboard(
         self,
         type: str,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        global_: typing.Optional[bool] = None,
+        extended: typing.Literal[False] | None = None,
+        global_: bool | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetLeaderboardResponseModel: ...
 
     async def get_leaderboard(
         self,
         type: str,
-        extended: typing.Optional[bool] = None,
-        global_: typing.Optional[bool] = None,
+        extended: bool | None = None,
+        global_: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[AppsGetLeaderboardExtendedResponseModel, AppsGetLeaderboardResponseModel]:
+    ) -> AppsGetLeaderboardExtendedResponseModel | AppsGetLeaderboardResponseModel:
         """Method `apps.getLeaderboard()`
 
         :param type: Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().
@@ -260,7 +260,7 @@ class AppsCategory(BaseCategory):
 
     async def get_scopes(
         self,
-        type: typing.Optional[str] = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> AppsGetScopesResponseModel:
         """Method `apps.getScopes()`
@@ -275,7 +275,7 @@ class AppsCategory(BaseCategory):
 
     async def get_score(
         self,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `apps.getScore()`
@@ -301,9 +301,9 @@ class AppsCategory(BaseCategory):
 
     async def get_testing_groups(
         self,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[AppsTestingGroup]:
+    ) -> list[AppsTestingGroup]:
         """Method `apps.getTestingGroups()`
 
         :param group_id:
@@ -316,7 +316,7 @@ class AppsCategory(BaseCategory):
 
     async def is_notifications_allowed(
         self,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> AppsIsNotificationsAllowedResponseModel:
         """Method `apps.isNotificationsAllowed()`
@@ -332,7 +332,7 @@ class AppsCategory(BaseCategory):
     async def promo_has_active_gift(
         self,
         promo_id: int,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `apps.promoHasActiveGift()`
@@ -349,7 +349,7 @@ class AppsCategory(BaseCategory):
     async def promo_use_gift(
         self,
         promo_id: int,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `apps.promoUseGift()`
@@ -380,7 +380,7 @@ class AppsCategory(BaseCategory):
 
     async def remove_users_from_testing_groups(
         self,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
     ) -> bool:
         """Method `apps.removeUsersFromTestingGroups()`
@@ -396,11 +396,11 @@ class AppsCategory(BaseCategory):
     async def send_request(
         self,
         user_id: int,
-        key: typing.Optional[str] = None,
-        name: typing.Optional[str] = None,
-        separate: typing.Optional[bool] = None,
-        text: typing.Optional[str] = None,
-        type: typing.Optional[str] = None,
+        key: str | None = None,
+        name: str | None = None,
+        separate: bool | None = None,
+        text: str | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `apps.sendRequest()`
@@ -421,10 +421,10 @@ class AppsCategory(BaseCategory):
     async def update_meta_for_testing_group(
         self,
         name: str,
-        platforms: typing.List[typing.Literal["mobile", "web", "mvk"]],
+        platforms: list[typing.Literal["mobile", "web", "mvk"]],
         webview: str,
-        group_id: typing.Optional[int] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        group_id: int | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> AppsCreatedGroupResponseModel:
         """Method `apps.updateMetaForTestingGroup()`

@@ -13,9 +13,9 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         title: str,
-        attachments: typing.Optional[typing.List[str]] = None,
-        from_group: typing.Optional[bool] = None,
-        text: typing.Optional[str] = None,
+        attachments: list[str] | None = None,
+        from_group: bool | None = None,
+        text: str | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `board.addTopic()`
@@ -53,11 +53,11 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        from_group: typing.Optional[bool] = None,
-        guid: typing.Optional[str] = None,
-        message: typing.Optional[str] = None,
-        sticker_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        from_group: bool | None = None,
+        guid: str | None = None,
+        message: str | None = None,
+        sticker_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `board.createComment()`
@@ -117,8 +117,8 @@ class BoardCategory(BaseCategory):
         comment_id: int,
         group_id: int,
         topic_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        message: typing.Optional[str] = None,
+        attachments: list[str] | None = None,
+        message: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `board.editComment()`
@@ -177,11 +177,11 @@ class BoardCategory(BaseCategory):
         group_id: int,
         topic_id: int,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
+        count: int | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BoardGetCommentsExtendedResponseModel: ...
 
@@ -190,12 +190,12 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BoardGetCommentsResponseModel: ...
 
@@ -203,14 +203,14 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         topic_id: int,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetCommentsResponseModel, BoardGetCommentsExtendedResponseModel]:
+    ) -> BoardGetCommentsResponseModel | BoardGetCommentsExtendedResponseModel:
         """Method `board.getComments()`
 
         :param group_id: ID of the community that owns the discussion board.
@@ -237,12 +237,12 @@ class BoardCategory(BaseCategory):
         self,
         group_id: int,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[int] = None,
-        preview: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        topic_ids: typing.Optional[typing.List[int]] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        order: int | None = None,
+        preview: int | None = None,
+        preview_length: int | None = None,
+        topic_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> BoardGetTopicsExtendedResponseModel: ...
 
@@ -250,28 +250,28 @@ class BoardCategory(BaseCategory):
     async def get_topics(
         self,
         group_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[int] = None,
-        preview: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        topic_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        offset: int | None = None,
+        order: int | None = None,
+        preview: int | None = None,
+        preview_length: int | None = None,
+        topic_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> BoardGetTopicsResponseModel: ...
 
     async def get_topics(
         self,
         group_id: int,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        order: typing.Optional[int] = None,
-        preview: typing.Optional[int] = None,
-        preview_length: typing.Optional[int] = None,
-        topic_ids: typing.Optional[typing.List[int]] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        offset: int | None = None,
+        order: int | None = None,
+        preview: int | None = None,
+        preview_length: int | None = None,
+        topic_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[BoardGetTopicsExtendedResponseModel, BoardGetTopicsResponseModel]:
+    ) -> BoardGetTopicsResponseModel | BoardGetTopicsExtendedResponseModel:
         """Method `board.getTopics()`
 
         :param group_id: ID of the community that owns the discussion board.

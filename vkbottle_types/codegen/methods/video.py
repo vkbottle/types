@@ -15,7 +15,7 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        target_id: typing.Optional[int] = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.add()`
@@ -32,9 +32,9 @@ class VideoCategory(BaseCategory):
 
     async def add_album(
         self,
-        group_id: typing.Optional[int] = None,
-        privacy: typing.Optional[typing.List[VideoPlaylistPrivacyCategory]] = None,
-        title: typing.Optional[str] = None,
+        group_id: int | None = None,
+        privacy: list[VideoPlaylistPrivacyCategory] | None = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> VideoAddAlbumResponseModel:
         """Method `video.addAlbum()`
@@ -53,9 +53,9 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        album_id: typing.Optional[int] = None,
-        album_ids: typing.Optional[typing.List[int]] = None,
-        target_id: typing.Optional[int] = None,
+        album_id: int | None = None,
+        album_ids: list[int] | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.addToAlbum()`
@@ -75,14 +75,14 @@ class VideoCategory(BaseCategory):
     async def create_comment(
         self,
         video_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        from_group: typing.Optional[bool] = None,
-        guid: typing.Optional[str] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        reply_to_comment: typing.Optional[int] = None,
-        sticker_id: typing.Optional[int] = None,
-        track_code: typing.Optional[str] = None,
+        attachments: list[str] | None = None,
+        from_group: bool | None = None,
+        guid: str | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
+        reply_to_comment: int | None = None,
+        sticker_id: int | None = None,
+        track_code: str | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `video.createComment()`
@@ -106,8 +106,8 @@ class VideoCategory(BaseCategory):
     async def delete(
         self,
         video_id: int,
-        owner_id: typing.Optional[int] = None,
-        target_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.delete()`
@@ -125,8 +125,8 @@ class VideoCategory(BaseCategory):
     async def delete_album(
         self,
         album_id: int,
-        group_id: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.deleteAlbum()`
@@ -144,7 +144,7 @@ class VideoCategory(BaseCategory):
     async def delete_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.deleteComment()`
@@ -178,14 +178,14 @@ class VideoCategory(BaseCategory):
     async def edit(
         self,
         video_id: int,
-        desc: typing.Optional[str] = None,
-        name: typing.Optional[str] = None,
-        no_comments: typing.Optional[bool] = None,
-        ord_info: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
-        privacy_comment: typing.Optional[typing.List[str]] = None,
-        privacy_view: typing.Optional[typing.List[str]] = None,
-        repeat: typing.Optional[bool] = None,
+        desc: str | None = None,
+        name: str | None = None,
+        no_comments: bool | None = None,
+        ord_info: str | None = None,
+        owner_id: int | None = None,
+        privacy_comment: list[str] | None = None,
+        privacy_view: list[str] | None = None,
+        repeat: bool | None = None,
         **kwargs: typing.Any,
     ) -> VideoEditResponseModel:
         """Method `video.edit()`
@@ -196,8 +196,8 @@ class VideoCategory(BaseCategory):
         :param no_comments: Disable comments for the group video.
         :param ord_info:
         :param owner_id: ID of the user or community that owns the video.
-        :param privacy_comment: Privacy settings for comments in a [vk.ru/dev/privacy_setting|special format].
-        :param privacy_view: Privacy settings in a [vk.ru/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.
+        :param privacy_comment: Privacy settings for comments in a [vk.com/dev/privacy_setting|special format].
+        :param privacy_view: Privacy settings in a [vk.com/dev/privacy_setting|special format]. Privacy setting is available for videos uploaded to own profile by user.
         :param repeat: '1' - to repeat the playback of the video, '0' - to play the video once,
         """
 
@@ -209,10 +209,10 @@ class VideoCategory(BaseCategory):
     async def edit_album(
         self,
         album_id: int,
-        group_id: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        privacy: typing.Optional[typing.List[VideoPlaylistPrivacyCategory]] = None,
-        title: typing.Optional[str] = None,
+        group_id: int | None = None,
+        owner_id: int | None = None,
+        privacy: list[VideoPlaylistPrivacyCategory] | None = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.editAlbum()`
@@ -232,9 +232,9 @@ class VideoCategory(BaseCategory):
     async def edit_comment(
         self,
         comment_id: int,
-        attachments: typing.Optional[typing.List[str]] = None,
-        message: typing.Optional[str] = None,
-        owner_id: typing.Optional[int] = None,
+        attachments: list[str] | None = None,
+        message: str | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.editComment()`
@@ -252,14 +252,14 @@ class VideoCategory(BaseCategory):
 
     async def get(
         self,
-        album_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        sort_album: typing.Optional[int] = None,
-        videos: typing.Optional[typing.List[str]] = None,
+        album_id: int | None = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[str] | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        sort_album: int | None = None,
+        videos: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetResponseModel:
         """Method `video.get()`
@@ -282,7 +282,7 @@ class VideoCategory(BaseCategory):
     async def get_album_by_id(
         self,
         album_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "VideoVideoAlbumFull":
         """Method `video.getAlbumById()`
@@ -300,33 +300,33 @@ class VideoCategory(BaseCategory):
     async def get_albums(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        need_system: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        count: int | None = None,
+        need_system: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetAlbumsExtendedResponseModel: ...
 
     @typing.overload
     async def get_albums(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        need_system: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        need_system: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetAlbumsResponseModel: ...
 
     async def get_albums(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        need_system: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        need_system: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetAlbumsExtendedResponseModel, VideoGetAlbumsResponseModel]:
+    ) -> VideoGetAlbumsExtendedResponseModel | VideoGetAlbumsResponseModel:
         """Method `video.getAlbums()`
 
         :param extended: '1' - to return additional information about album privacy settings for the current user
@@ -351,7 +351,7 @@ class VideoCategory(BaseCategory):
         owner_id: int,
         video_id: int,
         extended: typing.Literal[True],
-        target_id: typing.Optional[int] = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetAlbumsByVideoExtendedResponseModel: ...
 
@@ -360,19 +360,19 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        target_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[int]: ...
+    ) -> list[int]: ...
 
     async def get_albums_by_video(
         self,
         owner_id: int,
         video_id: int,
-        extended: typing.Optional[bool] = None,
-        target_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetAlbumsByVideoExtendedResponseModel, typing.List[int]]:
+    ) -> VideoGetAlbumsByVideoExtendedResponseModel | list[int]:
         """Method `video.getAlbumsByVideo()`
 
         :param owner_id:
@@ -395,15 +395,15 @@ class VideoCategory(BaseCategory):
         self,
         video_id: int,
         extended: typing.Literal[True],
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetCommentsExtendedResponseModel: ...
 
@@ -411,34 +411,34 @@ class VideoCategory(BaseCategory):
     async def get_comments(
         self,
         video_id: int,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetCommentsResponseModel: ...
 
     async def get_comments(
         self,
         video_id: int,
-        extended: typing.Optional[bool] = None,
-        comment_id: typing.Optional[int] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        need_likes: typing.Optional[bool] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        sort: typing.Optional[str] = None,
-        start_comment_id: typing.Optional[int] = None,
-        thread_items_count: typing.Optional[int] = None,
+        extended: bool | None = None,
+        comment_id: int | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        need_likes: bool | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        sort: str | None = None,
+        start_comment_id: int | None = None,
+        thread_items_count: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoGetCommentsExtendedResponseModel, VideoGetCommentsResponseModel]:
+    ) -> VideoGetCommentsResponseModel | VideoGetCommentsExtendedResponseModel:
         """Method `video.getComments()`
 
         :param video_id: Video ID.
@@ -466,7 +466,7 @@ class VideoCategory(BaseCategory):
     async def get_long_poll_server(
         self,
         video_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetLongPollServerResponseModel:
         """Method `video.getLongPollServer()`
@@ -483,8 +483,8 @@ class VideoCategory(BaseCategory):
     async def get_oembed(
         self,
         url: str,
-        maxheight: typing.Optional[int] = None,
-        maxwidth: typing.Optional[int] = None,
+        maxheight: int | None = None,
+        maxwidth: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoGetOembedResponseModel:
         """Method `video.getOembed()`
@@ -517,7 +517,7 @@ class VideoCategory(BaseCategory):
     async def live_get_categories(
         self,
         **kwargs: typing.Any,
-    ) -> typing.List[VideoLiveCategory]:
+    ) -> list[VideoLiveCategory]:
         """Method `video.liveGetCategories()`"""
 
         params = self.get_set_params(locals())
@@ -529,9 +529,9 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        album_id: typing.Optional[int] = None,
-        album_ids: typing.Optional[typing.List[int]] = None,
-        target_id: typing.Optional[int] = None,
+        album_id: int | None = None,
+        album_ids: list[int] | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.removeFromAlbum()`
@@ -551,9 +551,9 @@ class VideoCategory(BaseCategory):
     async def reorder_albums(
         self,
         album_id: int,
-        after: typing.Optional[int] = None,
-        before: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        after: int | None = None,
+        before: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.reorderAlbums()`
@@ -573,12 +573,12 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        after_owner_id: typing.Optional[int] = None,
-        after_video_id: typing.Optional[int] = None,
-        album_id: typing.Optional[int] = None,
-        before_owner_id: typing.Optional[int] = None,
-        before_video_id: typing.Optional[int] = None,
-        target_id: typing.Optional[int] = None,
+        after_owner_id: int | None = None,
+        after_video_id: int | None = None,
+        album_id: int | None = None,
+        before_owner_id: int | None = None,
+        before_video_id: int | None = None,
+        target_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.reorderVideos()`
@@ -602,9 +602,9 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         video_id: int,
-        comment: typing.Optional[str] = None,
-        reason: typing.Optional[int] = None,
-        search_query: typing.Optional[str] = None,
+        comment: str | None = None,
+        reason: int | None = None,
+        search_query: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.report()`
@@ -625,7 +625,7 @@ class VideoCategory(BaseCategory):
         self,
         comment_id: int,
         owner_id: int,
-        reason: typing.Optional[int] = None,
+        reason: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.reportComment()`
@@ -643,7 +643,7 @@ class VideoCategory(BaseCategory):
     async def restore(
         self,
         video_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `video.restore()`
@@ -660,7 +660,7 @@ class VideoCategory(BaseCategory):
     async def restore_comment(
         self,
         comment_id: int,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `video.restoreComment()`
@@ -693,20 +693,20 @@ class VideoCategory(BaseCategory):
 
     async def save(
         self,
-        album_id: typing.Optional[int] = None,
-        auto_publish: typing.Optional[bool] = None,
-        compression: typing.Optional[bool] = None,
-        description: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        is_private: typing.Optional[bool] = None,
-        link: typing.Optional[str] = None,
-        name: typing.Optional[str] = None,
-        no_comments: typing.Optional[bool] = None,
-        ord_info: typing.Optional[str] = None,
-        privacy_comment: typing.Optional[typing.List[str]] = None,
-        privacy_view: typing.Optional[typing.List[str]] = None,
-        repeat: typing.Optional[bool] = None,
-        wallpost: typing.Optional[bool] = None,
+        album_id: int | None = None,
+        auto_publish: bool | None = None,
+        compression: bool | None = None,
+        description: str | None = None,
+        group_id: int | None = None,
+        is_private: bool | None = None,
+        link: str | None = None,
+        name: str | None = None,
+        no_comments: bool | None = None,
+        ord_info: str | None = None,
+        privacy_comment: list[str] | None = None,
+        privacy_view: list[str] | None = None,
+        repeat: bool | None = None,
+        wallpost: bool | None = None,
         **kwargs: typing.Any,
     ) -> "VideoSaveResult":
         """Method `video.save()`
@@ -736,10 +736,10 @@ class VideoCategory(BaseCategory):
         self,
         owner_id: int,
         thumb_json: str,
-        random_tag: typing.Optional[str] = None,
-        set_thumb: typing.Optional[bool] = None,
-        thumb_size: typing.Optional[str] = None,
-        video_id: typing.Optional[int] = None,
+        random_tag: str | None = None,
+        set_thumb: bool | None = None,
+        thumb_size: str | None = None,
+        video_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoSaveUploadedThumbResponseModel:
         """Method `video.saveUploadedThumb()`
@@ -761,60 +761,60 @@ class VideoCategory(BaseCategory):
     async def search(
         self,
         extended: typing.Literal[True],
-        adult: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
-        hd: typing.Optional[int] = None,
-        live: typing.Optional[bool] = None,
-        longer: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        search_own: typing.Optional[bool] = None,
-        shorter: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        adult: bool | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        filters: list[typing.Literal["long", "short", "vimeo", "vk", "youtube"]] | None = None,
+        hd: int | None = None,
+        live: bool | None = None,
+        longer: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        q: str | None = None,
+        search_own: bool | None = None,
+        shorter: int | None = None,
+        sort: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        adult: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
-        hd: typing.Optional[int] = None,
-        live: typing.Optional[bool] = None,
-        longer: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        search_own: typing.Optional[bool] = None,
-        shorter: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        adult: bool | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        filters: list[typing.Literal["long", "short", "vimeo", "vk", "youtube"]] | None = None,
+        hd: int | None = None,
+        live: bool | None = None,
+        longer: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        q: str | None = None,
+        search_own: bool | None = None,
+        shorter: int | None = None,
+        sort: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoSearchResponseModel: ...
 
     async def search(
         self,
-        extended: typing.Optional[bool] = None,
-        adult: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[str]] = None,
-        filters: typing.Optional[typing.List[typing.Literal["long", "short", "vimeo", "vk", "youtube"]]] = None,
-        hd: typing.Optional[int] = None,
-        live: typing.Optional[bool] = None,
-        longer: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        search_own: typing.Optional[bool] = None,
-        shorter: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
+        extended: bool | None = None,
+        adult: bool | None = None,
+        count: int | None = None,
+        fields: list[str] | None = None,
+        filters: list[typing.Literal["long", "short", "vimeo", "vk", "youtube"]] | None = None,
+        hd: int | None = None,
+        live: bool | None = None,
+        longer: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        q: str | None = None,
+        search_own: bool | None = None,
+        shorter: int | None = None,
+        sort: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[VideoSearchExtendedResponseModel, VideoSearchResponseModel]:
+    ) -> VideoSearchResponseModel | VideoSearchExtendedResponseModel:
         """Method `video.search()`
 
         :param extended:
@@ -844,16 +844,16 @@ class VideoCategory(BaseCategory):
 
     async def start_streaming(
         self,
-        category_id: typing.Optional[int] = None,
-        description: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        name: typing.Optional[str] = None,
-        no_comments: typing.Optional[bool] = None,
-        privacy_comment: typing.Optional[typing.List[str]] = None,
-        privacy_view: typing.Optional[typing.List[str]] = None,
-        publish: typing.Optional[bool] = None,
-        video_id: typing.Optional[int] = None,
-        wallpost: typing.Optional[bool] = None,
+        category_id: int | None = None,
+        description: str | None = None,
+        group_id: int | None = None,
+        name: str | None = None,
+        no_comments: bool | None = None,
+        privacy_comment: list[str] | None = None,
+        privacy_view: list[str] | None = None,
+        publish: bool | None = None,
+        video_id: int | None = None,
+        wallpost: bool | None = None,
         **kwargs: typing.Any,
     ) -> VideoStartStreamingResponseModel:
         """Method `video.startStreaming()`
@@ -877,8 +877,8 @@ class VideoCategory(BaseCategory):
 
     async def stop_streaming(
         self,
-        group_id: typing.Optional[int] = None,
-        video_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        video_id: int | None = None,
         **kwargs: typing.Any,
     ) -> VideoStopStreamingResponseModel:
         """Method `video.stopStreaming()`

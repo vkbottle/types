@@ -15,7 +15,7 @@ class DocsCategory(BaseCategory):
         self,
         doc_id: int,
         owner_id: int,
-        access_key: typing.Optional[str] = None,
+        access_key: str | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `docs.add()`
@@ -51,8 +51,8 @@ class DocsCategory(BaseCategory):
         self,
         doc_id: int,
         title: str,
-        owner_id: typing.Optional[int] = None,
-        tags: typing.Optional[typing.List[str]] = None,
+        owner_id: int | None = None,
+        tags: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `docs.edit()`
@@ -70,11 +70,11 @@ class DocsCategory(BaseCategory):
 
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        return_tags: typing.Optional[bool] = None,
-        type: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        return_tags: bool | None = None,
+        type: int | None = None,
         **kwargs: typing.Any,
     ) -> DocsGetResponseModel:
         """Method `docs.get()`
@@ -93,10 +93,10 @@ class DocsCategory(BaseCategory):
 
     async def get_by_id(
         self,
-        docs: typing.List[str],
-        return_tags: typing.Optional[bool] = None,
+        docs: list[str],
+        return_tags: bool | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[DocsDoc]:
+    ) -> list[DocsDoc]:
         """Method `docs.getById()`
 
         :param docs: Document IDs. Example: , "66748_91488,66748_91455",
@@ -110,8 +110,8 @@ class DocsCategory(BaseCategory):
 
     async def get_messages_upload_server(
         self,
-        peer_id: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        peer_id: int | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `docs.getMessagesUploadServer()`
@@ -127,7 +127,7 @@ class DocsCategory(BaseCategory):
 
     async def get_types(
         self,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> DocsGetTypesResponseModel:
         """Method `docs.getTypes()`
@@ -142,7 +142,7 @@ class DocsCategory(BaseCategory):
 
     async def get_upload_server(
         self,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `docs.getUploadServer()`
@@ -157,7 +157,7 @@ class DocsCategory(BaseCategory):
 
     async def get_wall_upload_server(
         self,
-        group_id: typing.Optional[int] = None,
+        group_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "BaseUploadServer":
         """Method `docs.getWallUploadServer()`
@@ -190,14 +190,14 @@ class DocsCategory(BaseCategory):
     async def save(
         self,
         file: str,
-        return_tags: typing.Optional[bool] = None,
-        tags: typing.Optional[str] = None,
-        title: typing.Optional[str] = None,
+        return_tags: bool | None = None,
+        tags: str | None = None,
+        title: str | None = None,
         **kwargs: typing.Any,
     ) -> DocsSaveResponseModel:
         """Method `docs.save()`
 
-        :param file: This parameter is returned when the file is [vk.ru/dev/upload_files_2|uploaded to the server].
+        :param file: This parameter is returned when the file is [vk.com/dev/upload_files_2|uploaded to the server].
         :param return_tags:
         :param tags: Document tags.
         :param title: Document title.
@@ -210,11 +210,11 @@ class DocsCategory(BaseCategory):
 
     async def search(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        q: typing.Optional[str] = None,
-        return_tags: typing.Optional[bool] = None,
-        search_own: typing.Optional[bool] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        q: str | None = None,
+        return_tags: bool | None = None,
+        search_own: bool | None = None,
         **kwargs: typing.Any,
     ) -> DocsSearchResponseModel:
         """Method `docs.search()`

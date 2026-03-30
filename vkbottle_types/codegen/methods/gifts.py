@@ -7,9 +7,9 @@ from vkbottle_types.responses.gifts import *  # noqa: F401,F403  # type: ignore
 class GiftsCategory(BaseCategory):
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GiftsGetResponseModel:
         """Method `gifts.get()`

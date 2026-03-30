@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import Field
 from vkbottle_types.objects import (
     SecureGiveEventStickerItem,
@@ -21,24 +19,24 @@ class SecureGetAppBalanceResponse(BaseResponse):
 
 
 class SecureGetSMSHistoryResponse(BaseResponse):
-    response: typing.List["SecureSmsNotification"] = Field()
+    response: list["SecureSmsNotification"] = Field()
 
 
 class SecureGetTransactionsHistoryResponse(BaseResponse):
-    response: typing.List["SecureTransaction"] = Field()
+    response: list["SecureTransaction"] = Field()
 
 
 class SecureGetUserLevelResponse(BaseResponse):
-    response: typing.List["SecureLevel"] = Field()
+    response: list["SecureLevel"] = Field()
 
 
 class SecureGiveEventStickerResponse(BaseResponse):
-    response: typing.List["SecureGiveEventStickerItem"] = Field()
+    response: list["SecureGiveEventStickerItem"] = Field()
 
 
 class SecureSendNotificationResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class SecureSetCounterArrayResponse(BaseResponse):
-    response: typing.List["SecureSetCounterItem"] = Field()
+    response: list["SecureSetCounterItem"] = Field()

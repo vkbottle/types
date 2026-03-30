@@ -6,8 +6,11 @@ import pydantic
 import typing_extensions as typing
 from pydantic_core import CoreSchema, core_schema
 
-_NOT_SUPPORTED: typing.Final = "NOT_SUPPORTED"
-_ENUM_FRIENDS: typing.Final = (str, int, float)
+NOT_SUPPORTED: typing.Final = "NOT_SUPPORTED"
+
+
+def _is_friend(bases: tuple[type[typing.Any], ...], /) -> bool:
+    return any(friend in bases for friend in ENUM_FRIENDS)
 
 
 if typing.TYPE_CHECKING:
@@ -21,9 +24,9 @@ if typing.TYPE_CHECKING:
         def from_raw(cls, data: str | bytes, /, *, strict: bool = False) -> typing.Self: ...
 
         @classmethod
-        def from_dict(cls, data: typing.Dict[str, typing.Any], /) -> typing.Self: ...
+        def from_dict(cls, data: dict[str, typing.Any], /) -> typing.Self: ...
 
-        def to_dict(self, **kwargs: typing.Any) -> typing.Dict[str, typing.Any]: ...
+        def to_dict(self, **kwargs: typing.Any) -> dict[str, typing.Any]: ...
 
         def to_raw(self, **kwargs: typing.Any) -> str: ...
 
@@ -47,22 +50,50 @@ else:
             return self.model_dump_json(**kwargs)
 
 
-class BaseEnumMeta(enum.EnumMeta, type):
-    @staticmethod
-    def __get_pydantic_core_schema__(_cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler) -> CoreSchema:
-        return core_schema.no_info_after_validator_function(
-            function=lambda x: _cls(x),  # type: ignore
-            schema=getattr(core_schema, f"{_cls.__bases__[0].__name__}_schema", core_schema.any_schema)(),
-        )
+class StrEnum(str, enum.Enum):
+    def __str__(self) -> str:
+        return self.value
 
+
+class IntEnum(int, enum.Enum):
+    def __int__(self) -> int:
+        return self.value
+
+    def __float__(self) -> float:
+        return float(self.value)
+
+    def __index__(self) -> int:
+        return self.value
+
+
+class FloatEnum(float, enum.Enum):
+    def __int__(self) -> int:
+        return int(self.value)
+
+    def __float__(self) -> float:
+        return self.value
+
+
+class BaseEnumMeta(enum.EnumMeta, type):
     if typing.TYPE_CHECKING:
 
-        class BaseEnumMeta(enum.Enum):  # noqa
+        class _BaseEnumMeta(enum.Enum):  # noqa
             NOT_SUPPORTED_MEMBER = enum.auto()
 
-        NOT_SUPPORTED_MEMBER: typing.Literal[BaseEnumMeta.NOT_SUPPORTED_MEMBER]
+        NOT_SUPPORTED_MEMBER: typing.Literal[_BaseEnumMeta.NOT_SUPPORTED_MEMBER]
 
     else:
+
+        @staticmethod
+        def __get_pydantic_core_schema__(_cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler) -> CoreSchema:
+            return core_schema.no_info_after_validator_function(
+                function=lambda x: _cls(x),  # type: ignore
+                schema=getattr(core_schema, f"{_cls.__bases__[0].__name__}_schema", core_schema.any_schema)(),
+            )
+
+        @staticmethod
+        def _member_missing(cls, value):
+            return cls._member_map_["NOT_SUPPORTED_MEMBER"]
 
         def __new__(
             metacls,
@@ -74,10 +105,13 @@ class BaseEnumMeta(enum.EnumMeta, type):
             _simple=False,
             **kwds,
         ):
-            if any(friend in bases for friend in _ENUM_FRIENDS):
-                classdict["NOT_SUPPORTED_MEMBER"] = _NOT_SUPPORTED if str in bases else math.inf if float in bases else sys.maxsize
+            if _is_friend(bases):
+                classdict["NOT_SUPPORTED_MEMBER"] = next(
+                    (value for base, value in NOT_SUPPORTED_VALUES.items() if base in bases),
+                    NOT_SUPPORTED,
+                )
 
-            classdict["_missing_"] = classmethod(lambda cls, _: cls._member_map_["NOT_SUPPORTED_MEMBER"])
+            classdict["_missing_"] = classmethod(BaseEnumMeta._member_missing)
             classdict["__get_pydantic_core_schema__"] = classmethod(BaseEnumMeta.__get_pydantic_core_schema__)
             kwargs = dict(
                 metacls=metacls,
@@ -97,7 +131,20 @@ class BaseEnumMeta(enum.EnumMeta, type):
             return super().__new__(**kwargs, **kwds)
 
 
+ENUM_FRIENDS: typing.Final = (str, int, float, StrEnum, IntEnum, FloatEnum)
+NOT_SUPPORTED_VALUES: typing.Final = {
+    str: NOT_SUPPORTED,
+    int: sys.maxsize,
+    float: math.inf,
+    StrEnum: NOT_SUPPORTED,
+    IntEnum: sys.maxsize,
+    FloatEnum: math.inf,
+    enum.StrEnum: NOT_SUPPORTED,
+    enum.IntEnum: sys.maxsize,
+}
+
+
 Field = pydantic.Field
 
 
-__all__ = ("BaseEnumMeta", "BaseModel", "Field")
+__all__ = ("BaseEnumMeta", "BaseModel", "Field", "StrEnum", "IntEnum", "FloatEnum")

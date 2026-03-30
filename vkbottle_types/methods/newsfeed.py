@@ -20,14 +20,14 @@ class NewsfeedCategory(_NewsfeedCategory):  # type: ignore
         self,
         *,
         strict: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
     ) -> NewsfeedSearchStrictResponseModel: ...
 
     @typing.overload
@@ -35,14 +35,14 @@ class NewsfeedCategory(_NewsfeedCategory):  # type: ignore
         self,
         *,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
     ) -> NewsfeedSearchExtendedResponseModel: ...
 
     @typing.overload
@@ -51,50 +51,50 @@ class NewsfeedCategory(_NewsfeedCategory):  # type: ignore
         *,
         strict: typing.Literal[True],
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
     ) -> NewsfeedSearchExtendedStrictResponseModel: ...
 
     @typing.overload
     async def search(
         self,
         *,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
     ) -> NewsfeedSearchResponseModel: ...
 
     async def search(
         self,
         *,
-        extended: typing.Optional[bool] = None,
-        strict: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        extended: bool | None = None,
+        strict: bool | None = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[
-        NewsfeedSearchResponseModel,
-        NewsfeedSearchExtendedResponseModel,
-        NewsfeedSearchExtendedStrictResponseModel,
-        NewsfeedSearchStrictResponseModel,
-    ]:
+    ) -> (
+        NewsfeedSearchResponseModel
+        | NewsfeedSearchExtendedResponseModel
+        | NewsfeedSearchExtendedStrictResponseModel
+        | NewsfeedSearchStrictResponseModel
+    ):
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.

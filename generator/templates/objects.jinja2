@@ -1,27 +1,26 @@
 import datetime
-import enum
 
 import typing_extensions as typing
 
-from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta
+from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta, StrEnum, IntEnum
 
 
 {% for name, definition in definitions.items() %}
 
 {% if definition.enum %}
 {% if is_int(definition.enum[0]) %}
-class {{camelcase(name)}}(int, enum.Enum, metaclass=BaseEnumMeta):
+class {{camelcase(name)}}(IntEnum, metaclass=BaseEnumMeta):
     {% for enumeration in definition.enum %}{{makesafe(definition.enumNames[loop.index-1])|upper}} = {{enumeration}}
     {% endfor %}
 {% else %}
-class {{camelcase(name)}}(str, enum.Enum, metaclass=BaseEnumMeta):
+class {{camelcase(name)}}(StrEnum, metaclass=BaseEnumMeta):
     {% for enumeration in definition.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endif %}
 {% else %}
 
 {% for enum_defin in definition.get_enums(name) %}
-class {{enum_defin.name}}(str, enum.Enum, metaclass=BaseEnumMeta):
+class {{enum_defin.name}}(StrEnum, metaclass=BaseEnumMeta):
     {% for enumeration in enum_defin.enum %}{{makesafe(enumeration|upper)}} = "{{enumeration}}"
     {% endfor %}
 {% endfor %}

@@ -43,8 +43,8 @@ class FaveCategory(BaseCategory):
 
     async def add_page(
         self,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.addPage()`
@@ -62,7 +62,7 @@ class FaveCategory(BaseCategory):
         self,
         id: int,
         owner_id: int,
-        access_key: typing.Optional[str] = None,
+        access_key: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.addPost()`
@@ -81,7 +81,7 @@ class FaveCategory(BaseCategory):
         self,
         id: int,
         owner_id: int,
-        access_key: typing.Optional[str] = None,
+        access_key: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.addProduct()`
@@ -98,8 +98,8 @@ class FaveCategory(BaseCategory):
 
     async def add_tag(
         self,
-        name: typing.Optional[str] = None,
-        position: typing.Optional[str] = None,
+        name: str | None = None,
+        position: str | None = None,
         **kwargs: typing.Any,
     ) -> "FaveTag":
         """Method `fave.addTag()`
@@ -117,7 +117,7 @@ class FaveCategory(BaseCategory):
         self,
         id: int,
         owner_id: int,
-        access_key: typing.Optional[str] = None,
+        access_key: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.addVideo()`
@@ -153,39 +153,39 @@ class FaveCategory(BaseCategory):
     async def get(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[str] = None,
-        is_from_snackbar: typing.Optional[bool] = None,
-        item_type: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        tag_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: str | None = None,
+        is_from_snackbar: bool | None = None,
+        item_type: str | None = None,
+        offset: int | None = None,
+        tag_id: int | None = None,
         **kwargs: typing.Any,
     ) -> FaveGetExtendedResponseModel: ...
 
     @typing.overload
     async def get(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[str] = None,
-        is_from_snackbar: typing.Optional[bool] = None,
-        item_type: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        tag_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: str | None = None,
+        is_from_snackbar: bool | None = None,
+        item_type: str | None = None,
+        offset: int | None = None,
+        tag_id: int | None = None,
         **kwargs: typing.Any,
     ) -> FaveGetResponseModel: ...
 
     async def get(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[str] = None,
-        is_from_snackbar: typing.Optional[bool] = None,
-        item_type: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        tag_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: str | None = None,
+        is_from_snackbar: bool | None = None,
+        item_type: str | None = None,
+        offset: int | None = None,
+        tag_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[FaveGetExtendedResponseModel, FaveGetResponseModel]:
+    ) -> FaveGetResponseModel | FaveGetExtendedResponseModel:
         """Method `fave.get()`
 
         :param extended: '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.
@@ -208,11 +208,11 @@ class FaveCategory(BaseCategory):
 
     async def get_pages(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        tag_id: typing.Optional[int] = None,
-        type: typing.Optional[str] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        tag_id: int | None = None,
+        type: str | None = None,
         **kwargs: typing.Any,
     ) -> FaveGetPagesResponseModel:
         """Method `fave.getPages()`
@@ -270,14 +270,14 @@ class FaveCategory(BaseCategory):
 
     async def remove_link(
         self,
-        link: typing.Optional[str] = None,
-        link_id: typing.Optional[str] = None,
+        link: str | None = None,
+        link_id: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.removeLink()`
 
         :param link: Link URL
-        :param link_id: Link ID (can be obtained by [vk.ru/dev/faves.getLinks|faves.getLinks] method).
+        :param link_id: Link ID (can be obtained by [vk.com/dev/faves.getLinks|faves.getLinks] method).
         """
 
         params = self.get_set_params(locals())
@@ -287,8 +287,8 @@ class FaveCategory(BaseCategory):
 
     async def remove_page(
         self,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.removePage()`
@@ -370,7 +370,7 @@ class FaveCategory(BaseCategory):
 
     async def reorder_tags(
         self,
-        ids: typing.List[int],
+        ids: list[int],
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.reorderTags()`
@@ -385,9 +385,9 @@ class FaveCategory(BaseCategory):
 
     async def set_page_tags(
         self,
-        group_id: typing.Optional[int] = None,
-        tag_ids: typing.Optional[typing.List[int]] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        tag_ids: list[int] | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.setPageTags()`
@@ -404,12 +404,12 @@ class FaveCategory(BaseCategory):
 
     async def set_tags(
         self,
-        item_id: typing.Optional[int] = None,
-        item_owner_id: typing.Optional[int] = None,
-        item_type: typing.Optional[str] = None,
-        link_id: typing.Optional[str] = None,
-        link_url: typing.Optional[str] = None,
-        tag_ids: typing.Optional[typing.List[int]] = None,
+        item_id: int | None = None,
+        item_owner_id: int | None = None,
+        item_type: str | None = None,
+        link_id: str | None = None,
+        link_url: str | None = None,
+        tag_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.setTags()`
@@ -429,8 +429,8 @@ class FaveCategory(BaseCategory):
 
     async def track_page_interaction(
         self,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `fave.trackPageInteraction()`

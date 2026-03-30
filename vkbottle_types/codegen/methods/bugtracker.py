@@ -14,9 +14,9 @@ from vkbottle_types.responses.bugtracker import *  # noqa: F401,F403  # type: ig
 class BugtrackerCategory(BaseCategory):
     async def add_company_groups_members(
         self,
-        company_group_ids: typing.List[int],
+        company_group_ids: list[int],
         company_id: int,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
     ) -> BugtrackerAddCompanyGroupsMembersResponseModel:
         """Method `bugtracker.addCompanyGroupsMembers()`
@@ -34,7 +34,7 @@ class BugtrackerCategory(BaseCategory):
     async def add_company_members(
         self,
         company_id: int,
-        user_ids: typing.List[int],
+        user_ids: list[int],
         **kwargs: typing.Any,
     ) -> BugtrackerAddCompanyMembersResponseModel:
         """Method `bugtracker.addCompanyMembers()`
@@ -51,10 +51,10 @@ class BugtrackerCategory(BaseCategory):
     async def change_bugreport_status(
         self,
         bugreport_id: int,
-        comment: typing.Optional[str] = None,
-        from_statuses: typing.Optional[typing.List[int]] = None,
-        not_in_statuses: typing.Optional[typing.List[int]] = None,
-        status: typing.Optional[int] = None,
+        comment: str | None = None,
+        from_statuses: list[int] | None = None,
+        not_in_statuses: list[int] | None = None,
+        status: int | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `bugtracker.changeBugreportStatus()`
@@ -74,10 +74,10 @@ class BugtrackerCategory(BaseCategory):
     async def create_comment(
         self,
         bugreport_id: int,
-        force: typing.Optional[bool] = None,
-        hidden: typing.Optional[bool] = None,
-        hidden_attachments: typing.Optional[bool] = None,
-        text: typing.Optional[str] = None,
+        force: bool | None = None,
+        hidden: bool | None = None,
+        hidden_attachments: bool | None = None,
+        text: str | None = None,
         **kwargs: typing.Any,
     ) -> BugtrackerCreateCommentResponseModel:
         """Method `bugtracker.createComment()`
@@ -97,8 +97,8 @@ class BugtrackerCategory(BaseCategory):
     async def get_bugreport_by_id(
         self,
         bugreport_id: int,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
         **kwargs: typing.Any,
     ) -> BugtrackerGetBugreportByIdResponseModel:
         """Method `bugtracker.getBugreportById()`
@@ -117,11 +117,11 @@ class BugtrackerCategory(BaseCategory):
         self,
         company_group_id: int,
         company_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter_name: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter_name: str | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> BugtrackerGetCompanyGroupMembersResponseModel:
         """Method `bugtracker.getCompanyGroupMembers()`
@@ -143,15 +143,15 @@ class BugtrackerCategory(BaseCategory):
     async def get_company_members(
         self,
         company_id: int,
-        count: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        extra: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filter_member_ids: typing.Optional[typing.List[int]] = None,
-        filter_name: typing.Optional[str] = None,
-        filter_not_group: typing.Optional[int] = None,
-        filter_role: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        extended: bool | None = None,
+        extra: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filter_member_ids: list[int] | None = None,
+        filter_name: str | None = None,
+        filter_not_group: int | None = None,
+        filter_role: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> BugtrackerGetCompanyMembersResponseModel:
         """Method `bugtracker.getCompanyMembers()`
@@ -177,7 +177,7 @@ class BugtrackerCategory(BaseCategory):
         self,
         product_id: int,
         version_id: int,
-        ttl: typing.Optional[int] = None,
+        ttl: int | None = None,
         **kwargs: typing.Any,
     ) -> BugtrackerGetDownloadVersionUrlResponseModel:
         """Method `bugtracker.getDownloadVersionUrl()`
@@ -246,11 +246,11 @@ class BugtrackerCategory(BaseCategory):
     async def save_product_version(
         self,
         title: str,
-        product_id: typing.Optional[int] = None,
-        release_notes: typing.Optional[str] = None,
-        set_rft: typing.Optional[bool] = None,
-        version_id: typing.Optional[int] = None,
-        visible: typing.Optional[bool] = None,
+        product_id: int | None = None,
+        release_notes: str | None = None,
+        set_rft: bool | None = None,
+        version_id: int | None = None,
+        visible: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `bugtracker.saveProductVersion()`
@@ -290,7 +290,7 @@ class BugtrackerCategory(BaseCategory):
     async def set_product_is_over(
         self,
         product_id: int,
-        is_over: typing.Optional[bool] = None,
+        is_over: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `bugtracker.setProductIsOver()`

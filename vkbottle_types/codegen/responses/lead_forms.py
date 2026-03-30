@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import LeadFormsForm, LeadFormsLead
 from vkbottle_types.responses.base_response import BaseResponse
@@ -23,8 +21,8 @@ class LeadFormsDeleteResponse(BaseResponse):
 
 
 class LeadFormsGetLeadsResponseModel(BaseModel):
-    leads: typing.List["LeadFormsLead"] = Field()
-    next_page_token: typing.Optional[str] = Field(
+    leads: list["LeadFormsLead"] = Field()
+    next_page_token: str | None = Field(
         default=None,
     )
 
@@ -38,7 +36,7 @@ class LeadFormsGetResponse(BaseResponse):
 
 
 class LeadFormsListResponse(BaseResponse):
-    response: typing.List["LeadFormsForm"] = Field()
+    response: list["LeadFormsForm"] = Field()
 
 
 class LeadFormsUploadUrlResponse(BaseResponse):

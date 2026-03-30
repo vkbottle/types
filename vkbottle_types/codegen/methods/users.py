@@ -12,12 +12,12 @@ from vkbottle_types.responses.users import *  # noqa: F401,F403  # type: ignore
 class UsersCategory(BaseCategory):
     async def get(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        from_group_id: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
-        user_ids: typing.Optional[typing.List[typing.Union["int", "str"]]] = None,
+        fields: list[UsersFields] | None = None,
+        from_group_id: int | None = None,
+        name_case: str | None = None,
+        user_ids: list[int | str] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[UsersUserFull]:
+    ) -> list[UsersUserFull]:
         """Method `users.get()`
 
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'contacts', 'education', 'online', 'counters', 'relation', 'last_seen', 'activity', 'can_write_private_message', 'can_see_all_posts', 'can_post', 'universities', 'can_invite_to_chats'
@@ -34,34 +34,34 @@ class UsersCategory(BaseCategory):
     @typing.overload
     async def get_followers(
         self,
-        fields: typing.List[UsersFields],
-        count: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        fields: list[UsersFields],
+        count: int | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> UsersGetFollowersFieldsResponseModel: ...
 
     @typing.overload
     async def get_followers(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> UsersGetFollowersResponseModel: ...
 
     async def get_followers(
         self,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        count: typing.Optional[int] = None,
-        name_case: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        fields: list[UsersFields] | None = None,
+        count: int | None = None,
+        name_case: str | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[UsersGetFollowersResponseModel, UsersGetFollowersFieldsResponseModel]:
+    ) -> UsersGetFollowersResponseModel | UsersGetFollowersFieldsResponseModel:
         """Method `users.getFollowers()`
 
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.
@@ -84,33 +84,33 @@ class UsersCategory(BaseCategory):
     async def get_subscriptions(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> UsersGetSubscriptionsExtendedResponseModel: ...
 
     @typing.overload
     async def get_subscriptions(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: typing.Literal[False] | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> UsersGetSubscriptionsResponseModel: ...
 
     async def get_subscriptions(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        offset: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        fields: list[UsersFields] | None = None,
+        offset: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[UsersGetSubscriptionsResponseModel, UsersGetSubscriptionsExtendedResponseModel]:
+    ) -> UsersGetSubscriptionsExtendedResponseModel | UsersGetSubscriptionsResponseModel:
         """Method `users.getSubscriptions()`
 
         :param extended: '1' - to return a combined list of users and communities, '0' - to return separate lists of users and communities (default)
@@ -133,7 +133,7 @@ class UsersCategory(BaseCategory):
         self,
         type: str,
         user_id: int,
-        comment: typing.Optional[str] = None,
+        comment: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `users.report()`
@@ -150,42 +150,42 @@ class UsersCategory(BaseCategory):
 
     async def search(
         self,
-        age_from: typing.Optional[int] = None,
-        age_to: typing.Optional[int] = None,
-        birth_day: typing.Optional[int] = None,
-        birth_month: typing.Optional[int] = None,
-        birth_year: typing.Optional[int] = None,
-        city: typing.Optional[int] = None,
-        city_id: typing.Optional[int] = None,
-        company: typing.Optional[str] = None,
-        count: typing.Optional[int] = None,
-        country: typing.Optional[int] = None,
-        country_id: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        from_group_id: typing.Optional[int] = None,
-        from_list: typing.Optional[typing.List[str]] = None,
-        group_id: typing.Optional[int] = None,
-        has_photo: typing.Optional[bool] = None,
-        hometown: typing.Optional[str] = None,
-        offset: typing.Optional[int] = None,
-        online: typing.Optional[bool] = None,
-        position: typing.Optional[str] = None,
-        q: typing.Optional[str] = None,
-        religion: typing.Optional[str] = None,
-        school: typing.Optional[int] = None,
-        school_city: typing.Optional[int] = None,
-        school_class: typing.Optional[int] = None,
-        school_country: typing.Optional[int] = None,
-        school_year: typing.Optional[int] = None,
-        screen_ref: typing.Optional[str] = None,
-        sex: typing.Optional[int] = None,
-        sort: typing.Optional[int] = None,
-        status: typing.Optional[int] = None,
-        university: typing.Optional[int] = None,
-        university_chair: typing.Optional[int] = None,
-        university_country: typing.Optional[int] = None,
-        university_faculty: typing.Optional[int] = None,
-        university_year: typing.Optional[int] = None,
+        age_from: int | None = None,
+        age_to: int | None = None,
+        birth_day: int | None = None,
+        birth_month: int | None = None,
+        birth_year: int | None = None,
+        city: int | None = None,
+        city_id: int | None = None,
+        company: str | None = None,
+        count: int | None = None,
+        country: int | None = None,
+        country_id: int | None = None,
+        fields: list[UsersFields] | None = None,
+        from_group_id: int | None = None,
+        from_list: list[str] | None = None,
+        group_id: int | None = None,
+        has_photo: bool | None = None,
+        hometown: str | None = None,
+        offset: int | None = None,
+        online: bool | None = None,
+        position: str | None = None,
+        q: str | None = None,
+        religion: str | None = None,
+        school: int | None = None,
+        school_city: int | None = None,
+        school_class: int | None = None,
+        school_country: int | None = None,
+        school_year: int | None = None,
+        screen_ref: str | None = None,
+        sex: int | None = None,
+        sort: int | None = None,
+        status: int | None = None,
+        university: int | None = None,
+        university_chair: int | None = None,
+        university_country: int | None = None,
+        university_faculty: int | None = None,
+        university_year: int | None = None,
         **kwargs: typing.Any,
     ) -> UsersSearchResponseModel:
         """Method `users.search()`

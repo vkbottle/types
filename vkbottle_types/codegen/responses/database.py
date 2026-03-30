@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     BaseCountry,
@@ -18,7 +16,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class DatabaseGetChairsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BaseObject"] = Field()
+    items: list["BaseObject"] = Field()
 
 
 class DatabaseGetChairsResponse(BaseResponse):
@@ -26,12 +24,12 @@ class DatabaseGetChairsResponse(BaseResponse):
 
 
 class DatabaseGetCitiesByIdResponse(BaseResponse):
-    response: typing.List["DatabaseCityById"] = Field()
+    response: list["DatabaseCityById"] = Field()
 
 
 class DatabaseGetCitiesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseCity"] = Field()
+    items: list["DatabaseCity"] = Field()
 
 
 class DatabaseGetCitiesResponse(BaseResponse):
@@ -39,12 +37,12 @@ class DatabaseGetCitiesResponse(BaseResponse):
 
 
 class DatabaseGetCountriesByIdResponse(BaseResponse):
-    response: typing.List["BaseCountry"] = Field()
+    response: list["BaseCountry"] = Field()
 
 
 class DatabaseGetCountriesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BaseCountry"] = Field()
+    items: list["BaseCountry"] = Field()
 
 
 class DatabaseGetCountriesResponse(BaseResponse):
@@ -53,7 +51,7 @@ class DatabaseGetCountriesResponse(BaseResponse):
 
 class DatabaseGetFacultiesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseFaculty"] = Field()
+    items: list["DatabaseFaculty"] = Field()
 
 
 class DatabaseGetFacultiesResponse(BaseResponse):
@@ -61,12 +59,12 @@ class DatabaseGetFacultiesResponse(BaseResponse):
 
 
 class DatabaseGetMetroStationsByIdResponse(BaseResponse):
-    response: typing.List["DatabaseStation"] = Field()
+    response: list["DatabaseStation"] = Field()
 
 
 class DatabaseGetMetroStationsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseStation"] = Field()
+    items: list["DatabaseStation"] = Field()
 
 
 class DatabaseGetMetroStationsResponse(BaseResponse):
@@ -75,7 +73,7 @@ class DatabaseGetMetroStationsResponse(BaseResponse):
 
 class DatabaseGetRegionsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseRegion"] = Field()
+    items: list["DatabaseRegion"] = Field()
 
 
 class DatabaseGetRegionsResponse(BaseResponse):
@@ -83,12 +81,12 @@ class DatabaseGetRegionsResponse(BaseResponse):
 
 
 class DatabaseGetSchoolClassesNewResponse(BaseResponse):
-    response: typing.List["DatabaseSchoolClass"] = Field()
+    response: list["DatabaseSchoolClass"] = Field()
 
 
 class DatabaseGetSchoolsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseSchool"] = Field()
+    items: list["DatabaseSchool"] = Field()
 
 
 class DatabaseGetSchoolsResponse(BaseResponse):
@@ -97,7 +95,7 @@ class DatabaseGetSchoolsResponse(BaseResponse):
 
 class DatabaseGetUniversitiesResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["DatabaseUniversity"] = Field()
+    items: list["DatabaseUniversity"] = Field()
 
 
 class DatabaseGetUniversitiesResponse(BaseResponse):

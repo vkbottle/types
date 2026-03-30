@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsGroupFull,
@@ -26,7 +24,7 @@ class VideoAddAlbumResponse(BaseResponse):
 
 
 class VideoChangeVideoAlbumsResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class VideoCreateCommentResponse(BaseResponse):
@@ -35,7 +33,7 @@ class VideoCreateCommentResponse(BaseResponse):
 
 class VideoEditResponseModel(BaseModel):
     success: bool = Field()
-    access_key: typing.Optional[str] = Field(
+    access_key: str | None = Field(
         default=None,
     )
 
@@ -50,7 +48,7 @@ class VideoGetAlbumByIdResponse(BaseResponse):
 
 class VideoGetAlbumsByVideoExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoAlbumFull"] = Field()
+    items: list["VideoVideoAlbumFull"] = Field()
 
 
 class VideoGetAlbumsByVideoExtendedResponse(BaseResponse):
@@ -58,12 +56,12 @@ class VideoGetAlbumsByVideoExtendedResponse(BaseResponse):
 
 
 class VideoGetAlbumsByVideoResponse(BaseResponse):
-    response: typing.List[int] = Field()
+    response: list[int] = Field()
 
 
 class VideoGetAlbumsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoAlbumFull"] = Field()
+    items: list["VideoVideoAlbumFull"] = Field()
 
 
 class VideoGetAlbumsExtendedResponse(BaseResponse):
@@ -72,7 +70,7 @@ class VideoGetAlbumsExtendedResponse(BaseResponse):
 
 class VideoGetAlbumsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoAlbum"] = Field()
+    items: list["VideoVideoAlbum"] = Field()
 
 
 class VideoGetAlbumsResponse(BaseResponse):
@@ -81,22 +79,22 @@ class VideoGetAlbumsResponse(BaseResponse):
 
 class VideoGetCommentsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
-    current_level_count: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
+    current_level_count: int | None = Field(
         default=None,
     )
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -107,20 +105,20 @@ class VideoGetCommentsExtendedResponse(BaseResponse):
 
 class VideoGetCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    current_level_count: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    current_level_count: int | None = Field(
         default=None,
     )
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
-    real_offset: typing.Optional[int] = Field(
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -141,31 +139,31 @@ class VideoGetOembedResponseModel(BaseModel):
     version: str = Field()
     type: str = Field()
     html: str = Field()
-    title: typing.Optional[str] = Field(
+    title: str | None = Field(
         default=None,
     )
-    author_name: typing.Optional[str] = Field(
+    author_name: str | None = Field(
         default=None,
     )
-    width: typing.Optional[int] = Field(
+    width: int | None = Field(
         default=None,
     )
-    height: typing.Optional[int] = Field(
+    height: int | None = Field(
         default=None,
     )
-    provider_name: typing.Optional[str] = Field(
+    provider_name: str | None = Field(
         default=None,
     )
-    provider_url: typing.Optional[str] = Field(
+    provider_url: str | None = Field(
         default=None,
     )
-    thumbnail_url: typing.Optional[str] = Field(
+    thumbnail_url: str | None = Field(
         default=None,
     )
-    thumbnail_width: typing.Optional[int] = Field(
+    thumbnail_width: int | None = Field(
         default=None,
     )
-    thumbnail_height: typing.Optional[int] = Field(
+    thumbnail_height: int | None = Field(
         default=None,
     )
 
@@ -184,14 +182,14 @@ class VideoGetThumbUploadUrlResponse(BaseResponse):
 
 class VideoGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoFull"] = Field()
-    profiles: typing.Optional[typing.List["UsersUserFull"]] = Field(
+    items: list["VideoVideoFull"] = Field()
+    profiles: list["UsersUserFull"] | None = Field(
         default=None,
     )
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    max_attached_short_videos: typing.Optional[int] = Field(
+    max_attached_short_videos: int | None = Field(
         default=None,
     )
 
@@ -201,16 +199,16 @@ class VideoGetResponse(BaseResponse):
 
 
 class VideoLiveGetCategoriesResponse(BaseResponse):
-    response: typing.List["VideoLiveCategory"] = Field()
+    response: list["VideoLiveCategory"] = Field()
 
 
 class VideoSaveUploadedThumbResponseModel(BaseModel):
     photo_id: int = Field()
     photo_hash: str = Field()
-    image: typing.Optional[typing.List["VideoVideoImage"]] = Field(
+    image: list["VideoVideoImage"] | None = Field(
         default=None,
     )
-    photo_owner_id: typing.Optional[int] = Field(
+    photo_owner_id: int | None = Field(
         default=None,
     )
 
@@ -225,9 +223,9 @@ class VideoSaveResponse(BaseResponse):
 
 class VideoSearchExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoFull"] = Field()
-    profiles: typing.List["UsersUser"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["VideoVideoFull"] = Field()
+    profiles: list["UsersUser"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class VideoSearchExtendedResponse(BaseResponse):
@@ -236,7 +234,7 @@ class VideoSearchExtendedResponse(BaseResponse):
 
 class VideoSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["VideoVideoFull"] = Field()
+    items: list["VideoVideoFull"] = Field()
 
 
 class VideoSearchResponse(BaseResponse):
@@ -250,7 +248,7 @@ class VideoStartStreamingResponseModel(BaseModel):
     description: str = Field()
     access_key: str = Field()
     stream: "VideoStreamInputParams" = Field()
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
 
@@ -260,7 +258,7 @@ class VideoStartStreamingResponse(BaseResponse):
 
 
 class VideoStopStreamingResponseModel(BaseModel):
-    unique_viewers: typing.Optional[int] = Field(
+    unique_viewers: int | None = Field(
         default=None,
     )
 
@@ -270,10 +268,10 @@ class VideoStopStreamingResponse(BaseResponse):
 
 
 class VideoUploadResponseModel(BaseModel):
-    size: typing.Optional[int] = Field(
+    size: int | None = Field(
         default=None,
     )
-    video_id: typing.Optional[int] = Field(
+    video_id: int | None = Field(
         default=None,
     )
 

@@ -18,7 +18,7 @@ from vkbottle_types.responses.base import (
 class AccountCategory(BaseCategory):
     async def ban(
         self,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.ban()`
@@ -34,9 +34,9 @@ class AccountCategory(BaseCategory):
     async def change_password(
         self,
         new_password: str,
-        change_password_hash: typing.Optional[str] = None,
-        old_password: typing.Optional[str] = None,
-        restore_sid: typing.Optional[str] = None,
+        change_password_hash: str | None = None,
+        old_password: str | None = None,
+        restore_sid: str | None = None,
         **kwargs: typing.Any,
     ) -> AccountChangePasswordResponseModel:
         """Method `account.changePassword()`
@@ -44,7 +44,7 @@ class AccountCategory(BaseCategory):
         :param new_password: New password that will be set as a current
         :param change_password_hash: Hash received after a successful OAuth authorization with a code got by SMS. (If the password is changed right after the access was restored)
         :param old_password: Current user password.
-        :param restore_sid: Session id received after the [vk.ru/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
+        :param restore_sid: Session id received after the [vk.com/dev/auth.restore|auth.restore] method is executed. (If the password is changed right after the access was restored)
         """
 
         params = self.get_set_params(locals())
@@ -54,8 +54,8 @@ class AccountCategory(BaseCategory):
 
     async def get_active_offers(
         self,
-        count: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> AccountGetActiveOffersResponseModel:
         """Method `account.getActiveOffers()`
@@ -71,7 +71,7 @@ class AccountCategory(BaseCategory):
 
     async def get_app_permissions(
         self,
-        user_id: typing.Optional[int] = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `account.getAppPermissions()`
@@ -86,15 +86,15 @@ class AccountCategory(BaseCategory):
 
     async def get_banned(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
         **kwargs: typing.Any,
     ) -> AccountGetBannedResponseModel:
         """Method `account.getBanned()`
 
         :param count: Number of results to return.
-        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         :param offset: Offset needed to return a specific subset of results.
         """
 
@@ -105,7 +105,7 @@ class AccountCategory(BaseCategory):
 
     async def get_counters(
         self,
-        filter: typing.Optional[typing.List[str]] = None,
+        filter: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> "AccountAccountCounters":
         """Method `account.getCounters()`
@@ -120,9 +120,8 @@ class AccountCategory(BaseCategory):
 
     async def get_info(
         self,
-        fields: typing.Optional[
-            typing.List[typing.Literal["country", "https_required", "own_posts_default", "no_wall_replies", "intro", "lang", "audio_autoplay"]]
-        ] = None,
+        fields: list[typing.Literal["country", "https_required", "own_posts_default", "no_wall_replies", "intro", "lang", "audio_autoplay"]]
+        | None = None,
         **kwargs: typing.Any,
     ) -> "AccountInfo":
         """Method `account.getInfo()`
@@ -148,7 +147,7 @@ class AccountCategory(BaseCategory):
 
     async def get_push_settings(
         self,
-        device_id: typing.Optional[str] = None,
+        device_id: str | None = None,
         **kwargs: typing.Any,
     ) -> "AccountPushSettings":
         """Method `account.getPushSettings()`
@@ -165,12 +164,12 @@ class AccountCategory(BaseCategory):
         self,
         device_id: str,
         token: str,
-        device_model: typing.Optional[str] = None,
-        device_year: typing.Optional[int] = None,
-        pushes_granted: typing.Optional[bool] = None,
-        sandbox: typing.Optional[bool] = None,
-        settings: typing.Optional[str] = None,
-        system_version: typing.Optional[str] = None,
+        device_model: str | None = None,
+        device_year: int | None = None,
+        pushes_granted: bool | None = None,
+        sandbox: bool | None = None,
+        settings: str | None = None,
+        system_version: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.registerDevice()`
@@ -181,7 +180,7 @@ class AccountCategory(BaseCategory):
         :param device_year: Device year.
         :param pushes_granted:
         :param sandbox:
-        :param settings: Push settings in a [vk.ru/dev/push_settings|special format].
+        :param settings: Push settings in a [vk.com/dev/push_settings|special format].
         :param system_version: String version of device operating system.
         """
 
@@ -192,20 +191,20 @@ class AccountCategory(BaseCategory):
 
     async def save_profile_info(
         self,
-        bdate: typing.Optional[str] = None,
-        bdate_visibility: typing.Optional[int] = None,
-        cancel_request_id: typing.Optional[int] = None,
-        city_id: typing.Optional[int] = None,
-        country_id: typing.Optional[int] = None,
-        first_name: typing.Optional[str] = None,
-        home_town: typing.Optional[str] = None,
-        last_name: typing.Optional[str] = None,
-        maiden_name: typing.Optional[str] = None,
-        relation: typing.Optional[int] = None,
-        relation_partner_id: typing.Optional[int] = None,
-        screen_name: typing.Optional[str] = None,
-        sex: typing.Optional[int] = None,
-        status: typing.Optional[str] = None,
+        bdate: str | None = None,
+        bdate_visibility: int | None = None,
+        cancel_request_id: int | None = None,
+        city_id: int | None = None,
+        country_id: int | None = None,
+        first_name: str | None = None,
+        home_town: str | None = None,
+        last_name: str | None = None,
+        maiden_name: str | None = None,
+        relation: int | None = None,
+        relation_partner_id: int | None = None,
+        screen_name: str | None = None,
+        sex: int | None = None,
+        status: str | None = None,
         **kwargs: typing.Any,
     ) -> AccountSaveProfileInfoResponseModel:
         """Method `account.saveProfileInfo()`
@@ -233,8 +232,8 @@ class AccountCategory(BaseCategory):
 
     async def set_info(
         self,
-        name: typing.Optional[str] = None,
-        value: typing.Optional[str] = None,
+        name: str | None = None,
+        value: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.setInfo()`
@@ -261,7 +260,7 @@ class AccountCategory(BaseCategory):
 
     async def set_online(
         self,
-        voip: typing.Optional[bool] = None,
+        voip: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.setOnline()`
@@ -277,17 +276,17 @@ class AccountCategory(BaseCategory):
     async def set_push_settings(
         self,
         device_id: str,
-        key: typing.Optional[str] = None,
-        settings: typing.Optional[str] = None,
-        value: typing.Optional[typing.List[str]] = None,
+        key: str | None = None,
+        settings: str | None = None,
+        value: list[str] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.setPushSettings()`
 
         :param device_id: Unique device ID.
         :param key: Notification key.
-        :param settings: Push settings in a [vk.ru/dev/push_settings|special format].
-        :param value: New value for the key in a [vk.ru/dev/push_settings|special format].
+        :param settings: Push settings in a [vk.com/dev/push_settings|special format].
+        :param value: New value for the key in a [vk.com/dev/push_settings|special format].
         """
 
         params = self.get_set_params(locals())
@@ -297,10 +296,10 @@ class AccountCategory(BaseCategory):
 
     async def set_silence_mode(
         self,
-        device_id: typing.Optional[str] = None,
-        peer_id: typing.Optional[int] = None,
-        sound: typing.Optional[int] = None,
-        time: typing.Optional[int] = None,
+        device_id: str | None = None,
+        peer_id: int | None = None,
+        sound: int | None = None,
+        time: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.setSilenceMode()`
@@ -318,7 +317,7 @@ class AccountCategory(BaseCategory):
 
     async def unban(
         self,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.unban()`
@@ -333,8 +332,8 @@ class AccountCategory(BaseCategory):
 
     async def unregister_device(
         self,
-        device_id: typing.Optional[str] = None,
-        sandbox: typing.Optional[bool] = None,
+        device_id: str | None = None,
+        sandbox: bool | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `account.unregisterDevice()`

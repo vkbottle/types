@@ -12,8 +12,8 @@ from vkbottle_types.responses.status import *  # noqa: F401,F403  # type: ignore
 class StatusCategory(BaseCategory):
     async def get(
         self,
-        group_id: typing.Optional[int] = None,
-        user_id: typing.Optional[int] = None,
+        group_id: int | None = None,
+        user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> "StatusStatus":
         """Method `status.get()`
@@ -29,8 +29,8 @@ class StatusCategory(BaseCategory):
 
     async def set(
         self,
-        group_id: typing.Optional[int] = None,
-        text: typing.Optional[str] = None,
+        group_id: int | None = None,
+        text: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `status.set()`

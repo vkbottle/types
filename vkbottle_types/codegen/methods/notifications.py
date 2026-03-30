@@ -11,11 +11,11 @@ from vkbottle_types.responses.notifications import *  # noqa: F401,F403  # type:
 class NotificationsCategory(BaseCategory):
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        filters: typing.Optional[typing.List[typing.Literal["wall", "mentions", "comments", "likes", "reposted", "followers", "friends"]]] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        filters: list[typing.Literal["wall", "mentions", "comments", "likes", "reposted", "followers", "friends"]] | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NotificationsGetResponseModel:
         """Method `notifications.get()`
@@ -46,13 +46,13 @@ class NotificationsCategory(BaseCategory):
     async def send_message(
         self,
         message: str,
-        user_ids: typing.List[int],
-        fragment: typing.Optional[str] = None,
-        group_id: typing.Optional[int] = None,
-        random_id: typing.Optional[int] = None,
-        sending_mode: typing.Optional[str] = None,
+        user_ids: list[int],
+        fragment: str | None = None,
+        group_id: int | None = None,
+        random_id: int | None = None,
+        sending_mode: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.List[NotificationsSendMessageItem]:
+    ) -> list[NotificationsSendMessageItem]:
         """Method `notifications.sendMessage()`
 
         :param message:

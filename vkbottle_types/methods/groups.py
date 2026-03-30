@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, List, Optional, Union, overload
+from typing import TYPE_CHECKING, Any, overload
 
 from typing_extensions import Literal
 
@@ -33,44 +33,44 @@ class GroupsCategory(_GroupsCategory):  # type: ignore
     @overload  # type: ignore
     async def get_members(
         self,
-        group_id: Optional[Union[str, int]],
-        sort: Optional[Literal["id_asc", "id_desc", "time_asc", "time_desc"]] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[Literal[None]] = ...,
-        filter: Optional[Literal["friends", "unsure", "donut"]] = ...,
+        group_id: str | int | None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] | None = None,
+        offset: int | None = None,
+        count: int | None = None,
+        fields: Literal[None] | None = ...,
+        filter: Literal["friends", "unsure", "donut"] | None = ...,
     ) -> GroupsGetMembersFilterResponseModel: ...
 
     @overload
     async def get_members(
         self,
-        group_id: Optional[str] = None,
-        sort: Optional[Literal["id_asc", "id_desc", "time_asc", "time_desc"]] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: List[str] = ...,
-        filter: Optional[Literal[None]] = ...,
+        group_id: str | None = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] | None = None,
+        offset: int | None = None,
+        count: int | None = None,
+        fields: list[str] = ...,
+        filter: Literal[None] | None = ...,
     ) -> GroupsGetMembersFieldsResponseModel: ...
 
     @overload
     async def get_members(
         self,
-        group_id: Optional[str] = None,
-        sort: Optional[Literal["id_asc", "id_desc", "time_asc", "time_desc"]] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: Optional[Literal[None]] = ...,
+        group_id: str | None = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] | None = None,
+        offset: int | None = None,
+        count: int | None = None,
+        fields: Literal[None] | None = ...,
         filter: Literal["managers"] = ...,
     ) -> GetMembersFilterManagersResponseModel: ...
 
     @overload
     async def get_members(
         self,
-        group_id: Optional[str] = None,
-        sort: Optional[Literal["id_asc", "id_desc", "time_asc", "time_desc"]] = None,
-        offset: Optional[int] = None,
-        count: Optional[int] = None,
-        fields: List[str] = ...,
+        group_id: str | None = None,
+        sort: Literal["id_asc", "id_desc", "time_asc", "time_desc"] | None = None,
+        offset: int | None = None,
+        count: int | None = None,
+        fields: list[str] = ...,
         filter: Literal["managers"] = ...,
     ) -> GetMembersFieldsFilterManagersResponseModel: ...
 
@@ -83,13 +83,13 @@ class GroupsCategory(_GroupsCategory):  # type: ignore
         fields=None,
         filter=None,
         **kwargs,
-    ) -> Union[
-        GetMembersFilterManagersResponseModel,
-        GetMembersFieldsFilterManagersResponseModel,
-        GroupsGetMembersResponseModel,
-        GroupsGetMembersFilterResponseModel,
-        GroupsGetMembersFieldsResponseModel,
-    ]:
+    ) -> (
+        GetMembersFilterManagersResponseModel
+        | GetMembersFieldsFilterManagersResponseModel
+        | GroupsGetMembersResponseModel
+        | GroupsGetMembersFilterResponseModel
+        | GroupsGetMembersFieldsResponseModel
+    ):
         """Returns a list of community members.
 
         :param group_id: ID or screen name of the community.
@@ -121,16 +121,16 @@ class GroupsCategory(_GroupsCategory):  # type: ignore
     async def is_member(
         self,
         *,
-        group_id: Union[int, str],
-        user_ids: List[int],
+        group_id: int | str,
+        user_ids: list[int],
         extended: Literal[True],
-    ) -> List[GroupsMemberStatusFull]: ...
+    ) -> list[GroupsMemberStatusFull]: ...
 
     @overload
     async def is_member(
         self,
         *,
-        group_id: Union[int, str],
+        group_id: int | str,
         user_id: int,
         extended: Literal[True],
     ) -> GroupsIsMemberExtendedResponseModel: ...
@@ -139,32 +139,27 @@ class GroupsCategory(_GroupsCategory):  # type: ignore
     async def is_member(
         self,
         *,
-        group_id: Union[int, str],
-        user_ids: List[int],
-    ) -> List[GroupsMemberStatus]: ...
+        group_id: int | str,
+        user_ids: list[int],
+    ) -> list[GroupsMemberStatus]: ...
 
     @overload
     async def is_member(
         self,
         *,
-        group_id: Union["int", "str"],
+        group_id: int | str,
         user_id: int,
     ) -> bool: ...
 
     async def is_member(
         self,
         *,
-        group_id: Union[int, str],
-        extended: Optional[bool] = None,
-        user_ids: Optional[List[int]] = None,
-        user_id: Optional[int] = None,
+        group_id: int | str,
+        extended: bool | None = None,
+        user_ids: list[int] | None = None,
+        user_id: int | None = None,
         **kwargs: Any,
-    ) -> Union[
-        List[GroupsMemberStatus],
-        bool,
-        GroupsIsMemberExtendedResponseModel,
-        List[GroupsMemberStatusFull],
-    ]:
+    ) -> list[GroupsMemberStatus] | bool | GroupsIsMemberExtendedResponseModel | list[GroupsMemberStatusFull]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.

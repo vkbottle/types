@@ -13,8 +13,8 @@ from vkbottle_types.responses.newsfeed import *  # noqa: F401,F403  # type: igno
 class NewsfeedCategory(BaseCategory):
     async def add_ban(
         self,
-        group_ids: typing.Optional[typing.List[int]] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        group_ids: list[int] | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> bool:
         """Method `newsfeed.addBan()`
@@ -30,8 +30,8 @@ class NewsfeedCategory(BaseCategory):
 
     async def delete_ban(
         self,
-        group_ids: typing.Optional[typing.List[int]] = None,
-        user_ids: typing.Optional[typing.List[int]] = None,
+        group_ids: list[int] | None = None,
+        user_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `newsfeed.deleteBan()`
@@ -62,28 +62,28 @@ class NewsfeedCategory(BaseCategory):
 
     async def get(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filters: typing.Optional[typing.List[NewsfeedNewsfeedItemType]] = None,
-        max_photos: typing.Optional[int] = None,
-        return_banned: typing.Optional[bool] = None,
-        section: typing.Optional[str] = None,
-        source_ids: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filters: list[NewsfeedNewsfeedItemType] | None = None,
+        max_photos: int | None = None,
+        return_banned: bool | None = None,
+        section: str | None = None,
+        source_ids: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGenericResponseModel:
         """Method `newsfeed.get()`
 
         :param count: Number of news items to return (default 50, maximum 100). For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         :param filters: Filters to apply: 'post' - new wall posts, 'photo' - new photos, 'photo_tag' - new photo tags, 'wall_photo' - new wall photos, 'friend' - new friends
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param return_banned: '1' - to return news items from banned sources
         :param section:
-        :param source_ids: Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.ru/dev/newsfeed.getBanned|newsfeed.getBanned] method.
+        :param source_ids: Sources to obtain news from, separated by commas. User IDs can be specified in formats '' or 'u' , where '' is the user's friend ID. Community IDs can be specified in formats '-' or 'g' , where '' is the community ID. If the parameter is not set, all of the user's friends and communities are returned, except for banned sources, which can be obtained with the [vk.com/dev/newsfeed.getBanned|newsfeed.getBanned] method.
         :param start_from: identifier required to get the next page of results. Value for this parameter is returned in 'next_from' field in a reply.
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
         """
@@ -97,27 +97,27 @@ class NewsfeedCategory(BaseCategory):
     async def get_banned(
         self,
         extended: typing.Literal[True],
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        name_case: typing.Optional[str] = None,
+        fields: list[UsersFields] | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetBannedExtendedResponseModel: ...
 
     @typing.overload
     async def get_banned(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        name_case: typing.Optional[str] = None,
+        extended: typing.Literal[False] | None = None,
+        fields: list[UsersFields] | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetBannedResponseModel: ...
 
     async def get_banned(
         self,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[UsersFields]] = None,
-        name_case: typing.Optional[str] = None,
+        extended: bool | None = None,
+        fields: list[UsersFields] | None = None,
+        name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetBannedResponseModel, NewsfeedGetBannedExtendedResponseModel]:
+    ) -> NewsfeedGetBannedResponseModel | NewsfeedGetBannedExtendedResponseModel:
         """Method `newsfeed.getBanned()`
 
         :param extended: '1' - return extra information about users and communities
@@ -136,21 +136,21 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_comments(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        filters: typing.Optional[typing.List[NewsfeedCommentsFilters]] = None,
-        last_comments_count: typing.Optional[int] = None,
-        reposts: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        filters: list[NewsfeedCommentsFilters] | None = None,
+        last_comments_count: int | None = None,
+        reposts: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetCommentsResponseModel:
         """Method `newsfeed.getComments()`
 
         :param count: Number of comments to return. For auto feed, you can use the 'new_offset' parameter returned by this method.
         :param end_time: Latest timestamp (in Unix time) of a comment to return. By default, the current time.
-        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         :param filters: Filters to apply: 'post' - new comments on wall posts, 'photo' - new comments on photos, 'video' - new comments on videos, 'topic' - new comments on discussions, 'note' - new comments on notes,
         :param last_comments_count:
         :param reposts: Object ID, comments on repost of which shall be returned, e.g. 'wall1_45486'. (If the parameter is set, the 'filters' parameter is optional.),
@@ -167,24 +167,24 @@ class NewsfeedCategory(BaseCategory):
     async def get_lists(
         self,
         extended: typing.Literal[True],
-        list_ids: typing.Optional[typing.List[int]] = None,
+        list_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetListsExtendedResponseModel: ...
 
     @typing.overload
     async def get_lists(
         self,
-        extended: typing.Optional[typing.Literal[False]] = None,
-        list_ids: typing.Optional[typing.List[int]] = None,
+        extended: typing.Literal[False] | None = None,
+        list_ids: list[int] | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetListsResponseModel: ...
 
     async def get_lists(
         self,
-        extended: typing.Optional[bool] = None,
-        list_ids: typing.Optional[typing.List[int]] = None,
+        extended: bool | None = None,
+        list_ids: list[int] | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedGetListsResponseModel, NewsfeedGetListsExtendedResponseModel]:
+    ) -> NewsfeedGetListsExtendedResponseModel | NewsfeedGetListsResponseModel:
         """Method `newsfeed.getLists()`
 
         :param extended: Return additional list info
@@ -202,11 +202,11 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_mentions(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        offset: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        offset: int | None = None,
+        owner_id: int | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetMentionsResponseModel:
         """Method `newsfeed.getMentions()`
@@ -225,19 +225,19 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_recommended(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        max_photos: typing.Optional[int] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        max_photos: int | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGenericResponseModel:
         """Method `newsfeed.getRecommended()`
 
         :param count: Number of news items to return.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         :param max_photos: Maximum number of photos to return. By default, '5'.
         :param start_from: 'new_from' value obtained in previous call.
         :param start_time: Earliest timestamp (in Unix time) of a news item to return. By default, 24 hours ago.
@@ -250,16 +250,16 @@ class NewsfeedCategory(BaseCategory):
 
     async def get_suggested_sources(
         self,
-        count: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        offset: typing.Optional[int] = None,
-        shuffle: typing.Optional[bool] = None,
+        count: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        offset: int | None = None,
+        shuffle: bool | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedGetSuggestedSourcesResponseModel:
         """Method `newsfeed.getSuggestedSources()`
 
         :param count: amount of communities or users to return.
-        :param fields: list of extra fields to be returned. See available fields for [vk.ru/dev/fields|users] and [vk.ru/dev/fields_groups|communities].
+        :param fields: list of extra fields to be returned. See available fields for [vk.com/dev/fields|users] and [vk.com/dev/fields_groups|communities].
         :param offset: offset required to choose a particular subset of communities or users.
         :param shuffle: shuffle the returned list or not.
         """
@@ -272,8 +272,8 @@ class NewsfeedCategory(BaseCategory):
     async def ignore_item(
         self,
         type: str,
-        item_id: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
+        item_id: int | None = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedIgnoreItemResponseModel:
         """Method `newsfeed.ignoreItem()`
@@ -290,10 +290,10 @@ class NewsfeedCategory(BaseCategory):
 
     async def save_list(
         self,
-        source_ids: typing.List[int],
+        source_ids: list[int],
         title: str,
-        list_id: typing.Optional[int] = None,
-        no_reposts: typing.Optional[bool] = None,
+        list_id: int | None = None,
+        no_reposts: bool | None = None,
         **kwargs: typing.Any,
     ) -> int:
         """Method `newsfeed.saveList()`
@@ -313,81 +313,81 @@ class NewsfeedCategory(BaseCategory):
     async def search(
         self,
         extended: typing.Literal[True],
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedSearchStrictResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedSearchExtendedResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedSearchExtendedStrictResponseModel: ...
 
     @typing.overload
     async def search(
         self,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        extended: typing.Optional[bool] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        extended: bool | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
     ) -> NewsfeedSearchResponseModel: ...
 
     async def search(
         self,
-        extended: typing.Optional[bool] = None,
-        count: typing.Optional[int] = None,
-        end_time: typing.Optional[int] = None,
-        fields: typing.Optional[typing.List[BaseUserGroupFields]] = None,
-        latitude: typing.Optional[float] = None,
-        longitude: typing.Optional[float] = None,
-        q: typing.Optional[str] = None,
-        start_from: typing.Optional[str] = None,
-        start_time: typing.Optional[int] = None,
+        extended: bool | None = None,
+        count: int | None = None,
+        end_time: int | None = None,
+        fields: list[BaseUserGroupFields] | None = None,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        q: str | None = None,
+        start_from: str | None = None,
+        start_time: int | None = None,
         **kwargs: typing.Any,
-    ) -> typing.Union[NewsfeedSearchResponseModel, NewsfeedSearchStrictResponseModel, NewsfeedSearchExtendedResponseModel]:
+    ) -> NewsfeedSearchStrictResponseModel | NewsfeedSearchExtendedResponseModel | NewsfeedSearchResponseModel:
         """Method `newsfeed.search()`
 
         :param extended: '1' - to return additional information about the user or community that placed the post.
         :param count: Number of posts to return.
         :param end_time: Latest timestamp (in Unix time) of a news item to return. By default, the current time.
-        :param fields: Additional fields of [vk.ru/dev/fields|profiles] and [vk.ru/dev/fields_groups|communities] to return.
+        :param fields: Additional fields of [vk.com/dev/fields|profiles] and [vk.com/dev/fields_groups|communities] to return.
         :param latitude: Geographical latitude point (in degrees, -90 to 90) within which to search.
         :param longitude: Geographical longitude point (in degrees, -180 to 180) within which to search.
         :param q: Search query string (e.g., 'New Year').
@@ -399,8 +399,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("extended",), NewsfeedSearchStrictResponse),
                 (("strict",), NewsfeedSearchStrictResponse),
+                (("extended",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,
@@ -411,9 +411,9 @@ class NewsfeedCategory(BaseCategory):
     async def unignore_item(
         self,
         type: str,
-        item_id: typing.Optional[int] = None,
-        owner_id: typing.Optional[int] = None,
-        track_code: typing.Optional[str] = None,
+        item_id: int | None = None,
+        owner_id: int | None = None,
+        track_code: str | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `newsfeed.unignoreItem()`
@@ -433,7 +433,7 @@ class NewsfeedCategory(BaseCategory):
         self,
         item_id: int,
         type: str,
-        owner_id: typing.Optional[int] = None,
+        owner_id: int | None = None,
         **kwargs: typing.Any,
     ) -> BaseOkResponseModel:
         """Method `newsfeed.unsubscribe()`

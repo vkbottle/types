@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import BaseStickerNew, StoreProduct, StoreStickersKeyword
 from vkbottle_types.responses.base_response import BaseResponse
@@ -7,7 +5,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class StoreGetFavoriteStickersResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["BaseStickerNew"] = Field()
+    items: list["BaseStickerNew"] = Field()
 
 
 class StoreGetFavoriteStickersResponse(BaseResponse):
@@ -15,7 +13,7 @@ class StoreGetFavoriteStickersResponse(BaseResponse):
 
 
 class StoreGetProductsResponseModel(BaseModel):
-    items: typing.List["StoreProduct"] = Field()
+    items: list["StoreProduct"] = Field()
     count: int = Field()
 
 
@@ -25,11 +23,11 @@ class StoreGetProductsResponse(BaseResponse):
 
 class StoreGetStickersKeywordsResponseModel(BaseModel):
     count: int = Field()
-    dictionary: typing.List["StoreStickersKeyword"] = Field()
-    chunks_count: typing.Optional[int] = Field(
+    dictionary: list["StoreStickersKeyword"] = Field()
+    chunks_count: int | None = Field(
         default=None,
     )
-    chunks_hash: typing.Optional[str] = Field(
+    chunks_hash: str | None = Field(
         default=None,
     )
 

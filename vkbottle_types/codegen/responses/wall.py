@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import GroupsGroupFull, UsersUser, UsersUserFull, WallWallComment, WallWallItem, WallWallpostAttachment, WallWallpostFull
 from vkbottle_types.responses.base_response import BaseResponse
@@ -7,7 +5,7 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class WallCreateCommentResponseModel(BaseModel):
     comment_id: int = Field()
-    parents_stack: typing.Optional[typing.List[int]] = Field(
+    parents_stack: list[int] | None = Field(
         default=None,
     )
 
@@ -25,9 +23,9 @@ class WallEditResponse(BaseResponse):
 
 
 class WallGetByIdExtendedResponseModel(BaseModel):
-    items: typing.List["WallWallItem"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["WallWallItem"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class WallGetByIdExtendedResponse(BaseResponse):
@@ -35,7 +33,7 @@ class WallGetByIdExtendedResponse(BaseResponse):
 
 
 class WallGetByIdResponseModel(BaseModel):
-    items: typing.Optional[typing.List["WallWallItem"]] = Field(
+    items: list["WallWallItem"] | None = Field(
         default=None,
     )
 
@@ -45,19 +43,19 @@ class WallGetByIdResponse(BaseResponse):
 
 
 class WallGetCommentExtendedResponseModel(BaseModel):
-    items: typing.List["WallWallComment"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
-    can_post: typing.Optional[bool] = Field(
+    items: list["WallWallComment"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
-    post_author_id: typing.Optional[int] = Field(
+    post_author_id: int | None = Field(
         default=None,
     )
 
@@ -67,14 +65,14 @@ class WallGetCommentExtendedResponse(BaseResponse):
 
 
 class WallGetCommentResponseModel(BaseModel):
-    items: typing.List["WallWallComment"] = Field()
-    can_post: typing.Optional[bool] = Field(
+    items: list["WallWallComment"] = Field()
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
 
@@ -85,22 +83,22 @@ class WallGetCommentResponse(BaseResponse):
 
 class WallGetCommentsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
-    current_level_count: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
+    current_level_count: int | None = Field(
         default=None,
     )
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
-    post_author_id: typing.Optional[int] = Field(
+    post_author_id: int | None = Field(
         default=None,
     )
 
@@ -111,17 +109,17 @@ class WallGetCommentsExtendedResponse(BaseResponse):
 
 class WallGetCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    current_level_count: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    current_level_count: int | None = Field(
         default=None,
     )
-    can_post: typing.Optional[bool] = Field(
+    can_post: bool | None = Field(
         default=None,
     )
-    show_reply_button: typing.Optional[bool] = Field(
+    show_reply_button: bool | None = Field(
         default=None,
     )
-    groups_can_post: typing.Optional[bool] = Field(
+    groups_can_post: bool | None = Field(
         default=None,
     )
 
@@ -131,9 +129,9 @@ class WallGetCommentsResponse(BaseResponse):
 
 
 class WallGetRepostsResponseModel(BaseModel):
-    items: typing.List["WallWallpostFull"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["WallWallpostFull"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class WallGetRepostsResponse(BaseResponse):
@@ -142,9 +140,9 @@ class WallGetRepostsResponse(BaseResponse):
 
 class WallGetExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallItem"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["WallWallItem"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class WallGetExtendedResponse(BaseResponse):
@@ -153,7 +151,7 @@ class WallGetExtendedResponse(BaseResponse):
 
 class WallGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallItem"] = Field()
+    items: list["WallWallItem"] = Field()
 
 
 class WallGetResponse(BaseResponse):
@@ -161,11 +159,11 @@ class WallGetResponse(BaseResponse):
 
 
 class WallParseAttachedLinkResponseModel(BaseModel):
-    data: typing.List["WallWallpostAttachment"] = Field()
-    groups: typing.Optional[typing.List["GroupsGroupFull"]] = Field(
+    data: list["WallWallpostAttachment"] = Field()
+    groups: list["GroupsGroupFull"] | None = Field(
         default=None,
     )
-    profiles: typing.Optional[typing.List["UsersUser"]] = Field(
+    profiles: list["UsersUser"] | None = Field(
         default=None,
     )
 
@@ -195,10 +193,10 @@ class WallRepostResponseModel(BaseModel):
     post_id: int = Field()
     reposts_count: int = Field()
     likes_count: int = Field()
-    wall_repost_count: typing.Optional[int] = Field(
+    wall_repost_count: int | None = Field(
         default=None,
     )
-    mail_repost_count: typing.Optional[int] = Field(
+    mail_repost_count: int | None = Field(
         default=None,
     )
 
@@ -209,9 +207,9 @@ class WallRepostResponse(BaseResponse):
 
 class WallSearchExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallItem"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
+    items: list["WallWallItem"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
 
 
 class WallSearchExtendedResponse(BaseResponse):
@@ -220,7 +218,7 @@ class WallSearchExtendedResponse(BaseResponse):
 
 class WallSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallItem"] = Field()
+    items: list["WallWallItem"] = Field()
 
 
 class WallSearchResponse(BaseResponse):

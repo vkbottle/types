@@ -1,5 +1,3 @@
-import typing
-
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     BaseImage,
@@ -33,7 +31,7 @@ class PhotosGetAlbumsCountResponse(BaseResponse):
 
 class PhotosGetAlbumsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhotoAlbumFull"] = Field()
+    items: list["PhotosPhotoAlbumFull"] = Field()
 
 
 class PhotosGetAlbumsResponse(BaseResponse):
@@ -42,7 +40,7 @@ class PhotosGetAlbumsResponse(BaseResponse):
 
 class PhotosGetAllCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
+    items: list["WallWallComment"] = Field()
 
 
 class PhotosGetAllCommentsResponse(BaseResponse):
@@ -51,8 +49,8 @@ class PhotosGetAllCommentsResponse(BaseResponse):
 
 class PhotosGetAllResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhoto"] = Field()
-    more: typing.Optional[bool] = Field(
+    items: list["PhotosPhoto"] = Field()
+    more: bool | None = Field(
         default=None,
     )
 
@@ -62,15 +60,15 @@ class PhotosGetAllResponse(BaseResponse):
 
 
 class PhotosGetByIdResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
+    response: list["PhotosPhoto"] = Field()
 
 
 class PhotosGetCommentsExtendedResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    profiles: typing.List["UsersUserFull"] = Field()
-    groups: typing.List["GroupsGroupFull"] = Field()
-    real_offset: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    profiles: list["UsersUserFull"] = Field()
+    groups: list["GroupsGroupFull"] = Field()
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -81,8 +79,8 @@ class PhotosGetCommentsExtendedResponse(BaseResponse):
 
 class PhotosGetCommentsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["WallWallComment"] = Field()
-    real_offset: typing.Optional[int] = Field(
+    items: list["WallWallComment"] = Field()
+    real_offset: int | None = Field(
         default=None,
     )
 
@@ -97,7 +95,7 @@ class PhotosGetMessagesUploadServerResponse(BaseResponse):
 
 class PhotosGetNewTagsResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhotoXtrTagInfo"] = Field()
+    items: list["PhotosPhotoXtrTagInfo"] = Field()
 
 
 class PhotosGetNewTagsResponse(BaseResponse):
@@ -105,7 +103,7 @@ class PhotosGetNewTagsResponse(BaseResponse):
 
 
 class PhotosGetTagsResponse(BaseResponse):
-    response: typing.List["PhotosPhotoTag"] = Field()
+    response: list["PhotosPhotoTag"] = Field()
 
 
 class PhotosGetUploadServerResponse(BaseResponse):
@@ -114,8 +112,8 @@ class PhotosGetUploadServerResponse(BaseResponse):
 
 class PhotosGetUserPhotosResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhoto"] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list["PhotosPhoto"] = Field()
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -130,8 +128,8 @@ class PhotosGetWallUploadServerResponse(BaseResponse):
 
 class PhotosGetResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhoto"] = Field()
-    next_from: typing.Optional[str] = Field(
+    items: list["PhotosPhoto"] = Field()
+    next_from: str | None = Field(
         default=None,
     )
 
@@ -141,16 +139,16 @@ class PhotosGetResponse(BaseResponse):
 
 
 class PhotosMarketAlbumUploadResponseModel(BaseModel):
-    gid: typing.Optional[int] = Field(
+    gid: int | None = Field(
         default=None,
     )
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 
@@ -160,22 +158,22 @@ class PhotosMarketAlbumUploadResponse(BaseResponse):
 
 
 class PhotosMarketUploadResponseModel(BaseModel):
-    crop_data: typing.Optional[str] = Field(
+    crop_data: str | None = Field(
         default=None,
     )
-    crop_hash: typing.Optional[str] = Field(
+    crop_hash: str | None = Field(
         default=None,
     )
-    group_id: typing.Optional[int] = Field(
+    group_id: int | None = Field(
         default=None,
     )
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 
@@ -185,13 +183,13 @@ class PhotosMarketUploadResponse(BaseResponse):
 
 
 class PhotosMessageUploadResponseModel(BaseModel):
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 
@@ -201,10 +199,10 @@ class PhotosMessageUploadResponse(BaseResponse):
 
 
 class PhotosOwnerCoverUploadResponseModel(BaseModel):
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
 
@@ -214,13 +212,13 @@ class PhotosOwnerCoverUploadResponse(BaseResponse):
 
 
 class PhotosOwnerUploadResponseModel(BaseModel):
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 
@@ -230,19 +228,19 @@ class PhotosOwnerUploadResponse(BaseResponse):
 
 
 class PhotosPhotoUploadResponseModel(BaseModel):
-    aid: typing.Optional[int] = Field(
+    aid: int | None = Field(
         default=None,
     )
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    photos_list: typing.Optional[str] = Field(
+    photos_list: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 
@@ -256,15 +254,15 @@ class PhotosPutTagResponse(BaseResponse):
 
 
 class PhotosSaveMarketAlbumPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
+    response: list["PhotosPhoto"] = Field()
 
 
 class PhotosSaveMessagesPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
+    response: list["PhotosPhoto"] = Field()
 
 
 class PhotosSaveOwnerCoverPhotoResponseModel(BaseModel):
-    images: typing.Optional[typing.List["BaseImage"]] = Field(
+    images: list["BaseImage"] | None = Field(
         default=None,
     )
 
@@ -276,16 +274,16 @@ class PhotosSaveOwnerCoverPhotoResponse(BaseResponse):
 class PhotosSaveOwnerPhotoResponseModel(BaseModel):
     photo_hash: str = Field()
     photo_src: str = Field()
-    photo_src_big: typing.Optional[str] = Field(
+    photo_src_big: str | None = Field(
         default=None,
     )
-    photo_src_small: typing.Optional[str] = Field(
+    photo_src_small: str | None = Field(
         default=None,
     )
-    saved: typing.Optional[int] = Field(
+    saved: int | None = Field(
         default=None,
     )
-    post_id: typing.Optional[int] = Field(
+    post_id: int | None = Field(
         default=None,
     )
 
@@ -295,16 +293,16 @@ class PhotosSaveOwnerPhotoResponse(BaseResponse):
 
 
 class PhotosSaveWallPhotoResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
+    response: list["PhotosPhoto"] = Field()
 
 
 class PhotosSaveResponse(BaseResponse):
-    response: typing.List["PhotosPhoto"] = Field()
+    response: list["PhotosPhoto"] = Field()
 
 
 class PhotosSearchResponseModel(BaseModel):
     count: int = Field()
-    items: typing.List["PhotosPhoto"] = Field()
+    items: list["PhotosPhoto"] = Field()
 
 
 class PhotosSearchResponse(BaseResponse):
@@ -312,13 +310,13 @@ class PhotosSearchResponse(BaseResponse):
 
 
 class PhotosWallUploadResponseModel(BaseModel):
-    hash: typing.Optional[str] = Field(
+    hash: str | None = Field(
         default=None,
     )
-    photo: typing.Optional[str] = Field(
+    photo: str | None = Field(
         default=None,
     )
-    server: typing.Optional[int] = Field(
+    server: int | None = Field(
         default=None,
     )
 

@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Optional, Union
+from typing import TYPE_CHECKING, Any
 
 import pydantic
 
@@ -12,18 +12,19 @@ if TYPE_CHECKING:
 
 
 class BaseGroupEvent(BaseModel):
-    object: Optional[group_event_objects.BaseEventObject]
-    type: Optional[GroupEventType] = None
-    secret: Optional[str] = None
-    event_id: Optional[str] = None
-    group_id: Optional[int] = None
-    unprepared_ctx_api: Optional[Any] = None
+    object: group_event_objects.BaseEventObject | None
+    type: GroupEventType | None = None
+    secret: str | None = None
+    event_id: str | None = None
+    group_id: int | None = None
+    unprepared_ctx_api: Any | None = None
 
     model_config = pydantic.ConfigDict(frozen=False)
 
     @property
-    def ctx_api(self) -> Union["ABCAPI", "API"]:
-        assert self.unprepared_ctx_api is not None
+    def ctx_api(self) -> "ABCAPI | API":
+        if self.unprepared_ctx_api is None:
+            raise AssertionError
         return self.unprepared_ctx_api
 
 

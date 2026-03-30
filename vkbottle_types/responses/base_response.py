@@ -1,12 +1,15 @@
-import json
-from typing import Any, Dict, Optional
+from typing import Any
+
+import pydantic
 
 from vkbottle_types.base_model import BaseModel, Field
+
+PYDICT_APAPTER_TO_RAW_JSON = pydantic.TypeAdapter(dict[str, Any])
 
 
 class BaseResponse(BaseModel):
     response: Any
-    raw_json: Optional[str] = Field(default=None)
+    raw_json: str | None = Field(default=None)
 
     @property
     def raw(self) -> str:
@@ -16,16 +19,14 @@ class BaseResponse(BaseModel):
 
 
 class DictResponse(BaseResponse):
-    response: Dict[str, Any]
+    response: dict[str, Any]
 
     def __init__(self, **data: Any) -> None:
         super().__init__(response=data)
 
     @property
-    def raw(self) -> Optional[str]:  # type: ignore
-        if not self.response:
-            return None
-        return json.dumps(self.response)
+    def raw(self) -> str:  # type: ignore
+        return PYDICT_APAPTER_TO_RAW_JSON.dump_json(self.response).decode()
 
 
 __all__ = ("BaseResponse", "DictResponse")

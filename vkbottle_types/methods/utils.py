@@ -10,7 +10,7 @@ class UtilsCategory(_UtilsCategory):  # type: ignore
         self,
         screen_name: str,
         **kwargs: typing.Any,
-    ) -> typing.Union[UtilsDomainResolved, typing.List[typing.Any]]:
+    ) -> UtilsDomainResolved | list[typing.Any]:
         """Method `utils.resolveScreenName()`
 
         :param screen_name: Screen name of the user, community (e.g., 'apiclub,' 'andrew', or 'rules_of_war'), or application.
