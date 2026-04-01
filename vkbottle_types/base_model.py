@@ -26,6 +26,9 @@ if typing.TYPE_CHECKING:
         @classmethod
         def from_dict(cls, data: dict[str, typing.Any], /) -> typing.Self: ...
 
+        @classmethod
+        def object_build(cls, localns: typing.Mapping[str, typing.Any], /) -> None: ...
+
         def to_dict(self, **kwargs: typing.Any) -> dict[str, typing.Any]: ...
 
         def to_raw(self, **kwargs: typing.Any) -> str: ...
@@ -34,6 +37,10 @@ else:
 
     class BaseModel(pydantic.BaseModel):
         model_config = pydantic.ConfigDict(frozen=True)
+
+        @classmethod
+        def object_build(cls, localns):
+            cls.model_build(_types_namespace=getattr(cls, "__orig_namespace__", {}) | dict(localns))
 
         @classmethod
         def from_raw(cls, data, /, *, strict=False):

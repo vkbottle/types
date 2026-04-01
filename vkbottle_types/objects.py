@@ -1,5 +1,6 @@
 from typing_extensions import TypeAlias
 
+import vkbottle_types.codegen.objects
 from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field, StrEnum
 from vkbottle_types.codegen.objects import *  # noqa: F403  # type: ignore
 
@@ -89,28 +90,6 @@ class WallWallpostAttachmentType(StrEnum, metaclass=BaseEnumMeta):  # type: igno
     VIDEO_PLAYLIST = "video_playlist"
 
 
-class PhotosPhoto(PhotosPhoto):  # type: ignore
-    orig_photo: "PhotosPhotoSizes | None" = None
-
-
-class PrettyCardsList(BaseModel):
-    cards: "PrettyCardsPrettyCard | None" = None
-
-
-class PollsPoll(PollsPoll):  # type: ignore[no-redef]
-    anonymous: bool | None = None  # type: ignore[assignment]
-
-
-class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
-    mini_app: "AppsApp | None" = None
-    pretty_cards: "PrettyCardsList | None" = None
-    poll: "PollsPoll | None" = None
-
-
-class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
-    pass
-
-
 class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore[no-redef]
     VIDEO = "video"
     PHOTO = "photo"
@@ -140,20 +119,21 @@ class BaseLinkButtonActionType(StrEnum, metaclass=BaseEnumMeta):  # type: ignore
     SHOW_FILTERS = "show_filters"
 
 
+class PollsPollExtended(PollsPoll):  # type: ignore[no-redef]
+    pass
+
+
 class GroupsUserXtrRole(UsersUserFull, GroupsMemberRole):  # type: ignore
     pass
 
 
-class MessagesMessageAction(MessagesMessageAction):  # type: ignore
-    type: "MessagesMessageActionStatus"  # type: ignore
-    style: str | None = None
+class PhotosPhoto(PhotosPhoto):  # type: ignore
+    has_tags: bool | None = None  # type: ignore
+    orig_photo: PhotosPhotoSizes | None = None
 
 
-class GroupCallInProgress(CallsCall):
-    receiver_id: int | None = None  # type: ignore
-    time: int | None = None  # type: ignore
-    join_link: str | None = None
-    state: "CallsEndState | None" = None  # type: ignore
+class PollsPoll(PollsPoll):  # type: ignore[no-redef]
+    anonymous: bool | None = None  # type: ignore[assignment]
 
 
 class AppsApp(AppsApp):  # type: ignore
@@ -166,10 +146,6 @@ class MessagesAudioMessage(MessagesAudioMessage):  # type: ignore
     transcript: str | None = None
 
 
-class BaseLinkAttachment(BaseLink):
-    photo: "LinkPhoto | None" = None
-
-
 class LinkPhoto(PhotosPhoto):
     has_tags: bool | None = None  # type: ignore
     date: int | None = None  # type: ignore
@@ -180,126 +156,145 @@ class PhotosPhotoAlbumFull(PhotosPhotoAlbumFull):  # type: ignore
     updated: int | None = None
 
 
-class PhotosPhoto(PhotosPhoto):  # type: ignore
-    has_tags: bool | None = None  # type: ignore
-
-
-class MessagesMessage(MessagesMessage):  # type: ignore
-    attachments: list["MessagesMessageAttachment"] | None = None
-    reply_message: "MessagesForeignMessage | None" = None
-    fwd_messages: list["MessagesForeignMessage"] | None = None  # type: ignore
-
-
-class MessagesForeignMessage(MessagesForeignMessage):  # type: ignore
-    attachments: list["MessagesMessageAttachment"] | None = None
-    reply_message: "MessagesForeignMessage | None" = None
-    fwd_messages: list["MessagesForeignMessage"] | None = None
-
-
-class MessagesPinnedMessage(MessagesPinnedMessage):  # type: ignore
-    attachments: list["MessagesMessageAttachment"] | None = None
-    reply_message: "MessagesForeignMessage | None" = None
-    fwd_messages: list["MessagesForeignMessage"] | None = None
-
-
-class VideoVideo(VideoVideo):  # type: ignore
-    type: "VideoVideoType | None" = None
-
-
-class VideoVideoFull(VideoVideo, VideoVideoFull):  # type: ignore
-    type: "VideoVideoType | None" = None
-
-
-class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
-    conversation_message_id: int | None = None
-    error: "BaseMessageError | None" = None
-    message_id: int | None
-    peer_id: int
-
-
-class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
-    type: "MessagesMessageAttachmentType"  # type: ignore
-    audio_message: "MessagesAudioMessage | None" = None
-    story: "StoriesStory | None" = None
-    group_call_in_progress: "GroupCallInProgress | None" = None
-    link: "BaseLinkAttachment | None" = None
-    wall: "WallWallpostFull | None" = None
-    photo: "PhotosPhoto | None" = None
-    mini_app: "AppsApp | None" = None
-    sticker: "BaseSticker | None" = None
-    video: "VideoVideoFull | None" = None
-    poll: "PollsPoll | None" = None
-    # NOTE: Add `narrative` field. Now, we've no docs and schema about this attachment.
-
-
-class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class BaseCropPhoto(BaseCropPhoto):  # type: ignore
-    photo: "PhotosPhoto" = Field()
-
-
-class BugtrackerAttachment(BugtrackerAttachment):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class CallbackGroupChangePhoto(CallbackGroupChangePhoto):  # type: ignore
-    photo: "PhotosPhoto" = Field()
-
-
-class MarketMarketAlbum(MarketMarketAlbum):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class MarketOrderItem(MarketOrderItem):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class MessagesHistoryMessageAttachment(MessagesHistoryMessageAttachment):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class PhotosPhotoAlbum(PhotosPhotoAlbum):  # type: ignore
-    thumb: "PhotosPhoto | None" = None
-
-
-class StoriesStory(StoriesStory):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class WallCommentAttachment(WallCommentAttachment):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
-    photo: "PhotosPhoto | None" = None
-
-
-class NewsfeedItemPhotoPhotos(NewsfeedItemPhotoPhotos):  # type: ignore
-    items: list["PhotosPhoto"] | None = None
-
-
-class NewsfeedItemPhotoTagPhotoTags(NewsfeedItemPhotoTagPhotoTags):  # type: ignore
-    items: list["PhotosPhoto"] | None = None
-
-
-class UsersUserFull(UsersUserFull):  # type: ignore
-    photo_max_size: "PhotosPhoto | None" = None
-
-
-class MarketMarketItemFull(MarketMarketItemFull):  # type: ignore
-    photos: "PhotosPhoto | None" = None
-
-
 class MessagesKeyboardButtonPropertyAction(MessagesKeyboardButtonPropertyAction):  # type: ignore
     label: str = Field()
     type: str = Field()
     payload: str = Field()
 
 
+class BaseLinkNoProduct(BaseLinkNoProduct):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class BaseCropPhoto(BaseCropPhoto):  # type: ignore
+    photo: PhotosPhoto = Field()
+
+
+class BugtrackerAttachment(BugtrackerAttachment):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class CallbackGroupChangePhoto(CallbackGroupChangePhoto):  # type: ignore
+    photo: PhotosPhoto = Field()
+
+
+class MarketMarketAlbum(MarketMarketAlbum):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class MarketOrderItem(MarketOrderItem):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class MessagesHistoryMessageAttachment(MessagesHistoryMessageAttachment):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class PhotosPhotoAlbum(PhotosPhotoAlbum):  # type: ignore
+    thumb: PhotosPhoto | None = None
+
+
+class StoriesStory(StoriesStory):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class WallCommentAttachment(WallCommentAttachment):  # type: ignore
+    photo: PhotosPhoto | None = None
+
+
+class PrettyCardsList(BaseModel):
+    cards: PrettyCardsPrettyCard | None = None
+
+
+class WallWallpostAttachment(WallWallpostAttachment):  # type: ignore
+    photo: PhotosPhoto | None = None
+    mini_app: AppsApp | None = None
+    pretty_cards: PrettyCardsList | None = None
+    poll: PollsPoll | None = None
+
+
+class NewsfeedItemPhotoPhotos(NewsfeedItemPhotoPhotos):  # type: ignore
+    items: list[PhotosPhoto] | None = None
+
+
+class NewsfeedItemPhotoTagPhotoTags(NewsfeedItemPhotoTagPhotoTags):  # type: ignore
+    items: list[PhotosPhoto] | None = None
+
+
+class UsersUserFull(UsersUserFull):  # type: ignore
+    photo_max_size: PhotosPhoto | None = None
+
+
+class MarketMarketItemFull(MarketMarketItemFull):  # type: ignore
+    photos: PhotosPhoto | None = None
+
+
 class StoriesClickableSticker(StoriesClickableSticker):  # type: ignore[no-redef]
-    poll: "PollsPoll | None" = None
+    poll: PollsPoll | None = None
+
+
+class MessagesMessageAction(MessagesMessageAction):  # type: ignore
+    type: MessagesMessageActionStatus  # type: ignore
+    style: str | None = None
+
+
+class GroupCallInProgress(CallsCall):
+    receiver_id: int | None = None  # type: ignore
+    time: int | None = None  # type: ignore
+    join_link: str | None = None
+    state: CallsEndState | None = None  # type: ignore
+
+
+class BaseLinkAttachment(BaseLink):
+    photo: LinkPhoto | None = None
+
+
+class VideoVideo(VideoVideo):  # type: ignore
+    type: VideoVideoType | None = None
+
+
+class VideoVideoFull(VideoVideo, VideoVideoFull):  # type: ignore
+    type: VideoVideoType | None = None
+
+
+class MessagesSendUserIdsResponseItem(BaseModel):  # type: ignore
+    conversation_message_id: int | None = None
+    error: BaseMessageError | None = None
+    message_id: int | None
+    peer_id: int
+
+
+class MessagesMessageAttachment(MessagesMessageAttachment):  # type: ignore
+    type: MessagesMessageAttachmentType  # type: ignore
+    audio_message: MessagesAudioMessage | None = None
+    story: StoriesStory | None = None
+    group_call_in_progress: GroupCallInProgress | None = None
+    link: BaseLinkAttachment | None = None
+    wall: WallWallpostFull | None = None
+    photo: PhotosPhoto | None = None
+    mini_app: AppsApp | None = None
+    sticker: BaseSticker | None = None
+    video: VideoVideoFull | None = None
+    poll: PollsPoll | None = None
+    # NOTE: Add `narrative` field. Now, we've no docs and schema about this attachment.
+
+
+class MessagesForeignMessage(MessagesForeignMessage):  # type: ignore
+    attachments: list[MessagesMessageAttachment] | None = None
+    reply_message: "MessagesForeignMessage | None" = None
+    fwd_messages: list["MessagesForeignMessage"] | None = None
+
+
+class MessagesMessage(MessagesMessage):  # type: ignore
+    attachments: list[MessagesMessageAttachment] | None = None
+    reply_message: MessagesForeignMessage | None = None
+    fwd_messages: list[MessagesForeignMessage] | None = None  # type: ignore
+
+
+class MessagesPinnedMessage(MessagesPinnedMessage):  # type: ignore
+    attachments: list[MessagesMessageAttachment] | None = None
+    reply_message: MessagesForeignMessage | None = None
+    fwd_messages: list[MessagesForeignMessage] | None = None
 
 
 class ClientInfoForBots(BaseModel):
@@ -307,7 +302,7 @@ class ClientInfoForBots(BaseModel):
     Model: `ClientInfoForBots`
     """
 
-    button_actions: list["MessagesTemplateActionTypeNames"] | None = Field(
+    button_actions: list[MessagesTemplateActionTypeNames] | None = Field(
         default=None,
     )
     """Property `ClientInfoForBots.button_actions`."""
@@ -337,16 +332,19 @@ UsersSubscriptionsItem: TypeAlias = GroupsGroupFull | UsersUserFull  # type: ign
 
 
 localns = locals().copy()
+objects_namespace = vars(vkbottle_types.codegen.objects) | localns
 for item in localns.values():
     if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
         continue
 
-    item.model_rebuild(force=True, _types_namespace=localns)
+    setattr(item, "__orig_namespace__", objects_namespace)
+    item.model_rebuild(force=True, _types_namespace=objects_namespace)
 
     for parent in item.__bases__:
         if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
+            setattr(parent, "__orig_namespace__", objects_namespace)
             parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            parent.model_rebuild(force=True, _types_namespace=localns)
+            parent.model_rebuild(force=True, _types_namespace=objects_namespace)
             item.__pydantic_fields__.update(
                 {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
             )

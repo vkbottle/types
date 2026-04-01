@@ -6,13 +6,13 @@ build-backend = "hatchling.build"
 name = "vkbottle-types"
 description = "VK API methods & types for vkbottle."
 license = "MIT"
-version = "5.199.99.16"
+version = "5.199.99.17"
 authors = [{name = "timoniq"}]
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 dependencies = [
   "pydantic (>=2.12.5,<3.0.0)",
-  "vkbottle (>=4.7.0,<5.0.0)",
+  "vkbottle (>=4.8.0,<5.0.0)",
   "typing-extensions (>=4.15.0,<5.0.0)",
   "msgspec (>=0.20.0,<0.21.0)",
 ]
