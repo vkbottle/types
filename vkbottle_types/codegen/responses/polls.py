@@ -25,3 +25,13 @@ class PollsGetVotersResponse(BaseResponse):
 
 class PollsSavePhotoResponse(BaseResponse):
     response: "PollsBackground" = Field()
+
+
+__all__ = (
+    "PollsCreateResponse",
+    "PollsGetBackgroundsResponse",
+    "PollsGetByIdResponse",
+    "PollsGetVotersFieldsResponse",
+    "PollsGetVotersResponse",
+    "PollsSavePhotoResponse",
+)

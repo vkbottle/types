@@ -1,51 +1,60 @@
-from vkbottle_types.codegen.responses.wall import *  # noqa: F403,F401  # type: ignore
+# type: ignore
+# noqa: F401,F403
+
+import vkbottle_types.codegen.responses.wall
+from vkbottle_types.base_model import Field
+from vkbottle_types.codegen.responses.wall import *
+from vkbottle_types.objects import WallWallpostFull
 
 
-class WallGetByIdExtendedResponseModel(WallGetByIdExtendedResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] = Field()  # type: ignore
+class WallGetByIdExtendedResponseModel(WallGetByIdExtendedResponseModel):
+    items: list[WallWallpostFull] = Field()
 
 
-class WallGetByIdExtendedResponse(WallGetByIdExtendedResponse):  # type: ignore[no-redef]
-    response: "WallGetByIdExtendedResponseModel" = Field()
+class WallGetByIdExtendedResponse(WallGetByIdExtendedResponse):
+    response: WallGetByIdExtendedResponseModel = Field()
 
 
-class WallGetByIdResponseModel(WallGetByIdResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] | None = Field(  # type: ignore
+class WallGetByIdResponseModel(WallGetByIdResponseModel):
+    items: list[WallWallpostFull] | None = Field(
         default=None,
     )
 
 
-class WallGetByIdResponse(WallGetByIdResponse):  # type: ignore[no-redef]
-    response: "WallGetByIdResponseModel" = Field()
+class WallGetByIdResponse(WallGetByIdResponse):
+    response: WallGetByIdResponseModel = Field()
 
 
-class WallGetExtendedResponseModel(WallGetExtendedResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] = Field()  # type: ignore
+class WallGetExtendedResponseModel(WallGetExtendedResponseModel):
+    items: list[WallWallpostFull] = Field()
 
 
-class WallGetExtendedResponse(WallGetExtendedResponse):  # type: ignore[no-redef]
-    response: "WallGetExtendedResponseModel" = Field()
+class WallGetExtendedResponse(WallGetExtendedResponse):
+    response: WallGetExtendedResponseModel = Field()
 
 
-class WallGetResponseModel(WallGetResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] = Field()  # type: ignore
+class WallGetResponseModel(WallGetResponseModel):
+    items: list[WallWallpostFull] = Field()
 
 
-class WallGetResponse(WallGetResponse):  # type: ignore[no-redef]
-    response: "WallGetResponseModel" = Field()
+class WallGetResponse(WallGetResponse):
+    response: WallGetResponseModel = Field()
 
 
-class WallSearchExtendedResponseModel(WallSearchExtendedResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] = Field()  # type: ignore
+class WallSearchExtendedResponseModel(WallSearchExtendedResponseModel):
+    items: list[WallWallpostFull] = Field()
 
 
-class WallSearchExtendedResponse(WallSearchExtendedResponse):  # type: ignore[no-redef]
-    response: "WallSearchExtendedResponseModel" = Field()
+class WallSearchExtendedResponse(WallSearchExtendedResponse):
+    response: WallSearchExtendedResponseModel = Field()
 
 
-class WallSearchResponseModel(WallSearchResponseModel):  # type: ignore[no-redef]
-    items: list["WallWallpostFull"] = Field()  # type: ignore
+class WallSearchResponseModel(WallSearchResponseModel):
+    items: list[WallWallpostFull] = Field()
 
 
-class WallSearchResponse(WallSearchResponse):  # type: ignore[no-redef]
-    response: "WallSearchResponseModel" = Field()
+class WallSearchResponse(WallSearchResponse):
+    response: WallSearchResponseModel = Field()
+
+
+__all__ = vkbottle_types.codegen.responses.wall.__all__

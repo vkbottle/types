@@ -41,3 +41,15 @@ class UtilsGetShortLinkResponse(BaseResponse):
 
 class UtilsResolveScreenNameResponse(BaseResponse):
     response: "UtilsDomainResolved" = Field()
+
+
+__all__ = (
+    "UtilsCheckLinkResponse",
+    "UtilsGetLastShortenedLinksResponse",
+    "UtilsGetLastShortenedLinksResponseModel",
+    "UtilsGetLinkStatsExtendedResponse",
+    "UtilsGetLinkStatsResponse",
+    "UtilsGetServerTimeResponse",
+    "UtilsGetShortLinkResponse",
+    "UtilsResolveScreenNameResponse",
+)

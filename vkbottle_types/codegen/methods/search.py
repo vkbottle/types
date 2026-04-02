@@ -1,6 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
+from vkbottle_types.objects import *
 from vkbottle_types.responses.search import *  # noqa: F401,F403  # type: ignore
 
 

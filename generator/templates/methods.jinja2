@@ -1,6 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
+from vkbottle_types.objects import *
 from vkbottle_types.responses.{{snake_case(category.name)}} import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseOkResponse,
@@ -10,8 +11,6 @@ from vkbottle_types.responses.base import (
     BaseUndefinedResponse,
 )
 from vkbottle_types.responses.base_response import DictResponse
-
-### IMPORTS
 
 class {{camelcase(category.name)}}Category(BaseCategory):
     {% for method in category.methods %}

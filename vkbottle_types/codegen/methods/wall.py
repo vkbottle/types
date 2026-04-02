@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUserGroupFields
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -413,7 +413,7 @@ class WallCategory(BaseCategory):
         start_comment_id: int | None = None,
         thread_items_count: int | None = None,
         **kwargs: typing.Any,
-    ) -> WallGetCommentsResponseModel | WallGetCommentsExtendedResponseModel:
+    ) -> WallGetCommentsExtendedResponseModel | WallGetCommentsResponseModel:
         """Method `wall.getComments()`
 
         :param extended:

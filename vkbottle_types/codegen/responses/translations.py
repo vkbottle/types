@@ -13,3 +13,9 @@ class TranslationsTranslateResponseModel(BaseModel):
 
 class TranslationsTranslateResponse(BaseResponse):
     response: "TranslationsTranslateResponseModel" = Field()
+
+
+__all__ = (
+    "TranslationsTranslateResponse",
+    "TranslationsTranslateResponseModel",
+)

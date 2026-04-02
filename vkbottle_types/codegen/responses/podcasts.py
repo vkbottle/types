@@ -10,3 +10,9 @@ class PodcastsSearchPodcastResponseModel(BaseModel):
 
 class PodcastsSearchPodcastResponse(BaseResponse):
     response: "PodcastsSearchPodcastResponseModel" = Field()
+
+
+__all__ = (
+    "PodcastsSearchPodcastResponse",
+    "PodcastsSearchPodcastResponseModel",
+)

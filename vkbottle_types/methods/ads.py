@@ -1,15 +1,17 @@
 import typing
 
 from vkbottle_types.codegen.methods.ads import AdsCategory as _AdsCategory  # type: ignore
+from vkbottle_types.objects import (
+    AdsTargSuggestions,
+    AdsTargSuggestionsCities,
+    AdsTargSuggestionsRegions,
+    AdsTargSuggestionsSchools,
+)
 from vkbottle_types.responses.ads import (
     AdsGetSuggestionsCitiesResponse,
     AdsGetSuggestionsRegionsResponse,
     AdsGetSuggestionsResponse,
     AdsGetSuggestionsSchoolsResponse,
-    AdsTargSuggestions,
-    AdsTargSuggestionsCities,
-    AdsTargSuggestionsRegions,
-    AdsTargSuggestionsSchools,
 )
 
 

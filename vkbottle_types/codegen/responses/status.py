@@ -5,3 +5,6 @@ from vkbottle_types.responses.base_response import BaseResponse
 
 class StatusGetResponse(BaseResponse):
     response: "StatusStatus" = Field()
+
+
+__all__ = ("StatusGetResponse",)

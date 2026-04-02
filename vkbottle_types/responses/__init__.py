@@ -1,3 +1,5 @@
+from vkbottle_types import objects
+
 from .account import *
 from .ads import *
 from .app_widgets import *
@@ -45,16 +47,21 @@ from .wall import *
 from .widgets import *
 
 localns = locals().copy()
+types_namespace = vars(objects) | localns
 for item in localns.values():
-    if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
+    if not (isinstance(item, type) and item is not objects.BaseModel and issubclass(item, objects.BaseModel)):
         continue
 
-    item.model_rebuild(force=True, _types_namespace=localns)
+    item.model_rebuild(force=True, _types_namespace=types_namespace)
+    item.set_original_module_namespace(localns)
 
     for parent in item.__bases__:
-        if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
+        if parent.__name__ == item.__name__ and issubclass(parent, objects.BaseModel):
             parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            parent.model_rebuild(force=True, _types_namespace=localns)
+            parent.model_rebuild(force=True, _types_namespace=types_namespace)
+            parent.set_original_module_namespace(localns)
             item.__pydantic_fields__.update(
                 {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
             )
+
+del localns, types_namespace

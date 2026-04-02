@@ -1,14 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    FriendsFriendExtendedStatus,
-    FriendsFriendStatus,
-    FriendsMutualFriend,
-    FriendsOnlineUsers,
-    FriendsOnlineUsersWithMobile,
-    UsersFields,
-)
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -211,7 +204,7 @@ class FriendsCategory(BaseCategory):
         ref: str | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> FriendsGetResponseModel | FriendsGetFieldsResponseModel:
+    ) -> FriendsGetFieldsResponseModel | FriendsGetResponseModel:
         """Method `friends.get()`
 
         :param fields: Profile fields to return. Sample values: 'uid', 'first_name', 'last_name', 'nickname', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'domain', 'has_mobile', 'rate', 'contacts', 'education'.
@@ -309,7 +302,7 @@ class FriendsCategory(BaseCategory):
         source_uid: int | None = None,
         target_uid: int | None = None,
         **kwargs: typing.Any,
-    ) -> "list[int] | FriendsMutualFriend | list[FriendsMutualFriend]":
+    ) -> "list[int] | list[FriendsMutualFriend] | FriendsMutualFriend":
         """Method `friends.getMutual()`
 
         :param target_uids: IDs of the users whose friends will be checked against the friends of the user specified in 'source_uid'.
@@ -390,7 +383,7 @@ class FriendsCategory(BaseCategory):
         order: str | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> "FriendsOnlineUsersWithMobile | FriendsOnlineUsers | list[int] | FriendsGetOnlineOnlineMobileResponseModel":
+    ) -> "list[int] | FriendsOnlineUsers | FriendsOnlineUsersWithMobile | FriendsGetOnlineOnlineMobileResponseModel":
         """Method `friends.getOnline()`
 
         :param online_mobile: '1' - to return an additional 'online_mobile' field, '0' - (default),
@@ -490,7 +483,7 @@ class FriendsCategory(BaseCategory):
         sort: int | None = None,
         suggested: bool | None = None,
         **kwargs: typing.Any,
-    ) -> FriendsGetRequestsResponseModel | FriendsGetRequestsExtendedResponseModel | FriendsGetRequestsNeedMutualResponseModel:
+    ) -> FriendsGetRequestsExtendedResponseModel | FriendsGetRequestsNeedMutualResponseModel | FriendsGetRequestsResponseModel:
         """Method `friends.getRequests()`
 
         :param extended: '1' - to return response messages from users who have sent a friend request or, if 'suggested' is set to '1', to return a list of suggested friends

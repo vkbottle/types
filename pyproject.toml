@@ -6,8 +6,9 @@ build-backend = "hatchling.build"
 name = "vkbottle-types"
 description = "VK API methods & types for vkbottle."
 license = "MIT"
-version = "5.199.99.17"
-authors = [{name = "timoniq"}]
+version = "5.199.99.18"
+authors = [ { name = "timoniq" } ]
+maintainers = [{ name = "luwqz1", email = "howluwqz1@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 dependencies = [
@@ -16,26 +17,111 @@ dependencies = [
   "typing-extensions (>=4.15.0,<5.0.0)",
   "msgspec (>=0.20.0,<0.21.0)",
 ]
+classifiers = [
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+keywords = [
+    "types",
+    "vkbottle",
+    "vk api",
+    "vkontakte",
+    "bottle types",
+    "types bottle",
+    "vkbottle methods",
+    "vkbottle objects",
+    "bottle methods",
+    "bottle objects",
+    "vk methods",
+    "vk objects",
+    "framework types",
+]
 
-[tool.poetry.group.dev.dependencies]
-ruff = "^0.15.8"
-requests = "^2.33.1"
-tqdm = "^4.67.3"
-dataclass-factory = "^2.16"
-jinja2 = "^3.1.6"
+[dependency-groups]
+dev = [
+  "ruff>=0.15.8",
+  "requests>=2.33.1",
+  "tqdm>=4.67.3",
+  "dataclass-factory>=2.16",
+  "jinja2>=3.1.6",
+]
 
 [tool.ruff]
 line-length = 150
 target-version = "py310"
-lint.select = ["I", "N", "ANN", "COM", "YTT", "SIM"]
-lint.ignore = [
-  "ANN001", "ANN002", "ANN003", "ANN201", "ANN202",
-  "ANN204", "ANN206", "ANN401", "COM812", "N805", "N818",
-  "F405"
+
+[tool.ruff.lint]
+select = [
+  "I",
+  "D",
+  "N",
+  "PLR",
+  "Q",
+  "COM",
+  "TC",
+  "YTT",
+  "SIM",
+  "RUF022",
 ]
+ignore = [
+  "COM812",
+  "N805",
+  "N818",
+  "TC001",
+  "TC002",
+  "TC003",
+  "TC004",
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D104",
+  "D105",
+  "D107",
+  "D202",
+  "D203",
+  "D205",
+  "D209",
+  "D211",
+  "D213",
+  "D400",
+  "D401",
+  "D404",
+  "D415",
+  "PLR2004",
+  "PLR0911",
+  "PLR0912",
+  "PLR0913"
+]
+fixable = ["ALL"]
+unfixable = ["ERA"]
+exclude = [".venv", ".idea"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "F403"]
 
 [tool.ruff.lint.flake8-quotes]
 docstring-quotes = "double"
+
+[tool.pyright]
+exclude = [
+  ".venv",
+  ".idea",
+  ".ruff_cache",
+  ".pytest_cache",
+]
+typeCheckingMode = "basic"
+pythonPlatform = "All"
+pythonVersion = "3.10"
+reportMissingImports = true
+reportMissingTypeStubs = false
+reportSelfClsParameterName = false

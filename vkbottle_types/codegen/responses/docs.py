@@ -69,3 +69,20 @@ class DocsSearchResponseModel(BaseModel):
 
 class DocsSearchResponse(BaseResponse):
     response: "DocsSearchResponseModel" = Field()
+
+
+__all__ = (
+    "DocsAddResponse",
+    "DocsDocUploadResponse",
+    "DocsDocUploadResponseModel",
+    "DocsGetByIdResponse",
+    "DocsGetResponse",
+    "DocsGetResponseModel",
+    "DocsGetTypesResponse",
+    "DocsGetTypesResponseModel",
+    "DocsGetUploadServerResponse",
+    "DocsSaveResponse",
+    "DocsSaveResponseModel",
+    "DocsSearchResponse",
+    "DocsSearchResponseModel",
+)

@@ -47,3 +47,16 @@ class FaveGetResponseModel(BaseModel):
 
 class FaveGetResponse(BaseResponse):
     response: "FaveGetResponseModel" = Field()
+
+
+__all__ = (
+    "FaveAddTagResponse",
+    "FaveGetExtendedResponse",
+    "FaveGetExtendedResponseModel",
+    "FaveGetPagesResponse",
+    "FaveGetPagesResponseModel",
+    "FaveGetResponse",
+    "FaveGetResponseModel",
+    "FaveGetTagsResponse",
+    "FaveGetTagsResponseModel",
+)

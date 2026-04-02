@@ -223,3 +223,41 @@ class WallSearchResponseModel(BaseModel):
 
 class WallSearchResponse(BaseResponse):
     response: "WallSearchResponseModel" = Field()
+
+
+__all__ = (
+    "WallCreateCommentResponse",
+    "WallCreateCommentResponseModel",
+    "WallEditResponse",
+    "WallEditResponseModel",
+    "WallGetByIdExtendedResponse",
+    "WallGetByIdExtendedResponseModel",
+    "WallGetByIdResponse",
+    "WallGetByIdResponseModel",
+    "WallGetCommentExtendedResponse",
+    "WallGetCommentExtendedResponseModel",
+    "WallGetCommentResponse",
+    "WallGetCommentResponseModel",
+    "WallGetCommentsExtendedResponse",
+    "WallGetCommentsExtendedResponseModel",
+    "WallGetCommentsResponse",
+    "WallGetCommentsResponseModel",
+    "WallGetExtendedResponse",
+    "WallGetExtendedResponseModel",
+    "WallGetRepostsResponse",
+    "WallGetRepostsResponseModel",
+    "WallGetResponse",
+    "WallGetResponseModel",
+    "WallParseAttachedLinkResponse",
+    "WallParseAttachedLinkResponseModel",
+    "WallPostAdsStealthResponse",
+    "WallPostAdsStealthResponseModel",
+    "WallPostResponse",
+    "WallPostResponseModel",
+    "WallRepostResponse",
+    "WallRepostResponseModel",
+    "WallSearchExtendedResponse",
+    "WallSearchExtendedResponseModel",
+    "WallSearchResponse",
+    "WallSearchResponseModel",
+)

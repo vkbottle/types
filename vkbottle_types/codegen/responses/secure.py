@@ -40,3 +40,15 @@ class SecureSendNotificationResponse(BaseResponse):
 
 class SecureSetCounterArrayResponse(BaseResponse):
     response: list["SecureSetCounterItem"] = Field()
+
+
+__all__ = (
+    "SecureCheckTokenResponse",
+    "SecureGetAppBalanceResponse",
+    "SecureGetSMSHistoryResponse",
+    "SecureGetTransactionsHistoryResponse",
+    "SecureGetUserLevelResponse",
+    "SecureGiveEventStickerResponse",
+    "SecureSendNotificationResponse",
+    "SecureSetCounterArrayResponse",
+)

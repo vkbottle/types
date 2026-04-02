@@ -53,3 +53,15 @@ class PagesSaveAccessResponse(BaseResponse):
 
 class PagesSaveResponse(BaseResponse):
     response: int = Field()
+
+
+__all__ = (
+    "PagesGetHistoryResponse",
+    "PagesGetResponse",
+    "PagesGetTitlesResponse",
+    "PagesGetVersionResponse",
+    "PagesGetVersionResponseModel",
+    "PagesParseWikiResponse",
+    "PagesSaveAccessResponse",
+    "PagesSaveResponse",
+)

@@ -53,3 +53,18 @@ class UsersSearchResponseModel(BaseModel):
 
 class UsersSearchResponse(BaseResponse):
     response: "UsersSearchResponseModel" = Field()
+
+
+__all__ = (
+    "UsersGetFollowersFieldsResponse",
+    "UsersGetFollowersFieldsResponseModel",
+    "UsersGetFollowersResponse",
+    "UsersGetFollowersResponseModel",
+    "UsersGetResponse",
+    "UsersGetSubscriptionsExtendedResponse",
+    "UsersGetSubscriptionsExtendedResponseModel",
+    "UsersGetSubscriptionsResponse",
+    "UsersGetSubscriptionsResponseModel",
+    "UsersSearchResponse",
+    "UsersSearchResponseModel",
+)

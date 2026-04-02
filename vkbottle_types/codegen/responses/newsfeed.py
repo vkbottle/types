@@ -194,3 +194,34 @@ class NewsfeedSearchStrictResponseModel(BaseModel):
 
 class NewsfeedSearchStrictResponse(BaseResponse):
     response: "NewsfeedSearchStrictResponseModel" = Field()
+
+
+__all__ = (
+    "NewsfeedGenericResponse",
+    "NewsfeedGenericResponseModel",
+    "NewsfeedGetBannedExtendedResponse",
+    "NewsfeedGetBannedExtendedResponseModel",
+    "NewsfeedGetBannedResponse",
+    "NewsfeedGetBannedResponseModel",
+    "NewsfeedGetCommentsResponse",
+    "NewsfeedGetCommentsResponseModel",
+    "NewsfeedGetListsExtendedResponse",
+    "NewsfeedGetListsExtendedResponseModel",
+    "NewsfeedGetListsResponse",
+    "NewsfeedGetListsResponseModel",
+    "NewsfeedGetMentionsResponse",
+    "NewsfeedGetMentionsResponseModel",
+    "NewsfeedGetSuggestedSourcesResponse",
+    "NewsfeedGetSuggestedSourcesResponseModel",
+    "NewsfeedIgnoreItemResponse",
+    "NewsfeedIgnoreItemResponseModel",
+    "NewsfeedSaveListResponse",
+    "NewsfeedSearchExtendedResponse",
+    "NewsfeedSearchExtendedResponseModel",
+    "NewsfeedSearchExtendedStrictResponse",
+    "NewsfeedSearchExtendedStrictResponseModel",
+    "NewsfeedSearchResponse",
+    "NewsfeedSearchResponseModel",
+    "NewsfeedSearchStrictResponse",
+    "NewsfeedSearchStrictResponseModel",
+)

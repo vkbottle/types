@@ -1,22 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    AddressFields,
-    BaseUserGroupFields,
-    GroupsAddress,
-    GroupsCallbackSettings,
-    GroupsFields,
-    GroupsFilter,
-    GroupsGroupFull,
-    GroupsGroupTag,
-    GroupsLinksItem,
-    GroupsLongPollServer,
-    GroupsLongPollSettings,
-    GroupsMemberStatus,
-    GroupsMemberStatusFull,
-    UsersFields,
-)
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -503,7 +488,7 @@ class GroupsCategory(BaseCategory):
         offset: int | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsGetObjectExtendedResponseModel | GroupsGetResponseModel:
+    ) -> GroupsGetResponseModel | GroupsGetObjectExtendedResponseModel:
         """Method `groups.get()`
 
         :param extended: '1' - to return complete information about a user's communities, '0' - to return a list of community IDs without any additional fields (default),
@@ -662,7 +647,7 @@ class GroupsCategory(BaseCategory):
         extended: bool | None = None,
         subcategories: bool | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsGetCatalogInfoExtendedResponseModel | GroupsGetCatalogInfoResponseModel:
+    ) -> GroupsGetCatalogInfoResponseModel | GroupsGetCatalogInfoExtendedResponseModel:
         """Method `groups.getCatalogInfo()`
 
         :param extended: 1 - to return communities count and three communities for preview. By default: 0.
@@ -725,7 +710,7 @@ class GroupsCategory(BaseCategory):
         count: int | None = None,
         offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsGetInvitesResponseModel | GroupsGetInvitesExtendedResponseModel:
+    ) -> GroupsGetInvitesExtendedResponseModel | GroupsGetInvitesResponseModel:
         """Method `groups.getInvites()`
 
         :param extended: '1' - to return additional [vk.com/dev/fields_groups|fields] for communities..
@@ -775,8 +760,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: list[UsersFields],
         filter: str,
+        fields: list[UsersFields],
         count: int | None = None,
         group_id: int | str | None = None,
         offset: int | None = None,
@@ -787,8 +772,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: list[UsersFields] | None = None,
         filter: str | None = None,
+        fields: list[UsersFields] | None = None,
         count: int | None = None,
         group_id: int | str | None = None,
         offset: int | None = None,
@@ -799,8 +784,8 @@ class GroupsCategory(BaseCategory):
     @typing.overload
     async def get_members(
         self,
-        fields: list[UsersFields],
         filter: str,
+        fields: list[UsersFields],
         count: int | None = None,
         group_id: int | str | None = None,
         offset: int | None = None,
@@ -817,7 +802,7 @@ class GroupsCategory(BaseCategory):
         offset: int | None = None,
         sort: str | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsGetMembersFieldsResponseModel | GroupsGetMembersFilterResponseModel | GroupsGetMembersResponseModel:
+    ) -> GroupsGetMembersFilterResponseModel | GroupsGetMembersResponseModel | GroupsGetMembersFieldsResponseModel:
         """Method `groups.getMembers()`
 
         :param fields: List of additional fields to be returned. Available values: 'sex, bdate, city, country, photo_50, photo_100, photo_200_orig, photo_200, photo_400_orig, photo_max, photo_max_orig, online, online_mobile, lists, domain, has_mobile, contacts, connections, site, education, universities, schools, can_post, can_see_all_posts, can_see_audio, can_write_private_message, status, last_seen, common_count, relation, relatives, counters'.
@@ -832,8 +817,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.getMembers", params)
         model = self.get_model(
             (
-                (("fields",), GroupsGetMembersFieldsResponse),
                 (("filter",), GroupsGetMembersFieldsResponse),
+                (("fields",), GroupsGetMembersFieldsResponse),
             ),
             default=GroupsGetMembersResponse,
             params=params,
@@ -882,7 +867,7 @@ class GroupsCategory(BaseCategory):
         count: int | None = None,
         offset: int | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsGetRequestsFieldsResponseModel | GroupsGetRequestsResponseModel:
+    ) -> GroupsGetRequestsResponseModel | GroupsGetRequestsFieldsResponseModel:
         """Method `groups.getRequests()`
 
         :param group_id: Community ID.
@@ -964,8 +949,8 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: int | str,
-        extended: typing.Literal[True],
         user_ids: list[int],
+        extended: typing.Literal[True],
         user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> list[GroupsMemberStatus]: ...
@@ -974,8 +959,8 @@ class GroupsCategory(BaseCategory):
     async def is_member(
         self,
         group_id: int | str,
-        extended: bool | None = None,
         user_ids: list[int] | None = None,
+        extended: bool | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
     ) -> GroupsIsMemberExtendedResponseModel: ...
@@ -1007,7 +992,7 @@ class GroupsCategory(BaseCategory):
         extended: bool | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> GroupsIsMemberExtendedResponseModel | list[GroupsMemberStatusFull] | bool | list[GroupsMemberStatus]:
+    ) -> list[GroupsMemberStatus] | bool | GroupsIsMemberExtendedResponseModel | list[GroupsMemberStatusFull]:
         """Method `groups.isMember()`
 
         :param group_id: ID or screen name of the community.
@@ -1020,8 +1005,8 @@ class GroupsCategory(BaseCategory):
         response = await self.api.request("groups.isMember", params)
         model = self.get_model(
             (
-                (("extended",), GroupsIsMemberUserIdsResponse),
                 (("user_ids",), GroupsIsMemberUserIdsResponse),
+                (("extended",), GroupsIsMemberUserIdsResponse),
             ),
             default=BaseBoolResponse,
             params=params,

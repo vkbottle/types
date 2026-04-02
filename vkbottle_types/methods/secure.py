@@ -1,10 +1,10 @@
 from typing import TYPE_CHECKING
 
 from vkbottle_types.codegen.methods.secure import SecureCategory as _SecureCategory  # type: ignore
+from vkbottle_types.objects import SecureSetCounterItem
 from vkbottle_types.responses.secure import (
     SecureSetCounterArrayResponse,
     SecureSetCounterIntegerResponse,
-    SecureSetCounterItem,
 )
 
 if TYPE_CHECKING:

@@ -1,13 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    SecureGiveEventStickerItem,
-    SecureLevel,
-    SecureSmsNotification,
-    SecureTokenChecked,
-    SecureTransaction,
-)
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,

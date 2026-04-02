@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUserGroupFields, FaveTag
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -185,7 +185,7 @@ class FaveCategory(BaseCategory):
         offset: int | None = None,
         tag_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> FaveGetResponseModel | FaveGetExtendedResponseModel:
+    ) -> FaveGetExtendedResponseModel | FaveGetResponseModel:
         """Method `fave.get()`
 
         :param extended: '1' - to return additional 'wall', 'profiles', and 'groups' fields. By default: '0'.

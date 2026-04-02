@@ -19,3 +19,11 @@ class WidgetsGetPagesResponseModel(BaseModel):
 
 class WidgetsGetPagesResponse(BaseResponse):
     response: "WidgetsGetPagesResponseModel" = Field()
+
+
+__all__ = (
+    "WidgetsGetCommentsResponse",
+    "WidgetsGetCommentsResponseModel",
+    "WidgetsGetPagesResponse",
+    "WidgetsGetPagesResponseModel",
+)

@@ -67,3 +67,17 @@ class BoardGetTopicsResponseModel(BaseModel):
 
 class BoardGetTopicsResponse(BaseResponse):
     response: "BoardGetTopicsResponseModel" = Field()
+
+
+__all__ = (
+    "BoardAddTopicResponse",
+    "BoardCreateCommentResponse",
+    "BoardGetCommentsExtendedResponse",
+    "BoardGetCommentsExtendedResponseModel",
+    "BoardGetCommentsResponse",
+    "BoardGetCommentsResponseModel",
+    "BoardGetTopicsExtendedResponse",
+    "BoardGetTopicsExtendedResponseModel",
+    "BoardGetTopicsResponse",
+    "BoardGetTopicsResponseModel",
+)

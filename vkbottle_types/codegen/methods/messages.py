@@ -1,18 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    BaseUserGroupFields,
-    MessagesChat,
-    MessagesChatFull,
-    MessagesGetConversationById,
-    MessagesGetConversationByIdExtended,
-    MessagesGetConversationMembers,
-    MessagesLastActivity,
-    MessagesLongpollParams,
-    MessagesPinnedMessage,
-    UsersFields,
-)
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -333,7 +322,7 @@ class MessagesCategory(BaseCategory):
         peer_id: int | None = None,
         preview_length: int | None = None,
         **kwargs: typing.Any,
-    ) -> MessagesGetByIdExtendedResponseModel | MessagesGetByIdResponseModel:
+    ) -> MessagesGetByIdResponseModel | MessagesGetByIdExtendedResponseModel:
         """Method `messages.getById()`
 
         :param extended: Information whether the response should be extended
@@ -401,7 +390,7 @@ class MessagesCategory(BaseCategory):
         chat_id: int | None = None,
         name_case: str | None = None,
         **kwargs: typing.Any,
-    ) -> "MessagesChat | list[MessagesChat] | list[MessagesChatFull] | MessagesChatFull":
+    ) -> "MessagesChatFull | MessagesChat | list[MessagesChatFull] | list[MessagesChat]":
         """Method `messages.getChat()`
 
         :param chat_ids: Chat IDs.
@@ -522,7 +511,7 @@ class MessagesCategory(BaseCategory):
         fields: list[BaseUserGroupFields] | None = None,
         group_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> "MessagesGetConversationById | MessagesGetConversationByIdExtended":
+    ) -> "MessagesGetConversationByIdExtended | MessagesGetConversationById":
         """Method `messages.getConversationsById()`
 
         :param peer_ids: Destination IDs. "For user: 'User ID', e.g. '12345'. For chat: '2000000000' + 'chat_id', e.g. '2000000001'. For community: '- community ID', e.g. '-12345'. "

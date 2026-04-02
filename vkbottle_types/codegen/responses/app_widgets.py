@@ -41,3 +41,16 @@ class AppWidgetsSaveAppImageResponse(BaseResponse):
 
 class AppWidgetsSaveGroupImageResponse(BaseResponse):
     response: "AppWidgetsPhoto" = Field()
+
+
+__all__ = (
+    "AppWidgetsGetAppImageUploadServerResponse",
+    "AppWidgetsGetAppImageUploadServerResponseModel",
+    "AppWidgetsGetAppImagesResponse",
+    "AppWidgetsGetGroupImageUploadServerResponse",
+    "AppWidgetsGetGroupImageUploadServerResponseModel",
+    "AppWidgetsGetGroupImagesResponse",
+    "AppWidgetsGetImagesByIdResponse",
+    "AppWidgetsSaveAppImageResponse",
+    "AppWidgetsSaveGroupImageResponse",
+)

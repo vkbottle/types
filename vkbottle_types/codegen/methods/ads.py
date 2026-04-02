@@ -1,34 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import (
-    AdsAccount,
-    AdsAd,
-    AdsAdLayout,
-    AdsCampaign,
-    AdsClient,
-    AdsCreateAdStatus,
-    AdsCreateCampaignStatus,
-    AdsCreateClientsStatus,
-    AdsDemoStats,
-    AdsFloodStats,
-    AdsLinkStatus,
-    AdsPromotedPostReach,
-    AdsRejectReason,
-    AdsStats,
-    AdsTargetGroup,
-    AdsTargetPixelInfo,
-    AdsTargSettings,
-    AdsTargStats,
-    AdsTargSuggestions,
-    AdsTargSuggestionsCities,
-    AdsTargSuggestionsRegions,
-    AdsTargSuggestionsSchools,
-    AdsUpdateAdsStatus,
-    AdsUpdateClientsStatus,
-    AdsUpdateOfficeUsersResult,
-    AdsUsers,
-)
+from vkbottle_types.objects import *
 from vkbottle_types.responses.ads import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseOkResponse,
@@ -681,7 +654,7 @@ class AdsCategory(BaseCategory):
         lang: str | None = None,
         q: str | None = None,
         **kwargs: typing.Any,
-    ) -> list[AdsTargSuggestionsCities] | list[AdsTargSuggestions] | list[AdsTargSuggestionsRegions] | list[AdsTargSuggestionsSchools]:
+    ) -> list[AdsTargSuggestions] | list[AdsTargSuggestionsRegions] | list[AdsTargSuggestionsSchools] | list[AdsTargSuggestionsCities]:
         """Method `ads.getSuggestions()`
 
         :param section: Section, suggestions are retrieved in. Available values: *countries - request of a list of countries. If q is not set or blank, a short list of countries is shown. Otherwise, a full list of countries is shown. *regions - requested list of regions. 'country' parameter is required. *cities - requested list of cities. 'country' parameter is required. *districts - requested list of districts. 'cities' parameter is required. *stations - requested list of subway stations. 'cities' parameter is required. *streets - requested list of streets. 'cities' parameter is required. *schools - requested list of educational organizations. 'cities' parameter is required. *interests - requested list of interests. *positions - requested list of positions (professions). *group_types - requested list of group types. *religions - requested list of religious commitments. *browsers - requested list of browsers and mobile devices.

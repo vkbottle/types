@@ -22,9 +22,6 @@ from vkbottle_types.responses.friends import (
     FriendsGetRequestsNeedMutualResponseModel,
     FriendsGetRequestsResponse,
     FriendsGetRequestsResponseModel,
-    FriendsMutualFriend,
-    FriendsOnlineUsers,
-    FriendsOnlineUsersWithMobile,
 )
 
 if typing.TYPE_CHECKING:

@@ -13,3 +13,9 @@ class AuthRestoreResponseModel(BaseModel):
 
 class AuthRestoreResponse(BaseResponse):
     response: "AuthRestoreResponseModel" = Field()
+
+
+__all__ = (
+    "AuthRestoreResponse",
+    "AuthRestoreResponseModel",
+)

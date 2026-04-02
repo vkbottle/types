@@ -9,3 +9,9 @@ class StorageGetKeysResponse(BaseResponse):
 
 class StorageGetResponse(BaseResponse):
     response: list["StorageValue"] = Field()
+
+
+__all__ = (
+    "StorageGetKeysResponse",
+    "StorageGetResponse",
+)

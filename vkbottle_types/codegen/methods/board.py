@@ -1,6 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -210,7 +211,7 @@ class BoardCategory(BaseCategory):
         sort: str | None = None,
         start_comment_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> BoardGetCommentsResponseModel | BoardGetCommentsExtendedResponseModel:
+    ) -> BoardGetCommentsExtendedResponseModel | BoardGetCommentsResponseModel:
         """Method `board.getComments()`
 
         :param group_id: ID of the community that owns the discussion board.

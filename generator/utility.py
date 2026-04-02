@@ -53,4 +53,4 @@ def instring(s: str) -> str:
     return s.replace("'", "\\'").replace('"', '\\"')
 
 
-__all__ = ("camelcase", "snake_case", "makesafe", "instring", "makesafe_method_name")
+__all__ = ("camelcase", "instring", "makesafe", "makesafe_method_name", "snake_case")

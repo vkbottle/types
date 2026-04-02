@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import UsersFields, UsersUserFull
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -61,7 +61,7 @@ class UsersCategory(BaseCategory):
         offset: int | None = None,
         user_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> UsersGetFollowersResponseModel | UsersGetFollowersFieldsResponseModel:
+    ) -> UsersGetFollowersFieldsResponseModel | UsersGetFollowersResponseModel:
         """Method `users.getFollowers()`
 
         :param fields: Profile fields to return. Sample values: 'nickname', 'screen_name', 'sex', 'bdate' (birthdate), 'city', 'country', 'timezone', 'photo', 'photo_medium', 'photo_big', 'has_mobile', 'rate', 'contacts', 'education', 'online'.

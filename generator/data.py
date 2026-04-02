@@ -21,7 +21,7 @@ class WithRef:
     ref: str | None = None
     type: str | None = None
     definition: "Definition | None" = None
-    properties: dict = dataclasses.field(default_factory=lambda: {})
+    properties: dict[str, typing.Any] = dataclasses.field(default_factory=lambda: {})
 
 
 @dataclasses.dataclass
@@ -34,7 +34,7 @@ class MethodParameter:
     default: str | int | bool | None = None
 
     format: str | None = None
-    items: dict = dataclasses.field(default_factory=lambda: {})
+    items: dict[str, typing.Any] = dataclasses.field(default_factory=lambda: {})
 
     def get_type(self) -> str:
         return get_type(self.type, self.items)
@@ -51,19 +51,25 @@ class MethodParameter:
 
         if isinstance(tp, list):
             result = None
+
             for t in tp:
                 res = self.get_default(default_val, t)
+
                 if res != "None":
                     result = res
                     break
+
             return "None" if result is None else result
 
         if isinstance(default_val, int) and tp in ("boolean", "bool"):
             return repr(bool(default_val))
+
         if isinstance(default_val, int) and tp in ("integer", "int"):
             return repr(default_val)
+
         if isinstance(default_val, (int, float)) and tp in ("number", "float"):
             return repr(float(default_val))
+
         return str(default_val)
 
     @property
@@ -81,6 +87,7 @@ class MethodParameter:
             orig.format,
             orig.items,
         )
+
         if dependant.type == "boolean":
             dependant.type = Ready("typing.Literal[True]")
             dependant.required = True
@@ -93,6 +100,7 @@ class MethodParameter:
                 dependant.default = None
                 dependant.required = False
                 return dependant
+
             if dependant.type.value == "typing.Literal[False]":
                 orig.type = "boolean"
                 orig.required = False
@@ -124,10 +132,13 @@ class Method:
         for name in self.responses.copy():
             if name == "response":
                 continue
+
             original_name = name.removesuffix("Response").removesuffix("_")
             dep_params = set(map(snake_case, original_name.split("_")))
+
             if not any(self.param_exists(param) for param in dep_params):
                 continue
+
             dependant_params |= dep_params
 
         return list(dependant_params)
@@ -137,7 +148,7 @@ class Method:
 
     def get_dependants(self) -> list["Method"]:
         if len(self.responses) > 1:
-            dependant_responses = typing.cast(dict, self.responses.copy())
+            dependant_responses = typing.cast("dict", self.responses.copy())
             dependant_responses.pop("response", None)
             dependant_responses = OrderedDict[str, dict[str, str]](
                 **dependant_responses,
@@ -181,6 +192,7 @@ class Method:
                             dependant_parameters=list(dependant_params),
                         )
                     )
+
                 elif name != "response" and name in self.responses:
                     self.responses.pop(name)
 
@@ -197,8 +209,10 @@ class Method:
         for dependant in self.get_dependants():
             for dependant_parameter in dependant.dependant_parameters:
                 dependant_response_model = dependant.get_response_model()
+
                 if response_model == dependant_response_model or dependant_parameter in dependant_parameters:
                     continue
+
                 dependant_parameters[dependant_parameter] = dependant_response_model
 
         return dependant_parameters
@@ -213,20 +227,27 @@ class Method:
 
     def get_response_hint(self) -> str:
         responses = get_responses(self.responses)  # type: ignore
+
         if not responses:
             return "dict[str, typing.Any]"
+
         if len(responses) > 1:
             responses_hints = self.get_responses_hints()
+
             if len(responses_hints) == 1 or not self.get_dependants():
                 return responses_hints[0]
+
             union = " | ".join(x.strip('"').strip("'") for x in responses_hints)
             return "{}".format(f'"{union}"' if any("Literal" not in x and ("'" in x or '"' in x) for x in responses_hints) else union)
+
         return get_complex_type(responses[0], response=True)
 
     def get_response_model(self) -> str:
         responses = get_responses(self.responses)  # type: ignore
+
         if not responses:
             return "DictResponse"
+
         return get_complex_type(responses[0])  # type: ignore
 
     @property
@@ -268,12 +289,14 @@ class Method:
 def wrap_optional(func):
     def wrapper(self: "Property", **kw: typing.Any) -> str:
         response = func(self, **kw)
+
         if self.is_optional:
             response = (
                 "{} | None".format(response)
                 if not response.startswith("'") or not response.endswith("'")
                 else '"{} | None"'.format(response.strip('"').strip("'"))
             )
+
         return response
 
     return wrapper
@@ -287,7 +310,7 @@ class Property:
     default: typing.Any | None = dataclasses.field(default=None)
     enum: list[str | int] = dataclasses.field(default_factory=lambda: [])
     enumNames: list[str] = dataclasses.field(default_factory=lambda: [])  # noqa: N815
-    items: dict = dataclasses.field(default_factory=lambda: {})
+    items: dict[str, typing.Any] = dataclasses.field(default_factory=lambda: {})
     ref: str | None = dataclasses.field(default=None)
     required: bool = dataclasses.field(default=False)
     data: dict = dataclasses.field(default_factory=lambda: {})
@@ -308,15 +331,23 @@ class Property:
 
             return ct
 
-        t = get_type(self.type, self.items or self.data, hint=hint)
+        t = get_type(
+            self.type,
+            self.items or self.data,
+            hint=hint,
+            prop_name=self.name,
+        )
+
         if literal_to_enum and t.startswith("typing.Literal"):
             if not definition_name:
                 raise LookupError("Definition name is required")
+
             propname = camelcase(definition_name) + camelcase(self.name)
             return repr(propname)
 
         if t == "dict" and response:
             return "dict[str, typing.Any]"
+
         return t
 
     @property
@@ -326,12 +357,15 @@ class Property:
     def get_default_value(self, model_name: str | None = None) -> typing.Any | None:
         if self.default is None:
             return None
+
         if self.enum and model_name:
             for i, enum in enumerate(self.enum):
                 if enum == self.default:
                     return model_name + "." + self.enumNames[i].replace(" ", "_").upper()
+
         if self.type in ("boolean", "BaseBoolInt"):
             return bool(self.default)
+
         return self.default
 
 
@@ -366,15 +400,18 @@ class Definition:
         for prop in self.properties:
             if prop.name != "response":
                 continue
+
             if prop.data.get("enum"):
                 return Definition(
                     type="enum",
                     enum=prop.data["enum"],
                     enumNames=prop.data.get("enumNames", []),
                 )
+
             if prop.data.get("type") == "object":
                 properties = [factory.load({"name": pname, **p}, Property) for pname, p in prop.data.get("properties", {}).items()]
                 return Definition(type="object", allOf=self.allOf, properties=properties)
+
         return None
 
     def get_properties(self) -> list[Property]:
@@ -445,11 +482,11 @@ factory = dataclass_factory.Factory(
 
 
 __all__ = (
+    "Category",
+    "Definition",
     "Method",
     "MethodParameter",
-    "Property",
-    "Definition",
     "Objects",
-    "Category",
+    "Property",
     "factory",
 )

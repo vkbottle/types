@@ -46,3 +46,10 @@ class NotificationsGetResponse(BaseResponse):
 
 class NotificationsSendMessageResponse(BaseResponse):
     response: list["NotificationsSendMessageItem"] = Field()
+
+
+__all__ = (
+    "NotificationsGetResponse",
+    "NotificationsGetResponseModel",
+    "NotificationsSendMessageResponse",
+)

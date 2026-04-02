@@ -150,3 +150,35 @@ class AppsIsNotificationsAllowedResponse(BaseResponse):
 
 class AppsSendRequestResponse(BaseResponse):
     response: int = Field()
+
+
+__all__ = (
+    "AppsAddSnippetResponse",
+    "AppsAddSnippetResponseModel",
+    "AppsCreatedGroupResponse",
+    "AppsCreatedGroupResponseModel",
+    "AppsGetCatalogResponse",
+    "AppsGetFriendsListExtendedResponse",
+    "AppsGetFriendsListExtendedResponseModel",
+    "AppsGetFriendsListResponse",
+    "AppsGetFriendsListResponseModel",
+    "AppsGetLeaderboardExtendedResponse",
+    "AppsGetLeaderboardExtendedResponseModel",
+    "AppsGetLeaderboardResponse",
+    "AppsGetLeaderboardResponseModel",
+    "AppsGetMiniAppPoliciesResponse",
+    "AppsGetMiniAppPoliciesResponseModel",
+    "AppsGetResponse",
+    "AppsGetResponseModel",
+    "AppsGetScopesResponse",
+    "AppsGetScopesResponseModel",
+    "AppsGetScoreResponse",
+    "AppsGetSnippetsResponse",
+    "AppsGetSnippetsResponseModel",
+    "AppsGetTestingGroupsResponse",
+    "AppsImageUploadResponse",
+    "AppsImageUploadResponseModel",
+    "AppsIsNotificationsAllowedResponse",
+    "AppsIsNotificationsAllowedResponseModel",
+    "AppsSendRequestResponse",
+)

@@ -9,3 +9,9 @@ class StatsGetPostReachResponse(BaseResponse):
 
 class StatsGetResponse(BaseResponse):
     response: list["StatsPeriod"] = Field()
+
+
+__all__ = (
+    "StatsGetPostReachResponse",
+    "StatsGetResponse",
+)

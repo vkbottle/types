@@ -1,3 +1,4 @@
+import datetime
 import typing
 
 from vkbottle_types.base_model import BaseModel, Field, BaseEnumMeta, StrEnum, IntEnum
@@ -56,3 +57,12 @@ class {{camelcase(name)}}(BaseResponse):
     ){% endif %}
     {% endfor %}
 {% endfor %}
+
+__all__ = (
+    {% for (name, definition) in definitions %}
+    {% set response_def = definition.get_response_definition() %}
+    {% if response_def is not none and (response_def.type == 'enum' or (response_def.type == 'object' and response_def.get_properties())) %}
+    "{{camelcase(name)}}Model",{% endif %}
+    "{{camelcase(name)}}",
+    {% endfor %}
+)

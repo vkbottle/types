@@ -118,3 +118,26 @@ class StoriesUploadResponseModel(BaseModel):
 
 class StoriesUploadResponse(BaseResponse):
     response: "StoriesUploadResponseModel" = Field()
+
+
+__all__ = (
+    "StoriesGetBannedExtendedResponse",
+    "StoriesGetBannedExtendedResponseModel",
+    "StoriesGetBannedResponse",
+    "StoriesGetBannedResponseModel",
+    "StoriesGetByIdExtendedResponse",
+    "StoriesGetByIdExtendedResponseModel",
+    "StoriesGetPhotoUploadServerResponse",
+    "StoriesGetPhotoUploadServerResponseModel",
+    "StoriesGetStatsResponse",
+    "StoriesGetV5113Response",
+    "StoriesGetV5113ResponseModel",
+    "StoriesGetVideoUploadServerResponse",
+    "StoriesGetVideoUploadServerResponseModel",
+    "StoriesGetViewersExtendedV5115Response",
+    "StoriesGetViewersExtendedV5115ResponseModel",
+    "StoriesSaveResponse",
+    "StoriesSaveResponseModel",
+    "StoriesUploadResponse",
+    "StoriesUploadResponseModel",
+)

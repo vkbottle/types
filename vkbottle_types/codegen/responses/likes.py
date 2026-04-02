@@ -52,3 +52,17 @@ class LikesIsLikedResponseModel(BaseModel):
 
 class LikesIsLikedResponse(BaseResponse):
     response: "LikesIsLikedResponseModel" = Field()
+
+
+__all__ = (
+    "LikesAddResponse",
+    "LikesAddResponseModel",
+    "LikesDeleteResponse",
+    "LikesDeleteResponseModel",
+    "LikesGetListExtendedResponse",
+    "LikesGetListExtendedResponseModel",
+    "LikesGetListResponse",
+    "LikesGetListResponseModel",
+    "LikesIsLikedResponse",
+    "LikesIsLikedResponseModel",
+)

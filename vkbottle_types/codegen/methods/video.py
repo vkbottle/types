@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import VideoLiveCategory, VideoPlaylistPrivacyCategory, VideoSaveResult, VideoVideoAlbumFull
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -326,7 +326,7 @@ class VideoCategory(BaseCategory):
         offset: int | None = None,
         owner_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> VideoGetAlbumsExtendedResponseModel | VideoGetAlbumsResponseModel:
+    ) -> VideoGetAlbumsResponseModel | VideoGetAlbumsExtendedResponseModel:
         """Method `video.getAlbums()`
 
         :param extended: '1' - to return additional information about album privacy settings for the current user
@@ -372,7 +372,7 @@ class VideoCategory(BaseCategory):
         extended: bool | None = None,
         target_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> VideoGetAlbumsByVideoExtendedResponseModel | list[int]:
+    ) -> list[int] | VideoGetAlbumsByVideoExtendedResponseModel:
         """Method `video.getAlbumsByVideo()`
 
         :param owner_id:
@@ -438,7 +438,7 @@ class VideoCategory(BaseCategory):
         start_comment_id: int | None = None,
         thread_items_count: int | None = None,
         **kwargs: typing.Any,
-    ) -> VideoGetCommentsResponseModel | VideoGetCommentsExtendedResponseModel:
+    ) -> VideoGetCommentsExtendedResponseModel | VideoGetCommentsResponseModel:
         """Method `video.getComments()`
 
         :param video_id: Video ID.
@@ -814,7 +814,7 @@ class VideoCategory(BaseCategory):
         shorter: int | None = None,
         sort: int | None = None,
         **kwargs: typing.Any,
-    ) -> VideoSearchResponseModel | VideoSearchExtendedResponseModel:
+    ) -> VideoSearchExtendedResponseModel | VideoSearchResponseModel:
         """Method `video.search()`
 
         :param extended:

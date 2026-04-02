@@ -13,3 +13,9 @@ class SearchGetHintsResponseModel(BaseModel):
 
 class SearchGetHintsResponse(BaseResponse):
     response: "SearchGetHintsResponseModel" = Field()
+
+
+__all__ = (
+    "SearchGetHintsResponse",
+    "SearchGetHintsResponseModel",
+)

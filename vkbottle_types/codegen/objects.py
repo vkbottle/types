@@ -1,3 +1,5 @@
+# type: ignore
+
 import datetime
 
 import typing_extensions as typing
@@ -11,9 +13,7 @@ class BaseBoolInt(IntEnum, metaclass=BaseEnumMeta):
 
 
 class BaseCity(BaseModel):
-    """
-    Model: `BaseCity`
-    """
+    """Model: `BaseCity`"""
 
     id: int = Field()
     """City ID."""
@@ -23,9 +23,7 @@ class BaseCity(BaseModel):
 
 
 class BaseCommentsInfo(BaseModel):
-    """
-    Model: `BaseCommentsInfo`
-    """
+    """Model: `BaseCommentsInfo`"""
 
     can_post: bool | None = Field(
         default=None,
@@ -70,9 +68,7 @@ class BaseCommentsInfo(BaseModel):
 
 
 class BaseCountry(BaseModel):
-    """
-    Model: `BaseCountry`
-    """
+    """Model: `BaseCountry`"""
 
     id: int = Field()
     """Country ID."""
@@ -82,9 +78,7 @@ class BaseCountry(BaseModel):
 
 
 class BaseCropPhoto(BaseModel):
-    """
-    Model: `BaseCropPhoto`
-    """
+    """Model: `BaseCropPhoto`"""
 
     photo: "PhotosPhoto" = Field()
     """Property `BaseCropPhoto.photo`."""
@@ -97,9 +91,7 @@ class BaseCropPhoto(BaseModel):
 
 
 class BaseCropPhotoCrop(BaseModel):
-    """
-    Model: `BaseCropPhotoCrop`
-    """
+    """Model: `BaseCropPhotoCrop`"""
 
     x: float = Field()
     """Coordinate X of the left upper corner."""
@@ -115,9 +107,7 @@ class BaseCropPhotoCrop(BaseModel):
 
 
 class BaseCropPhotoRect(BaseModel):
-    """
-    Model: `BaseCropPhotoRect`
-    """
+    """Model: `BaseCropPhotoRect`"""
 
     x: float = Field()
     """Coordinate X of the left upper corner."""
@@ -137,9 +127,7 @@ class BaseErrorInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseError(BaseModel):
-    """
-    Model: `BaseError`
-    """
+    """Model: `BaseError`"""
 
     inner_type: "BaseErrorInnerType" = Field()
     """Property `BaseError.inner_type`."""
@@ -169,9 +157,7 @@ class BaseError(BaseModel):
 
 
 class BaseGeo(BaseModel):
-    """
-    Model: `BaseGeo`
-    """
+    """Model: `BaseGeo`"""
 
     coordinates: "BaseGeoCoordinates | None" = Field(
         default=None,
@@ -195,9 +181,7 @@ class BaseGeo(BaseModel):
 
 
 class BaseGeoCoordinates(BaseModel):
-    """
-    Model: `BaseGeoCoordinates`
-    """
+    """Model: `BaseGeoCoordinates`"""
 
     latitude: float = Field()
     """Property `BaseGeoCoordinates.latitude`."""
@@ -207,9 +191,7 @@ class BaseGeoCoordinates(BaseModel):
 
 
 class BaseGradientPoint(BaseModel):
-    """
-    Model: `BaseGradientPoint`
-    """
+    """Model: `BaseGradientPoint`"""
 
     color: str = Field()
     """Hex color code without #."""
@@ -224,9 +206,7 @@ class BaseImageTheme(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseImage(BaseModel):
-    """
-    Model: `BaseImage`
-    """
+    """Model: `BaseImage`"""
 
     url: str = Field()
     """Image url."""
@@ -260,9 +240,7 @@ class BaseLang(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseLikes(BaseModel):
-    """
-    Model: `BaseLikes`
-    """
+    """Model: `BaseLikes`"""
 
     count: int | None = Field(
         default=None,
@@ -276,9 +254,7 @@ class BaseLikes(BaseModel):
 
 
 class BaseLikesInfo(BaseModel):
-    """
-    Model: `BaseLikesInfo`
-    """
+    """Model: `BaseLikesInfo`"""
 
     can_like: bool = Field()
     """Information whether current user can like the post."""
@@ -321,9 +297,7 @@ class BaseLikesInfo(BaseModel):
 
 
 class BaseLinkApplication(BaseModel):
-    """
-    Model: `BaseLinkApplication`
-    """
+    """Model: `BaseLinkApplication`"""
 
     app_id: float | None = Field(
         default=None,
@@ -337,9 +311,7 @@ class BaseLinkApplication(BaseModel):
 
 
 class BaseLinkApplicationStore(BaseModel):
-    """
-    Model: `BaseLinkApplicationStore`
-    """
+    """Model: `BaseLinkApplicationStore`"""
 
     id: float | None = Field(
         default=None,
@@ -353,9 +325,7 @@ class BaseLinkApplicationStore(BaseModel):
 
 
 class BaseLinkButton(BaseModel):
-    """
-    Model: `BaseLinkButton`
-    """
+    """Model: `BaseLinkButton`"""
 
     action: "BaseLinkButtonAction | None" = Field(
         default=None,
@@ -419,9 +389,7 @@ class BaseLinkButton(BaseModel):
 
 
 class BaseLinkButtonAction(BaseModel):
-    """
-    Model: `BaseLinkButtonAction`
-    """
+    """Model: `BaseLinkButtonAction`"""
 
     type: "BaseLinkButtonActionType" = Field()
     """Property `BaseLinkButtonAction.type`."""
@@ -471,9 +439,7 @@ class BaseLinkButtonStyle(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseLinkNoProduct(BaseModel):
-    """
-    Model: `BaseLinkNoProduct`
-    """
+    """Model: `BaseLinkNoProduct`"""
 
     url: str = Field()
     """Link URL."""
@@ -554,9 +520,7 @@ class BaseLinkProductType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseLinkProduct(BaseModel):
-    """
-    Model: `BaseLinkProduct`
-    """
+    """Model: `BaseLinkProduct`"""
 
     price: "MarketPrice" = Field()
     """Property `BaseLinkProduct.price`."""
@@ -603,9 +567,7 @@ class BaseLinkProduct(BaseModel):
 
 
 class BaseLinkProductCategory(BaseModel):
-    """
-    Model: `BaseLinkProductCategory`
-    """
+    """Model: `BaseLinkProductCategory`"""
 
 
 class BaseLinkProductStatus(StrEnum, metaclass=BaseEnumMeta):
@@ -621,9 +583,7 @@ class BaseLinkRatingType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseLinkRating(BaseModel):
-    """
-    Model: `BaseLinkRating`
-    """
+    """Model: `BaseLinkRating`"""
 
     reviews_count: int | None = Field(
         default=None,
@@ -642,9 +602,7 @@ class BaseLinkRating(BaseModel):
 
 
 class BaseMessageError(BaseModel):
-    """
-    Model: `BaseMessageError`
-    """
+    """Model: `BaseMessageError`"""
 
     code: int | None = Field(
         default=None,
@@ -667,9 +625,7 @@ class BaseNameCase(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseObject(BaseModel):
-    """
-    Model: `BaseObject`
-    """
+    """Model: `BaseObject`"""
 
     id: int = Field()
     """Object ID."""
@@ -679,9 +635,7 @@ class BaseObject(BaseModel):
 
 
 class BaseObjectCount(BaseModel):
-    """
-    Model: `BaseObjectCount`
-    """
+    """Model: `BaseObjectCount`"""
 
     count: int | None = Field(
         default=None,
@@ -690,9 +644,7 @@ class BaseObjectCount(BaseModel):
 
 
 class BaseObjectWithName(BaseModel):
-    """
-    Model: `BaseObjectWithName`
-    """
+    """Model: `BaseObjectWithName`"""
 
     id: int = Field()
     """Object ID."""
@@ -702,9 +654,7 @@ class BaseObjectWithName(BaseModel):
 
 
 class BaseOwnerCover(BaseModel):
-    """
-    Model: `BaseOwnerCover`
-    """
+    """Model: `BaseOwnerCover`"""
 
     enabled: bool = Field()
     """Information whether cover is enabled."""
@@ -731,9 +681,7 @@ class BaseOwnerCover(BaseModel):
 
 
 class BaseOwnerCoverCropParams(BaseModel):
-    """
-    Model: `BaseOwnerCoverCropParams`
-    """
+    """Model: `BaseOwnerCoverCropParams`"""
 
     x: int | None = Field(
         default=None,
@@ -757,9 +705,7 @@ class BaseOwnerCoverCropParams(BaseModel):
 
 
 class BasePlace(BaseModel):
-    """
-    Model: `BasePlace`
-    """
+    """Model: `BasePlace`"""
 
     address: str | None = Field(
         default=None,
@@ -817,8 +763,7 @@ class BasePropertyExists(IntEnum, metaclass=BaseEnumMeta):
 
 
 class BaseRepostsInfo(BaseModel):
-    """
-    Count of views
+    """Count of views
     Model: `BaseRepostsInfo`
     """
 
@@ -842,9 +787,7 @@ class BaseRepostsInfo(BaseModel):
 
 
 class BaseRequestParam(BaseModel):
-    """
-    Model: `BaseRequestParam`
-    """
+    """Model: `BaseRequestParam`"""
 
     key: str = Field()
     """Parameter name."""
@@ -864,9 +807,7 @@ class BaseStickerInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseSticker(BaseModel):
-    """
-    Model: `BaseSticker`
-    """
+    """Model: `BaseSticker`"""
 
     inner_type: "BaseStickerInnerType" = Field()
     """Property `BaseSticker.inner_type`."""
@@ -913,9 +854,7 @@ class BaseStickerAnimationType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseStickerAnimation(BaseModel):
-    """
-    Model: `BaseStickerAnimation`
-    """
+    """Model: `BaseStickerAnimation`"""
 
     type: "BaseStickerAnimationType | None" = Field(
         default=None,
@@ -933,9 +872,7 @@ class BaseStickerNewInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseStickerNew(BaseModel):
-    """
-    Model: `BaseStickerNew`
-    """
+    """Model: `BaseStickerNew`"""
 
     inner_type: "BaseStickerNewInnerType" = Field()
     """Property `BaseStickerNew.inner_type`."""
@@ -977,9 +914,7 @@ class BaseStickerNew(BaseModel):
 
 
 class BaseUploadServer(BaseModel):
-    """
-    Model: `BaseUploadServer`
-    """
+    """Model: `BaseUploadServer`"""
 
     upload_url: str = Field()
     """Upload URL."""
@@ -1108,9 +1043,7 @@ class BaseUserGroupFields(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BaseUserId(BaseModel):
-    """
-    Model: `BaseUserId`
-    """
+    """Model: `BaseUserId`"""
 
     user_id: int | None = Field(
         default=None,
@@ -1119,9 +1052,7 @@ class BaseUserId(BaseModel):
 
 
 class UsersCareer(BaseModel):
-    """
-    Model: `UsersCareer`
-    """
+    """Model: `UsersCareer`"""
 
     city_id: int | None = Field(
         default=None,
@@ -1166,9 +1097,7 @@ class UsersCareer(BaseModel):
 
 
 class UsersExports(BaseModel):
-    """
-    Model: `UsersExports`
-    """
+    """Model: `UsersExports`"""
 
     facebook: int | None = Field(
         default=None,
@@ -1307,9 +1236,7 @@ class UsersFields(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UsersLastSeen(BaseModel):
-    """
-    Model: `UsersLastSeen`
-    """
+    """Model: `UsersLastSeen`"""
 
     platform: int | None = Field(
         default=None,
@@ -1323,9 +1250,7 @@ class UsersLastSeen(BaseModel):
 
 
 class UsersMilitary(BaseModel):
-    """
-    Model: `UsersMilitary`
-    """
+    """Model: `UsersMilitary`"""
 
     unit: str = Field()
     """Unit name."""
@@ -1357,9 +1282,7 @@ class UsersOccupationType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UsersOccupation(BaseModel):
-    """
-    Model: `UsersOccupation`
-    """
+    """Model: `UsersOccupation`"""
 
     id: int | None = Field(
         default=None,
@@ -1396,9 +1319,7 @@ class UsersOnlineInfoStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UsersOnlineInfo(BaseModel):
-    """
-    Model: `UsersOnlineInfo`
-    """
+    """Model: `UsersOnlineInfo`"""
 
     visible: bool = Field()
     """Whether you can see real online status of user or not."""
@@ -1430,9 +1351,7 @@ class UsersOnlineInfo(BaseModel):
 
 
 class UsersPersonal(BaseModel):
-    """
-    Model: `UsersPersonal`
-    """
+    """Model: `UsersPersonal`"""
 
     alcohol: int | None = Field(
         default=None,
@@ -1494,9 +1413,7 @@ class UsersRelativeType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UsersRelative(BaseModel):
-    """
-    Model: `UsersRelative`
-    """
+    """Model: `UsersRelative`"""
 
     type: "UsersRelativeType" = Field()
     """Relative type."""
@@ -1518,9 +1435,7 @@ class UsersRelative(BaseModel):
 
 
 class UsersSchool(BaseModel):
-    """
-    Model: `UsersSchool`
-    """
+    """Model: `UsersSchool`"""
 
     city: int | None = Field(
         default=None,
@@ -1580,15 +1495,11 @@ class UsersSchool(BaseModel):
 
 
 class UsersSubscriptionsItem(BaseModel):
-    """
-    Model: `UsersSubscriptionsItem`
-    """
+    """Model: `UsersSubscriptionsItem`"""
 
 
 class UsersUniversity(BaseModel):
-    """
-    Model: `UsersUniversity`
-    """
+    """Model: `UsersUniversity`"""
 
     chair: int | None = Field(
         default=None,
@@ -1657,9 +1568,7 @@ class UsersUniversity(BaseModel):
 
 
 class UsersUserConnections(BaseModel):
-    """
-    Model: `UsersUserConnections`
-    """
+    """Model: `UsersUserConnections`"""
 
     skype: str = Field()
     """User\'s Skype nickname."""
@@ -1685,9 +1594,7 @@ class UsersUserConnections(BaseModel):
 
 
 class UsersUserCounters(BaseModel):
-    """
-    Model: `UsersUserCounters`
-    """
+    """Model: `UsersUserCounters`"""
 
     albums: int | None = Field(
         default=None,
@@ -1836,9 +1743,7 @@ class UsersUserCounters(BaseModel):
 
 
 class UsersUserMin(BaseModel):
-    """
-    Model: `UsersUserMin`
-    """
+    """Model: `UsersUserMin`"""
 
     id: int = Field()
     """User ID."""
@@ -1887,9 +1792,7 @@ class UsersUserRelation(IntEnum, metaclass=BaseEnumMeta):
 
 
 class UsersUserSettingsXtr(BaseModel):
-    """
-    Model: `UsersUserSettingsXtr`
-    """
+    """Model: `UsersUserSettingsXtr`"""
 
     home_town: str = Field()
     """User\'s hometown."""
@@ -1998,9 +1901,7 @@ class UsersUserType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UsersUsersArray(BaseModel):
-    """
-    Model: `UsersUsersArray`
-    """
+    """Model: `UsersUsersArray`"""
 
     count: int = Field()
     """Users number."""
@@ -2010,9 +1911,7 @@ class UsersUsersArray(BaseModel):
 
 
 class MessagesActionOneOf(BaseModel):
-    """
-    Model: `MessagesActionOneOf`
-    """
+    """Model: `MessagesActionOneOf`"""
 
     type: "MessagesMessageActionStatus" = Field()
     """Property `MessagesActionOneOf.type`."""
@@ -2049,9 +1948,7 @@ class MessagesActionOneOf(BaseModel):
 
 
 class MessagesAudioMessage(BaseModel):
-    """
-    Model: `MessagesAudioMessage`
-    """
+    """Model: `MessagesAudioMessage`"""
 
     duration: int = Field()
     """Audio message duration in seconds."""
@@ -2083,14 +1980,12 @@ class MessagesAudioMessage(BaseModel):
 
 
 class MessagesBaseMessage(BaseModel):
-    """
-    Model: `MessagesBaseMessage`
-    """
+    """Model: `MessagesBaseMessage`"""
 
     conversation_message_id: int = Field()
     """Unique auto-incremented number for all messages with this peer."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the message has been sent in Unixtime."""
 
     from_id: int = Field()
@@ -2188,9 +2083,7 @@ class MessagesBaseMessage(BaseModel):
 
 
 class MessagesChat(BaseModel):
-    """
-    Model: `MessagesChat`
-    """
+    """Model: `MessagesChat`"""
 
     admin_id: int = Field()
     """Chat creator ID."""
@@ -2254,9 +2147,7 @@ class MessagesChat(BaseModel):
 
 
 class MessagesChatFull(BaseModel):
-    """
-    Model: `MessagesChatFull`
-    """
+    """Model: `MessagesChatFull`"""
 
     admin_id: int = Field()
     """Chat creator ID."""
@@ -2320,9 +2211,7 @@ class MessagesChatFull(BaseModel):
 
 
 class MessagesChatPreview(BaseModel):
-    """
-    Model: `MessagesChatPreview`
-    """
+    """Model: `MessagesChatPreview`"""
 
     admin_id: int = Field()
     """Property `MessagesChatPreview.admin_id`."""
@@ -2380,9 +2269,7 @@ class MessagesChatPreview(BaseModel):
 
 
 class MessagesChatPushSettings(BaseModel):
-    """
-    Model: `MessagesChatPushSettings`
-    """
+    """Model: `MessagesChatPushSettings`"""
 
     disabled_until: int | None = Field(
         default=None,
@@ -2396,9 +2283,7 @@ class MessagesChatPushSettings(BaseModel):
 
 
 class MessagesChatRestrictions(BaseModel):
-    """
-    Model: `MessagesChatRestrictions`
-    """
+    """Model: `MessagesChatRestrictions`"""
 
     admins_promote_users: bool | None = Field(
         default=None,
@@ -2427,9 +2312,7 @@ class MessagesChatRestrictions(BaseModel):
 
 
 class MessagesChatSettings(BaseModel):
-    """
-    Model: `MessagesChatSettings`
-    """
+    """Model: `MessagesChatSettings`"""
 
     owner_id: int = Field()
     """Property `MessagesChatSettings.owner_id`."""
@@ -2510,9 +2393,7 @@ class MessagesChatSettings(BaseModel):
 
 
 class MessagesChatSettingsAcl(BaseModel):
-    """
-    Model: `MessagesChatSettingsAcl`
-    """
+    """Model: `MessagesChatSettingsAcl`"""
 
     can_change_info: bool = Field()
     """Can you change photo, description and name."""
@@ -2592,9 +2473,7 @@ class MessagesChatSettingsPermissionsChangeAdmins(StrEnum, metaclass=BaseEnumMet
 
 
 class MessagesChatSettingsPermissions(BaseModel):
-    """
-    Model: `MessagesChatSettingsPermissions`
-    """
+    """Model: `MessagesChatSettingsPermissions`"""
 
     invite: "MessagesChatSettingsPermissionsInvite | None" = Field(
         default=None,
@@ -2633,9 +2512,7 @@ class MessagesChatSettingsPermissions(BaseModel):
 
 
 class MessagesChatSettingsPhoto(BaseModel):
-    """
-    Model: `MessagesChatSettingsPhoto`
-    """
+    """Model: `MessagesChatSettingsPhoto`"""
 
     photo_50: str | None = Field(
         default=None,
@@ -2675,9 +2552,7 @@ class MessagesConversationSpecialServiceType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesConversation(BaseModel):
-    """
-    Model: `MessagesConversation`
-    """
+    """Model: `MessagesConversation`"""
 
     peer: "MessagesConversationPeer" = Field()
     """Property `MessagesConversation.peer`."""
@@ -2764,9 +2639,7 @@ class MessagesConversation(BaseModel):
 
 
 class MessagesConversationCanWrite(BaseModel):
-    """
-    Model: `MessagesConversationCanWrite`
-    """
+    """Model: `MessagesConversationCanWrite`"""
 
     allowed: bool = Field()
     """Property `MessagesConversationCanWrite.allowed`."""
@@ -2783,9 +2656,7 @@ class MessagesConversationCanWrite(BaseModel):
 
 
 class MessagesConversationMember(BaseModel):
-    """
-    Model: `MessagesConversationMember`
-    """
+    """Model: `MessagesConversationMember`"""
 
     member_id: int = Field()
     """Property `MessagesConversationMember.member_id`."""
@@ -2820,21 +2691,19 @@ class MessagesConversationMember(BaseModel):
     )
     """Property `MessagesConversationMember.is_message_request`."""
 
-    join_date: int | None = Field(
+    join_date: datetime.datetime | None = Field(
         default=None,
     )
     """Property `MessagesConversationMember.join_date`."""
 
-    request_date: int | None = Field(
+    request_date: datetime.datetime | None = Field(
         default=None,
     )
     """Message request date."""
 
 
 class MessagesConversationPeer(BaseModel):
-    """
-    Model: `MessagesConversationPeer`
-    """
+    """Model: `MessagesConversationPeer`"""
 
     id: int = Field()
     """Property `MessagesConversationPeer.id`."""
@@ -2856,9 +2725,7 @@ class MessagesConversationPeerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesConversationSortId(BaseModel):
-    """
-    Model: `MessagesConversationSortId`
-    """
+    """Model: `MessagesConversationSortId`"""
 
     major_id: int = Field()
     """Major id for sorting conversations."""
@@ -2868,9 +2735,7 @@ class MessagesConversationSortId(BaseModel):
 
 
 class MessagesConversationWithMessage(BaseModel):
-    """
-    Model: `MessagesConversationWithMessage`
-    """
+    """Model: `MessagesConversationWithMessage`"""
 
     conversation: "MessagesConversation" = Field()
     """Property `MessagesConversationWithMessage.conversation`."""
@@ -2882,9 +2747,7 @@ class MessagesConversationWithMessage(BaseModel):
 
 
 class MessagesDeleteFullResponseItem(BaseModel):
-    """
-    Model: `MessagesDeleteFullResponseItem`
-    """
+    """Model: `MessagesDeleteFullResponseItem`"""
 
     peer_id: int | None = Field(
         default=None,
@@ -2913,14 +2776,12 @@ class MessagesDeleteFullResponseItem(BaseModel):
 
 
 class MessagesForeignMessage(BaseModel):
-    """
-    Model: `MessagesForeignMessage`
-    """
+    """Model: `MessagesForeignMessage`"""
 
     conversation_message_id: int = Field()
     """Conversation message ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the message was created."""
 
     from_id: int = Field()
@@ -2976,9 +2837,7 @@ class MessagesForeignMessage(BaseModel):
 
 
 class MessagesForward(BaseModel):
-    """
-    Model: `MessagesForward`
-    """
+    """Model: `MessagesForward`"""
 
     owner_id: int | None = Field(
         default=None,
@@ -3015,9 +2874,7 @@ MessagesFwdMessages: typing.TypeAlias = list[list["MessagesForeignMessage"]]
 
 
 class MessagesGetConversationById(BaseModel):
-    """
-    Model: `MessagesGetConversationById`
-    """
+    """Model: `MessagesGetConversationById`"""
 
     count: int = Field()
     """Total number."""
@@ -3027,9 +2884,7 @@ class MessagesGetConversationById(BaseModel):
 
 
 class MessagesGetConversationMembers(BaseModel):
-    """
-    Model: `MessagesGetConversationMembers`
-    """
+    """Model: `MessagesGetConversationMembers`"""
 
     items: list["MessagesConversationMember"] = Field()
     """Property `MessagesGetConversationMembers.items`."""
@@ -3054,9 +2909,7 @@ class MessagesGetConversationMembers(BaseModel):
 
 
 class MessagesGetInviteLinkByOwnerResponseItem(BaseModel):
-    """
-    Model: `MessagesGetInviteLinkByOwnerResponseItem`
-    """
+    """Model: `MessagesGetInviteLinkByOwnerResponseItem`"""
 
     owner_id: int = Field()
     """Property `MessagesGetInviteLinkByOwnerResponseItem.owner_id`."""
@@ -3073,9 +2926,7 @@ class MessagesGetInviteLinkByOwnerResponseItem(BaseModel):
 
 
 class MessagesGraffiti(BaseModel):
-    """
-    Model: `MessagesGraffiti`
-    """
+    """Model: `MessagesGraffiti`"""
 
     id: int = Field()
     """Graffiti ID."""
@@ -3099,14 +2950,12 @@ class MessagesGraffiti(BaseModel):
 
 
 class MessagesHistoryAttachment(BaseModel):
-    """
-    Model: `MessagesHistoryAttachment`
-    """
+    """Model: `MessagesHistoryAttachment`"""
 
     attachment: "MessagesHistoryMessageAttachment" = Field()
     """Property `MessagesHistoryAttachment.attachment`."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Message sending time."""
 
     message_id: int = Field()
@@ -3140,9 +2989,7 @@ class MessagesHistoryAttachment(BaseModel):
 
 
 class MessagesHistoryMessageAttachment(BaseModel):
-    """
-    Model: `MessagesHistoryMessageAttachment`
-    """
+    """Model: `MessagesHistoryMessageAttachment`"""
 
     type: "MessagesHistoryMessageAttachmentType" = Field()
     """Property `MessagesHistoryMessageAttachment.type`."""
@@ -3192,9 +3039,7 @@ class MessagesHistoryMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboard(BaseModel):
-    """
-    Model: `MessagesKeyboard`
-    """
+    """Model: `MessagesKeyboard`"""
 
     one_time: bool = Field()
     """Should this keyboard disappear on first use."""
@@ -3221,9 +3066,7 @@ class MessagesKeyboardButtonColor(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButton(BaseModel):
-    """
-    Model: `MessagesKeyboardButton`
-    """
+    """Model: `MessagesKeyboardButton`"""
 
     action: "MessagesKeyboardButtonPropertyAction" = Field()
     """Property `MessagesKeyboardButton.action`."""
@@ -3239,8 +3082,7 @@ class MessagesKeyboardButtonActionCallbackType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionCallback(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionCallback`
     """
 
@@ -3261,8 +3103,7 @@ class MessagesKeyboardButtonActionLocationType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionLocation(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionLocation`
     """
 
@@ -3280,8 +3121,7 @@ class MessagesKeyboardButtonActionOpenAppType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionOpenApp(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenApp`
     """
 
@@ -3313,8 +3153,7 @@ class MessagesKeyboardButtonActionOpenLinkType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionOpenLink(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenLink`
     """
 
@@ -3338,8 +3177,7 @@ class MessagesKeyboardButtonActionOpenPhotoType(StrEnum, metaclass=BaseEnumMeta)
 
 
 class MessagesKeyboardButtonActionOpenPhoto(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionOpenPhoto`
     """
 
@@ -3352,8 +3190,7 @@ class MessagesKeyboardButtonActionTextType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionText(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionText`
     """
 
@@ -3374,8 +3211,7 @@ class MessagesKeyboardButtonActionVkpayType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesKeyboardButtonActionVkpay(BaseModel):
-    """
-    Description of the action, that should be performed on button click
+    """Description of the action, that should be performed on button click
     Model: `MessagesKeyboardButtonActionVkpay`
     """
 
@@ -3392,15 +3228,11 @@ class MessagesKeyboardButtonActionVkpay(BaseModel):
 
 
 class MessagesKeyboardButtonPropertyAction(BaseModel):
-    """
-    Model: `MessagesKeyboardButtonPropertyAction`
-    """
+    """Model: `MessagesKeyboardButtonPropertyAction`"""
 
 
 class MessagesLastActivity(BaseModel):
-    """
-    Model: `MessagesLastActivity`
-    """
+    """Model: `MessagesLastActivity`"""
 
     online: bool = Field()
     """Information whether user is online."""
@@ -3410,15 +3242,11 @@ class MessagesLastActivity(BaseModel):
 
 
 class MessagesLongpollMessages(BaseModel):
-    """
-    Model: `MessagesLongpollMessages`
-    """
+    """Model: `MessagesLongpollMessages`"""
 
 
 class MessagesLongpollParams(BaseModel):
-    """
-    Model: `MessagesLongpollParams`
-    """
+    """Model: `MessagesLongpollParams`"""
 
     server: str = Field()
     """Server URL."""
@@ -3436,9 +3264,7 @@ class MessagesLongpollParams(BaseModel):
 
 
 class MessagesMessageAction(BaseModel):
-    """
-    Model: `MessagesMessageAction`
-    """
+    """Model: `MessagesMessageAction`"""
 
     type: "MessagesMessageActionStatus" = Field()
     """Property `MessagesMessageAction.type`."""
@@ -3475,9 +3301,7 @@ class MessagesMessageAction(BaseModel):
 
 
 class MessagesMessageActionPhoto(BaseModel):
-    """
-    Model: `MessagesMessageActionPhoto`
-    """
+    """Model: `MessagesMessageActionPhoto`"""
 
     photo_50: str = Field()
     """URL of the preview image with 50px in width."""
@@ -3504,9 +3328,7 @@ class MessagesMessageActionStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesMessageAttachment(BaseModel):
-    """
-    Model: `MessagesMessageAttachment`
-    """
+    """Model: `MessagesMessageAttachment`"""
 
     type: "MessagesMessageAttachmentType" = Field()
     """Property `MessagesMessageAttachment.type`."""
@@ -3598,9 +3420,7 @@ class MessagesMessageAttachmentType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MessagesMessageRequestData(BaseModel):
-    """
-    Model: `MessagesMessageRequestData`
-    """
+    """Model: `MessagesMessageRequestData`"""
 
     status: str | None = Field(
         default=None,
@@ -3612,16 +3432,14 @@ class MessagesMessageRequestData(BaseModel):
     )
     """Message request sender id."""
 
-    request_date: int | None = Field(
+    request_date: datetime.datetime | None = Field(
         default=None,
     )
     """Message request date."""
 
 
 class MessagesMessagesArray(BaseModel):
-    """
-    Model: `MessagesMessagesArray`
-    """
+    """Model: `MessagesMessagesArray`"""
 
     count: int | None = Field(
         default=None,
@@ -3635,9 +3453,7 @@ class MessagesMessagesArray(BaseModel):
 
 
 class MessagesOutReadBy(BaseModel):
-    """
-    Model: `MessagesOutReadBy`
-    """
+    """Model: `MessagesOutReadBy`"""
 
     count: int | None = Field(
         default=None,
@@ -3651,9 +3467,7 @@ class MessagesOutReadBy(BaseModel):
 
 
 class MessagesPinnedMessage(BaseModel):
-    """
-    Model: `MessagesPinnedMessage`
-    """
+    """Model: `MessagesPinnedMessage`"""
 
     conversation_message_id: int = Field()
     """Unique auto-incremented number for all messages with this peer."""
@@ -3661,7 +3475,7 @@ class MessagesPinnedMessage(BaseModel):
     id: int = Field()
     """Message ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the message has been sent in Unixtime."""
 
     from_id: int = Field()
@@ -3710,9 +3524,7 @@ class MessagesPinnedMessage(BaseModel):
 
 
 class MessagesPushSettings(BaseModel):
-    """
-    Model: `MessagesPushSettings`
-    """
+    """Model: `MessagesPushSettings`"""
 
     disabled_forever: bool = Field()
     """Information whether push notifications are disabled forever."""
@@ -3737,9 +3549,7 @@ class MessagesPushSettings(BaseModel):
 
 
 class MessagesReactionAssetItem(BaseModel):
-    """
-    Model: `MessagesReactionAssetItem`
-    """
+    """Model: `MessagesReactionAssetItem`"""
 
     reaction_id: int = Field()
     """Property `MessagesReactionAssetItem.reaction_id`."""
@@ -3749,9 +3559,7 @@ class MessagesReactionAssetItem(BaseModel):
 
 
 class MessagesReactionAssetItemLinks(BaseModel):
-    """
-    Model: `MessagesReactionAssetItemLinks`
-    """
+    """Model: `MessagesReactionAssetItemLinks`"""
 
     big_animation: str = Field()
     """Big reaction animation json file."""
@@ -3764,9 +3572,7 @@ class MessagesReactionAssetItemLinks(BaseModel):
 
 
 class MessagesReactionCounterResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionCounterResponseItem`
-    """
+    """Model: `MessagesReactionCounterResponseItem`"""
 
     reaction_id: int = Field()
     """Property `MessagesReactionCounterResponseItem.reaction_id`."""
@@ -3779,9 +3585,7 @@ class MessagesReactionCounterResponseItem(BaseModel):
 
 
 class MessagesReactionCountersResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionCountersResponseItem`
-    """
+    """Model: `MessagesReactionCountersResponseItem`"""
 
     cmid: int = Field()
     """Property `MessagesReactionCountersResponseItem.cmid`."""
@@ -3791,9 +3595,7 @@ class MessagesReactionCountersResponseItem(BaseModel):
 
 
 class MessagesReactionResponseItem(BaseModel):
-    """
-    Model: `MessagesReactionResponseItem`
-    """
+    """Model: `MessagesReactionResponseItem`"""
 
     user_id: int = Field()
     """Property `MessagesReactionResponseItem.user_id`."""
@@ -3803,9 +3605,7 @@ class MessagesReactionResponseItem(BaseModel):
 
 
 class MessagesSendUserIdsResponseItem(BaseModel):
-    """
-    Model: `MessagesSendUserIdsResponseItem`
-    """
+    """Model: `MessagesSendUserIdsResponseItem`"""
 
     peer_id: int = Field()
     """Property `MessagesSendUserIdsResponseItem.peer_id`."""
@@ -3842,9 +3642,7 @@ class MessagesUserTypeForXtrInvitedBy(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AccountAccountCounters(BaseModel):
-    """
-    Model: `AccountAccountCounters`
-    """
+    """Model: `AccountAccountCounters`"""
 
     app_requests: int | None = Field(
         default=None,
@@ -3924,9 +3722,7 @@ class AccountCountersFilter(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AccountInfo(BaseModel):
-    """
-    Model: `AccountInfo`
-    """
+    """Model: `AccountInfo`"""
 
     f__2fa_required: bool | None = Field(
         default=None,
@@ -3961,9 +3757,7 @@ class AccountInfo(BaseModel):
 
 
 class AccountNameRequest(BaseModel):
-    """
-    Model: `AccountNameRequest`
-    """
+    """Model: `AccountNameRequest`"""
 
     first_name: str | None = Field(
         default=None,
@@ -4019,9 +3813,7 @@ class AccountOfferLinkType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AccountOffer(BaseModel):
-    """
-    Model: `AccountOffer`
-    """
+    """Model: `AccountOffer`"""
 
     description: str | None = Field(
         default=None,
@@ -4085,9 +3877,7 @@ class AccountOffer(BaseModel):
 
 
 class AccountPushConversations(BaseModel):
-    """
-    Model: `AccountPushConversations`
-    """
+    """Model: `AccountPushConversations`"""
 
     count: int | None = Field(
         default=None,
@@ -4101,9 +3891,7 @@ class AccountPushConversations(BaseModel):
 
 
 class AccountPushConversationsItem(BaseModel):
-    """
-    Model: `AccountPushConversationsItem`
-    """
+    """Model: `AccountPushConversationsItem`"""
 
     disabled_until: int = Field()
     """Time until that notifications are disabled in seconds."""
@@ -4126,9 +3914,7 @@ class AccountPushConversationsItem(BaseModel):
 
 
 class AccountPushParams(BaseModel):
-    """
-    Model: `AccountPushParams`
-    """
+    """Model: `AccountPushParams`"""
 
     msg: list["AccountPushParamsMode"] | None = Field(
         default=None,
@@ -4247,9 +4033,7 @@ class AccountPushParamsSettings(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AccountPushSettings(BaseModel):
-    """
-    Model: `AccountPushSettings`
-    """
+    """Model: `AccountPushSettings`"""
 
     disabled: bool | None = Field(
         default=None,
@@ -4273,9 +4057,7 @@ class AccountPushSettings(BaseModel):
 
 
 class AccountUserSettingsInterest(BaseModel):
-    """
-    Model: `AccountUserSettingsInterest`
-    """
+    """Model: `AccountUserSettingsInterest`"""
 
     title: str = Field()
     """Property `AccountUserSettingsInterest.title`."""
@@ -4285,9 +4067,7 @@ class AccountUserSettingsInterest(BaseModel):
 
 
 class AccountUserSettingsInterests(BaseModel):
-    """
-    Model: `AccountUserSettingsInterests`
-    """
+    """Model: `AccountUserSettingsInterests`"""
 
     activities: "AccountUserSettingsInterest | None" = Field(
         default=None,
@@ -4366,9 +4146,7 @@ class AdsAccessRolePublic(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsAccesses(BaseModel):
-    """
-    Model: `AdsAccesses`
-    """
+    """Model: `AdsAccesses`"""
 
     client_id: str | None = Field(
         default=None,
@@ -4382,9 +4160,7 @@ class AdsAccesses(BaseModel):
 
 
 class AdsAccount(BaseModel):
-    """
-    Model: `AdsAccount`
-    """
+    """Model: `AdsAccount`"""
 
     access_role: "AdsAccessRole" = Field()
     """Property `AdsAccount.access_role`."""
@@ -4411,9 +4187,7 @@ class AdsAccountType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsAd(BaseModel):
-    """
-    Model: `AdsAd`
-    """
+    """Model: `AdsAd`"""
 
     ad_format: int = Field()
     """Ad format."""
@@ -4673,9 +4447,7 @@ class AdsAdCostType(IntEnum, metaclass=BaseEnumMeta):
 
 
 class AdsAdLayout(BaseModel):
-    """
-    Model: `AdsAdLayout`
-    """
+    """Model: `AdsAdLayout`"""
 
     ad_format: int = Field()
     """Ad format."""
@@ -4842,9 +4614,7 @@ class AdsAdStatus(IntEnum, metaclass=BaseEnumMeta):
 
 
 class AdsCampaign(BaseModel):
-    """
-    Model: `AdsCampaign`
-    """
+    """Model: `AdsCampaign`"""
 
     all_limit: str = Field()
     """Campaign\'s total limit, rubles."""
@@ -4922,9 +4692,7 @@ class AdsCampaignType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsCategory(BaseModel):
-    """
-    Model: `AdsCategory`
-    """
+    """Model: `AdsCategory`"""
 
     id: int = Field()
     """Category ID."""
@@ -4939,9 +4707,7 @@ class AdsCategory(BaseModel):
 
 
 class AdsClient(BaseModel):
-    """
-    Model: `AdsClient`
-    """
+    """Model: `AdsClient`"""
 
     all_limit: str = Field()
     """Client\'s total limit, rubles."""
@@ -4962,9 +4728,7 @@ class AdsClient(BaseModel):
 
 
 class AdsClipItem(BaseModel):
-    """
-    Model: `AdsClipItem`
-    """
+    """Model: `AdsClipItem`"""
 
     video_id: int | None = Field(
         default=None,
@@ -4983,8 +4747,7 @@ class AdsClipItem(BaseModel):
 
 
 class AdsClipItemLink(BaseModel):
-    """
-    Link
+    """Link
     Model: `AdsClipItemLink`
     """
 
@@ -5005,9 +4768,7 @@ class AdsClipItemLink(BaseModel):
 
 
 class AdsCreateAdStatus(BaseModel):
-    """
-    Model: `AdsCreateAdStatus`
-    """
+    """Model: `AdsCreateAdStatus`"""
 
     id: int = Field()
     """Ad ID."""
@@ -5029,9 +4790,7 @@ class AdsCreateAdStatus(BaseModel):
 
 
 class AdsCreateCampaignStatus(BaseModel):
-    """
-    Model: `AdsCreateCampaignStatus`
-    """
+    """Model: `AdsCreateCampaignStatus`"""
 
     id: int = Field()
     """Campaign ID."""
@@ -5048,9 +4807,7 @@ class AdsCreateCampaignStatus(BaseModel):
 
 
 class AdsCreateClientsStatus(BaseModel):
-    """
-    Model: `AdsCreateClientsStatus`
-    """
+    """Model: `AdsCreateClientsStatus`"""
 
     id: int = Field()
     """Client ID."""
@@ -5067,9 +4824,7 @@ class AdsCreateClientsStatus(BaseModel):
 
 
 class AdsCriteria(BaseModel):
-    """
-    Model: `AdsCriteria`
-    """
+    """Model: `AdsCriteria`"""
 
     age_from: str | None = Field(
         default=None,
@@ -5359,9 +5114,7 @@ class AdsCriteriaSex(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsDemoStats(BaseModel):
-    """
-    Model: `AdsDemoStats`
-    """
+    """Model: `AdsDemoStats`"""
 
     id: int | None = Field(
         default=None,
@@ -5380,9 +5133,7 @@ class AdsDemoStats(BaseModel):
 
 
 class AdsDemographicStatsPeriodItemBase(BaseModel):
-    """
-    Model: `AdsDemographicStatsPeriodItemBase`
-    """
+    """Model: `AdsDemographicStatsPeriodItemBase`"""
 
     clicks_rate: float | None = Field(
         default=None,
@@ -5396,9 +5147,7 @@ class AdsDemographicStatsPeriodItemBase(BaseModel):
 
 
 class AdsDemostatsFormat(BaseModel):
-    """
-    Model: `AdsDemostatsFormat`
-    """
+    """Model: `AdsDemostatsFormat`"""
 
     age: list["AdsStatsAge"] | None = Field(
         default=None,
@@ -5447,9 +5196,7 @@ class AdsDemostatsFormat(BaseModel):
 
 
 class AdsEventsRetargetingGroup(BaseModel):
-    """
-    Model: `AdsEventsRetargetingGroup`
-    """
+    """Model: `AdsEventsRetargetingGroup`"""
 
     id: int | None = Field(
         default=None,
@@ -5463,9 +5210,7 @@ class AdsEventsRetargetingGroup(BaseModel):
 
 
 class AdsFloodStats(BaseModel):
-    """
-    Model: `AdsFloodStats`
-    """
+    """Model: `AdsFloodStats`"""
 
     left: int = Field()
     """Requests left."""
@@ -5480,9 +5225,7 @@ class AdsFloodStats(BaseModel):
 
 
 class AdsFloodStatsByUserItem(BaseModel):
-    """
-    Model: `AdsFloodStatsByUserItem`
-    """
+    """Model: `AdsFloodStatsByUserItem`"""
 
     user_id: int = Field()
     """User ID."""
@@ -5492,9 +5235,7 @@ class AdsFloodStatsByUserItem(BaseModel):
 
 
 class AdsLinkStatus(BaseModel):
-    """
-    Model: `AdsLinkStatus`
-    """
+    """Model: `AdsLinkStatus`"""
 
     status: str = Field()
     """Link status."""
@@ -5524,9 +5265,7 @@ class AdsLookalikeRequestSourceType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsLookalikeRequest(BaseModel):
-    """
-    Model: `AdsLookalikeRequest`
-    """
+    """Model: `AdsLookalikeRequest`"""
 
     id: int = Field()
     """Lookalike request ID."""
@@ -5570,9 +5309,7 @@ class AdsLookalikeRequest(BaseModel):
 
 
 class AdsLookalikeRequestSaveAudienceLevel(BaseModel):
-    """
-    Model: `AdsLookalikeRequestSaveAudienceLevel`
-    """
+    """Model: `AdsLookalikeRequestSaveAudienceLevel`"""
 
     level: int | None = Field(
         default=None,
@@ -5586,9 +5323,7 @@ class AdsLookalikeRequestSaveAudienceLevel(BaseModel):
 
 
 class AdsMobileStatItem(BaseModel):
-    """
-    Model: `AdsMobileStatItem`
-    """
+    """Model: `AdsMobileStatItem`"""
 
     key: str | None = Field(
         default=None,
@@ -5602,9 +5337,7 @@ class AdsMobileStatItem(BaseModel):
 
 
 class AdsMusician(BaseModel):
-    """
-    Model: `AdsMusician`
-    """
+    """Model: `AdsMusician`"""
 
     id: int = Field()
     """Targeting music artist ID."""
@@ -5637,9 +5370,7 @@ class AdsOrdClientType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsOrdData(BaseModel):
-    """
-    Model: `AdsOrdData`
-    """
+    """Model: `AdsOrdData`"""
 
     client_type: "AdsOrdClientType" = Field()
     """Property `AdsOrdData.client_type`."""
@@ -5682,9 +5413,7 @@ class AdsOrdData(BaseModel):
 
 
 class AdsOrdSubagent(BaseModel):
-    """
-    Model: `AdsOrdSubagent`
-    """
+    """Model: `AdsOrdSubagent`"""
 
     type: "AdsOrdClientType" = Field()
     """Property `AdsOrdSubagent.type`."""
@@ -5702,9 +5431,7 @@ class AdsOrdSubagent(BaseModel):
 
 
 class AdsPost(BaseModel):
-    """
-    Model: `AdsPost`
-    """
+    """Model: `AdsPost`"""
 
     id: int | None = Field(
         default=None,
@@ -5721,7 +5448,7 @@ class AdsPost(BaseModel):
     )
     """Owner id."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date."""
@@ -5848,8 +5575,7 @@ class AdsPost(BaseModel):
 
 
 class AdsPostComments(BaseModel):
-    """
-    Comments
+    """Comments
     Model: `AdsPostComments`
     """
 
@@ -5860,8 +5586,7 @@ class AdsPostComments(BaseModel):
 
 
 class AdsPostDonut(BaseModel):
-    """
-    Donut
+    """Donut
     Model: `AdsPostDonut`
     """
 
@@ -5872,8 +5597,7 @@ class AdsPostDonut(BaseModel):
 
 
 class AdsPostEasyPromote(BaseModel):
-    """
-    Ads easy promote
+    """Ads easy promote
     Model: `AdsPostEasyPromote`
     """
 
@@ -5914,8 +5638,7 @@ class AdsPostEasyPromote(BaseModel):
 
 
 class AdsPostLikes(BaseModel):
-    """
-    Likes
+    """Likes
     Model: `AdsPostLikes`
     """
 
@@ -5936,8 +5659,7 @@ class AdsPostLikes(BaseModel):
 
 
 class AdsPostOwner(BaseModel):
-    """
-    Owner
+    """Owner
     Model: `AdsPostOwner`
     """
 
@@ -5963,8 +5685,7 @@ class AdsPostOwner(BaseModel):
 
 
 class AdsPostReposts(BaseModel):
-    """
-    Reposts
+    """Reposts
     Model: `AdsPostReposts`
     """
 
@@ -5985,8 +5706,7 @@ class AdsPostReposts(BaseModel):
 
 
 class AdsPostViews(BaseModel):
-    """
-    Views
+    """Views
     Model: `AdsPostViews`
     """
 
@@ -5997,9 +5717,7 @@ class AdsPostViews(BaseModel):
 
 
 class AdsPromotedPostReach(BaseModel):
-    """
-    Model: `AdsPromotedPostReach`
-    """
+    """Model: `AdsPromotedPostReach`"""
 
     hide: int = Field()
     """Hides amount."""
@@ -6070,9 +5788,7 @@ class AdsPromotedPostReach(BaseModel):
 
 
 class AdsRejectReason(BaseModel):
-    """
-    Model: `AdsRejectReason`
-    """
+    """Model: `AdsRejectReason`"""
 
     comment: str | None = Field(
         default=None,
@@ -6086,9 +5802,7 @@ class AdsRejectReason(BaseModel):
 
 
 class AdsRules(BaseModel):
-    """
-    Model: `AdsRules`
-    """
+    """Model: `AdsRules`"""
 
     help_url: str | bool | None = Field(
         default=None,
@@ -6139,9 +5853,7 @@ class AdsStatisticClickActionType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsStatisticClickAction(BaseModel):
-    """
-    Model: `AdsStatisticClickAction`
-    """
+    """Model: `AdsStatisticClickAction`"""
 
     type: "AdsStatisticClickActionType | None" = Field(
         default=None,
@@ -6155,9 +5867,7 @@ class AdsStatisticClickAction(BaseModel):
 
 
 class AdsStats(BaseModel):
-    """
-    Model: `AdsStats`
-    """
+    """Model: `AdsStats`"""
 
     id: int | None = Field(
         default=None,
@@ -6181,9 +5891,7 @@ class AdsStats(BaseModel):
 
 
 class AdsStatsFormat(BaseModel):
-    """
-    Model: `AdsStatsFormat`
-    """
+    """Model: `AdsStatsFormat`"""
 
     clicks: int | None = Field(
         default=None,
@@ -6347,9 +6055,7 @@ class AdsStatsSexValue(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsStatsViewsTimes(BaseModel):
-    """
-    Model: `AdsStatsViewsTimes`
-    """
+    """Model: `AdsStatsViewsTimes`"""
 
     views_ads_times_1: int | None = Field(
         default=None,
@@ -6408,9 +6114,7 @@ class AdsStatsViewsTimes(BaseModel):
 
 
 class AdsStories(BaseModel):
-    """
-    Model: `AdsStories`
-    """
+    """Model: `AdsStories`"""
 
     stories: list["AdsStoryItem"] | None = Field(
         default=None,
@@ -6429,9 +6133,7 @@ class AdsStories(BaseModel):
 
 
 class AdsStoriesOwner(BaseModel):
-    """
-    Model: `AdsStoriesOwner`
-    """
+    """Model: `AdsStoriesOwner`"""
 
     id: int | bool | None = Field(
         default=None,
@@ -6491,9 +6193,7 @@ class AdsStoriesOwner(BaseModel):
 
 
 class AdsStoryItem(BaseModel):
-    """
-    Model: `AdsStoryItem`
-    """
+    """Model: `AdsStoryItem`"""
 
     id: int | None = Field(
         default=None,
@@ -6632,9 +6332,7 @@ class AdsStoryItem(BaseModel):
 
 
 class AdsStoryItemLink(BaseModel):
-    """
-    Model: `AdsStoryItemLink`
-    """
+    """Model: `AdsStoryItemLink`"""
 
     key: str | None = Field(
         default=None,
@@ -6658,9 +6356,7 @@ class AdsStoryItemLink(BaseModel):
 
 
 class AdsStoryItemStats(BaseModel):
-    """
-    Model: `AdsStoryItemStats`
-    """
+    """Model: `AdsStoryItemStats`"""
 
     follow: "AdsStoryItemStatsFollow | None" = Field(
         default=None,
@@ -6674,8 +6370,7 @@ class AdsStoryItemStats(BaseModel):
 
 
 class AdsStoryItemStatsFollow(BaseModel):
-    """
-    Follow event stats
+    """Follow event stats
     Model: `AdsStoryItemStatsFollow`
     """
 
@@ -6691,8 +6386,7 @@ class AdsStoryItemStatsFollow(BaseModel):
 
 
 class AdsStoryItemStatsUrlView(BaseModel):
-    """
-    Url view event stats
+    """Url view event stats
     Model: `AdsStoryItemStatsUrlView`
     """
 
@@ -6708,9 +6402,7 @@ class AdsStoryItemStatsUrlView(BaseModel):
 
 
 class AdsTargStats(BaseModel):
-    """
-    Model: `AdsTargStats`
-    """
+    """Model: `AdsTargStats`"""
 
     audience_count: int = Field()
     """Audience."""
@@ -6762,9 +6454,7 @@ class AdsTargStats(BaseModel):
 
 
 class AdsTargSuggestions(BaseModel):
-    """
-    Model: `AdsTargSuggestions`
-    """
+    """Model: `AdsTargSuggestions`"""
 
     id: int | None = Field(
         default=None,
@@ -6788,9 +6478,7 @@ class AdsTargSuggestions(BaseModel):
 
 
 class AdsTargSuggestionsCities(BaseModel):
-    """
-    Model: `AdsTargSuggestionsCities`
-    """
+    """Model: `AdsTargSuggestionsCities`"""
 
     id: int | None = Field(
         default=None,
@@ -6809,9 +6497,7 @@ class AdsTargSuggestionsCities(BaseModel):
 
 
 class AdsTargSuggestionsRegions(BaseModel):
-    """
-    Model: `AdsTargSuggestionsRegions`
-    """
+    """Model: `AdsTargSuggestionsRegions`"""
 
     id: int | None = Field(
         default=None,
@@ -6830,9 +6516,7 @@ class AdsTargSuggestionsRegions(BaseModel):
 
 
 class AdsTargSuggestionsSchools(BaseModel):
-    """
-    Model: `AdsTargSuggestionsSchools`
-    """
+    """Model: `AdsTargSuggestionsSchools`"""
 
     desc: str | None = Field(
         default=None,
@@ -6868,9 +6552,7 @@ class AdsTargSuggestionsSchoolsType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AdsTargetGroup(BaseModel):
-    """
-    Model: `AdsTargetGroup`
-    """
+    """Model: `AdsTargetGroup`"""
 
     id: int | None = Field(
         default=None,
@@ -6944,9 +6626,7 @@ class AdsTargetGroup(BaseModel):
 
 
 class AdsTargetGroupTargetPixelRule(BaseModel):
-    """
-    Model: `AdsTargetGroupTargetPixelRule`
-    """
+    """Model: `AdsTargetGroupTargetPixelRule`"""
 
     url_full_match: str | None = Field(
         default=None,
@@ -6980,9 +6660,7 @@ class AdsTargetGroupTargetPixelRule(BaseModel):
 
 
 class AdsTargetPixelInfo(BaseModel):
-    """
-    Model: `AdsTargetPixelInfo`
-    """
+    """Model: `AdsTargetPixelInfo`"""
 
     target_pixel_id: int = Field()
     """Property `AdsTargetPixelInfo.target_pixel_id`."""
@@ -7004,9 +6682,7 @@ class AdsTargetPixelInfo(BaseModel):
 
 
 class AdsUpdateOfficeUsersResult(BaseModel):
-    """
-    Model: `AdsUpdateOfficeUsersResult`
-    """
+    """Model: `AdsUpdateOfficeUsersResult`"""
 
     user_id: int = Field()
     """Property `AdsUpdateOfficeUsersResult.user_id`."""
@@ -7021,9 +6697,7 @@ class AdsUpdateOfficeUsersResult(BaseModel):
 
 
 class AdsUpdateAdsStatus(BaseModel):
-    """
-    Model: `AdsUpdateAdsStatus`
-    """
+    """Model: `AdsUpdateAdsStatus`"""
 
     id: int = Field()
     """Ad ID."""
@@ -7040,9 +6714,7 @@ class AdsUpdateAdsStatus(BaseModel):
 
 
 class AdsUpdateClientsStatus(BaseModel):
-    """
-    Model: `AdsUpdateClientsStatus`
-    """
+    """Model: `AdsUpdateClientsStatus`"""
 
     id: int = Field()
     """Client ID."""
@@ -7059,9 +6731,7 @@ class AdsUpdateClientsStatus(BaseModel):
 
 
 class AdsUserSpecification(BaseModel):
-    """
-    Model: `AdsUserSpecification`
-    """
+    """Model: `AdsUserSpecification`"""
 
     user_id: int = Field()
     """Property `AdsUserSpecification.user_id`."""
@@ -7086,9 +6756,7 @@ class AdsUserSpecification(BaseModel):
 
 
 class AdsUserSpecificationCutted(BaseModel):
-    """
-    Model: `AdsUserSpecificationCutted`
-    """
+    """Model: `AdsUserSpecificationCutted`"""
 
     user_id: int = Field()
     """Property `AdsUserSpecificationCutted.user_id`."""
@@ -7108,9 +6776,7 @@ class AdsUserSpecificationCutted(BaseModel):
 
 
 class AdsUsers(BaseModel):
-    """
-    Model: `AdsUsers`
-    """
+    """Model: `AdsUsers`"""
 
     accesses: list["AdsAccesses"] = Field()
     """Property `AdsUsers.accesses`."""
@@ -7120,9 +6786,7 @@ class AdsUsers(BaseModel):
 
 
 class AppWidgetsPhoto(BaseModel):
-    """
-    Model: `AppWidgetsPhoto`
-    """
+    """Model: `AppWidgetsPhoto`"""
 
     id: str = Field()
     """Image ID."""
@@ -7132,9 +6796,7 @@ class AppWidgetsPhoto(BaseModel):
 
 
 class AppWidgetsPhotos(BaseModel):
-    """
-    Model: `AppWidgetsPhotos`
-    """
+    """Model: `AppWidgetsPhotos`"""
 
     count: int | None = Field(
         default=None,
@@ -7205,9 +6867,7 @@ class AppsAppLeaderboardType(IntEnum, metaclass=BaseEnumMeta):
 
 
 class AppsAppMin(BaseModel):
-    """
-    Model: `AppsAppMin`
-    """
+    """Model: `AppsAppMin`"""
 
     type: "AppsAppType" = Field()
     """Property `AppsAppMin.type`."""
@@ -7281,9 +6941,7 @@ class AppsAppType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AppsCatalogList(BaseModel):
-    """
-    Model: `AppsCatalogList`
-    """
+    """Model: `AppsCatalogList`"""
 
     count: int = Field()
     """Total number."""
@@ -7310,9 +6968,7 @@ class AppsCustomSnippetButton(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AppsCustomSnippet(BaseModel):
-    """
-    Model: `AppsCustomSnippet`
-    """
+    """Model: `AppsCustomSnippet`"""
 
     vk_ref: list[typing.Literal["snippet_im", "snippet_post"]] | None = Field(
         default=None,
@@ -7366,9 +7022,7 @@ class AppsCustomSnippet(BaseModel):
 
 
 class AppsLeaderboard(BaseModel):
-    """
-    Model: `AppsLeaderboard`
-    """
+    """Model: `AppsLeaderboard`"""
 
     user_id: int = Field()
     """User ID."""
@@ -7422,8 +7076,7 @@ class AppsScopeName(StrEnum, metaclass=BaseEnumMeta):
 
 
 class AppsScope(BaseModel):
-    """
-    Scope description
+    """Scope description
     Model: `AppsScope`
     """
 
@@ -7437,9 +7090,7 @@ class AppsScope(BaseModel):
 
 
 class AppsTestingGroup(BaseModel):
-    """
-    Model: `AppsTestingGroup`
-    """
+    """Model: `AppsTestingGroup`"""
 
     user_ids: list[int] = Field()
     """Property `AppsTestingGroup.user_ids`."""
@@ -7464,9 +7115,7 @@ class AppsTestingGroup(BaseModel):
 
 
 class AudioAudio(BaseModel):
-    """
-    Model: `AudioAudio`
-    """
+    """Model: `AudioAudio`"""
 
     artist: str = Field()
     """Artist name."""
@@ -7498,7 +7147,7 @@ class AudioAudio(BaseModel):
     )
     """Stream duration in seconds."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when uploaded."""
@@ -7527,9 +7176,7 @@ class BoardDefaultOrder(IntEnum, metaclass=BaseEnumMeta):
 
 
 class BoardTopic(BaseModel):
-    """
-    Model: `BoardTopic`
-    """
+    """Model: `BoardTopic`"""
 
     comments: int | None = Field(
         default=None,
@@ -7588,11 +7235,9 @@ class BoardTopic(BaseModel):
 
 
 class BoardTopicComment(BaseModel):
-    """
-    Model: `BoardTopicComment`
-    """
+    """Model: `BoardTopicComment`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     from_id: int = Field()
@@ -7626,9 +7271,7 @@ class BoardTopicComment(BaseModel):
 
 
 class BugtrackerAddCompanyGroupsMembersError(BaseModel):
-    """
-    Model: `BugtrackerAddCompanyGroupsMembersError`
-    """
+    """Model: `BugtrackerAddCompanyGroupsMembersError`"""
 
     group_id: int = Field()
     """Property `BugtrackerAddCompanyGroupsMembersError.group_id`."""
@@ -7643,9 +7286,7 @@ class BugtrackerAttachmentType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class BugtrackerAttachment(BaseModel):
-    """
-    Model: `BugtrackerAttachment`
-    """
+    """Model: `BugtrackerAttachment`"""
 
     type: "BugtrackerAttachmentType" = Field()
     """Property `BugtrackerAttachment.type`."""
@@ -7662,9 +7303,7 @@ class BugtrackerAttachment(BaseModel):
 
 
 class BugtrackerBugreport(BaseModel):
-    """
-    Model: `BugtrackerBugreport`
-    """
+    """Model: `BugtrackerBugreport`"""
 
     id: int = Field()
     """Property `BugtrackerBugreport.id`."""
@@ -7846,9 +7485,7 @@ class BugtrackerBugreport(BaseModel):
 
 
 class BugtrackerBugreportSubscribeState(BaseModel):
-    """
-    Model: `BugtrackerBugreportSubscribeState`
-    """
+    """Model: `BugtrackerBugreportSubscribeState`"""
 
     can_set_subscribe: bool = Field()
     """Property `BugtrackerBugreportSubscribeState.can_set_subscribe`."""
@@ -7865,9 +7502,7 @@ class BugtrackerBugreportSubscribeState(BaseModel):
 
 
 class BugtrackerComment(BaseModel):
-    """
-    Model: `BugtrackerComment`
-    """
+    """Model: `BugtrackerComment`"""
 
     bugreport_id: int = Field()
     """Property `BugtrackerComment.bugreport_id`."""
@@ -7938,9 +7573,7 @@ class BugtrackerComment(BaseModel):
 
 
 class BugtrackerCommentAuthor(BaseModel):
-    """
-    Model: `BugtrackerCommentAuthor`
-    """
+    """Model: `BugtrackerCommentAuthor`"""
 
     author_id: int | None = Field(
         default=None,
@@ -7974,9 +7607,7 @@ class BugtrackerCommentAuthor(BaseModel):
 
 
 class BugtrackerCompanyMember(BaseModel):
-    """
-    Model: `BugtrackerCompanyMember`
-    """
+    """Model: `BugtrackerCompanyMember`"""
 
     user_id: int = Field()
     """Property `BugtrackerCompanyMember.user_id`."""
@@ -8014,9 +7645,7 @@ class BugtrackerCompanyMember(BaseModel):
 
 
 class BugtrackerCompanyMemberProduct(BaseModel):
-    """
-    Model: `BugtrackerCompanyMemberProduct`
-    """
+    """Model: `BugtrackerCompanyMemberProduct`"""
 
     id: int = Field()
     """Property `BugtrackerCompanyMemberProduct.id`."""
@@ -8044,9 +7673,7 @@ class BugtrackerCompanyMemberProduct(BaseModel):
 
 
 class CallbackAppPayload(BaseModel):
-    """
-    Model: `CallbackAppPayload`
-    """
+    """Model: `CallbackAppPayload`"""
 
     user_id: int = Field()
     """Property `CallbackAppPayload.user_id`."""
@@ -8059,9 +7686,7 @@ class CallbackAppPayload(BaseModel):
 
 
 class CallbackAudioNew(BaseModel):
-    """
-    Model: `CallbackAudioNew`
-    """
+    """Model: `CallbackAudioNew`"""
 
     artist: str = Field()
     """Artist name."""
@@ -8093,7 +7718,7 @@ class CallbackAudioNew(BaseModel):
     )
     """Stream duration in seconds."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when uploaded."""
@@ -8115,9 +7740,7 @@ class CallbackAudioNew(BaseModel):
 
 
 class CallbackBase(BaseModel):
-    """
-    Model: `CallbackBase`
-    """
+    """Model: `CallbackBase`"""
 
     type: "CallbackType" = Field()
     """Property `CallbackBase.type`."""
@@ -8138,9 +7761,7 @@ class CallbackBase(BaseModel):
 
 
 class CallbackBoardPostDelete(BaseModel):
-    """
-    Model: `CallbackBoardPostDelete`
-    """
+    """Model: `CallbackBoardPostDelete`"""
 
     topic_owner_id: int = Field()
     """Property `CallbackBoardPostDelete.topic_owner_id`."""
@@ -8158,11 +7779,9 @@ class CallbackBoardPostDelete(BaseModel):
 
 
 class CallbackBoardPostEdit(BaseModel):
-    """
-    Model: `CallbackBoardPostEdit`
-    """
+    """Model: `CallbackBoardPostEdit`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     from_id: int = Field()
@@ -8196,11 +7815,9 @@ class CallbackBoardPostEdit(BaseModel):
 
 
 class CallbackBoardPostNew(BaseModel):
-    """
-    Model: `CallbackBoardPostNew`
-    """
+    """Model: `CallbackBoardPostNew`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     from_id: int = Field()
@@ -8234,11 +7851,9 @@ class CallbackBoardPostNew(BaseModel):
 
 
 class CallbackBoardPostRestore(BaseModel):
-    """
-    Model: `CallbackBoardPostRestore`
-    """
+    """Model: `CallbackBoardPostRestore`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     from_id: int = Field()
@@ -8272,9 +7887,7 @@ class CallbackBoardPostRestore(BaseModel):
 
 
 class CallbackDonutMoneyWithdraw(BaseModel):
-    """
-    Model: `CallbackDonutMoneyWithdraw`
-    """
+    """Model: `CallbackDonutMoneyWithdraw`"""
 
     amount: float = Field()
     """Property `CallbackDonutMoneyWithdraw.amount`."""
@@ -8284,18 +7897,14 @@ class CallbackDonutMoneyWithdraw(BaseModel):
 
 
 class CallbackDonutMoneyWithdrawError(BaseModel):
-    """
-    Model: `CallbackDonutMoneyWithdrawError`
-    """
+    """Model: `CallbackDonutMoneyWithdrawError`"""
 
     reason: str = Field()
     """Property `CallbackDonutMoneyWithdrawError.reason`."""
 
 
 class CallbackDonutSubscriptionCancelled(BaseModel):
-    """
-    Model: `CallbackDonutSubscriptionCancelled`
-    """
+    """Model: `CallbackDonutSubscriptionCancelled`"""
 
     user_id: int | None = Field(
         default=None,
@@ -8304,9 +7913,7 @@ class CallbackDonutSubscriptionCancelled(BaseModel):
 
 
 class CallbackDonutSubscriptionCreate(BaseModel):
-    """
-    Model: `CallbackDonutSubscriptionCreate`
-    """
+    """Model: `CallbackDonutSubscriptionCreate`"""
 
     amount: int = Field()
     """Property `CallbackDonutSubscriptionCreate.amount`."""
@@ -8321,9 +7928,7 @@ class CallbackDonutSubscriptionCreate(BaseModel):
 
 
 class CallbackDonutSubscriptionExpired(BaseModel):
-    """
-    Model: `CallbackDonutSubscriptionExpired`
-    """
+    """Model: `CallbackDonutSubscriptionExpired`"""
 
     user_id: int | None = Field(
         default=None,
@@ -8332,9 +7937,7 @@ class CallbackDonutSubscriptionExpired(BaseModel):
 
 
 class CallbackDonutSubscriptionPriceChanged(BaseModel):
-    """
-    Model: `CallbackDonutSubscriptionPriceChanged`
-    """
+    """Model: `CallbackDonutSubscriptionPriceChanged`"""
 
     amount_old: int = Field()
     """Property `CallbackDonutSubscriptionPriceChanged.amount_old`."""
@@ -8359,9 +7962,7 @@ class CallbackDonutSubscriptionPriceChanged(BaseModel):
 
 
 class CallbackDonutSubscriptionProlonged(BaseModel):
-    """
-    Model: `CallbackDonutSubscriptionProlonged`
-    """
+    """Model: `CallbackDonutSubscriptionProlonged`"""
 
     amount: int = Field()
     """Property `CallbackDonutSubscriptionProlonged.amount`."""
@@ -8379,9 +7980,7 @@ CallbackFwdMessages: typing.TypeAlias = list[list["CallbackForeignMessage"]]
 
 
 class CallbackGroupChangePhoto(BaseModel):
-    """
-    Model: `CallbackGroupChangePhoto`
-    """
+    """Model: `CallbackGroupChangePhoto`"""
 
     user_id: int = Field()
     """Property `CallbackGroupChangePhoto.user_id`."""
@@ -8391,9 +7990,7 @@ class CallbackGroupChangePhoto(BaseModel):
 
 
 class CallbackGroupChangeSettings(BaseModel):
-    """
-    Model: `CallbackGroupChangeSettings`
-    """
+    """Model: `CallbackGroupChangeSettings`"""
 
     user_id: int = Field()
     """Property `CallbackGroupChangeSettings.user_id`."""
@@ -8405,9 +8002,7 @@ class CallbackGroupChangeSettings(BaseModel):
 
 
 class CallbackGroupJoin(BaseModel):
-    """
-    Model: `CallbackGroupJoin`
-    """
+    """Model: `CallbackGroupJoin`"""
 
     user_id: int = Field()
     """Property `CallbackGroupJoin.user_id`."""
@@ -8425,9 +8020,7 @@ class CallbackGroupJoinType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackGroupLeave(BaseModel):
-    """
-    Model: `CallbackGroupLeave`
-    """
+    """Model: `CallbackGroupLeave`"""
 
     user_id: int | None = Field(
         default=None,
@@ -8453,9 +8046,7 @@ class CallbackGroupOfficerRole(IntEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackGroupOfficersEdit(BaseModel):
-    """
-    Model: `CallbackGroupOfficersEdit`
-    """
+    """Model: `CallbackGroupOfficersEdit`"""
 
     admin_id: int = Field()
     """Property `CallbackGroupOfficersEdit.admin_id`."""
@@ -8471,9 +8062,7 @@ class CallbackGroupOfficersEdit(BaseModel):
 
 
 class CallbackGroupSettingsChanges(BaseModel):
-    """
-    Model: `CallbackGroupSettingsChanges`
-    """
+    """Model: `CallbackGroupSettingsChanges`"""
 
     title: "CallbackGroupSettingsChangesStringValues | None" = Field(
         default=None,
@@ -8652,9 +8241,7 @@ class CallbackGroupSettingsChanges(BaseModel):
 
 
 class CallbackGroupSettingsChangesIntegerValues(BaseModel):
-    """
-    Model: `CallbackGroupSettingsChangesIntegerValues`
-    """
+    """Model: `CallbackGroupSettingsChangesIntegerValues`"""
 
     old_value: int | None = Field(
         default=None,
@@ -8668,9 +8255,7 @@ class CallbackGroupSettingsChangesIntegerValues(BaseModel):
 
 
 class CallbackGroupSettingsChangesStringValues(BaseModel):
-    """
-    Model: `CallbackGroupSettingsChangesStringValues`
-    """
+    """Model: `CallbackGroupSettingsChangesStringValues`"""
 
     old_value: str | None = Field(
         default=None,
@@ -8684,9 +8269,7 @@ class CallbackGroupSettingsChangesStringValues(BaseModel):
 
 
 class CallbackInfoForBots(BaseModel):
-    """
-    Model: `CallbackInfoForBots`
-    """
+    """Model: `CallbackInfoForBots`"""
 
     button_actions: list["MessagesTemplateActionTypeNames"] | None = Field(
         default=None,
@@ -8728,9 +8311,7 @@ class CallbackLikeAddRemoveObjectType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackLikeAddRemove(BaseModel):
-    """
-    Model: `CallbackLikeAddRemove`
-    """
+    """Model: `CallbackLikeAddRemove`"""
 
     liker_id: int = Field()
     """Property `CallbackLikeAddRemove.liker_id`."""
@@ -8754,9 +8335,7 @@ class CallbackLikeAddRemove(BaseModel):
 
 
 class CallbackMarketComment(BaseModel):
-    """
-    Model: `CallbackMarketComment`
-    """
+    """Model: `CallbackMarketComment`"""
 
     id: int = Field()
     """Property `CallbackMarketComment.id`."""
@@ -8764,7 +8343,7 @@ class CallbackMarketComment(BaseModel):
     from_id: int = Field()
     """Property `CallbackMarketComment.from_id`."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Property `CallbackMarketComment.date`."""
 
     text: str | None = Field(
@@ -8784,9 +8363,7 @@ class CallbackMarketComment(BaseModel):
 
 
 class CallbackMarketCommentDelete(BaseModel):
-    """
-    Model: `CallbackMarketCommentDelete`
-    """
+    """Model: `CallbackMarketCommentDelete`"""
 
     owner_id: int = Field()
     """Property `CallbackMarketCommentDelete.owner_id`."""
@@ -8802,9 +8379,7 @@ class CallbackMarketCommentDelete(BaseModel):
 
 
 class CallbackMessageAllow(BaseModel):
-    """
-    Model: `CallbackMessageAllow`
-    """
+    """Model: `CallbackMessageAllow`"""
 
     user_id: int = Field()
     """Property `CallbackMessageAllow.user_id`."""
@@ -8814,18 +8389,14 @@ class CallbackMessageAllow(BaseModel):
 
 
 class CallbackMessageDeny(BaseModel):
-    """
-    Model: `CallbackMessageDeny`
-    """
+    """Model: `CallbackMessageDeny`"""
 
     user_id: int = Field()
     """Property `CallbackMessageDeny.user_id`."""
 
 
 class CallbackMessageEvent(BaseModel):
-    """
-    Model: `CallbackMessageEvent`
-    """
+    """Model: `CallbackMessageEvent`"""
 
     user_id: int = Field()
     """Property `CallbackMessageEvent.user_id`."""
@@ -8846,9 +8417,7 @@ class CallbackMessageEvent(BaseModel):
 
 
 class CallbackMessageNew(BaseModel):
-    """
-    Model: `CallbackMessageNew`
-    """
+    """Model: `CallbackMessageNew`"""
 
     client_info: "CallbackInfoForBots | None" = Field(
         default=None,
@@ -8862,9 +8431,7 @@ class CallbackMessageNew(BaseModel):
 
 
 class CallbackMessageObject(BaseModel):
-    """
-    Model: `CallbackMessageObject`
-    """
+    """Model: `CallbackMessageObject`"""
 
     client_info: "CallbackInfoForBots | None" = Field(
         default=None,
@@ -8878,9 +8445,7 @@ class CallbackMessageObject(BaseModel):
 
 
 class CallbackMessageReactionEvent(BaseModel):
-    """
-    Model: `CallbackMessageReactionEvent`
-    """
+    """Model: `CallbackMessageReactionEvent`"""
 
     reacted_id: int = Field()
     """Property `CallbackMessageReactionEvent.reacted_id`."""
@@ -8898,9 +8463,7 @@ class CallbackMessageReactionEvent(BaseModel):
 
 
 class CallbackMessageRead(BaseModel):
-    """
-    Model: `CallbackMessageRead`
-    """
+    """Model: `CallbackMessageRead`"""
 
     from_id: int = Field()
     """Property `CallbackMessageRead.from_id`."""
@@ -8926,9 +8489,7 @@ class CallbackMessageTypingStateState(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackMessageTypingState(BaseModel):
-    """
-    Model: `CallbackMessageTypingState`
-    """
+    """Model: `CallbackMessageTypingState`"""
 
     from_id: int = Field()
     """Property `CallbackMessageTypingState.from_id`."""
@@ -8941,9 +8502,7 @@ class CallbackMessageTypingState(BaseModel):
 
 
 class CallbackPhotoCommentDelete(BaseModel):
-    """
-    Model: `CallbackPhotoCommentDelete`
-    """
+    """Model: `CallbackPhotoCommentDelete`"""
 
     id: int = Field()
     """Property `CallbackPhotoCommentDelete.id`."""
@@ -8968,14 +8527,12 @@ class CallbackPhotoNewVerticalAlign(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackPhotoNew(BaseModel):
-    """
-    Model: `CallbackPhotoNew`
-    """
+    """Model: `CallbackPhotoNew`"""
 
     album_id: int = Field()
     """Album ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when uploaded."""
 
     id: int = Field()
@@ -9099,9 +8656,7 @@ class CallbackPhotoNew(BaseModel):
 
 
 class CallbackPollVoteNew(BaseModel):
-    """
-    Model: `CallbackPollVoteNew`
-    """
+    """Model: `CallbackPollVoteNew`"""
 
     owner_id: int = Field()
     """Property `CallbackPollVoteNew.owner_id`."""
@@ -9168,9 +8723,7 @@ class CallbackType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackUserBlock(BaseModel):
-    """
-    Model: `CallbackUserBlock`
-    """
+    """Model: `CallbackUserBlock`"""
 
     admin_id: int = Field()
     """Property `CallbackUserBlock.admin_id`."""
@@ -9178,7 +8731,7 @@ class CallbackUserBlock(BaseModel):
     user_id: int = Field()
     """Property `CallbackUserBlock.user_id`."""
 
-    unblock_date: int = Field()
+    unblock_date: datetime.datetime = Field()
     """Property `CallbackUserBlock.unblock_date`."""
 
     reason: int = Field()
@@ -9191,9 +8744,7 @@ class CallbackUserBlock(BaseModel):
 
 
 class CallbackUserUnblock(BaseModel):
-    """
-    Model: `CallbackUserUnblock`
-    """
+    """Model: `CallbackUserUnblock`"""
 
     admin_id: int = Field()
     """Property `CallbackUserUnblock.admin_id`."""
@@ -9201,14 +8752,12 @@ class CallbackUserUnblock(BaseModel):
     user_id: int = Field()
     """Property `CallbackUserUnblock.user_id`."""
 
-    by_end_date: int = Field()
+    by_end_date: datetime.datetime = Field()
     """Property `CallbackUserUnblock.by_end_date`."""
 
 
 class CallbackVideoCommentDelete(BaseModel):
-    """
-    Model: `CallbackVideoCommentDelete`
-    """
+    """Model: `CallbackVideoCommentDelete`"""
 
     id: int = Field()
     """Property `CallbackVideoCommentDelete.id`."""
@@ -9224,9 +8773,7 @@ class CallbackVideoCommentDelete(BaseModel):
 
 
 class CallbackVideoNew(BaseModel):
-    """
-    Model: `CallbackVideoNew`
-    """
+    """Model: `CallbackVideoNew`"""
 
     artist: str = Field()
     """Artist name."""
@@ -9258,7 +8805,7 @@ class CallbackVideoNew(BaseModel):
     )
     """Stream duration in seconds."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when uploaded."""
@@ -9280,9 +8827,7 @@ class CallbackVideoNew(BaseModel):
 
 
 class CallbackVkpayTransaction(BaseModel):
-    """
-    Model: `CallbackVkpayTransaction`
-    """
+    """Model: `CallbackVkpayTransaction`"""
 
     amount: int = Field()
     """Property `CallbackVkpayTransaction.amount`."""
@@ -9293,7 +8838,7 @@ class CallbackVkpayTransaction(BaseModel):
     description: str = Field()
     """Property `CallbackVkpayTransaction.description`."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Property `CallbackVkpayTransaction.date`."""
 
     payload: str | None = Field(
@@ -9303,9 +8848,7 @@ class CallbackVkpayTransaction(BaseModel):
 
 
 class CallbackWallCommentDelete(BaseModel):
-    """
-    Model: `CallbackWallCommentDelete`
-    """
+    """Model: `CallbackWallCommentDelete`"""
 
     owner_id: int = Field()
     """Property `CallbackWallCommentDelete.owner_id`."""
@@ -9325,9 +8868,7 @@ class CallbackWallPostNewInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackWallPostNew(BaseModel):
-    """
-    Model: `CallbackWallPostNew`
-    """
+    """Model: `CallbackWallPostNew`"""
 
     inner_type: "CallbackWallPostNewInnerType" = Field()
     """Property `CallbackWallPostNew.inner_type`."""
@@ -9367,7 +8908,7 @@ class CallbackWallPostNew(BaseModel):
     )
     """Information about the source of the post."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
@@ -9454,9 +8995,7 @@ class CallbackWallPostNew(BaseModel):
 
 
 class CallbackWallReplyEdit(BaseModel):
-    """
-    Model: `CallbackWallReplyEdit`
-    """
+    """Model: `CallbackWallReplyEdit`"""
 
     id: int = Field()
     """Comment ID."""
@@ -9464,7 +9003,7 @@ class CallbackWallReplyEdit(BaseModel):
     from_id: int = Field()
     """Author ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     text: str = Field()
@@ -9552,9 +9091,7 @@ class CallbackWallReplyEdit(BaseModel):
 
 
 class CallbackWallReplyNew(BaseModel):
-    """
-    Model: `CallbackWallReplyNew`
-    """
+    """Model: `CallbackWallReplyNew`"""
 
     id: int = Field()
     """Comment ID."""
@@ -9562,7 +9099,7 @@ class CallbackWallReplyNew(BaseModel):
     from_id: int = Field()
     """Author ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     text: str = Field()
@@ -9650,9 +9187,7 @@ class CallbackWallReplyNew(BaseModel):
 
 
 class CallbackWallReplyRestore(BaseModel):
-    """
-    Model: `CallbackWallReplyRestore`
-    """
+    """Model: `CallbackWallReplyRestore`"""
 
     id: int = Field()
     """Comment ID."""
@@ -9660,7 +9195,7 @@ class CallbackWallReplyRestore(BaseModel):
     from_id: int = Field()
     """Author ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     text: str = Field()
@@ -9752,9 +9287,7 @@ class CallbackWallRepostInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallbackWallRepost(BaseModel):
-    """
-    Model: `CallbackWallRepost`
-    """
+    """Model: `CallbackWallRepost`"""
 
     inner_type: "CallbackWallRepostInnerType" = Field()
     """Property `CallbackWallRepost.inner_type`."""
@@ -9794,7 +9327,7 @@ class CallbackWallRepost(BaseModel):
     )
     """Information about the source of the post."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
@@ -9881,9 +9414,7 @@ class CallbackWallRepost(BaseModel):
 
 
 class CallsCall(BaseModel):
-    """
-    Model: `CallsCall`
-    """
+    """Model: `CallsCall`"""
 
     initiator_id: int = Field()
     """Caller initiator."""
@@ -9920,9 +9451,7 @@ class CallsEndState(StrEnum, metaclass=BaseEnumMeta):
 
 
 class CallsParticipants(BaseModel):
-    """
-    Model: `CallsParticipants`
-    """
+    """Model: `CallsParticipants`"""
 
     list_: list[int] | None = Field(
         default=None,
@@ -9937,8 +9466,7 @@ class CallsParticipants(BaseModel):
 
 
 class CallsShortCredentials(BaseModel):
-    """
-    These credentials may be used to join a call without knowing a VK Join Link
+    """These credentials may be used to join a call without knowing a VK Join Link
     Model: `CallsShortCredentials`
     """
 
@@ -9956,9 +9484,7 @@ class CallsShortCredentials(BaseModel):
 
 
 class CommentThread(BaseModel):
-    """
-    Model: `CommentThread`
-    """
+    """Model: `CommentThread`"""
 
     count: int = Field()
     """Comments number."""
@@ -9993,9 +9519,7 @@ DatabaseCitiesFields: typing.TypeAlias = str
 
 
 class DatabaseCityById(BaseModel):
-    """
-    Model: `DatabaseCityById`
-    """
+    """Model: `DatabaseCityById`"""
 
     id: int = Field()
     """Object ID."""
@@ -10005,9 +9529,7 @@ class DatabaseCityById(BaseModel):
 
 
 class DatabaseFaculty(BaseModel):
-    """
-    Model: `DatabaseFaculty`
-    """
+    """Model: `DatabaseFaculty`"""
 
     id: int | None = Field(
         default=None,
@@ -10021,9 +9543,7 @@ class DatabaseFaculty(BaseModel):
 
 
 class DatabaseLanguageFull(BaseModel):
-    """
-    Model: `DatabaseLanguageFull`
-    """
+    """Model: `DatabaseLanguageFull`"""
 
     id: int = Field()
     """Language ID."""
@@ -10033,9 +9553,7 @@ class DatabaseLanguageFull(BaseModel):
 
 
 class DatabaseRegion(BaseModel):
-    """
-    Model: `DatabaseRegion`
-    """
+    """Model: `DatabaseRegion`"""
 
     id: int | None = Field(
         default=None,
@@ -10049,9 +9567,7 @@ class DatabaseRegion(BaseModel):
 
 
 class DatabaseSchool(BaseModel):
-    """
-    Model: `DatabaseSchool`
-    """
+    """Model: `DatabaseSchool`"""
 
     id: int | None = Field(
         default=None,
@@ -10065,9 +9581,7 @@ class DatabaseSchool(BaseModel):
 
 
 class DatabaseSchoolClass(BaseModel):
-    """
-    Model: `DatabaseSchoolClass`
-    """
+    """Model: `DatabaseSchoolClass`"""
 
     id: int = Field()
     """Object ID."""
@@ -10077,9 +9591,7 @@ class DatabaseSchoolClass(BaseModel):
 
 
 class DatabaseStation(BaseModel):
-    """
-    Model: `DatabaseStation`
-    """
+    """Model: `DatabaseStation`"""
 
     id: int = Field()
     """Station ID."""
@@ -10099,9 +9611,7 @@ class DatabaseStation(BaseModel):
 
 
 class DatabaseUniversity(BaseModel):
-    """
-    Model: `DatabaseUniversity`
-    """
+    """Model: `DatabaseUniversity`"""
 
     id: int | None = Field(
         default=None,
@@ -10115,9 +9625,7 @@ class DatabaseUniversity(BaseModel):
 
 
 class DocsDoc(BaseModel):
-    """
-    Model: `DocsDoc`
-    """
+    """Model: `DocsDoc`"""
 
     id: int = Field()
     """Document ID."""
@@ -10134,7 +9642,7 @@ class DocsDoc(BaseModel):
     ext: str = Field()
     """File extension."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when file has been uploaded in Unixtime."""
 
     type: int = Field()
@@ -10173,9 +9681,7 @@ class DocsDocAttachmentType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class DocsDocPreview(BaseModel):
-    """
-    Model: `DocsDocPreview`
-    """
+    """Model: `DocsDocPreview`"""
 
     audio_msg: "DocsDocPreviewAudioMsg | None" = Field(
         default=None,
@@ -10199,9 +9705,7 @@ class DocsDocPreview(BaseModel):
 
 
 class DocsDocPreviewAudioMsg(BaseModel):
-    """
-    Model: `DocsDocPreviewAudioMsg`
-    """
+    """Model: `DocsDocPreviewAudioMsg`"""
 
     duration: int = Field()
     """Audio message duration in seconds."""
@@ -10217,9 +9721,7 @@ class DocsDocPreviewAudioMsg(BaseModel):
 
 
 class DocsDocPreviewGraffiti(BaseModel):
-    """
-    Model: `DocsDocPreviewGraffiti`
-    """
+    """Model: `DocsDocPreviewGraffiti`"""
 
     src: str = Field()
     """Graffiti file URL."""
@@ -10232,9 +9734,7 @@ class DocsDocPreviewGraffiti(BaseModel):
 
 
 class DocsDocPreviewPhoto(BaseModel):
-    """
-    Model: `DocsDocPreviewPhoto`
-    """
+    """Model: `DocsDocPreviewPhoto`"""
 
     sizes: list["DocsDocPreviewPhotoSizes"] | None = Field(
         default=None,
@@ -10243,9 +9743,7 @@ class DocsDocPreviewPhoto(BaseModel):
 
 
 class DocsDocPreviewPhotoSizes(BaseModel):
-    """
-    Model: `DocsDocPreviewPhotoSizes`
-    """
+    """Model: `DocsDocPreviewPhotoSizes`"""
 
     src: str = Field()
     """URL of the image."""
@@ -10261,9 +9759,7 @@ class DocsDocPreviewPhotoSizes(BaseModel):
 
 
 class DocsDocPreviewVideo(BaseModel):
-    """
-    Model: `DocsDocPreviewVideo`
-    """
+    """Model: `DocsDocPreviewVideo`"""
 
     src: str = Field()
     """Video URL."""
@@ -10279,9 +9775,7 @@ class DocsDocPreviewVideo(BaseModel):
 
 
 class DocsDocTypes(BaseModel):
-    """
-    Model: `DocsDocTypes`
-    """
+    """Model: `DocsDocTypes`"""
 
     id: int = Field()
     """Doc type ID."""
@@ -10299,15 +9793,14 @@ class DonutDonatorSubscriptionInfoStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class DonutDonatorSubscriptionInfo(BaseModel):
-    """
-    Info about user VK Donut subscription
+    """Info about user VK Donut subscription
     Model: `DonutDonatorSubscriptionInfo`
     """
 
     owner_id: int = Field()
     """Property `DonutDonatorSubscriptionInfo.owner_id`."""
 
-    next_payment_date: int = Field()
+    next_payment_date: datetime.datetime = Field()
     """Property `DonutDonatorSubscriptionInfo.next_payment_date`."""
 
     amount: int = Field()
@@ -10318,9 +9811,7 @@ class DonutDonatorSubscriptionInfo(BaseModel):
 
 
 class EventsEventAttach(BaseModel):
-    """
-    Model: `EventsEventAttach`
-    """
+    """Model: `EventsEventAttach`"""
 
     button_text: str = Field()
     """text of attach."""
@@ -10354,11 +9845,9 @@ class EventsEventAttach(BaseModel):
 
 
 class FaveBookmark(BaseModel):
-    """
-    Model: `FaveBookmark`
-    """
+    """Model: `FaveBookmark`"""
 
-    added_date: int = Field()
+    added_date: datetime.datetime = Field()
     """Timestamp, when this item was bookmarked."""
 
     seen: bool = Field()
@@ -10403,9 +9892,7 @@ class FaveBookmarkType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class FavePage(BaseModel):
-    """
-    Model: `FavePage`
-    """
+    """Model: `FavePage`"""
 
     description: str = Field()
     """Some info about user or group."""
@@ -10421,7 +9908,7 @@ class FavePage(BaseModel):
     )
     """Property `FavePage.group`."""
 
-    updated_date: int | None = Field(
+    updated_date: datetime.datetime | None = Field(
         default=None,
     )
     """Timestamp, when this page was bookmarked."""
@@ -10439,9 +9926,7 @@ class FavePageType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class FaveTag(BaseModel):
-    """
-    Model: `FaveTag`
-    """
+    """Model: `FaveTag`"""
 
     id: int | None = Field(
         default=None,
@@ -10455,11 +9940,9 @@ class FaveTag(BaseModel):
 
 
 class GiftsGift(BaseModel):
-    """
-    Model: `GiftsGift`
-    """
+    """Model: `GiftsGift`"""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when gist has been sent in Unixtime."""
@@ -10502,9 +9985,7 @@ class GiftsGiftPrivacy(IntEnum, metaclass=BaseEnumMeta):
 
 
 class GiftsLayout(BaseModel):
-    """
-    Model: `GiftsLayout`
-    """
+    """Model: `GiftsLayout`"""
 
     id: int = Field()
     """Gift ID."""
@@ -10551,9 +10032,7 @@ class GiftsLayout(BaseModel):
 
 
 class GroupsAddress(BaseModel):
-    """
-    Model: `GroupsAddress`
-    """
+    """Model: `GroupsAddress`"""
 
     id: int = Field()
     """Address id."""
@@ -10640,8 +10119,7 @@ class GroupsAddress(BaseModel):
 
 
 class GroupsAddressTimetable(BaseModel):
-    """
-    Timetable for a week
+    """Timetable for a week
     Model: `GroupsAddressTimetable`
     """
 
@@ -10682,8 +10160,7 @@ class GroupsAddressTimetable(BaseModel):
 
 
 class GroupsAddressTimetableDay(BaseModel):
-    """
-    Timetable for one day
+    """Timetable for one day
     Model: `GroupsAddressTimetableDay`
     """
 
@@ -10713,9 +10190,7 @@ class GroupsAddressWorkInfoStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsAddressesInfo(BaseModel):
-    """
-    Model: `GroupsAddressesInfo`
-    """
+    """Model: `GroupsAddressesInfo`"""
 
     is_enabled: bool = Field()
     """Information whether addresses is enabled."""
@@ -10737,9 +10212,7 @@ class GroupsAddressesInfo(BaseModel):
 
 
 class GroupsBanInfo(BaseModel):
-    """
-    Model: `GroupsBanInfo`
-    """
+    """Model: `GroupsBanInfo`"""
 
     admin_id: int | None = Field(
         default=None,
@@ -10761,12 +10234,12 @@ class GroupsBanInfo(BaseModel):
     )
     """Property `GroupsBanInfo.is_closed`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when user has been added to blacklist in Unixtime."""
 
-    end_date: int | None = Field(
+    end_date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when user will be removed from blacklist in Unixtime."""
@@ -10793,9 +10266,7 @@ class GroupsCallbackServerStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsCallbackServer(BaseModel):
-    """
-    Model: `GroupsCallbackServer`
-    """
+    """Model: `GroupsCallbackServer`"""
 
     id: int = Field()
     """Property `GroupsCallbackServer.id`."""
@@ -10817,9 +10288,7 @@ class GroupsCallbackServer(BaseModel):
 
 
 class GroupsCallbackSettings(BaseModel):
-    """
-    Model: `GroupsCallbackSettings`
-    """
+    """Model: `GroupsCallbackSettings`"""
 
     api_version: str | None = Field(
         default=None,
@@ -10833,9 +10302,7 @@ class GroupsCallbackSettings(BaseModel):
 
 
 class GroupsContactsItem(BaseModel):
-    """
-    Model: `GroupsContactsItem`
-    """
+    """Model: `GroupsContactsItem`"""
 
     user_id: int | None = Field(
         default=None,
@@ -10859,9 +10326,7 @@ class GroupsContactsItem(BaseModel):
 
 
 class GroupsCountersGroup(BaseModel):
-    """
-    Model: `GroupsCountersGroup`
-    """
+    """Model: `GroupsCountersGroup`"""
 
     addresses: int | None = Field(
         default=None,
@@ -11067,9 +10532,7 @@ class GroupsFilter(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroup(BaseModel):
-    """
-    Model: `GroupsGroup`
-    """
+    """Model: `GroupsGroup`"""
 
     id: int = Field()
     """Community ID."""
@@ -11114,12 +10577,12 @@ class GroupsGroup(BaseModel):
     )
     """Information whether current user is advertiser."""
 
-    start_date: int | None = Field(
+    start_date: datetime.datetime | None = Field(
         default=None,
     )
     """Start date in Unixtime format."""
 
-    finish_date: int | None = Field(
+    finish_date: datetime.datetime | None = Field(
         default=None,
     )
     """Finish date in Unixtime format."""
@@ -11219,9 +10682,7 @@ class GroupsGroupAgeLimits(IntEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupAttach(BaseModel):
-    """
-    Model: `GroupsGroupAttach`
-    """
+    """Model: `GroupsGroupAttach`"""
 
     id: int = Field()
     """group ID."""
@@ -11246,16 +10707,14 @@ class GroupsGroupAudio(IntEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupBanInfo(BaseModel):
-    """
-    Model: `GroupsGroupBanInfo`
-    """
+    """Model: `GroupsGroupBanInfo`"""
 
     comment: str | None = Field(
         default=None,
     )
     """Ban comment."""
 
-    end_date: int | None = Field(
+    end_date: datetime.datetime | None = Field(
         default=None,
     )
     """End date of ban in Unixtime."""
@@ -11267,9 +10726,7 @@ class GroupsGroupBanInfo(BaseModel):
 
 
 class GroupsGroupCategory(BaseModel):
-    """
-    Model: `GroupsGroupCategory`
-    """
+    """Model: `GroupsGroupCategory`"""
 
     id: int = Field()
     """Category ID."""
@@ -11284,9 +10741,7 @@ class GroupsGroupCategory(BaseModel):
 
 
 class GroupsGroupCategoryFull(BaseModel):
-    """
-    Model: `GroupsGroupCategoryFull`
-    """
+    """Model: `GroupsGroupCategoryFull`"""
 
     id: int = Field()
     """Category ID."""
@@ -11307,9 +10762,7 @@ class GroupsGroupCategoryFull(BaseModel):
 
 
 class GroupsGroupCategoryType(BaseModel):
-    """
-    Model: `GroupsGroupCategoryType`
-    """
+    """Model: `GroupsGroupCategoryType`"""
 
     id: int = Field()
     """Property `GroupsGroupCategoryType.id`."""
@@ -11412,9 +10865,7 @@ class GroupsGroupPhotos(IntEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupPublicCategoryList(BaseModel):
-    """
-    Model: `GroupsGroupPublicCategoryList`
-    """
+    """Model: `GroupsGroupPublicCategoryList`"""
 
     id: int | None = Field(
         default=None,
@@ -11440,9 +10891,7 @@ class GroupsGroupRole(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupSubcategory(BaseModel):
-    """
-    Model: `GroupsGroupSubcategory`
-    """
+    """Model: `GroupsGroupSubcategory`"""
 
     id: int = Field()
     """Object ID."""
@@ -11531,9 +10980,7 @@ class GroupsGroupTagColor(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupTag(BaseModel):
-    """
-    Model: `GroupsGroupTag`
-    """
+    """Model: `GroupsGroupTag`"""
 
     id: int = Field()
     """Property `GroupsGroupTag.id`."""
@@ -11582,9 +11029,7 @@ class GroupsGroupWiki(IntEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsGroupsArray(BaseModel):
-    """
-    Model: `GroupsGroupsArray`
-    """
+    """Model: `GroupsGroupsArray`"""
 
     count: int = Field()
     """Communities number."""
@@ -11594,9 +11039,7 @@ class GroupsGroupsArray(BaseModel):
 
 
 class GroupsLinksItem(BaseModel):
-    """
-    Model: `GroupsLinksItem`
-    """
+    """Model: `GroupsLinksItem`"""
 
     name: str | None = Field(
         default=None,
@@ -11640,9 +11083,7 @@ class GroupsLinksItem(BaseModel):
 
 
 class GroupsLiveCovers(BaseModel):
-    """
-    Model: `GroupsLiveCovers`
-    """
+    """Model: `GroupsLiveCovers`"""
 
     is_enabled: bool = Field()
     """Information whether live covers is enabled."""
@@ -11659,9 +11100,7 @@ class GroupsLiveCovers(BaseModel):
 
 
 class GroupsLongPollEvents(BaseModel):
-    """
-    Model: `GroupsLongPollEvents`
-    """
+    """Model: `GroupsLongPollEvents`"""
 
     audio_new: bool = Field()
     """Property `GroupsLongPollEvents.audio_new`."""
@@ -11830,9 +11269,7 @@ class GroupsLongPollEvents(BaseModel):
 
 
 class GroupsLongPollServer(BaseModel):
-    """
-    Model: `GroupsLongPollServer`
-    """
+    """Model: `GroupsLongPollServer`"""
 
     key: str = Field()
     """Long Poll key."""
@@ -11845,9 +11282,7 @@ class GroupsLongPollServer(BaseModel):
 
 
 class GroupsLongPollSettings(BaseModel):
-    """
-    Model: `GroupsLongPollSettings`
-    """
+    """Model: `GroupsLongPollSettings`"""
 
     events: "GroupsLongPollEvents" = Field()
     """Property `GroupsLongPollSettings.events`."""
@@ -11862,9 +11297,7 @@ class GroupsLongPollSettings(BaseModel):
 
 
 class GroupsMarketInfo(BaseModel):
-    """
-    Model: `GroupsMarketInfo`
-    """
+    """Model: `GroupsMarketInfo`"""
 
     type: str | None = Field(
         default=None,
@@ -11913,9 +11346,7 @@ class GroupsMarketInfo(BaseModel):
 
 
 class GroupsMarketProperties(BaseModel):
-    """
-    Model: `GroupsMarketProperties`
-    """
+    """Model: `GroupsMarketProperties`"""
 
     market: "GroupsMarketInfo | None" = Field(
         default=None,
@@ -11940,9 +11371,7 @@ class GroupsMarketState(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsMemberRole(BaseModel):
-    """
-    Model: `GroupsMemberRole`
-    """
+    """Model: `GroupsMemberRole`"""
 
     id: int = Field()
     """User ID."""
@@ -11976,9 +11405,7 @@ class GroupsMemberRoleStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsMemberStatus(BaseModel):
-    """
-    Model: `GroupsMemberStatus`
-    """
+    """Model: `GroupsMemberStatus`"""
 
     member: bool = Field()
     """Information whether user is a member of the group."""
@@ -11988,9 +11415,7 @@ class GroupsMemberStatus(BaseModel):
 
 
 class GroupsMemberStatusFull(BaseModel):
-    """
-    Model: `GroupsMemberStatusFull`
-    """
+    """Model: `GroupsMemberStatusFull`"""
 
     member: bool = Field()
     """Information whether user is a member of the group."""
@@ -12020,8 +11445,7 @@ class GroupsMemberStatusFull(BaseModel):
 
 
 class GroupsOnlineStatus(BaseModel):
-    """
-    Online status of group
+    """Online status of group
     Model: `GroupsOnlineStatus`
     """
 
@@ -12046,9 +11470,7 @@ class GroupsOwnerXtrBanInfoType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsOwnerXtrBanInfo(BaseModel):
-    """
-    Model: `GroupsOwnerXtrBanInfo`
-    """
+    """Model: `GroupsOwnerXtrBanInfo`"""
 
     ban_info: "GroupsBanInfo | None" = Field(
         default=None,
@@ -12072,9 +11494,7 @@ class GroupsOwnerXtrBanInfo(BaseModel):
 
 
 class GroupsPhotoSize(BaseModel):
-    """
-    Model: `GroupsPhotoSize`
-    """
+    """Model: `GroupsPhotoSize`"""
 
     height: int = Field()
     """Image height."""
@@ -12084,9 +11504,7 @@ class GroupsPhotoSize(BaseModel):
 
 
 class GroupsProfileItem(BaseModel):
-    """
-    Model: `GroupsProfileItem`
-    """
+    """Model: `GroupsProfileItem`"""
 
     id: int = Field()
     """User id."""
@@ -12119,9 +11537,7 @@ class GroupsRoleOptions(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsSectionsListItem(BaseModel):
-    """
-    Model: `GroupsSectionsListItem`
-    """
+    """Model: `GroupsSectionsListItem`"""
 
     id: int = Field()
     """Object ID."""
@@ -12136,9 +11552,7 @@ class GroupsSettingsTwitterStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class GroupsSettingsTwitter(BaseModel):
-    """
-    Model: `GroupsSettingsTwitter`
-    """
+    """Model: `GroupsSettingsTwitter`"""
 
     status: "GroupsSettingsTwitterStatus" = Field()
     """Property `GroupsSettingsTwitter.status`."""
@@ -12150,9 +11564,7 @@ class GroupsSettingsTwitter(BaseModel):
 
 
 class GroupsSubjectItem(BaseModel):
-    """
-    Model: `GroupsSubjectItem`
-    """
+    """Model: `GroupsSubjectItem`"""
 
     id: int = Field()
     """Subject ID."""
@@ -12162,9 +11574,7 @@ class GroupsSubjectItem(BaseModel):
 
 
 class GroupsTokenPermissionSetting(BaseModel):
-    """
-    Model: `GroupsTokenPermissionSetting`
-    """
+    """Model: `GroupsTokenPermissionSetting`"""
 
     name: str = Field()
     """Property `GroupsTokenPermissionSetting.name`."""
@@ -12174,9 +11584,7 @@ class GroupsTokenPermissionSetting(BaseModel):
 
 
 class LeadFormsAnswer(BaseModel):
-    """
-    Model: `LeadFormsAnswer`
-    """
+    """Model: `LeadFormsAnswer`"""
 
     key: str = Field()
     """Property `LeadFormsAnswer.key`."""
@@ -12186,9 +11594,7 @@ class LeadFormsAnswer(BaseModel):
 
 
 class LeadFormsAnswerItem(BaseModel):
-    """
-    Model: `LeadFormsAnswerItem`
-    """
+    """Model: `LeadFormsAnswerItem`"""
 
     value: str = Field()
     """Property `LeadFormsAnswerItem.value`."""
@@ -12200,15 +11606,11 @@ class LeadFormsAnswerItem(BaseModel):
 
 
 class LeadFormsAnswerOneOf(BaseModel):
-    """
-    Model: `LeadFormsAnswerOneOf`
-    """
+    """Model: `LeadFormsAnswerOneOf`"""
 
 
 class LeadFormsForm(BaseModel):
-    """
-    Model: `LeadFormsForm`
-    """
+    """Model: `LeadFormsForm`"""
 
     form_id: int = Field()
     """Property `LeadFormsForm.form_id`."""
@@ -12289,9 +11691,7 @@ class LeadFormsForm(BaseModel):
 
 
 class LeadFormsLead(BaseModel):
-    """
-    Model: `LeadFormsLead`
-    """
+    """Model: `LeadFormsLead`"""
 
     lead_id: int = Field()
     """Property `LeadFormsLead.lead_id`."""
@@ -12299,7 +11699,7 @@ class LeadFormsLead(BaseModel):
     user_id: int = Field()
     """Property `LeadFormsLead.user_id`."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Property `LeadFormsLead.date`."""
 
     answers: list["LeadFormsAnswer"] = Field()
@@ -12320,9 +11720,7 @@ class LeadFormsQuestionItemType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class LeadFormsQuestionItem(BaseModel):
-    """
-    Model: `LeadFormsQuestionItem`
-    """
+    """Model: `LeadFormsQuestionItem`"""
 
     key: str = Field()
     """Property `LeadFormsQuestionItem.key`."""
@@ -12342,9 +11740,7 @@ class LeadFormsQuestionItem(BaseModel):
 
 
 class LeadFormsQuestionItemOption(BaseModel):
-    """
-    Model: `LeadFormsQuestionItemOption`
-    """
+    """Model: `LeadFormsQuestionItemOption`"""
 
     label: str = Field()
     """Property `LeadFormsQuestionItemOption.label`."""
@@ -12375,9 +11771,7 @@ class LikesType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class LinkTargetObject(BaseModel):
-    """
-    Model: `LinkTargetObject`
-    """
+    """Model: `LinkTargetObject`"""
 
     type: str | None = Field(
         default=None,
@@ -12396,9 +11790,7 @@ class LinkTargetObject(BaseModel):
 
 
 class MarketCurrency(BaseModel):
-    """
-    Model: `MarketCurrency`
-    """
+    """Model: `MarketCurrency`"""
 
     id: int = Field()
     """Currency ID."""
@@ -12411,9 +11803,7 @@ class MarketCurrency(BaseModel):
 
 
 class MarketGlobalSearchFilters(BaseModel):
-    """
-    Model: `MarketGlobalSearchFilters`
-    """
+    """Model: `MarketGlobalSearchFilters`"""
 
     city: "BaseCity | None" = Field(
         default=None,
@@ -12427,8 +11817,7 @@ class MarketGlobalSearchFilters(BaseModel):
 
 
 class MarketItemOwnerInfo(BaseModel):
-    """
-    Information about the group where the item is placed
+    """Information about the group where the item is placed
     Model: `MarketItemOwnerInfo`
     """
 
@@ -12464,8 +11853,7 @@ class MarketItemOwnerInfo(BaseModel):
 
 
 class MarketItemPromotionInfo(BaseModel):
-    """
-    Information about promotion of the market item
+    """Information about promotion of the market item
     Model: `MarketItemPromotionInfo`
     """
 
@@ -12476,9 +11864,7 @@ class MarketItemPromotionInfo(BaseModel):
 
 
 class MarketMarketAlbum(BaseModel):
-    """
-    Model: `MarketMarketAlbum`
-    """
+    """Model: `MarketMarketAlbum`"""
 
     id: int = Field()
     """Market album ID."""
@@ -12526,9 +11912,7 @@ class MarketMarketCategoryInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MarketMarketCategory(BaseModel):
-    """
-    Model: `MarketMarketCategory`
-    """
+    """Model: `MarketMarketCategory`"""
 
     inner_type: "MarketMarketCategoryInnerType" = Field()
     """Property `MarketMarketCategory.inner_type`."""
@@ -12555,9 +11939,7 @@ class MarketMarketCategoryNestedInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MarketMarketCategoryNested(BaseModel):
-    """
-    Model: `MarketMarketCategoryNested`
-    """
+    """Model: `MarketMarketCategoryNested`"""
 
     inner_type: "MarketMarketCategoryNestedInnerType" = Field()
     """Property `MarketMarketCategoryNested.inner_type`."""
@@ -12580,9 +11962,7 @@ class MarketMarketCategoryNested(BaseModel):
 
 
 class MarketMarketCategoryTree(BaseModel):
-    """
-    Model: `MarketMarketCategoryTree`
-    """
+    """Model: `MarketMarketCategoryTree`"""
 
     id: int = Field()
     """Category ID."""
@@ -12631,9 +12011,7 @@ class MarketMarketCategoryTreeViewType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MarketMarketCategoryTreeView(BaseModel):
-    """
-    Model: `MarketMarketCategoryTreeView`
-    """
+    """Model: `MarketMarketCategoryTreeView`"""
 
     type: "MarketMarketCategoryTreeViewType | None" = Field(
         default=None,
@@ -12652,9 +12030,7 @@ class MarketMarketCategoryTreeView(BaseModel):
 
 
 class MarketMarketItem(BaseModel):
-    """
-    Model: `MarketMarketItem`
-    """
+    """Model: `MarketMarketItem`"""
 
     availability: "MarketMarketItemAvailability" = Field()
     """Property `MarketMarketItem.availability`."""
@@ -12692,7 +12068,7 @@ class MarketMarketItem(BaseModel):
     )
     """Property `MarketMarketItem.category_v2`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the item has been created in Unixtime."""
@@ -12765,9 +12141,7 @@ class MarketMarketItemAvailability(IntEnum, metaclass=BaseEnumMeta):
 
 
 class MarketMarketItemBasic(BaseModel):
-    """
-    Model: `MarketMarketItemBasic`
-    """
+    """Model: `MarketMarketItemBasic`"""
 
     id: int = Field()
     """Item ID."""
@@ -12793,9 +12167,7 @@ class MarketMarketItemBasic(BaseModel):
 
 
 class MarketOrder(BaseModel):
-    """
-    Model: `MarketOrder`
-    """
+    """Model: `MarketOrder`"""
 
     id: int = Field()
     """Property `MarketOrder.id`."""
@@ -12806,7 +12178,7 @@ class MarketOrder(BaseModel):
     user_id: int = Field()
     """Property `MarketOrder.user_id`."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Property `MarketOrder.date`."""
 
     status: int = Field()
@@ -12890,9 +12262,7 @@ class MarketOrder(BaseModel):
 
 
 class MarketOrderItem(BaseModel):
-    """
-    Model: `MarketOrderItem`
-    """
+    """Model: `MarketOrderItem`"""
 
     owner_id: int = Field()
     """Property `MarketOrderItem.owner_id`."""
@@ -12937,9 +12307,7 @@ class MarketOwnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MarketPrice(BaseModel):
-    """
-    Model: `MarketPrice`
-    """
+    """Model: `MarketPrice`"""
 
     amount: str = Field()
     """Amount."""
@@ -12987,9 +12355,7 @@ class MarketPropertyType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class MarketProperty(BaseModel):
-    """
-    Model: `MarketProperty`
-    """
+    """Model: `MarketProperty`"""
 
     id: int = Field()
     """Property `MarketProperty.id`."""
@@ -13007,9 +12373,7 @@ class MarketProperty(BaseModel):
 
 
 class MarketPropertyVariant(BaseModel):
-    """
-    Model: `MarketPropertyVariant`
-    """
+    """Model: `MarketPropertyVariant`"""
 
     id: int = Field()
     """Property `MarketPropertyVariant.id`."""
@@ -13029,9 +12393,7 @@ class MarketServicesViewType(IntEnum, metaclass=BaseEnumMeta):
 
 
 class MarketUploadPhotoData(BaseModel):
-    """
-    Model: `MarketUploadPhotoData`
-    """
+    """Model: `MarketUploadPhotoData`"""
 
     photo_id: int = Field()
     """Photo ID."""
@@ -13043,14 +12405,12 @@ class MarketUploadPhotoData(BaseModel):
 
 
 class NotesNote(BaseModel):
-    """
-    Model: `NotesNote`
-    """
+    """Model: `NotesNote`"""
 
     comments: int = Field()
     """Comments number."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the note has been created in Unixtime."""
 
     id: int = Field()
@@ -13097,11 +12457,9 @@ class NotesNote(BaseModel):
 
 
 class NotesNoteComment(BaseModel):
-    """
-    Model: `NotesNoteComment`
-    """
+    """Model: `NotesNoteComment`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has beed added in Unixtime."""
 
     id: int = Field()
@@ -13126,9 +12484,7 @@ class NotesNoteComment(BaseModel):
 
 
 class NotificationsFeedback(BaseModel):
-    """
-    Model: `NotificationsFeedback`
-    """
+    """Model: `NotificationsFeedback`"""
 
     attachments: list["WallWallpostAttachment"] | None = Field(
         default=None,
@@ -13171,14 +12527,12 @@ class NotificationsNotificationInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NotificationsNotification(BaseModel):
-    """
-    Model: `NotificationsNotification`
-    """
+    """Model: `NotificationsNotification`"""
 
     inner_type: "NotificationsNotificationInnerType" = Field()
     """Property `NotificationsNotification.inner_type`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the event has been occurred."""
@@ -13209,14 +12563,12 @@ class NotificationsNotificationItemInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NotificationsNotificationItem(BaseModel):
-    """
-    Model: `NotificationsNotificationItem`
-    """
+    """Model: `NotificationsNotificationItem`"""
 
     inner_type: "NotificationsNotificationItemInnerType" = Field()
     """Property `NotificationsNotificationItem.inner_type`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the event has been occurred."""
@@ -13243,11 +12595,9 @@ class NotificationsNotificationItem(BaseModel):
 
 
 class NotificationsReply(BaseModel):
-    """
-    Model: `NotificationsReply`
-    """
+    """Model: `NotificationsReply`"""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the reply has been created in Unixtime."""
@@ -13264,9 +12614,7 @@ class NotificationsReply(BaseModel):
 
 
 class NotificationsSendMessageError(BaseModel):
-    """
-    Model: `NotificationsSendMessageError`
-    """
+    """Model: `NotificationsSendMessageError`"""
 
     code: int | None = Field(
         default=None,
@@ -13280,9 +12628,7 @@ class NotificationsSendMessageError(BaseModel):
 
 
 class NotificationsSendMessageItem(BaseModel):
-    """
-    Model: `NotificationsSendMessageItem`
-    """
+    """Model: `NotificationsSendMessageItem`"""
 
     user_id: int | None = Field(
         default=None,
@@ -13301,9 +12647,7 @@ class NotificationsSendMessageItem(BaseModel):
 
 
 class OauthError(BaseModel):
-    """
-    Model: `OauthError`
-    """
+    """Model: `OauthError`"""
 
     error: str = Field()
     """Error type."""
@@ -13318,9 +12662,7 @@ class OauthError(BaseModel):
 
 
 class OrdersAmount(BaseModel):
-    """
-    Model: `OrdersAmount`
-    """
+    """Model: `OrdersAmount`"""
 
     amounts: list["OrdersAmountItem"] | None = Field(
         default=None,
@@ -13334,9 +12676,7 @@ class OrdersAmount(BaseModel):
 
 
 class OrdersAmountItem(BaseModel):
-    """
-    Model: `OrdersAmountItem`
-    """
+    """Model: `OrdersAmountItem`"""
 
     amount: float | None = Field(
         default=None,
@@ -13364,9 +12704,7 @@ class OrdersOrderStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class OrdersOrder(BaseModel):
-    """
-    Model: `OrdersOrder`
-    """
+    """Model: `OrdersOrder`"""
 
     amount: str = Field()
     """Amount."""
@@ -13404,9 +12742,7 @@ class OrdersOrder(BaseModel):
 
 
 class OrdersSubscription(BaseModel):
-    """
-    Model: `OrdersSubscription`
-    """
+    """Model: `OrdersSubscription`"""
 
     create_time: int = Field()
     """Date of creation in Unixtime."""
@@ -13489,9 +12825,7 @@ class OrdersSubscription(BaseModel):
 
 
 class OwnerState(BaseModel):
-    """
-    Model: `OwnerState`
-    """
+    """Model: `OwnerState`"""
 
     state: int | None = Field(
         default=None,
@@ -13511,9 +12845,7 @@ class PagesPrivacySettings(IntEnum, metaclass=BaseEnumMeta):
 
 
 class PagesWikipage(BaseModel):
-    """
-    Model: `PagesWikipage`
-    """
+    """Model: `PagesWikipage`"""
 
     group_id: int = Field()
     """Community ID."""
@@ -13561,9 +12893,7 @@ class PagesWikipage(BaseModel):
 
 
 class PagesWikipageFull(BaseModel):
-    """
-    Model: `PagesWikipageFull`
-    """
+    """Model: `PagesWikipageFull`"""
 
     created: int = Field()
     """Date when the page has been created in Unixtime."""
@@ -13644,9 +12974,7 @@ class PagesWikipageFull(BaseModel):
 
 
 class PagesWikipageHistory(BaseModel):
-    """
-    Model: `PagesWikipageHistory`
-    """
+    """Model: `PagesWikipageHistory`"""
 
     id: int = Field()
     """Version ID."""
@@ -13654,7 +12982,7 @@ class PagesWikipageHistory(BaseModel):
     length: int = Field()
     """Page size in bytes."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the page has been edited in Unixtime."""
 
     editor_id: int = Field()
@@ -13665,9 +12993,7 @@ class PagesWikipageHistory(BaseModel):
 
 
 class PhotosImage(BaseModel):
-    """
-    Model: `PhotosImage`
-    """
+    """Model: `PhotosImage`"""
 
     height: int | None = Field(
         default=None,
@@ -13712,14 +13038,12 @@ class PhotosPhotoVerticalAlign(StrEnum, metaclass=BaseEnumMeta):
 
 
 class PhotosPhoto(BaseModel):
-    """
-    Model: `PhotosPhoto`
-    """
+    """Model: `PhotosPhoto`"""
 
     album_id: int = Field()
     """Album ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when uploaded."""
 
     id: int = Field()
@@ -13843,9 +13167,7 @@ class PhotosPhoto(BaseModel):
 
 
 class PhotosPhotoAlbum(BaseModel):
-    """
-    Model: `PhotosPhotoAlbum`
-    """
+    """Model: `PhotosPhotoAlbum`"""
 
     created: int = Field()
     """Date when the album has been created in Unixtime."""
@@ -13877,9 +13199,7 @@ class PhotosPhotoAlbum(BaseModel):
 
 
 class PhotosPhotoAlbumFull(BaseModel):
-    """
-    Model: `PhotosPhotoAlbumFull`
-    """
+    """Model: `PhotosPhotoAlbumFull`"""
 
     id: int = Field()
     """Photo album ID."""
@@ -13960,9 +13280,7 @@ class PhotosPhotoAlbumFull(BaseModel):
 
 
 class PhotosPhotoSizes(BaseModel):
-    """
-    Model: `PhotosPhotoSizes`
-    """
+    """Model: `PhotosPhotoSizes`"""
 
     height: int = Field()
     """Height in px."""
@@ -14018,11 +13336,9 @@ class PhotosPhotoSizesType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class PhotosPhotoTag(BaseModel):
-    """
-    Model: `PhotosPhotoTag`
-    """
+    """Model: `PhotosPhotoTag`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when tag has been added in Unixtime."""
 
     id: int = Field()
@@ -14059,9 +13375,7 @@ class PhotosPhotoTag(BaseModel):
 
 
 class PhotosPhotoUpload(BaseModel):
-    """
-    Model: `PhotosPhotoUpload`
-    """
+    """Model: `PhotosPhotoUpload`"""
 
     album_id: int = Field()
     """Album ID."""
@@ -14084,14 +13398,12 @@ class PhotosPhotoUpload(BaseModel):
 
 
 class PhotosPhotoXtrTagInfo(BaseModel):
-    """
-    Model: `PhotosPhotoXtrTagInfo`
-    """
+    """Model: `PhotosPhotoXtrTagInfo`"""
 
     album_id: int = Field()
     """Album ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when uploaded."""
 
     id: int = Field()
@@ -14197,9 +13509,7 @@ class PhotosPhotoXtrTagInfo(BaseModel):
 
 
 class PhotosTagsSuggestionItem(BaseModel):
-    """
-    Model: `PhotosTagsSuggestionItem`
-    """
+    """Model: `PhotosTagsSuggestionItem`"""
 
     title: str | None = Field(
         default=None,
@@ -14249,9 +13559,7 @@ class PhotosTagsSuggestionItemButtonStyle(StrEnum, metaclass=BaseEnumMeta):
 
 
 class PhotosTagsSuggestionItemButton(BaseModel):
-    """
-    Model: `PhotosTagsSuggestionItemButton`
-    """
+    """Model: `PhotosTagsSuggestionItemButton`"""
 
     title: str | None = Field(
         default=None,
@@ -14270,9 +13578,7 @@ class PhotosTagsSuggestionItemButton(BaseModel):
 
 
 class PodcastCover(BaseModel):
-    """
-    Model: `PodcastCover`
-    """
+    """Model: `PodcastCover`"""
 
     sizes: list["PhotosPhotoSizes"] | None = Field(
         default=None,
@@ -14281,9 +13587,7 @@ class PodcastCover(BaseModel):
 
 
 class PodcastExternalData(BaseModel):
-    """
-    Model: `PodcastExternalData`
-    """
+    """Model: `PodcastExternalData`"""
 
     url: str | None = Field(
         default=None,
@@ -14312,9 +13616,7 @@ class PodcastExternalData(BaseModel):
 
 
 class PollsAnswer(BaseModel):
-    """
-    Model: `PollsAnswer`
-    """
+    """Model: `PollsAnswer`"""
 
     id: int = Field()
     """Answer ID."""
@@ -14336,9 +13638,7 @@ class PollsBackgroundType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class PollsBackground(BaseModel):
-    """
-    Model: `PollsBackground`
-    """
+    """Model: `PollsBackground`"""
 
     angle: int | None = Field(
         default=None,
@@ -14387,9 +13687,7 @@ class PollsBackground(BaseModel):
 
 
 class PollsFieldsVoters(BaseModel):
-    """
-    Model: `PollsFieldsVoters`
-    """
+    """Model: `PollsFieldsVoters`"""
 
     answer_id: int | None = Field(
         default=None,
@@ -14408,23 +13706,19 @@ class PollsFieldsVoters(BaseModel):
 
 
 class PollsFriend(BaseModel):
-    """
-    Model: `PollsFriend`
-    """
+    """Model: `PollsFriend`"""
 
     id: int = Field()
     """Property `PollsFriend.id`."""
 
 
 class PollsPoll(BaseModel):
-    """
-    Model: `PollsPoll`
-    """
+    """Model: `PollsPoll`"""
 
     multiple: bool = Field()
     """Information whether the poll with multiple choices."""
 
-    end_date: int = Field()
+    end_date: datetime.datetime = Field()
     """Property `PollsPoll.end_date`."""
 
     closed: bool = Field()
@@ -14511,9 +13805,7 @@ PollsPollAnonymous: typing.TypeAlias = bool
 
 
 class PollsVoters(BaseModel):
-    """
-    Model: `PollsVoters`
-    """
+    """Model: `PollsVoters`"""
 
     answer_id: int | None = Field(
         default=None,
@@ -14532,9 +13824,7 @@ class PollsVoters(BaseModel):
 
 
 class PollsVotersFieldsUsers(BaseModel):
-    """
-    Model: `PollsVotersFieldsUsers`
-    """
+    """Model: `PollsVotersFieldsUsers`"""
 
     count: int | None = Field(
         default=None,
@@ -14548,9 +13838,7 @@ class PollsVotersFieldsUsers(BaseModel):
 
 
 class PollsVotersUsers(BaseModel):
-    """
-    Model: `PollsVotersUsers`
-    """
+    """Model: `PollsVotersUsers`"""
 
     count: int | None = Field(
         default=None,
@@ -14564,9 +13852,7 @@ class PollsVotersUsers(BaseModel):
 
 
 class PrettyCardsButtonOneOf(BaseModel):
-    """
-    Model: `PrettyCardsButtonOneOf`
-    """
+    """Model: `PrettyCardsButtonOneOf`"""
 
 
 class PrettyCardsPrettyCardInnerType(StrEnum, metaclass=BaseEnumMeta):
@@ -14574,9 +13860,7 @@ class PrettyCardsPrettyCardInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class PrettyCardsPrettyCard(BaseModel):
-    """
-    Model: `PrettyCardsPrettyCard`
-    """
+    """Model: `PrettyCardsPrettyCard`"""
 
     inner_type: "PrettyCardsPrettyCardInnerType" = Field()
     """Property `PrettyCardsPrettyCard.inner_type`."""
@@ -14620,15 +13904,11 @@ class PrettyCardsPrettyCard(BaseModel):
 
 
 class PrettyCardsPrettyCardOrError(BaseModel):
-    """
-    Model: `PrettyCardsPrettyCardOrError`
-    """
+    """Model: `PrettyCardsPrettyCardOrError`"""
 
 
 class SearchHint(BaseModel):
-    """
-    Model: `SearchHint`
-    """
+    """Model: `SearchHint`"""
 
     description: str = Field()
     """Object description."""
@@ -14689,9 +13969,7 @@ class SearchHintType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class SecureGiveEventStickerItem(BaseModel):
-    """
-    Model: `SecureGiveEventStickerItem`
-    """
+    """Model: `SecureGiveEventStickerItem`"""
 
     user_id: int | None = Field(
         default=None,
@@ -14705,9 +13983,7 @@ class SecureGiveEventStickerItem(BaseModel):
 
 
 class SecureLevel(BaseModel):
-    """
-    Model: `SecureLevel`
-    """
+    """Model: `SecureLevel`"""
 
     level: int | None = Field(
         default=None,
@@ -14721,9 +13997,7 @@ class SecureLevel(BaseModel):
 
 
 class SecureSetCounterItem(BaseModel):
-    """
-    Model: `SecureSetCounterItem`
-    """
+    """Model: `SecureSetCounterItem`"""
 
     id: int = Field()
     """User ID."""
@@ -14733,9 +14007,7 @@ class SecureSetCounterItem(BaseModel):
 
 
 class SecureSmsNotification(BaseModel):
-    """
-    Model: `SecureSmsNotification`
-    """
+    """Model: `SecureSmsNotification`"""
 
     app_id: str | None = Field(
         default=None,
@@ -14764,11 +14036,9 @@ class SecureSmsNotification(BaseModel):
 
 
 class SecureTokenChecked(BaseModel):
-    """
-    Model: `SecureTokenChecked`
-    """
+    """Model: `SecureTokenChecked`"""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when access_token has been generated in Unixtime."""
@@ -14790,11 +14060,9 @@ class SecureTokenChecked(BaseModel):
 
 
 class SecureTransaction(BaseModel):
-    """
-    Model: `SecureTransaction`
-    """
+    """Model: `SecureTransaction`"""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Transaction date in Unixtime."""
@@ -14821,8 +14089,7 @@ class SecureTransaction(BaseModel):
 
 
 class StatsActivity(BaseModel):
-    """
-    Activity stats
+    """Activity stats
     Model: `StatsActivity`
     """
 
@@ -14858,9 +14125,7 @@ class StatsActivity(BaseModel):
 
 
 class StatsCity(BaseModel):
-    """
-    Model: `StatsCity`
-    """
+    """Model: `StatsCity`"""
 
     count: int | None = Field(
         default=None,
@@ -14879,9 +14144,7 @@ class StatsCity(BaseModel):
 
 
 class StatsCountry(BaseModel):
-    """
-    Model: `StatsCountry`
-    """
+    """Model: `StatsCountry`"""
 
     code: str | None = Field(
         default=None,
@@ -14905,9 +14168,7 @@ class StatsCountry(BaseModel):
 
 
 class StatsPeriod(BaseModel):
-    """
-    Model: `StatsPeriod`
-    """
+    """Model: `StatsPeriod`"""
 
     activity: "StatsActivity | None" = Field(
         default=None,
@@ -14942,8 +14203,7 @@ StatsPeriodToOneOf: typing.TypeAlias = datetime.datetime
 
 
 class StatsReach(BaseModel):
-    """
-    Reach stats
+    """Reach stats
     Model: `StatsReach`
     """
 
@@ -14989,9 +14249,7 @@ class StatsReach(BaseModel):
 
 
 class StatsSexAge(BaseModel):
-    """
-    Model: `StatsSexAge`
-    """
+    """Model: `StatsSexAge`"""
 
     value: str = Field()
     """Sex/age value."""
@@ -15018,8 +14276,7 @@ class StatsSexAge(BaseModel):
 
 
 class StatsViews(BaseModel):
-    """
-    Views stats
+    """Views stats
     Model: `StatsViews`
     """
 
@@ -15065,9 +14322,7 @@ class StatsViews(BaseModel):
 
 
 class StatsWallpostStat(BaseModel):
-    """
-    Model: `StatsWallpostStat`
-    """
+    """Model: `StatsWallpostStat`"""
 
     post_id: int | None = Field(
         default=None,
@@ -15141,9 +14396,7 @@ class StatsWallpostStat(BaseModel):
 
 
 class StatusStatus(BaseModel):
-    """
-    Model: `StatusStatus`
-    """
+    """Model: `StatusStatus`"""
 
     text: str = Field()
     """Status text."""
@@ -15155,9 +14408,7 @@ class StatusStatus(BaseModel):
 
 
 class StickersImageSet(BaseModel):
-    """
-    Model: `StickersImageSet`
-    """
+    """Model: `StickersImageSet`"""
 
     base_url: str = Field()
     """Base URL for images in set."""
@@ -15174,9 +14425,7 @@ class StickersImageSet(BaseModel):
 
 
 class StorageValue(BaseModel):
-    """
-    Model: `StorageValue`
-    """
+    """Model: `StorageValue`"""
 
     key: str = Field()
     """Property `StorageValue.key`."""
@@ -15190,9 +14439,7 @@ class StoreProductType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class StoreProduct(BaseModel):
-    """
-    Model: `StoreProduct`
-    """
+    """Model: `StoreProduct`"""
 
     id: int = Field()
     """Id of the product."""
@@ -15235,7 +14482,7 @@ class StoreProduct(BaseModel):
     )
     """Information whether the product is promoted (1 - yes, 0 - no)."""
 
-    purchase_date: int | None = Field(
+    purchase_date: datetime.datetime | None = Field(
         default=None,
     )
     """Date (Unix time) when the product was purchased."""
@@ -15307,9 +14554,7 @@ class StoreProduct(BaseModel):
 
 
 class StoreProductIcon(BaseModel):
-    """
-    Model: `StoreProductIcon`
-    """
+    """Model: `StoreProductIcon`"""
 
     base_url: str = Field()
     """Base URL for images in set."""
@@ -15326,9 +14571,7 @@ class StoreProductIcon(BaseModel):
 
 
 class StoreStickersKeyword(BaseModel):
-    """
-    Model: `StoreStickersKeyword`
-    """
+    """Model: `StoreStickersKeyword`"""
 
     words: list[str] = Field()
     """Property `StoreStickersKeyword.words`."""
@@ -15350,9 +14593,7 @@ class StoreStickersKeyword(BaseModel):
 
 
 class StoreStickersKeywordSticker(BaseModel):
-    """
-    Model: `StoreStickersKeywordSticker`
-    """
+    """Model: `StoreStickersKeywordSticker`"""
 
     pack_id: int = Field()
     """Pack id."""
@@ -15362,9 +14603,7 @@ class StoreStickersKeywordSticker(BaseModel):
 
 
 class StoriesClickableArea(BaseModel):
-    """
-    Model: `StoriesClickableArea`
-    """
+    """Model: `StoriesClickableArea`"""
 
     x: int = Field()
     """Property `StoriesClickableArea.x`."""
@@ -15441,9 +14680,7 @@ class StoriesClickableStickerSubtype(StrEnum, metaclass=BaseEnumMeta):
 
 
 class StoriesClickableSticker(BaseModel):
-    """
-    Model: `StoriesClickableSticker`
-    """
+    """Model: `StoriesClickableSticker`"""
 
     clickable_area: list["StoriesClickableArea"] = Field()
     """Property `StoriesClickableSticker.clickable_area`."""
@@ -15596,9 +14833,7 @@ class StoriesClickableSticker(BaseModel):
 
 
 class StoriesClickableStickers(BaseModel):
-    """
-    Model: `StoriesClickableStickers`
-    """
+    """Model: `StoriesClickableStickers`"""
 
     clickable_stickers: list["StoriesClickableSticker"] = Field()
     """Property `StoriesClickableStickers.clickable_stickers`."""
@@ -15620,9 +14855,7 @@ class StoriesFeedItemType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class StoriesFeedItem(BaseModel):
-    """
-    Model: `StoriesFeedItem`
-    """
+    """Model: `StoriesFeedItem`"""
 
     type: "StoriesFeedItemType" = Field()
     """Type of Feed Item."""
@@ -15674,8 +14907,7 @@ class StoriesFeedItem(BaseModel):
 
 
 class StoriesPromoBlock(BaseModel):
-    """
-    Additional data for promo stories
+    """Additional data for promo stories
     Model: `StoriesPromoBlock`
     """
 
@@ -15696,9 +14928,7 @@ class StoriesPromoBlock(BaseModel):
 
 
 class StoriesReplies(BaseModel):
-    """
-    Model: `StoriesReplies`
-    """
+    """Model: `StoriesReplies`"""
 
     count: int = Field()
     """Replies number.."""
@@ -15710,9 +14940,7 @@ class StoriesReplies(BaseModel):
 
 
 class StoriesStory(BaseModel):
-    """
-    Model: `StoriesStory`
-    """
+    """Model: `StoriesStory`"""
 
     id: int = Field()
     """Story ID.."""
@@ -15755,7 +14983,7 @@ class StoriesStory(BaseModel):
     )
     """Information whether current user can hide the story (0 - no, 1 - yes).."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when story has been added in Unixtime.."""
@@ -15872,9 +15100,7 @@ class StoriesStory(BaseModel):
 
 
 class StoriesStoryLink(BaseModel):
-    """
-    Model: `StoriesStoryLink`
-    """
+    """Model: `StoriesStoryLink`"""
 
     text: str = Field()
     """Link text."""
@@ -15889,9 +15115,7 @@ class StoriesStoryLink(BaseModel):
 
 
 class StoriesStoryStats(BaseModel):
-    """
-    Model: `StoriesStoryStats`
-    """
+    """Model: `StoriesStoryStats`"""
 
     answer: "StoriesStoryStatsStat" = Field()
     """Property `StoriesStoryStats.answer`."""
@@ -15919,9 +15143,7 @@ class StoriesStoryStats(BaseModel):
 
 
 class StoriesStoryStatsStat(BaseModel):
-    """
-    Model: `StoriesStoryStatsStat`
-    """
+    """Model: `StoriesStoryStatsStat`"""
 
     state: "StoriesStoryStatsState" = Field()
     """Property `StoriesStoryStatsStat.state`."""
@@ -15973,9 +15195,7 @@ class StoriesUploadLinkText(StrEnum, metaclass=BaseEnumMeta):
 
 
 class StoriesUploadResult(BaseModel):
-    """
-    Model: `StoriesUploadResult`
-    """
+    """Model: `StoriesUploadResult`"""
 
     upload_result: str | None = Field(
         default=None,
@@ -15984,9 +15204,7 @@ class StoriesUploadResult(BaseModel):
 
 
 class StoriesViewersItem(BaseModel):
-    """
-    Model: `StoriesViewersItem`
-    """
+    """Model: `StoriesViewersItem`"""
 
     is_liked: bool = Field()
     """user has like for this object."""
@@ -16007,9 +15225,7 @@ class StreamingStatsEventType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class StreamingStats(BaseModel):
-    """
-    Model: `StreamingStats`
-    """
+    """Model: `StreamingStats`"""
 
     event_type: "StreamingStatsEventType" = Field()
     """Events type."""
@@ -16019,9 +15235,7 @@ class StreamingStats(BaseModel):
 
 
 class StreamingStatsPoint(BaseModel):
-    """
-    Model: `StreamingStatsPoint`
-    """
+    """Model: `StreamingStatsPoint`"""
 
     timestamp: int = Field()
     """Property `StreamingStatsPoint.timestamp`."""
@@ -16031,9 +15245,7 @@ class StreamingStatsPoint(BaseModel):
 
 
 class FriendsFriendStatus(BaseModel):
-    """
-    Model: `FriendsFriendStatus`
-    """
+    """Model: `FriendsFriendStatus`"""
 
     friend_status: "FriendsFriendStatusStatus" = Field()
     """Property `FriendsFriendStatus.friend_status`."""
@@ -16055,9 +15267,7 @@ class FriendsFriendStatusStatus(IntEnum, metaclass=BaseEnumMeta):
 
 
 class FriendsFriendsList(BaseModel):
-    """
-    Model: `FriendsFriendsList`
-    """
+    """Model: `FriendsFriendsList`"""
 
     id: int = Field()
     """List ID."""
@@ -16067,9 +15277,7 @@ class FriendsFriendsList(BaseModel):
 
 
 class FriendsMutualFriend(BaseModel):
-    """
-    Model: `FriendsMutualFriend`
-    """
+    """Model: `FriendsMutualFriend`"""
 
     common_count: int | None = Field(
         default=None,
@@ -16088,9 +15296,7 @@ class FriendsMutualFriend(BaseModel):
 
 
 class FriendsOnlineUsers(BaseModel):
-    """
-    Model: `FriendsOnlineUsers`
-    """
+    """Model: `FriendsOnlineUsers`"""
 
     online: list[int] = Field()
     """Property `FriendsOnlineUsers.online`."""
@@ -16102,9 +15308,7 @@ class FriendsOnlineUsers(BaseModel):
 
 
 class FriendsOnlineUsersWithMobile(BaseModel):
-    """
-    Model: `FriendsOnlineUsersWithMobile`
-    """
+    """Model: `FriendsOnlineUsersWithMobile`"""
 
     online: list[int] = Field()
     """Property `FriendsOnlineUsersWithMobile.online`."""
@@ -16119,9 +15323,7 @@ class FriendsOnlineUsersWithMobile(BaseModel):
 
 
 class FriendsRequestsMutual(BaseModel):
-    """
-    Model: `FriendsRequestsMutual`
-    """
+    """Model: `FriendsRequestsMutual`"""
 
     count: int | None = Field(
         default=None,
@@ -16135,9 +15337,7 @@ class FriendsRequestsMutual(BaseModel):
 
 
 class UtilsDomainResolved(BaseModel):
-    """
-    Model: `UtilsDomainResolved`
-    """
+    """Model: `UtilsDomainResolved`"""
 
     object_id: int | None = Field(
         default=None,
@@ -16166,9 +15366,7 @@ class UtilsDomainResolvedType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UtilsLastShortenedLink(BaseModel):
-    """
-    Model: `UtilsLastShortenedLink`
-    """
+    """Model: `UtilsLastShortenedLink`"""
 
     access_key: str | None = Field(
         default=None,
@@ -16202,9 +15400,7 @@ class UtilsLastShortenedLink(BaseModel):
 
 
 class UtilsLinkChecked(BaseModel):
-    """
-    Model: `UtilsLinkChecked`
-    """
+    """Model: `UtilsLinkChecked`"""
 
     link: str | None = Field(
         default=None,
@@ -16224,9 +15420,7 @@ class UtilsLinkCheckedStatus(StrEnum, metaclass=BaseEnumMeta):
 
 
 class UtilsLinkStats(BaseModel):
-    """
-    Model: `UtilsLinkStats`
-    """
+    """Model: `UtilsLinkStats`"""
 
     key: str | None = Field(
         default=None,
@@ -16240,9 +15434,7 @@ class UtilsLinkStats(BaseModel):
 
 
 class UtilsLinkStatsExtended(BaseModel):
-    """
-    Model: `UtilsLinkStatsExtended`
-    """
+    """Model: `UtilsLinkStatsExtended`"""
 
     key: str | None = Field(
         default=None,
@@ -16256,9 +15448,7 @@ class UtilsLinkStatsExtended(BaseModel):
 
 
 class UtilsShortLink(BaseModel):
-    """
-    Model: `UtilsShortLink`
-    """
+    """Model: `UtilsShortLink`"""
 
     access_key: str | None = Field(
         default=None,
@@ -16282,9 +15472,7 @@ class UtilsShortLink(BaseModel):
 
 
 class UtilsStats(BaseModel):
-    """
-    Model: `UtilsStats`
-    """
+    """Model: `UtilsStats`"""
 
     timestamp: int | None = Field(
         default=None,
@@ -16298,9 +15486,7 @@ class UtilsStats(BaseModel):
 
 
 class UtilsStatsCity(BaseModel):
-    """
-    Model: `UtilsStatsCity`
-    """
+    """Model: `UtilsStatsCity`"""
 
     city_id: int | None = Field(
         default=None,
@@ -16314,9 +15500,7 @@ class UtilsStatsCity(BaseModel):
 
 
 class UtilsStatsCountry(BaseModel):
-    """
-    Model: `UtilsStatsCountry`
-    """
+    """Model: `UtilsStatsCountry`"""
 
     country_id: int | None = Field(
         default=None,
@@ -16330,9 +15514,7 @@ class UtilsStatsCountry(BaseModel):
 
 
 class UtilsStatsExtended(BaseModel):
-    """
-    Model: `UtilsStatsExtended`
-    """
+    """Model: `UtilsStatsExtended`"""
 
     cities: list["UtilsStatsCity"] | None = Field(
         default=None,
@@ -16361,9 +15543,7 @@ class UtilsStatsExtended(BaseModel):
 
 
 class UtilsStatsSexAge(BaseModel):
-    """
-    Model: `UtilsStatsSexAge`
-    """
+    """Model: `UtilsStatsSexAge`"""
 
     age_range: str | None = Field(
         default=None,
@@ -16382,9 +15562,7 @@ class UtilsStatsSexAge(BaseModel):
 
 
 class VideoEpisode(BaseModel):
-    """
-    Model: `VideoEpisode`
-    """
+    """Model: `VideoEpisode`"""
 
     time: int | None = Field(
         default=None,
@@ -16398,9 +15576,7 @@ class VideoEpisode(BaseModel):
 
 
 class VideoLiveCategory(BaseModel):
-    """
-    Model: `VideoLiveCategory`
-    """
+    """Model: `VideoLiveCategory`"""
 
     id: int = Field()
     """Property `VideoLiveCategory.id`."""
@@ -16415,9 +15591,7 @@ class VideoLiveCategory(BaseModel):
 
 
 class VideoLiveInfo(BaseModel):
-    """
-    Model: `VideoLiveInfo`
-    """
+    """Model: `VideoLiveInfo`"""
 
     enabled: bool = Field()
     """Property `VideoLiveInfo.enabled`."""
@@ -16429,8 +15603,7 @@ class VideoLiveInfo(BaseModel):
 
 
 class VideoLiveSettings(BaseModel):
-    """
-    Video live settings
+    """Video live settings
     Model: `VideoLiveSettings`
     """
 
@@ -16464,9 +15637,7 @@ class VideoPlaylistPrivacyCategory(StrEnum, metaclass=BaseEnumMeta):
 
 
 class VideoSaveResult(BaseModel):
-    """
-    Model: `VideoSaveResult`
-    """
+    """Model: `VideoSaveResult`"""
 
     access_key: str | None = Field(
         default=None,
@@ -16500,9 +15671,7 @@ class VideoSaveResult(BaseModel):
 
 
 class VideoStreamInputParams(BaseModel):
-    """
-    Model: `VideoStreamInputParams`
-    """
+    """Model: `VideoStreamInputParams`"""
 
     url: str | None = Field(
         default=None,
@@ -16542,9 +15711,7 @@ class VideoVideoType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class VideoVideo(BaseModel):
-    """
-    Model: `VideoVideo`
-    """
+    """Model: `VideoVideo`"""
 
     response_type: "VideoVideoResponseType | None" = Field(
         default=None,
@@ -16556,7 +15723,7 @@ class VideoVideo(BaseModel):
     )
     """Video access key."""
 
-    adding_date: int | None = Field(
+    adding_date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the video has been added in Unixtime."""
@@ -16626,7 +15793,7 @@ class VideoVideo(BaseModel):
     )
     """Number of comments."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when video has been uploaded in Unixtime."""
@@ -16798,9 +15965,7 @@ class VideoVideoAlbumResponseType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class VideoVideoAlbum(BaseModel):
-    """
-    Model: `VideoVideoAlbum`
-    """
+    """Model: `VideoVideoAlbum`"""
 
     id: int = Field()
     """Album ID."""
@@ -16823,9 +15988,7 @@ class VideoVideoAlbum(BaseModel):
 
 
 class VideoVideoFiles(BaseModel):
-    """
-    Model: `VideoVideoFiles`
-    """
+    """Model: `VideoVideoFiles`"""
 
     external: str | None = Field(
         default=None,
@@ -16879,9 +16042,7 @@ class VideoVideoFiles(BaseModel):
 
 
 class WallAppPost(BaseModel):
-    """
-    Model: `WallAppPost`
-    """
+    """Model: `WallAppPost`"""
 
     id: int | None = Field(
         default=None,
@@ -16905,14 +16066,12 @@ class WallAppPost(BaseModel):
 
 
 class WallAttachedNote(BaseModel):
-    """
-    Model: `WallAttachedNote`
-    """
+    """Model: `WallAttachedNote`"""
 
     comments: int = Field()
     """Comments number."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the note has been created in Unixtime."""
 
     id: int = Field()
@@ -16957,9 +16116,7 @@ class WallAttachedNote(BaseModel):
 
 
 class WallCarouselBase(BaseModel):
-    """
-    Model: `WallCarouselBase`
-    """
+    """Model: `WallCarouselBase`"""
 
     carousel_offset: int | None = Field(
         default=None,
@@ -16968,9 +16125,7 @@ class WallCarouselBase(BaseModel):
 
 
 class WallCommentAttachment(BaseModel):
-    """
-    Model: `WallCommentAttachment`
-    """
+    """Model: `WallCommentAttachment`"""
 
     type: "WallCommentAttachmentType" = Field()
     """Property `WallCommentAttachment.type`."""
@@ -17052,9 +16207,7 @@ class WallGeoType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallGeo(BaseModel):
-    """
-    Model: `WallGeo`
-    """
+    """Model: `WallGeo`"""
 
     coordinates: str | None = Field(
         default=None,
@@ -17083,9 +16236,7 @@ class WallGetFilter(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallGraffiti(BaseModel):
-    """
-    Model: `WallGraffiti`
-    """
+    """Model: `WallGraffiti`"""
 
     id: int | None = Field(
         default=None,
@@ -17129,9 +16280,7 @@ class WallGraffiti(BaseModel):
 
 
 class WallPostCopyright(BaseModel):
-    """
-    Model: `WallPostCopyright`
-    """
+    """Model: `WallPostCopyright`"""
 
     link: str = Field()
     """Property `WallPostCopyright.link`."""
@@ -17149,9 +16298,7 @@ class WallPostCopyright(BaseModel):
 
 
 class WallPostSource(BaseModel):
-    """
-    Model: `WallPostSource`
-    """
+    """Model: `WallPostSource`"""
 
     data: str | None = Field(
         default=None,
@@ -17201,9 +16348,7 @@ class WallPostType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallPostedPhoto(BaseModel):
-    """
-    Model: `WallPostedPhoto`
-    """
+    """Model: `WallPostedPhoto`"""
 
     id: int | None = Field(
         default=None,
@@ -17227,9 +16372,7 @@ class WallPostedPhoto(BaseModel):
 
 
 class WallViews(BaseModel):
-    """
-    Model: `WallViews`
-    """
+    """Model: `WallViews`"""
 
     count: int | None = Field(
         default=None,
@@ -17238,9 +16381,7 @@ class WallViews(BaseModel):
 
 
 class WallWallComment(BaseModel):
-    """
-    Model: `WallWallComment`
-    """
+    """Model: `WallWallComment`"""
 
     id: int = Field()
     """Comment ID."""
@@ -17248,7 +16389,7 @@ class WallWallComment(BaseModel):
     from_id: int = Field()
     """Author ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     text: str = Field()
@@ -17336,9 +16477,7 @@ class WallWallComment(BaseModel):
 
 
 class WallWallCommentDonut(BaseModel):
-    """
-    Model: `WallWallCommentDonut`
-    """
+    """Model: `WallWallCommentDonut`"""
 
     is_don: bool | None = Field(
         default=None,
@@ -17352,18 +16491,14 @@ class WallWallCommentDonut(BaseModel):
 
 
 class WallWallCommentDonutPlaceholder(BaseModel):
-    """
-    Model: `WallWallCommentDonutPlaceholder`
-    """
+    """Model: `WallWallCommentDonutPlaceholder`"""
 
     text: str = Field()
     """Property `WallWallCommentDonutPlaceholder.text`."""
 
 
 class WallWallItem(BaseModel):
-    """
-    Model: `WallWallItem`
-    """
+    """Model: `WallWallItem`"""
 
     copy_history: list["WallWallpostFull"] | None = Field(
         default=None,
@@ -17446,9 +16581,7 @@ class WallWallpostInnerType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallWallpost(BaseModel):
-    """
-    Model: `WallWallpost`
-    """
+    """Model: `WallWallpost`"""
 
     inner_type: "WallWallpostInnerType" = Field()
     """Property `WallWallpost.inner_type`."""
@@ -17488,7 +16621,7 @@ class WallWallpost(BaseModel):
     )
     """Information about the source of the post."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date of publishing in Unixtime."""
@@ -17575,9 +16708,7 @@ class WallWallpost(BaseModel):
 
 
 class WallWallpostAttachment(BaseModel):
-    """
-    Model: `WallWallpostAttachment`
-    """
+    """Model: `WallWallpostAttachment`"""
 
     type: "WallWallpostAttachmentType" = Field()
     """Property `WallWallpostAttachment.type`."""
@@ -17710,9 +16841,7 @@ class WallWallpostAttachmentType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallWallpostCommentsDonut(BaseModel):
-    """
-    Model: `WallWallpostCommentsDonut`
-    """
+    """Model: `WallWallpostCommentsDonut`"""
 
     placeholder: "WallWallpostCommentsDonutPlaceholder | None" = Field(
         default=None,
@@ -17721,8 +16850,7 @@ class WallWallpostCommentsDonut(BaseModel):
 
 
 class WallWallpostCommentsDonutPlaceholder(BaseModel):
-    """
-    Info about paid comments feature
+    """Info about paid comments feature
     Model: `WallWallpostCommentsDonutPlaceholder`
     """
 
@@ -17736,8 +16864,7 @@ class WallWallpostDonutEditMode(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WallWallpostDonut(BaseModel):
-    """
-    Info about paid wall post
+    """Info about paid wall post
     Model: `WallWallpostDonut`
     """
 
@@ -17766,9 +16893,7 @@ class WallWallpostDonut(BaseModel):
 
 
 class WallWallpostDonutPlaceholder(BaseModel):
-    """
-    Model: `WallWallpostDonutPlaceholder`
-    """
+    """Model: `WallWallpostDonutPlaceholder`"""
 
     text: str = Field()
     """Property `WallWallpostDonutPlaceholder.text`."""
@@ -17783,15 +16908,11 @@ class NewsfeedCommentsFilters(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedCommentsItem(BaseModel):
-    """
-    Model: `NewsfeedCommentsItem`
-    """
+    """Model: `NewsfeedCommentsItem`"""
 
 
 class NewsfeedCommentsItemBase(BaseModel):
-    """
-    Model: `NewsfeedCommentsItemBase`
-    """
+    """Model: `NewsfeedCommentsItemBase`"""
 
     type: "NewsfeedNewsfeedItemType" = Field()
     """Property `NewsfeedCommentsItemBase.type`."""
@@ -17801,7 +16922,7 @@ class NewsfeedCommentsItemBase(BaseModel):
     )
     """Property `NewsfeedCommentsItemBase.source_id`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Property `NewsfeedCommentsItemBase.date`."""
@@ -17822,9 +16943,7 @@ class NewsfeedIgnoreItemType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedItemAudioAudio(BaseModel):
-    """
-    Model: `NewsfeedItemAudioAudio`
-    """
+    """Model: `NewsfeedItemAudioAudio`"""
 
     count: int | None = Field(
         default=None,
@@ -17838,9 +16957,7 @@ class NewsfeedItemAudioAudio(BaseModel):
 
 
 class NewsfeedItemBase(BaseModel):
-    """
-    Model: `NewsfeedItemBase`
-    """
+    """Model: `NewsfeedItemBase`"""
 
     type: "NewsfeedNewsfeedItemType" = Field()
     """Property `NewsfeedItemBase.type`."""
@@ -17848,7 +16965,7 @@ class NewsfeedItemBase(BaseModel):
     source_id: int = Field()
     """Item source ID."""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when item has been added in Unixtime."""
 
     short_text_rate: float | None = Field(
@@ -17867,9 +16984,7 @@ class NewsfeedItemDigestButtonStyle(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedItemDigestButton(BaseModel):
-    """
-    Model: `NewsfeedItemDigestButton`
-    """
+    """Model: `NewsfeedItemDigestButton`"""
 
     title: str = Field()
     """Property `NewsfeedItemDigestButton.title`."""
@@ -17886,9 +17001,7 @@ class NewsfeedItemDigestFooterStyle(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedItemDigestFooter(BaseModel):
-    """
-    Model: `NewsfeedItemDigestFooter`
-    """
+    """Model: `NewsfeedItemDigestFooter`"""
 
     style: "NewsfeedItemDigestFooterStyle" = Field()
     """Property `NewsfeedItemDigestFooter.style`."""
@@ -17913,9 +17026,7 @@ class NewsfeedItemDigestHeaderStyle(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedItemDigestHeader(BaseModel):
-    """
-    Model: `NewsfeedItemDigestHeader`
-    """
+    """Model: `NewsfeedItemDigestHeader`"""
 
     title: str = Field()
     """Title of the header."""
@@ -17940,9 +17051,7 @@ class NewsfeedItemDigestHeader(BaseModel):
 
 
 class NewsfeedItemDigestItem(BaseModel):
-    """
-    Model: `NewsfeedItemDigestItem`
-    """
+    """Model: `NewsfeedItemDigestItem`"""
 
     inner_type: str = Field()
     """Property `NewsfeedItemDigestItem.inner_type`."""
@@ -17982,9 +17091,7 @@ class NewsfeedItemDigestItem(BaseModel):
 
 
 class NewsfeedItemFriendFriends(BaseModel):
-    """
-    Model: `NewsfeedItemFriendFriends`
-    """
+    """Model: `NewsfeedItemFriendFriends`"""
 
     count: int | None = Field(
         default=None,
@@ -17998,9 +17105,7 @@ class NewsfeedItemFriendFriends(BaseModel):
 
 
 class NewsfeedItemHolidayRecommendationsBlockHeader(BaseModel):
-    """
-    Model: `NewsfeedItemHolidayRecommendationsBlockHeader`
-    """
+    """Model: `NewsfeedItemHolidayRecommendationsBlockHeader`"""
 
     title: str | None = Field(
         default=None,
@@ -18024,9 +17129,7 @@ class NewsfeedItemHolidayRecommendationsBlockHeader(BaseModel):
 
 
 class NewsfeedItemPhotoPhotos(BaseModel):
-    """
-    Model: `NewsfeedItemPhotoPhotos`
-    """
+    """Model: `NewsfeedItemPhotoPhotos`"""
 
     count: int | None = Field(
         default=None,
@@ -18040,9 +17143,7 @@ class NewsfeedItemPhotoPhotos(BaseModel):
 
 
 class NewsfeedItemPhotoTagPhotoTags(BaseModel):
-    """
-    Model: `NewsfeedItemPhotoTagPhotoTags`
-    """
+    """Model: `NewsfeedItemPhotoTagPhotoTags`"""
 
     count: int | None = Field(
         default=None,
@@ -18056,9 +17157,7 @@ class NewsfeedItemPhotoTagPhotoTags(BaseModel):
 
 
 class NewsfeedItemPromoButtonAction(BaseModel):
-    """
-    Model: `NewsfeedItemPromoButtonAction`
-    """
+    """Model: `NewsfeedItemPromoButtonAction`"""
 
     url: str | None = Field(
         default=None,
@@ -18077,9 +17176,7 @@ class NewsfeedItemPromoButtonAction(BaseModel):
 
 
 class NewsfeedItemPromoButtonImage(BaseModel):
-    """
-    Model: `NewsfeedItemPromoButtonImage`
-    """
+    """Model: `NewsfeedItemPromoButtonImage`"""
 
     width: int | None = Field(
         default=None,
@@ -18098,9 +17195,7 @@ class NewsfeedItemPromoButtonImage(BaseModel):
 
 
 class NewsfeedItemVideoVideo(BaseModel):
-    """
-    Model: `NewsfeedItemVideoVideo`
-    """
+    """Model: `NewsfeedItemVideoVideo`"""
 
     count: int | None = Field(
         default=None,
@@ -18114,9 +17209,7 @@ class NewsfeedItemVideoVideo(BaseModel):
 
 
 class NewsfeedItemWallpostFeedback(BaseModel):
-    """
-    Model: `NewsfeedItemWallpostFeedback`
-    """
+    """Model: `NewsfeedItemWallpostFeedback`"""
 
     type: "NewsfeedItemWallpostFeedbackType" = Field()
     """Property `NewsfeedItemWallpostFeedback.type`."""
@@ -18151,9 +17244,7 @@ class NewsfeedItemWallpostFeedback(BaseModel):
 
 
 class NewsfeedItemWallpostFeedbackAnswer(BaseModel):
-    """
-    Model: `NewsfeedItemWallpostFeedbackAnswer`
-    """
+    """Model: `NewsfeedItemWallpostFeedbackAnswer`"""
 
     title: str = Field()
     """Property `NewsfeedItemWallpostFeedbackAnswer.title`."""
@@ -18168,9 +17259,7 @@ class NewsfeedItemWallpostFeedbackType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class NewsfeedList(BaseModel):
-    """
-    Model: `NewsfeedList`
-    """
+    """Model: `NewsfeedList`"""
 
     id: int = Field()
     """List ID."""
@@ -18180,9 +17269,7 @@ class NewsfeedList(BaseModel):
 
 
 class NewsfeedNewsfeedItem(BaseModel):
-    """
-    Model: `NewsfeedNewsfeedItem`
-    """
+    """Model: `NewsfeedNewsfeedItem`"""
 
 
 class NewsfeedNewsfeedItemType(StrEnum, metaclass=BaseEnumMeta):
@@ -18203,9 +17290,7 @@ class NewsfeedNewsfeedItemType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WidgetsCommentMedia(BaseModel):
-    """
-    Model: `WidgetsCommentMedia`
-    """
+    """Model: `WidgetsCommentMedia`"""
 
     item_id: int | None = Field(
         default=None,
@@ -18235,9 +17320,7 @@ class WidgetsCommentMediaType(StrEnum, metaclass=BaseEnumMeta):
 
 
 class WidgetsCommentReplies(BaseModel):
-    """
-    Model: `WidgetsCommentReplies`
-    """
+    """Model: `WidgetsCommentReplies`"""
 
     can_post: bool | None = Field(
         default=None,
@@ -18266,16 +17349,14 @@ class WidgetsCommentReplies(BaseModel):
 
 
 class WidgetsCommentRepliesItem(BaseModel):
-    """
-    Model: `WidgetsCommentRepliesItem`
-    """
+    """Model: `WidgetsCommentRepliesItem`"""
 
     cid: int | None = Field(
         default=None,
     )
     """Comment ID."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the comment has been added in Unixtime."""
@@ -18302,11 +17383,9 @@ class WidgetsCommentRepliesItem(BaseModel):
 
 
 class WidgetsWidgetComment(BaseModel):
-    """
-    Model: `WidgetsWidgetComment`
-    """
+    """Model: `WidgetsWidgetComment`"""
 
-    date: int = Field()
+    date: datetime.datetime = Field()
     """Date when the comment has been added in Unixtime."""
 
     from_id: int = Field()
@@ -18381,9 +17460,7 @@ class WidgetsWidgetComment(BaseModel):
 
 
 class WidgetsWidgetLikes(BaseModel):
-    """
-    Model: `WidgetsWidgetLikes`
-    """
+    """Model: `WidgetsWidgetLikes`"""
 
     count: int | None = Field(
         default=None,
@@ -18392,16 +17469,14 @@ class WidgetsWidgetLikes(BaseModel):
 
 
 class WidgetsWidgetPage(BaseModel):
-    """
-    Model: `WidgetsWidgetPage`
-    """
+    """Model: `WidgetsWidgetPage`"""
 
     comments: "BaseObjectCount | None" = Field(
         default=None,
     )
     """Property `WidgetsWidgetPage.comments`."""
 
-    date: int | None = Field(
+    date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when widgets on the page has been initialized firstly in Unixtime."""
@@ -18443,9 +17518,7 @@ class WidgetsWidgetPage(BaseModel):
 
 
 class BaseLink(BaseLinkNoProduct):
-    """
-    Model: `BaseLink`
-    """
+    """Model: `BaseLink`"""
 
     text: str | None = Field(
         default=None,
@@ -18459,9 +17532,7 @@ class BaseLink(BaseLinkNoProduct):
 
 
 class UsersUser(UsersUserMin):
-    """
-    Model: `UsersUser`
-    """
+    """Model: `UsersUser`"""
 
     sex: "BaseSex | None" = Field(
         default=None,
@@ -18525,9 +17596,7 @@ class UsersUser(UsersUserMin):
 
 
 class UsersUserFull(UsersUser):
-    """
-    Model: `UsersUserFull`
-    """
+    """Model: `UsersUserFull`"""
 
     first_name_nom: str | None = Field(
         default=None,
@@ -19156,9 +18225,7 @@ class UsersUserFull(UsersUser):
 
 
 class UsersUserXtrType(UsersUserFull):
-    """
-    Model: `UsersUserXtrType`
-    """
+    """Model: `UsersUserXtrType`"""
 
     type: "UsersUserType | None" = Field(
         default=None,
@@ -19167,9 +18234,7 @@ class UsersUserXtrType(UsersUserFull):
 
 
 class MessagesUserXtrInvitedBy(UsersUserXtrType):
-    """
-    Model: `MessagesUserXtrInvitedBy`
-    """
+    """Model: `MessagesUserXtrInvitedBy`"""
 
     invited_by: int | None = Field(
         default=None,
@@ -19188,9 +18253,7 @@ class MessagesUserXtrInvitedBy(UsersUserXtrType):
 
 
 class MessagesGetConversationByIdExtended(MessagesGetConversationById):
-    """
-    Model: `MessagesGetConversationByIdExtended`
-    """
+    """Model: `MessagesGetConversationByIdExtended`"""
 
     profiles: list["UsersUserFull"] | None = Field(
         default=None,
@@ -19204,9 +18267,7 @@ class MessagesGetConversationByIdExtended(MessagesGetConversationById):
 
 
 class MessagesMessage(MessagesBaseMessage):
-    """
-    Model: `MessagesMessage`
-    """
+    """Model: `MessagesMessage`"""
 
     important: bool | None = Field(
         default=None,
@@ -19260,9 +18321,7 @@ class MessagesMessage(MessagesBaseMessage):
 
 
 class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
-    """
-    Model: `AccountUserSettings`
-    """
+    """Model: `AccountUserSettings`"""
 
     photo_200: str | None = Field(
         default=None,
@@ -19276,9 +18335,7 @@ class AccountUserSettings(UsersUserMin, UsersUserSettingsXtr):
 
 
 class AdsStatsAge(AdsDemographicStatsPeriodItemBase):
-    """
-    Model: `AdsStatsAge`
-    """
+    """Model: `AdsStatsAge`"""
 
     value: str | None = Field(
         default=None,
@@ -19287,9 +18344,7 @@ class AdsStatsAge(AdsDemographicStatsPeriodItemBase):
 
 
 class AdsStatsCities(AdsDemographicStatsPeriodItemBase):
-    """
-    Model: `AdsStatsCities`
-    """
+    """Model: `AdsStatsCities`"""
 
     name: str | None = Field(
         default=None,
@@ -19303,9 +18358,7 @@ class AdsStatsCities(AdsDemographicStatsPeriodItemBase):
 
 
 class AdsStatsSex(AdsDemographicStatsPeriodItemBase):
-    """
-    Model: `AdsStatsSex`
-    """
+    """Model: `AdsStatsSex`"""
 
     value: "AdsStatsSexValue | None" = Field(
         default=None,
@@ -19314,9 +18367,7 @@ class AdsStatsSex(AdsDemographicStatsPeriodItemBase):
 
 
 class AdsStatsSexAge(AdsDemographicStatsPeriodItemBase):
-    """
-    Model: `AdsStatsSexAge`
-    """
+    """Model: `AdsStatsSexAge`"""
 
     value: str | None = Field(
         default=None,
@@ -19325,9 +18376,7 @@ class AdsStatsSexAge(AdsDemographicStatsPeriodItemBase):
 
 
 class AdsTargSettings(AdsCriteria):
-    """
-    Model: `AdsTargSettings`
-    """
+    """Model: `AdsTargSettings`"""
 
     id: str | None = Field(
         default=None,
@@ -19341,9 +18390,7 @@ class AdsTargSettings(AdsCriteria):
 
 
 class AppsApp(AppsAppMin):
-    """
-    Model: `AppsApp`
-    """
+    """Model: `AppsApp`"""
 
     author_url: str | None = Field(
         default=None,
@@ -19425,7 +18472,7 @@ class AppsApp(AppsAppMin):
     )
     """Application ID in store."""
 
-    published_date: int | None = Field(
+    published_date: datetime.datetime | None = Field(
         default=None,
     )
     """Date when the application has been published in Unixtime."""
@@ -19442,9 +18489,7 @@ class AppsApp(AppsAppMin):
 
 
 class CallbackForeignMessage(MessagesForeignMessage):
-    """
-    Model: `CallbackForeignMessage`
-    """
+    """Model: `CallbackForeignMessage`"""
 
     is_cropped: bool | None = Field(
         default=None,
@@ -19463,9 +18508,7 @@ class CallbackForeignMessage(MessagesForeignMessage):
 
 
 class CallbackMessage(MessagesMessage):
-    """
-    Model: `CallbackMessage`
-    """
+    """Model: `CallbackMessage`"""
 
     influence_score: float | None = Field(
         default=None,
@@ -19484,18 +18527,14 @@ class CallbackMessage(MessagesMessage):
 
 
 class CallbackPhotoComment(WallWallComment):
-    """
-    Model: `CallbackPhotoComment`
-    """
+    """Model: `CallbackPhotoComment`"""
 
     photo_owner_id: int = Field()
     """Property `CallbackPhotoComment.photo_owner_id`."""
 
 
 class CallbackVideoComment(WallWallComment):
-    """
-    Model: `CallbackVideoComment`
-    """
+    """Model: `CallbackVideoComment`"""
 
     video_owner_id: int | None = Field(
         default=None,
@@ -19504,9 +18543,7 @@ class CallbackVideoComment(WallWallComment):
 
 
 class CallbackConfirmation(CallbackBase):
-    """
-    Model: `CallbackConfirmation`
-    """
+    """Model: `CallbackConfirmation`"""
 
     type: str | None = Field(
         default=None,
@@ -19515,9 +18552,7 @@ class CallbackConfirmation(CallbackBase):
 
 
 class DatabaseCity(BaseObject):
-    """
-    Model: `DatabaseCity`
-    """
+    """Model: `DatabaseCity`"""
 
     area: str | None = Field(
         default=None,
@@ -19536,9 +18571,7 @@ class DatabaseCity(BaseObject):
 
 
 class GroupsUserXtrRole(UsersUserFull):
-    """
-    Model: `GroupsUserXtrRole`
-    """
+    """Model: `GroupsUserXtrRole`"""
 
     permissions: list["GroupsMemberRolePermission"] | None = Field(
         default=None,
@@ -19552,9 +18585,7 @@ class GroupsUserXtrRole(UsersUserFull):
 
 
 class GroupsGroupFull(GroupsGroup, GroupsMarketProperties):
-    """
-    Model: `GroupsGroupFull`
-    """
+    """Model: `GroupsGroupFull`"""
 
     member_status: "GroupsGroupFullMemberStatus | None" = Field(
         default=None,
@@ -19848,9 +18879,7 @@ class GroupsGroupFull(GroupsGroup, GroupsMarketProperties):
 
 
 class MarketMarketItemBasicWithGroup(MarketMarketItemBasic):
-    """
-    Model: `MarketMarketItemBasicWithGroup`
-    """
+    """Model: `MarketMarketItemBasicWithGroup`"""
 
     is_group_verified: bool | None = Field(
         default=None,
@@ -19879,9 +18908,7 @@ class MarketMarketItemBasicWithGroup(MarketMarketItemBasic):
 
 
 class MarketMarketItemFull(MarketMarketItem):
-    """
-    Model: `MarketMarketItemFull`
-    """
+    """Model: `MarketMarketItemFull`"""
 
     albums_ids: list[int] | None = Field(
         default=None,
@@ -19990,9 +19017,7 @@ class MarketMarketItemFull(MarketMarketItem):
 
 
 class PollsPollExtended(PollsPoll):
-    """
-    Model: `PollsPollExtended`
-    """
+    """Model: `PollsPollExtended`"""
 
     profiles: list["UsersUserFull"] | None = Field(
         default=None,
@@ -20001,9 +19026,7 @@ class PollsPollExtended(PollsPoll):
 
 
 class FriendsRequestsXtrMutual(UsersUserFull):
-    """
-    Model: `FriendsRequestsXtrMutual`
-    """
+    """Model: `FriendsRequestsXtrMutual`"""
 
     user_id: int = Field()
     """User ID."""
@@ -20046,9 +19069,7 @@ class FriendsRequestsXtrMutual(UsersUserFull):
 
 
 class FriendsFriendExtendedStatus(FriendsFriendStatus):
-    """
-    Model: `FriendsFriendExtendedStatus`
-    """
+    """Model: `FriendsFriendExtendedStatus`"""
 
     is_request_unread: bool | None = Field(
         default=None,
@@ -20057,9 +19078,7 @@ class FriendsFriendExtendedStatus(FriendsFriendStatus):
 
 
 class FriendsRequestsXtrMessage(FriendsRequestsXtrMutual):
-    """
-    Model: `FriendsRequestsXtrMessage`
-    """
+    """Model: `FriendsRequestsXtrMessage`"""
 
     message: str | None = Field(
         default=None,
@@ -20068,9 +19087,7 @@ class FriendsRequestsXtrMessage(FriendsRequestsXtrMutual):
 
 
 class VideoVideoImage(BaseImage):
-    """
-    Model: `VideoVideoImage`
-    """
+    """Model: `VideoVideoImage`"""
 
     with_padding: "BasePropertyExists | None" = Field(
         default=None,
@@ -20084,9 +19101,7 @@ class VideoVideoImage(BaseImage):
 
 
 class VideoVideoAlbumFull(VideoVideoAlbum):
-    """
-    Model: `VideoVideoAlbumFull`
-    """
+    """Model: `VideoVideoAlbumFull`"""
 
     count: int = Field()
     """Total number of videos in album."""
@@ -20126,9 +19141,7 @@ class VideoVideoAlbumFull(VideoVideoAlbum):
 
 
 class VideoVideoFull(VideoVideo):
-    """
-    Model: `VideoVideoFull`
-    """
+    """Model: `VideoVideoFull`"""
 
     files: "VideoVideoFiles | None" = Field(
         default=None,
@@ -20152,9 +19165,7 @@ class VideoVideoFull(VideoVideo):
 
 
 class WallWallpostFull(WallCarouselBase, WallWallpost):
-    """
-    Model: `WallWallpostFull`
-    """
+    """Model: `WallWallpostFull`"""
 
     copy_history: list["WallWallpostFull"] | None = Field(
         default=None,
@@ -20233,9 +19244,7 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
 
 
 class NewsfeedCommentsBase(BaseCommentsInfo):
-    """
-    Model: `NewsfeedCommentsBase`
-    """
+    """Model: `NewsfeedCommentsBase`"""
 
     list_: list["WallWallComment"] | None = Field(
         default=None,
@@ -20245,9 +19254,7 @@ class NewsfeedCommentsBase(BaseCommentsInfo):
 
 
 class NewsfeedCommentsItemTypeMarket(MarketMarketItem, NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypeMarket`
-    """
+    """Model: `NewsfeedCommentsItemTypeMarket`"""
 
     comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
@@ -20261,9 +19268,7 @@ class NewsfeedCommentsItemTypeMarket(MarketMarketItem, NewsfeedCommentsItemBase)
 
 
 class NewsfeedCommentsItemTypeNotes(NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypeNotes`
-    """
+    """Model: `NewsfeedCommentsItemTypeNotes`"""
 
     text: str | None = Field(
         default=None,
@@ -20282,9 +19287,7 @@ class NewsfeedCommentsItemTypeNotes(NewsfeedCommentsItemBase):
 
 
 class NewsfeedCommentsItemTypePhoto(PhotosPhoto, NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypePhoto`
-    """
+    """Model: `NewsfeedCommentsItemTypePhoto`"""
 
     comments: "NewsfeedCommentsBase | None" = Field(
         default=None,
@@ -20298,9 +19301,7 @@ class NewsfeedCommentsItemTypePhoto(PhotosPhoto, NewsfeedCommentsItemBase):
 
 
 class NewsfeedCommentsItemTypePost(WallWallpostFull, NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypePost`
-    """
+    """Model: `NewsfeedCommentsItemTypePost`"""
 
     from_id: int | None = Field(
         default=None,
@@ -20314,9 +19315,7 @@ class NewsfeedCommentsItemTypePost(WallWallpostFull, NewsfeedCommentsItemBase):
 
 
 class NewsfeedCommentsItemTypeTopic(NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypeTopic`
-    """
+    """Model: `NewsfeedCommentsItemTypeTopic`"""
 
     text: str | None = Field(
         default=None,
@@ -20335,9 +19334,7 @@ class NewsfeedCommentsItemTypeTopic(NewsfeedCommentsItemBase):
 
 
 class NewsfeedCommentsItemTypeVideo(VideoVideo, NewsfeedCommentsItemBase):
-    """
-    Model: `NewsfeedCommentsItemTypeVideo`
-    """
+    """Model: `NewsfeedCommentsItemTypeVideo`"""
 
     text: str | None = Field(
         default=None,
@@ -20361,9 +19358,7 @@ class NewsfeedCommentsItemTypeVideo(VideoVideo, NewsfeedCommentsItemBase):
 
 
 class NewsfeedItemAudio(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemAudio`
-    """
+    """Model: `NewsfeedItemAudio`"""
 
     audio: "NewsfeedItemAudioAudio | None" = Field(
         default=None,
@@ -20377,9 +19372,7 @@ class NewsfeedItemAudio(NewsfeedItemBase):
 
 
 class NewsfeedItemDigest(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemDigest`
-    """
+    """Model: `NewsfeedItemDigest`"""
 
     feed_id: str | None = Field(
         default=None,
@@ -20413,9 +19406,7 @@ class NewsfeedItemDigest(NewsfeedItemBase):
 
 
 class NewsfeedItemDigestFullItem(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemDigestFullItem`
-    """
+    """Model: `NewsfeedItemDigestFullItem`"""
 
     inner_type: str = Field()
     """Property `NewsfeedItemDigestFullItem.inner_type`."""
@@ -20455,9 +19446,7 @@ class NewsfeedItemDigestFullItem(NewsfeedItemBase):
 
 
 class NewsfeedItemFriend(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemFriend`
-    """
+    """Model: `NewsfeedItemFriend`"""
 
     friends: "NewsfeedItemFriendFriends | None" = Field(
         default=None,
@@ -20466,9 +19455,7 @@ class NewsfeedItemFriend(NewsfeedItemBase):
 
 
 class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemPhoto`
-    """
+    """Model: `NewsfeedItemPhoto`"""
 
     photos: "NewsfeedItemPhotoPhotos | None" = Field(
         default=None,
@@ -20482,9 +19469,7 @@ class NewsfeedItemPhoto(WallCarouselBase, NewsfeedItemBase):
 
 
 class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemPhotoTag`
-    """
+    """Model: `NewsfeedItemPhotoTag`"""
 
     photo_tags: "NewsfeedItemPhotoTagPhotoTags | None" = Field(
         default=None,
@@ -20498,9 +19483,7 @@ class NewsfeedItemPhotoTag(WallCarouselBase, NewsfeedItemBase):
 
 
 class NewsfeedItemPromoButton(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemPromoButton`
-    """
+    """Model: `NewsfeedItemPromoButton`"""
 
     text: str | None = Field(
         default=None,
@@ -20524,9 +19507,7 @@ class NewsfeedItemPromoButton(NewsfeedItemBase):
 
 
 class NewsfeedItemTopic(NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemTopic`
-    """
+    """Model: `NewsfeedItemTopic`"""
 
     post_id: int = Field()
     """Topic post ID."""
@@ -20546,9 +19527,7 @@ class NewsfeedItemTopic(NewsfeedItemBase):
 
 
 class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
-    """
-    Model: `NewsfeedItemVideo`
-    """
+    """Model: `NewsfeedItemVideo`"""
 
     video: "NewsfeedItemVideoVideo | None" = Field(
         default=None,
@@ -20562,15 +19541,11 @@ class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
 
 
 class NewsfeedItemWallpost(NewsfeedItemBase, WallWallpostFull):
-    """
-    Model: `NewsfeedItemWallpost`
-    """
+    """Model: `NewsfeedItemWallpost`"""
 
 
 class NewsfeedListFull(NewsfeedList):
-    """
-    Model: `NewsfeedListFull`
-    """
+    """Model: `NewsfeedListFull`"""
 
     no_reposts: bool | None = Field(
         default=None,

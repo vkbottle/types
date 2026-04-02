@@ -3,10 +3,8 @@ import typing
 from typing_extensions import Literal
 
 from vkbottle_types.codegen.methods.messages import MessagesCategory as _MessagesCategory  # type: ignore
-from vkbottle_types.objects import UsersFields
+from vkbottle_types.objects import MessagesChat, MessagesChatFull, MessagesSendUserIdsResponseItem, UsersFields
 from vkbottle_types.responses.messages import (
-    MessagesChat,
-    MessagesChatFull,
     MessagesGetChatChatIdsFieldsResponse,
     MessagesGetChatChatIdsResponse,
     MessagesGetChatFieldsResponse,
@@ -14,7 +12,6 @@ from vkbottle_types.responses.messages import (
     MessagesSendDeprecatedResponse,
     MessagesSendPeerIdsResponse,
     MessagesSendUserIdsResponse,
-    MessagesSendUserIdsResponseItem,
 )
 
 

@@ -1,5 +1,6 @@
 import dataclasses
 import re
+import typing
 
 from .utility import camelcase
 
@@ -39,28 +40,37 @@ def transform_ref(ref_link: str) -> str:
     return name
 
 
-def get_complex_type(type_dct: dict[str, object], response: bool = False, hint: bool = False) -> str:
+def get_complex_type(
+    type_dct: typing.Mapping[str, typing.Any],
+    response: bool = False,
+    hint: bool = False,
+) -> str:
     if (type_ := type_dct.get("type")) and type_ != "object":
         return get_type(type_, type_dct.get("items", type_dct), hint=hint)
+
     elif ref := type_dct.get("$ref"):
         transformed = transform_ref(ref)
+
         if response:
             if "response_hint" in type_dct:
                 return type_dct["response_hint"]["hint"]
             return transformed + "Model"
-        else:
-            IMPORTS_CACHE.add(transformed)
+
+        IMPORTS_CACHE.add(transformed)
+
         if hint:
             transformed = repr(transformed)
+
         return transformed
 
     raise RuntimeError(f"Cannot process complex type {type_dct}")
 
 
 def get_type(
-    type_name: str | list[str] | dict[str, object] | Ready,
-    items: dict[str, object] | None = None,
+    type_name: str | list[str] | dict[str, typing.Any] | Ready,
+    items: dict[str, typing.Any] | None = None,
     hint: bool = False,
+    prop_name: str | None = None,
 ) -> str:
     if isinstance(type_name, Ready):
         return repr(type_name.value) if hint else type_name.value
@@ -80,6 +90,8 @@ def get_type(
             return "dict[str, typing.Any]"
         case "integer" if UNIX_TIMESTAMP_DESCRIPTION_TEXT in items.get("description", ""):
             return "datetime.datetime"
+        case "integer" | "number" if prop_name and prop_name.endswith("date"):
+            return "datetime.datetime"
         case str(type_name):
             if type_name not in PRIMITIVE_TYPES:
                 raise RuntimeError(f"{type_name} not in primitive types")
@@ -94,4 +106,4 @@ def get_type(
     raise RuntimeError(f"Cannot process {type_name} (items={items})")
 
 
-__all__ = ("get_type", "get_complex_type", "Ready", "transform_ref", "get_responses")
+__all__ = ("Ready", "get_complex_type", "get_responses", "get_type", "transform_ref")

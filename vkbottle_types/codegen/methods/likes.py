@@ -1,6 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
+from vkbottle_types.objects import *
 from vkbottle_types.responses.likes import *  # noqa: F401,F403  # type: ignore
 
 
@@ -99,7 +100,7 @@ class LikesCategory(BaseCategory):
         page_url: str | None = None,
         skip_own: bool | None = None,
         **kwargs: typing.Any,
-    ) -> LikesGetListExtendedResponseModel | LikesGetListResponseModel:
+    ) -> LikesGetListResponseModel | LikesGetListExtendedResponseModel:
         """Method `likes.getList()`
 
         :param type: , Object type: 'post' - post on user or community wall, 'comment' - comment on a wall post, 'photo' - photo, 'audio' - audio, 'video' - video, 'story' - story, 'note' - note, 'photo_comment' - comment on the photo, 'video_comment' - comment on the video, 'topic_comment' - comment in the discussion, 'sitepage' - page of the site where the [vk.com/dev/Like|Like widget] is installed

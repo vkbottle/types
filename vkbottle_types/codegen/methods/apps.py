@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import AppsAppFields, AppsCatalogList, AppsTestingGroup, UsersFields
+from vkbottle_types.objects import *
 from vkbottle_types.responses.apps import *  # noqa: F401,F403  # type: ignore
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
@@ -226,7 +226,7 @@ class AppsCategory(BaseCategory):
         extended: bool | None = None,
         global_: bool | None = None,
         **kwargs: typing.Any,
-    ) -> AppsGetLeaderboardExtendedResponseModel | AppsGetLeaderboardResponseModel:
+    ) -> AppsGetLeaderboardResponseModel | AppsGetLeaderboardExtendedResponseModel:
         """Method `apps.getLeaderboard()`
 
         :param type: Leaderboard type. Possible values: *'level' - by level,, *'points' - by mission points,, *'score' - by score ().

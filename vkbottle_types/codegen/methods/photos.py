@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUploadServer, PhotosPhoto, PhotosPhotoAlbumFull, PhotosPhotoTag, PhotosPhotoUpload, UsersFields
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseGetUploadServerResponse,
@@ -456,7 +456,7 @@ class PhotosCategory(BaseCategory):
         sort: str | None = None,
         start_comment_id: int | None = None,
         **kwargs: typing.Any,
-    ) -> PhotosGetCommentsResponseModel | PhotosGetCommentsExtendedResponseModel:
+    ) -> PhotosGetCommentsExtendedResponseModel | PhotosGetCommentsResponseModel:
         """Method `photos.getComments()`
 
         :param photo_id: Photo ID.

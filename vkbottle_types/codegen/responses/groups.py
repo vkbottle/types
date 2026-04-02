@@ -1,3 +1,5 @@
+import datetime
+
 from vkbottle_types.base_model import BaseModel, Field
 from vkbottle_types.objects import (
     GroupsAddress,
@@ -323,10 +325,10 @@ class GroupsGetSettingsResponseModel(BaseModel):
     rss: str | None = Field(
         default=None,
     )
-    start_date: int | None = Field(
+    start_date: datetime.datetime | None = Field(
         default=None,
     )
-    finish_date: int | None = Field(
+    finish_date: datetime.datetime | None = Field(
         default=None,
     )
     subject: int | None = Field(
@@ -430,3 +432,65 @@ class GroupsSearchResponseModel(BaseModel):
 
 class GroupsSearchResponse(BaseResponse):
     response: "GroupsSearchResponseModel" = Field()
+
+
+__all__ = (
+    "GroupsAddAddressResponse",
+    "GroupsAddCallbackServerResponse",
+    "GroupsAddCallbackServerResponseModel",
+    "GroupsAddLinkResponse",
+    "GroupsCreateResponse",
+    "GroupsEditAddressResponse",
+    "GroupsGetAddressesResponse",
+    "GroupsGetAddressesResponseModel",
+    "GroupsGetBannedResponse",
+    "GroupsGetBannedResponseModel",
+    "GroupsGetByIdObjectResponse",
+    "GroupsGetByIdObjectResponseModel",
+    "GroupsGetCallbackConfirmationCodeResponse",
+    "GroupsGetCallbackConfirmationCodeResponseModel",
+    "GroupsGetCallbackServersResponse",
+    "GroupsGetCallbackServersResponseModel",
+    "GroupsGetCallbackSettingsResponse",
+    "GroupsGetCatalogInfoExtendedResponse",
+    "GroupsGetCatalogInfoExtendedResponseModel",
+    "GroupsGetCatalogInfoResponse",
+    "GroupsGetCatalogInfoResponseModel",
+    "GroupsGetInvitedUsersResponse",
+    "GroupsGetInvitedUsersResponseModel",
+    "GroupsGetInvitesExtendedResponse",
+    "GroupsGetInvitesExtendedResponseModel",
+    "GroupsGetInvitesResponse",
+    "GroupsGetInvitesResponseModel",
+    "GroupsGetLongPollServerResponse",
+    "GroupsGetLongPollSettingsResponse",
+    "GroupsGetMembersFieldsResponse",
+    "GroupsGetMembersFieldsResponseModel",
+    "GroupsGetMembersFilterResponse",
+    "GroupsGetMembersFilterResponseModel",
+    "GroupsGetMembersResponse",
+    "GroupsGetMembersResponseModel",
+    "GroupsGetObjectExtendedResponse",
+    "GroupsGetObjectExtendedResponseModel",
+    "GroupsGetOnlineStatusResponse",
+    "GroupsGetOnlineStatusResponseModel",
+    "GroupsGetRequestsFieldsResponse",
+    "GroupsGetRequestsFieldsResponseModel",
+    "GroupsGetRequestsResponse",
+    "GroupsGetRequestsResponseModel",
+    "GroupsGetResponse",
+    "GroupsGetResponseModel",
+    "GroupsGetSettingsResponse",
+    "GroupsGetSettingsResponseModel",
+    "GroupsGetTagListResponse",
+    "GroupsGetTokenPermissionsResponse",
+    "GroupsGetTokenPermissionsResponseModel",
+    "GroupsInviteUserIdsListResponse",
+    "GroupsInviteUserIdsListResponseModel",
+    "GroupsIsMemberExtendedResponse",
+    "GroupsIsMemberExtendedResponseModel",
+    "GroupsIsMemberUserIdsExtendedResponse",
+    "GroupsIsMemberUserIdsResponse",
+    "GroupsSearchResponse",
+    "GroupsSearchResponseModel",
+)

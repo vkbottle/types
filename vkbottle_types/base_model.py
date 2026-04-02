@@ -8,6 +8,8 @@ from pydantic_core import CoreSchema, core_schema
 
 NOT_SUPPORTED: typing.Final = "NOT_SUPPORTED"
 
+Field = pydantic.Field
+
 
 def _is_friend(bases: tuple[type[typing.Any], ...], /) -> bool:
     return any(friend in bases for friend in ENUM_FRIENDS)
@@ -29,18 +31,27 @@ if typing.TYPE_CHECKING:
         @classmethod
         def object_build(cls, localns: typing.Mapping[str, typing.Any], /) -> None: ...
 
+        @classmethod
+        def set_original_module_namespace(cls, namespace: typing.Mapping[str, typing.Any], /) -> None: ...
+
         def to_dict(self, **kwargs: typing.Any) -> dict[str, typing.Any]: ...
 
         def to_raw(self, **kwargs: typing.Any) -> str: ...
 
 else:
+    ORIG_MODULE_NAMESPACE_ATTR = "__orig_module_namespace__"
 
     class BaseModel(pydantic.BaseModel):
         model_config = pydantic.ConfigDict(frozen=True)
 
         @classmethod
-        def object_build(cls, localns):
-            cls.model_build(_types_namespace=getattr(cls, "__orig_namespace__", {}) | dict(localns))
+        def object_build(cls, localns, /):
+            localns = dict(localns) if not isinstance(localns, dict) else localns
+            cls.model_rebuild(_types_namespace=getattr(cls, ORIG_MODULE_NAMESPACE_ATTR, {}) | localns)
+
+        @classmethod
+        def set_original_module_namespace(cls, namespace, /) -> None:
+            setattr(cls, ORIG_MODULE_NAMESPACE_ATTR, namespace)
 
         @classmethod
         def from_raw(cls, data, /, *, strict=False):
@@ -95,7 +106,7 @@ class BaseEnumMeta(enum.EnumMeta, type):
         def __get_pydantic_core_schema__(_cls: typing.Any, _source_type: typing.Any, _handler: pydantic.GetCoreSchemaHandler) -> CoreSchema:
             return core_schema.no_info_after_validator_function(
                 function=lambda x: _cls(x),  # type: ignore
-                schema=getattr(core_schema, f"{_cls.__bases__[0].__name__}_schema", core_schema.any_schema)(),
+                schema=getattr(core_schema, f"{_cls.__base__.__name__}_schema", core_schema.any_schema)(),
             )
 
         @staticmethod
@@ -139,14 +150,15 @@ class BaseEnumMeta(enum.EnumMeta, type):
 
 
 ENUM_FRIENDS: typing.Final = (str, int, float, StrEnum, IntEnum, FloatEnum)
-NOT_SUPPORTED_VALUES: typing.Final = {
+NOT_SUPPORTED_VALUES: typing.Final[dict[typing.Any, typing.Any]] = {
     str: NOT_SUPPORTED,
     int: sys.maxsize,
     float: math.inf,
     StrEnum: NOT_SUPPORTED,
-    IntEnum: sys.maxsize,
     FloatEnum: math.inf,
+    IntEnum: sys.maxsize,
     enum.IntEnum: sys.maxsize,
+    enum.IntFlag: sys.maxsize,
 }
 
 
@@ -154,7 +166,4 @@ if sys.version_info >= (3, 11):
     NOT_SUPPORTED_VALUES.update({enum.StrEnum: NOT_SUPPORTED})
 
 
-Field = pydantic.Field
-
-
-__all__ = ("BaseEnumMeta", "BaseModel", "Field", "StrEnum", "IntEnum", "FloatEnum")
+__all__ = ("BaseEnumMeta", "BaseModel", "Field", "FloatEnum", "IntEnum", "StrEnum")

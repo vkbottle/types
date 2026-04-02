@@ -191,3 +191,41 @@ class FriendsSearchResponseModel(BaseModel):
 
 class FriendsSearchResponse(BaseResponse):
     response: "FriendsSearchResponseModel" = Field()
+
+
+__all__ = (
+    "FriendsAddListResponse",
+    "FriendsAddListResponseModel",
+    "FriendsAddResponse",
+    "FriendsAddResponseModel",
+    "FriendsAreFriendsExtendedResponse",
+    "FriendsAreFriendsResponse",
+    "FriendsDeleteResponse",
+    "FriendsDeleteResponseModel",
+    "FriendsGetAppUsersResponse",
+    "FriendsGetFieldsResponse",
+    "FriendsGetFieldsResponseModel",
+    "FriendsGetListsResponse",
+    "FriendsGetListsResponseModel",
+    "FriendsGetMutualResponse",
+    "FriendsGetMutualTargetUidsResponse",
+    "FriendsGetMutualTotalCountResponse",
+    "FriendsGetOnlineExtendedResponse",
+    "FriendsGetOnlineOnlineMobileExtendedResponse",
+    "FriendsGetOnlineOnlineMobileResponse",
+    "FriendsGetOnlineOnlineMobileResponseModel",
+    "FriendsGetOnlineResponse",
+    "FriendsGetRecentResponse",
+    "FriendsGetRequestsExtendedResponse",
+    "FriendsGetRequestsExtendedResponseModel",
+    "FriendsGetRequestsNeedMutualResponse",
+    "FriendsGetRequestsNeedMutualResponseModel",
+    "FriendsGetRequestsResponse",
+    "FriendsGetRequestsResponseModel",
+    "FriendsGetResponse",
+    "FriendsGetResponseModel",
+    "FriendsGetSuggestionsResponse",
+    "FriendsGetSuggestionsResponseModel",
+    "FriendsSearchResponse",
+    "FriendsSearchResponseModel",
+)

@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUploadServer, MarketUploadPhotoData, UsersFields
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseGetUploadServerResponse,
@@ -495,7 +495,7 @@ class MarketCategory(BaseCategory):
         offset: int | None = None,
         with_disabled: bool | None = None,
         **kwargs: typing.Any,
-    ) -> MarketGetExtendedResponseModel | MarketGetResponseModel:
+    ) -> MarketGetResponseModel | MarketGetExtendedResponseModel:
         """Method `market.get()`
 
         :param owner_id: ID of an item owner community, "Note that community id in the 'owner_id' parameter should be negative number. For example 'owner_id'=-1 matches the [vk.com/apiclub|VK API] community "
@@ -576,7 +576,7 @@ class MarketCategory(BaseCategory):
         item_ids: list[str],
         extended: bool | None = None,
         **kwargs: typing.Any,
-    ) -> MarketGetByIdExtendedResponseModel | MarketGetByIdResponseModel:
+    ) -> MarketGetByIdResponseModel | MarketGetByIdExtendedResponseModel:
         """Method `market.getById()`
 
         :param item_ids: Comma-separated ids list: {user id}_{item id}. If an item belongs to a community -{community id} is used. " 'Videos' value example: , '-4363_136089719,13245770_137352259'"

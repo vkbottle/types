@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import BaseUserGroupFields, NewsfeedCommentsFilters, NewsfeedNewsfeedItemType, UsersFields
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseBoolResponse,
     BaseOkResponse,
@@ -399,8 +399,8 @@ class NewsfeedCategory(BaseCategory):
         response = await self.api.request("newsfeed.search", params)
         model = self.get_model(
             (
-                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended",), NewsfeedSearchStrictResponse),
+                (("strict",), NewsfeedSearchStrictResponse),
                 (("extended_strict",), NewsfeedSearchExtendedStrictResponse),
             ),
             default=NewsfeedSearchResponse,

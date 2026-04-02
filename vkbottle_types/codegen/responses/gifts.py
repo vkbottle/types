@@ -10,3 +10,9 @@ class GiftsGetResponseModel(BaseModel):
 
 class GiftsGetResponse(BaseResponse):
     response: "GiftsGetResponseModel" = Field()
+
+
+__all__ = (
+    "GiftsGetResponse",
+    "GiftsGetResponseModel",
+)

@@ -252,6 +252,14 @@ class MessageRead(BaseGroupEvent):
     object: group_event_objects.MessageReadObject
 
 
+localns = locals().copy()
+for item in localns.values():
+    if isinstance(item, type) and item is not BaseGroupEvent and issubclass(item, BaseGroupEvent):
+        item.set_original_module_namespace(localns)
+
+del localns
+
+
 __all__ = (
     "AppPayload",
     "AudioNew",

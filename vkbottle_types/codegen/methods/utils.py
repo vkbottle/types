@@ -1,7 +1,7 @@
 import typing
 
 from vkbottle_types.methods.base_category import BaseCategory
-from vkbottle_types.objects import UtilsDomainResolved, UtilsLinkChecked, UtilsLinkStats, UtilsLinkStatsExtended, UtilsShortLink
+from vkbottle_types.objects import *
 from vkbottle_types.responses.base import (
     BaseOkResponse,
     BaseOkResponseModel,
@@ -90,7 +90,7 @@ class UtilsCategory(BaseCategory):
         intervals_count: int | None = None,
         source: str | None = None,
         **kwargs: typing.Any,
-    ) -> "UtilsLinkStats | UtilsLinkStatsExtended":
+    ) -> "UtilsLinkStatsExtended | UtilsLinkStats":
         """Method `utils.getLinkStats()`
 
         :param key: Link key (characters after vk.cc/).

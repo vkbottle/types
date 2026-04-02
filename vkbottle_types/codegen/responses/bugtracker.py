@@ -97,3 +97,21 @@ class BugtrackerGetDownloadVersionUrlResponseModel(BaseModel):
 
 class BugtrackerGetDownloadVersionUrlResponse(BaseResponse):
     response: "BugtrackerGetDownloadVersionUrlResponseModel" = Field()
+
+
+__all__ = (
+    "BugtrackerAddCompanyGroupsMembersResponse",
+    "BugtrackerAddCompanyGroupsMembersResponseModel",
+    "BugtrackerAddCompanyMembersResponse",
+    "BugtrackerAddCompanyMembersResponseModel",
+    "BugtrackerCreateCommentResponse",
+    "BugtrackerCreateCommentResponseModel",
+    "BugtrackerGetBugreportByIdResponse",
+    "BugtrackerGetBugreportByIdResponseModel",
+    "BugtrackerGetCompanyGroupMembersResponse",
+    "BugtrackerGetCompanyGroupMembersResponseModel",
+    "BugtrackerGetCompanyMembersResponse",
+    "BugtrackerGetCompanyMembersResponseModel",
+    "BugtrackerGetDownloadVersionUrlResponse",
+    "BugtrackerGetDownloadVersionUrlResponseModel",
+)

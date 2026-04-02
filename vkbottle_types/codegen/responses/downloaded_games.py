@@ -8,3 +8,9 @@ class DownloadedGamesPaidStatusResponseModel(BaseModel):
 
 class DownloadedGamesPaidStatusResponse(BaseResponse):
     response: "DownloadedGamesPaidStatusResponseModel" = Field()
+
+
+__all__ = (
+    "DownloadedGamesPaidStatusResponse",
+    "DownloadedGamesPaidStatusResponseModel",
+)

@@ -100,3 +100,27 @@ class DatabaseGetUniversitiesResponseModel(BaseModel):
 
 class DatabaseGetUniversitiesResponse(BaseResponse):
     response: "DatabaseGetUniversitiesResponseModel" = Field()
+
+
+__all__ = (
+    "DatabaseGetChairsResponse",
+    "DatabaseGetChairsResponseModel",
+    "DatabaseGetCitiesByIdResponse",
+    "DatabaseGetCitiesResponse",
+    "DatabaseGetCitiesResponseModel",
+    "DatabaseGetCountriesByIdResponse",
+    "DatabaseGetCountriesResponse",
+    "DatabaseGetCountriesResponseModel",
+    "DatabaseGetFacultiesResponse",
+    "DatabaseGetFacultiesResponseModel",
+    "DatabaseGetMetroStationsByIdResponse",
+    "DatabaseGetMetroStationsResponse",
+    "DatabaseGetMetroStationsResponseModel",
+    "DatabaseGetRegionsResponse",
+    "DatabaseGetRegionsResponseModel",
+    "DatabaseGetSchoolClassesNewResponse",
+    "DatabaseGetSchoolsResponse",
+    "DatabaseGetSchoolsResponseModel",
+    "DatabaseGetUniversitiesResponse",
+    "DatabaseGetUniversitiesResponseModel",
+)
