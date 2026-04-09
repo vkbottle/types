@@ -1,11 +1,7 @@
-# type: ignore
-# noqa: F401,F403
-
 import datetime
 
-from typing_extensions import TypeAlias
+from typing_extensions import TYPE_CHECKING, TypeAlias
 
-import vkbottle_types.codegen.objects
 from vkbottle_types.base_model import BaseEnumMeta, BaseModel, Field, StrEnum
 from vkbottle_types.codegen.objects import *
 
@@ -334,22 +330,36 @@ class ClientInfoForBots(BaseModel):
 UsersSubscriptionsItem: TypeAlias = GroupsGroupFull | UsersUserFull
 
 
-localns = locals().copy()
-types_namespace = vars(vkbottle_types.codegen.objects) | localns
-for item in localns.values():
-    if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
-        continue
+if not TYPE_CHECKING:
+    import vkbottle_types.codegen.objects
 
-    item.model_rebuild(force=True, _types_namespace=types_namespace)
-    item.set_original_module_namespace(types_namespace)
+    localns = locals().copy()
+    types_namespace = vars(vkbottle_types.codegen.objects) | localns
+    alls = {"UsersSubscriptionsItem"}
 
-    for parent in item.__bases__:
-        if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
-            parent.__pydantic_fields__.update(item.__pydantic_fields__)
-            parent.model_rebuild(force=True, _types_namespace=types_namespace)
-            parent.set_original_module_namespace(types_namespace)
-            item.__pydantic_fields__.update(
-                {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
-            )
+    for item_name, item in localns.items():
+        if issubclass(type(item), BaseEnumMeta):
+            alls.add(item_name)
 
-del localns, types_namespace
+        if not (isinstance(item, type) and item is not BaseModel and issubclass(item, BaseModel)):
+            continue
+
+        item.model_rebuild(force=True, _types_namespace=types_namespace)
+        item.set_original_module_namespace(types_namespace)
+
+        for parent in item.__bases__:
+            if parent.__name__ == item.__name__ and issubclass(parent, BaseModel):
+                parent.__pydantic_fields__.update(item.__pydantic_fields__)
+                parent.model_rebuild(force=True, _types_namespace=types_namespace)
+                parent.set_original_module_namespace(types_namespace)
+                item.__pydantic_fields__.update(
+                    {name: field for name, field in parent.__pydantic_fields__.items() if name not in item.__pydantic_fields__},
+                )
+
+        alls.add(item_name)
+
+    alls.update(vkbottle_types.codegen.objects.__all__)
+
+    __all__ = tuple(sorted(alls))
+
+    del alls, localns, types_namespace, item, parent
