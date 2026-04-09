@@ -1,5 +1,3 @@
-# type: ignore
-
 import datetime
 
 import typing_extensions as typing
