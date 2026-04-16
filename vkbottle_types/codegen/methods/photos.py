@@ -529,6 +529,8 @@ class PhotosCategory(BaseCategory):
 
     async def get_owner_cover_photo_upload_server(
         self,
+        crop_width: int | None = None,
+        crop_height: int | None = None,
         crop_x: int | None = None,
         crop_x2: int | None = None,
         crop_y: int | None = None,
@@ -539,6 +541,8 @@ class PhotosCategory(BaseCategory):
     ) -> "BaseUploadServer":
         """Method `photos.getOwnerCoverPhotoUploadServer()`
 
+        :param crop_width: Width
+        :param crop_height: Height
         :param crop_x: X coordinate of the left-upper corner
         :param crop_x2: X coordinate of the right-bottom corner
         :param crop_y: Y coordinate of the left-upper corner
