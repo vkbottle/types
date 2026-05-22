@@ -2635,6 +2635,16 @@ class MessagesConversation(BaseModel):
     )
     """Property `MessagesConversation.chat_settings`."""
 
+    style: str | None = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.style`."""
+
+    peer_flags: int | None = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.peer_flags`."""
+
 
 class MessagesConversationCanWrite(BaseModel):
     """Model: `MessagesConversationCanWrite`"""
