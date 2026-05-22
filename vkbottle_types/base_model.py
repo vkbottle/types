@@ -42,7 +42,7 @@ else:
     ORIG_MODULE_NAMESPACE_ATTR = "__orig_module_namespace__"
 
     class BaseModel(pydantic.BaseModel):
-        model_config = pydantic.ConfigDict(frozen=True)
+        model_config = pydantic.ConfigDict(frozen=True, defer_build=True)
 
         @classmethod
         def object_build(cls, localns, /):
