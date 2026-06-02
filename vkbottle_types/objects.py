@@ -298,6 +298,18 @@ class MessagesPinnedMessage(MessagesPinnedMessage):
     fwd_messages: list[MessagesForeignMessage] | None = None
 
 
+class MessagesConversation(MessagesConversation):
+    style: str | None = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.style`."""
+
+    peer_flags: int | None = Field(
+        default=None,
+    )
+    """Property `MessagesConversation.peer_flags`."""
+
+
 class ClientInfoForBots(BaseModel):
     """Model: `ClientInfoForBots`"""
 
