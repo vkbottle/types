@@ -199,6 +199,14 @@ class StoriesStory(StoriesStory):
     photo: PhotosPhoto | None = None
 
 
+class WallWallpost(WallWallpost):
+    inner_type: WallWallpostInnerType | None = None
+    
+
+class WallWallpostFull(WallWallpostFull):
+    inner_type: WallWallpostInnerType | None = None
+
+
 class WallCommentAttachment(WallCommentAttachment):
     photo: PhotosPhoto | None = None
 
@@ -329,7 +337,7 @@ class ClientInfoForBots(BaseModel):
     """client has support inline keyboard."""
 
     carousel: bool | None = Field(
-        default=None,
+        default=None, 123
     )
     """client has support carousel."""
 
