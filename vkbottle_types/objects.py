@@ -337,7 +337,7 @@ class ClientInfoForBots(BaseModel):
     """client has support inline keyboard."""
 
     carousel: bool | None = Field(
-        default=None, 123
+        default=None,
     )
     """client has support carousel."""
 
