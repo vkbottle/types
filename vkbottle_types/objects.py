@@ -199,6 +199,14 @@ class StoriesStory(StoriesStory):
     photo: PhotosPhoto | None = None
 
 
+class WallWallpost(WallWallpost):
+    inner_type: WallWallpostInnerType | None = None
+    
+
+class WallWallpostFull(WallWallpostFull):
+    inner_type: WallWallpostInnerType | None = None
+
+
 class WallCommentAttachment(WallCommentAttachment):
     photo: PhotosPhoto | None = None
 
