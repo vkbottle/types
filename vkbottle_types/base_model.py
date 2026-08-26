@@ -1,5 +1,4 @@
 import enum
-import math
 import sys
 
 import pydantic
@@ -7,6 +6,8 @@ import typing_extensions as typing
 from pydantic_core import CoreSchema, core_schema
 
 NOT_SUPPORTED: typing.Final = "NOT_SUPPORTED"
+PYDICT_APAPTER_TO_RAW_JSON = pydantic.TypeAdapter(dict[str, typing.Any])
+PYOBJECT_ADAPTER_TO_RAW_JSON = pydantic.TypeAdapter(typing.Any)
 
 Field = pydantic.Field
 
@@ -19,7 +20,7 @@ if typing.TYPE_CHECKING:
 
     @typing.dataclass_transform(
         kw_only_default=True,
-        field_specifiers=(pydantic.Field, pydantic.PrivateAttr),
+        field_specifiers=(Field, pydantic.Field, pydantic.PrivateAttr),
     )
     class BaseModel(pydantic.BaseModel):
         @classmethod
@@ -153,9 +154,9 @@ ENUM_FRIENDS: typing.Final = (str, int, float, StrEnum, IntEnum, FloatEnum)
 NOT_SUPPORTED_VALUES: typing.Final[dict[typing.Any, typing.Any]] = {
     str: NOT_SUPPORTED,
     int: sys.maxsize,
-    float: math.inf,
+    float: sys.float_info.max,
     StrEnum: NOT_SUPPORTED,
-    FloatEnum: math.inf,
+    FloatEnum: sys.float_info.max,
     IntEnum: sys.maxsize,
     enum.IntEnum: sys.maxsize,
     enum.IntFlag: sys.maxsize,

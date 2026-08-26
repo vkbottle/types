@@ -1,21 +1,15 @@
 from typing import Any
 
-import pydantic
-
-from vkbottle_types.base_model import BaseModel, Field
-
-PYDICT_APAPTER_TO_RAW_JSON = pydantic.TypeAdapter(dict[str, Any])
+from vkbottle_types.base_model import PYDICT_APAPTER_TO_RAW_JSON, PYOBJECT_ADAPTER_TO_RAW_JSON, BaseModel, Field
 
 
 class BaseResponse(BaseModel):
     response: Any
-    raw_json: str | None = Field(default=None)
+    raw_json: str | None = Field(default=None, init=False)
 
     @property
     def raw(self) -> str:
-        if not self.raw_json:
-            raise AttributeError("You cannot get raw_json from here. Get a full raw_json from unnested response.")
-        return self.raw_json
+        return PYOBJECT_ADAPTER_TO_RAW_JSON.dump_json(self.response).decode()
 
 
 class DictResponse(BaseResponse):
@@ -25,7 +19,7 @@ class DictResponse(BaseResponse):
         super().__init__(response=data)
 
     @property
-    def raw(self) -> str:  # type: ignore
+    def raw(self) -> str:
         return PYDICT_APAPTER_TO_RAW_JSON.dump_json(self.response).decode()
 
 
